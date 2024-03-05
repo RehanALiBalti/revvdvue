@@ -1,0 +1,348 @@
+.banner-section-car-listing {
+	width: 100%;
+	height: 670px;
+	background-image: url("../images/MaskGroup3carbgimage.png");
+	/* background-position: center; */
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.swiper-container.swiper-width {
+	max-width: 515px;
+	position: relative;
+	top: 100px;
+}
+.slider-img.car-image-slider2 {
+	max-width: 475px;
+	height: 499px;
+	box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.1);
+	border: none;
+	border-radius: 0;
+	object-fit: contain;
+	user-select: none;
+}
+
+.swiper-slide.swiper-adjustment {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+	width: 30px;
+	height: 30px;
+	background-color: transparent;
+	color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 53%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.swiper-button-prev {
+	left: 11%;
+}
+
+.swiper-button-next {
+	right: 5%;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+	font-family: swiper-icons;
+	font-size: 25px;
+	text-transform: none !important;
+	letter-spacing: 0;
+	font-variant: initial;
+	line-height: 1;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+	bottom: var(--swiper-pagination-bottom, 8px);
+	top: var(--swiper-pagination-top, auto);
+	left: 0;
+	width: 100%;
+	bottom: 100px;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+	top: var(--swiper-pagination-top, auto);
+	left: 7%;
+	width: 100%;
+	bottom: 104px;
+	transform: translateX(-50%);
+	position: absolute;
+	transform: rotate(-7deg);
+}
+
+.swiper-pagination-bullet {
+	width: 10px;
+	height: 10px;
+	background-color: #fff;
+	border: 1px solid #000;
+	opacity: 1;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+	margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 4px);
+	width: 10px;
+	height: 10px;
+	background-color: #000;
+	border: 1px solid #fff;
+}
+
+.swiper-container.content-swiper-container {
+	max-width: 715px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.koenigsegg-title {
+	color: #f95f19;
+	font-weight: 500;
+}
+
+.overview-content-text {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	transform: rotate(-2deg) skew(-1deg, 0);
+}
+
+.overview-title {
+	color: #f95f19;
+	font-size: 18px;
+	font-weight: 400;
+	text-align: left;
+}
+
+.map-para.overview-para {
+	text-align: left;
+	margin-bottom: 0;
+	font-size: 14px;
+}
+
+.icon-user-pricing {
+	width: 40px;
+	height: 30px;
+	background-color: #ffffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: skew(-40deg);
+}
+
+.icon-user-img-pricing {
+	object-fit: cover;
+	width: 18px;
+	transform: skew(40deg);
+}
+
+.pricing-content-text {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 1rem;
+	margin: 2rem 0 1rem;
+	transform: skewY(2deg);
+	transform-origin: bottom;
+}
+
+.price-text-atag {
+	font-size: 16px;
+	font-weight: 400;
+	color: #f95f19;
+	cursor: alias;
+}
+
+.price-text-atag:hover {
+	color: #f95f19;
+}
+
+.car-details-content {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100%;
+	gap: 1rem;
+	transform: skewY(2deg);
+	transform-origin: bottom;
+}
+
+.first-content-car-details {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 0.3rem;
+	flex-direction: column;
+}
+
+.model-list-content {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 1rem;
+	width: 100%;
+}
+
+.map-para.overview-para-list {
+	text-align: left;
+	margin-bottom: 0;
+}
+
+.text-content-slide {
+	position: relative;
+	margin: 2rem 0;
+	top: 150px;
+	left: 75px;
+	max-width: 620px;
+	/* transform: skewX(4deg); */
+	cursor: grab;
+}
+
+.overview-content-text {
+	margin: 1rem 0 0.5rem;
+}
+
+.map-para.overview-para-list {
+	font-size: 14px;
+}
+
+.swiper-button-prev.content-prev,
+.swiper-button-next.content-next {
+	position: absolute;
+	top: auto;
+	bottom: 75px;
+}
+
+.swiper-button-prev.content-prev {
+	left: 44%;
+	/* transform: translate(-50%, -50%); */
+	/* top: 60.9%; */
+	z-index: 999;
+}
+
+.swiper-button-next.content-next {
+	/* top: 61%; */
+	right: 44%;
+	/* transform: translate(-50%, -50%); */
+	z-index: 999;
+}
+
+.swiper-button-next.content-next::after,
+.swiper-button-prev.content-prev::after {
+	font-family: swiper-icons;
+	font-size: 18px;
+	text-transform: none !important;
+	letter-spacing: 0;
+	font-variant: initial;
+	line-height: 1;
+	color: #000b1c;
+	font-weight: 600;
+}
+
+.swiper-pagination.content-pagination {
+	/* top: 68%; */
+	transform: skewX(0);
+	transform: translate(-50%, -50%);
+	left: 50%;
+	bottom: 80px;
+}
+
+.skew-div {
+	transform: rotate(-3deg) skew(-10deg, 0);
+}
+
+@media (min-width: 992px) and (max-width: 1300px) {
+	.banner-section-car-listing {
+		height: 600px;
+		background-position: center;
+	}
+
+	.swiper-horizontal > .swiper-pagination-bullets,
+	.swiper-pagination-bullets.swiper-pagination-horizontal,
+	.swiper-pagination-custom,
+	.swiper-pagination-fraction {
+		bottom: 136px;
+	}
+
+	.text-content-slide {
+		top: 112px;
+		left: 0;
+		max-width: 100%;
+		margin-left: 3rem;
+	}
+
+	.swiper-container.content-swiper-container {
+		max-width: 100%;
+	}
+
+	.first-content-car-details {
+		gap: 0rem;
+	}
+	.swiper-pagination.content-pagination {
+		bottom: 80px;
+	}
+
+	.swiper-button-prev.content-prev {
+		left: 42%;
+	}
+
+	.swiper-button-next.content-next {
+		right: 42%;
+	}
+}
+
+/* .swiper-button-prev.content-prev  */
+
+@media screen and (max-width: 991px) {
+	.banner-section-car-listing {
+		height: 100%;
+		max-height: 1000px;
+		background-position: center;
+	}
+
+	.swiper-container.swiper-width {
+		top: 0;
+	}
+	.text-content-slide {
+		margin: 0;
+		top: 122px;
+		left: 0;
+		max-width: 100%;
+	}
+
+	.overview-content-text,
+	.pricing-content-text,
+	.car-details-content {
+		padding-left: 2rem;
+	}
+
+	.swiper-button-prev.content-prev {
+		left: 42%;
+	}
+
+	.swiper-button-next.content-next {
+		right: 42%;
+	}
+
+}
+
+@media screen and (max-width: 767px) {
+	.text-content-slide {
+		top: 0;
+	}
+}
