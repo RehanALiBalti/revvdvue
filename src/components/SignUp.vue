@@ -208,6 +208,7 @@
   </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
 import HeaderItem from "./Header.vue";
 export default {
   name: "SignUp",
@@ -267,6 +268,22 @@ export default {
          mydata)
          .then(
         (data) => {
+          if(data.success==1){
+            Swal.fire({
+        title: 'Success!',
+        text: 'User Registration has been completed successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+          }else{
+            Swal.fire({
+        title: 'Error!',
+        text: 'Oops... '+data.error,
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+          }
+
           console.log(data);
         })
 

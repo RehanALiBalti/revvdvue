@@ -3,6 +3,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap'
+
+
 // import 'bootstrap-vue/dist/css/bootstrap-vue.css'
 import router from './routes'
 import store from './store'

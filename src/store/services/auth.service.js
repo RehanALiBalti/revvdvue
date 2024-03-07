@@ -7,22 +7,31 @@ function login(username,password) {
         // Call Auth.signUp
         Auth.signIn(username, password)
           .then(( user ) => {
+
             console.log("Auth Service test11", user,user.CognitoUser,user.attributes);
             const username=user.username;
+            const userDataKey=user.userDataKey;
+            const signInUserSession=user.signInUserSession;
             const userAttributes = user.attributes;
             const email = userAttributes.email;
             const sub = userAttributes.sub; // User ID
             
             const muser={
-                email:email,
-                sub:sub,
-                username:username,
+                email,
+                sub,
+                username,
+                userDataKey,
+                signInUserSession,
+                userAttributes
             }
-            resolve(muser);
+          
+            const response={'success':1,result:muser};    
+            resolve(response);
           })
           .catch((error) => {
+            const response={'success':0,error:error.message};
             console.log("Auth Service test22", error.message);
-            reject(error.message);
+            reject(response);
           });
       });   
   }
@@ -49,17 +58,22 @@ function login(username,password) {
         //   'custom:socialMedia':socialMedia,
           // Add other optional attributes as needed
         },
+        autoConfirm: true,
         autoSignIn: {
           enabled: true,
         },
       })
         .then(({ user }) => {
           console.log("Auth Service test11", user);
-          resolve(user);
+        
+      
+          const response={'success':1,result:user};
+          resolve(response);
         })
         .catch((error) => {
             console.log("Auth Service test22", error.message);
-            reject(error.message);
+            const response={'success':0,error:error.message};
+            reject(response);
         });
     });
   }
