@@ -1,5 +1,5 @@
 <template>
-  <HeaderItem />
+
   <div class="container my-5">
     <div class="row">
       <div class="col-md-6 m-auto">
@@ -9,26 +9,16 @@
             <div class="row">
               <div class="col-md-12">
                 <label for="email" class="form-label">Email</label>
-                <input
-                  id="email"
-                  type="email"
-                  v-model="formData.email"
-                  class="form-control form-input"
-                  placeholder="Enter here"
-                />
+                <input id="email" type="email" v-model="formData.email" class="form-control form-input"
+                  placeholder="Enter here" />
                 <div v-if="formErrors.email" class="text-danger">
                   {{ formErrors.email }}
                 </div>
               </div>
               <div class="col-md-12">
                 <label for="password" class="form-label">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  v-model="formData.password"
-                  class="form-control form-input"
-                  placeholder="Enter here"
-                />
+                <input type="password" id="password" v-model="formData.password" class="form-control form-input"
+                  placeholder="Enter here" />
                 <div v-if="formErrors.password" class="text-danger">
                   {{ formErrors.password }}
                 </div>
@@ -39,59 +29,28 @@
               </div>
               <div class="col-md-12">
                 <div class="list-item-btn position-relative submit-btn-div">
-                  <span
-                    class="border-bottom-btn border-top-btn position-absolute"
-                  >
-                    <img
-                      src="@/assets/images/Group12.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
+                  <span class="border-bottom-btn border-top-btn position-absolute">
+                    <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                  </span>
+
+                  <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                    <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
                   </span>
 
                   <span
-                    class="border-bottom-btn border-top-btn border-right-radius position-absolute"
-                  >
-                    <img
-                      src="@/assets/images/Path467.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
-                  </span>
-
-                  <span
-                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute"
-                  >
-                    <img
-                      src="@/assets/images/Path465.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
+                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                    <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                   </span>
                   <!-- <button type="submit" class="signin-btnli submitNow" id="submit-button" fdprocessedid="eysiqp">
 									Log In </button> -->
-                  <button
-                    type="submit"
-                    class="signin-btnli submitNow"
-                    id="submit-button"
-                  >
+                  <button type="submit" class="signin-btnli submitNow" id="submit-button">
                     Log In
                   </button>
-                  <span
-                    class="border-bottom-btn border-left-btn position-absolute"
-                  >
-                    <img
-                      src="@/assets/images/Group11.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
+                  <span class="border-bottom-btn border-left-btn position-absolute">
+                    <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
                   </span>
                   <span class="border-bottom-btn position-absolute">
-                    <img
-                      src="@/assets/images/Path473.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
+                    <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                   </span>
                 </div>
               </div>
@@ -152,12 +111,10 @@
 </template>
 <script>
 import Swal from 'sweetalert2';
-import HeaderItem from "./Header.vue";
+
 export default {
   name: "SignIn",
-  components: {
-    HeaderItem,
-  },
+
   data() {
     return {
       formData: {
@@ -180,22 +137,25 @@ export default {
           password: this.formData.password,
         };
         this.$store.dispatch("auth/handleSignIn", mydata).then((data) => {
-          if(data.success==1){
+          if (data.success == 1) {
             localStorage.setItem('login', true);
             localStorage.setItem('data', data.result);
             Swal.fire({
-        title: 'Success!',
-        text: 'User has been successfully login!',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      });
-          }else{
+              title: 'Success!',
+              text: 'User has been successfully login!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            }).then(() => {
+              // Redirect to '/landing' route
+              this.$router.push('/');
+            });
+          } else {
             Swal.fire({
-        title: 'Error!',
-        text: 'Oops... '+data.error,
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
+              title: 'Error!',
+              text: 'Oops... ' + data.error,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
           }
 
           console.log(data);
@@ -203,7 +163,8 @@ export default {
       } else {
         console.log("Form validation failed");
       }
-    },
+    }
+    ,
     validateForm() {
       this.formErrors = {};
 

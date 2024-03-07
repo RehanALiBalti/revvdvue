@@ -1,0 +1,44 @@
+<template>
+    <div class="container mt-5">
+        <div class="map-desc">
+            <div class="map-para-div">
+                <p class="map-para">
+                    Lorem Ipsum is simply dummy text of the printing & typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text ever
+                    since the 1500s,
+                </p>
+            </div>
+            <ul class="icons-list">
+                <li class="icons-list-item">
+                    <a class="icons-list-atag" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+
+                <li class="icons-list-item">
+                    <a class="icons-list-atag" href="">
+                        <!-- <i class="fab fa-twitter"></i> -->
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                </li>
+
+                <!-- <li class="icons-list-item">
+						<a class="icons-list-atag" href="">
+							<i class="fa-brands fa-youtube"></i>
+						</a>
+					</li> -->
+                <li class="icons-list-item">
+                    <a class="icons-list-atag" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "FooterSect"
+}
+</script>
