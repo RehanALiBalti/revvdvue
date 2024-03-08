@@ -1,107 +1,57 @@
 <template>
-  <HeaderItem />
   <section class="section-car-listing position-relative">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <div class="heading-car">
-            <h1 class="banner-title">Our Community</h1>
+            <h1 class="banner-title">{{ $t("ourCommunity") }}</h1>
           </div>
-          <div class="btns-community">
+          <!-- <div class="btns-community">
             <div class="btn-div-create-forum position-relative">
               <span class="border-bottom-btn border-top-btn position-absolute">
-                <img
-                  src="@/assets/images/Group12white.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
+                <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
               </span>
 
               <span
-                class="border-bottom-btn border-top-btn border-right-radius position-absolute"
-              >
-                <img
-                  src="@/assets/images/Path467white.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
+                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
               </span>
-
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute"
-              >
-                <img
-                  src="@/assets/images/Path465white.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
-              </span>
-              <router-link
-                to="/CreateCommunity"
-                class="signin-btnli signup-btnli"
-              >
+              <router-link to="/CreateCommunity" class="signin-btnli signup-btnli">
                 Create Forum
               </router-link>
               <span class="border-bottom-btn border-left-btn position-absolute">
-                <img
-                  src="@/assets/images/Group11white.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
+                <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
               </span>
               <span class="border-bottom-btn position-absolute">
-                <img
-                  src="@/assets/images/Path473white.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
+                <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
               </span>
             </div>
             <div class="btn-div-create-forum position-relative">
               <span class="border-bottom-btn border-top-btn position-absolute">
-                <img
-                  src="@/assets/images/Group12.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
+                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
               </span>
 
               <span
-                class="border-bottom-btn border-top-btn border-right-radius position-absolute"
-              >
-                <img
-                  src="@/assets/images/Path467.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
-              </span>
-
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute"
-              >
-                <img
-                  src="@/assets/images/Path465.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
+                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
               </span>
               <a href="" class="signin-btnli"> Create Club </a>
               <span class="border-bottom-btn border-left-btn position-absolute">
-                <img
-                  src="@/assets/images/Group11.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
+                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
               </span>
               <span class="border-bottom-btn position-absolute">
-                <img
-                  src="/assets/images/Path473.png"
-                  class="img-border position-absolute"
-                  alt=""
-                />
+                <img src="/assets/images/Path473.png" class="img-border position-absolute" alt="" />
               </span>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -114,14 +64,14 @@
           <nav aria-label="breadcrumb" class="nav-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <router-link class="breadcrumb-item-a-tag" to="/home"
-                  >Home</router-link
-                >
+                <router-link class="breadcrumb-item-a-tag" to="/home">{{
+                  $t("home")
+                }}</router-link>
               </li>
               <li class="breadcrumb-item">
-                <router-link class="breadcrumb-item-a-tag" to="/ourcommunity"
-                  >Community</router-link
-                >
+                <router-link class="breadcrumb-item-a-tag" to="/ourcommunity">{{
+                  $t("community")
+                }}</router-link>
               </li>
             </ol>
           </nav>
@@ -135,10 +85,12 @@
       <div class="row g-4">
         <div class="col-md-3">
           <div class="filter-box">
-            <h4 class="filter-title">Filters</h4>
+            <h4 class="filter-title">{{ $t("filters") }}</h4>
             <div class="row">
               <div class="col-12">
-                <label for="models" class="form-label filter-label">Make</label>
+                <label for="models" class="form-label filter-label">{{
+                  $t("make")
+                }}</label>
                 <select
                   id="models"
                   class="form-select form-control form-input filter-select"
@@ -158,9 +110,9 @@
                 </select>
               </div>
               <div class="col-12">
-                <label for="models" class="form-label filter-label"
-                  >Models</label
-                >
+                <label for="models" class="form-label filter-label">{{
+                  $t("models")
+                }}</label>
                 <select
                   id="models"
                   class="form-select form-control form-input filter-select"
@@ -180,9 +132,9 @@
               </div>
 
               <div class="col-12">
-                <label for="bodyType" class="form-label filter-label"
-                  >Generation</label
-                >
+                <label for="bodyType" class="form-label filter-label">{{
+                  $t("generation")
+                }}</label>
                 <select
                   id="bodyType"
                   class="form-select form-control form-input filter-select"
@@ -202,7 +154,7 @@
 
               <div class="col-12">
                 <label for="fuelType" class="form-label filter-label"
-                  >Classification
+                  >{{ $t("classification") }}
                 </label>
                 <select
                   id="fuelType"
@@ -222,9 +174,9 @@
               </div>
 
               <div class="col-12">
-                <label for="seats" class="form-label filter-label"
-                  >Production Years</label
-                >
+                <label for="seats" class="form-label filter-label">{{
+                  $t("productionYears")
+                }}</label>
                 <select
                   id="seats"
                   class="form-select form-control form-input filter-select"
@@ -243,8 +195,8 @@
               </div>
 
               <div class="col-12">
-                <label for="seats" class="form-label filter-label"
-                  >Country of origin</label
+                <label for="seats" class="form-label filter-label">
+                  {{ $t("countryOfOrigin") }}</label
                 >
                 <select
                   id="seats"
@@ -284,7 +236,8 @@
                 <div class="card-title-div">
                   <h2 class="card-title-h2 community-title">
                     <!-- Koenigsegg agera one: <span> 1 </span> -->
-                    {{ community.title }} <span> {{ community.count }} </span>
+                    {{ community.make }} , {{ community.model
+                    }}<span> {{ community.count }} </span>
                   </h2>
                 </div>
                 <div class="map-para-div community-para-div">
@@ -494,43 +447,6 @@
       </div>
     </div>
   </section>
-
-  <div class="container mt-5 mb-3">
-    <div class="map-desc">
-      <div class="map-para-div">
-        <p class="map-para">
-          Lorem Ipsum is simply dummy text of the printing & typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s,
-        </p>
-      </div>
-      <ul class="icons-list">
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
-
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <!-- <i class="fab fa-twitter"></i> -->
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
-        </li>
-
-        <!-- <li class="icons-list-item">
-						<a class="icons-list-atag" href="">
-							<i class="fa-brands fa-youtube"></i>
-						</a>
-					</li> -->
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
 
   <!-- modal -->
   <div
@@ -887,14 +803,12 @@
 </template>
 
 <script>
-import HeaderItem from "./Header.vue";
 import CarDataService from "../services/CarDataService";
+import CommunityDataService from "../services/CommunityDataService";
 
 export default {
   name: "OurCommunity",
-  components: {
-    HeaderItem,
-  },
+
   data() {
     return {
       makes: [],
@@ -910,108 +824,7 @@ export default {
       countryOfOrigins: [],
       productionYear: "",
       productionYears: [],
-      communities: [
-        {
-          id: 1,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 2,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 3,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 4,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 5,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 6,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 7,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 8,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 9,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 10,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-      ],
+      communities: [],
       itemsPerPage: 5, // Number of communities per page
       currentPage: 1, //current Page
       filteredCommunities: [], // Communities to display on the current page
@@ -1038,6 +851,7 @@ export default {
   },
   mounted() {
     this.retrieveCars();
+    this.retrieveCommunities();
     this.paginateCommunities();
     // Show the modal when the component is mounted
     this.showFilterModal();
@@ -1058,6 +872,15 @@ export default {
       CarDataService.getAll()
         .then((response) => {
           this.makes = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    retrieveCommunities() {
+      CommunityDataService.getAll()
+        .then((response) => {
+          this.communities = response.data;
         })
         .catch((e) => {
           console.log(e);
@@ -1178,6 +1001,7 @@ export default {
     margin-right: auto;
     margin-left: auto;
   }
+
   .modal-content {
     position: relative;
     display: flex;
@@ -1190,6 +1014,7 @@ export default {
     border-radius: 5px;
     outline: 0;
   }
+
   .form-select {
     display: block;
     width: 100%;

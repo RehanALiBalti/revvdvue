@@ -1,11 +1,9 @@
 <template>
-
 	<div class="container my-5">
 		<div class="row">
 			<div class="col-md-8 m-auto">
 				<div class="form-content-home1">
 					<form id="subscribe-form" @submit.prevent="validateForm">
-
 						<div class="user-profile-page">
 							<img src="@/assets/images/user-profile-page-img.png" class="user-profile-page-img"
 								alt="user">
@@ -19,67 +17,41 @@
 						<div class="row">
 							<div class="col-md-6">
 								<label for="name" class="form-label">{{ $t('name') }}</label>
-								<input v-model="firstName" id="name" type="text" name="name" value="John Wicks"
+								<input v-model="firstName" id="name" type="text" name="name"
 									class="form-control form-input" placeholder="Enter here" required>
 							</div>
 							<div class="col-md-6">
 								<label for="age" class="form-label">{{ $t('age') }}</label>
-								<input v-model="age" id="age" type="text" name="age" value="April 14, 1995"
-									class="form-control form-input" placeholder="Enter here" required>
+								<input v-model="age" id="age" type="text" name="age" class="form-control form-input"
+									placeholder="Enter here" required>
 							</div>
 							<div class="col-md-6">
 								<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
-								<input v-model="email" id="email" type="email" name="email" value="John@revvdout.com"
+								<input v-model="email" id="email" type="email" name="email"
 									class="form-control form-input" placeholder="Enter here" required>
 							</div>
 							<div class="col-md-6">
 								<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
-								<input v-model="phone" id="phone" type="tel" name="phone" value="+98 7654 321 0"
+								<input v-model="phone" id="phone" type="tel" name="phone"
 									class="form-control form-input" placeholder="Enter here" required>
 							</div>
 							<div class="col-md-6">
 								<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional') }}</label>
 								<input v-model="socialMedia" id="socialMedia" type="text" name="socialMedia"
-									value="Instagram.com/revvdout" class="form-control form-input"
-									placeholder="Enter here">
+									class="form-control form-input" placeholder="Enter here">
 							</div>
 							<div class="col-md-6">
 								<label for="password" class="form-label">{{ $t('password') }}</label>
-								<input v-model="password" type="password" id="password" name="password" value="1234"
+								<input v-model="password" type="password" id="password" name="password"
 									class="form-control form-input" placeholder="Enter here">
 							</div>
-
 							<div class="col-md-12">
 								<p id="errormsg">{{ errorMessage }}</p>
 							</div>
 							<div class="col-md-12">
 								<div class="list-item-btn position-relative submit-btn-div">
-									<span class="border-bottom-btn border-top-btn position-absolute">
-										<img src="@/assets/images/Group12.png" class="img-border position-absolute"
-											alt="">
-									</span>
-
-									<span
-										class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-										<img src="@/assets/images/Path467.png" class="img-border position-absolute"
-											alt="">
-									</span>
-
-									<span
-										class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-										<img src="@/assets/images/Path465.png" class="img-border position-absolute"
-											alt="">
-									</span>
-									<button type="submit" class="signin-btnli submitNow" id="submit-button">
-										{{ $t("updateProfile") }} </button>
-									<span class="border-bottom-btn border-left-btn position-absolute">
-										<img src="@/assets/images/Group11.png" class="img-border position-absolute"
-											alt="">
-									</span>
-									<span class="border-bottom-btn position-absolute">
-										<img src="@/assets/images/Path473.png" class="img-border position-absolute"
-											alt="">
-									</span>
+									<button type="submit" class="signin-btnli submitNow" id="submit-button">{{
+						$t("updateProfile") }}</button>
 								</div>
 							</div>
 						</div>
@@ -88,32 +60,28 @@
 			</div>
 		</div>
 	</div>
-
-
 </template>
 
 <script>
-
 export default {
 	name: "UserProfile",
-
 	data() {
 		return {
-			firstName: "John",
-			lastName: "Wicks",
-			email: "John@revvdout.com",
-			age: "April 14, 1995",
-			phone: "+98 7654 321 0",
-			socialMedia: "Instagram.com/revvdout",
-			password: "1234",
-			errorMessage: '' // Initialize error message
+			firstName: "",
+			lastName: "",
+			email: "",
+			age: "",
+			phone: "",
+			socialMedia: "",
+			password: "",
+			errorMessage: ''
 		};
 	},
 	methods: {
 		validateForm() {
 			if (this.firstName.trim() === "" || this.lastName.trim() === "") {
 				this.errorMessage = "Please enter both First and Last name.";
-				return false; // Prevent form submission
+				return false;
 			} else if (this.age.trim() === "") {
 				this.errorMessage = "Please enter your Age.";
 				return false;
@@ -130,15 +98,28 @@ export default {
 				this.errorMessage = "Please enter your password.";
 				return false;
 			} else {
-				// Reset error message
 				this.errorMessage = "";
-				// Submit form
 				this.submitForm();
 			}
 		},
 		submitForm() {
-			// Your form submission logic goes here
 			console.log('Form submitted!');
+			// Your form submission logic goes here
+		}
+	},
+	created() {
+		const userData = JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData'));
+		if (userData && userData.UserAttributes) {
+			const nameAttribute = userData.UserAttributes.find(attr => attr.Name === 'name');
+			if (nameAttribute) {
+				const fullName = nameAttribute.Value.split(' '); // assuming the name is in "firstName lastName" format
+				this.firstName = fullName[0] || "";
+				this.lastName = fullName[1] || "";
+			}
+			this.email = userData.UserAttributes.find(attr => attr.Name === 'email')?.Value || "";
+			this.age = userData.UserAttributes.find(attr => attr.Name === 'age')?.Value || "";
+			this.phone = userData.UserAttributes.find(attr => attr.Name === 'phone_number')?.Value || "";
+			this.socialMedia = userData.UserAttributes.find(attr => attr.Name === 'socialMedia')?.Value || "";
 		}
 	}
 };

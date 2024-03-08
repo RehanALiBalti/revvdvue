@@ -1,5 +1,5 @@
 <template>
-  <HeaderItem />
+
   <div class="container my-5">
     <div class="row">
       <div class="col-md-8 m-auto">
@@ -9,84 +9,48 @@
             <div class="row">
               <div class="col-md-6">
                 <label for="name" class="form-label">Name</label>
-                <input
-                  id="name"
-                  type="text"
-                  v-model="formData.name"
-                  class="form-control form-input"
-                  placeholder="Enter here"
-                />
+                <input id="name" type="text" v-model="formData.name" class="form-control form-input"
+                  placeholder="Enter here" />
                 <div v-if="formErrors.name" class="text-danger">
                   {{ formErrors.name }}
                 </div>
               </div>
               <div class="col-md-6">
                 <label for="age" class="form-label">Age</label>
-                <input
-                  id="age"
-                  type="number"
-                  v-model="formData.age"
-                  class="form-control form-input"
-                  placeholder="Enter here"
-                />
+                <input id="age" type="number" v-model="formData.age" class="form-control form-input"
+                  placeholder="Enter here" />
                 <div v-if="formErrors.age" class="text-danger">
                   {{ formErrors.age }}
                 </div>
               </div>
               <div class="col-md-6">
-                <label for="email" class="form-label"
-                  >Email (verification)</label
-                >
-                <input
-                  id="email"
-                  type="email"
-                  v-model="formData.email"
-                  class="form-control form-input"
-                  placeholder="Enter here"
-                />
+                <label for="email" class="form-label">Email (verification)</label>
+                <input id="email" type="email" v-model="formData.email" class="form-control form-input"
+                  placeholder="Enter here" />
                 <div v-if="formErrors.email" class="text-danger">
                   {{ formErrors.email }}
                 </div>
               </div>
               <div class="col-md-6">
-                <label for="phone" class="form-label"
-                  >Phone number (verification)</label
-                >
-                <input
-                  id="phone"
-                  type="tel"
-                  v-model="formData.phone"
-                  class="form-control form-input"
-                  placeholder="Enter here"
-                />
+                <label for="phone" class="form-label">Phone number (verification)</label>
+                <input id="phone" type="tel" v-model="formData.phone" class="form-control form-input"
+                  placeholder="Enter here" />
                 <div v-if="formErrors.phone" class="text-danger">
                   {{ formErrors.phone }}
                 </div>
               </div>
               <div class="col-md-6">
-                <label for="socialMedia" class="form-label"
-                  >Social media (optional)</label
-                >
-                <input
-                  id="socialMedia"
-                  type="text"
-                  v-model="formData.socialMedia"
-                  class="form-control form-input"
-                  placeholder="Enter here"
-                />
+                <label for="socialMedia" class="form-label">Social media (optional)</label>
+                <input id="socialMedia" type="text" v-model="formData.socialMedia" class="form-control form-input"
+                  placeholder="Enter here" />
                 <!-- <div v-if="formErrors.phone" class="text-danger">
                   {{ formErrors.socialMedia }}
                 </div> -->
               </div>
               <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  v-model="formData.password"
-                  class="form-control form-input"
-                  placeholder="Enter here"
-                />
+                <input type="password" id="password" v-model="formData.password" class="form-control form-input"
+                  placeholder="Enter here" />
                 <div v-if="formErrors.phone" class="text-danger">
                   {{ formErrors.password }}
                 </div>
@@ -97,58 +61,27 @@
               </div>
               <div class="col-md-12">
                 <div class="list-item-btn position-relative submit-btn-div">
-                  <span
-                    class="border-bottom-btn border-top-btn position-absolute"
-                  >
+                  <span class="border-bottom-btn border-top-btn position-absolute">
                     <!-- <img src="<?= base_url('/assets/images/Group12.png')?>" class="img-border position-absolute" alt=""> -->
-                    <img
-                      src="@/assets/images/Group12.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
+                    <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                  </span>
+
+                  <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                    <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
                   </span>
 
                   <span
-                    class="border-bottom-btn border-top-btn border-right-radius position-absolute"
-                  >
-                    <img
-                      src="@/assets/images/Path467.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
+                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                    <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                   </span>
-
-                  <span
-                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute"
-                  >
-                    <img
-                      src="@/assets/images/Path465.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
-                  </span>
-                  <button
-                    type="submit"
-                    class="signin-btnli submitNow"
-                    id="submit-button"
-                  >
+                  <button type="submit" class="signin-btnli submitNow" id="submit-button">
                     Sign Up
                   </button>
-                  <span
-                    class="border-bottom-btn border-left-btn position-absolute"
-                  >
-                    <img
-                      src="@/assets/images/Group11.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
+                  <span class="border-bottom-btn border-left-btn position-absolute">
+                    <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
                   </span>
                   <span class="border-bottom-btn position-absolute">
-                    <img
-                      src="@/assets/images/Path473.png"
-                      class="img-border position-absolute"
-                      alt=""
-                    />
+                    <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                   </span>
                 </div>
               </div>
@@ -170,51 +103,14 @@
     </div>
   </div>
 
-  <div class="container mt-5">
-    <div class="map-desc">
-      <div class="map-para-div">
-        <p class="map-para">
-          Lorem Ipsum is simply dummy text of the printing &amp; typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s,
-        </p>
-      </div>
-      <ul class="icons-list">
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
 
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <!-- <i class="fab fa-twitter"></i> -->
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
-        </li>
-
-        <!-- <li class="icons-list-item">
-						<a class="icons-list-atag" href="">
-							<i class="fa-brands fa-youtube"></i>
-						</a>
-					</li> -->
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
 </template>
 <script>
 import Swal from 'sweetalert2';
-import HeaderItem from "./Header.vue";
+
 export default {
   name: "SignUp",
-  components: {
-    HeaderItem,
-  },
+
   data() {
     return {
       formData: {
@@ -237,7 +133,7 @@ export default {
   },
   computed: {
     loggedIn() {
-      
+
       return this.$store.state.auth;
     },
   },
@@ -253,41 +149,41 @@ export default {
       this.validateForm();
       if (this.isFormValid()) {
         // Submit form data
-        const mydata={
-          
-        name: this.formData.name,
-        age: this.formData.age,
-        email: this.formData.email,
-        phone: this.formData.phone,
-        password: this.formData.password,
-        socialMedia: this.formData.socialMedia,
-      };
-        
-        console.log("Form submitted successfully",mydata);
+        const mydata = {
+
+          name: this.formData.name,
+          age: this.formData.age,
+          email: this.formData.email,
+          phone: this.formData.phone,
+          password: this.formData.password,
+          socialMedia: this.formData.socialMedia,
+        };
+
+        console.log("Form submitted successfully", mydata);
         this.$store.dispatch('auth/handleSignUp',
-         mydata)
-         .then(
-        (data) => {
-          if(data.success==1){
-            Swal.fire({
-        title: 'Success!',
-        text: 'User Registration has been completed successfully!',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      });
-          }else{
-            Swal.fire({
-        title: 'Error!',
-        text: 'Oops... '+data.error,
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-          }
+          mydata)
+          .then(
+            (data) => {
+              if (data.success == 1) {
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'User Registration has been completed successfully!',
+                  icon: 'success',
+                  confirmButtonText: 'OK',
+                });
+              } else {
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'Oops... ' + data.error,
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                });
+              }
 
-          console.log(data);
-        })
+              console.log(data);
+            })
 
-      
+
       } else {
         console.log("Form validation failed");
       }
@@ -320,7 +216,7 @@ export default {
     },
 
     isValidPhoneNumber(phone) {
-		const phonePattern = /^\+?\d{1,3}[-.\s]?\d{3,4}[-.\s]?\d{3,4}$/;
+      const phonePattern = /^\+?\d{1,3}[-.\s]?\d{3,4}[-.\s]?\d{3,4}$/;
 
       return phonePattern.test(phone);
     },

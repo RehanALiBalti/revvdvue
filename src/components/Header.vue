@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-
+    <TestC />
     <nav class="navbar navbar-expand-lg sticky-top p-3">
       <div class="container">
         <router-link class="navbar-brand" to="/">
@@ -98,7 +98,12 @@
                   <div class="user-img-div">
                     <img src="@/assets/images/userImg.png" class="user-img" alt="" />
                   </div>
-                  <span class="user-name" :class="{ open: issOpen }">John</span>
+                  <span class="user-name" :class="{ open: issOpen }">
+                    {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
+            userAttributes.UserAttributes.find(attr => attr.Name === 'name').Value : '' }}
+                  </span>
+
+
                 </div>
                 <ul class="user-dropdown" :class="{ open: issOpen }" id="userDropdown">
                   <li data-code="profile">
@@ -126,99 +131,20 @@
   </section>
 </template>
 
+
 <script>
-// export default {
-//   name: "HeaderItem",
-//   data() {
-//     return {
-//       isOpen: false,
-//       issOpen: false,
-//       isNavOpen: false,
-//       selectedLanguage: "en",
-//       isLogin: JSON.parse(localStorage.getItem('login')) || false // Initialize with value from local storage or default to false
-//       ,
-//       languages: [
-//         { code: "en", name: "en" },
-//         { code: "fr", name: "fr" },
-//         { code: "de", name: "de" },
-//       ],
-//     };
-//   },
-//   created() {
-//     // Retrieve the value from local storage during component creation
-//     const storedIsLogin = localStorage.getItem('login');
-//     if (storedIsLogin !== null) {
-//       this.isLogin = JSON.parse(storedIsLogin); // Parse the stored value
-//     }
-//   },
-
-//   methods: {
-//     handleStorageChange(event) {
-//       if (event.key === 'login') {
-//         this.isLogin = JSON.parse(event.newValue);
-//       }
-//     },
-//     toggleNav() {
-//       this.isNavOpen = !this.isNavOpen;
-//     },
-//     toggleDropdownUser() {
-//       this.issOpen = !this.issOpen;
-
-//     },
-//     toggleDropdown() {
-//       this.isOpen = !this.isOpen;
-//     },
-//     selectLanguage(code) {
-//       this.$i18n.locale = this.selectedLanguage = this.languages.find(
-//         (lang) => lang.code === code
-//       ).name;
-//       this.isOpen = false;
-//     },
-//     closeDropdown(event) {
-//       if (!this.$el.contains(event.target)) {
-//         this.isOpen = false;
-//       }
-//     },
-//     closeDropdownUser(event) {
-//       if (!this.$el.contains(event.target)) {
-//         this.issOpen = false;
-//       }
-//     },
-//     logout() {
-//       this.isLogin = false; // Set isLogin to false
-//       localStorage.removeItem('login'); // Remove the 'isLogin' key from local storage
-//     }
-//   },
-//   mounted() {
-//     document.addEventListener("click", this.closeDropdown);
-//     document.addEventListener("click", this.closeDropdownUser);
-//     window.addEventListener('storage', this.handleStorageChange);
-//     const storedIsLogin = localStorage.getItem('login');
-//     if (storedIsLogin !== null) {
-//       this.isLogin = JSON.parse(storedIsLogin); // Parse the stored value
-//     }
-//   },
-//   beforeUnmount() {
-//     document.removeEventListener("click", this.closeDropdown);
-//     document.removeEventListener("click", this.closeDropdownUser);
-//     window.addEventListener('storage', this.handleStorageChange);
-//     const storedIsLogin = localStorage.getItem('login');
-//     if (storedIsLogin !== null) {
-//       this.isLogin = JSON.parse(storedIsLogin); // Parse the stored value
-//     }
-//   },
-
-// }
 
 export default {
   name: "HeaderItem",
+
   data() {
     return {
       isOpen: false,
       issOpen: false,
       isNavOpen: false,
       selectedLanguage: "en",
-      isLogin: JSON.parse(localStorage.getItem('login')) || false, // Initialize with value from local storage or default to false
+      userAttributes: JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData')),
+      isLogin: JSON.parse(localStorage.getItem('login')) || false,
       languages: [
         { code: "en", name: "en" },
         { code: "fr", name: "fr" },
@@ -227,22 +153,26 @@ export default {
     };
   },
   computed: {
-
-
-  },
-  created() {
-    // Retrieve the value from local storage during component creation
-    const storedIsLogin = localStorage.getItem('login');
-    if (storedIsLogin !== null) {
-      this.isLogin = JSON.parse(storedIsLogin); // Parse the stored value
+    handleStorageChange() {
+      return {
+        handleStorageChange() {
+          this.isLogin = JSON.parse(localStorage.getItem('login'));
+        }
+      }
     }
   },
+  created() {
+    const storedIsLogin = localStorage.getItem('login');
+    if (storedIsLogin !== null) {
+      this.isLogin = JSON.parse(storedIsLogin);
+
+    }
+    window.addEventListener('storage', this.handleStorageChange.handleStorageChange);
+  },
+  beforeUnmount() {
+    window.removeEventListener('storage', this.handleStorageChange.handleStorageChange);
+  },
   methods: {
-    handleStorageChange(event) {
-      if (event.key === 'login') {
-        this.isLogin = JSON.parse(event.newValue);
-      }
-    },
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
     },
@@ -269,22 +199,38 @@ export default {
       }
     },
     logout() {
-      this.isLogin = false; // Set isLogin to false
-      localStorage.removeItem('login'); // Remove the 'isLogin' key from local storage
-    }
-  },
-  mounted() {
-    document.addEventListener("click", this.closeDropdown);
-    document.addEventListener("click", this.closeDropdownUser);
-    window.addEventListener('storage', this.handleStorageChange);
-  },
-  beforeUnmount() {
-    document.removeEventListener("click", this.closeDropdown);
-    document.removeEventListener("click", this.closeDropdownUser);
-    window.removeEventListener('storage', this.handleStorageChange); // Remove the event listener
-  },
-}
+      this.isLogin = false;
+      localStorage.removeItem('login');
+    },
+    // checkLoginStatus() {
+    //   const storedIsLogin = localStorage.getItem('login');
+    //   this.isLogin = storedIsLogin ? JSON.parse(storedIsLogin) : false;
+    //   if (this.isLogin) {
+    //     const userAttributes = JSON.parse(localStorage.getItem('UserAttributes'));
+    //     // Do something with userAttributes, such as updating state
+    //     // For example:
+    //     this.userAttributes = userAttributes;
+    //     alert(this.userAttributes)
 
+    //   }
+    // },
+    checkLoginStatus() {
+      const storedIsLogin = localStorage.getItem('login');
+      this.isLogin = storedIsLogin ? JSON.parse(storedIsLogin) : false;
+      const userAttributes = JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData'));
+      // Do something with userAttributes, such as updating state
+      // For example:
+      this.userAttributes = userAttributes
+
+    }
+
+  },
+  watch: {
+    $route() {
+      this.checkLoginStatus();
+    }
+  }
+}
 </script>
 
 
