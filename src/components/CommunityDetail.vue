@@ -1,5 +1,5 @@
 <template>
-  <HeaderItem />
+
   <section class="communityDetails-section my-5">
     <div class="container">
       <div class="communityDetailsMain">
@@ -21,26 +21,19 @@
             </div>
             <div class="list-community-add">
               <div class="like-community">
-                <i class="fa-solid fa-thumbs-up"></i
-                ><span class="total-likes">{{ likes }}</span>
+                <i class="fa-solid fa-thumbs-up"></i><span class="total-likes">{{ likes }}</span>
               </div>
               <div class="like-community">
-                <i class="fa-solid fa-comments"></i
-                ><span class="total-likes">{{ comments }}</span>
+                <i class="fa-solid fa-comments"></i><span class="total-likes">{{ comments }}</span>
               </div>
               <div class="like-community">
-                <i class="fa-solid fa-eye"></i
-                ><span class="total-likes">{{ views }}</span>
+                <i class="fa-solid fa-eye"></i><span class="total-likes">{{ views }}</span>
               </div>
             </div>
           </div>
           <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
             <!-- <div v-for="(message, index) in messages" :key="index"  class="sender-chats"> -->
-            <div
-              v-for="(message, index) in messages"
-              :key="index"
-              :class="message.class"
-            >
+            <div v-for="(message, index) in messages" :key="index" :class="message.class">
               <p class="sender-chats-para">
                 {{ message.text }}
               </p>
@@ -76,33 +69,14 @@
           </div>
         </div>
         <div class="commentsByReceiver position-relative">
-          <textarea
-            v-model="newComment"
-            id="inputComments"
-            type="text"
-            name="inputComments"
-            class="form-control form-input inputComments"
-            placeholder="Enter here"
-            @keydown.enter="sendMessageOnEnter"
-            ref="commentTextarea"
-          ></textarea>
+          <textarea v-model="newComment" id="inputComments" type="text" name="inputComments"
+            class="form-control form-input inputComments" placeholder="Enter here" @keydown.enter="sendMessageOnEnter"
+            ref="commentTextarea"></textarea>
           <!-- Check if textarea is not empty -->
-          <svg
-            v-if="newComment.trim().length > 0"
-            @click="sendMessage"
-            xmlns="http://www.w3.org/2000/svg"
-            class="iconMaterialSend position-absolute send-icon"
-            width="31.5"
-            height="27"
-            viewBox="0 0 31.5 27"
-          >
-            <path
-              id="Icon_material-send"
-              data-name="Icon material-send"
-              d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z"
-              transform="translate(-3 -4.5)"
-              fill="#f95f19"
-            />
+          <svg v-if="newComment.trim().length > 0" @click="sendMessage" xmlns="http://www.w3.org/2000/svg"
+            class="iconMaterialSend position-absolute send-icon" width="31.5" height="27" viewBox="0 0 31.5 27">
+            <path id="Icon_material-send" data-name="Icon material-send"
+              d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
           </svg>
         </div>
       </div>
@@ -161,14 +135,12 @@
 </template>
 
 <script>
-import HeaderItem from "./Header.vue";
+
 import communityDetailsImage from "@/assets/images/communityDetailsImage.png";
 
 export default {
   name: "CommunityDetail",
-  components: {
-    HeaderItem,
-  },
+
   data() {
     return {
       imageSrc: communityDetailsImage,
@@ -234,7 +206,7 @@ export default {
     scrollToBottom() {
       // Scroll to the bottom of the chat container
       const chatContainer = this.$refs.chatContainer;
-      if(chatContainer){
+      if (chatContainer) {
         chatContainer.scrollTop = chatContainer.scrollHeight;
       }
     },
@@ -245,9 +217,9 @@ export default {
   watch: {
     // Watch for changes in messages and scroll to bottom when messages change
     messages() {
-        this.$nextTick(() => {
-            this.scrollToBottom();
-        });
+      this.$nextTick(() => {
+        this.scrollToBottom();
+      });
     }
   }
 };
