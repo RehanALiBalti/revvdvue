@@ -1,11 +1,10 @@
 <template>
-
   <section class="section-car-listing position-relative">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <div class="heading-car">
-            <h1 class="banner-title">{{ $t('ourCommunity') }}</h1>
+            <h1 class="banner-title">{{ $t("ourCommunity") }}</h1>
           </div>
           <!-- <div class="btns-community">
             <div class="btn-div-create-forum position-relative">
@@ -65,10 +64,14 @@
           <nav aria-label="breadcrumb" class="nav-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <router-link class="breadcrumb-item-a-tag" to="/home">{{ $t('home') }}</router-link>
+                <router-link class="breadcrumb-item-a-tag" to="/home">{{
+                  $t("home")
+                }}</router-link>
               </li>
               <li class="breadcrumb-item">
-                <router-link class="breadcrumb-item-a-tag" to="/ourcommunity">{{ $t('community') }}</router-link>
+                <router-link class="breadcrumb-item-a-tag" to="/ourcommunity">{{
+                  $t("community")
+                }}</router-link>
               </li>
             </ol>
           </nav>
@@ -82,70 +85,131 @@
       <div class="row g-4">
         <div class="col-md-3">
           <div class="filter-box">
-            <h4 class="filter-title">{{ $t('filters') }}</h4>
+            <h4 class="filter-title">{{ $t("filters") }}</h4>
             <div class="row">
               <div class="col-12">
-                <label for="models" class="form-label filter-label">{{ $t('make') }}</label>
-                <select id="models" class="form-select form-control form-input filter-select" required="" v-model="make"
-                  @change="getModels()">
+                <label for="models" class="form-label filter-label">{{
+                  $t("make")
+                }}</label>
+                <select
+                  id="models"
+                  class="form-select form-control form-input filter-select"
+                  required=""
+                  v-model="make"
+                  @change="getModels()"
+                >
                   <option value="" selected disabled>Any</option>
 
-                  <option v-for="(make, index) in makes" :key="index" :value="make.make">
+                  <option
+                    v-for="(make, index) in makes"
+                    :key="index"
+                    :value="make.make"
+                  >
                     {{ make.make }}
                   </option>
                 </select>
               </div>
               <div class="col-12">
-                <label for="models" class="form-label filter-label">{{ $t('models') }}</label>
-                <select id="models" class="form-select form-control form-input filter-select" required=""
-                  v-model="model" @change="getGenerations()">
+                <label for="models" class="form-label filter-label">{{
+                  $t("models")
+                }}</label>
+                <select
+                  id="models"
+                  class="form-select form-control form-input filter-select"
+                  required=""
+                  v-model="model"
+                  @change="getGenerations()"
+                >
                   <option value="" selected disabled>Any</option>
-                  <option v-for="(model, index) in models" :key="index" :value="model.model">
+                  <option
+                    v-for="(model, index) in models"
+                    :key="index"
+                    :value="model.model"
+                  >
                     {{ model.model }}
                   </option>
                 </select>
               </div>
 
               <div class="col-12">
-                <label for="bodyType" class="form-label filter-label">{{ $t('generation') }}</label>
-                <select id="bodyType" class="form-select form-control form-input filter-select" required=""
-                  v-model="generation">
+                <label for="bodyType" class="form-label filter-label">{{
+                  $t("generation")
+                }}</label>
+                <select
+                  id="bodyType"
+                  class="form-select form-control form-input filter-select"
+                  required=""
+                  v-model="generation"
+                >
                   <option value="" selected disabled>Any</option>
-                  <option v-for="(value, index) in generations" :key="index" :value="value">
+                  <option
+                    v-for="(value, index) in generations"
+                    :key="index"
+                    :value="value"
+                  >
                     {{ value }}
                   </option>
                 </select>
               </div>
 
               <div class="col-12">
-                <label for="fuelType" class="form-label filter-label">{{ $t('classification') }}
+                <label for="fuelType" class="form-label filter-label"
+                  >{{ $t("classification") }}
                 </label>
-                <select id="fuelType" class="form-select form-control form-input filter-select" required=""
-                  v-model="classification">
+                <select
+                  id="fuelType"
+                  class="form-select form-control form-input filter-select"
+                  required=""
+                  v-model="classification"
+                >
                   <option value="" selected disabled>Any</option>
-                  <option v-for="(value, index) in classifications" :key="index" :value="value">
+                  <option
+                    v-for="(value, index) in classifications"
+                    :key="index"
+                    :value="value"
+                  >
                     {{ value }}
                   </option>
                 </select>
               </div>
 
               <div class="col-12">
-                <label for="seats" class="form-label filter-label">{{ $t('productionYears') }}</label>
-                <select id="seats" class="form-select form-control form-input filter-select" required=""
-                  v-model="productionYear">
+                <label for="seats" class="form-label filter-label">{{
+                  $t("productionYears")
+                }}</label>
+                <select
+                  id="seats"
+                  class="form-select form-control form-input filter-select"
+                  required=""
+                  v-model="productionYear"
+                >
                   <option value="" selected disabled>Any</option>
-                  <option v-for="(value, index) in productionYears" :key="index" :value="value">
+                  <option
+                    v-for="(value, index) in productionYears"
+                    :key="index"
+                    :value="value"
+                  >
                     {{ value }}
                   </option>
                 </select>
               </div>
 
               <div class="col-12">
-                <label for="seats" class="form-label filter-label"> {{ $t('countryOfOrigin') }}</label>
-                <select id="seats" class="form-select form-control form-input filter-select" required=""
-                  v-model="countryOfOrigin">
+                <label for="seats" class="form-label filter-label">
+                  {{ $t("countryOfOrigin") }}</label
+                >
+                <select
+                  id="seats"
+                  class="form-select form-control form-input filter-select"
+                  required=""
+                  v-model="countryOfOrigin"
+                >
                   <option value="" selected disabled>Any</option>
-                  <option v-for="(value, index) in countryOfOrigins" :key="index" :value="value">
+                  <option
+                    v-for="(value, index) in countryOfOrigins"
+                    :key="index"
+                    :value="value"
+                  >
                     {{ value }}
                   </option>
                 </select>
@@ -153,18 +217,27 @@
             </div>
           </div>
           <div class="filter-image-div my-4">
-            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+            <img
+              src="@/assets/images/Image18.png"
+              class="img-fluid filter-image"
+              alt="Image"
+            />
           </div>
         </div>
 
         <div class="col-md-9 px-4">
-          <div class="col-12 mb-4 m-auto" v-for="community in communities" :key="community.id">
+          <div
+            class="col-12 mb-4 m-auto"
+            v-for="community in communities"
+            :key="community.id"
+          >
             <router-link :to="`/communitydetails/${community.id}`">
               <div class="communtiy-content">
                 <div class="card-title-div">
                   <h2 class="card-title-h2 community-title">
                     <!-- Koenigsegg agera one: <span> 1 </span> -->
-                    {{ community.title }} <span> {{ community.count }} </span>
+                    {{ community.make }} , {{ community.model
+                    }}<span> {{ community.count }} </span>
                   </h2>
                 </div>
                 <div class="map-para-div community-para-div">
@@ -181,13 +254,16 @@
                 </div>
                 <div class="list-community-add">
                   <div class="like-community">
-                    <i class="fa-solid fa-thumbs-up"></i><span class="total-likes">{{ community.likes }}</span>
+                    <i class="fa-solid fa-thumbs-up"></i
+                    ><span class="total-likes">{{ community.likes }}</span>
                   </div>
                   <div class="like-community">
-                    <i class="fa-solid fa-comments"></i><span class="total-likes">{{ community.comments }}</span>
+                    <i class="fa-solid fa-comments"></i
+                    ><span class="total-likes">{{ community.comments }}</span>
                   </div>
                   <div class="like-community">
-                    <i class="fa-solid fa-eye"></i><span class="total-likes">{{ community.views }}</span>
+                    <i class="fa-solid fa-eye"></i
+                    ><span class="total-likes">{{ community.views }}</span>
                   </div>
                 </div>
               </div>
@@ -327,25 +403,42 @@
         </div> -->
 
           <!-- pagination -->
-          <nav class="float-end my-4 community-pagination" aria-label="Page navigation">
+          <nav
+            class="float-end my-4 community-pagination"
+            aria-label="Page navigation"
+          >
             <ul class="pagination">
               <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous" @click="goToPreviousPage">
-                  <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                <a
+                  class="page-link"
+                  href="#"
+                  aria-label="Previous"
+                  @click="goToPreviousPage"
+                >
+                  <span aria-hidden="true"
+                    ><i class="fa-solid fa-chevron-left"></i
+                  ></span>
                 </a>
               </li>
               <li class="page-item" v-for="page in totalPages" :key="page">
                 <a class="page-link" href="#" @click="goToPage(page)">{{
-              page
-            }}</a>
+                  page
+                }}</a>
               </li>
               <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item"><a class="page-link" href="#">...</a></li>
             <li class="page-item"><a class="page-link" href="#">9</a></li> -->
               <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next" @click="goToNextPage">
-                  <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                <a
+                  class="page-link"
+                  href="#"
+                  aria-label="Next"
+                  @click="goToNextPage"
+                >
+                  <span aria-hidden="true"
+                    ><i class="fa-solid fa-chevron-right"></i
+                  ></span>
                 </a>
               </li>
             </ul>
@@ -355,14 +448,23 @@
     </div>
   </section>
 
-
-
   <!-- modal -->
-  <div class="modal fade" tabindex="-1" role="dialog" id="carShopFilter" ref="modalRef">
+  <div
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    id="carShopFilter"
+    ref="modalRef"
+  >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <span class="close-icon" @click="closeModel" data-bs-dismiss="modal" aria-label="Close">
+          <span
+            class="close-icon"
+            @click="closeModel"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
             <i class="fas fa-times"></i>
           </span>
           <form @submit.prevent="submitFilter">
@@ -519,10 +621,20 @@
                 </div>
               </div> -->
               <div class="col-md-6">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="make" @change="getModels()">
+                <div
+                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
+                >
+                  <select
+                    class="form-select"
+                    v-model="make"
+                    @change="getModels()"
+                  >
                     <option value="" selected disabled>Make</option>
-                    <option v-for="(make, index) in makes" :key="index" :value="make.make">
+                    <option
+                      v-for="(make, index) in makes"
+                      :key="index"
+                      :value="make.make"
+                    >
                       {{ make.make }}
                     </option>
                   </select>
@@ -530,10 +642,20 @@
               </div>
 
               <div class="col-md-6">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="model" @change="getGenerations()">
+                <div
+                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
+                >
+                  <select
+                    class="form-select"
+                    v-model="model"
+                    @change="getGenerations()"
+                  >
                     <option value="" selected disabled>Model</option>
-                    <option v-for="(model, index) in models" :key="index" :value="model.model">
+                    <option
+                      v-for="(model, index) in models"
+                      :key="index"
+                      :value="model.model"
+                    >
                       {{ model.model }}
                     </option>
                   </select>
@@ -541,10 +663,16 @@
               </div>
 
               <div class="col-md-6">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
+                <div
+                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
+                >
                   <select class="form-select" v-model="generation">
                     <option value="" selected disabled>Generation</option>
-                    <option v-for="(value, index) in generations" :key="index" :value="value">
+                    <option
+                      v-for="(value, index) in generations"
+                      :key="index"
+                      :value="value"
+                    >
                       {{ value }}
                     </option>
                   </select>
@@ -552,10 +680,16 @@
               </div>
 
               <div class="col-md-6">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
+                <div
+                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
+                >
                   <select class="form-select" v-model="classification">
                     <option value="" selected disabled>Classification</option>
-                    <option v-for="(value, index) in classifications" :key="index" :value="value">
+                    <option
+                      v-for="(value, index) in classifications"
+                      :key="index"
+                      :value="value"
+                    >
                       {{ value }}
                     </option>
                   </select>
@@ -563,10 +697,16 @@
               </div>
 
               <div class="col-md-6">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
+                <div
+                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
+                >
                   <select class="form-select" v-model="productionYear">
                     <option value="" selected disabled>Production Years</option>
-                    <option v-for="(value, index) in productionYears" :key="index" :value="value">
+                    <option
+                      v-for="(value, index) in productionYears"
+                      :key="index"
+                      :value="value"
+                    >
                       {{ value }}
                     </option>
                   </select>
@@ -574,12 +714,18 @@
               </div>
 
               <div class="col-md-6">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
+                <div
+                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
+                >
                   <select class="form-select" v-model="countryOfOrigin">
                     <option value="" selected disabled>
                       Country of Origin
                     </option>
-                    <option v-for="(value, index) in countryOfOrigins" :key="index" :value="value">
+                    <option
+                      v-for="(value, index) in countryOfOrigins"
+                      :key="index"
+                      :value="value"
+                    >
                       {{ value }}
                     </option>
                   </select>
@@ -587,30 +733,63 @@
               </div>
 
               <div class="col-md-12 m-auto">
-                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
-                  <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-                    <span class="border-bottom-btn border-top-btn position-absolute">
-                      <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
-                    </span>
-
-                    <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-                      <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
+                <div
+                  class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto"
+                >
+                  <div
+                    class="list-item-btn position-relative load-more-div proceed-div mx-auto"
+                  >
+                    <span
+                      class="border-bottom-btn border-top-btn position-absolute"
+                    >
+                      <img
+                        src="@/assets/images/Group12engine.png"
+                        class="img-border position-absolute"
+                        alt=""
+                      />
                     </span>
 
                     <span
-                      class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-                      <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
+                      class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute"
+                    >
+                      <img
+                        src="@/assets/images/Path467engine.png"
+                        class="img-border position-absolute"
+                        alt=""
+                      />
+                    </span>
+
+                    <span
+                      class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute"
+                    >
+                      <img
+                        src="@/assets/images/Path465engine.png"
+                        class="img-border position-absolute"
+                        alt=""
+                      />
                     </span>
                     <!-- data-bs-toggle="modal" -->
-                    <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-                      data-bs-target="#mailModal">
+                    <button
+                      class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                      data-bs-target="#mailModal"
+                    >
                       Proceed
                     </button>
-                    <span class="border-bottom-btn border-left-btn new-popup position-absolute">
-                      <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
+                    <span
+                      class="border-bottom-btn border-left-btn new-popup position-absolute"
+                    >
+                      <img
+                        src="@/assets/images/Group11engine.png"
+                        class="img-border position-absolute"
+                        alt=""
+                      />
                     </span>
                     <span class="border-bottom-btn position-absolute">
-                      <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
+                      <img
+                        src="@/assets/images/Path473engine.png"
+                        class="img-border position-absolute"
+                        alt=""
+                      />
                     </span>
                   </div>
                 </div>
@@ -624,8 +803,8 @@
 </template>
 
 <script>
-
 import CarDataService from "../services/CarDataService";
+import CommunityDataService from "../services/CommunityDataService";
 
 export default {
   name: "OurCommunity",
@@ -645,108 +824,7 @@ export default {
       countryOfOrigins: [],
       productionYear: "",
       productionYears: [],
-      communities: [
-        {
-          id: 1,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 2,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 3,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 4,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 5,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 6,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 7,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 8,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 9,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-        {
-          id: 10,
-          title: "Koenigsegg agera one",
-          count: 1,
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          likes: 465,
-          comments: "465",
-          views: 465,
-        },
-      ],
+      communities: [],
       itemsPerPage: 5, // Number of communities per page
       currentPage: 1, //current Page
       filteredCommunities: [], // Communities to display on the current page
@@ -773,6 +851,7 @@ export default {
   },
   mounted() {
     this.retrieveCars();
+    this.retrieveCommunities();
     this.paginateCommunities();
     // Show the modal when the component is mounted
     this.showFilterModal();
@@ -793,6 +872,15 @@ export default {
       CarDataService.getAll()
         .then((response) => {
           this.makes = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    retrieveCommunities() {
+      CommunityDataService.getAll()
+        .then((response) => {
+          this.communities = response.data;
         })
         .catch((e) => {
           console.log(e);
