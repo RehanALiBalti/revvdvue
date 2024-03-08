@@ -141,8 +141,8 @@ const routes = [
     path: "/CarsListing",
   },
   {
-    path: '/carsdetails/:1',
-    name: 'CarsListingDetails',
+    path: "/carslistingdetails/",
+    name: "CarsListingDetails",
     component: CarsListingDetails,
   },
 ];

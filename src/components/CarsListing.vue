@@ -221,7 +221,7 @@
                 <div class="view-more-cars">
                   <router-link
                     class="view-more-a-tag"
-                    :to="'/carsdetails/' + car.id"
+                    :to="'/carslistingdetails/' + car.id"
                     >View more</router-link
                   >
                 </div>
