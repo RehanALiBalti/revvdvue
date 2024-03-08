@@ -21,6 +21,7 @@ import CarsListing from "./components/CarsListing.vue";
 import MarketPlace from "./components/MarketPlace.vue";
 import CarsView from "@/components/CarsView";
 import NotFound from "@/components/NotFound"; // Adjust the path as per your project structure
+import CarsListingDetails from "@/components/CarsListingDetails.vue";
 
 const routes = [
   {
@@ -138,6 +139,11 @@ const routes = [
     name: "CarsListing",
     component: CarsListing,
     path: "/CarsListing",
+  },
+  {
+    path: '/carsdetails/:1',
+    name: 'CarsListingDetails',
+    component: CarsListingDetails,
   },
 ];
 

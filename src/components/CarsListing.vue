@@ -18,10 +18,14 @@
           <nav aria-label="breadcrumb" class="nav-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <router-link class="breadcrumb-item-a-tag" to="/home">Home</router-link>
+                <router-link class="breadcrumb-item-a-tag" to="/home"
+                  >Home</router-link
+                >
               </li>
               <li class="breadcrumb-item">
-                <router-link class="breadcrumb-item-a-tag" to="#">Car Listing</router-link>
+                <router-link class="breadcrumb-item-a-tag" to="#"
+                  >Car Listing</router-link
+                >
               </li>
               <li class="breadcrumb-item active" aria-current="page">Europe</li>
             </ol>
@@ -39,8 +43,14 @@
             <h4 class="filter-title">Filters</h4>
             <div class="row">
               <div class="col-12">
-                <label for="models" class="form-label filter-label">Models</label>
-                <select v-model="selectedModel" id="models" class="form-select form-control form-input filter-select">
+                <label for="models" class="form-label filter-label"
+                  >Models</label
+                >
+                <select
+                  v-model="selectedModel"
+                  id="models"
+                  class="form-select form-control form-input filter-select"
+                >
                   <option value="">Any</option>
                   <option value="1">Model 1</option>
                   <option value="2">Model 2</option>
@@ -48,9 +58,14 @@
               </div>
 
               <div class="col-12">
-                <label for="bodyType" class="form-label filter-label">Body type</label>
-                <select v-model="selectedBodyType" id="bodyType"
-                  class="form-select form-control form-input filter-select">
+                <label for="bodyType" class="form-label filter-label"
+                  >Body type</label
+                >
+                <select
+                  v-model="selectedBodyType"
+                  id="bodyType"
+                  class="form-select form-control form-input filter-select"
+                >
                   <option value="">Any</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -58,8 +73,14 @@
               </div>
 
               <div class="col-md-12 col-lg-6">
-                <label for="min" class="form-label filter-label">Min Price</label>
-                <select v-model="selectedMinPrice" id="min" class="form-select form-control form-input filter-select">
+                <label for="min" class="form-label filter-label"
+                  >Min Price</label
+                >
+                <select
+                  v-model="selectedMinPrice"
+                  id="min"
+                  class="form-select form-control form-input filter-select"
+                >
                   <option value="">Any</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -67,8 +88,14 @@
               </div>
 
               <div class="col-md-12 col-lg-6">
-                <label for="max" class="form-label filter-label">Max Price</label>
-                <select v-model="selectedMaxPrice" id="max" class="form-select form-control form-input filter-select">
+                <label for="max" class="form-label filter-label"
+                  >Max Price</label
+                >
+                <select
+                  v-model="selectedMaxPrice"
+                  id="max"
+                  class="form-select form-control form-input filter-select"
+                >
                   <option value="">Any</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -76,9 +103,14 @@
               </div>
 
               <div class="col-12">
-                <label for="fuelType" class="form-label filter-label">Fuel type</label>
-                <select v-model="selectedFuelType" id="fuelType"
-                  class="form-select form-control form-input filter-select">
+                <label for="fuelType" class="form-label filter-label"
+                  >Fuel type</label
+                >
+                <select
+                  v-model="selectedFuelType"
+                  id="fuelType"
+                  class="form-select form-control form-input filter-select"
+                >
                   <option value="">Any</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -87,7 +119,11 @@
 
               <div class="col-12">
                 <label for="seats" class="form-label filter-label">Seats</label>
-                <select v-model="selectedSeats" id="seats" class="form-select form-control form-input filter-select">
+                <select
+                  v-model="selectedSeats"
+                  id="seats"
+                  class="form-select form-control form-input filter-select"
+                >
                   <option value="">Any</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -96,7 +132,11 @@
             </div>
           </div>
           <div class="filter-image-div my-4">
-            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+            <img
+              src="@/assets/images/Image18.png"
+              class="img-fluid filter-image"
+              alt="Image"
+            />
           </div>
         </div>
         <div class="col-md-9 px-4">
@@ -105,7 +145,11 @@
               <h6 class="showing-title mb-0">{{ showingText }}</h6>
             </div>
             <div class="sorting-div">
-              <select v-model="selectedSorting" id="name" class="form-select form-control form-input sorting-select">
+              <select
+                v-model="selectedSorting"
+                id="name"
+                class="form-select form-control form-input sorting-select"
+              >
                 <option selected>Default Sorting</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -114,12 +158,24 @@
             </div>
           </div>
 
-          <div v-for="(car, index) in cars" :key="index" class="card-sorting-content">
+          <div
+            v-for="(car, index) in displayedCars"
+            :key="index"
+            class="card-sorting-content"
+          >
             <div class="main-slider">
               <div class="swiper-container carsListing-swiper-container">
                 <div class="swiper-wrapper">
-                  <div v-for="(image, imageIndex) in car.images" :key="imageIndex" class="swiper-slide">
-                    <img :src="require(`@/assets/images/${image}`)" class="slider-img" alt="car" />
+                  <div
+                    v-for="(image, imageIndex) in car.images"
+                    :key="imageIndex"
+                    class="swiper-slide"
+                  >
+                    <img
+                      :src="require(`@/assets/images/${image}`)"
+                      class="slider-img"
+                      alt="car"
+                    />
                   </div>
                   <!-- Add more slides as needed -->
                 </div>
@@ -129,7 +185,11 @@
                             <img src="@/assets/images/d722fc518c6127ea183d184e5dc715e3.png" class="slider-img" alt="car">
                         </div> -->
               <div class="img-div-ford">
-                <img :src="require(`@/assets/images/${car.logo}`)" class="img-ford" alt="car" />
+                <img
+                  :src="require(`@/assets/images/${car.logo}`)"
+                  class="img-ford"
+                  alt="car"
+                />
               </div>
               <div class="card-content-car">
                 <div class="card-title-div">
@@ -138,17 +198,32 @@
                   </h2>
                 </div>
                 <ul class="user-details-car">
-                  <li v-for="(detail, detailIndex) in car.details" :key="detailIndex" class="list-item-user">
+                  <li
+                    v-for="(detail, detailIndex) in car.details"
+                    :key="detailIndex"
+                    class="list-item-user"
+                  >
                     <div class="icon-user">
-                      <img :src="require(`@/assets/images/${detail.icon}`)" class="icon-user-img" alt="icon" />
+                      <img
+                        :src="require(`@/assets/images/${detail.icon}`)"
+                        class="icon-user-img"
+                        alt="icon"
+                      />
                     </div>
-                    <router-link class="a-tag-name-user" to="javascript:void(0);">
+                    <router-link
+                      class="a-tag-name-user"
+                      to="javascript:void(0);"
+                    >
                       {{ detail.value }}
                     </router-link>
                   </li>
                 </ul>
                 <div class="view-more-cars">
-                  <router-link class="view-more-a-tag" :to="'/carsListingDetails/' + car.id">View more</router-link>
+                  <router-link
+                    class="view-more-a-tag"
+                    :to="'/carsdetails/' + car.id"
+                    >View more</router-link
+                  >
                 </div>
               </div>
             </div>
@@ -158,17 +233,32 @@
           <nav class="float-end my-4" aria-label="Page navigation">
             <ul class="pagination">
               <li class="page-item" v-if="currentPage > 1">
-                <router-link class="page-link" :to="'/cars?page=' + (currentPage - 1)" aria-label="Previous">
-                  <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
-                </router-link>
+                <button
+                  class="page-link"
+                  @click="prevPage"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true"
+                    ><i class="fa-solid fa-chevron-left"></i
+                  ></span>
+                </button>
               </li>
-              <li class="page-item" v-for="page in totalPage" :key="page" :class="{ active: page === currentPage }">
-                <router-link class="page-link" :to="'/cars?page=' + page">{{ page }}</router-link>
+              <li
+                class="page-item"
+                v-for="page in totalPage"
+                :key="page"
+                :class="{ active: page === currentPage }"
+              >
+                <button class="page-link" @click="goToPage(page)">
+                  {{ page }}
+                </button>
               </li>
               <li class="page-item" v-if="currentPage < totalPage">
-                <router-link class="page-link" :to="'/cars?page=' + (currentPage + 1)" aria-label="Next">
-                  <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-                </router-link>
+                <button class="page-link" @click="nextPage" aria-label="Next">
+                  <span aria-hidden="true"
+                    ><i class="fa-solid fa-chevron-right"></i
+                  ></span>
+                </button>
               </li>
             </ul>
           </nav>
@@ -185,9 +275,9 @@ import Swiper from "swiper";
 //Import Swiper styles
 import "swiper/swiper-bundle.css";
 //Import Swiper modules
-import { Pagination, Navigation } from 'swiper';
+import { Pagination, Navigation } from "swiper";
 // Install Swiper modules
-Swiper.use([Pagination, Navigation])
+Swiper.use([Pagination, Navigation]);
 
 export default {
   name: "CarsListing",
@@ -197,28 +287,170 @@ export default {
       cars: [
         {
           images: [
-            'd722fc518c6127ea183d184e5dc715e3.png',
-            '4d9beb293371f584ff554839462adb20.png',
-            '20210412111611_Ford_Territory_front.png',
-            '4image.png',
-            'images20(1).png',
-            '36346b90e9ed41209ec6b093b61c21ef.png',
+            "d722fc518c6127ea183d184e5dc715e3.png",
+            "4d9beb293371f584ff554839462adb20.png",
+            "20210412111611_Ford_Territory_front.png",
+            "4image.png",
+            "images20(1).png",
+            "36346b90e9ed41209ec6b093b61c21ef.png",
           ],
-          title: 'Koenigsegg agera one:',
+          id: 1,
+          title: "Koenigsegg agera one:",
           number: 1,
-          logo: 'Image13Ford.png',
+          logo: "Image13Ford.png",
           details: [
             {
-              icon: 'IconAwesome-user-alt.png',
-              value: 'Daniyal Doe',
+              icon: "IconAwesome-user-alt.png",
+              value: "Daniyal Doe",
             },
             {
-              icon: 'engine.png',
-              value: '2,000,000',
+              icon: "engine.png",
+              value: "2,000,000",
             },
             {
-              icon: 'Iconmaterial-email.png',
-              value: 'daniyaldoe@info.com',
+              icon: "Iconmaterial-email.png",
+              value: "daniyaldoe@info.com",
+            },
+          ],
+        },
+        {
+          images: [
+            "d722fc518c6127ea183d184e5dc715e3.png",
+            "4d9beb293371f584ff554839462adb20.png",
+            "20210412111611_Ford_Territory_front.png",
+            "4image.png",
+            "images20(1).png",
+            "36346b90e9ed41209ec6b093b61c21ef.png",
+          ],
+          id: 2,
+          title: "Koenigsegg agera one:",
+          number: 2,
+          logo: "Image13Ford.png",
+          details: [
+            {
+              icon: "IconAwesome-user-alt.png",
+              value: "Daniyal Doe",
+            },
+            {
+              icon: "engine.png",
+              value: "2,000,000",
+            },
+            {
+              icon: "Iconmaterial-email.png",
+              value: "daniyaldoe@info.com",
+            },
+          ],
+        },
+        {
+          images: [
+            "20210412111611_Ford_Territory_front.png",
+            "d722fc518c6127ea183d184e5dc715e3.png",
+            "4d9beb293371f584ff554839462adb20.png",
+            "4image.png",
+            "images20(1).png",
+            "36346b90e9ed41209ec6b093b61c21ef.png",
+          ],
+          id: 3,
+          title: "Koenigsegg agera one:",
+          number: 3,
+          logo: "Image13Ford.png",
+          details: [
+            {
+              icon: "IconAwesome-user-alt.png",
+              value: "Daniyal Doe",
+            },
+            {
+              icon: "engine.png",
+              value: "2,000,000",
+            },
+            {
+              icon: "Iconmaterial-email.png",
+              value: "daniyaldoe@info.com",
+            },
+          ],
+        },
+        {
+          images: [
+            "4image.png",
+            "20210412111611_Ford_Territory_front.png",
+            "d722fc518c6127ea183d184e5dc715e3.png",
+            "4d9beb293371f584ff554839462adb20.png",
+            "images20(1).png",
+            "36346b90e9ed41209ec6b093b61c21ef.png",
+          ],
+          id: 4,
+          title: "Koenigsegg agera one:",
+          number: 4,
+          logo: "Image13Ford.png",
+          details: [
+            {
+              icon: "IconAwesome-user-alt.png",
+              value: "Daniyal Doe",
+            },
+            {
+              icon: "engine.png",
+              value: "2,000,000",
+            },
+            {
+              icon: "Iconmaterial-email.png",
+              value: "daniyaldoe@info.com",
+            },
+          ],
+        },
+        {
+          images: [
+            "images20(1).png",
+            "4image.png",
+            "20210412111611_Ford_Territory_front.png",
+            "d722fc518c6127ea183d184e5dc715e3.png",
+            "4d9beb293371f584ff554839462adb20.png",
+            "36346b90e9ed41209ec6b093b61c21ef.png",
+          ],
+          id: 5,
+          title: "Koenigsegg agera one:",
+          number: 5,
+          logo: "Image13Ford.png",
+          details: [
+            {
+              icon: "IconAwesome-user-alt.png",
+              value: "Daniyal Doe",
+            },
+            {
+              icon: "engine.png",
+              value: "2,000,000",
+            },
+            {
+              icon: "Iconmaterial-email.png",
+              value: "daniyaldoe@info.com",
+            },
+          ],
+        },
+        {
+          images: [
+            "36346b90e9ed41209ec6b093b61c21ef.png",
+            "images20(1).png",
+            "4image.png",
+            "20210412111611_Ford_Territory_front.png",
+            "d722fc518c6127ea183d184e5dc715e3.png",
+            "4d9beb293371f584ff554839462adb20.png",
+            "36346b90e9ed41209ec6b093b61c21ef.png",
+          ],
+          id: 6,
+          title: "Koenigsegg agera one:",
+          number: 6,
+          logo: "Image13Ford.png",
+          details: [
+            {
+              icon: "IconAwesome-user-alt.png",
+              value: "Daniyal Doe",
+            },
+            {
+              icon: "engine.png",
+              value: "2,000,000",
+            },
+            {
+              icon: "Iconmaterial-email.png",
+              value: "daniyaldoe@info.com",
             },
           ],
         },
@@ -231,6 +463,8 @@ export default {
       selectedSeats: "",
       selectedSorting: "Default Sorting",
       totalResults: 12,
+      currentPage: 1,
+      carsPerPage: 5, // Number of cars per page
     };
   },
   mounted() {
@@ -257,8 +491,33 @@ export default {
     showingText() {
       return `Showing all ${this.totalResults} Results`;
     },
+    displayedCars() {
+      const startIndex = (this.currentPage - 1) * this.carsPerPage;
+      const endIndex = startIndex + this.carsPerPage;
+      return this.cars.slice(startIndex, endIndex);
+    },
+    totalPage() {
+      return Math.ceil(this.cars.length / this.carsPerPage);
+    },
   },
-
+  methods: {
+    // Methods to handle page navigation
+    goToPage(page) {
+      if (page >= 1 && page <= this.totalPage) {
+        this.currentPage = page;
+      }
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPage) {
+        this.currentPage++;
+      }
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+  },
 };
 </script>
 
@@ -288,7 +547,6 @@ export default {
   font-family: "Gruppo", sans-serif;
   cursor: pointer;
 }
-
 select.form-select.form-control.form-input.sorting-select[data-v-790a69e5] {
   height: 37px !important;
   background-color: #1a202c !important;
@@ -298,5 +556,14 @@ select.form-select.form-control.form-input.sorting-select[data-v-790a69e5] {
   font-weight: 400;
   color: #ffffff !important;
   font-family: "Goldman", sans-serif !important;
+}
+
+.page-item.active .page-link {
+  border: 1px solid #f95f19;
+  background-color: #f95f19;
+}
+
+.page-link:focus {
+    box-shadow: none;
 }
 </style>
