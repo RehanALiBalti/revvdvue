@@ -10,13 +10,13 @@
             </div>
             <ul class="icons-list">
                 <li class="icons-list-item">
-                    <a class="icons-list-atag" href="">
+                    <a class="icons-list-atag" href="https://www.facebook.com/revvdout?mibextid=LQQJ4d" target="_blank">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>
 
                 <li class="icons-list-item">
-                    <a class="icons-list-atag" href="">
+                    <a class="icons-list-atag" href="https://twitter.com/revvdout" target="_blank">
                         <!-- <i class="fab fa-twitter"></i> -->
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>
@@ -28,7 +28,9 @@
 						</a>
 					</li> -->
                 <li class="icons-list-item">
-                    <a class="icons-list-atag" href="">
+                    <a class="icons-list-atag"
+                        href="https://www.instagram.com/revvdout/?igshid=c2g3bzQ0bTZsdHlk&amp;utm_source=qr"
+                        target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </li>

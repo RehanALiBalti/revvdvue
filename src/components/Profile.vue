@@ -3,12 +3,13 @@
 		<div class="row">
 			<div class="col-md-8 m-auto">
 				<div class="form-content-home1">
-					<form id="subscribe-form" @submit.prevent="validateForm">
+					<form id="subscribe-form" @submit.prevent="submitForm">
 						<div class="user-profile-page">
 							<img src="@/assets/images/user-profile-page-img.png" class="user-profile-page-img"
 								alt="user">
 							<h2 class="form-title mt-2 mb-0">
-								{{ firstName }} <span class="form-span"> {{ lastName }} </span>
+
+								{{ name }}
 							</h2>
 							<p class="map-para email-user-profile-page-para">
 								{{ email }}
@@ -17,8 +18,8 @@
 						<div class="row">
 							<div class="col-md-6">
 								<label for="name" class="form-label">{{ $t('name') }}</label>
-								<input v-model="firstName" id="name" type="text" name="name"
-									class="form-control form-input" placeholder="Enter here" required>
+								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
+									placeholder="Enter here" required>
 							</div>
 							<div class="col-md-6">
 								<label for="age" class="form-label">{{ $t('age') }}</label>
@@ -63,65 +64,117 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 export default {
 	name: "UserProfile",
 	data() {
 		return {
-			firstName: "",
-			lastName: "",
+			UserData: null,
+			name: "",
+
 			email: "",
 			age: "",
 			phone: "",
 			socialMedia: "",
 			password: "",
-			errorMessage: ''
+			errorMessage: '',
+			formData: {}
 		};
 	},
 	methods: {
-		validateForm() {
-			if (this.firstName.trim() === "" || this.lastName.trim() === "") {
-				this.errorMessage = "Please enter both First and Last name.";
-				return false;
-			} else if (this.age.trim() === "") {
-				this.errorMessage = "Please enter your Age.";
-				return false;
-			} else if (this.email.trim() === "") {
-				this.errorMessage = "Please enter your Email.";
-				return false;
-			} else if (this.phone.trim() === "") {
-				this.errorMessage = "Please enter your phone number.";
-				return false;
-			} else if (this.socialMedia.trim() === "") {
-				this.errorMessage = "Please enter your social media information.";
-				return false;
-			} else if (this.password.trim() === "") {
-				this.errorMessage = "Please enter your password.";
-				return false;
-			} else {
-				this.errorMessage = "";
-				this.submitForm();
+		async fetchProfileData() {
+			try {
+				console.log("Fetching profile data...");
+				const data = await this.$store.dispatch("auth/getprofiledata");
+				console.log("Profile data:", data);
+				this.UserData = data.result
+				console.log("userdata", this.UserData.name)
+				this.name = this.UserData.name
+				this.email = this.UserData.email
+
+				this.socialMedia = this.UserData.website
+				this.phone = this.UserData.phone_number
+
+			} catch (error) {
+				console.error("Error fetching profile data:", error);
 			}
 		},
 		submitForm() {
-			console.log('Form submitted!');
-			// Your form submission logic goes here
+			this.validateForm();
+			if (this.isFormValid()) {
+				console.log("Form submitted successfully");
+				const mydata = {
+					email: this.formData.email,
+					password: this.formData.password,
+				};
+				this.$store.dispatch("auth/handleSignIn", mydata).then((data) => {
+					if (data.success == 1) {
+						localStorage.setItem('login', true);
+						localStorage.setItem('data', data.result);
+						Swal.fire({
+							title: 'Success!',
+							text: 'User has been successfully login!',
+							icon: 'success',
+							confirmButtonText: 'OK',
+						}).then(() => {
+							// Redirect to '/landing' route
+							this.$router.push('/ourcommunity');
+						});
+					} else {
+						Swal.fire({
+							title: 'Error!',
+							text: 'Oops... ' + data.error,
+							icon: 'error',
+							confirmButtonText: 'OK',
+						});
+					}
+
+					console.log(data);
+				});
+			} else {
+				console.log("Form validation failed");
+			}
 		}
+		,
+		validateForm() {
+			this.formErrors = {};
+
+			if (!this.formData.email) {
+				this.formErrors.email = "Email is required";
+			} else if (!this.isValidEmail(this.formData.email)) {
+				this.formErrors.email = "Invalid email format";
+			}
+			if (!this.formData.password) {
+				this.formErrors.password = "Password is required";
+			}
+		},
+		isValidPhoneNumber(phone) {
+			const phonePattern = /^\+?\d{1,3}[-.\s]?\d{3,4}[-.\s]?\d{3,4}$/;
+
+			return phonePattern.test(phone);
+		},
+		isFormValid() {
+			return Object.values(this.formErrors).every((error) => !error);
+		},
+		isValidEmail(email) {
+			const emailPattern = /\S+@\S+\.\S+/;
+			return emailPattern.test(email);
+		},
 	},
 	created() {
-		const userData = JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData'));
-		if (userData && userData.UserAttributes) {
-			const nameAttribute = userData.UserAttributes.find(attr => attr.Name === 'name');
-			if (nameAttribute) {
-				const fullName = nameAttribute.Value.split(' '); // assuming the name is in "firstName lastName" format
-				this.firstName = fullName[0] || "";
-				this.lastName = fullName[1] || "";
-			}
-			this.email = userData.UserAttributes.find(attr => attr.Name === 'email')?.Value || "";
-			this.age = userData.UserAttributes.find(attr => attr.Name === 'age')?.Value || "";
-			this.phone = userData.UserAttributes.find(attr => attr.Name === 'phone_number')?.Value || "";
-			this.socialMedia = userData.UserAttributes.find(attr => attr.Name === 'socialMedia')?.Value || "";
-		}
-	}
+
+		// this.getprofile()
+
+
+
+
+
+	},
+	mounted() {
+		this.fetchProfileData();
+	},
+
+
 };
 </script>
 

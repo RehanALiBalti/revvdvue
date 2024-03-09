@@ -3,37 +3,56 @@
   <section class="communityDetails-section my-5">
     <div class="container">
       <div class="communityDetailsMain">
-        <div class="communityDetails-bg">
+        <img v-if="loading" class="d-block mx-auto" src="../assets/images/loader.gif" alt="Loading..." />
+        <div v-else class="communityDetails-bg">
           <div class="img-communityDetails-div">
-            <img :src="imageSrc" class="img-communityDetails" alt="Image" />
+            <!-- Show loader image while the actual image is loading -->
+
+
+            <!-- Show the actual image when it's loaded -->
+            <img :src="`https://buzzwaretech.com/revadmin/uploads/${communityData.image}`" class="img-communityDetailsn"
+              alt="Image" @load="imageLoaded" />
+
           </div>
           <div class="communityDetails-content py-4">
             <div class="card-title-div">
+
               <h2 class="card-title-h2 community-title">
+
                 <!-- Koenigsegg agera one: <span> 1 </span> -->
-                {{ communityTitle }}: <span> {{ communityNumber }} </span>
+                {{ communityData.make }}: <span> {{ communityData.model }}</span>
               </h2>
+              <p class="my-2 community-title card-title-h2"> {{ communityData.classification }}: {{
+          communityData.generation }}</p>
+              <div class="my-2 d-flex justify-content-between card-title-h2">
+                <p>
+                  {{ communityData.country_of_origin }}
+                </p>
+                <p>
+                  {{ communityData.production_years }}
+                </p>
+              </div>
             </div>
             <div class="map-para-div community-para-div">
               <p class="map-para community-para">
-                {{ communityContent }}
+                {{ communityData.description }}
               </p>
             </div>
             <div class="list-community-add">
               <div class="like-community">
-                <i class="fa-solid fa-thumbs-up"></i><span class="total-likes">{{ likes }}</span>
+                <i class="fa-solid fa-thumbs-up"></i><span class="total-likes">{{ communityData.likes }}</span>
               </div>
               <div class="like-community">
-                <i class="fa-solid fa-comments"></i><span class="total-likes">{{ comments }}</span>
+                <i class="fa-solid fa-comments"></i><span class="total-likes">{{ communityData.comments }}</span>
               </div>
               <div class="like-community">
-                <i class="fa-solid fa-eye"></i><span class="total-likes">{{ views }}</span>
+                <i class="fa-solid fa-eye"></i><span class="total-likes">{{ communityData.views }}</span>
               </div>
             </div>
           </div>
           <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
             <!-- <div v-for="(message, index) in messages" :key="index"  class="sender-chats"> -->
-            <div v-for="(message, index) in messages" :key="index" :class="message.class">
+            <div v-for="(  message, index  ) in   messages  " :key="index" :class="message.class">
               <p class="sender-chats-para">
                 {{ message.text }}
               </p>
@@ -83,42 +102,6 @@
     </div>
   </section>
 
-  <div class="container mt-5 mb-3">
-    <div class="map-desc">
-      <div class="map-para-div">
-        <p class="map-para">
-          Lorem Ipsum is simply dummy text of the printing & typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s,
-        </p>
-      </div>
-      <ul class="icons-list">
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
-
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <!-- <i class="fab fa-twitter"></i> -->
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
-        </li>
-
-        <!-- <li class="icons-list-item">
-						<a class="icons-list-atag" href="">
-							<i class="fa-brands fa-youtube"></i>
-						</a>
-					</li> -->
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
 
   <!-- <script>
     var mySwiper = new Swiper(".swiper-container", {
@@ -135,22 +118,18 @@
 </template>
 
 <script>
+import CommunityDataService from "../services/CommunityDataService";
 
-import communityDetailsImage from "@/assets/images/communityDetailsImage.png";
 
 export default {
   name: "CommunityDetail",
 
   data() {
     return {
-      imageSrc: communityDetailsImage,
-      communityTitle: "Koenigsegg agera one",
-      communityNumber: "1",
-      communityContent:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-      likes: 465,
-      comments: 465,
-      views: 465,
+      communityData: [],
+      loading: true, // Initially set to true to show loader image,
+
+
       messages: [
         {
           text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
@@ -175,6 +154,10 @@ export default {
       ],
       newComment: "",
     };
+  },
+  created() {
+    // Fetch community data when the component is created
+    this.fetchCommunityData();
   },
   computed: {
     // Computed property to check if the textarea is not empty
@@ -210,6 +193,20 @@ export default {
         chatContainer.scrollTop = chatContainer.scrollHeight;
       }
     },
+    fetchCommunityData() {
+      const id = this.$route.params.id; // Get the community id from the route parameters
+      CommunityDataService.get(id)
+        .then(response => {
+          // Set the fetched community data to the component's data
+          this.communityData = response.data;
+          console.log("data", this.communityData)
+          this.loading = false;
+        })
+        .catch(error => {
+          console.error('Error fetching community data:', error);
+        });
+
+    }
   },
   mounted() {
     this.scrollToBottom();
@@ -225,4 +222,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.img-communityDetailsn {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+}
+</style>

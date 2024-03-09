@@ -65,13 +65,13 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
                 <router-link class="breadcrumb-item-a-tag" to="/home">{{
-                  $t("home")
-                }}</router-link>
+              $t("home")
+            }}</router-link>
               </li>
               <li class="breadcrumb-item">
                 <router-link class="breadcrumb-item-a-tag" to="/ourcommunity">{{
-                  $t("community")
-                }}</router-link>
+                $t("community")
+              }}</router-link>
               </li>
             </ol>
           </nav>
@@ -86,46 +86,28 @@
         <div class="col-md-3">
           <div class="filter-box">
             <h4 class="filter-title">{{ $t("filters") }}</h4>
-            <div class="row">
+            <form class="row">
               <div class="col-12">
                 <label for="models" class="form-label filter-label">{{
-                  $t("make")
-                }}</label>
-                <select
-                  id="models"
-                  class="form-select form-control form-input filter-select"
-                  required=""
-                  v-model="make"
-                  @change="getModels()"
-                >
+              $t("make")
+            }}</label>
+                <select id="models" class="form-select form-control form-input filter-select" required="" v-model="make"
+                  @change="getModels()">
                   <option value="" selected disabled>Any</option>
 
-                  <option
-                    v-for="(make, index) in makes"
-                    :key="index"
-                    :value="make.make"
-                  >
+                  <option v-for="(make, index) in makes" :key="index" :value="make.make">
                     {{ make.make }}
                   </option>
                 </select>
               </div>
               <div class="col-12">
                 <label for="models" class="form-label filter-label">{{
-                  $t("models")
-                }}</label>
-                <select
-                  id="models"
-                  class="form-select form-control form-input filter-select"
-                  required=""
-                  v-model="model"
-                  @change="getGenerations()"
-                >
+              $t("models")
+            }}</label>
+                <select id="models" class="form-select form-control form-input filter-select" v-model="model"
+                  @change="getGenerations()">
                   <option value="" selected disabled>Any</option>
-                  <option
-                    v-for="(model, index) in models"
-                    :key="index"
-                    :value="model.model"
-                  >
+                  <option v-for="(model, index) in models" :key="index" :value="model.model">
                     {{ model.model }}
                   </option>
                 </select>
@@ -133,41 +115,23 @@
 
               <div class="col-12">
                 <label for="bodyType" class="form-label filter-label">{{
-                  $t("generation")
-                }}</label>
-                <select
-                  id="bodyType"
-                  class="form-select form-control form-input filter-select"
-                  required=""
-                  v-model="generation"
-                >
+              $t("generation")
+            }}</label>
+                <select id="bodyType" class="form-select form-control form-input filter-select" v-model="generation">
                   <option value="" selected disabled>Any</option>
-                  <option
-                    v-for="(value, index) in generations"
-                    :key="index"
-                    :value="value"
-                  >
+                  <option v-for="(value, index) in generations" :key="index" :value="value">
                     {{ value }}
                   </option>
                 </select>
               </div>
 
               <div class="col-12">
-                <label for="fuelType" class="form-label filter-label"
-                  >{{ $t("classification") }}
+                <label for="fuelType" class="form-label filter-label">{{ $t("classification") }}
                 </label>
-                <select
-                  id="fuelType"
-                  class="form-select form-control form-input filter-select"
-                  required=""
-                  v-model="classification"
-                >
+                <select id="fuelType" class="form-select form-control form-input filter-select"
+                  v-model="classification">
                   <option value="" selected disabled>Any</option>
-                  <option
-                    v-for="(value, index) in classifications"
-                    :key="index"
-                    :value="value"
-                  >
+                  <option v-for="(value, index) in classifications" :key="index" :value="value">
                     {{ value }}
                   </option>
                 </select>
@@ -175,20 +139,11 @@
 
               <div class="col-12">
                 <label for="seats" class="form-label filter-label">{{
-                  $t("productionYears")
-                }}</label>
-                <select
-                  id="seats"
-                  class="form-select form-control form-input filter-select"
-                  required=""
-                  v-model="productionYear"
-                >
+              $t("productionYears")
+            }}</label>
+                <select id="seats" class="form-select form-control form-input filter-select" v-model="productionYear">
                   <option value="" selected disabled>Any</option>
-                  <option
-                    v-for="(value, index) in productionYears"
-                    :key="index"
-                    :value="value"
-                  >
+                  <option v-for="(value, index) in productionYears" :key="index" :value="value">
                     {{ value }}
                   </option>
                 </select>
@@ -196,41 +151,52 @@
 
               <div class="col-12">
                 <label for="seats" class="form-label filter-label">
-                  {{ $t("countryOfOrigin") }}</label
-                >
-                <select
-                  id="seats"
-                  class="form-select form-control form-input filter-select"
-                  required=""
-                  v-model="countryOfOrigin"
-                >
+                  {{ $t("countryOfOrigin") }}</label>
+                <select id="seats" class="form-select form-control form-input filter-select" v-model="countryOfOrigin">
                   <option value="" selected disabled>Any</option>
-                  <option
-                    v-for="(value, index) in countryOfOrigins"
-                    :key="index"
-                    :value="value"
-                  >
+                  <option v-for="(value, index) in countryOfOrigins" :key="index" :value="value">
                     {{ value }}
                   </option>
                 </select>
               </div>
-            </div>
+              <div class="my-2">
+                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                  <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+                    <span class="border-bottom-btn border-top-btn position-absolute">
+                      <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
+                    </span>
+
+                    <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+                      <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
+                    </span>
+
+                    <span
+                      class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+                      <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
+                    </span>
+                    <!-- data-bs-toggle="modal" -->
+                    <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                      data-bs-target="#mailModal" @click="retrieveFilterCommunities">
+                      Submit
+                    </button>
+                    <span class="border-bottom-btn border-left-btn new-popup position-absolute">
+                      <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
+                    </span>
+                    <span class="border-bottom-btn position-absolute">
+                      <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
           <div class="filter-image-div my-4">
-            <img
-              src="@/assets/images/Image18.png"
-              class="img-fluid filter-image"
-              alt="Image"
-            />
+            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
           </div>
         </div>
 
-        <div class="col-md-9 px-4">
-          <div
-            class="col-12 mb-4 m-auto"
-            v-for="community in communities"
-            :key="community.id"
-          >
+        <div class="col-md-9 px-4 " v-if="communities != null && communities != ''">
+          <div class="col-12 mb-4 m-auto" v-for="community in filteredCommunities" :key="community.id">
             <router-link :to="`/communitydetails/${community.id}`">
               <div class="communtiy-content">
                 <div class="card-title-div">
@@ -254,217 +220,57 @@
                 </div>
                 <div class="list-community-add">
                   <div class="like-community">
-                    <i class="fa-solid fa-thumbs-up"></i
-                    ><span class="total-likes">{{ community.likes }}</span>
+                    <i class="fa-solid fa-thumbs-up"></i><span class="total-likes">{{ community.likes }}</span>
                   </div>
                   <div class="like-community">
-                    <i class="fa-solid fa-comments"></i
-                    ><span class="total-likes">{{ community.comments }}</span>
+                    <i class="fa-solid fa-comments"></i><span class="total-likes">{{ community.comments }}</span>
                   </div>
                   <div class="like-community">
-                    <i class="fa-solid fa-eye"></i
-                    ><span class="total-likes">{{ community.views }}</span>
+                    <i class="fa-solid fa-eye"></i><span class="total-likes">{{ community.views }}</span>
                   </div>
                 </div>
               </div>
             </router-link>
           </div>
-          <!-- <div class="col-12 mb-4 m-auto">
-          <div class="communtiy-content">
-            <div class="card-title-div">
-              <h2 class="card-title-h2 community-title">
-                Koenigsegg agera one: <span> 1 </span>
-              </h2>
-            </div>
-            <div class="map-para-div community-para-div">
-              <p class="map-para community-para">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
-            </div>
-            <div class="list-community-add">
-              <div class="like-community">
-                <i class="fa-solid fa-thumbs-up"></i
-                ><span class="total-likes">465</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-comments"></i
-                ><span class="total-likes">465</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-eye"></i
-                ><span class="total-likes">465</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 mb-4 m-auto">
-          <div class="communtiy-content">
-            <div class="card-title-div">
-              <h2 class="card-title-h2 community-title">
-                Koenigsegg agera one: <span> 1 </span>
-              </h2>
-            </div>
-            <div class="map-para-div community-para-div">
-              <p class="map-para community-para">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
-            </div>
-            <div class="list-community-add">
-              <div class="like-community">
-                <i class="fa-solid fa-thumbs-up"></i
-                ><span class="total-likes">465</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-comments"></i
-                ><span class="total-likes">465</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-eye"></i
-                ><span class="total-likes">465</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 mb-4 m-auto">
-          <div class="communtiy-content">
-            <div class="card-title-div">
-              <h2 class="card-title-h2 community-title">
-                Koenigsegg agera one: <span> 1 </span>
-              </h2>
-            </div>
-            <div class="map-para-div community-para-div">
-              <p class="map-para community-para">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
-            </div>
-            <div class="list-community-add">
-              <div class="like-community">
-                <i class="fa-solid fa-thumbs-up"></i
-                ><span class="total-likes">465</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-comments"></i
-                ><span class="total-likes">465</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-eye"></i
-                ><span class="total-likes">465</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 mb-4 m-auto">
-          <div class="communtiy-content">
-            <div class="card-title-div">
-              <h2 class="card-title-h2 community-title">
-                Koenigsegg agera one: <span> 1 </span>
-              </h2>
-            </div>
-            <div class="map-para-div community-para-div">
-              <p class="map-para community-para">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
-            </div>
-            <div class="list-community-add">
-              <div class="like-community">
-                <i class="fa-solid fa-thumbs-up"></i
-                ><span class="total-likes">465</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-comments"></i
-                ><span class="total-likes">465</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-eye"></i
-                ><span class="total-likes">465</span>
-              </div>
-            </div>
-          </div>
-        </div> -->
+
 
           <!-- pagination -->
-          <nav
-            class="float-end my-4 community-pagination"
-            aria-label="Page navigation"
-          >
+          <nav class="float-end my-4 community-pagination" aria-label="Page navigation">
             <ul class="pagination">
               <li class="page-item">
-                <a
-                  class="page-link"
-                  href="#"
-                  aria-label="Previous"
-                  @click="goToPreviousPage"
-                >
-                  <span aria-hidden="true"
-                    ><i class="fa-solid fa-chevron-left"></i
-                  ></span>
+                <a class="page-link" href="#" aria-label="Previous" @click="goToPreviousPage">
+                  <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
                 </a>
               </li>
               <li class="page-item" v-for="page in totalPages" :key="page">
                 <a class="page-link" href="#" @click="goToPage(page)">{{
-                  page
-                }}</a>
+              page
+            }}</a>
               </li>
-              <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">9</a></li> -->
+
               <li class="page-item">
-                <a
-                  class="page-link"
-                  href="#"
-                  aria-label="Next"
-                  @click="goToNextPage"
-                >
-                  <span aria-hidden="true"
-                    ><i class="fa-solid fa-chevron-right"></i
-                  ></span>
+                <a class="page-link" href="#" aria-label="Next" @click="goToNextPage">
+                  <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
                 </a>
               </li>
             </ul>
           </nav>
+        </div>
+        <div class="col-md-9 px-4" v-else>
+          <h3 class="alert alertbg">
+            No Communities Found
+          </h3>
         </div>
       </div>
     </div>
   </section>
 
   <!-- modal -->
-  <div
-    class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    id="carShopFilter"
-    ref="modalRef"
-  >
+  <div class="modal fade" tabindex="-1" role="dialog" id="carShopFilter" ref="modalRef">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <span
-            class="close-icon"
-            @click="closeModel"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          >
+          <span class="close-icon" @click="closeModel" data-bs-dismiss="modal" aria-label="Close">
             <i class="fas fa-times"></i>
           </span>
           <form @submit.prevent="submitFilter">
@@ -472,169 +278,12 @@
               <h5 class="card-title"><span class="choose"> Filter </span></h5>
             </div>
             <div class="row">
-              <!-- <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
-                  <select
-                    id="make"
-                    class="form-select"
-                    name="make"
-                    required="true"
-                    aria-required="true"
-                  >
-                  <option
-                    v-for="(car, index) in cars"
-                    :key="index"
-                    :value="car.make"
-                  >
-                    {{ car.make }}
-                  </option>
-                  </select>
-                </div>
-              </div>
 
               <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
-                  <select
-                    id="models"
-                    class="form-select"
-                    name="models"
-                    required="true"
-                    aria-required="true"
-                  >
-                    <option selected>Models</option>
-                    <option value="Petite">Petite</option>
-                    <option value="2-Litre">2-Litre</option>
-                    <option value="Greyhound">Greyhound</option>
-                    <option value="Ace">Ace</option>
-                    <option value="Cobra">Cobra</option>
-                    <option value="3000ME">3000ME</option>
-                    <option value="Aceca">Aceca</option>
-                    <option value="Frua">Frua</option>
-                    <option value="Brooklands Ace">Brooklands Ace</option>
-                    <option value="Ace V8">Ace V8</option>
-                    <option value="Aceca">Aceca</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
-                  <select
-                    id="generation"
-                    class="form-select"
-                    name="generation"
-                    required="true"
-                    aria-required="true"
-                  >
-                    <option selected>Generation</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
-                  <select
-                    id="classification"
-                    class="classification"
-                    name="performanceShops"
-                    required="true"
-                    aria-required="true"
-                  >
-                    <option selected>Classification</option>
-                    <option value="Micro car">Micro car</option>
-                    <option value="Large car">Large car</option>
-                    <option value="Large car">Large car</option>
-                    <option value="Sports car">Sports car</option>
-                    <option value="Sports car">Sports car</option>
-                    <option value="Sports car">Sports car</option>
-                    <option value="Grand tourer">Grand tourer</option>
-                    <option value="Grand tourer">Grand tourer</option>
-                    <option value="Sports car">Sports car</option>
-                    <option value="Sports car">Sports car</option>
-                    <option value="Sports car">Sports car</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
-                  <select
-                    id="productionYears"
-                    class="form-select"
-                    name="productionYears"
-                    required="true"
-                    aria-required="true"
-                  >
-                    <option selected>Production Years</option>
-                    <option value="1952-1958">1952-1958</option>
-                    <option value="1947-1958">1947-1958</option>
-                    <option value="1959-1963">1959-1963</option>
-                    <option value="1953-1963">1953-1963</option>
-                    <option value="1962-1968, 1983-1990">
-                      1962-1968, 1983-1990
-                    </option>
-                    <option value="1979-1985">1979-1985</option>
-                    <option value="1954-1963">1954-1963</option>
-                    <option value="1965-1973">1965-1973</option>
-                    <option value="1993-1996">1993-1996</option>
-                    <option value="1997-2000">1997-2000</option>
-                    <option value="1998-2001">1998-2001</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
-
-                  <select
-                    id="countryOrigin"
-                    class="form-select"
-                    name="countryOrigin"
-                    required="true"
-                    aria-required="true"
-                  >
-                    <option selected>Country of origin</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                  </select>
-                </div>
-              </div> -->
-              <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
-                  <select
-                    class="form-select"
-                    v-model="make"
-                    @change="getModels()"
-                  >
+                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
+                  <select class="form-select" v-model="make" @change="getModels()">
                     <option value="" selected disabled>Make</option>
-                    <option
-                      v-for="(make, index) in makes"
-                      :key="index"
-                      :value="make.make"
-                    >
+                    <option v-for="(make, index) in makes" :key="index" :value="make.make">
                       {{ make.make }}
                     </option>
                   </select>
@@ -642,20 +291,10 @@
               </div>
 
               <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
-                  <select
-                    class="form-select"
-                    v-model="model"
-                    @change="getGenerations()"
-                  >
+                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
+                  <select class="form-select" v-model="model" @change="getGenerations()">
                     <option value="" selected disabled>Model</option>
-                    <option
-                      v-for="(model, index) in models"
-                      :key="index"
-                      :value="model.model"
-                    >
+                    <option v-for="(model, index) in models" :key="index" :value="model.model">
                       {{ model.model }}
                     </option>
                   </select>
@@ -663,16 +302,10 @@
               </div>
 
               <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
+                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
                   <select class="form-select" v-model="generation">
                     <option value="" selected disabled>Generation</option>
-                    <option
-                      v-for="(value, index) in generations"
-                      :key="index"
-                      :value="value"
-                    >
+                    <option v-for="(value, index) in generations" :key="index" :value="value">
                       {{ value }}
                     </option>
                   </select>
@@ -680,16 +313,10 @@
               </div>
 
               <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
+                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
                   <select class="form-select" v-model="classification">
                     <option value="" selected disabled>Classification</option>
-                    <option
-                      v-for="(value, index) in classifications"
-                      :key="index"
-                      :value="value"
-                    >
+                    <option v-for="(value, index) in classifications" :key="index" :value="value">
                       {{ value }}
                     </option>
                   </select>
@@ -697,16 +324,10 @@
               </div>
 
               <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
+                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
                   <select class="form-select" v-model="productionYear">
                     <option value="" selected disabled>Production Years</option>
-                    <option
-                      v-for="(value, index) in productionYears"
-                      :key="index"
-                      :value="value"
-                    >
+                    <option v-for="(value, index) in productionYears" :key="index" :value="value">
                       {{ value }}
                     </option>
                   </select>
@@ -714,18 +335,12 @@
               </div>
 
               <div class="col-md-6">
-                <div
-                  class="mt-2 py-2 d-flex justify-content-center align-items-center"
-                >
+                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
                   <select class="form-select" v-model="countryOfOrigin">
                     <option value="" selected disabled>
                       Country of Origin
                     </option>
-                    <option
-                      v-for="(value, index) in countryOfOrigins"
-                      :key="index"
-                      :value="value"
-                    >
+                    <option v-for="(value, index) in countryOfOrigins" :key="index" :value="value">
                       {{ value }}
                     </option>
                   </select>
@@ -733,63 +348,30 @@
               </div>
 
               <div class="col-md-12 m-auto">
-                <div
-                  class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto"
-                >
-                  <div
-                    class="list-item-btn position-relative load-more-div proceed-div mx-auto"
-                  >
-                    <span
-                      class="border-bottom-btn border-top-btn position-absolute"
-                    >
-                      <img
-                        src="@/assets/images/Group12engine.png"
-                        class="img-border position-absolute"
-                        alt=""
-                      />
+                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                  <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+                    <span class="border-bottom-btn border-top-btn position-absolute">
+                      <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
+                    </span>
+
+                    <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+                      <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
                     </span>
 
                     <span
-                      class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute"
-                    >
-                      <img
-                        src="@/assets/images/Path467engine.png"
-                        class="img-border position-absolute"
-                        alt=""
-                      />
-                    </span>
-
-                    <span
-                      class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute"
-                    >
-                      <img
-                        src="@/assets/images/Path465engine.png"
-                        class="img-border position-absolute"
-                        alt=""
-                      />
+                      class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+                      <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
                     </span>
                     <!-- data-bs-toggle="modal" -->
-                    <button
-                      class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-                      data-bs-target="#mailModal"
-                    >
+                    <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                      data-bs-target="#mailModal" @click=" retrieveFilterCommunities">
                       Proceed
                     </button>
-                    <span
-                      class="border-bottom-btn border-left-btn new-popup position-absolute"
-                    >
-                      <img
-                        src="@/assets/images/Group11engine.png"
-                        class="img-border position-absolute"
-                        alt=""
-                      />
+                    <span class="border-bottom-btn border-left-btn new-popup position-absolute">
+                      <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
                     </span>
                     <span class="border-bottom-btn position-absolute">
-                      <img
-                        src="@/assets/images/Path473engine.png"
-                        class="img-border position-absolute"
-                        alt=""
-                      />
+                      <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
                     </span>
                   </div>
                 </div>
@@ -811,6 +393,7 @@ export default {
 
   data() {
     return {
+
       makes: [],
       make: "",
       model: "",
@@ -854,7 +437,15 @@ export default {
     this.retrieveCommunities();
     this.paginateCommunities();
     // Show the modal when the component is mounted
-    this.showFilterModal();
+    const isFirstTimeMounted = localStorage.getItem('isFirstTimeMounted');
+
+    // Call showFilterModal only the first time mounted
+    if (!isFirstTimeMounted) {
+      this.showFilterModal();
+
+      // Set flag in localStorage to indicate that the method has been called
+      localStorage.setItem('isFirstTimeMounted', true);
+    }
     // Add event listener to the document body for clicks
     document.body.addEventListener("click", this.handleOutsideClick);
   },
@@ -882,6 +473,15 @@ export default {
         .then((response) => {
           this.communities = response.data;
         })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    retrieveFilterCommunities(e) {
+      e.preventDefault()
+      CommunityDataService.getFiltered(this.make, this.model, this.generation, this.classifications, this.productionYears, this.countryOfOrigin).then((response) => {
+        this.communities = response.data;
+      })
         .catch((e) => {
           console.log(e);
         });
@@ -1054,5 +654,29 @@ export default {
     outline: 0;
     box-shadow: none;
   }
+}
+
+.img-communityDetails-div img {
+  height: 400px;
+  border-radius: 7px;
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+
+}
+
+.alertbg {
+  background: #FF7A00;
+  color: #fff;
+}
+
+.communtiy-content p {
+
+  /* Prevents text from wrapping */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+
 }
 </style>
