@@ -86,7 +86,7 @@
         <div class="col-md-3">
           <div class="filter-box">
             <h4 class="filter-title">{{ $t("filters") }}</h4>
-            <form class="row">
+            <div class="row">
               <div class="col-12">
                 <label for="models" class="form-label filter-label">{{
               $t("make")
@@ -104,8 +104,8 @@
                 <label for="models" class="form-label filter-label">{{
               $t("models")
             }}</label>
-                <select id="models" class="form-select form-control form-input filter-select" v-model="model"
-                  @change="getGenerations()">
+                <select id="models" class="form-select form-control form-input filter-select" required=""
+                  v-model="model" @change="getGenerations()">
                   <option value="" selected disabled>Any</option>
                   <option v-for="(model, index) in models" :key="index" :value="model.model">
                     {{ model.model }}
@@ -117,21 +117,10 @@
                 <label for="bodyType" class="form-label filter-label">{{
               $t("generation")
             }}</label>
-                <select id="bodyType" class="form-select form-control form-input filter-select" v-model="generation">
+                <select id="bodyType" class="form-select form-control form-input filter-select" required=""
+                  v-model="generation">
                   <option value="" selected disabled>Any</option>
                   <option v-for="(value, index) in generations" :key="index" :value="value">
-                    {{ value }}
-                  </option>
-                </select>
-              </div>
-
-              <div class="col-12">
-                <label for="fuelType" class="form-label filter-label">{{ $t("classification") }}
-                </label>
-                <select id="fuelType" class="form-select form-control form-input filter-select"
-                  v-model="classification">
-                  <option value="" selected disabled>Any</option>
-                  <option v-for="(value, index) in classifications" :key="index" :value="value">
                     {{ value }}
                   </option>
                 </select>
@@ -141,25 +130,15 @@
                 <label for="seats" class="form-label filter-label">{{
               $t("productionYears")
             }}</label>
-                <select id="seats" class="form-select form-control form-input filter-select" v-model="productionYear">
+                <select id="seats" class="form-select form-control form-input filter-select" required=""
+                  v-model="productionYear">
                   <option value="" selected disabled>Any</option>
                   <option v-for="(value, index) in productionYears" :key="index" :value="value">
                     {{ value }}
                   </option>
                 </select>
               </div>
-
               <div class="col-12">
-                <label for="seats" class="form-label filter-label">
-                  {{ $t("countryOfOrigin") }}</label>
-                <select id="seats" class="form-select form-control form-input filter-select" v-model="countryOfOrigin">
-                  <option value="" selected disabled>Any</option>
-                  <option v-for="(value, index) in countryOfOrigins" :key="index" :value="value">
-                    {{ value }}
-                  </option>
-                </select>
-              </div>
-              <div class="my-2">
                 <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
                   <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                     <span class="border-bottom-btn border-top-btn position-absolute">
@@ -176,8 +155,8 @@
                     </span>
                     <!-- data-bs-toggle="modal" -->
                     <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-                      data-bs-target="#mailModal" @click="retrieveFilterCommunities">
-                      Submit
+                      data-bs-target="#mailModal" @click="retrieveCommunities">
+                      Proceed
                     </button>
                     <span class="border-bottom-btn border-left-btn new-popup position-absolute">
                       <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
@@ -188,14 +167,19 @@
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="filter-image-div my-4">
             <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
           </div>
+
         </div>
 
         <div class="col-md-9 px-4 " v-if="communities != null && communities != ''">
+          <div class="d-flex justify-content-end">
+            <button class="getAll btn mb-1" @click="retrieveALLCommunities">Get All Communities</button>
+          </div>
+
           <div class="col-12 mb-4 m-auto" v-for="community in filteredCommunities" :key="community.id">
             <router-link :to="`/communitydetails/${community.id}`">
               <div class="communtiy-content">
@@ -281,7 +265,7 @@
 
               <div class="col-md-6">
                 <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="make" @change="getModels()">
+                  <select class="form-select" v-model="make" @change="getModels(), getGenerations">
                     <option value="" selected disabled>Make</option>
                     <option v-for="(make, index) in makes" :key="index" :value="make.make">
                       {{ make.make }}
@@ -292,7 +276,7 @@
 
               <div class="col-md-6">
                 <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="model" @change="getGenerations()">
+                  <select class="form-select" v-model="model" @change="getGenerations">
                     <option value="" selected disabled>Model</option>
                     <option v-for="(model, index) in models" :key="index" :value="model.model">
                       {{ model.model }}
@@ -314,33 +298,9 @@
 
               <div class="col-md-6">
                 <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="classification">
-                    <option value="" selected disabled>Classification</option>
-                    <option v-for="(value, index) in classifications" :key="index" :value="value">
-                      {{ value }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
                   <select class="form-select" v-model="productionYear">
                     <option value="" selected disabled>Production Years</option>
                     <option v-for="(value, index) in productionYears" :key="index" :value="value">
-                      {{ value }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="countryOfOrigin">
-                    <option value="" selected disabled>
-                      Country of Origin
-                    </option>
-                    <option v-for="(value, index) in countryOfOrigins" :key="index" :value="value">
                       {{ value }}
                     </option>
                   </select>
@@ -364,7 +324,7 @@
                     </span>
                     <!-- data-bs-toggle="modal" -->
                     <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-                      data-bs-target="#mailModal" @click=" retrieveFilterCommunities">
+                      data-bs-target="#mailModal" @click="retrieveCommunities">
                       Proceed
                     </button>
                     <span class="border-bottom-btn border-left-btn new-popup position-absolute">
@@ -387,24 +347,18 @@
 <script>
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
-
+import Swal from 'sweetalert2';
 export default {
   name: "OurCommunity",
 
   data() {
     return {
-
       makes: [],
       make: "",
       model: "",
       models: [],
       generation: "",
       generations: [],
-      generations1: [],
-      classification: "",
-      classifications: [],
-      countryOfOrigin: "",
-      countryOfOrigins: [],
       productionYear: "",
       productionYears: [],
       communities: [],
@@ -416,9 +370,7 @@ export default {
         make: "",
         model: "",
         generation: "",
-        classifications: "",
         productionYears: "",
-        countryOfOrigin: "",
       },
     };
   },
@@ -434,18 +386,10 @@ export default {
   },
   mounted() {
     this.retrieveCars();
-    this.retrieveCommunities();
+    this.retrieveALLCommunities();
     this.paginateCommunities();
     // Show the modal when the component is mounted
-    const isFirstTimeMounted = localStorage.getItem('isFirstTimeMounted');
-
-    // Call showFilterModal only the first time mounted
-    if (!isFirstTimeMounted) {
-      this.showFilterModal();
-
-      // Set flag in localStorage to indicate that the method has been called
-      localStorage.setItem('isFirstTimeMounted', true);
-    }
+    this.showFilterModal();
     // Add event listener to the document body for clicks
     document.body.addEventListener("click", this.handleOutsideClick);
   },
@@ -457,9 +401,7 @@ export default {
     retrieveCars() {
       this.models = [];
       this.generations = [];
-      this.classifications = [];
       this.productionYears = [];
-      this.countryOfOrigins = [];
       CarDataService.getAll()
         .then((response) => {
           this.makes = response.data;
@@ -469,6 +411,36 @@ export default {
         });
     },
     retrieveCommunities() {
+      if (this.make == "" || this.model == "") {
+        Swal.fire({
+          title: 'Something is missing',
+          text: 'Please select both make and model',
+          icon: 'error',
+          confirmButtonText: 'close',
+        });
+      }
+
+      else {
+        const data = {
+          make: this.make,
+          model: this.model,
+          generation: this.generation,
+          productionYear: this.productionYear
+        }
+        console.log(data)
+
+        CommunityDataService.create(data)
+          .then((response) => {
+            this.communities = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+    },
+    retrieveALLCommunities() {
+
+      console.log("all communities")
       CommunityDataService.getAll()
         .then((response) => {
           this.communities = response.data;
@@ -477,20 +449,9 @@ export default {
           console.log(e);
         });
     },
-    retrieveFilterCommunities(e) {
-      e.preventDefault()
-      CommunityDataService.getFiltered(this.make, this.model, this.generation, this.classifications, this.productionYears, this.countryOfOrigin).then((response) => {
-        this.communities = response.data;
-      })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
     getModels() {
       this.generations = [];
-      this.classifications = [];
       this.productionYears = [];
-      this.countryOfOrigins = [];
       CarDataService.getModels(this.make)
         .then((response) => {
           this.models = response.data;
@@ -501,25 +462,22 @@ export default {
     },
 
     getGenerations() {
-      CarDataService.getGenerations(this.model)
+      CarDataService.getGenerations(this.make, this.model)
         .then((response) => {
           const data = response.data;
           data.forEach((item) => {
             if (
               item.generation != "" &&
               item.generation != "-" &&
+              item.generation != "??" &&
               item.generation != "?"
             ) {
               this.generations.push(item.generation);
-              this.classifications.push(item.classification);
               this.productionYears.push(item.production_years);
-              this.countryOfOrigins.push(item.country_of_origin);
             }
           });
           this.generations = [...new Set(this.generations)];
-          this.classifications = [...new Set(this.classifications)];
           this.productionYears = [...new Set(this.productionYears)];
-          this.countryOfOrigins = [...new Set(this.countryOfOrigins)];
         })
         .catch((e) => {
           console.log(e);
@@ -656,27 +614,13 @@ export default {
   }
 }
 
-.img-communityDetails-div img {
-  height: 400px;
-  border-radius: 7px;
-  width: 100%;
-  object-fit: cover;
-  aspect-ratio: 1/1;
-
-}
-
 .alertbg {
   background: #FF7A00;
   color: #fff;
 }
 
-.communtiy-content p {
-
-  /* Prevents text from wrapping */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-
-
+.getAll {
+  background: #5D3327 !important;
+  color: #fff
 }
 </style>

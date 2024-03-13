@@ -3,7 +3,9 @@
   <section class="communityDetails-section my-5">
     <div class="container">
       <div class="communityDetailsMain">
-        <img v-if="loading" class="d-block mx-auto" src="../assets/images/loader.gif" alt="Loading..." />
+        <div v-if="loading" class="d-flex justify-content-center">
+          <div class="box"></div>
+        </div>
         <div v-else class="communityDetails-bg">
           <div class="img-communityDetails-div">
             <!-- Show loader image while the actual image is loading -->
@@ -40,7 +42,9 @@
             </div>
             <div class="list-community-add">
               <div class="like-community">
-                <i class="fa-solid fa-thumbs-up"></i><span class="total-likes">{{ communityData.likes }}</span>
+                <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
+                <span class="total-likes">{{ communityData.likes
+                  }}</span>
               </div>
               <div class="like-community">
                 <i class="fa-solid fa-comments"></i><span class="total-likes">{{ communityData.comments }}</span>
@@ -52,47 +56,21 @@
           </div>
           <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
             <!-- <div v-for="(message, index) in messages" :key="index"  class="sender-chats"> -->
-            <div v-for="(  message, index  ) in   messages  " :key="index" :class="message.class">
-              <p class="sender-chats-para">
-                {{ message.text }}
-              </p>
-            </div>
-            <!-- <div class="receiver-chats">
-              <p class="receiver-chats-para">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s,
-              </p>
-            </div>
             <div class="sender-chats">
               <p class="sender-chats-para">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s,
+                {{ comments.comments }}
               </p>
             </div>
-            <div class="receiver-chats">
-              <p class="receiver-chats-para">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s,
-              </p>
-            </div>
-            <div class="sender-chats">
-              <p class="sender-chats-para">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s,
-              </p>
-            </div> -->
+
+
           </div>
         </div>
         <div class="commentsByReceiver position-relative">
           <textarea v-model="newComment" id="inputComments" type="text" name="inputComments"
-            class="form-control form-input inputComments" placeholder="Enter here" @keydown.enter="sendMessageOnEnter"
+            class="form-control form-input inputComments" placeholder="Enter here" @keydown.enter="postComment"
             ref="commentTextarea"></textarea>
           <!-- Check if textarea is not empty -->
-          <svg v-if="newComment.trim().length > 0" @click="sendMessage" xmlns="http://www.w3.org/2000/svg"
+          <svg v-if="newComment.trim().length > 0" @click="postComment" xmlns="http://www.w3.org/2000/svg"
             class="iconMaterialSend position-absolute send-icon" width="31.5" height="27" viewBox="0 0 31.5 27">
             <path id="Icon_material-send" data-name="Icon material-send"
               d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
@@ -119,7 +97,9 @@
 
 <script>
 import CommunityDataService from "../services/CommunityDataService";
+import axios from 'axios';
 
+import CommentDataService from "../services/CommentDataService";
 
 export default {
   name: "CommunityDetail",
@@ -128,35 +108,15 @@ export default {
     return {
       communityData: [],
       loading: true, // Initially set to true to show loader image,
+      id: "",
+      isLike: false,
 
-
-      messages: [
-        {
-          text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-          class: "sender-chats",
-        },
-        {
-          text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-          class: "receiver-chats",
-        },
-        {
-          text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-          class: "sender-chats",
-        },
-        {
-          text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-          class: "receiver-chats",
-        },
-        {
-          text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-          class: "sender-chats",
-        },
-      ],
+      comments: [],
       newComment: "",
     };
   },
   created() {
-    // Fetch community data when the component is created
+    // Fetch community data when three component is created
     this.fetchCommunityData();
   },
   computed: {
@@ -174,6 +134,71 @@ export default {
     },
   },
   methods: {
+    getComments() {
+      const id = this.$route.params.id
+      this.comments = null
+
+
+      CommentDataService.get(id)
+        .then(response => {
+
+          this.comments = response.data
+          console.log("comments", this.comments)
+
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error making post request:', error);
+        });
+    },
+    postComment() {
+      const requestData = {
+        community_id: this.id, // Assuming `this.id` contains the community ID
+        comments: this.newComment // Assuming `this.newComment` contains the new comment text
+      };
+
+      axios.post('http://137.184.111.69:5000/api/comments/comments', requestData)
+        .then(response => {
+          // Handle success
+          console.log('Post request successful:', response.data);
+          // Optionally, update the comments data with the response data if needed
+          // this.comments = response.data;
+          this.comments = response.data
+          this.newComment = ""
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error making post request:', error);
+        });
+    },
+    addLike() {
+      // Check if the like has already been added for this item in this session
+
+      if (!localStorage.getItem('liked-' + this.id)) {
+        const requestData = {
+          id: this.id
+        };
+        axios.post('http://137.184.111.69:5000/api/communities/likes', requestData)
+          .then(response => {
+            // Handle success
+            console.log('Post request successful:', response.data);
+            this.isLike = true;
+
+            // Set the flag in local storage with the respective ID
+            localStorage.setItem('liked-' + this.id, true);
+          })
+          .catch(error => {
+            // Handle error
+            console.error('Error making post request:', error);
+          });
+      } else {
+        // If the like has already been added, you may want to show a message or handle the situation differently
+        console.log('Like already added for this item.');
+        this.isLike = true
+
+      }
+    },
+
     sendMessageOnEnter(event) {
       // Check if the Enter key is pressed and the textarea is not empty
       if (event.key === "Enter" && this.isTextareaNotEmpty) {
@@ -209,7 +234,36 @@ export default {
     }
   },
   mounted() {
-    this.scrollToBottom();
+
+    this.getComments(),
+      this.scrollToBottom();
+    const id = this.$route.params.id;
+    this.id = id;
+
+    // Check if the post request has already been made for this ID in this session
+    if (!localStorage.getItem('viewed-' + id)) {
+      const requestData = {
+        id: id
+      };
+      axios.post('http://137.184.111.69:5000/api/communities/views', requestData)
+        .then(response => {
+          // Handle success
+          console.log('Post request successful:', response.data);
+          localStorage.setItem('viewed-' + id, true); // Set the flag in local storage with the respective ID
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error making post request:', error);
+        });
+    }
+
+
+    if (localStorage.getItem('liked-' + this.id)) {
+      this.isLike = true;
+    }
+
+
+
   },
   watch: {
     // Watch for changes in messages and scroll to bottom when messages change
@@ -223,10 +277,41 @@ export default {
 </script>
 
 <style scoped>
+.like-community {
+  cursor: pointer;
+}
+
+.like-community :hover {
+  color: #FF7A00
+}
+
+.like {
+  color: #FF7A00;
+}
+
 .img-communityDetailsn {
   width: 100%;
   height: 300px;
   object-fit: cover;
   aspect-ratio: 1/1;
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: #FF7A00 transparent;
+  animation: spin 1s infinite ease-out;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

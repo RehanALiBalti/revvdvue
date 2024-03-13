@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-8 m-auto">
 				<div class="form-content-home1">
-					<form id="subscribe-form" @submit.prevent="submitForm">
+					<form id="subscribe-form" @submit.prevent="updateUserAttributes">
 						<div class="user-profile-page">
 							<img src="@/assets/images/user-profile-page-img.png" class="user-profile-page-img"
 								alt="user">
@@ -64,7 +64,8 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
+
 export default {
 	name: "UserProfile",
 	data() {
@@ -82,6 +83,17 @@ export default {
 		};
 	},
 	methods: {
+
+		// async updateUserAttributes() {
+		// 	const updatedAttributes = this.UserData;
+		// 	try {
+		// 		const user = await Auth.currentAuthenticatedUser();
+		// 		const result = await Auth.updateUserAttributes(user, updatedAttributes);
+		// 		console.log(result); // SUCCESS
+		// 	} catch (err) {
+		// 		console.log(err);
+		// 	}
+		// },
 		async fetchProfileData() {
 			try {
 				console.log("Fetching profile data...");
@@ -99,67 +111,61 @@ export default {
 				console.error("Error fetching profile data:", error);
 			}
 		},
-		submitForm() {
-			this.validateForm();
-			if (this.isFormValid()) {
-				console.log("Form submitted successfully");
-				const mydata = {
-					email: this.formData.email,
-					password: this.formData.password,
-				};
-				this.$store.dispatch("auth/handleSignIn", mydata).then((data) => {
-					if (data.success == 1) {
-						localStorage.setItem('login', true);
-						localStorage.setItem('data', data.result);
-						Swal.fire({
-							title: 'Success!',
-							text: 'User has been successfully login!',
-							icon: 'success',
-							confirmButtonText: 'OK',
-						}).then(() => {
-							// Redirect to '/landing' route
-							this.$router.push('/ourcommunity');
-						});
-					} else {
-						Swal.fire({
-							title: 'Error!',
-							text: 'Oops... ' + data.error,
-							icon: 'error',
-							confirmButtonText: 'OK',
-						});
-					}
 
-					console.log(data);
-				});
-			} else {
-				console.log("Form validation failed");
-			}
-		}
-		,
-		validateForm() {
-			this.formErrors = {};
+		// async submitForm() {
+		// 	try {
+		// 		// Validation
+		// 		if (!this.isFormValid()) {
+		// 			console.log("Form validation failed");
+		// 			return;
+		// 		}
 
-			if (!this.formData.email) {
-				this.formErrors.email = "Email is required";
-			} else if (!this.isValidEmail(this.formData.email)) {
-				this.formErrors.email = "Invalid email format";
-			}
-			if (!this.formData.password) {
-				this.formErrors.password = "Password is required";
-			}
-		},
-		isValidPhoneNumber(phone) {
-			const phonePattern = /^\+?\d{1,3}[-.\s]?\d{3,4}[-.\s]?\d{3,4}$/;
+		// 		// Dispatch action to update profile
+		// 		const updatedProfile = {
+		// 			name: this.name,
+		// 			email: this.email,
+		// 			age: this.age,
+		// 			phone: this.phone,
+		// 			socialMedia: this.socialMedia,
+		// 			password: this.password
+		// 		};
 
-			return phonePattern.test(phone);
-		},
-		isFormValid() {
-			return Object.values(this.formErrors).every((error) => !error);
-		},
-		isValidEmail(email) {
-			const emailPattern = /\S+@\S+\.\S+/;
-			return emailPattern.test(email);
-		},
+		// 		// Dispatch action to update profile
+		// 		const data = await this.$store.dispatch("auth/handleSignUp", updatedProfile);
+
+		// 		if (data.success === 1) {
+		// 			Swal.fire({
+		// 				title: 'Success!',
+		// 				text: 'User profile has been successfully updated!',
+		// 				icon: 'success',
+		// 				confirmButtonText: 'OK',
+		// 			});
+		// 		} else {
+		// 			Swal.fire({
+		// 				title: 'Error!',
+		// 				text: 'Oops... ' + data.error,
+		// 				icon: 'error',
+		// 				confirmButtonText: 'OK',
+		// 			});
+		// 		}
+		// 	} catch (error) {
+		// 		console.error("Error updating profile:", error);
+		// 		Swal.fire({
+		// 			title: 'Error!',
+		// 			text: 'An error occurred while updating the profile. Please try again later.',
+		// 			icon: 'error',
+		// 			confirmButtonText: 'OK',
+		// 		});
+		// 	}
+		// },
+		// isFormValid() {
+		// 	// Basic form validation
+		// 	return this.name && this.email && this.age && this.phone;
+		// }
+
+
+
+
 	},
 	created() {
 

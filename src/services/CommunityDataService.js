@@ -33,20 +33,14 @@ class CarDataService {
     return http.get(`/communities/models?make=${make}`);
   }
 
-  getGenerations(model) {
-    return http.get(`/communities/generations?model=${model}`);
-  }
-  getFiltered(
-    make,
-    model,
-    generation,
-    classification,
-    productionYears,
-    countryOfOrigin
-  ) {
+  getFiltered(make, model, generation, productionYears) {
     return http.get(
-      `/communities/filter?make=${make}&model=${model}&generation=${generation}&classification=${classification}&productionYears=${productionYears}&countryOfOrigin=${countryOfOrigin}&`
+      `/communities/filter?make=${make}&model=${model}&generation=${generation}&productionYears=${productionYears}`
     );
+  }
+
+  getGenerations(make, model) {
+    return http.get(`/communities/generations?make=${make}&model=${model}`);
   }
 }
 

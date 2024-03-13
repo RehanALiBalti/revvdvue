@@ -33,8 +33,8 @@ class CarDataService {
     return http.get(`/cars/models?make=${make}`);
   }
 
-  getGenerations(model) {
-    return http.get(`/cars/generations?model=${model}`);
+  getGenerations(make, model) {
+    return http.get(`/cars/generations?make=${make}&model=${model}`);
   }
 }
 
