@@ -94,6 +94,7 @@ export default {
 		// 		console.log(err);
 		// 	}
 		// },
+
 		async fetchProfileData() {
 			try {
 				console.log("Fetching profile data...");

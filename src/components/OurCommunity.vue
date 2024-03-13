@@ -6,52 +6,7 @@
           <div class="heading-car">
             <h1 class="banner-title">{{ $t("ourCommunity") }}</h1>
           </div>
-          <!-- <div class="btns-community">
-            <div class="btn-div-create-forum position-relative">
-              <span class="border-bottom-btn border-top-btn position-absolute">
-                <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-              </span>
 
-              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-              </span>
-
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-              </span>
-              <router-link to="/CreateCommunity" class="signin-btnli signup-btnli">
-                Create Forum
-              </router-link>
-              <span class="border-bottom-btn border-left-btn position-absolute">
-                <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-              </span>
-              <span class="border-bottom-btn position-absolute">
-                <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-              </span>
-            </div>
-            <div class="btn-div-create-forum position-relative">
-              <span class="border-bottom-btn border-top-btn position-absolute">
-                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-              </span>
-
-              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-              </span>
-
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-              </span>
-              <a href="" class="signin-btnli"> Create Club </a>
-              <span class="border-bottom-btn border-left-btn position-absolute">
-                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-              </span>
-              <span class="border-bottom-btn position-absolute">
-                <img src="/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-              </span>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -181,7 +136,7 @@
           </div>
 
           <div class="col-12 mb-4 m-auto" v-for="community in filteredCommunities" :key="community.id">
-            <router-link :to="`/communitydetails/${community.id}`">
+            <router-link v-if="community !== false && community !== true" :to="`/communitydetails/${community.id}`">
               <div class="communtiy-content">
                 <div class="card-title-div">
                   <h2 class="card-title-h2 community-title">
@@ -440,6 +395,7 @@ export default {
         CommunityDataService.create(data)
           .then((response) => {
             this.communities = response.data;
+            console.log("communities", this.communities)
           })
           .catch((e) => {
             console.log(e);

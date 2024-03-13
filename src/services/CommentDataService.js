@@ -4,6 +4,9 @@ class CarDataService {
   getAll() {
     return http.get("/comments");
   }
+  getAllByCommunity(id) {
+    return http.get(`/comments/commentsall/${id}`);
+  }
 
   getMakes() {
     return http.get("/comments");

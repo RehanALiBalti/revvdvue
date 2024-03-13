@@ -7,13 +7,15 @@
           <div class="box"></div>
         </div>
         <div v-else class="communityDetails-bg">
+          <img class="img-fluid d-block mx-auto" src="../assets/images/icons/audilogo.png" alt="" height="185px">
+          <h1 class="h1make text-center"> {{ communityData.make }}</h1>
           <div class="img-communityDetails-div">
             <!-- Show loader image while the actual image is loading -->
 
 
             <!-- Show the actual image when it's loaded -->
-            <img :src="`https://buzzwaretech.com/revadmin/uploads/${communityData.image}`" class="img-communityDetailsn"
-              alt="Image" @load="imageLoaded" />
+            <!-- <img :src="`https://buzzwaretech.com/revadmin/uploads/${communityData.image}`" class="img-communityDetailsn"
+              alt="Image" @load="imageLoaded" /> -->
 
           </div>
           <div class="communityDetails-content py-4">
@@ -22,17 +24,16 @@
               <h2 class="card-title-h2 community-title">
 
                 <!-- Koenigsegg agera one: <span> 1 </span> -->
-                {{ communityData.make }}: <span> {{ communityData.model }}</span>
+                {{ communityData.make }} <span> {{ communityData.model }}</span>
               </h2>
-              <p class="my-2 community-title card-title-h2"> {{ communityData.classification }}: {{
-          communityData.generation }}</p>
-              <div class="my-2 d-flex justify-content-between card-title-h2">
-                <p>
-                  {{ communityData.country_of_origin }}
-                </p>
-                <p>
+
+              <div class=" d-flex card-title-h2">
+
+                <p class=" my-0">
                   {{ communityData.production_years }}
                 </p>
+                <p class=" community-title card-title-h2 my-0 ms-2"> {{
+          communityData.generation }}</p>
               </div>
             </div>
             <div class="map-para-div community-para-div">
@@ -56,11 +57,29 @@
           </div>
           <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
             <!-- <div v-for="(message, index) in messages" :key="index"  class="sender-chats"> -->
-            <div class="sender-chats">
-              <p class="sender-chats-para">
-                {{ comments.comments }}
-              </p>
+            <div v-for="comment in comments" :key="comment.comments">
+
+
+              <div v-if="comment.user_email == this.user_email" class="receiver-chats">
+                <p class="receiver-chats-para">
+                  {{ comment.comments }}
+
+                </p>
+
+
+
+              </div>
+              <div v-else class="sender-chats">
+                <p class="sender-chats-para">
+                  {{ comment.comments }}
+
+                </p>
+
+
+
+              </div>
             </div>
+
 
 
           </div>
@@ -110,7 +129,7 @@ export default {
       loading: true, // Initially set to true to show loader image,
       id: "",
       isLike: false,
-
+      user_email: "",
       comments: [],
       newComment: "",
     };
@@ -118,6 +137,11 @@ export default {
   created() {
     // Fetch community data when three component is created
     this.fetchCommunityData();
+  },
+  mounted() {
+    this.fetchProfileData()
+    this.id = this.$route.params.id
+    this.getComments()
   },
   computed: {
     // Computed property to check if the textarea is not empty
@@ -133,13 +157,28 @@ export default {
       }
     },
   },
+
   methods: {
+    async fetchProfileData() {
+      try {
+        console.log("Fetching profile data...");
+        const data = await this.$store.dispatch("auth/getprofiledata");
+        // console.log("Profile data:", data);
+        // this.userAttributes = data.result
+        this.user_email = data.result.email
+        // console.log("userdata", this.user_email)
+
+
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    },
     getComments() {
       const id = this.$route.params.id
 
 
 
-      CommentDataService.get(id)
+      CommentDataService.getAllByCommunity(id)
         .then(response => {
 
           this.comments = response.data
@@ -154,7 +193,8 @@ export default {
     postComment() {
       const requestData = {
         community_id: this.id, // Assuming `this.id` contains the community ID
-        comments: this.newComment // Assuming `this.newComment` contains the new comment text
+        comments: this.newComment, // Assuming `this.newComment` contains the new comment text
+        user_email: this.user_email
       };
 
       axios.post('http://137.184.111.69:5000/api/comments/comments', requestData)
@@ -165,6 +205,7 @@ export default {
           // this.comments = response.data;
           this.comments = response.data
           this.newComment = ""
+          this.getComments()
         })
         .catch(error => {
           // Handle error
@@ -224,7 +265,7 @@ export default {
         .then(response => {
           // Set the fetched community data to the component's data
           this.communityData = response.data;
-          console.log("data", this.communityData)
+          // console.log("data", this.communityData)
           this.loading = false;
         })
         .catch(error => {
@@ -233,38 +274,7 @@ export default {
 
     }
   },
-  mounted() {
 
-    this.getComments(),
-      this.scrollToBottom();
-    const id = this.$route.params.id;
-    this.id = id;
-
-    // Check if the post request has already been made for this ID in this session
-    if (!localStorage.getItem('viewed-' + id)) {
-      const requestData = {
-        id: id
-      };
-      axios.post('http://137.184.111.69:5000/api/communities/views', requestData)
-        .then(response => {
-          // Handle success
-          console.log('Post request successful:', response.data);
-          localStorage.setItem('viewed-' + id, true); // Set the flag in local storage with the respective ID
-        })
-        .catch(error => {
-          // Handle error
-          console.error('Error making post request:', error);
-        });
-    }
-
-
-    if (localStorage.getItem('liked-' + this.id)) {
-      this.isLike = true;
-    }
-
-
-
-  },
   watch: {
     // Watch for changes in messages and scroll to bottom when messages change
     messages() {
@@ -279,6 +289,10 @@ export default {
 <style scoped>
 .like-community {
   cursor: pointer;
+}
+
+.h1make {
+  color: #FF7A00
 }
 
 .like-community :hover {
