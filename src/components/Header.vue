@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-    <TestC />
+
     <nav class="navbar navbar-expand-lg sticky-top p-3">
       <div class="container">
         <router-link class="navbar-brand" to="/">
@@ -99,8 +99,9 @@
                     <img src="@/assets/images/userImg.png" class="user-img" alt="" />
                   </div>
                   <span class="user-name" :class="{ open: issOpen }">
-                    {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
-            userAttributes.UserAttributes.find(attr => attr.Name === 'name').Value : '' }}
+                    <!-- {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
+            userAttributes.UserAttributes.find(attr => attr.Name === 'name').Value : '' }} -->
+                    {{ userAttributes.name }}
                   </span>
 
 
@@ -143,7 +144,8 @@ export default {
       issOpen: false,
       isNavOpen: false,
       selectedLanguage: "en",
-      userAttributes: JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData')),
+      // userAttributes: JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData')),
+      userAttributes: [],
       isLogin: JSON.parse(localStorage.getItem('login')) || false,
       languages: [
         { code: "en", name: "en" },
@@ -168,11 +170,29 @@ export default {
 
     }
     window.addEventListener('storage', this.handleStorageChange.handleStorageChange);
+
   },
   beforeUnmount() {
     window.removeEventListener('storage', this.handleStorageChange.handleStorageChange);
+
+  },
+  mounted() {
+    this.fetchProfileData()
   },
   methods: {
+    async fetchProfileData() {
+      try {
+        console.log("Fetching profile data...");
+        const data = await this.$store.dispatch("auth/getprofiledata");
+        console.log("Profile data:", data);
+        this.userAttributes = data.result
+        console.log("userdata", this.userAttributes.name)
+
+
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    },
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
     },
@@ -217,11 +237,11 @@ export default {
     checkLoginStatus() {
       const storedIsLogin = localStorage.getItem('login');
       this.isLogin = storedIsLogin ? JSON.parse(storedIsLogin) : false;
-      const userAttributes = JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData'));
+      // const userAttributes = JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData'));
       // Do something with userAttributes, such as updating state
       // For example:
-      this.userAttributes = userAttributes
-
+      // this.userAttributes = userAttributes
+      // 
     }
 
   },

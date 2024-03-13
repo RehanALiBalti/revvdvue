@@ -177,7 +177,7 @@
 
         <div class="col-md-9 px-4 " v-if="communities != null && communities != ''">
           <div class="d-flex justify-content-end">
-            <button class="getAll btn mb-1" @click="retrieveALLCommunities">Get All Communities</button>
+            <button class="getAll btn mb-1" @click="retrieveALLCommunities">Show All Communities</button>
           </div>
 
           <div class="col-12 mb-4 m-auto" v-for="community in filteredCommunities" :key="community.id">
@@ -250,7 +250,7 @@
   </section>
 
   <!-- modal -->
-  <div class="modal fade" tabindex="-1" role="dialog" id="carShopFilter" ref="modalRef">
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
@@ -356,6 +356,7 @@ export default {
       makes: [],
       make: "",
       model: "",
+      isModalOpen: true,
       models: [],
       generation: "",
       generations: [],
@@ -392,10 +393,17 @@ export default {
     this.showFilterModal();
     // Add event listener to the document body for clicks
     document.body.addEventListener("click", this.handleOutsideClick);
+    console.log("params", this.$route.path)
+    // if (this.$route.path == "/ourcommunity") {
+    //   // this.showFilterModal();
+    // }
   },
   beforeUnmount() {
     // Remove event listener when component is unmounted
     document.body.removeEventListener("click", this.handleOutsideClick);
+  },
+  created() {
+    this.showFilterModal();
   },
   methods: {
     retrieveCars() {
@@ -510,11 +518,12 @@ export default {
     },
     hideFilterModal() {
       // Hide the modal using the ref
-      const modal = this.$refs.modalRef;
-      if (modal) {
-        modal.classList.remove("show");
-        modal.style.display = "none";
-      }
+      // const modal = this.$refs.modalRef;
+      // if (modal) {
+      //   modal.classList.remove("show");
+      //   modal.style.display = "none";
+      // }
+      this.isModalOpen = false
     },
 
     handleOutsideClick(event) {
@@ -535,11 +544,16 @@ export default {
     },
     showFilterModal() {
       // Trigger the modal display using vanilla JavaScript
-      const modal = document.getElementById("carShopFilter");
-      if (modal) {
-        modal.classList.add("show");
-        modal.style.display = "block";
-      }
+
+      // const modal = document.getElementById("carShopFilter");
+      // if (modal) {
+      //   modal.classList.add("show");
+      //   modal.style.display = "block";
+      // }
+      console.log("in modale show")
+      this.isModalOpen = true
+      console.log("modal value", this.isModalOpen)
+
     },
   },
   watch: {

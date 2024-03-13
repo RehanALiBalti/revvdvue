@@ -136,7 +136,7 @@ export default {
   methods: {
     getComments() {
       const id = this.$route.params.id
-      this.comments = null
+
 
 
       CommentDataService.get(id)
