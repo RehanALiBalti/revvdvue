@@ -133,19 +133,23 @@
                 </div>
               </div> -->
               <div v-for="comment in comments" :key="comment.comments">
-                <div v-if="comment.user_email == user_email" class="receiver-chats ">
-                  <p class="receiver-chats-para">
-                    {{ comment.comments }}
-                  </p>
-                  <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
-                    class="CommentImage">
+                <div v-if="comment.user_email == user_email" class="d-flex flex-column">
+                  <div class="receiver-chats ">
+                    <p class="receiver-chats-para">
+                      {{ comment.comments }}
+                    </p>
+                    <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
+                      class="CommentImage">
+                  </div>
                 </div>
-                <div v-else class="sender-chats">
-                  <p class="sender-chats-para">
-                    {{ comment.comments }}
-                  </p>
-                  <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
-                    class="CommentImage">
+                <div v-else class="d-flex flex-column">
+                  <div class="sender-chats">
+                    <p class="sender-chats-para">
+                      {{ comment.comments }}
+                    </p>
+                    <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
+                      class="CommentImage">
+                  </div>
                 </div>
               </div>
 
