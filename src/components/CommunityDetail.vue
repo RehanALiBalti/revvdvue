@@ -7,9 +7,57 @@
           <div class="box"></div>
         </div>
         <div v-else>
-          <div class="communityDetails-bg communityDetailsMain">
-            <img class=" d-block mx-auto" src="../assets/images/icons/audilogo.png" alt="" height="185px">
-            <h1 class="h1make text-center"> {{ communityData.make }}</h1>
+          <div class="communityDetails-bg ">
+            <div class="row">
+              <div class="col-md-4 my-2 ">
+                <div class="communityDetailsMain">
+                  <img class=" d-block mx-auto w-100 object-fit-contain" src="../assets/images/icons/audilogo.png"
+                    alt="" height="185px">
+                </div>
+
+
+              </div>
+              <div class="col-md-8 my-2 ">
+                <div class="card-title-div communityDetailsMain p-3">
+
+                  <h2 class="card-title-h2 community-title text-start">
+
+                    <!-- Koenigsegg agera one: <span> 1 </span> -->
+                    {{ communityData.make }} <span> {{ communityData.model }}</span>
+                  </h2>
+
+                  <div class=" d-flex card-title-h2 justify-content-start">
+
+                    <p class=" my-0 text-end">
+                      {{ communityData.production_years }}
+                    </p>
+                    <p class=" community-title card-title-h2 my-0 ms-2 text-end"> {{
+          communityData.generation }}</p>
+                  </div>
+                  <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5">
+                    <div class="like-community">
+                      <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
+                      <small v-if="isLike">Liked</small>
+                      <small v-else>Like</small>
+                      <span class="total-likes">{{ communityData.likes
+                        }}</span>
+                    </div>
+                    <div class="like-community">
+                      <i class="fa-solid fa-comments"></i>
+                      <small>Comments</small>
+                      <span class="total-likes">{{ communityData.comments }}</span>
+                    </div>
+                    <div class="like-community">
+                      <i class="fa-solid fa-eye"></i>
+                      <small>Views</small>
+                      <span class="total-likes">{{ communityData.views }}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
           </div>
           <div class="communityDetails-bg mt-3 communityDetailsMain">
             <div class="img-communityDetails-div">
@@ -22,11 +70,11 @@
 
             </div>
             <div class="communityDetails-content pt-4 pb-0 mb-0">
-              <div class="card-title-div">
+              <!-- <div class="card-title-div">
 
                 <h2 class="card-title-h2 community-title">
 
-                  <!-- Koenigsegg agera one: <span> 1 </span> -->
+               
                   {{ communityData.make }} <span> {{ communityData.model }}</span>
                 </h2>
 
@@ -38,13 +86,9 @@
                   <p class=" community-title card-title-h2 my-0 ms-2"> {{
           communityData.generation }}</p>
                 </div>
-              </div>
-              <div class="map-para-div community-para-div">
-                <p class="map-para community-para">
-                  {{ communityData.description }}
-                </p>
-              </div>
-              <div class="list-community-add">
+              </div> -->
+
+              <!-- <div class="list-community-add">
                 <div class="like-community">
                   <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
                   <small v-if="isLike">Liked</small>
@@ -62,11 +106,11 @@
                   <small>Views</small>
                   <span class="total-likes">{{ communityData.views }}</span>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
               <!-- <div v-for="(message, index) in messages" :key="index"  class="sender-chats"> -->
-              <div v-for="comment in comments" :key="comment.comments">
+              <!-- <div v-for="comment in comments" :key="comment.comments">
 
 
                 <div v-if="comment.user_email == this.user_email" class="receiver-chats">
@@ -87,6 +131,22 @@
 
 
                 </div>
+              </div> -->
+              <div v-for="comment in comments" :key="comment.comments">
+                <div v-if="comment.user_email == user_email" class="receiver-chats">
+                  <p class="receiver-chats-para">
+                    {{ comment.comments }}
+                  </p>
+                  <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
+                    class="CommentImage">
+                </div>
+                <div v-else class="sender-chats">
+                  <p class="sender-chats-para">
+                    {{ comment.comments }}
+                  </p>
+                  <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
+                    class="CommentImage">
+                </div>
               </div>
 
 
@@ -96,16 +156,25 @@
 
         </div>
         <div class="commentsByReceiver position-relative">
-          <textarea v-model="newComment" id="inputComments" type="text" name="inputComments"
+          <!-- <textarea v-model="newComment" id="inputComments" type="text" name="inputComments"
             class="form-control form-input inputComments" placeholder="Enter here" @keydown.enter="postComment"
-            ref="commentTextarea"></textarea>
+            ref="commentTextarea"></textarea> -->
           <!-- Check if textarea is not empty -->
-          <svg v-if="newComment.trim().length > 0" @click="postComment" xmlns="http://www.w3.org/2000/svg"
-            class="iconMaterialSend position-absolute send-icon" width="31.5" height="27" viewBox="0 0 31.5 27">
-            <path id="Icon_material-send" data-name="Icon material-send"
-              d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
-          </svg>
+
         </div>
+        <form @submit.prevent="postComment" enctype="multipart/form-data" method="post" class="position-relative">
+          <div class="form-group d-flex flex-column">
+
+            <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment">
+            <input type="file" class="form-control-file my-2" @change="handleFileChange" ref="fileInput">
+            <svg @click="postComment" xmlns="http://www.w3.org/2000/svg" class=" position-absolute send-icon"
+              width="31.5" height="27" viewBox="0 0 31.5 27">
+              <path id="Icon_material-send" data-name="Icon material-send"
+                d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
+            </svg>
+            <input type="submit" value="Post" class="btn my-2 ">
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -144,6 +213,8 @@ export default {
       user_email: "",
       comments: [],
       newComment: "",
+      image: null,
+      nspeakers: ''
     };
   },
   created() {
@@ -177,6 +248,12 @@ export default {
   },
 
   methods: {
+    handleFileChange() {
+      // Handle file change event and update this.image
+
+      this.image = this.$refs.fileInput.files[0];
+
+    },
     async fetchProfileData() {
       try {
         console.log("Fetching profile data...");
@@ -208,28 +285,55 @@ export default {
           console.error('Error making post request:', error);
         });
     },
-    postComment() {
-      const requestData = {
-        community_id: this.id, // Assuming `this.id` contains the community ID
-        comments: this.newComment, // Assuming `this.newComment` contains the new comment text
-        user_email: this.user_email
-      };
+    // postComment() {
+    //   const requestData = {
+    //     community_id: this.id, // Assuming `this.id` contains the community ID
+    //     comments: this.newComment, // Assuming `this.newComment` contains the new comment text
+    //     user_email: this.user_email
+    //   };
 
-      axios.post('http://137.184.111.69:5000/api/comments/comments', requestData)
+    //   axios.post('http://137.184.111.69:5000/api/comments/comments', requestData)
+    //     .then(response => {
+    //       // Handle success
+    //       console.log('Post request successful:', response.data);
+    //       // Optionally, update the comments data with the response data if needed
+    //       // this.comments = response.data;
+    //       this.comments = response.data
+    //       this.newComment = ""
+    //       this.getComments()
+    //     })
+    //     .catch(error => {
+    //       // Handle error
+    //       console.error('Error making post request:', error);
+    //     });
+    // },
+    postComment() {
+      // Create FormData object to handle file upload
+      const formData = new FormData();
+      formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
+
+      // Append other data to the FormData object
+      formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
+      formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
+      formData.append('user_email', this.user_email);
+
+      // Send the FormData object containing file and other data via POST request
+      axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
         .then(response => {
           // Handle success
           console.log('Post request successful:', response.data);
           // Optionally, update the comments data with the response data if needed
           // this.comments = response.data;
           this.comments = response.data
-          this.newComment = ""
-          this.getComments()
+          this.newComment = "";
+          this.getComments();
         })
         .catch(error => {
           // Handle error
           console.error('Error making post request:', error);
         });
     },
+
     addLike() {
       // Check if the like has already been added for this item in this session
 
@@ -314,6 +418,17 @@ export default {
 </script>
 
 <style scoped>
+.send-icon {
+  top: 22px;
+  right: 12px
+}
+
+.CommentImage {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+}
+
 .like-community {
   cursor: pointer;
 }
