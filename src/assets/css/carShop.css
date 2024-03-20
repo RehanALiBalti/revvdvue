@@ -197,7 +197,7 @@
 }
 
 .sender-chats {
-	width: 100%;
+	width: fit-content;
 	max-width: 770px;
 	max-height: 400px;
 	overflow-y: auto;
@@ -206,6 +206,9 @@
 	border-radius: 5px;
 	border: 1px solid #000d21;
 	margin: 0.5rem 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 /* width */
@@ -230,7 +233,7 @@
 }
 
 .receiver-chats {
-	width: 100%;
+	width: fit-content;
 	max-width: 770px;
 	max-height: 400px;
 	overflow-y: auto;
@@ -240,8 +243,9 @@
 	border: 1px solid #000d21;
 	margin: 0.5rem 0;
 	display: flex;
+	flex-direction: column;
 	justify-content: end;
-	align-items: center;
+	padding: 0.5rem;
 	margin-left: auto;
 	margin-right: 1rem;
 }

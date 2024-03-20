@@ -34,7 +34,7 @@
                     <p class=" community-title card-title-h2 my-0 ms-2 text-end"> {{
           communityData.generation }}</p>
                   </div>
-                  <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5">
+                  <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
                     <div class="like-community">
                       <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
                       <small v-if="isLike">Liked</small>
@@ -59,7 +59,7 @@
 
             </div>
           </div>
-          <div class="communityDetails-bg mt-3 communityDetailsMain">
+          <div v-if="comments != ''" class="communityDetails-bg mt-3 communityDetailsMain">
             <div class="img-communityDetails-div">
               <!-- Show loader image while the actual image is loading -->
 
@@ -133,7 +133,7 @@
                 </div>
               </div> -->
               <div v-for="comment in comments" :key="comment.comments">
-                <div v-if="comment.user_email == user_email" class="receiver-chats">
+                <div v-if="comment.user_email == user_email" class="receiver-chats ">
                   <p class="receiver-chats-para">
                     {{ comment.comments }}
                   </p>
@@ -166,13 +166,15 @@
           <div class="form-group d-flex flex-column">
 
             <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment">
-            <input type="file" class="form-control-file my-2" @change="handleFileChange" ref="fileInput">
+            <input type="file" class="form-control-file my-2 d-none" @change="handleFileChange" ref="fileInput">
             <svg @click="postComment" xmlns="http://www.w3.org/2000/svg" class=" position-absolute send-icon"
               width="31.5" height="27" viewBox="0 0 31.5 27">
               <path id="Icon_material-send" data-name="Icon material-send"
                 d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
             </svg>
-            <input type="submit" value="Post" class="btn my-2 ">
+            <span class="image_icon" @click="openFileInput"><i class="fa-solid fa-image"></i></span>
+            <!-- <input type="submit" value="Post" class="btn my-2 "> -->
+
           </div>
         </form>
       </div>
@@ -248,6 +250,9 @@ export default {
   },
 
   methods: {
+    openFileInput() {
+      this.$refs.fileInput.click(); // Trigger click event on file input when icon is clicked
+    },
     handleFileChange() {
       // Handle file change event and update this.image
 
@@ -309,6 +314,31 @@ export default {
     // },
     postComment() {
       // Create FormData object to handle file upload
+      // if (this.$refs.fileInput.files[0] == "") {
+      //   const requestData = {
+      //     community_id: this.id, // Assuming `this.id` contains the community ID
+      //     comments: this.newComment, // Assuming `this.newComment` contains the new comment text
+      //     user_email: this.user_email
+      //   };
+
+      //   axios.post('http://137.184.111.69:5000/api/comments/comments', requestData)
+      //     .then(response => {
+      //       // Handle success
+      //       console.log('Post request successful:', response.data);
+      //       // Optionally, update the comments data with the response data if needed
+      //       // this.comments = response.data;
+      //       this.comments = response.data
+      //       this.newComment = ""
+      //       this.getComments()
+      //     })
+      //     .catch(error => {
+      //       // Handle error
+      //       console.error('Error making post request:', error);
+      //     });
+      // }
+
+
+
       const formData = new FormData();
       formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
 
@@ -332,6 +362,7 @@ export default {
           // Handle error
           console.error('Error making post request:', error);
         });
+
     },
 
     addLike() {
@@ -418,15 +449,25 @@ export default {
 </script>
 
 <style scoped>
+.image_icon {
+  position: absolute;
+  top: 18px;
+  right: 55px;
+  font-size: 28px;
+  color: #F95F19;
+}
+
 .send-icon {
   top: 22px;
   right: 12px
 }
 
 .CommentImage {
-  height: 70px;
-  width: 70px;
-  object-fit: cover;
+  width: 200px;
+  margin-bottom: 0.5rem;
+  -o-object-fit: cover;
+  box-shadow: rgb(215 145 14 / 10%) 0px 1px 1px 0px inset, rgb(215 125 30 / 25%) 0px 50px 100px -20px, rgb(185 118 14 / 30%) 0px 30px 60px -30px;
+  border-radius: 15px;
 }
 
 .like-community {
@@ -461,6 +502,7 @@ export default {
   border-color: #FF7A00 transparent;
   animation: spin 1s infinite ease-out;
 }
+
 
 @keyframes spin {
   0% {
