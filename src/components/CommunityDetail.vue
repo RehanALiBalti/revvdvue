@@ -2,87 +2,98 @@
 
   <section class="communityDetails-section my-5">
     <div class="container">
-      <div class="communityDetailsMain">
+      <div class="">
         <div v-if="loading" class="d-flex justify-content-center">
           <div class="box"></div>
         </div>
-        <div v-else class="communityDetails-bg">
-          <img class="img-fluid d-block mx-auto" src="../assets/images/icons/audilogo.png" alt="" height="185px">
-          <h1 class="h1make text-center"> {{ communityData.make }}</h1>
-          <div class="img-communityDetails-div">
-            <!-- Show loader image while the actual image is loading -->
+        <div v-else>
+          <div class="communityDetails-bg communityDetailsMain">
+            <img class=" d-block mx-auto" src="../assets/images/icons/audilogo.png" alt="" height="185px">
+            <h1 class="h1make text-center"> {{ communityData.make }}</h1>
+          </div>
+          <div class="communityDetails-bg mt-3 communityDetailsMain">
+            <div class="img-communityDetails-div">
+              <!-- Show loader image while the actual image is loading -->
 
 
-            <!-- Show the actual image when it's loaded -->
-            <!-- <img :src="`https://buzzwaretech.com/revadmin/uploads/${communityData.image}`" class="img-communityDetailsn"
+              <!-- Show the actual image when it's loaded -->
+              <!-- <img :src="`https://buzzwaretech.com/revadmin/uploads/${communityData.image}`" class="img-communityDetailsn"
               alt="Image" @load="imageLoaded" /> -->
 
-          </div>
-          <div class="communityDetails-content py-4">
-            <div class="card-title-div">
+            </div>
+            <div class="communityDetails-content pt-4 pb-0 mb-0">
+              <div class="card-title-div">
 
-              <h2 class="card-title-h2 community-title">
+                <h2 class="card-title-h2 community-title">
 
-                <!-- Koenigsegg agera one: <span> 1 </span> -->
-                {{ communityData.make }} <span> {{ communityData.model }}</span>
-              </h2>
+                  <!-- Koenigsegg agera one: <span> 1 </span> -->
+                  {{ communityData.make }} <span> {{ communityData.model }}</span>
+                </h2>
 
-              <div class=" d-flex card-title-h2">
+                <div class=" d-flex card-title-h2">
 
-                <p class=" my-0">
-                  {{ communityData.production_years }}
-                </p>
-                <p class=" community-title card-title-h2 my-0 ms-2"> {{
+                  <p class=" my-0">
+                    {{ communityData.production_years }}
+                  </p>
+                  <p class=" community-title card-title-h2 my-0 ms-2"> {{
           communityData.generation }}</p>
+                </div>
+              </div>
+              <div class="map-para-div community-para-div">
+                <p class="map-para community-para">
+                  {{ communityData.description }}
+                </p>
+              </div>
+              <div class="list-community-add">
+                <div class="like-community">
+                  <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
+                  <small v-if="isLike">Liked</small>
+                  <small v-else>Like</small>
+                  <span class="total-likes">{{ communityData.likes
+                    }}</span>
+                </div>
+                <div class="like-community">
+                  <i class="fa-solid fa-comments"></i>
+                  <small>Comments</small>
+                  <span class="total-likes">{{ communityData.comments }}</span>
+                </div>
+                <div class="like-community">
+                  <i class="fa-solid fa-eye"></i>
+                  <small>Views</small>
+                  <span class="total-likes">{{ communityData.views }}</span>
+                </div>
               </div>
             </div>
-            <div class="map-para-div community-para-div">
-              <p class="map-para community-para">
-                {{ communityData.description }}
-              </p>
-            </div>
-            <div class="list-community-add">
-              <div class="like-community">
-                <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
-                <span class="total-likes">{{ communityData.likes
-                  }}</span>
+            <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
+              <!-- <div v-for="(message, index) in messages" :key="index"  class="sender-chats"> -->
+              <div v-for="comment in comments" :key="comment.comments">
+
+
+                <div v-if="comment.user_email == this.user_email" class="receiver-chats">
+                  <p class="receiver-chats-para">
+                    {{ comment.comments }}
+
+                  </p>
+
+
+
+                </div>
+                <div v-else class="sender-chats">
+                  <p class="sender-chats-para">
+                    {{ comment.comments }}
+
+                  </p>
+
+
+
+                </div>
               </div>
-              <div class="like-community">
-                <i class="fa-solid fa-comments"></i><span class="total-likes">{{ communityData.comments }}</span>
-              </div>
-              <div class="like-community">
-                <i class="fa-solid fa-eye"></i><span class="total-likes">{{ communityData.views }}</span>
-              </div>
+
+
+
             </div>
           </div>
-          <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
-            <!-- <div v-for="(message, index) in messages" :key="index"  class="sender-chats"> -->
-            <div v-for="comment in comments" :key="comment.comments">
 
-
-              <div v-if="comment.user_email == this.user_email" class="receiver-chats">
-                <p class="receiver-chats-para">
-                  {{ comment.comments }}
-
-                </p>
-
-
-
-              </div>
-              <div v-else class="sender-chats">
-                <p class="sender-chats-para">
-                  {{ comment.comments }}
-
-                </p>
-
-
-
-              </div>
-            </div>
-
-
-
-          </div>
         </div>
         <div class="commentsByReceiver position-relative">
           <textarea v-model="newComment" id="inputComments" type="text" name="inputComments"
@@ -128,7 +139,8 @@ export default {
       communityData: [],
       loading: true, // Initially set to true to show loader image,
       id: "",
-      isLike: false,
+      isLike: false
+      ,
       user_email: "",
       comments: [],
       newComment: "",
@@ -142,8 +154,14 @@ export default {
     this.fetchProfileData()
     this.id = this.$route.params.id
     this.getComments()
+    this.isLiked()
+
+
+
   },
   computed: {
+
+
     // Computed property to check if the textarea is not empty
     isTextareaNotEmpty() {
       return this.newComment.trim().length > 0;
@@ -223,10 +241,13 @@ export default {
           .then(response => {
             // Handle success
             console.log('Post request successful:', response.data);
-            this.isLike = true;
 
             // Set the flag in local storage with the respective ID
             localStorage.setItem('liked-' + this.id, true);
+            console.log(`liked-${this.id}`)
+            this.isLike = localStorage.getItem(`liked-${this.id}`);
+
+
           })
           .catch(error => {
             // Handle error
@@ -235,7 +256,9 @@ export default {
       } else {
         // If the like has already been added, you may want to show a message or handle the situation differently
         console.log('Like already added for this item.');
-        this.isLike = true
+        this.isLike = localStorage.getItem(`liked-${this.id}`);
+
+        console.log()
 
       }
     },
@@ -272,6 +295,10 @@ export default {
           console.error('Error fetching community data:', error);
         });
 
+    },
+    isLiked() {
+      this.isLike = localStorage.getItem(`liked-${this.id}`) !== null;
+      return this.isLike
     }
   },
 
@@ -292,7 +319,8 @@ export default {
 }
 
 .h1make {
-  color: #FF7A00
+  color: #FF7A00;
+
 }
 
 .like-community :hover {

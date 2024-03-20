@@ -342,7 +342,7 @@ export default {
   },
   mounted() {
     this.retrieveCars();
-    this.retrieveALLCommunities();
+    // this.retrieveALLCommunities();
     this.paginateCommunities();
     // Show the modal when the component is mounted
     this.showFilterModal();
