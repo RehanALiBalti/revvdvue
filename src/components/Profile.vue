@@ -64,7 +64,7 @@
 </template>
 
 <script>
-// import Swal from 'sweetalert2';
+ import Swal from 'sweetalert2';
 
 export default {
 	name: "UserProfile",
@@ -84,16 +84,36 @@ export default {
 	},
 	methods: {
 
-		// async updateUserAttributes() {
-		// 	const updatedAttributes = this.UserData;
-		// 	try {
-		// 		const user = await Auth.currentAuthenticatedUser();
-		// 		const result = await Auth.updateUserAttributes(user, updatedAttributes);
-		// 		console.log(result); // SUCCESS
-		// 	} catch (err) {
-		// 		console.log(err);
-		// 	}
-		// },
+		async updateUserAttributes() {
+		console.log("i am call");
+		const updatedProfile = {
+					name: this.name,
+					email: this.email,
+					age: this.age,
+					phone: this.phone,
+					socialMedia: this.socialMedia,
+					};
+					console.log(updatedProfile)
+			const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);		
+				console.log(data,typeof data)	;
+				if(data=="SUCCESS"){
+					Swal.fire({
+						title: 'Success!',
+						text: 'User profile has been successfully updated!',
+						icon: 'success',
+						confirmButtonText: 'OK',
+					});
+				}else{
+					Swal.fire({
+						title: 'Error!',
+						text: 'Oops... Some thing Going Wrong' ,
+						icon: 'error',
+						confirmButtonText: 'OK',
+					});
+				}
+
+
+		},
 
 		async fetchProfileData() {
 			try {
@@ -107,58 +127,12 @@ export default {
 
 				this.socialMedia = this.UserData.website
 				this.phone = this.UserData.phone_number
+				this.age=this.UserData["custom:age"]
 
 			} catch (error) {
 				console.error("Error fetching profile data:", error);
 			}
-		},
-
-		// async submitForm() {
-		// 	try {
-		// 		// Validation
-		// 		if (!this.isFormValid()) {
-		// 			console.log("Form validation failed");
-		// 			return;
-		// 		}
-
-		// 		// Dispatch action to update profile
-		// 		const updatedProfile = {
-		// 			name: this.name,
-		// 			email: this.email,
-		// 			age: this.age,
-		// 			phone: this.phone,
-		// 			socialMedia: this.socialMedia,
-		// 			password: this.password
-		// 		};
-
-		// 		// Dispatch action to update profile
-		// 		const data = await this.$store.dispatch("auth/handleSignUp", updatedProfile);
-
-		// 		if (data.success === 1) {
-		// 			Swal.fire({
-		// 				title: 'Success!',
-		// 				text: 'User profile has been successfully updated!',
-		// 				icon: 'success',
-		// 				confirmButtonText: 'OK',
-		// 			});
-		// 		} else {
-		// 			Swal.fire({
-		// 				title: 'Error!',
-		// 				text: 'Oops... ' + data.error,
-		// 				icon: 'error',
-		// 				confirmButtonText: 'OK',
-		// 			});
-		// 		}
-		// 	} catch (error) {
-		// 		console.error("Error updating profile:", error);
-		// 		Swal.fire({
-		// 			title: 'Error!',
-		// 			text: 'An error occurred while updating the profile. Please try again later.',
-		// 			icon: 'error',
-		// 			confirmButtonText: 'OK',
-		// 		});
-		// 	}
-		// },
+		}
 		// isFormValid() {
 		// 	// Basic form validation
 		// 	return this.name && this.email && this.age && this.phone;

@@ -53,7 +53,19 @@ const actions = {
       throw error;
     }
   },
+  async handleProfile(
+    context,
+    { name, email,age, phone, socialMedia }
+  ) {
+    const data={
+      name,email, age, phone, socialMedia
+    }
+    console.log("handle profile");
+    const result = await AuthService.setprofile(data)
 
+    return result;
+
+  },
   async handleSignUp(
     context,
     { name, age, password, email, phone, socialMedia }

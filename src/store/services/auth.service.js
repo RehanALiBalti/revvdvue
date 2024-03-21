@@ -19,6 +19,38 @@ function getcurrentprofile() {
       });
   });
 }
+function setprofile(data) {
+  console.log("before request", data);
+  return new Promise((resolve, reject) => {
+    try {
+      console.log("i am resolve");
+      const updatedAttributes = {
+        email: data.email,
+        phone_number: data.phone,
+        name: data.name,
+        website: data.socialMedia,
+        'custom:fullname': data.name,
+        'custom:age': data.age,
+        // Add other attributes you want to update
+      };
+      console.log("update",updatedAttributes);
+      Auth.currentAuthenticatedUser()
+      .then((user) => {
+        Auth.updateUserAttributes(user, updatedAttributes).then(result=>{
+          resolve(result);
+        })
+      })
+     
+     
+      
+    } catch (error) {
+      console.log("i am rejexct");
+      reject(data)
+      
+    }
+    
+  });
+}
 function login(username, password) {
   console.log("before request", password, username);
   return new Promise((resolve, reject) => {
@@ -103,5 +135,6 @@ export default {
   login,
   logout,
   register,
+  setprofile,
   getcurrentprofile,
 };
