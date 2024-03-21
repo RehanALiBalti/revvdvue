@@ -73,7 +73,7 @@
               $t("generation")
             }}</label>
                 <select id="bodyType" class="form-select form-control form-input filter-select" required=""
-                  v-model="generation">
+                  v-model="generation" @change="getYears">
                   <option value="" selected disabled>Any</option>
                   <option v-for="(value, index) in generations" :key="index" :value="value">
                     {{ value }}
@@ -242,7 +242,7 @@
 
               <div class="col-md-6">
                 <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="generation">
+                  <select class="form-select" v-model="generation" @change="getYears">
                     <option value="" selected disabled>Generation</option>
                     <option v-for="(value, index) in generations" :key="index" :value="value">
                       {{ value }}
@@ -426,6 +426,7 @@ export default {
     },
 
     getGenerations() {
+      console.log("in generation")
       CarDataService.getGenerations(this.make, this.model)
         .then((response) => {
           const data = response.data;
@@ -437,6 +438,36 @@ export default {
               item.generation != "?"
             ) {
               this.generations.push(item.generation);
+              this.productionYears.push(item.production_years);
+            }
+          });
+          this.generations = [...new Set(this.generations)];
+          this.productionYears = [...new Set(this.productionYears)];
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    getYears() {
+      console.log("in generation")
+      console.log(this.generation)
+      this.productionYears = []
+      CommunityDataService.getFiltered(this.make, this.model, this.generation, this.productionYear)
+
+        .then((response) => {
+          const data = response.data;
+          console.log(data)
+
+          data.forEach((item) => {
+            if (
+              item.generation != "" &&
+              item.generation != "-" &&
+              item.generation != "??" &&
+              item.generation != "?"
+            ) {
+
+              this.generations.push(item.generation);
+
               this.productionYears.push(item.production_years);
             }
           });
