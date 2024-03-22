@@ -72,16 +72,37 @@
     </div>
   </div>
 
+  <!-- modal -->
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="close-icon" @click="modalClose">
+            <i class="fas fa-times"></i>
+          </span>
 
+          <div class="mt-4 py-2">
+            <h5 class="card-title"><span class="choose"> Email or Password is Incorrect </span></h5>
+            <p class="text-white">Please Varify Email And Password</p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal end -->
 </template>
 <script>
-import Swal from 'sweetalert2';
+
 
 export default {
   name: "SignIn",
 
   data() {
     return {
+      isModalOpen: false,
       formData: {
         email: "",
         password: "",
@@ -93,6 +114,10 @@ export default {
     };
   },
   methods: {
+    modalClose() {
+      console.log("close modal")
+      this.isModalOpen = false
+    },
     submitForm() {
       this.validateForm();
       if (this.isFormValid()) {
@@ -105,22 +130,12 @@ export default {
           if (data.success == 1) {
             localStorage.setItem('login', true);
             localStorage.setItem('data', data.result);
-            Swal.fire({
-              title: 'Success!',
-              text: 'User has been successfully login!',
-              icon: 'success',
-              confirmButtonText: 'OK',
-            }).then(() => {
-              // Redirect to '/landing' route
-              this.$router.push('/ourcommunity');
-            });
+
+            // Redirect to '/landing' route
+            this.$router.push('/ourcommunity');
+
           } else {
-            Swal.fire({
-              title: 'Error!',
-              text: 'Oops... ' + data.error,
-              icon: 'error',
-              confirmButtonText: 'OK',
-            });
+            this.isModalOpen = true
           }
 
           console.log(data);
@@ -158,4 +173,23 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.modal-dialog {
+  max-width: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #031726;
+  background-clip: padding-box;
+  border: 1px solid #1a202c;
+  border-radius: 5px;
+  outline: 0;
+}
+</style>

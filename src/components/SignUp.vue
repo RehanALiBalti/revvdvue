@@ -103,16 +103,61 @@
     </div>
   </div>
 
+  <!-- modal succes -->
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="close-icon" @click="isModalOpen = false">
+            <i class="fas fa-times"></i>
+          </span>
 
+          <div class="mt-4 py-2">
+            <h5 class="card-title"><span class="choose">User Regeisteration Successfull</span></h5>
+            <p class="text-white">PLease Login TO Continue</p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal end -->
+  <!-- modal fail -->
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpenFail === true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="close-icon" @click="isModalOpenFail = false">
+            <i class="fas fa-times"></i>
+          </span>
+
+          <div class="mt-4 py-2">
+            <h5 class="card-title"><span class="choose">Something Went Wronge </span></h5>
+            <p class="text-white">{{ this.errorMessage }}</p>
+            <p class="text-white">Please Try Again</p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal end -->
 </template>
 <script>
-import Swal from 'sweetalert2';
+
 
 export default {
   name: "SignUp",
 
   data() {
     return {
+      isModalOpen: false,
+      isModalOpenFail: false,
+      errorMessage: "",
       formData: {
         name: "",
         age: "",
@@ -165,19 +210,10 @@ export default {
           .then(
             (data) => {
               if (data.success == 1) {
-                Swal.fire({
-                  title: 'Success!',
-                  text: 'User Registration has been completed successfully!',
-                  icon: 'success',
-                  confirmButtonText: 'OK',
-                });
+                this.isModalOpen = true
               } else {
-                Swal.fire({
-                  title: 'Error!',
-                  text: 'Oops... ' + data.error,
-                  icon: 'error',
-                  confirmButtonText: 'OK',
-                });
+                this.isModalOpenFail = true
+                this.errorMessage = data.error
               }
 
               console.log(data);
@@ -230,3 +266,23 @@ export default {
   },
 };
 </script>
+<style scoped>
+.modal-dialog {
+  max-width: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #031726;
+  background-clip: padding-box;
+  border: 1px solid #1a202c;
+  border-radius: 5px;
+  outline: 0;
+}
+</style>

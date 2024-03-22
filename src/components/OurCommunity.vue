@@ -297,17 +297,39 @@
       </div>
     </div>
   </div>
+
+  <!-- modal 2 -->
+  <!-- modal -->
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModal2Open === true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="close-icon" @click="isModal2Open=false" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </span>
+          <form @submit.prevent="submitFilter">
+            <div class="mt-4 py-2">
+              <h5 class="card-title"><span class="choose"> Something Is Missing </span></h5>
+              <p class="text-white">Please Select Both Make & Modal</p>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
-import Swal from 'sweetalert2';
+
 export default {
   name: "OurCommunity",
 
   data() {
     return {
+      isModal2Open: false,
       makes: [],
       make: "",
       model: "",
@@ -375,12 +397,7 @@ export default {
     },
     retrieveCommunities() {
       if (this.make == "" || this.model == "") {
-        Swal.fire({
-          title: 'Something is missing',
-          text: 'Please select both make and model',
-          icon: 'error',
-          confirmButtonText: 'close',
-        });
+        this.isModal2Open = true
       }
 
       else {
