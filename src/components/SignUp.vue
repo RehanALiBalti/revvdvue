@@ -114,12 +114,12 @@ export default {
   data() {
     return {
       formData: {
-        name: "khang",
-        age: "20",
-        email: "adarvaish12@gmail.com",
-        phone: "12345678",
-        socialMedia: "http:www.facebook.com",
-        password: "1234567",
+        name: "",
+        age: "",
+        email: "",
+        phone: "",
+        socialMedia: "",
+        password: "",
       },
       formErrors: {
         name: "",

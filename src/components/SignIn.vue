@@ -83,8 +83,8 @@ export default {
   data() {
     return {
       formData: {
-        email: "test@gmail.com",
-        password: "12345678",
+        email: "",
+        password: "",
       },
       formErrors: {
         email: "",
