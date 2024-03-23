@@ -55,16 +55,20 @@ const actions = {
   },
   async handleProfile(
     context,
-    { name, email,age, phone, socialMedia }
+    { name, email, age, phone, socialMedia, image }
   ) {
-    const data={
-      name,email, age, phone, socialMedia
-    }
+    const data = {
+      name,
+      email,
+      age,
+      phone,
+      socialMedia,
+      image,
+    };
     console.log("handle profile");
-    const result = await AuthService.setprofile(data)
+    const result = await AuthService.setprofile(data);
 
     return result;
-
   },
   async handleSignUp(
     context,

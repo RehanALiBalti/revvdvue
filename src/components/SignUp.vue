@@ -163,7 +163,7 @@ export default {
         age: "",
         email: "",
         phone: "",
-        socialMedia: "",
+        socialMedia: "empty",
         password: "",
       },
       formErrors: {

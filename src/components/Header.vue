@@ -96,7 +96,7 @@
               <div class="user-custom-box" @click="toggleDropdownUser" :class="{ open: issOpen }">
                 <div class="user-content-inner">
                   <div class="user-img-div">
-                    <img src="@/assets/images/userImg.png" class="user-img" alt="" />
+                    <img v-if="image != ''" :src=image class="user-img" alt="" />
                   </div>
                   <span class="user-name" :class="{ open: issOpen }">
                     <!-- {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
@@ -140,6 +140,7 @@ export default {
 
   data() {
     return {
+      image: "",
       isOpen: false,
       issOpen: false,
       isNavOpen: false,
@@ -186,7 +187,11 @@ export default {
         const data = await this.$store.dispatch("auth/getprofiledata");
         console.log("Profile data:", data);
         this.userAttributes = data.result
-        console.log("userdata", this.userAttributes.name)
+        console.log("userdataattribtes", this.userAttributes.picture)
+        if (this.userAttributes.picture != "") {
+          this.image = this.userAttributes.picture
+        }
+
 
 
       } catch (error) {

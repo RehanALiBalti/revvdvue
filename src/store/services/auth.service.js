@@ -29,26 +29,23 @@ function setprofile(data) {
         phone_number: data.phone,
         name: data.name,
         website: data.socialMedia,
-        'custom:fullname': data.name,
-        'custom:age': data.age,
+        "custom:fullname": data.name,
+        "custom:age": data.age,
         // Add other attributes you want to update
       };
-      console.log("update",updatedAttributes);
-      Auth.currentAuthenticatedUser()
-      .then((user) => {
-        Auth.updateUserAttributes(user, updatedAttributes).then(result=>{
+      if (data.image != "") {
+        updatedAttributes.picture = data.image;
+      }
+      console.log("update", updatedAttributes);
+      Auth.currentAuthenticatedUser().then((user) => {
+        Auth.updateUserAttributes(user, updatedAttributes).then((result) => {
           resolve(result);
-        })
-      })
-     
-     
-      
+        });
+      });
     } catch (error) {
       console.log("i am rejexct");
-      reject(data)
-      
+      reject(data);
     }
-    
   });
 }
 function login(username, password) {
