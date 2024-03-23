@@ -188,7 +188,7 @@ export default {
         console.log("Profile data:", data);
         this.userAttributes = data.result
         console.log("userdataattribtes", this.userAttributes.picture)
-        if (this.userAttributes.picture != "") {
+        if (this.userAttributes.picture) {
           this.image = this.userAttributes.picture
         }
 

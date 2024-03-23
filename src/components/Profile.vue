@@ -200,7 +200,7 @@ export default {
 				this.socialMedia = this.UserData.website
 				this.phone = this.UserData.phone_number
 				this.age = this.UserData["custom:age"]
-				if (this.UserData.picture != "") {
+				if (this.UserData.picture) {
 					this.image = this.UserData.picture
 				}
 
