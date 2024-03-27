@@ -286,7 +286,7 @@ export default {
         .then(response => {
 
           this.comments = response.data
-          console.log("comments", this.comments)
+          console.log("comments number", this.comments)
 
         })
         .catch(error => {
@@ -366,7 +366,7 @@ export default {
           // Handle error
           console.error('Error making post request:', error);
         });
-
+      this.getComments()
     },
 
     addLike() {

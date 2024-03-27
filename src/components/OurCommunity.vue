@@ -60,7 +60,7 @@
               $t("models")
             }}</label>
                 <select id="models" class="form-select form-control form-input filter-select" required=""
-                  v-model="model" @change="getGenerations()">
+                  v-model="model" @change="getGenerations">
                   <option value="" selected disabled>Any</option>
                   <option v-for="(model, index) in models" :key="index" :value="model.model">
                     {{ model.model }}
@@ -68,7 +68,7 @@
                 </select>
               </div>
 
-              <div class="col-12">
+              <!-- <div class="col-12">
                 <label for="bodyType" class="form-label filter-label">{{
               $t("generation")
             }}</label>
@@ -79,7 +79,21 @@
                     {{ value }}
                   </option>
                 </select>
+              </div> -->
+              <div class="col-12">
+                <label for="bodyType" class="form-label filter-label">{{
+              $t("generation")
+            }}</label>
+                <input type="text" id="bodyType" class="form-control form-input filter-select" v-model="generation"
+                  @input="getData">
+                <div class="card genCard" v-show="filteredGenerations.length > 0">
+                  <div class="singleGen" v-for="(option, index) in filteredGenerations" :key="index"
+                    @click="selectGeneration(option)">
+                    {{ option }}
+                  </div>
+                </div>
               </div>
+
 
               <div class="col-12">
                 <label for="seats" class="form-label filter-label">{{
@@ -209,9 +223,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <span class="close-icon" @click="closeModel" data-bs-dismiss="modal" aria-label="Close">
+          <!-- <span class="close-icon" @click="closeModel" data-bs-dismiss="modal" aria-label="Close">
             <i class="fas fa-times"></i>
-          </span>
+          </span> -->
           <form @submit.prevent="submitFilter">
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> Filter </span></h5>
@@ -337,6 +351,7 @@ export default {
       models: [],
       generation: "",
       generations: [],
+      filteredGenerations: [],
       productionYear: "",
       productionYears: [],
       communities: [],
@@ -383,6 +398,21 @@ export default {
     this.showFilterModal();
   },
   methods: {
+    getData() {
+      console.log("onchnage")
+      this.filterGenerations()
+      this.getYears()
+    },
+    filterGenerations() {
+      // Filter the generations based on input
+      this.filteredGenerations = this.generations.filter(gen => gen.toLowerCase().includes(this.generation.toLowerCase()));
+    },
+    selectGeneration(option) {
+      // Set the selected option
+      this.generation = option;
+      // Clear the filtered list
+      this.filteredGenerations = [];
+    },
     retrieveCars() {
       this.models = [];
       this.generations = [];
@@ -395,30 +425,95 @@ export default {
           console.log(e);
         });
     },
-    retrieveCommunities() {
-      if (this.make == "" || this.model == "") {
-        this.isModal2Open = true
-      }
+    // retrieveCommunities() {
+    //   if (this.make == "" || this.model == "") {
+    //     this.isModal2Open = true
+    //   }
 
-      else {
+    //   else {
+    //     const data = {
+    //       make: this.make,
+    //       model: this.model,
+    //       generation: this.generation,
+    //       productionYear: this.productionYear
+    //     }
+    //     console.log(data)
+
+    //     CommunityDataService.create(data)
+    //       .then((response) => {
+    //         this.communities = response.data;
+    //         console.log("communities", this.communities)
+    //       })
+    //       .catch((e) => {
+    //         console.log(e);
+    //       });
+    //   }
+    // },
+    // retrieveCommunities() {
+    //   if (this.make == "" || this.model == "") {
+    //     this.isModal2Open = true;
+    //   } else {
+    //     const data = {
+    //       make: this.make,
+    //       model: this.model,
+    //       generation: this.generation,
+    //       productionYear: this.productionYear
+    //     };
+    //     console.log(data);
+
+    //     CommunityDataService.create(data)
+    //       .then((response) => {
+
+    //         this.communities = response.data[0];
+    //         console.log("communities", this.communities);
+    //         // Assuming you have an ID in the response data, replace community.id with the actual ID
+    //         console.log("cid", this.communities.id)
+    //         const communityId = this.communities.id; // Adjust this based on your response data
+    //         // Programmatic navigation to the community details route
+    //         this.$router.push(`/communitydetails/${communityId}`);
+    //       })
+    //       .catch((e) => {
+    //         console.log(e);
+    //       });
+    //   }
+    // },
+
+    retrieveCommunities() {
+      if (this.make === "" || this.model === "") {
+        this.isModal2Open = true;
+      } else {
         const data = {
           make: this.make,
           model: this.model,
           generation: this.generation,
           productionYear: this.productionYear
-        }
-        console.log(data)
+        };
 
         CommunityDataService.create(data)
           .then((response) => {
-            this.communities = response.data;
-            console.log("communities", this.communities)
+            // Check if response data is an object
+            if (typeof response.data === 'object' && !Array.isArray(response.data)) {
+              const community = response.data;
+              console.log("Community:", community);
+
+              // Assuming you have an ID in the response data
+              const communityId = community.id; // Adjust this based on your response data
+              // Programmatic navigation to the community details route
+              this.$router.push(`/communitydetails/${communityId}`);
+            } else {
+              // Handle the case when response data is an array
+              console.log("Response data is an array:", response.data);
+              const community = response.data[0];
+              this.$router.push(`/communitydetails/${community.id}`);
+              // Handle this case according to your requirements
+            }
           })
           .catch((e) => {
             console.log(e);
           });
       }
     },
+
     retrieveALLCommunities() {
 
       console.log("all communities")
@@ -498,7 +593,10 @@ export default {
 
     paginateCommunities() {
       const [start, end] = this.paginationRange;
-      this.filteredCommunities = this.communities.slice(start, end);
+      if (this.communities > 1) {
+        this.filteredCommunities = this.communities.slice(start, end);
+      }
+
     },
     goToPage(pageNumber) {
       this.currentPage = pageNumber;
@@ -639,6 +737,17 @@ export default {
 
 .getAll {
   background: #5D3327 !important;
+  color: #fff
+}
+
+.genCard .singleGen {
+  cursor: pointer;
+  marker: none;
+  width: 100%;
+}
+
+.genCard .singleGen:hover {
+  background: #f95f19;
   color: #fff
 }
 </style>
