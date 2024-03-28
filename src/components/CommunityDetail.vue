@@ -61,77 +61,14 @@
           </div>
           <div v-if="comments != ''" class="communityDetails-bg mt-3 communityDetailsMain">
             <div class="img-communityDetails-div">
-              <!-- Show loader image while the actual image is loading -->
 
-
-              <!-- Show the actual image when it's loaded -->
-              <!-- <img :src="`https://buzzwaretech.com/revadmin/uploads/${communityData.image}`" class="img-communityDetailsn"
-              alt="Image" @load="imageLoaded" /> -->
 
             </div>
             <div class="communityDetails-content pt-4 pb-0 mb-0">
-              <!-- <div class="card-title-div">
 
-                <h2 class="card-title-h2 community-title">
-
-               
-                  {{ communityData.make }} <span> {{ communityData.model }}</span>
-                </h2>
-
-                <div class=" d-flex card-title-h2">
-
-                  <p class=" my-0">
-                    {{ communityData.production_years }}
-                  </p>
-                  <p class=" community-title card-title-h2 my-0 ms-2"> {{
-          communityData.generation }}</p>
-                </div>
-              </div> -->
-
-              <!-- <div class="list-community-add">
-                <div class="like-community">
-                  <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
-                  <small v-if="isLike">Liked</small>
-                  <small v-else>Like</small>
-                  <span class="total-likes">{{ communityData.likes
-                    }}</span>
-                </div>
-                <div class="like-community">
-                  <i class="fa-solid fa-comments"></i>
-                  <small>Comments</small>
-                  <span class="total-likes">{{ communityData.comments }}</span>
-                </div>
-                <div class="like-community">
-                  <i class="fa-solid fa-eye"></i>
-                  <small>Views</small>
-                  <span class="total-likes">{{ communityData.views }}</span>
-                </div>
-              </div> -->
             </div>
             <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
-              <!-- <div v-for="(message, index) in messages" :key="index"  class="sender-chats"> -->
-              <!-- <div v-for="comment in comments" :key="comment.comments">
 
-
-                <div v-if="comment.user_email == this.user_email" class="receiver-chats">
-                  <p class="receiver-chats-para">
-                    {{ comment.comments }}
-
-                  </p>
-
-
-
-                </div>
-                <div v-else class="sender-chats">
-                  <p class="sender-chats-para">
-                    {{ comment.comments }}
-
-                  </p>
-
-
-
-                </div>
-              </div> -->
               <div v-for="comment in comments" :key="comment.comments">
                 <div v-if="comment.user_email == user_email" class="d-flex flex-column">
                   <div class="receiver-chats ">
@@ -186,18 +123,7 @@
   </section>
 
 
-  <!-- <script>
-    var mySwiper = new Swiper(".swiper-container", {
-      // Optional configuration options
-      slidesPerView: 1, // Number of slides per view
-      spaceBetween: 10, // Space between slides
-      loop: true, // Infinite loop
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-  </script> -->
+
 </template>
 
 <script>
@@ -232,6 +158,7 @@ export default {
     this.id = this.$route.params.id
     this.getComments()
     this.isLiked()
+    this.fetchCommunityData();
 
 
 
@@ -427,7 +354,7 @@ export default {
         .then(response => {
           // Set the fetched community data to the component's data
           this.communityData = response.data;
-          // console.log("data", this.communityData)
+          console.log("data oof comment", this.communityData)
           this.loading = false;
         })
         .catch(error => {

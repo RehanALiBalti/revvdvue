@@ -2595,3 +2595,20 @@ a:hover {
 		word-break: break-all;
 	}
 }
+
+.vs__dropdown-menu {
+	background-color: #031726 !important;
+	color: #fff !important;
+	z-index: 3 !important;
+	position: relative !important;
+	font-weight: 400 !important;
+}
+
+.vs__dropdown-toggle {
+	padding: 0.6rem !important;
+}
+
+.vs__selected {
+	color: #fff !important;
+	font-weight: 400 !important;
+}
