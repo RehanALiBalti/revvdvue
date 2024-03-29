@@ -79,12 +79,15 @@
               </div> -->
               <div class="col-md-12 z-0">
                 <div class="mt-2 py-2 d-flex justify-content-center align-items-center z-0">
-                  <select class="form-select z-0" @change="updateModels" v-model="selectedData">
+                  <select class="form-select z-0 fselect1" @change="updateModels" v-model="selectedData">
                     <option value="" selected>Production Years and Generations</option>
                     <option v-for="(value, index) in dataGy" :key="index" :value="value">
                       {{ value.production_years }} ( {{ value.generation }} )
                     </option>
                   </select>
+                  <!-- <v-select class="w-100 " v-model="selectedData" :options="dataGy" label="model" placeholder="Model"
+                    @change="updateModels"></v-select> -->
+
                 </div>
               </div>
 
@@ -131,13 +134,15 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <span class="close-icon" @click="isModal2Open = false" data-bs-dismiss="modal" aria-label="Close">
+          <span class="close-icon" @click="isModal2Open = false, isModalOpen = true" data-bs-dismiss="modal"
+            aria-label="Close">
             <i class="fas fa-times"></i>
           </span>
           <form @submit.prevent="submitFilter">
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> Something Is Missing </span></h5>
               <p class="text-white">Please Select Both Make & Modal</p>
+              <p class="text-warning">Please write first to select make and model</p>
             </div>
 
           </form>
@@ -377,6 +382,7 @@ export default {
           const data = response.data;
           console.log("data is", data)
           this.dataGy = data
+
           data.forEach((item) => {
             if (
               item.generation != "" &&
@@ -471,8 +477,12 @@ export default {
       }
     },
     submitFilter() {
-
-      this.hideFilterModal();
+      if (this.make == '' && this.model == '') {
+        this.hideFilterModal();
+        this.isModal2Open = true
+      }
+      else
+        this.hideFilterModal();
     },
     showFilterModal() {
 

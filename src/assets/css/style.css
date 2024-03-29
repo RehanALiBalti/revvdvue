@@ -2612,3 +2612,16 @@ a:hover {
 	color: #fff !important;
 	font-weight: 400 !important;
 }
+
+.fselect1 {
+	background-color: #031726 !important;
+	color: #fff !important;
+	font-weight: 400 !important;
+}
+
+.fselect1 option {
+	background-color: #031726 !important;
+	color: #fff !important;
+	font-weight: 400 !important;
+
+}

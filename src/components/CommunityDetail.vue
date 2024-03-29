@@ -45,7 +45,8 @@
                     <div class="like-community">
                       <i class="fa-solid fa-comments"></i>
                       <small>Comments</small>
-                      <span class="total-likes">{{ communityData.comments }}</span>
+                      <!-- <span class="total-likes">{{ communityData.comments }}</span> -->
+                      <span class="total-likes">{{ this.comments.length }}</span>
                     </div>
                     <div class="like-community">
                       <i class="fa-solid fa-eye"></i>
@@ -159,6 +160,7 @@ export default {
     this.getComments()
     this.isLiked()
     this.fetchCommunityData();
+    this.addView()
 
 
 
@@ -312,7 +314,7 @@ export default {
             localStorage.setItem('liked-' + this.id, true);
             console.log(`liked-${this.id}`)
             this.isLike = localStorage.getItem(`liked-${this.id}`);
-
+            this.fetchCommunityData()
 
           })
           .catch(error => {
@@ -328,6 +330,27 @@ export default {
 
       }
     },
+    addView() {
+      const requestData = {
+        id: this.id
+      };
+      axios.post('http://137.184.111.69:5000/api/communities/views', requestData)
+        .then(response => {
+          // Handle success
+          console.log('Post of views request successful:', response.data);
+
+          // Set the flag in local storage with the respective ID
+
+
+          this.fetchCommunityData()
+
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error making post request:', error);
+        });
+    },
+
 
     sendMessageOnEnter(event) {
       // Check if the Enter key is pressed and the textarea is not empty
@@ -354,7 +377,7 @@ export default {
         .then(response => {
           // Set the fetched community data to the component's data
           this.communityData = response.data;
-          console.log("data oof comment", this.communityData)
+          console.log("data oof views", this.communityData)
           this.loading = false;
         })
         .catch(error => {
