@@ -114,6 +114,12 @@
               <path id="Icon_material-send" data-name="Icon material-send"
                 d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
             </svg>
+            <div class="upsection" v-if="imageUrl != ''">
+              <div class="position-relative mainUp">
+                <img class="upImage" :src="imageUrl" alt="">
+                <span class="cancel" @click="removeImage"><i class="fa-solid fa-xmark"></i></span>
+              </div>
+            </div>
             <span class="image_icon" @click="openFileInput"><i class="fa-solid fa-image"></i></span>
             <!-- <input type="submit" value="Post" class="btn my-2 "> -->
 
@@ -138,6 +144,7 @@ export default {
 
   data() {
     return {
+      imageUrl: '',
       communityData: [],
       loading: true, // Initially set to true to show loader image,
       id: "",
@@ -183,13 +190,33 @@ export default {
   },
 
   methods: {
+    removeImage() {
+      // Reset imageUrl to remove the image
+      this.imageUrl = '';
+      // Reset the file input to clear the selected file
+      if (this.$refs.fileInput) {
+        this.$refs.fileInput.value = '';
+      }
+    },
     openFileInput() {
       this.$refs.fileInput.click(); // Trigger click event on file input when icon is clicked
     },
-    handleFileChange() {
+    handleFileChange(event) {
       // Handle file change event and update this.image
+      const file = event.target.files[0]; // Get the uploaded file
+      // Check if a file is selected
+      if (file) {
+        this.image = this.$refs.fileInput.files[0];
+        // Read the file as a data URL
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          // Update imageUrl with the data URL of the uploaded image
+          this.imageUrl = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
 
-      this.image = this.$refs.fileInput.files[0];
+
 
     },
     async fetchProfileData() {
@@ -457,6 +484,34 @@ export default {
   animation: spin 1s infinite ease-out;
 }
 
+.mainUp {
+  width: fit-content;
+}
+
+.upImage {
+  width: 50px;
+  height: 40px;
+}
+
+.cancel {
+  position: absolute;
+  right: 0;
+  color: #d24200;
+  transition: 0.2s all;
+  cursor: pointer;
+}
+
+.cancel:hover {
+  transform: scale(1.2);
+  transition: 0.2s all;
+  color: #fff;
+}
+
+.upsection {
+  position: absolute;
+  right: 100px;
+  top: 20px
+}
 
 @keyframes spin {
   0% {
