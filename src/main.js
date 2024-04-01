@@ -17,7 +17,7 @@ import "swiper/css/effect-cards";
 import en from "./locales/en.json";
 import de from "./locales/de.json";
 import fr from "./locales/fr.json";
-import vSelect from "vue-select";
+// import vSelect from "vue-select";
 
 const i18n = createI18n({
   legacy: false, // Use Composition API
@@ -39,9 +39,4 @@ Amplify.configure({
   },
 });
 
-createApp(App)
-  .component("v-select", vSelect)
-  .use(router)
-  .use(i18n)
-  .use(store)
-  .mount("#app");
+createApp(App).use(router).use(i18n).use(store).mount("#app");

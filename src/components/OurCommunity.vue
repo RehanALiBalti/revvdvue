@@ -1,4 +1,6 @@
 <template>
+
+
   <section class="section-car-listing position-relative">
     <div class="container">
       <div class="row">
@@ -34,8 +36,24 @@
                       {{ make.make }}
                     </option>
                   </select> -->
-                  <v-select class="w-100 " v-model="make" :options="makes" label="model" placeholder="Make"
-                    @change="getModels" :filterable="true"></v-select>
+                  <!-- <v-select class="w-100 " v-model="make" :options="makes" label="model" placeholder="Make"
+                    @change="getModels" :filterable="true"></v-select> -->
+
+
+                  <div class="customSelect" @blur="isOpen = false">
+                    <input type="text" class="form-select" v-model="make" placeholder="Select an option"
+                      @click.stop="toggleDropdown" @focus="toggleDropdown" @input="filterMakeOptions"
+                      @change="getModels">
+                    <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
+                      <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
+                        {{ option }}
+                      </li>
+                    </ul>
+                    <ul v-else v-show="isOpen" class="options-list">
+                      <li>Nothing To Show</li>
+                    </ul>
+                  </div>
+
 
                 </div>
               </div>
@@ -50,8 +68,37 @@
                   </select> -->
                   <!-- <v-select v-model="model" :options="models" label="model" placeholder="Select a Model"
                     @change="getGenerations"></v-select> -->
-                  <v-select class="w-100 " v-model="smodel" :options="models" label="model" placeholder="Model"
-                    @change="getGenerations"></v-select>
+                  <!-- <v-select class="w-100 " v-model="smodel" :options="models" label="model" placeholder="Model"
+                    @change="getGenerations"></v-select> -->
+
+                  <!-- <div class="customSelect" @blur="isOpenm = false">
+                    <input type="text" class="selected-option" v-model="smodel" placeholder="Select an option"
+                      @click.stop="toggleDropdownm" @focus="toggleDropdown" @input="filterModelOptions"
+                      @change="getModels">
+                    <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions != ''">
+                      <li v-for="(option, index) in modelfilteredOptions" :key="index"
+                        @click="selectOptionModel(option.model)">
+                        {{ option.model }}
+                      </li>
+                    </ul>
+                    <ul v-else v-show="isOpenm" class="options-list">
+                      <li>Nothing To Show</li>
+                    </ul>
+                  </div> -->
+                  <div class="customSelect" @blur="isOpenm = false">
+                    <input type="text" class=" form-select" v-model="smodel" placeholder="Select an option"
+                      @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
+                      @change="getModels">
+                    <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
+                      <li v-for="(option, index) in modelfilteredOptions" :key="index"
+                        @click="selectOptionModel(option.model)">
+                        {{ option.model }}
+                      </li>
+                    </ul>
+                    <ul v-else v-show="isOpenm" class="options-list">
+                      <li>Nothing To Show</li>
+                    </ul>
+                  </div>
 
                 </div>
               </div>
@@ -79,8 +126,9 @@
               </div> -->
               <div class="col-md-12 z-0">
                 <div class="mt-2 py-2 d-flex justify-content-center align-items-center z-0">
-                  <select class="form-select z-0 fselect1" @change="updateModels" v-model="selectedData">
-                    <option value="" selected>Production Years and Generations</option>
+                  <select class="form-select z-0 fselect1" @change="updateModels" v-model="selectedData"
+                    @focus="isOpenm = false">
+                    <option value="" selected>Production Years(Generation)</option>
                     <option v-for="(value, index) in dataGy" :key="index" :value="value">
                       {{ value.production_years }} ( {{ value.generation }} )
                     </option>
@@ -157,22 +205,28 @@ import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
 // import { defineComponent } from 'vue';
 
-import vSelect from 'vue-select';
+
+
 
 
 export default {
   name: "OurCommunity",
   components: {
-    vSelect,
+
+
   },
   data() {
     return {
+      isOpen: false,
+      isOpenm: false,
 
       isModal2Open: false,
+      makefilteredOptions: [],
       makes: [],
       make: "",
       smodel: "",
       isModalOpen: true,
+      modelfilteredOptions: [],
       models: [],
       generation: "",
       generations: [],
@@ -224,6 +278,50 @@ export default {
     this.showFilterModal();
   },
   methods: {
+    filterMakeOptions() {
+
+      const query = this.make.toLowerCase();
+      if (query === '') {
+        this.makefilteredOptions = this.makes;
+      } else {
+        this.makefilteredOptions = this.makes.filter(option => option.toLowerCase().includes(query));
+      }
+    },
+    filterModelOptions() {
+      console.log(this.smodel);
+      const query = this.smodel.toLowerCase();
+      if (query === '') {
+        this.modelfilteredOptions = this.models;
+      } else {
+
+        this.modelfilteredOptions = this.models.filter(option => option && option.model && option.model.toLowerCase().includes(query));
+      }
+    },
+
+
+
+
+    toggleDropdown() {
+      this.isOpen = !this.isOpen;
+    },
+    toggleDropdownm() {
+      this.isOpenm = !this.isOpenm;
+    },
+    selectOption(option) {
+
+      this.make = option;
+      this.isOpen = false;
+      this.getModels()
+
+    },
+    selectOptionModel(option) {
+
+      this.smodel = option;
+      this.isOpenm = false;
+      this.getGenerations()
+
+
+    },
     updateModels() {
       if (this.selectedData) {
         this.generation = this.selectedData.generation;
@@ -255,6 +353,7 @@ export default {
       CarDataService.getAll()
         .then((response) => {
           this.makes = response.data.map(item => item.make);
+          this.makefilteredOptions = response.data.map(item => item.make);
           console.log("make are :", response.data.map(item => item.make))
 
         })
@@ -316,12 +415,12 @@ export default {
     // },
 
     retrieveCommunities() {
-      if (this.make === "" || this.model === "") {
+      if (this.make === "" || this.smodel === "") {
         this.isModal2Open = true;
       } else {
         const data = {
           make: this.make,
-          model: this.smodel.model,
+          model: this.smodel,
           generation: this.generation,
           productionYear: this.productionYear
         };
@@ -368,6 +467,8 @@ export default {
       CarDataService.getModels(this.make)
         .then((response) => {
           this.models = response.data;
+          this.modelfilteredOptions = response.data;
+          console.log(response.data)
         })
         .catch((e) => {
           console.log(e);
@@ -376,8 +477,8 @@ export default {
 
     getGenerations() {
 
-      console.log('in generation', "make", this.make, "modal", this.smodel.model)
-      CarDataService.getGenerations(this.make, this.smodel.model)
+      console.log('in generation', "make", this.make, "modal", this.smodel)
+      CarDataService.getGenerations(this.make, this.smodel)
         .then((response) => {
           const data = response.data;
           console.log("data is", data)
@@ -587,5 +688,50 @@ export default {
 .genCard .singleGen:hover {
   background: #f95f19;
   color: #fff
+}
+
+
+
+/* new */
+
+.customSelect {
+
+  width: 100%
+}
+
+.selected-option {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.options-list {
+  position: static;
+  /* top: 100%;
+  left: 0; */
+  width: 100%;
+  background-color: #031726;
+
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 300px;
+  overflow: scroll;
+  color: #fff
+}
+
+.options-list li {
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+}
+
+.options-list li:hover {
+  background-color: #083f68;
 }
 </style>
