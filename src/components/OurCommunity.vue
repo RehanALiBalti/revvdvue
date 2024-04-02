@@ -462,6 +462,7 @@ export default {
     },
     getModels() {
       console.log("get modals")
+      this.smodel = ""
       this.generations = [];
       this.productionYears = [];
       CarDataService.getModels(this.make)

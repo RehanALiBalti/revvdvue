@@ -68,7 +68,7 @@
             <div class="communityDetails-content pt-4 pb-0 mb-0">
 
             </div>
-            <div class="communityDetails-chatContent" id="chat-messages" ref="chatContainer">
+            <div class="communityDetails-chatContent" id="chat-messages" ref="commentsContainer">
 
               <div v-for="comment in comments" :key="comment.comments">
                 <div v-if="comment.user_email == user_email" class="d-flex flex-column">
@@ -253,24 +253,55 @@ export default {
         console.error("Error fetching profile data:", error);
       }
     },
+    // getComments() {
+
+    //   const id = this.$route.params.id
+
+
+
+    //   CommentDataService.getAllByCommunity(id)
+    //     .then(response => {
+
+    //       this.comments = response.data
+    //       console.log("comments number", this.comments)
+
+
+
+    //     })
+    //     .catch(error => {
+    //       // Handle error
+    //       console.error('Error making post request:', error);
+    //     });
+    // },
     getComments() {
-      const id = this.$route.params.id
-
-
-
+      const id = this.$route.params.id;
       CommentDataService.getAllByCommunity(id)
         .then(response => {
-
-          this.comments = response.data
-          console.log("comments number", this.comments)
-
+          this.comments = response.data;
+          
         })
         .catch(error => {
-          // Handle error
-          console.error('Error making post request:', error);
+          console.error('Error fetching comments:', error);
         });
     },
-
+    getCommentsonSubmit() {
+      const id = this.$route.params.id;
+      CommentDataService.getAllByCommunity(id)
+        .then(response => {
+          this.comments = response.data;
+          this.$nextTick(() => {
+              this.scrollToBottom();
+            });
+        })
+        .catch(error => {
+          console.error('Error fetching comments:', error);
+        });
+    },
+    scrollToBottom() {
+      console.log("scroll to botto,", console.log(this.$refs.commentsContainer))
+      const container = this.$refs.commentsContainer;
+      container.scrollTop = container.scrollHeight;
+    },
     // postComment() {
     //   // Create FormData object to handle file upload
     //   // if (this.$refs.fileInput.files[0] == "") {
@@ -381,7 +412,10 @@ export default {
             this.imageUrl = "";
             this.$refs.fileInput.value = '';
             // Trigger necessary function
-            this.getComments();
+            this. getCommentsonSubmit()
+          
+
+
           })
           .catch(error => {
             // Handle error
@@ -460,13 +494,7 @@ export default {
         this.newComment = "";
       }
     },
-    scrollToBottom() {
-      // Scroll to the bottom of the chat container
-      const chatContainer = this.$refs.chatContainer;
-      if (chatContainer) {
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-      }
-    },
+
     fetchCommunityData() {
       const id = this.$route.params.id; // Get the community id from the route parameters
       CommunityDataService.get(id)
@@ -487,14 +515,7 @@ export default {
     }
   },
 
-  watch: {
-    // Watch for changes in messages and scroll to bottom when messages change
-    messages() {
-      this.$nextTick(() => {
-        this.scrollToBottom();
-      });
-    }
-  }
+
 };
 </script>
 
