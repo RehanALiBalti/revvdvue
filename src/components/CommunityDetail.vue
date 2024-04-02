@@ -278,7 +278,7 @@ export default {
       CommentDataService.getAllByCommunity(id)
         .then(response => {
           this.comments = response.data;
-          
+
         })
         .catch(error => {
           console.error('Error fetching comments:', error);
@@ -290,8 +290,8 @@ export default {
         .then(response => {
           this.comments = response.data;
           this.$nextTick(() => {
-              this.scrollToBottom();
-            });
+            this.scrollToBottom();
+          });
         })
         .catch(error => {
           console.error('Error fetching comments:', error);
@@ -386,47 +386,79 @@ export default {
     //     });
     // },
 
+    // postComment() {
+    //   const formData = new FormData();
+    //   formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
+
+    //   // Append other data to the FormData object
+    //   formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
+    //   formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
+    //   formData.append('user_email', this.user_email);
+
+    //   // Check if formData is empty
+    //   if (this.imageUrl == "" && this.newComment == "") {
+    //     this.isModal2Open = true
+    //   }
+
+    //   else {
+    //     axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
+    //       .then(response => {
+    //         // Handle success
+    //         console.log('Post request successful:', response.data);
+    //         // Update the comments data with the response data if needed
+    //         this.comments = response.data;
+    //         // Clear inputs
+    //         this.newComment = "";
+    //         this.imageUrl = "";
+    //         this.$refs.fileInput.value = '';
+    //         // Trigger necessary function
+    //         this. getCommentsonSubmit()
+
+
+
+    //       })
+    //       .catch(error => {
+    //         // Handle error
+    //         console.error('Error making post request:', error);
+    //       });
+    //   }
+
+
+
+    // }
+    // ,
+
     postComment() {
       const formData = new FormData();
       formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
-
-      // Append other data to the FormData object
       formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
       formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
 
       // Check if formData is empty
       if (this.imageUrl == "" && this.newComment == "") {
-        this.isModal2Open = true
-      }
-
-      else {
+        this.isModal2Open = true;
+      } else {
         axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
           .then(response => {
             // Handle success
             console.log('Post request successful:', response.data);
-            // Update the comments data with the response data if needed
-            this.comments = response.data;
+            // Append the new comment to the comments array
+            this.comments.push(response.data);
             // Clear inputs
             this.newComment = "";
             this.imageUrl = "";
             this.$refs.fileInput.value = '';
-            // Trigger necessary function
-            this. getCommentsonSubmit()
-          
-
-
+            this.$nextTick(() => {
+              this.scrollToBottom();
+            });
           })
           .catch(error => {
             // Handle error
             console.error('Error making post request:', error);
           });
       }
-
-
-
-    }
-    ,
+    },
 
     addLike() {
       // Check if the like has already been added for this item in this session
