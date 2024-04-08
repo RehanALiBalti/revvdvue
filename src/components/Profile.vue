@@ -60,10 +60,46 @@
 								<p id="errormsg">{{ errorMessage }}</p>
 							</div>
 							<div class="col-md-12">
-								<div class="list-item-btn position-relative submit-btn-div">
-									<button type="submit" class="signin-btnli submitNow" id="submit-button">{{
-						$t("updateProfile") }}</button>
+								<div
+									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+										<span class="border-bottom-btn border-top-btn position-absolute">
+											<img src="@/assets/images/Group12engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+											<img src="@/assets/images/Path467engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+											<img src="@/assets/images/Path465engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<!-- data-bs-toggle="modal" -->
+										<button type="submit"
+											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+											id="submit-button">
+											{{
+						$t("updateProfile") }}
+										</button>
+										<span class="border-bottom-btn border-left-btn new-popup position-absolute">
+											<img src="@/assets/images/Group11engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<span class="border-bottom-btn position-absolute">
+											<img src="@/assets/images/Path473engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+									</div>
 								</div>
+								<!-- <div class="list-item-btn position-relative submit-btn-div">
+									<button type="submit" class="signin-btnli submitNow" >{{
+						$t("updateProfile") }}</button>
+								</div> -->
 							</div>
 						</div>
 					</form>

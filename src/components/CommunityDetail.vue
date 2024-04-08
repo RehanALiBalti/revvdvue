@@ -647,7 +647,7 @@ export default {
 }
 
 .communityDetailsMain {
-  border: 1px solid #FF7A00
+  border: 4px solid #FF7A00
 }
 
 .modal-dialog {
@@ -667,5 +667,33 @@ export default {
   border: 1px solid #1a202c;
   border-radius: 5px;
   outline: 0;
+}
+
+/* scroll bar */
+/* Hide the default scrollbar */
+.communityDetails-chatContent {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(138, 134, 134, 0.5) rgba(96, 95, 95, 0);
+  overflow-y: auto;
+
+}
+
+/* Define scrollbar track */
+.communityDetails-chatContent::-webkit-scrollbar-track {
+  background-color: transparent;
+
+}
+
+/* Define scrollbar thumb */
+.communityDetails-chatContent::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  height: 1500px !important;
+}
+
+/* Define scrollbar corner */
+.communityDetails-chatContent::-webkit-scrollbar-corner {
+  background-color: transparent;
+
 }
 </style>

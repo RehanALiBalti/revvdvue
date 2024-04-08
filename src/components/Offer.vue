@@ -2,8 +2,11 @@
 	<section class="my-5" id="gallery">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4">
-					<div class="card">
+				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+						<i class="fa-solid fa-lock" style="font-size:50px ;color:#ebebeb"></i>
+					</div>
+					<div class="card z-0">
 						<div class="card-body">
 							<h5 class="card-title">{{ $t('buy') }}</h5>
 							<p class="card-text">
@@ -27,8 +30,8 @@
 										<img src="@/assets/images/Path465engine.png"
 											class="img-border position-absolute" alt="">
 									</span>
-									<button type="button" class="signin-btnli Start Engine load-more-btn mx-auto"
-										data-bs-toggle="modal" data-bs-target="#mailModal">
+									<button type="button" class="signin-btnli Start Engine load-more-btn mx-auto "
+										data-bs-toggle="modal" data-bs-target="#mailModal" disabled>
 										{{ $t('loadMore') }}
 									</button>
 									<span class="border-bottom-btn border-left-btn position-absolute">
@@ -45,7 +48,10 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4">
+				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+						<i class="fa-solid fa-lock" style="font-size:50px ;color:#ebebeb"></i>
+					</div>
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">{{ $t('sell') }}</h5>
@@ -131,7 +137,10 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4">
+				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+						<i class="fa-solid fa-lock" style="font-size:50px ;color:#ebebeb"></i>
+					</div>
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">{{ $t('carShop') }}</h5>
@@ -173,7 +182,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4">
+				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+						<i class="fa-solid fa-lock" style="font-size:50px ;color:#ebebeb"></i>
+					</div>
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">{{ $t('marketPlace') }}</h5>
@@ -1119,6 +1131,7 @@ export default {
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+
 }
 
 .card-title {
@@ -1131,6 +1144,21 @@ export default {
 .card-body {
 	padding: 1rem 0 0 0;
 }
+
+.cardOverlay {
+
+	position: absolute;
+	height: 100%;
+	width: 100%;
+
+	background: url('../../public/images/overst.jfif');
+	opacity: 0.9;
+	background-size: contain;
+	z-index: 4
+}
+
+
+
 
 
 .border-bottom-btn.border-left-btn.position-absolute.new-popup.proceed-left {

@@ -29,7 +29,7 @@
             <div class="row">
 
               <div class="col-md-12 z-0 ">
-                <div class="mt-2 py-2 px-4 d-flex justify-content-center align-items-center">
+                <div class="mt-2   d-flex justify-content-center align-items-center borderBr">
                   <!-- <select class="form-select" v-model="make" @change="getModels(), getGenerations">
                     <option value="" selected disabled>Make</option>
                     <option v-for="(make, index) in makes" :key="index" :value="make.make">
@@ -59,33 +59,9 @@
               </div>
 
               <div class="col-md-12 z-0">
-                <div class="mt-2 py-2 px-4 d-flex justify-content-center align-items-center">
-                  <!-- <select class="form-select" v-model="model" @change="getGenerations">
-                    <option value="" selected disabled>Model</option>
-                    <option v-for="(model, index) in models" :key="index" :value="model.model">
-                      {{ model.model }}
-                    </option>
-                  </select> -->
-                  <!-- <v-select v-model="model" :options="models" label="model" placeholder="Select a Model"
-                    @change="getGenerations"></v-select> -->
-                  <!-- <v-select class="w-100 " v-model="smodel" :options="models" label="model" placeholder="Model"
-                    @change="getGenerations"></v-select> -->
+                <div class="mt-2  d-flex justify-content-center align-items-center borderBr ">
 
-                  <!-- <div class="customSelect" @blur="isOpenm = false">
-                    <input type="text" class="selected-option" v-model="smodel" placeholder="Select an option"
-                      @click.stop="toggleDropdownm" @focus="toggleDropdown" @input="filterModelOptions"
-                      @change="getModels">
-                    <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions != ''">
-                      <li v-for="(option, index) in modelfilteredOptions" :key="index"
-                        @click="selectOptionModel(option.model)">
-                        {{ option.model }}
-                      </li>
-                    </ul>
-                    <ul v-else v-show="isOpenm" class="options-list">
-                      <li>Nothing To Show</li>
-                    </ul>
-                  </div> -->
-                  <div class="customSelect" @blur="isOpenm = false">
+                  <div class="customSelect w-100" @blur="isOpenm = false">
                     <input type="text" class=" form-select" v-model="smodel" placeholder="Select an option"
                       @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
                       @change="getModels">
@@ -125,7 +101,7 @@
                 </div>
               </div> -->
               <div class="col-md-12 z-0">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center z-0">
+                <!-- <div class="mt-2 py-2 d-flex justify-content-center align-items-center z-0 borderBr">
                   <select class="form-select z-0 fselect1" @change="updateModels" v-model="selectedData"
                     @focus="isOpenm = false">
                     <option value="" selected>Production Years(Generation)</option>
@@ -133,10 +109,27 @@
                       {{ value.production_years }} ( {{ value.generation }} )
                     </option>
                   </select>
-                  <!-- <v-select class="w-100 " v-model="selectedData" :options="dataGy" label="model" placeholder="Model"
-                    @change="updateModels"></v-select> -->
+              
 
+                </div> -->
+
+
+                <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
+                  <div class="customSelect w-100" @blur="isOpeng = false">
+                    <input type="text" class="form-select" placeholder="Production Years(Generation)"
+                      @click.stop="toggleDropdownmo" @focus="isOpeng = true" @input="GenfilterOption"
+                      v-model="selectedData">
+                    <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
+                      <li v-for="(value, index) in GenfilteredOptions" :key="index" @click="updateModels(value)">
+                        {{ value.production_years }} ({{ value.generation }})
+                      </li>
+                    </ul>
+                    <ul v-else v-show="isOpeng" class="options-list">
+                      <li>Nothing To Show</li>
+                    </ul>
+                  </div>
                 </div>
+
               </div>
 
 
@@ -219,6 +212,7 @@ export default {
     return {
       isOpen: false,
       isOpenm: false,
+      isOpeng: false,
 
       isModal2Open: false,
       makefilteredOptions: [],
@@ -230,6 +224,7 @@ export default {
       models: [],
       generation: "",
       generations: [],
+      GenfilteredOptions: [],
       filteredGenerations: [],
       productionYear: "",
       productionYears: [],
@@ -278,6 +273,18 @@ export default {
     this.showFilterModal();
   },
   methods: {
+    GenfilterOption() {
+      const query = this.selectedData.toLowerCase();
+      if (query === '') {
+        this.GenfilteredOptions = this.dataGy;
+      } else {
+        this.GenfilteredOptions = this.dataGy.filter(option =>
+          option.production_years.toLowerCase().includes(query)
+        );
+        console.log(this.GenfilteredOptions)
+      }
+    },
+
     filterMakeOptions() {
 
       const query = this.make.toLowerCase();
@@ -307,6 +314,9 @@ export default {
     toggleDropdownm() {
       this.isOpenm = !this.isOpenm;
     },
+    toggleDropdownmo() {
+      this.isOpenm = !this.isOpenm;
+    },
     selectOption(option) {
 
       this.make = option;
@@ -322,10 +332,11 @@ export default {
 
 
     },
-    updateModels() {
-      if (this.selectedData) {
-        this.generation = this.selectedData.generation;
-        this.productionYear = this.selectedData.production_years;
+    updateModels(value) {
+      if (value) {
+        this.generation = value.generation;
+        this.productionYear = value.production_years;
+        this.selectedData = value.generation + (value.production_years)
       } else {
         this.generation = null;
         this.productionYear = null;
@@ -483,7 +494,8 @@ export default {
         .then((response) => {
           const data = response.data;
           console.log("data is", data)
-          this.dataGy = data
+          this.dataGy = data;
+          this.GenfilteredOptions = data
 
           data.forEach((item) => {
             if (
@@ -691,13 +703,24 @@ export default {
   color: #fff
 }
 
-
+.borderBr {
+  border: 1px solid #f95f19;
+  width: 100% !important;
+  border-radius: 10px;
+}
 
 /* new */
 
 .customSelect {
 
-  width: 100%
+  width: 100%;
+  padding: 1px;
+}
+
+.customSelect input {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: 0px transparent !important;
 }
 
 .selected-option {

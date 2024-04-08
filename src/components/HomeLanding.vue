@@ -466,7 +466,7 @@
               </router-link>
             </div>
 
-            <ul class="icons-list footer-icons-list my-5">
+            <!-- <ul class="icons-list footer-icons-list my-5">
               <li class="icons-list-item">
                 <router-link class="icons-list-atag" to="">
                   <i class="fab fa-facebook-f"></i>
@@ -489,7 +489,7 @@
                   <i class="fab fa-instagram"></i>
                 </router-link>
               </li>
-            </ul>
+            </ul> -->
           </div>
           <!-- Grid column -->
 

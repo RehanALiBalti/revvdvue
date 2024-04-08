@@ -18,7 +18,8 @@
 
           <ul class="navbar-nav ul-list ms-auto">
             <li class="list-item-btn position-relative">
-              <router-link class="nav-link" to="/">
+
+              <router-link class="nav-link" to="/" v-if="shouldShowLink">
                 <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
                   viewBox="0 0 29 32">
                   <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
@@ -162,6 +163,9 @@ export default {
           this.isLogin = JSON.parse(localStorage.getItem('login'));
         }
       }
+    },
+    shouldShowLink() {
+      return this.$route.path !== '/';
     }
   },
   created() {
@@ -171,6 +175,11 @@ export default {
 
     }
     window.addEventListener('storage', this.handleStorageChange.handleStorageChange);
+    this.$router.beforeEach((to, from, next) => {
+      // Set isOpen to false when the route changes
+      this.issOpen = false;
+      next();
+    });
 
   },
   beforeUnmount() {
