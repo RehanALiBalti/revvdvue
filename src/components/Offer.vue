@@ -1160,7 +1160,6 @@ export default {
 
 
 
-
 .border-bottom-btn.border-left-btn.position-absolute.new-popup.proceed-left {
 	left: 13px;
 }

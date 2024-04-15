@@ -35,7 +35,7 @@
           communityData.generation }}</p>
                   </div>
                   <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
-                    <div class="like-community">
+                    <div class="like-community" id="like">
                       <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
                       <small v-if="isLike">Liked</small>
                       <small v-else>Like</small>
@@ -573,17 +573,16 @@ export default {
   border-radius: 15px;
 }
 
-.like-community {
-  cursor: pointer;
-}
+
 
 .h1make {
   color: #FF7A00;
 
 }
 
-.like-community :hover {
-  color: #FF7A00
+#like>i:hover {
+  color: #FF7A00;
+  cursor: pointer;
 }
 
 .like {

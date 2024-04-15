@@ -113,7 +113,10 @@
                       {{ $t('profile') }}
                     </router-link>
                   </li>
-                  <li data-code="myAdds">
+                  <li data-code="myAdds" class="position-relative">
+                    <div class="cardOverlay d-flex justify-content-end pe-2 pt-2">
+                      <i class="fa-solid fa-lock" style="font-size:20px ;color:#ebebeb"></i>
+                    </div>
                     <router-link class="userListATag" to="/myCarListing">
                       {{ $t('myAdds') }}
                     </router-link>
@@ -269,6 +272,18 @@ export default {
 
 
 <style scoped>
+.cardOverlay {
+
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  background: url('../../public/images/overst.jfif');
+  opacity: 0.9;
+  background-size: cover;
+  z-index: 4
+}
+
 @media screen and (max-width: 991px) {
   .navbar-toggler {
     padding: 0.25rem 0.75rem;

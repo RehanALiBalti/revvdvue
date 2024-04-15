@@ -73,7 +73,7 @@
               </option>
             </select>
             <!-- Error message for Country -->
-            <p class="text-danger" v-if="!formData.userType">{{ $t('selectUserType') }}</p>
+            <!-- <p class="text-danger" v-if="!formData.userType">{{ $t('selectUserType') }}</p> -->
 
           </div>
           <div class="col-md-4">
@@ -81,16 +81,16 @@
             <input v-model="formData.email" id="email" type="email" name="email" class="form-control form-input"
               placeholder="Enter here" />
             <!-- Error message for Email -->
-            <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p>
-            <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p>
+            <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
+            <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
           </div>
           <div class="col-md-4">
             <label for="phone" class="form-label">{{ $t('phoneNumber') }}</label>
             <input v-model="formData.phone" type="tel" id="phone" name="phone" class="form-control form-input"
               placeholder="Enter here" />
             <!-- Error message for Phone -->
-            <p class="text-danger" v-if="!formData.phone">${{ $t('enterPhoneNumber') }}</p>
-            <p class="text-danger" v-else-if="!isPhoneValid">Please enter a valid phone number.</p>
+            <!-- <p class="text-danger" v-if="!formData.phone">${{ $t('enterPhoneNumber') }}</p> -->
+            <!-- <p class="text-danger" v-else-if="!isPhoneValid">Please enter a valid phone number.</p> -->
           </div>
           <div class="col-md-6">
             <label for="country" class="form-label">{{ $t('country') }}</label>
@@ -353,7 +353,7 @@
               <option value="ZW">Zimbabwe</option>
             </select>
             <!-- Error message for Country -->
-            <p class="text-danger" v-if="!formData.country">{{ $t('selectCountry') }}.</p>
+            <!-- <p class="text-danger" v-if="!formData.country">{{ $t('selectCountry') }}.</p> -->
           </div>
           <div class="col-md-6">
             <label for="city" class="form-label">{{ $t('city') }}</label>
@@ -362,7 +362,7 @@
             <input v-model="formData.city" type="text" id="city" name="city" class="form-control form-input"
               placeholder="Enter here" />
             <!-- Error message for City -->
-            <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p>
+            <!-- <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p> -->
           </div>
           <div class="col-md-12">
             <label for="message" class="form-label">{{ $t('becomeAmbassador') }}</label>
@@ -370,7 +370,7 @@
               placeholder="We are looking for driven car enthusiasts to join our team of brand advocates, tell us about who you are, what you do and why you think you are a good fit."
               rows="4"></textarea>
             <!-- Error message for Message -->
-            <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p>
+            <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
           </div>
 
 
@@ -445,7 +445,11 @@
         <!-- Grid row -->
         <div class="row mt-3">
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-4 col-xl-4 mb-4">
+          <div class="col-md-4 col-lg-4 col-xl-4 mb-4 position-relative">
+            <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+              <i class="fa-solid fa-lock" style="font-size:150px ;color:#ebebeb"></i>
+
+            </div>
             <!-- Content -->
             <h5 class="h5-title text-capitalize mb-4">{{ $t('weeklyStory') }}</h5>
             <div class="car-content">
@@ -599,11 +603,70 @@ export default {
         this.isLogin = JSON.parse(event.newValue);
       }
     },
-    submitForm() {
-      //Reset error message
-      this.errorMessage = "";
+    // submitForm() {
+    //   //Reset error message
+    //   this.errorMessage = "";
 
-      //Validate userType
+    //   //Validate userType
+    //   if (this.formData.userType === "") {
+    //     this.formData.errorMessage = "Please select a user type";
+    //     return;
+    //   }
+
+    //   // Validate email
+    //   const emailRegex = /^\S+@\S+\.\S+$/;
+    //   if (this.formData.email === "") {
+    //     this.formData.errorMessage = "Please enter your email address";
+    //     return;
+    //   } else if (!emailRegex.test(this.formData.email)) {
+    //     this.formData.errorMessage = "please enter a valid email address";
+    //     return;
+    //   }
+
+    //   //validate phone
+    //   const phoneRegex = /^\+?(\d.*){3,}$/;
+    //   if (this.formData.phone === "") {
+    //     this.formData.errorMessage = "Please enter your phone number.";
+    //     return;
+    //   } else if (!phoneRegex.test(this.formData.phone)) {
+    //     this.formData.errorMessage = "Please enter a valid phone number.";
+    //     return;
+    //   }
+
+    //   // Validate country
+    //   if (this.formData.country === "") {
+    //     this.formData.errorMessage = "Please enter your country.";
+    //   }
+
+    //   // Validate city
+    //   if (this.formData.city === "") {
+    //     this.formData.errorMessage = "Please enter your city.";
+    //     return;
+    //   }
+    //   // Validate message
+    //   if (this.formData.message === "") {
+    //     this.formData.errorMessage = "Please enter your message.";
+    //     return;
+    //   }
+
+    //   // Validate acceptCondition
+    //   if (!this.formData.acceptCondition) {
+    //     this.formData.errorMessage = "Please accept the terms and conditions.";
+    //     return;
+    //   }
+
+    //   // For demonstration purposes, let's just log the form data
+    //   console.log("Form submitted successfully!");
+    //   console.log("Form data:", this.formData);
+
+    //   // Open the modal after successful form submission
+    //   this.showModal();
+    // },
+    submitForm() {
+      // Reset error message
+      this.formData.errorMessage = "";
+
+      // Validate userType
       if (this.formData.userType === "") {
         this.formData.errorMessage = "Please select a user type";
         return;
@@ -615,11 +678,11 @@ export default {
         this.formData.errorMessage = "Please enter your email address";
         return;
       } else if (!emailRegex.test(this.formData.email)) {
-        this.formData.errorMessage = "please enter a valid email address";
+        this.formData.errorMessage = "Please enter a valid email address";
         return;
       }
 
-      //validate phone
+      // Validate phone
       const phoneRegex = /^\+?(\d.*){3,}$/;
       if (this.formData.phone === "") {
         this.formData.errorMessage = "Please enter your phone number.";
@@ -631,7 +694,8 @@ export default {
 
       // Validate country
       if (this.formData.country === "") {
-        this.formData.errorMessage = "Please enter your country.";
+        this.formData.errorMessage = "Please select your country.";
+        return;
       }
 
       // Validate city
@@ -639,6 +703,7 @@ export default {
         this.formData.errorMessage = "Please enter your city.";
         return;
       }
+
       // Validate message
       if (this.formData.message === "") {
         this.formData.errorMessage = "Please enter your message.";
@@ -651,13 +716,14 @@ export default {
         return;
       }
 
-      // For demonstration purposes, let's just log the form data
+      // If all validations pass, you can proceed with form submission
       console.log("Form submitted successfully!");
       console.log("Form data:", this.formData);
 
       // Open the modal after successful form submission
       this.showModal();
     },
+
     // Method to show the modal
     showModal() {
       var modal = document.getElementById("ignismyModal");
@@ -791,6 +857,19 @@ export default {
   border-radius: 0.25rem;
   opacity: 1;
 }
+
+.cardOverlay {
+
+  position: absolute;
+  height: 100%;
+  width: 96%;
+
+  background: url('../../public/images/overst.jfif');
+  opacity: 0.9;
+  background-size: cover;
+  z-index: 4
+}
+
 
 @media screen and (max-width: 991px) {
 
