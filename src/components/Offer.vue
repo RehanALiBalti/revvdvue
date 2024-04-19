@@ -1151,9 +1151,9 @@ export default {
 	height: 100%;
 	width: 100%;
 
-	background: url('../../public/images/overst.jfif');
+	background: url('../../public/images/layer1.png');
 	opacity: 0.9;
-	background-size: contain;
+	background-size: cover;
 	z-index: 4
 }
 

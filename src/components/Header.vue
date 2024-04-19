@@ -181,6 +181,7 @@ export default {
     this.$router.beforeEach((to, from, next) => {
       // Set isOpen to false when the route changes
       this.issOpen = false;
+      this.isOpen = false;
       next();
     });
 
@@ -278,7 +279,7 @@ export default {
   height: 100%;
   width: 100%;
 
-  background: url('../../public/images/overst.jfif');
+  background: url('../../public/images/layer2.png');
   opacity: 0.9;
   background-size: cover;
   z-index: 4

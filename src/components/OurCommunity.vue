@@ -41,7 +41,7 @@
 
 
                   <div class="customSelect" @blur="isOpen = false">
-                    <input type="text" class="form-select" v-model="make" placeholder="Select an option"
+                    <input type="text" class="form-select" v-model="make" placeholder="Select a Make"
                       @click.stop="toggleDropdown" @focus="toggleDropdown" @input="filterMakeOptions"
                       @change="getModels">
                     <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
@@ -295,8 +295,10 @@ export default {
       }
     },
     filterModelOptions() {
+
       console.log(this.smodel);
       const query = this.smodel.toLowerCase();
+
       if (query === '') {
         this.modelfilteredOptions = this.models;
       } else {
@@ -473,18 +475,25 @@ export default {
     },
     getModels() {
       console.log("get modals")
+
       this.smodel = ""
       this.generations = [];
       this.productionYears = [];
-      CarDataService.getModels(this.make)
-        .then((response) => {
-          this.models = response.data;
-          this.modelfilteredOptions = response.data;
-          console.log(response.data)
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      if (this.make == "") {
+        this.modelfilteredOptions = ""
+      }
+      else {
+        CarDataService.getModels(this.make)
+          .then((response) => {
+            this.models = response.data;
+            this.modelfilteredOptions = response.data;
+            console.log(response.data)
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+
     },
 
     getGenerations() {
@@ -745,7 +754,8 @@ export default {
   padding: 0;
   margin: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 300px;
+  min-height: fit-content;
+  max-height: 300px;
   overflow: scroll;
   color: #fff
 }

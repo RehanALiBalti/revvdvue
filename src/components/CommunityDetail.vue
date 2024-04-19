@@ -368,21 +368,75 @@ export default {
     //       });
     //   }
     // },
+    // postComment() {
+    //   // Set imgLoading to true before making the request
+    //   this.imgLoading = true;
+    //   const file = this.$refs.fileInput.files[0];
+    //   const maxSizeInBytes = 1 * 1024 * 1024; // 1 MB
+    //   if (file.size > maxSizeInBytes) {
+    //     // Provide feedback to the user that the image size exceeds the limit
+    //     this.isModal3Open = true
+
+    //     this.imgLoading = false; // Reset imgLoading
+    //     return;
+    //   }
+
+    //   const formData = new FormData();
+    //   formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
+    //   formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
+    //   formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
+    //   formData.append('user_email', this.user_email);
+
+    //   // Check if formData is empty
+    //   if (this.imageUrl == "" && this.newComment == "") {
+    //     this.isModal2Open = true;
+    //     this.imgLoading = false;
+    //   } else {
+    //     axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
+    //       .then(response => {
+    //         // Handle success
+    //         console.log('Post request successful:', response.data);
+    //         // Append the new comment to the comments array
+    //         this.comments.push(response.data);
+    //         // Clear inputs
+    //         this.newComment = "";
+    //         this.imageUrl = "";
+
+    //         // Check if this.$refs.fileInput exists before accessing its properties
+    //         if (this.$refs.fileInput) {
+    //           this.$refs.fileInput.value = '';
+    //         }
+
+    //         this.$nextTick(() => {
+    //           this.scrollToBottom();
+    //         });
+    //         // Set imgLoading back to false after successful response
+    //         this.imgLoading = false;
+    //       })
+    //       .catch(error => {
+    //         // Handle error
+    //         console.error('Error making post request:', error);
+    //         // Set imgLoading back to false after error
+    //         this.imgLoading = false;
+    //       });
+    //   }
+    // }
     postComment() {
       // Set imgLoading to true before making the request
       this.imgLoading = true;
+
       const file = this.$refs.fileInput.files[0];
       const maxSizeInBytes = 1 * 1024 * 1024; // 1 MB
-      if (file.size > maxSizeInBytes) {
-        // Provide feedback to the user that the image size exceeds the limit
-        this.isModal3Open = true
 
+      if (file && file.size > maxSizeInBytes) {
+        // Provide feedback to the user that the image size exceeds the limit
+        this.isModal3Open = true;
         this.imgLoading = false; // Reset imgLoading
         return;
       }
 
       const formData = new FormData();
-      formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
+      formData.append('image', file); // Append the selected file
       formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
       formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
@@ -421,6 +475,7 @@ export default {
           });
       }
     }
+
     ,
 
     // addLike() {

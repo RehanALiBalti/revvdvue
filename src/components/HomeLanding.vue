@@ -470,7 +470,7 @@
               </router-link>
             </div>
 
-            <!-- <ul class="icons-list footer-icons-list my-5">
+            <ul class="icons-list footer-icons-list my-5">
               <li class="icons-list-item">
                 <router-link class="icons-list-atag" to="">
                   <i class="fab fa-facebook-f"></i>
@@ -485,7 +485,7 @@
 
               <li class="icons-list-item">
                 <router-link class="icons-list-atag" to="">
-                  <i class="fa-brands fa-youtube"></i>
+                  <i class="fa-brands fa-tiktok"></i>
                 </router-link>
               </li>
               <li class="icons-list-item">
@@ -493,7 +493,7 @@
                   <i class="fab fa-instagram"></i>
                 </router-link>
               </li>
-            </ul> -->
+            </ul>
           </div>
           <!-- Grid column -->
 
@@ -861,10 +861,10 @@ export default {
 .cardOverlay {
 
   position: absolute;
-  height: 100%;
+  height: 65%;
   width: 96%;
 
-  background: url('../../public/images/overst.jfif');
+  background: url('../../public/images/layer2.png');
   opacity: 0.9;
   background-size: cover;
   z-index: 4
