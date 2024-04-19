@@ -182,8 +182,8 @@
           <form @submit.prevent="submitFilter">
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> Something Is Missing </span></h5>
-              <p class="text-white">Please Select Both Make & Modal</p>
-              <p class="text-warning">Please write first to select make and model</p>
+              <p class="text-white">Please select make, modal and year</p>
+
             </div>
 
           </form>
