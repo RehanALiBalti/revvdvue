@@ -108,19 +108,24 @@
           <div class="form-group d-flex flex-column">
 
             <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment">
-            <input type="file" class="form-control-file my-2 d-none" @change="handleFileChange" ref="fileInput">
-            <svg @click="postComment" xmlns="http://www.w3.org/2000/svg" class=" position-absolute send-icon"
-              width="31.5" height="27" viewBox="0 0 31.5 27">
-              <path id="Icon_material-send" data-name="Icon material-send"
-                d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
-            </svg>
-            <div class="upsection" v-if="imageUrl != ''">
-              <div class="position-relative mainUp">
-                <img class="upImage" :src="imageUrl" alt="">
-                <span class="cancel" @click="removeImage"><i class="fa-solid fa-xmark"></i></span>
-              </div>
+            <div v-if="imgLoading" class="imgLoadingBox">
+              <div class="box2"></div>
             </div>
-            <span class="image_icon" @click="openFileInput"><i class="fa-solid fa-image"></i></span>
+            <div v-else>
+              <input type="file" class="form-control-file my-2 d-none" @change="handleFileChange" ref="fileInput">
+              <svg @click="postComment" xmlns="http://www.w3.org/2000/svg" class=" position-absolute send-icon"
+                width="31.5" height="27" viewBox="0 0 31.5 27">
+                <path id="Icon_material-send" data-name="Icon material-send"
+                  d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
+              </svg>
+              <div class="upsection" v-if="imageUrl != ''">
+                <div class="position-relative mainUp">
+                  <img class="upImage" :src="imageUrl" alt="">
+                  <span class="cancel" @click="removeImage"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+              </div>
+              <span class="image_icon" @click="openFileInput"><i class="fa-solid fa-image"></i></span>
+            </div>
             <!-- <input type="submit" value="Post" class="btn my-2 "> -->
 
           </div>
@@ -150,6 +155,27 @@
       </div>
     </div>
   </div>
+
+  <!-- modal -->
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModal3Open === true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="close-icon" @click="isModal3Open = false" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </span>
+          <form @submit.prevent="submitFilter">
+            <div class="mt-4 py-2">
+              <h5 class="card-title"><span class="choose"> !OOPS </span></h5>
+              <p class="text-white">The selected image exceeds the maximum allowed size of 1 MB.</p>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -164,9 +190,11 @@ export default {
   data() {
     return {
       isModal2Open: false,
+      isModal3Open: false,
       imageUrl: '',
       communityData: [],
       loading: true, // Initially set to true to show loader image,
+      imgLoading: false,
       id: "",
       isLike: false
       ,
@@ -302,133 +330,57 @@ export default {
       const container = this.$refs.commentsContainer;
       container.scrollTop = container.scrollHeight;
     },
-    // postComment() {
-    //   // Create FormData object to handle file upload
-    //   // if (this.$refs.fileInput.files[0] == "") {
-    //   //   const requestData = {
-    //   //     community_id: this.id, // Assuming `this.id` contains the community ID
-    //   //     comments: this.newComment, // Assuming `this.newComment` contains the new comment text
-    //   //     user_email: this.user_email
-    //   //   };
-
-    //   //   axios.post('http://137.184.111.69:5000/api/comments/comments', requestData)
-    //   //     .then(response => {
-    //   //       // Handle success
-    //   //       console.log('Post request successful:', response.data);
-    //   //       // Optionally, update the comments data with the response data if needed
-    //   //       // this.comments = response.data;
-    //   //       this.comments = response.data
-    //   //       this.newComment = ""
-    //   //       this.getComments()
-    //   //     })
-    //   //     .catch(error => {
-    //   //       // Handle error
-    //   //       console.error('Error making post request:', error);
-    //   //     });
-    //   // }
 
 
 
-    //   const formData = new FormData();
-    //   formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
-
-    //   // Append other data to the FormData object
-    //   formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
-    //   formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
-    //   formData.append('user_email', this.user_email);
-
-    //   // Send the FormData object containing file and other data via POST request
-    //   axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
-    //     .then(response => {
-    //       // Handle success
-    //       console.log('Post request successful:', response.data);
-    //       // Optionally, update the comments data with the response data if needed
-    //       // this.comments = response.data;
-    //       this.comments = response.data
-    //       this.newComment = "";
-    //       this.getComments();
-    //       this.imageUrl = ""
-
-
-    //     })
-    //     .catch(error => {
-    //       // Handle error
-    //       console.error('Error making post request:', error);
-    //     });
-    //   this.getComments()
-    // },
-    // postComment() {
-    //   const formData = new FormData();
-    //   formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
-
-    //   // Append other data to the FormData object
-    //   formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
-    //   formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
-    //   formData.append('user_email', this.user_email);
-
-    //   // Send the FormData object containing file and other data via POST request
-    //   axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
-    //     .then(response => {
-    //       // Handle success
-    //       console.log('Post request successful:', response.data);
-    //       // Update the comments data with the response data if needed
-    //       this.comments = response.data;
-    //       // Clear inputs
-    //       this.newComment = "";
-    //       this.imageUrl = "";
-    //       this.$refs.fileInput.value = ''
-    //       // Trigger necessary function
-    //       this.getComments();
-    //     })
-    //     .catch(error => {
-    //       // Handle error
-    //       console.error('Error making post request:', error);
-    //     });
-    // },
 
     // postComment() {
+    //   this.imgLoading = true;
     //   const formData = new FormData();
     //   formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
-
-    //   // Append other data to the FormData object
     //   formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
     //   formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
     //   formData.append('user_email', this.user_email);
 
     //   // Check if formData is empty
     //   if (this.imageUrl == "" && this.newComment == "") {
-    //     this.isModal2Open = true
-    //   }
-
-    //   else {
+    //     this.isModal2Open = true;
+    //   } else {
     //     axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
     //       .then(response => {
     //         // Handle success
     //         console.log('Post request successful:', response.data);
-    //         // Update the comments data with the response data if needed
-    //         this.comments = response.data;
+    //         // Append the new comment to the comments array
+    //         this.comments.push(response.data);
     //         // Clear inputs
     //         this.newComment = "";
     //         this.imageUrl = "";
     //         this.$refs.fileInput.value = '';
-    //         // Trigger necessary function
-    //         this. getCommentsonSubmit()
-
-
-
+    //         this.$nextTick(() => {
+    //           this.scrollToBottom();
+    //         });
+    //         this.imgLoading = false;
     //       })
     //       .catch(error => {
     //         // Handle error
     //         console.error('Error making post request:', error);
+    //         this.imgLoading = false;
     //       });
     //   }
-
-
-
-    // }
-    // ,
-
+    // },
     postComment() {
+      // Set imgLoading to true before making the request
+      this.imgLoading = true;
+      const file = this.$refs.fileInput.files[0];
+      const maxSizeInBytes = 1 * 1024 * 1024; // 1 MB
+      if (file.size > maxSizeInBytes) {
+        // Provide feedback to the user that the image size exceeds the limit
+        this.isModal3Open = true
+
+        this.imgLoading = false; // Reset imgLoading
+        return;
+      }
+
       const formData = new FormData();
       formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
       formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
@@ -438,6 +390,7 @@ export default {
       // Check if formData is empty
       if (this.imageUrl == "" && this.newComment == "") {
         this.isModal2Open = true;
+        this.imgLoading = false;
       } else {
         axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
           .then(response => {
@@ -448,17 +401,27 @@ export default {
             // Clear inputs
             this.newComment = "";
             this.imageUrl = "";
-            this.$refs.fileInput.value = '';
+
+            // Check if this.$refs.fileInput exists before accessing its properties
+            if (this.$refs.fileInput) {
+              this.$refs.fileInput.value = '';
+            }
+
             this.$nextTick(() => {
               this.scrollToBottom();
             });
+            // Set imgLoading back to false after successful response
+            this.imgLoading = false;
           })
           .catch(error => {
             // Handle error
             console.error('Error making post request:', error);
+            // Set imgLoading back to false after error
+            this.imgLoading = false;
           });
       }
-    },
+    }
+    ,
 
     addLike() {
       // Check if the like has already been added for this item in this session
@@ -603,6 +566,21 @@ export default {
   border: 6px solid;
   border-color: #FF7A00 transparent;
   animation: spin 1s infinite ease-out;
+}
+
+.box2 {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: #FF7A00 transparent;
+  animation: spin 1s infinite ease-out;
+}
+
+.imgLoadingBox {
+  position: absolute;
+  top: 22px;
+  right: 12px
 }
 
 .mainUp {

@@ -580,7 +580,9 @@ export default {
       //   modal.classList.remove("show");
       //   modal.style.display = "none";
       // }
-      this.isModalOpen = false
+
+      // this.isModalOpen = false
+      this.isModalOpen = true
     },
 
     handleOutsideClick(event) {
