@@ -864,7 +864,10 @@ export default {
   height: 65%;
   width: 96%;
 
-  background: url('../../public/images/layer2.png');
+  /* background: url('../../public/images/layer2.png'); */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    /* Background image */
+    url('../../public/images/layer1.png');
   opacity: 0.9;
   background-size: cover;
   z-index: 4

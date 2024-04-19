@@ -70,7 +70,7 @@
             </div>
             <div class="communityDetails-chatContent" id="chat-messages" ref="commentsContainer">
 
-              <div v-for="comment in comments" :key="comment.comments">
+              <!-- <div v-for="comment in comments" :key="comment.comments">
                 <div v-if="comment.user_email == user_email" class="d-flex flex-column">
                   <div class="receiver-chats ">
                     <p class="receiver-chats-para">
@@ -85,9 +85,38 @@
                     <p class="sender-chats-para">
                       {{ comment.comments }}
                     </p>
+
                     <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
                       class="CommentImage">
+
                   </div>
+                </div>
+              </div> -->
+              <div v-for="comment in comments" :key="comment.comments">
+                <div v-if="comment.user_email == user_email" class="d-flex flex-column">
+                  <div class="receiver-chats ">
+                    <p class="receiver-chats-para">
+                      {{ comment.comments }}
+                    </p>
+                    <img v-if="comment.image" @click="showModal(comment.image)"
+                      :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image" class="CommentImage">
+                  </div>
+                </div>
+                <div v-else class="d-flex flex-column">
+                  <div class="sender-chats">
+                    <p class="sender-chats-para">
+                      {{ comment.comments }}
+                    </p>
+                    <img v-if="comment.image" @click="showModal(comment.image)"
+                      :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image" class="CommentImage">
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modala" v-if="modalVisible">
+                <div class="modala-content">
+                  <span class="close" @click="closeModal" style="color:#FF7A00">&times;</span>
+                  <img :src="'http://137.184.111.69:5000/' + modalImageUrl" alt="Modal Image">
                 </div>
               </div>
 
@@ -189,6 +218,8 @@ export default {
 
   data() {
     return {
+      modalVisible: false,
+      modalImageUrl: '',
       isModal2Open: false,
       isModal3Open: false,
       imageUrl: '',
@@ -238,6 +269,18 @@ export default {
   },
 
   methods: {
+    showModal(imageUrl) {
+      console.log(imageUrl)
+      this.modalImageUrl = imageUrl;
+      this.modalVisible = true;
+      // Prevent scrolling of the background content when the modal is open
+      document.body.style.overflow = 'hidden';
+    },
+    closeModal() {
+      this.modalVisible = false;
+      // Enable scrolling of the background content when the modal is closed
+      document.body.style.overflow = '';
+    },
     removeImage() {
       // Reset imageUrl to remove the image
       this.imageUrl = '';
@@ -772,5 +815,48 @@ export default {
 .communityDetails-chatContent::-webkit-scrollbar-corner {
   background-color: transparent;
 
+}
+
+
+
+
+/* Modal */
+.modala {
+
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modala-content {
+  position: relative;
+  margin: auto;
+  width: 80%;
+  max-width: 800px;
+  max-height: 80%;
+}
+
+.modala-content img {
+  width: 100%;
+  height: auto;
+}
+
+/* Close button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #ccc;
 }
 </style>

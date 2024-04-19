@@ -201,9 +201,10 @@ import CommunityDataService from "../services/CommunityDataService";
 
 
 
-
 export default {
   name: "OurCommunity",
+
+
   components: {
 
 

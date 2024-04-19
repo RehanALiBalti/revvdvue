@@ -12,7 +12,6 @@ import HeaderItem from '@/components/Header.vue';
 import FooterSect from '@/components/FooterSect'
 import FooterSect2 from '@/components/FooterSect2'
 import { useI18n } from 'vue-i18n';
-
 export default {
   name: 'App',
   components: {

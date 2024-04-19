@@ -34,6 +34,13 @@
                         <i class="fab fa-instagram"></i>
                     </a>
                 </li>
+                <li class="icons-list-item">
+                    <a class="icons-list-atag"
+                        href="https://www.instagram.com/revvdout/?igshid=c2g3bzQ0bTZsdHlk&amp;utm_source=qr"
+                        target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
