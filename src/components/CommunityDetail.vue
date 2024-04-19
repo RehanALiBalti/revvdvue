@@ -764,7 +764,8 @@ export default {
 .communityDetails-chatContent::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  height: 1500px !important;
+  min-height: 200px !important;
+
 }
 
 /* Define scrollbar corner */
