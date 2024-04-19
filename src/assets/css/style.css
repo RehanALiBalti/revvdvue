@@ -377,7 +377,7 @@ video::-webkit-media-controls {
 	overflow-y: auto;
 	overflow-x: hidden;
 	left: 0;
-	top: 76px;
+	top: 45px;
 	transition: all 0.1s ease;
 }
 
@@ -519,7 +519,7 @@ video::-webkit-media-controls {
 	overflow-y: auto;
 	overflow-x: hidden;
 	left: 0;
-	top: 76px;
+	top: 45px;
 	transition: all 0.1s ease;
 }
 
@@ -536,7 +536,7 @@ video::-webkit-media-controls {
 	overflow-y: auto;
 	overflow-x: hidden;
 	left: 0;
-	top: 76px;
+	top: 45px;
 	transition: all 0.1s ease;
 }
 

@@ -497,34 +497,59 @@ export default {
 
     },
 
-    getGenerations() {
+    // getGenerations() {
 
-      console.log('in generation', "make", this.make, "modal", this.smodel)
+    //   console.log('in generation', "make", this.make, "modal", this.smodel)
+    //   CarDataService.getGenerations(this.make, this.smodel)
+    //     .then((response) => {
+    //       const data = response.data;
+    //       console.log("data is", data)
+    //       this.dataGy = data;
+    //       this.GenfilteredOptions = data
+
+    //       data.forEach((item) => {
+    //         if (
+    //           item.generation != "" &&
+    //           item.generation != "-" &&
+    //           item.generation != "??" &&
+    //           item.generation != "?"
+    //         ) {
+    //           this.generations.push(item.generation);
+    //           this.productionYears.push(item.production_years);
+    //         }
+    //       });
+    //       this.generations = [...new Set(this.generations)];
+    //       this.productionYears = [...new Set(this.productionYears)];
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
+    getGenerations() {
+      console.log('in generation', "make", this.make, "modal", this.smodel);
       CarDataService.getGenerations(this.make, this.smodel)
         .then((response) => {
           const data = response.data;
-          console.log("data is", data)
+          console.log("data is", data);
           this.dataGy = data;
-          this.GenfilteredOptions = data
 
-          data.forEach((item) => {
-            if (
-              item.generation != "" &&
-              item.generation != "-" &&
-              item.generation != "??" &&
-              item.generation != "?"
-            ) {
-              this.generations.push(item.generation);
-              this.productionYears.push(item.production_years);
-            }
+          this.GenfilteredOptions = data.filter(item => {
+            return (
+              item.generation !== "" &&
+              item.generation !== "-" &&
+              item.generation !== "??" &&
+              item.generation !== "?"
+            );
           });
-          this.generations = [...new Set(this.generations)];
-          this.productionYears = [...new Set(this.productionYears)];
+
+          this.generations = [...new Set(this.GenfilteredOptions.map(item => item.generation))];
+          this.productionYears = [...new Set(this.GenfilteredOptions.map(item => item.production_years))];
         })
         .catch((e) => {
           console.log(e);
         });
     },
+
     getYears() {
 
 

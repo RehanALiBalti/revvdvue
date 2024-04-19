@@ -93,7 +93,7 @@
                 </div>
               </div> -->
               <div v-for="comment in comments" :key="comment.comments">
-                <div v-if="comment.user_email == user_email" class="d-flex flex-column">
+                <div v-if="comment.user_email == user_email" class="d-flex flex-column position-relative">
                   <div class="receiver-chats ">
                     <p class="receiver-chats-para">
                       {{ comment.comments }}
@@ -274,12 +274,12 @@ export default {
       this.modalImageUrl = imageUrl;
       this.modalVisible = true;
       // Prevent scrolling of the background content when the modal is open
-      document.body.style.overflow = 'hidden';
+
     },
     closeModal() {
       this.modalVisible = false;
       // Enable scrolling of the background content when the modal is closed
-      document.body.style.overflow = '';
+
     },
     removeImage() {
       // Reset imageUrl to remove the image
@@ -826,7 +826,7 @@ export default {
   position: fixed;
   z-index: 999;
   left: 0;
-  top: 0;
+  top: 5%;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
@@ -836,8 +836,8 @@ export default {
   position: relative;
   margin: auto;
   width: 80%;
-  max-width: 800px;
-  max-height: 80%;
+  max-width: 500px;
+  max-height: 70%;
 }
 
 .modala-content img {

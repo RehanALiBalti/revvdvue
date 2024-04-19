@@ -82,10 +82,10 @@
             </li>
 
             <li class="list-item-btn position-relative" v-if="isLogin == true">
-              <div class="custom-select" @click="toggleDropdown" :class="{ open: isOpen }">
+              <div class="custom-select" @click="toggleDropdown" :class="{ open: isOpen }" @blur="toggled1">
                 <span class="dropdown-toggle" :class="{ up: isOpen }">{{ selectedLanguage }}</span>
                 <ul class="custom-options" v-show="isOpen" @click.stop id="country-language-selector"
-                  :class="{ open: isOpen }">
+                  :class="{ open: isOpen }" @blur="toggled1">
                   <li v-for="language in languages" :key="language.code" @click="selectLanguage(language.code)">
                     {{ language.name }}
                   </li>
@@ -194,6 +194,10 @@ export default {
     this.fetchProfileData()
   },
   methods: {
+    toggled1() {
+      console.log("ccccc")
+      this.isOpen = false
+    },
     async fetchProfileData() {
       try {
         console.log("Fetching profile data...");
