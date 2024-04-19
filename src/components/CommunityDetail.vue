@@ -423,9 +423,40 @@ export default {
     }
     ,
 
+    // addLike() {
+    //   // Check if the like has already been added for this item in this session
+
+    //   if (!localStorage.getItem('liked-' + this.id)) {
+    //     const requestData = {
+    //       id: this.id
+    //     };
+    //     axios.post('http://137.184.111.69:5000/api/communities/likes', requestData)
+    //       .then(response => {
+    //         // Handle success
+    //         console.log('Post request successful:', response.data);
+
+    //         // Set the flag in local storage with the respective ID
+    //         localStorage.setItem('liked-' + this.id, true);
+    //         console.log(`liked-${this.id}`)
+    //         this.isLike = localStorage.getItem(`liked-${this.id}`);
+    //         this.fetchCommunityData()
+
+    //       })
+    //       .catch(error => {
+    //         // Handle error
+    //         console.error('Error making post request:', error);
+    //       });
+    //   } else {
+    //     // If the like has already been added, you may want to show a message or handle the situation differently
+    //     console.log('Like already added for this item.');
+    //     this.isLike = localStorage.getItem(`liked-${this.id}`);
+
+    //     console.log()
+
+    //   }
+    // },
     addLike() {
       // Check if the like has already been added for this item in this session
-
       if (!localStorage.getItem('liked-' + this.id)) {
         const requestData = {
           id: this.id
@@ -439,22 +470,35 @@ export default {
             localStorage.setItem('liked-' + this.id, true);
             console.log(`liked-${this.id}`)
             this.isLike = localStorage.getItem(`liked-${this.id}`);
-            this.fetchCommunityData()
-
+            this.fetchCommunityData();
           })
           .catch(error => {
             // Handle error
             console.error('Error making post request:', error);
           });
       } else {
-        // If the like has already been added, you may want to show a message or handle the situation differently
-        console.log('Like already added for this item.');
-        this.isLike = localStorage.getItem(`liked-${this.id}`);
+        // If the like has already been added, you may want to remove the like
+        const requestData = {
+          id: this.id
+        };
+        axios.post('http://137.184.111.69:5000/api/communities/dislikes', requestData)
+          .then(response => {
+            // Handle success
+            console.log('Dislike request successful:', response.data);
 
-        console.log()
-
+            // Remove the flag from local storage
+            localStorage.removeItem('liked-' + this.id);
+            console.log(`Disliked-${this.id}`)
+            this.isLike = false;
+            this.fetchCommunityData();
+          })
+          .catch(error => {
+            // Handle error
+            console.error('Error making dislike request:', error);
+          });
       }
-    },
+    }
+    ,
     addView() {
       const requestData = {
         id: this.id
