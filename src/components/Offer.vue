@@ -1081,7 +1081,9 @@
 	<div class="container my-5">
 		<div class="main-content-home1">
 			<div class="logo-R-div">
-				<img class="logo-R" src="@/assets/images/Group506.png" alt="R">
+
+				<img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
+
 			</div>
 
 			<!-- <div class="list-item-btn position-relative start-engine-div">

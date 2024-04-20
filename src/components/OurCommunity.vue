@@ -50,7 +50,7 @@
                       </li>
                     </ul>
                     <ul v-else v-show="isOpen" class="options-list">
-                      <li>Nothing To Show</li>
+
                     </ul>
                   </div>
 
@@ -72,7 +72,7 @@
                       </li>
                     </ul>
                     <ul v-else v-show="isOpenm" class="options-list">
-                      <li>Nothing To Show</li>
+
                     </ul>
                   </div>
 
@@ -115,17 +115,16 @@
 
 
                 <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
-                  <div class="customSelect w-100" @blur="isOpeng = false">
+                  <div class="customSelect w-100">
                     <input type="text" class="form-select" placeholder="Production Years(Generation)"
-                      @click.stop="toggleDropdownmo" @focus="isOpeng = true" @input="GenfilterOption"
-                      v-model="selectedData">
+                      @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng">
                     <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                       <li v-for="(value, index) in GenfilteredOptions" :key="index" @click="updateModels(value)">
                         {{ value.production_years }} ({{ value.generation }})
                       </li>
                     </ul>
                     <ul v-else v-show="isOpeng" class="options-list">
-                      <li>Nothing To Show</li>
+
                     </ul>
                   </div>
                 </div>
@@ -274,6 +273,9 @@ export default {
     this.showFilterModal();
   },
   methods: {
+    toggleOpeng() {
+      this.isOpeng = !this.isOpeng
+    },
     GenfilterOption() {
       const query = this.selectedData.toLowerCase();
       if (query === '') {
@@ -783,7 +785,8 @@ export default {
   min-height: fit-content;
   max-height: 300px;
   overflow: scroll;
-  color: #fff
+  color: #fff;
+  transition: height 0.5s ease-in-out
 }
 
 .options-list li {
