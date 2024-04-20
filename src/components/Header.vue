@@ -188,15 +188,26 @@ export default {
   },
   beforeUnmount() {
     window.removeEventListener('storage', this.handleStorageChange.handleStorageChange);
+    document.body.removeEventListener('click', this.closeDropdown);
+    document.body.removeEventListener('click', this.closeDropdown2);
 
   },
   mounted() {
     this.fetchProfileData()
+    document.body.addEventListener('click', this.closeDropdown);
+    document.body.addEventListener('click', this.closeDropdown2);
   },
+
   methods: {
-    toggled1() {
-      console.log("ccccc")
-      this.isOpen = false
+    closeDropdown(event) {
+      if (!this.$el.contains(event.target)) {
+        this.isOpen = false;
+      }
+    },
+    closeDropdown2(event) {
+      if (!this.$el.contains(event.target)) {
+        this.issOpen = false;
+      }
     },
     async fetchProfileData() {
       try {
@@ -230,11 +241,7 @@ export default {
       ).name;
       this.isOpen = false;
     },
-    closeDropdown(event) {
-      if (!this.$el.contains(event.target)) {
-        this.isOpen = false;
-      }
-    },
+
     closeDropdownUser(event) {
       if (!this.$el.contains(event.target)) {
         this.issOpen = false;
