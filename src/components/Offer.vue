@@ -1149,7 +1149,7 @@ export default {
 
 	position: absolute;
 	height: 100%;
-	width: 100%;
+	width: 95%;
 
 	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
 		/* Background image */
