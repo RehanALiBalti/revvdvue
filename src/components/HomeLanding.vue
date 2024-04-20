@@ -447,7 +447,7 @@
           <!-- Grid column -->
           <div class="col-md-4 col-lg-4 col-xl-4 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-              <i class="fa-solid fa-lock" style="font-size:150px ;color:#ebebeb"></i>
+
 
             </div>
             <!-- Content -->

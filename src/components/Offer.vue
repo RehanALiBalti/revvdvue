@@ -4,7 +4,7 @@
 			<div class="row justify-content-center">
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-						<i class="fa-solid fa-lock" style="font-size:50px ;color:#ebebeb"></i>
+
 					</div>
 					<div class="card z-0">
 						<div class="card-body">
@@ -50,7 +50,7 @@
 
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-						<i class="fa-solid fa-lock" style="font-size:50px ;color:#ebebeb"></i>
+
 					</div>
 					<div class="card">
 						<div class="card-body">
@@ -139,7 +139,7 @@
 
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-						<i class="fa-solid fa-lock" style="font-size:50px ;color:#ebebeb"></i>
+
 					</div>
 					<div class="card">
 						<div class="card-body">
@@ -184,7 +184,7 @@
 				</div>
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-						<i class="fa-solid fa-lock" style="font-size:50px ;color:#ebebeb"></i>
+
 					</div>
 					<div class="card">
 						<div class="card-body">
