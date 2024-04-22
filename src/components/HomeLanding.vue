@@ -447,7 +447,7 @@
           <!-- Grid column -->
           <div class="col-md-4 col-lg-4 col-xl-4 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-
+              <img src="../../public/images/lockIcon.png" width="100px" />
 
             </div>
             <!-- Content -->

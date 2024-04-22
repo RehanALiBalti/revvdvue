@@ -115,7 +115,7 @@
                   </li>
                   <li data-code="myAdds" class="position-relative">
                     <div class="cardOverlay d-flex justify-content-end pe-2 pt-2">
-                      <i class="fa-solid fa-lock" style="font-size:20px ;color:#ebebeb"></i>
+                      <img src="../../public/images/lockIcon.png" />
                     </div>
                     <router-link class="userListATag" to="/myCarListing">
                       {{ $t('myAdds') }}
