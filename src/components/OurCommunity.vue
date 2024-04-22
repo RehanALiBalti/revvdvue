@@ -289,7 +289,7 @@ export default {
     },
 
     filterMakeOptions() {
-
+      this.selectedData = "";
       const query = this.make.toLowerCase();
       if (query === '') {
         this.makefilteredOptions = this.makes;
