@@ -135,8 +135,8 @@
         </div>
         <form @submit.prevent="postComment" enctype="multipart/form-data" method="post" class="position-relative">
           <div class="form-group d-flex flex-column">
-
-            <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment">
+            <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment" disabled v-if="imgLoading">
+            <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment" v-else>
             <div v-if="imgLoading" class="imgLoadingBox">
               <div class="box2"></div>
             </div>
