@@ -289,6 +289,7 @@ export default {
     },
 
     filterMakeOptions() {
+      this.modelfilteredOptions = [];
       this.selectedData = "";
       const query = this.make.toLowerCase();
       if (query === '') {
