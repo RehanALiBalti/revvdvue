@@ -195,8 +195,8 @@
           </span>
           <form @submit.prevent="submitFilter">
             <div class="mt-4 py-2">
-              <h5 class="card-title"><span class="choose"> !OOPS </span></h5>
-              <p class="text-white">The selected image exceeds the maximum allowed size of 1 MB.</p>
+              <h5 class="card-title"><span class="choose"> OOPS! </span></h5>
+              <p class="text-white">The selected image exceeds the maximum allowed size of 3 MB.</p>
 
             </div>
 
@@ -469,7 +469,7 @@ export default {
       this.imgLoading = true;
 
       const file = this.$refs.fileInput.files[0];
-      const maxSizeInBytes = 1 * 1024 * 1024; // 1 MB
+      const maxSizeInBytes = 3 * 1024 * 1024; // 3 MB
 
       if (file && file.size > maxSizeInBytes) {
         // Provide feedback to the user that the image size exceeds the limit
