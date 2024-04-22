@@ -481,6 +481,7 @@ export default {
 
       this.smodel = ""
       this.generations = [];
+      this.GenfilteredOptions = []
       this.productionYears = [];
       if (this.make == "") {
         this.modelfilteredOptions = ""
