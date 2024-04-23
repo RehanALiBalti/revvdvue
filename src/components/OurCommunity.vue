@@ -119,7 +119,8 @@
                     <input type="text" class="form-select" placeholder="Production Years(Generation)"
                       @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng">
                     <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
-                      <li v-for="(value, index) in GenfilteredOptions" :key="index" @click="updateModels(value)">
+                      <li v-for="(value, index) in GenfilteredOptions" :key="index"
+                        @click="updateModels(value), this.isOpeng = false">
                         {{ value.production_years }} ({{ value.generation }})
                       </li>
                     </ul>
@@ -274,6 +275,7 @@ export default {
   },
   methods: {
     toggleOpeng() {
+      console.log('opneg')
       this.isOpeng = !this.isOpeng
     },
     GenfilterOption() {
