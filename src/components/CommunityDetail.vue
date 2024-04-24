@@ -136,7 +136,7 @@
                   <span class="close" @click="closeModal" style="color:#FF7A00">&times;</span>
                   <!-- <img :src="'http://137.184.111.69:5000/' + modalImageUrl" alt="Modal Image"> -->
                   <vue-image-zoomer :regular="'http://137.184.111.69:5000/' + modalImageUrl" :imageClass="zoomImg"
-                    :img-class="zoomImg" />
+                    :img-class="zoomImg" :click-zoom="true" />
                 </div>
               </div>
 

@@ -481,7 +481,7 @@ export default {
     },
     getModels() {
       console.log("get modals")
-
+      this.selectedData = ""
       this.smodel = ""
       this.generations = [];
       this.GenfilteredOptions = []
