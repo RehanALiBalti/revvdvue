@@ -911,7 +911,7 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 	height: 75px;
 	border: none;
 	outline: none;
-	font-size: 22px;
+	font-size: 20px;
 	border-radius: 0px 23px 23px 0;
 }
 
@@ -2624,5 +2624,37 @@ a:hover {
 	background-color: #031726 !important;
 	color: #fff !important;
 	font-weight: 400 !important;
+
+}
+
+.zoomImg {
+	width: 100% !important;
+	height: auto !important;
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(138, 134, 134, 0.5) rgba(96, 95, 95, 0);
+
+
+}
+
+/* Define scrollbar track */
+*::-webkit-scrollbar-track {
+	background-color: transparent;
+
+}
+
+/* Define scrollbar thumb */
+*::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	min-height: 200px !important;
+
+}
+
+/* Define scrollbar corner */
+*::-webkit-scrollbar-corner {
+	background-color: transparent;
 
 }

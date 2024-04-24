@@ -19,35 +19,74 @@ function getcurrentprofile() {
       });
   });
 }
+// function setprofile(data) {
+//   console.log("before request", data);
+//   return new Promise((resolve, reject) => {
+//     try {
+//       console.log("i am resolve");
+//       const updatedAttributes = {
+//         email: data.email,
+//         phone_number: data.phone,
+//         name: data.name,
+//         website: data.socialMedia,
+//         "custom:fullname": data.fullName,
+//         "custom:age": data.age,
+//         // Add other attributes you want to update
+//       };
+//       if (data.image != "") {
+//         updatedAttributes.picture = data.image;
+//       }
+//       console.log("update", updatedAttributes);
+//       Auth.currentAuthenticatedUser().then((user) => {
+//         Auth.updateUserAttributes(user, updatedAttributes).then((result) => {
+//           resolve(result);
+//         });
+//       });
+//     } catch (error) {
+//       console.log("i am rejexct");
+//       reject(data);
+//     }
+//   });
+// }
 function setprofile(data) {
   console.log("before request", data);
+
   return new Promise((resolve, reject) => {
     try {
-      console.log("i am resolve");
       const updatedAttributes = {
         email: data.email,
         phone_number: data.phone,
         name: data.name,
         website: data.socialMedia,
-        "custom:fullname": data.name,
+        "custom:fullname": data.fullname, // Correctly access fullName property
         "custom:age": data.age,
         // Add other attributes you want to update
       };
-      if (data.image != "") {
+      if (data.image !== "") {
         updatedAttributes.picture = data.image;
       }
       console.log("update", updatedAttributes);
-      Auth.currentAuthenticatedUser().then((user) => {
-        Auth.updateUserAttributes(user, updatedAttributes).then((result) => {
-          resolve(result);
+
+      Auth.currentAuthenticatedUser()
+        .then((user) => {
+          Auth.updateUserAttributes(user, updatedAttributes)
+            .then((result) => {
+              resolve(result);
+            })
+            .catch((error) => {
+              reject(error);
+            });
+        })
+        .catch((error) => {
+          reject(error);
         });
-      });
     } catch (error) {
-      console.log("i am rejexct");
-      reject(data);
+      console.error("Error updating user attributes:", error);
+      reject(error);
     }
   });
 }
+
 function login(username, password) {
   console.log("before request", password, username);
   return new Promise((resolve, reject) => {

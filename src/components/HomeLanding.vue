@@ -479,7 +479,7 @@
 
               <li class="icons-list-item">
                 <router-link class="icons-list-atag" to="">
-                  <i class="fab fa-twitter"></i>
+                  <i class="fab fa-x-twitter"></i>
                 </router-link>
               </li>
 

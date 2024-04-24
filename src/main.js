@@ -18,6 +18,8 @@ import en from "./locales/en.json";
 import de from "./locales/de.json";
 import fr from "./locales/fr.json";
 // import vSelect from "vue-select";
+import VueImageZoomer from "vue-image-zoomer";
+import "vue-image-zoomer/dist/style.css";
 
 const i18n = createI18n({
   legacy: false, // Use Composition API
@@ -39,4 +41,9 @@ Amplify.configure({
   },
 });
 
-createApp(App).use(router).use(i18n).use(store).mount("#app");
+createApp(App)
+  .use(router)
+  .use(VueImageZoomer)
+  .use(i18n)
+  .use(store)
+  .mount("#app");

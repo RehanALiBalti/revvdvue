@@ -15,7 +15,7 @@
   </section>
 
   <!-- modal -->
-  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
+  <div class="modal show d-block modalaa" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
@@ -182,7 +182,7 @@
           <form @submit.prevent="submitFilter">
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> Something Is Missing </span></h5>
-              <p class="text-white">Please select make, modal and year</p>
+              <p class="text-white">Please select make, model and year</p>
 
             </div>
 
@@ -662,7 +662,10 @@ export default {
 <style scoped>
 @import "vue-select/dist/vue-select.css";
 
-
+.modalaa {
+  position: static !important;
+  background: transparent !important;
+}
 
 
 .modal-dialog {

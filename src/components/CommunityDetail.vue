@@ -35,13 +35,21 @@
           communityData.generation }}</p>
                   </div>
                   <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
-                    <div class="like-community" id="like">
-                      <i class="fa-solid fa-thumbs-up" @click="addLike" v-bind:class="{ 'like': isLike }"></i>
+                    <button v-if="isloadingLike" class="like-community likeBtn" id="like" @click="addLike" disabled>
+                      <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
                       <small v-if="isLike">Liked</small>
                       <small v-else>Like</small>
                       <span class="total-likes">{{ communityData.likes
                         }}</span>
-                    </div>
+                    </button>
+                    <button v-else class="like-community likeBtn" id="like" @click="addLike">
+                      <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
+                      <small v-if="isLike">Liked</small>
+                      <small v-else>Like</small>
+                      <span class="total-likes">{{ communityData.likes
+                        }}</span>
+                    </button>
+
                     <div class="like-community">
                       <i class="fa-solid fa-comments"></i>
                       <small>Comments</small>
@@ -93,6 +101,7 @@
                 </div>
               </div> -->
               <div v-for="comment in comments" :key="comment.comments">
+
                 <div v-if="comment.user_email == user_email" class="d-flex flex-column position-relative">
                   <div class="receiver-chats ">
                     <p class="receiver-chats-para">
@@ -100,7 +109,12 @@
                     </p>
                     <img v-if="comment.image" @click="showModal(comment.image)"
                       :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image" class="CommentImage">
+                    <div class="d-flex justify-content-end align-items-end">
+                      <small class="uName">{{ comment.user_name }}</small>
+                    </div>
                   </div>
+
+
                 </div>
                 <div v-else class="d-flex flex-column">
                   <div class="sender-chats">
@@ -109,6 +123,10 @@
                     </p>
                     <img v-if="comment.image" @click="showModal(comment.image)"
                       :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image" class="CommentImage">
+                    <div class="d-flex justify-content-end align-items-end">
+                      <small class="uName">{{ comment.user_name }}</small>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -116,7 +134,9 @@
               <div class="modala" v-if="modalVisible">
                 <div class="modala-content">
                   <span class="close" @click="closeModal" style="color:#FF7A00">&times;</span>
-                  <img :src="'http://137.184.111.69:5000/' + modalImageUrl" alt="Modal Image">
+                  <!-- <img :src="'http://137.184.111.69:5000/' + modalImageUrl" alt="Modal Image"> -->
+                  <vue-image-zoomer :regular="'http://137.184.111.69:5000/' + modalImageUrl" :imageClass="zoomImg"
+                    :img-class="zoomImg" />
                 </div>
               </div>
 
@@ -135,7 +155,8 @@
         </div>
         <form @submit.prevent="postComment" enctype="multipart/form-data" method="post" class="position-relative">
           <div class="form-group d-flex flex-column">
-            <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment" disabled v-if="imgLoading">
+            <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment" disabled
+              v-if="imgLoading">
             <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment" v-else>
             <div v-if="imgLoading" class="imgLoadingBox">
               <div class="box2"></div>
@@ -218,6 +239,8 @@ export default {
 
   data() {
     return {
+      zoomImg: "zoomImg",
+      isloadingLike: false,
       modalVisible: false,
       modalImageUrl: '',
       isModal2Open: false,
@@ -230,6 +253,7 @@ export default {
       isLike: false
       ,
       user_email: "",
+      user_name: "",
       comments: [],
       newComment: "",
       image: null,
@@ -316,8 +340,10 @@ export default {
         const data = await this.$store.dispatch("auth/getprofiledata");
         // console.log("Profile data:", data);
         // this.userAttributes = data.result
-        this.user_email = data.result.email
-        // console.log("userdata", this.user_email)
+        this.user_email = data.result.email;
+        this.user_name = data.result.name;
+
+        // console.log("userdata", this.user_name)
 
 
       } catch (error) {
@@ -349,6 +375,7 @@ export default {
       CommentDataService.getAllByCommunity(id)
         .then(response => {
           this.comments = response.data;
+          console.log("com ", this.comments)
 
         })
         .catch(error => {
@@ -483,6 +510,7 @@ export default {
       formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
       formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
+      formData.append('user_name', this.user_name);
 
       // Check if formData is empty
       if (this.imageUrl == "" && this.newComment == "") {
@@ -554,6 +582,7 @@ export default {
     //   }
     // },
     addLike() {
+      this.isloadingLike = true
       // Check if the like has already been added for this item in this session
       if (!localStorage.getItem('liked-' + this.id)) {
         const requestData = {
@@ -562,7 +591,8 @@ export default {
         axios.post('http://137.184.111.69:5000/api/communities/likes', requestData)
           .then(response => {
             // Handle success
-            console.log('Post request successful:', response.data);
+            console.log('Post request successful:', response.data)
+            this.isloadingLike = false
 
             // Set the flag in local storage with the respective ID
             localStorage.setItem('liked-' + this.id, true);
@@ -583,6 +613,7 @@ export default {
           .then(response => {
             // Handle success
             console.log('Dislike request successful:', response.data);
+            this.isloadingLike = false
 
             // Remove the flag from local storage
             localStorage.removeItem('liked-' + this.id);
@@ -657,6 +688,12 @@ export default {
 </script>
 
 <style scoped>
+.likeBtn {
+  background: transparent;
+  width: fit-content;
+  border: 0px solid transparent
+}
+
 .image_icon {
   position: absolute;
   top: 18px;
@@ -678,7 +715,10 @@ export default {
   border-radius: 15px;
 }
 
-
+.uName {
+  font-size: 10px;
+  color: #F95F19
+}
 
 .h1make {
   color: #FF7A00;
@@ -840,9 +880,9 @@ export default {
   max-height: 70%;
 }
 
-.modala-content img {
-  width: 100%;
-  height: auto;
+.zoomImg {
+  width: 100% !important;
+  height: auto !important;
 }
 
 /* Close button */
@@ -854,6 +894,7 @@ export default {
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
+  z-index: 9;
 }
 
 .close:hover {

@@ -24,7 +24,12 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<label for="name" class="form-label">{{ $t('name') }}</label>
+								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
+								<input v-model="fullname" id="name" type="text" name="name"
+									class="form-control form-input" placeholder="Enter here" required>
+							</div>
+							<div class="col-md-6">
+								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
 								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
 									placeholder="Enter here" required>
 							</div>
@@ -158,6 +163,7 @@ export default {
 	name: "UserProfile",
 	data() {
 		return {
+			fullname: "",
 			isModalOpen: false,
 			isModalOpenFail: false,
 			UserData: null,
@@ -199,9 +205,33 @@ export default {
 
 
 		},
+		// async updateUserAttributes() {
+
+		// 	const updatedProfile = {
+		// 	fullName: this.Fullname,
+		// 		name: this.name,
+		// 		email: this.email,
+		// 		age: this.age,
+		// 		phone: this.phone,
+		// 		socialMedia: this.socialMedia,
+		// 		image: this.image,
+		// 	};
+
+		// 	console.log("The profile data", updatedProfile)
+		// 	const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
+		// 	console.log(data, typeof data);
+		// 	if (data == "SUCCESS") {
+		// 		this.isModalOpen = true
+
+		// 	} else {
+		// 		this.isModalOpenFail = true
+		// 	}
+
+
+		// },
 		async updateUserAttributes() {
-			console.log("i am call");
 			const updatedProfile = {
+				fullname: this.fullname, // Correct the key to fullName if needed
 				name: this.name,
 				email: this.email,
 				age: this.age,
@@ -210,24 +240,28 @@ export default {
 				image: this.image,
 			};
 
-			console.log("The profile data", updatedProfile)
-			const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
-			console.log(data, typeof data);
-			if (data == "SUCCESS") {
-				this.isModalOpen = true
+			console.log("The profile data", updatedProfile);
 
-			} else {
-				this.isModalOpenFail = true
+			try {
+				const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
+				console.log(data, typeof data);
+				if (data === "SUCCESS") {
+					this.isModalOpen = true;
+				} else {
+					this.isModalOpenFail = true;
+				}
+			} catch (error) {
+				console.error("Error updating user profile:", error);
+				// Handle error gracefully, e.g., display an error message to the user
 			}
-
-
-		},
+		}
+		,
 
 		async fetchProfileData() {
 			try {
-				console.log("Fetching profile data...");
+				// console.log("Fetching profile data...");
 				const data = await this.$store.dispatch("auth/getprofiledata");
-				console.log("Profile data:", data);
+				// console.log("Profile data:", data);
 				this.UserData = data.result
 				console.log("userdata", this.UserData.name)
 				this.name = this.UserData.name
@@ -236,6 +270,7 @@ export default {
 				this.socialMedia = this.UserData.website
 				this.phone = this.UserData.phone_number
 				this.age = this.UserData["custom:age"]
+				this.fullname = this.UserData["custom:fullname"]
 				if (this.UserData.picture) {
 					this.image = this.UserData.picture
 				}

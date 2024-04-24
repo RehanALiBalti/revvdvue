@@ -55,9 +55,10 @@ const actions = {
   },
   async handleProfile(
     context,
-    { name, email, age, phone, socialMedia, image }
+    { fullname, name, email, age, phone, socialMedia, image }
   ) {
     const data = {
+      fullname,
       name,
       email,
       age,
