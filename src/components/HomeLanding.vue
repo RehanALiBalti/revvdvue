@@ -447,8 +447,7 @@
           <!-- Grid column -->
           <div class="col-md-4 col-lg-4 col-xl-4 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-              <img src="../../public/images/lockIcon.png" width="100px" />
-
+              <img src="../../public/images/layer1.png">
             </div>
             <!-- Content -->
             <h5 class="h5-title text-capitalize mb-4">{{ $t('weeklyStory') }}</h5>
@@ -864,15 +863,20 @@ export default {
   height: 65%;
   width: 96%;
 
-  /* background: url('../../public/images/layer2.png'); */
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    /* Background image */
-    url('../../public/images/layer1.png');
+  /* background: url('../../public/images/layer2.png');
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), */
+  /* Background image */
+  /* url('../../public/images/layer1.png'); */
   opacity: 0.9;
-  background-size: cover;
+  /* background-size: cover; */
   z-index: 4
 }
 
+.cardOverlay img {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
 
 @media screen and (max-width: 991px) {
 

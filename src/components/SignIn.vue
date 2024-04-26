@@ -2,10 +2,22 @@
 
   <div class="container my-5">
     <div class="row">
+
       <div class="col-md-6 m-auto">
         <div class="form-content-home1">
           <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title">Sign <span class="form-span"> In </span></h2>
+            <div class="signIn-div my-5">
+              <button class="btn google-btn">
+                <i class="fa-brands fa-google-plus-g"></i> Google
+              </button>
+              <button class="btn google-btn">
+                <i class="fa-brands fa-facebook"></i>Facebook
+              </button>
+              <button class="btn google-btn">
+                <i class="fa-brands fa-apple"></i>Apple
+              </button>
+            </div>
             <div class="row">
               <div class="col-md-12">
                 <label for="email" class="form-label">Email</label>
@@ -53,21 +65,17 @@
                     <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                   </span>
                 </div>
+                <div class="d-flex justify-content-center align-items-center">
+                  <router-link to="/dealerlogin">Sign In As A Dealer</router-link>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                  <router-link to="/dealerlogin">Forgot Password?</router-link>
+                </div>
               </div>
             </div>
           </form>
         </div>
-        <div class="signIn-div my-5">
-          <button class="btn google-btn">
-            <i class="fa-brands fa-google-plus-g"></i> Google
-          </button>
-          <button class="btn google-btn">
-            <i class="fa-brands fa-facebook"></i>Facebook
-          </button>
-          <button class="btn google-btn">
-            <i class="fa-brands fa-apple"></i>Apple
-          </button>
-        </div>
+
       </div>
     </div>
   </div>

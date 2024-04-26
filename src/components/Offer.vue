@@ -4,7 +4,7 @@
 			<div class="row justify-content-center">
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-						<img src="../../public/images/lockIcon.png" />
+						<img src="../../public/images/layer2.png">
 					</div>
 					<div class="card z-0">
 						<div class="card-body">
@@ -50,7 +50,7 @@
 
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-						<img src="../../public/images/lockIcon.png" />
+						<img src="../../public/images/layer2.png">
 					</div>
 					<div class="card">
 						<div class="card-body">
@@ -139,7 +139,7 @@
 
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-						<img src="../../public/images/lockIcon.png" />
+						<img src="../../public/images/layer2.png">
 					</div>
 					<div class="card">
 						<div class="card-body">
@@ -184,7 +184,7 @@
 				</div>
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-						<img src="../../public/images/lockIcon.png" />
+						<img src="../../public/images/layer2.png">
 					</div>
 					<div class="card">
 						<div class="card-body">
@@ -1153,12 +1153,18 @@ export default {
 	height: 100%;
 	width: 95%;
 
-	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+	/* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
 		/* Background image */
-		url('../../public/images/layer1.png');
+	/* url('../../public/images/layer1.png'); */
 	opacity: 0.9;
 	background-size: cover;
 	z-index: 4
+}
+
+.cardOverlay img {
+	position: absolute;
+	width: 100%;
+	top: 0;
 }
 
 

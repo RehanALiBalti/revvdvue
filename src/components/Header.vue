@@ -114,8 +114,8 @@
                     </router-link>
                   </li>
                   <li data-code="myAdds" class="position-relative">
-                    <div class="cardOverlay d-flex justify-content-end pe-2 pt-2">
-                      <img src="../../public/images/lockIcon.png" />
+                    <div class="cardOverlay d-flex pe-2 pt-2">
+                      <img src="../../public/images/layer3.png">
                     </div>
                     <router-link class="userListATag" to="/myCarListing">
                       {{ $t('myAdds') }}
@@ -289,12 +289,18 @@ export default {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    /* Background image */
-    url('../../public/images/layer1.png');
+  /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+   
+    url('../../public/images/layer3.png'); */
   opacity: 0.9;
   background-size: cover;
   z-index: 4
+}
+
+.cardOverlay img {
+  position: absolute;
+  width: 100%;
+  top: 0;
 }
 
 @media screen and (max-width: 991px) {

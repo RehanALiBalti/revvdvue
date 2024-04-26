@@ -6,6 +6,17 @@
         <div class="form-content-home1">
           <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title">Sign <span class="form-span"> Up </span></h2>
+            <div class="signIn-div my-5">
+              <button class="btn google-btn">
+                <i class="fa-brands fa-google-plus-g"></i> Google
+              </button>
+              <button class="btn google-btn">
+                <i class="fa-brands fa-facebook"></i>Facebook
+              </button>
+              <button class="btn google-btn">
+                <i class="fa-brands fa-apple"></i>Apple
+              </button>
+            </div>
             <div class="row">
               <div class="col-md-6">
                 <label for="name" class="form-label">Name</label>
@@ -88,17 +99,7 @@
             </div>
           </form>
         </div>
-        <div class="signIn-div my-5">
-          <button class="btn google-btn">
-            <i class="fa-brands fa-google-plus-g"></i> Google
-          </button>
-          <button class="btn google-btn">
-            <i class="fa-brands fa-facebook"></i>Facebook
-          </button>
-          <button class="btn google-btn">
-            <i class="fa-brands fa-apple"></i>Apple
-          </button>
-        </div>
+
       </div>
     </div>
   </div>
