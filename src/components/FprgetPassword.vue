@@ -74,8 +74,9 @@
                     </span>
 
                     <div class="mt-4 py-2">
-                        <h5 class="card-title"><span class="choose"> Email or Password is Incorrect </span></h5>
-                        <p class="text-white">Please Varify Email And Password</p>
+                        <h5 class="card-title"><span class="choose"> Email Sent Successfylly To {{ formData.email
+                                }}</span></h5>
+                        <p class="text-white">Please Check Your Email Box</p>
                     </div>
 
 
@@ -87,7 +88,7 @@
     <!-- modal end -->
 </template>
 <script>
-
+import { Auth } from 'aws-amplify';
 export default {
     name: "SignIn",
 
@@ -111,52 +112,47 @@ export default {
             console.log("close modal")
             this.isModalOpen = false
         },
-        submitForm() {
-            this.validateForm();
-            if (this.isFormValid()) {
-                console.log("Form submitted successfully");
-                const mydata = {
-                    email: this.formData.email,
-                    password: this.formData.password,
-                };
-                this.$store.dispatch("auth/handleSignIn", mydata).then((data) => {
-                    if (data.success == 1) {
-                        localStorage.setItem('login', true);
-                        localStorage.setItem('data', data.result);
+        // submitForm() {
 
-                        // Redirect to '/landing' route
-                        this.$router.push('/ourcommunity');
 
-                    } else {
-                        this.isModalOpen = true
-                    }
+        //     console.log("Form submitted successfully");
+        //     const email = this.formData.email;
+        //     console.log("email", email);
 
-                    console.log(data);
-                });
-            } else {
-                console.log("Form validation failed");
+        //     const data = Auth.forgotPassword(email)
+        //     console.log("data is", data);
+        //     this.isModalOpen = true
+
+
+        // }
+        async submitForm() {
+            console.log("Form submitted successfully");
+            const email = this.formData.email;
+            console.log("email", email);
+
+            try {
+                // Attempt to send forgot password request
+                await Auth.forgotPassword(email);
+                console.log("Forgot password request successful");
+                this.isModalOpen = true; // Assuming you're using this to display a modal
+            } catch (error) {
+                // Handle errors
+                console.error("Forgot password request failed:", error);
+                if (error.name === 'LimitExceededException') {
+                    // Display a user-friendly message about the limit being exceeded
+                    alert("Attempt limit exceeded, please try again later.");
+                } else {
+                    // Handle other types of errors as needed
+                    alert("An error occurred. Please try again later.");
+                }
             }
         }
-        ,
-        validateForm() {
-            this.formErrors = {};
-
-            if (!this.formData.email) {
-                this.formErrors.email = "Email is required";
-            } else if (!this.isValidEmail(this.formData.email)) {
-                this.formErrors.email = "Invalid email format";
-            }
-            if (!this.formData.password) {
-                this.formErrors.password = "Password is required";
-            }
-        },
 
 
 
-        isValidEmail(email) {
-            const emailPattern = /\S+@\S+\.\S+/;
-            return emailPattern.test(email);
-        },
+
+
+
     },
 };
 </script>
