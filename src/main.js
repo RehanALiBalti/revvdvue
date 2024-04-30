@@ -32,12 +32,27 @@ const i18n = createI18n({
   },
 });
 
+// Amplify.configure({
+//   Auth: {
+//     region: "eu-north-1",
+//     userPoolId: "eu-north-1_udYkkIEkt",
+//     userPoolWebClientId: "3gdn1a64vc584t64t7e0up87el",
+//     authenticationFlowType: "USER_SRP_AUTH",
+//   },
+// });
 Amplify.configure({
   Auth: {
     region: "eu-north-1",
     userPoolId: "eu-north-1_udYkkIEkt",
     userPoolWebClientId: "3gdn1a64vc584t64t7e0up87el",
     authenticationFlowType: "USER_SRP_AUTH",
+    oauth: {
+      domain: "revdot.auth.eu-north-1.amazoncognito.com",
+      redirectSignIn: "http://localhost:8081", // Specify the URI to redirect to after sign-in
+      redirectSignOut: "http://localhost:8081",
+      scope: ["email", "profile", "openid"],
+      responseType: "code",
+    },
   },
 });
 

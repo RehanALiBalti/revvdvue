@@ -4,11 +4,15 @@ function getcurrentprofile() {
   return new Promise((resolve, reject) => {
     Auth.currentAuthenticatedUser()
       .then((user) => {
-        console.log("mmma");
+        console.log("mmma", user);
+        console.log(user.signInUserSession.idToken.payload);
         //console.log(user);
-        const { attributes } = user;
+        const attributes = user.signInUserSession.idToken.payload;
         console.log("attri", attributes);
         const response = { success: 1, result: attributes };
+        localStorage.setItem("login", true);
+        localStorage.setItem("data", attributes);
+
         console.log(response, "response");
         resolve(response);
       })

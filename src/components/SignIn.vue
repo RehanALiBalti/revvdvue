@@ -8,12 +8,18 @@
           <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title">Sign <span class="form-span"> In </span></h2>
             <div class="signIn-div my-5">
-              <button class="btn google-btn">
+              <button class="btn google-btn" @click="handleGoogleLogin">
                 <i class="fa-brands fa-google-plus-g"></i> Google
               </button>
-              <button class="btn google-btn">
+              <!-- <div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout=""
+                data-auto-logout-link="false" data-use-continue-as="false"></div> -->
+              <!-- <button class="btn google-btn">
                 <i class="fa-brands fa-facebook"></i>Facebook
+              </button> -->
+              <button class="btn google-btn" @click="handleFacebookLogin">
+                <i class="fa-brands fa-facebook"></i> Facebook
               </button>
+
               <button class="btn google-btn">
                 <i class="fa-brands fa-apple"></i>Apple
               </button>
@@ -69,7 +75,7 @@
                   <router-link to="/dealerlogin">Sign In As A Dealer</router-link>
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                  <router-link to="/dealerlogin">Forgot Password?</router-link>
+                  <router-link to="/forget">Forgot Password?</router-link>
                 </div>
               </div>
             </div>
@@ -103,8 +109,8 @@
   <!-- modal end -->
 </template>
 <script>
-
-
+import { Auth, Hub } from 'aws-amplify';
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 export default {
   name: "SignIn",
 
@@ -121,7 +127,59 @@ export default {
       },
     };
   },
+  mounted() {
+
+    Hub.listen("auth", ({ payload: { event, data } }) => {
+      console.log(`Auth event: ${event}`, data);
+      if (event == 'signIn') {
+        localStorage.setItem('login', true);
+
+
+        // Redirect to '/landing' route
+        this.$router.push('/ourcommunity');
+      }
+      /*
+      switch (event) {
+        case "signIn":
+          console.log("signIn data: " + JSON.stringify(data));
+          this.signedIn = true;
+          this.username = data.username;
+          alert(data.username)
+ 
+          break;
+        case "signOut":
+          this.signedIn = false;
+          this.username = null;
+          break;
+      }*/
+    });
+  },
   methods: {
+    async handleFacebookLogin() {
+      try {
+        const response = await Auth.federatedSignIn({
+          provider: CognitoHostedUIIdentityProvider.Facebook
+
+        });
+
+        // Handle successful login
+        console.log('Facebook login response:', response);
+
+      } catch (error) {
+        // Handle login error
+        console.error('Facebook login error:', error);
+      }
+    },
+    async handleGoogleLogin() {
+      try {
+        const response = await Auth.federatedSignIn({ provider: 'Google' });
+        // Handle successful login
+        console.log('Google login response:', response);
+      } catch (error) {
+        // Handle login error
+        console.error('Google login error:', error);
+      }
+    },
     modalClose() {
       console.log("close modal")
       this.isModalOpen = false

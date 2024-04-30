@@ -23,6 +23,7 @@ import CarsView from "@/components/CarsView";
 import NotFound from "@/components/NotFound"; // Adjust the path as per your project structure
 import CarsListingDetails from "@/components/CarsListingDetails.vue";
 import DealersLogin from "@/components/DealersLogin";
+import ForgetPassword from "@/components/FprgetPassword.vue";
 
 const routes = [
   {
@@ -150,6 +151,11 @@ const routes = [
     path: "/dealerlogin",
     name: "DealersLogin",
     component: DealersLogin,
+  },
+  {
+    path: "/forget",
+    name: "ForgetPassword",
+    component: ForgetPassword,
   },
 ];
 

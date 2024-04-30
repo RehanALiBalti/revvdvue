@@ -138,8 +138,9 @@
 
 
 <script>
-
+import { Auth } from 'aws-amplify';
 export default {
+
   name: "HeaderItem",
 
   data() {
@@ -247,10 +248,20 @@ export default {
         this.issOpen = false;
       }
     },
-    logout() {
-      this.isLogin = false;
-      localStorage.removeItem('login');
+    async logout() {
+      try {
+        this.isLogin = false;
+        localStorage.setItem('login', false);
+        await Auth.signOut();
+        // Execute this code after sign-out is successful
+
+        console.log("User signed out successfully");
+      } catch (error) {
+        // Handle sign-out errors
+        console.error("Error signing out:", error);
+      }
     },
+
     // checkLoginStatus() {
     //   const storedIsLogin = localStorage.getItem('login');
     //   this.isLogin = storedIsLogin ? JSON.parse(storedIsLogin) : false;

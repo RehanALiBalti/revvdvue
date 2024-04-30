@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12 m-auto">
                 <div class="form-content-home1">
-                    <form id="subscribe-form" @submit.prevent="submitForm">
+                    <!-- <form id="subscribe-form" @submit.prevent="submitForm">
                         <h2 class="form-title">Online Regeisteration From<span class="form-span"> For Dealers </span>
                         </h2>
                         <small class="text-white">Are you already registered on mobile de? simply contact our customer
@@ -163,8 +163,7 @@
                                         <img src="@/assets/images/Path465.png" class="img-border position-absolute"
                                             alt="" />
                                     </span>
-                                    <!-- <button type="submit" class="signin-btnli submitNow" id="submit-button" fdprocessedid="eysiqp">
-                                      Log In </button> -->
+                                   
                                     <button type="submit" class="signin-btnli submitNow" id="submit-button">
                                         Submit
                                     </button>
@@ -178,6 +177,153 @@
                                     </span>
                                 </div>
 
+                            </div>
+                        </div>
+                    </form> -->
+                    <form id="subscribe-form" @submit.prevent="submitForm">
+                        <h2 class="form-title">Online Registration Form<span class="form-span"> For Dealers </span>
+                        </h2>
+                        <small class="text-white">Are you already registered on mobile de? simply contact our customer
+                            service at
+                            03081097-500 and have your account reactivated.</small>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-white mt-2 mb-0">Your Address (Location Of Vehicle)</h3>
+                                <label for="companyName" class="form-label">Company Name (according to VAT ID
+                                    confirmation)</label>
+                                <input v-model="formData.companyName" id="companyName" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="street" class="form-label">Street (Please no post-office box)</label>
+                                <input v-model="formData.street" id="street" type="text" class="form-control form-input"
+                                    placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="streetNo" class="form-label">No.</label>
+                                <input v-model="formData.streetNo" id="streetNo" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="street2" class="form-label">Street 2</label>
+                                <input v-model="formData.street2" id="street2" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="zipCode" class="form-label">Zip Code</label>
+                                <input v-model="formData.zipCode" id="zipCode" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="city" class="form-label">City</label>
+                                <input v-model="formData.city" id="city" type="text" class="form-control form-input"
+                                    placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="country" class="form-label">Country</label>
+                                <input v-model="formData.country" id="country" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="intlPrefix1" class="form-label">Internat. Prefix</label>
+                                <select v-model="formData.intlPrefix1" id="intlPrefix1" class="form-select form-input">
+                                    <option value="" selected>Germany(+49)</option>
+                                    <!-- Add more options if needed -->
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="prefix1" class="form-label">Prefix</label>
+                                <input v-model="formData.prefix1" id="prefix1" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-5">
+                                <label for="phone1" class="form-label">Phone For Customer Queries</label>
+                                <input v-model="formData.phone1" id="phone1" type="text" class="form-control form-input"
+                                    placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="intlPrefix2" class="form-label">Internat. Prefix</label>
+                                <select v-model="formData.intlPrefix2" id="intlPrefix2" class="form-select form-input">
+                                    <option value="" selected>Germany(+49)</option>
+                                    <!-- Add more options if needed -->
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="prefix2" class="form-label">Prefix</label>
+                                <input v-model="formData.prefix2" id="prefix2" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-5">
+                                <label for="fax" class="form-label">Fax For Customer Queries</label>
+                                <input v-model="formData.fax" id="fax" type="text" class="form-control form-input"
+                                    placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="intlPrefix3" class="form-label">Internat. Prefix</label>
+                                <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
+                                    <option value="" selected>Germany(+49)</option>
+                                    <!-- Add more options if needed -->
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="prefix3" class="form-label">Prefix</label>
+                                <input v-model="formData.prefix3" id="prefix3" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-5">
+                                <label for="mobilePhone" class="form-label">Mobile Phone For Customer Queries</label>
+                                <input v-model="formData.mobilePhone" id="mobilePhone" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">E-mail For Customer Queries</label>
+                                <input v-model="formData.email" id="email" type="text" class="form-control form-input"
+                                    placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+                                <input type="checkbox" id="check1" class="form-input m-0" placeholder="Enter here" />
+                                <label for="check1" class="form-label m-0 p-0">I have read and agree with the
+                                    <router-link to="/dealerslogin"> General Terms and Conditions</router-link>
+                                </label>
+                            </div>
+                            <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+                                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
+                                <label for="check2" class="form-label m-0 p-0">Yes, I agree with the Use of My Data
+                                    According To The
+                                    <router-link to="/dealerslogin">Privacy Policy</router-link>
+                                </label>
+                            </div>
+                            <div class="col-md-12">
+                                <p id="errormsg"></p>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="list-item-btn position-relative submit-btn-div">
+                                    <span class="border-bottom-btn border-top-btn position-absolute">
+                                        <img src="@/assets/images/Group12.png" class="img-border position-absolute"
+                                            alt="" />
+                                    </span>
+                                    <span
+                                        class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                                        <img src="@/assets/images/Path467.png" class="img-border position-absolute"
+                                            alt="" />
+                                    </span>
+                                    <span
+                                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                                        <img src="@/assets/images/Path465.png" class="img-border position-absolute"
+                                            alt="" />
+                                    </span>
+                                    <button type="submit" class="signin-btnli submitNow" id="submit-button">
+                                        Submit
+                                    </button>
+                                    <span class="border-bottom-btn border-left-btn position-absolute">
+                                        <img src="@/assets/images/Group11.png" class="img-border position-absolute"
+                                            alt="" />
+                                    </span>
+                                    <span class="border-bottom-btn position-absolute">
+                                        <img src="@/assets/images/Path473.png" class="img-border position-absolute"
+                                            alt="" />
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -219,13 +365,25 @@ export default {
         return {
             isModalOpen: false,
             formData: {
-                email: "",
-                password: "",
-            },
-            formErrors: {
-                email: "",
-                password: "",
-            },
+                companyName: '',
+                street: '',
+                streetNo: '',
+                street2: '',
+                zipCode: '',
+                city: '',
+                country: '',
+                intlPrefix1: '',
+                prefix1: '',
+                phone1: '',
+                intlPrefix2: '',
+                prefix2: '',
+                fax: '',
+                intlPrefix3: '',
+                prefix3: '',
+                mobilePhone: '',
+                email: ''
+            }
+
         };
     },
     methods: {
@@ -233,58 +391,14 @@ export default {
             console.log("close modal")
             this.isModalOpen = false
         },
+
         submitForm() {
-            this.validateForm();
-            if (this.isFormValid()) {
-                console.log("Form submitted successfully");
-                const mydata = {
-                    email: this.formData.email,
-                    password: this.formData.password,
-                };
-                this.$store.dispatch("auth/handleSignIn", mydata).then((data) => {
-                    if (data.success == 1) {
-                        localStorage.setItem('login', true);
-                        localStorage.setItem('data', data.result);
-
-                        // Redirect to '/landing' route
-                        this.$router.push('/ourcommunity');
-
-                    } else {
-                        this.isModalOpen = true
-                    }
-
-                    console.log(data);
-                });
-            } else {
-                console.log("Form validation failed");
-            }
+            // Handle form submission here
+            console.log(this.formData);
         }
-        ,
-        validateForm() {
-            this.formErrors = {};
 
-            if (!this.formData.email) {
-                this.formErrors.email = "Email is required";
-            } else if (!this.isValidEmail(this.formData.email)) {
-                this.formErrors.email = "Invalid email format";
-            }
-            if (!this.formData.password) {
-                this.formErrors.password = "Password is required";
-            }
-        },
 
-        isValidPhoneNumber(phone) {
-            const phonePattern = /^\+?\d{1,3}[-.\s]?\d{3,4}[-.\s]?\d{3,4}$/;
 
-            return phonePattern.test(phone);
-        },
-        isFormValid() {
-            return Object.values(this.formErrors).every((error) => !error);
-        },
-        isValidEmail(email) {
-            const emailPattern = /\S+@\S+\.\S+/;
-            return emailPattern.test(email);
-        },
     },
 };
 </script>
