@@ -19,7 +19,7 @@
             </div> -->
             <div class="row">
               <div class="col-md-6">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Nick Name</label>
                 <input id="name" type="text" v-model="formData.name" class="form-control form-input"
                   placeholder="Enter here" />
                 <div v-if="formErrors.name" class="text-danger">
@@ -59,11 +59,28 @@
               <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" v-model="formData.password" class="form-control form-input"
-                  placeholder="Enter here" />
+                  placeholder="Enter here" @input="checkStrength" />
+                <!-- <div class="strength-bars" v-if="formData.password != ''">
+                  <div class="strength-bar" :class="{ 'weak': passwordStrength === 'Weak' }"></div>
+                  <div class="strength-bar" :class="{ 'medium': passwordStrength === 'Medium' }"></div>
+                  <div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }"></div>
+                </div> -->
+                <div class="strength-bars" v-if="formData.password !== ''">
+                  <div class="strength-bar"
+                    :class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }"></div>
+                  <div class="strength-bar"
+                    :class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }"></div>
+                  <div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }"></div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                  <p :class="passwordStrengthClass">{{ passwordStrength }}</p>
+                </div>
+
                 <div v-if="formErrors.password" class="text-danger">
                   {{ formErrors.password }}
                 </div>
-                <ul class="text-white">
+                <!-- <ul class="text-white">
                   <li>
                     <p>Password must be:</p>
                   </li>
@@ -76,9 +93,35 @@
                   <li :class="{ 'completed': isNumberValid }">
                     <small>A number</small>
                   </li>
-                </ul>
+                </ul> -->
               </div>
+              <div class="col-md-6">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" id="confirmPassword" v-model="formData.confirmPassword"
+                  class="form-control form-input" placeholder="Confirm Password" />
+                <div v-if="formErrors.confirmPassword" class="text-danger">
+                  {{ formErrors.confirmPassword }}
+                </div>
+              </div>
+              <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+                <input type="checkbox" id="check1" class="form-input m-0" placeholder="Enter here" />
+                <label for="check1" class="form-label m-0 p-0">I have read and agree with the
+                  <router-link to="/termofservice" class="termsService"> General Terms and Conditions</router-link>
+                </label>
+              </div>
+              <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
+                <label for="check2" class="form-label m-0 p-0">Yes, I agree with the Use of My Data
+                  According To The
+                  <router-link to="/privacypolicy" class="termsService">Privacy Policy</router-link>
+                </label>
+              </div>
+              <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
+                <label for="check2" class="form-label m-0 p-0">I don't want to recieve emails
 
+                </label>
+              </div>
               <div class="col-md-12">
                 <p id="errormsg"></p>
               </div>
@@ -168,6 +211,8 @@ export default {
 
   data() {
     return {
+      password: "", // Add this line
+      strength: "", // Add this line
       isModalOpen: false,
       isModalOpenFail: false,
       errorMessage: "",
@@ -178,6 +223,7 @@ export default {
         phone: "",
         socialMedia: "empty",
         password: "",
+        confirmPassword: "",
       },
       formErrors: {
         name: "",
@@ -186,6 +232,7 @@ export default {
         phone: "",
         socialMedia: "",
         password: "",
+        confirmPassword: "",
       },
     };
   },
@@ -205,8 +252,42 @@ export default {
     isNumberValid() {
       const numberRegex = /[0-9]/;
       return numberRegex.test(this.formData.password);
-    }
+    },
+    passwordStrength() {
+      if (!this.formData.password) return '';
+      if (
+        this.isPasswordLengthValid &&
+        this.isUppercaseValid &&
+        this.isNumberValid
+      ) {
+        return 'Strong';
+      } else if (
+        this.isPasswordLengthValid ||
+        this.isUppercaseValid ||
+        this.isNumberValid
+      ) {
+        return 'Medium';
+      } else {
+        return 'Weak';
+      }
+    },
+    passwordStrengthClass() {
+      if (this.passwordStrength === 'Weak') {
+
+        return 'text-red'; // Define 'text-red' class in your CSS with appropriate styling
+      } else if (this.passwordStrength === 'Medium') {
+        return 'text-green'; // Define 'text-green' class in your CSS with appropriate styling
+      } else {
+        return 'text-orange'; // Define 'text-orange' class in your CSS with appropriate styling
+      }
+    },
+    isConfirmPasswordValid() {
+      return this.formData.password === this.formData.confirmPassword;
+    },
+
+
   },
+
   mounted() {
     console.log(this.loggedIn)
     console.log(this.user)
@@ -215,6 +296,29 @@ export default {
     // }
   },
   methods: {
+    // checkStrength() {
+    //   const password = this.password;
+    //   let strength = '';
+
+    //   // Password strength rules (you can adjust these according to your requirements)
+    //   const minLength = 2;
+    //   const minMedium = 6;
+    //   const minStrong = 8;
+
+    //   if (password.length < minLength) {
+    //     strength = 'weak';
+    //   } else if (password.length < minMedium) {
+    //     strength = 'medium';
+    //   } else if (password.length < minStrong) {
+    //     strength = 'strong';
+    //   } else {
+    //     strength = 'very strong';
+    //   }
+
+    //   this.strength = strength;
+    // },
+
+
     validatePassword() {
       this.formErrors.password = '';
       if (!this.isPasswordLengthValid) {
@@ -234,7 +338,7 @@ export default {
           name: this.formData.name,
           // age: this.formData.age,
           email: this.formData.email,
-          // phone: this.formData.phone,
+          phone: this.formData.phone,
           password: this.formData.password,
           // socialMedia: this.formData.socialMedia,
         };
@@ -300,6 +404,18 @@ export default {
         } else if (!/\d/.test(this.formData.password)) {
           this.formErrors.password = "Password must contain at least one number";
         }
+        if (!this.formData.password) {
+          this.formErrors.password = "Password is required";
+        } else {
+          // Password validation logic...
+        }
+
+        if (!this.formData.confirmPassword) {
+          this.formErrors.confirmPassword = "Please confirm your password";
+        } else if (!this.isConfirmPasswordValid) {
+          this.formErrors.confirmPassword = "Passwords do not match";
+        }
+
       }
     },
 
@@ -327,6 +443,20 @@ export default {
 };
 </script>
 <style scoped>
+.strength-bars {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 7px;
+  margin: 0 2px;
+  border-radius: 2px;
+  background: #fff;
+}
+
 .modal-dialog {
   max-width: auto;
   margin-right: auto;
@@ -348,5 +478,35 @@ export default {
 
 .completed {
   color: #FF7A00;
+}
+
+.text-red {
+  color: #ff4d4f;
+  /* or any other style for weak password */
+}
+
+.text-green {
+  color: #52c41a;
+  /* or any other style for medium password */
+}
+
+.text-orange {
+  color: orange;
+  /* or any other style for strong password */
+}
+
+.weak {
+  background-color: #ff4d4f;
+  /* Red color for weak */
+}
+
+.medium {
+  background-color: #52c41a;
+  /* Yellow color for medium */
+}
+
+.strong {
+  background-color: orange;
+  /* Green color for strong */
 }
 </style>

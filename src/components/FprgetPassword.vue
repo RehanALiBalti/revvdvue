@@ -66,7 +66,7 @@
 
     <!-- modal end -->
     <!-- modal2 -->
-    <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
+    <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="modal2 === true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center">
@@ -96,6 +96,7 @@ export default {
     data() {
         return {
             formSubmit: false,
+            modal2: false,
             isModalOpen: false,
             verificationCode: "",
             confirmPassword: "", // Add confirmPassword field
@@ -133,6 +134,7 @@ export default {
         modalClose() {
             console.log("close modal")
             this.isModalOpen = false
+            this.modal2 = false
         },
         async submitForm() {
             console.log("Form submitted successfully");

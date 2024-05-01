@@ -24,6 +24,8 @@ import NotFound from "@/components/NotFound"; // Adjust the path as per your pro
 import CarsListingDetails from "@/components/CarsListingDetails.vue";
 import DealersLogin from "@/components/DealersLogin";
 import ForgetPassword from "@/components/FprgetPassword.vue";
+import PrivacyPolicy from "./components/PrivacyPolicy.vue";
+import TermsOfService from "./components/TermsOfService.vue";
 
 const routes = [
   {
@@ -156,6 +158,16 @@ const routes = [
     path: "/forget",
     name: "ForgetPassword",
     component: ForgetPassword,
+  },
+  {
+    path: "/privacypolicy",
+    name: "PrivacyPolicy",
+    component: PrivacyPolicy,
+  },
+  {
+    path: "/termofservice",
+    name: "TermsOfService",
+    component: TermsOfService,
   },
 ];
 

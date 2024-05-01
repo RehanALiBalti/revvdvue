@@ -78,12 +78,7 @@ const actions = {
   ) {
     console.log("yes", context);
     try {
-      const result = await AuthService.register(
-        name,
-
-        password,
-        email
-      );
+      const result = await AuthService.register(name, password, email);
 
       // Commit mutations or perform other actions if needed
       context.commit("setUser", result);

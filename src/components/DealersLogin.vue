@@ -288,20 +288,58 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="password" class="form-label">Password</label>
-                                <input v-model="formData.password" id="password" type="text"
+                                <input type="password" id="password" v-model="formData.password"
                                     class="form-control form-input" placeholder="Enter here" />
+                                <div class="strength-bars" v-if="formData.password !== ''">
+                                    <div class="strength-bar"
+                                        :class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }">
+                                    </div>
+                                    <div class="strength-bar"
+                                        :class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
+                                    </div>
+                                    <div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <p :class="passwordStrengthClass">{{ passwordStrength }}</p>
+                                </div>
+                                <div v-if="formErrors.password" class="text-danger">
+                                    {{ formErrors.password }}
+                                </div>
+                                <!-- <ul class="text-white">
+                  <li>
+                    <p>Password must be:</p>
+                  </li>
+                  <li :class="{ 'completed': isPasswordLengthValid }">
+                    <small>8 characters long</small>
+                  </li>
+                  <li :class="{ 'completed': isUppercaseValid }">
+                    <small>An uppercase letter</small>
+                  </li>
+                  <li :class="{ 'completed': isNumberValid }">
+                    <small>A number</small>
+                  </li>
+                </ul> -->
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check1" class="form-input m-0" placeholder="Enter here" />
                                 <label for="check1" class="form-label m-0 p-0">I have read and agree with the
-                                    <router-link to="/dealerslogin"> General Terms and Conditions</router-link>
+                                    <router-link to="/termofservice" class="termsService"> General Terms and
+                                        Conditions</router-link>
                                 </label>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
                                 <label for="check2" class="form-label m-0 p-0">Yes, I agree with the Use of My Data
                                     According To The
-                                    <router-link to="/dealerslogin">Privacy Policy</router-link>
+                                    <router-link to="/privacypolicy" class="termsService">Privacy Policy</router-link>
+                                </label>
+                            </div>
+                            <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+                                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
+                                <label for="check2" class="form-label m-0 p-0">I don't want to recieve emails
+
                                 </label>
                             </div>
                             <div class="col-md-12">
@@ -394,11 +432,72 @@ export default {
                 mobilePhone: '',
                 email: '',
                 password: ""
-            }
+            },
+            formErrors: {
+
+                password: "",
+            },
 
         };
     },
+    computed: {
+        loggedIn() {
+
+            return this.$store.state.auth;
+
+        },
+        isPasswordLengthValid() {
+            return this.formData.password.length >= 8;
+        },
+        isUppercaseValid() {
+            const uppercaseRegex = /[A-Z]/;
+            return uppercaseRegex.test(this.formData.password);
+        },
+        isNumberValid() {
+            const numberRegex = /[0-9]/;
+            return numberRegex.test(this.formData.password);
+        },
+        passwordStrength() {
+            if (!this.formData.password) return '';
+            if (
+                this.isPasswordLengthValid &&
+                this.isUppercaseValid &&
+                this.isNumberValid
+            ) {
+                return 'Strong';
+            } else if (
+                this.isPasswordLengthValid ||
+                this.isUppercaseValid ||
+                this.isNumberValid
+            ) {
+                return 'Medium';
+            } else {
+                return 'Weak';
+            }
+        },
+        passwordStrengthClass() {
+            if (this.passwordStrength === 'Weak') {
+                return 'text-red'; // Define 'text-red' class in your CSS with appropriate styling
+            } else if (this.passwordStrength === 'Medium') {
+                return 'text-green'; // Define 'text-green' class in your CSS with appropriate styling
+            } else {
+                return 'text-orange'; // Define 'text-orange' class in your CSS with appropriate styling
+            }
+        }
+
+
+    },
     methods: {
+        validatePassword() {
+            this.formErrors.password = '';
+            if (!this.isPasswordLengthValid) {
+                this.formErrors.password = 'Password must be at least 8 characters long.';
+            } else if (!this.isUppercaseValid) {
+                this.formErrors.password = 'Password must contain at least one uppercase letter.';
+            } else if (!this.isNumberValid) {
+                this.formErrors.password = 'Password must contain at least one number.';
+            }
+        },
         modalClose() {
             console.log("close modal")
             this.isModalOpen = false
@@ -426,6 +525,14 @@ export default {
 
 
 
+    },
+    watch: {
+        formData: {
+            handler() {
+                this.validatePassword();
+            },
+            deep: true
+        }
     },
 };
 </script>
@@ -477,5 +584,53 @@ export default {
 
 .form-select:focus {
     box-shadow: none;
+}
+
+.completed {
+    color: #FF7A00;
+}
+
+.text-red {
+    color: #ff4d4f;
+    /* or any other style for weak password */
+}
+
+.text-green {
+    color: #52c41a;
+    /* or any other style for medium password */
+}
+
+.text-orange {
+    color: orange;
+    /* or any other style for strong password */
+}
+
+.weak {
+    background-color: #ff4d4f !important;
+    /* Red color for weak */
+}
+
+.medium {
+    background-color: #52c41a !important;
+    /* Yellow color for medium */
+}
+
+.strong {
+    background-color: orange !important;
+    /* Green color for strong */
+}
+
+.strength-bars {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.strength-bar {
+    flex: 1;
+    height: 7px;
+    margin: 0 2px;
+    border-radius: 2px;
+    background: #fff;
 }
 </style>

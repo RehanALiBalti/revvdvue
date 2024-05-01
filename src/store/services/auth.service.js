@@ -178,6 +178,7 @@ function register(name, password, email) {
     Auth.signUp({
       username: email,
       password: password,
+
       attributes: {
         email: email,
 

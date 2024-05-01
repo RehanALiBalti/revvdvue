@@ -20,9 +20,9 @@
                 <i class="fa-brands fa-facebook"></i> Facebook
               </button>
 
-              <button class="btn google-btn">
+              <!-- <button class="btn google-btn">
                 <i class="fa-brands fa-apple"></i>Apple
-              </button>
+              </button> -->
             </div>
             <div class="row">
               <div class="col-md-12">
@@ -39,6 +39,9 @@
                   placeholder="Enter here" />
                 <div v-if="formErrors.password" class="text-danger">
                   {{ formErrors.password }}
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                  <router-link to="/forget" class="termsService">Forgot Password?</router-link>
                 </div>
               </div>
 
@@ -72,11 +75,11 @@
                   </span>
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                  <router-link to="/dealerlogin">Sign In As A Dealer</router-link>
+                  <router-link to="/dealerlogin" class="termsService">Go To Dealer Login</router-link>
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
-                  <router-link to="/forget">Forgot Password?</router-link>
-                </div>
+                <!-- <div class="d-flex justify-content-end align-items-center">
+                  <router-link to="/forget" class="termsService">Forgot Password?</router-link>
+                </div> -->
               </div>
             </div>
           </form>

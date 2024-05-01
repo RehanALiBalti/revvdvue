@@ -103,29 +103,32 @@
               <div v-for="comment in comments" :key="comment.comments">
 
                 <div v-if="comment.user_email == user_email" class="d-flex flex-column position-relative">
+                  <div class="d-flex justify-content-end align-items-center me-2">
+                    <small class="uName">{{ comment.user_name }}</small>
+                  </div>
                   <div class="receiver-chats ">
                     <p class="receiver-chats-para">
                       {{ comment.comments }}
                     </p>
                     <img v-if="comment.image" @click="showModal(comment.image)"
                       :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image" class="CommentImage">
-                    <div class="d-flex justify-content-end align-items-end">
-                      <small class="uName">{{ comment.user_name }}</small>
-                    </div>
+
                   </div>
 
 
                 </div>
-                <div v-else class="d-flex flex-column">
+                <div v-else class="d-flex flex-row">
+                  <div class="d-flex justify-start align-items-center ms-2">
+                    <small class="uName">{{ comment.user_name }}</small>
+                  </div>
                   <div class="sender-chats">
+
                     <p class="sender-chats-para">
                       {{ comment.comments }}
                     </p>
                     <img v-if="comment.image" @click="showModal(comment.image)"
                       :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image" class="CommentImage">
-                    <div class="d-flex justify-content-end align-items-end">
-                      <small class="uName">{{ comment.user_name }}</small>
-                    </div>
+
 
                   </div>
                 </div>
@@ -716,7 +719,7 @@ export default {
 }
 
 .uName {
-  font-size: 10px;
+  font-size: 14px;
   color: #F95F19
 }
 
