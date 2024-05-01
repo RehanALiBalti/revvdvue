@@ -57,7 +57,8 @@
                             <div class="col-md-4">
                                 <label for="password" class="form-label">Internat. Prefix</label>
                                 <select name="" id="" class="form-select form-input">
-                                    <option value="" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>Germany(+49)</option>
+                                                                        <option value="germany(+49)" selected>pakistan(+92)</option>
                                 </select>
 
                             </div>
@@ -78,7 +79,8 @@
                             <div class="col-md-4">
                                 <label for="password" class="form-label">Internat. Prefix</label>
                                 <select name="" id="" class="form-select form-input">
-                                    <option value="" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>Germany(+49)</option>
+                                                                        <option value="germany(+49)" selected>pakistan(+92)</option>
                                 </select>
 
                             </div>
@@ -99,7 +101,8 @@
                             <div class="col-md-4">
                                 <label for="password" class="form-label">Internat. Prefix</label>
                                 <select name="" id="" class="form-select form-input">
-                                    <option value="" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>Germany(+49)</option>
+                                                                        <option value="germany(+49)" selected>pakistan(+92)</option>
                                 </select>
 
                             </div>
@@ -227,7 +230,8 @@
                             <div class="col-md-4">
                                 <label for="intlPrefix1" class="form-label">Internat. Prefix</label>
                                 <select v-model="formData.intlPrefix1" id="intlPrefix1" class="form-select form-input">
-                                    <option value="" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
@@ -244,7 +248,8 @@
                             <div class="col-md-4">
                                 <label for="intlPrefix2" class="form-label">Internat. Prefix</label>
                                 <select v-model="formData.intlPrefix2" id="intlPrefix2" class="form-select form-input">
-                                    <option value="" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
@@ -261,7 +266,8 @@
                             <div class="col-md-4">
                                 <label for="intlPrefix3" class="form-label">Internat. Prefix</label>
                                 <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
-                                    <option value="" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>Germany(+49)</option>
+                                    <option value="germany(+49)" selected>pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
@@ -275,10 +281,15 @@
                                 <input v-model="formData.mobilePhone" id="mobilePhone" type="text"
                                     class="form-control form-input" placeholder="Enter here" />
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="email" class="form-label">E-mail For Customer Queries</label>
-                                <input v-model="formData.email" id="email" type="text" class="form-control form-input"
+                                <input v-model="formData.email" id="email" type="email" class="form-control form-input"
                                     placeholder="Enter here" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Password</label>
+                                <input v-model="formData.password" id="password" type="text"
+                                    class="form-control form-input" placeholder="Enter here" />
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check1" class="form-input m-0" placeholder="Enter here" />
@@ -381,7 +392,8 @@ export default {
                 intlPrefix3: '',
                 prefix3: '',
                 mobilePhone: '',
-                email: ''
+                email: '',
+                password: ""
             }
 
         };
@@ -394,7 +406,22 @@ export default {
 
         submitForm() {
             // Handle form submission here
-            console.log(this.formData);
+            // console.log(this.formData);
+            this.$store.dispatch('auth/handleSignUp2',
+                this.formData)
+                .then(
+                    (data) => {
+                        if (data.success == 1) {
+                            this.isModalOpen = true
+                            this.$router.push("/signin");
+                        } else {
+                            this.isModalOpenFail = true
+                            this.errorMessage = data.error
+                        }
+
+                        console.log(data);
+                    })
+
         }
 
 

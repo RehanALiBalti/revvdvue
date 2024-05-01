@@ -134,8 +134,44 @@ function logout() {
   // Implementation for logout, if needed
 }
 
-function register(name, age, password, email, phone, socialMedia) {
-  console.log("before request", name, age, password, email, phone, socialMedia);
+// function register(name, age, password, email, phone, socialMedia) {
+//   console.log("before request", name, age, password, email, phone, socialMedia);
+
+//   return new Promise((resolve, reject) => {
+//     // Call Auth.signUp
+//     Auth.signUp({
+//       username: email,
+//       password: password,
+//       attributes: {
+//         email: email,
+//         phone_number: "+123456789",
+//         name: name,
+//         website: socialMedia,
+//         //   'custom:fullname':name,
+//         //   'custom:age':age,
+//         //   'custom:socialMedia':socialMedia,
+//         // Add other optional attributes as needed
+//       },
+//       autoConfirm: true,
+//       autoSignIn: {
+//         enabled: true,
+//       },
+//     })
+//       .then(({ user }) => {
+//         console.log("Auth Service test11", user);
+
+//         const response = { success: 1, result: user };
+//         resolve(response);
+//       })
+//       .catch((error) => {
+//         console.log("Auth Service test22", error.message);
+//         const response = { success: 0, error: error.message };
+//         reject(response);
+//       });
+//   });
+// }
+function register(name, password, email) {
+  console.log("before request", name, password, email);
 
   return new Promise((resolve, reject) => {
     // Call Auth.signUp
@@ -144,14 +180,101 @@ function register(name, age, password, email, phone, socialMedia) {
       password: password,
       attributes: {
         email: email,
-        phone_number: "+123456789",
+
         name: name,
-        website: socialMedia,
+
         //   'custom:fullname':name,
         //   'custom:age':age,
         //   'custom:socialMedia':socialMedia,
         // Add other optional attributes as needed
       },
+      autoConfirm: true,
+      autoSignIn: {
+        enabled: true,
+      },
+    })
+      .then(({ user }) => {
+        console.log("Auth Service test11", user);
+
+        const response = { success: 1, result: user };
+        resolve(response);
+      })
+      .catch((error) => {
+        console.log("Auth Service test22", error.message);
+        const response = { success: 0, error: error.message };
+        reject(response);
+      });
+  });
+}
+
+function register2(
+  companyName,
+  street,
+  streetNo,
+  street2,
+  zipCode,
+  city,
+  country,
+  intlPrefix1,
+  prefix1,
+  phone1,
+  intlPrefix2,
+  prefix2,
+  fax,
+  intlPrefix3,
+  prefix3,
+  mobilePhone,
+  email,
+  password
+) {
+  console.log(
+    "before request",
+    companyName,
+    street,
+    streetNo,
+    street2,
+    zipCode,
+    city,
+    country,
+    intlPrefix1,
+    prefix1,
+    phone1,
+    intlPrefix2,
+    prefix2,
+    fax,
+    intlPrefix3,
+    prefix3,
+    mobilePhone,
+    email,
+    password
+  );
+
+  return new Promise((resolve, reject) => {
+    // Call Auth.signUp
+    Auth.signUp({
+      username: email,
+      password: password,
+
+      email: email,
+      companyName: companyName,
+      street1: streetNo,
+      number: mobilePhone,
+      street2: street2,
+      zipCode: zipCode,
+      country: country,
+      interanetPrefix1: intlPrefix1,
+      prefix1: prefix1,
+      phoneCustomer: phone1,
+      interanetPrefix2: intlPrefix2,
+      prefix2: prefix2,
+      faxCustomer: fax,
+      interanetPrefix3: intlPrefix3,
+      city: city,
+      prefix3: prefix3,
+      mobileCustomer: mobilePhone,
+      emailForCustomer: email,
+      dealerPassword: password,
+
       autoConfirm: true,
       autoSignIn: {
         enabled: true,
@@ -177,4 +300,5 @@ export default {
   register,
   setprofile,
   getcurrentprofile,
+  register2,
 };

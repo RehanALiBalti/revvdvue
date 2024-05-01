@@ -73,17 +73,74 @@ const actions = {
   },
   async handleSignUp(
     context,
-    { name, age, password, email, phone, socialMedia }
+    // { name, age, password, email, phone, socialMedia }
+    { name, password, email }
   ) {
     console.log("yes", context);
     try {
       const result = await AuthService.register(
         name,
-        age,
+
         password,
+        email
+      );
+
+      // Commit mutations or perform other actions if needed
+      context.commit("setUser", result);
+      context.commit("loginSuccess", true, "User has been registered");
+
+      // Return the result to be accessed in the component
+      return result;
+    } catch (error) {
+      // Handle errors and reject the promise
+      context.commit("loginSuccess", false, error);
+      return error;
+    }
+  },
+  async handleSignUp2(
+    context,
+    {
+      companyName,
+      street,
+      streetNo,
+      street2,
+      zipCode,
+      city,
+      country,
+      intlPrefix1,
+      prefix1,
+      phone1,
+      intlPrefix2,
+      prefix2,
+      fax,
+      intlPrefix3,
+      prefix3,
+      mobilePhone,
+      email,
+      password,
+    }
+  ) {
+    console.log("yes", context);
+    try {
+      const result = await AuthService.register2(
+        companyName,
+        street,
+        streetNo,
+        street2,
+        zipCode,
+        city,
+        country,
+        intlPrefix1,
+        prefix1,
+        phone1,
+        intlPrefix2,
+        prefix2,
+        fax,
+        intlPrefix3,
+        prefix3,
+        mobilePhone,
         email,
-        phone,
-        socialMedia
+        password
       );
 
       // Commit mutations or perform other actions if needed

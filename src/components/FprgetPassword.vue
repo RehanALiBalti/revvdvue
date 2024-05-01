@@ -1,69 +1,47 @@
 <template>
-
     <div class="container my-5">
         <div class="row">
-
             <div class="col-md-6 m-auto">
                 <div class="form-content-home1">
                     <form id="subscribe-form" @submit.prevent="submitForm">
                         <h2 class="form-title">Forget <span class="form-span"> Password </span></h2>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="email" class="form-label">Email</label>
                                 <input id="email" type="email" v-model="formData.email" class="form-control form-input"
                                     placeholder="Enter here" />
-                                <div v-if="formErrors.email" class="text-danger">
-                                    {{ formErrors.email }}
-                                </div>
+                                <div v-if="formErrors.email" class="text-danger">{{ formErrors.email }}</div>
                             </div>
-
                             <div class="col-md-12">
                                 <p id="errormsg"></p>
                             </div>
                             <div class="col-md-12">
                                 <div class="list-item-btn position-relative submit-btn-div">
-                                    <span class="border-bottom-btn border-top-btn position-absolute">
-                                        <img src="@/assets/images/Group12.png" class="img-border position-absolute"
-                                            alt="" />
-                                    </span>
-
-                                    <span
-                                        class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                                        <img src="@/assets/images/Path467.png" class="img-border position-absolute"
-                                            alt="" />
-                                    </span>
-
-                                    <span
-                                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                                        <img src="@/assets/images/Path465.png" class="img-border position-absolute"
-                                            alt="" />
-                                    </span>
-                                    <!-- <button type="submit" class="signin-btnli submitNow" id="submit-button" fdprocessedid="eysiqp">
-                                      Log In </button> -->
-                                    <button type="submit" class="signin-btnli submitNow" id="submit-button">
-                                        Submit
-                                    </button>
-                                    <span class="border-bottom-btn border-left-btn position-absolute">
-                                        <img src="@/assets/images/Group11.png" class="img-border position-absolute"
-                                            alt="" />
-                                    </span>
-                                    <span class="border-bottom-btn position-absolute">
-                                        <img src="@/assets/images/Path473.png" class="img-border position-absolute"
-                                            alt="" />
-                                    </span>
+                                    <button type="submit" class="signin-btnli submitNow"
+                                        id="submit-button">Submit</button>
                                 </div>
-
-
                             </div>
                         </div>
                     </form>
+                    <form v-if="formSubmit == true" class="col-md-12" @submit.prevent="submitForm2">
+                        <label for="verification-code" class="form-label">Verification Code</label>
+                        <input id="verification-code" type="text" v-model="verificationCode"
+                            class="form-control form-input" placeholder="Enter verification code" />
+                        <label for="confirm-password" class="form-label">New Password</label>
+                        <input id="confirm-password" type="password" v-model="confirmPassword"
+                            class="form-control form-input" placeholder="Confirm password" />
+                        <div class="col-md-12">
+                            <div class="list-item-btn position-relative submit-btn-div">
+                                <button type="submit" class="signin-btnli submitNow">Submit</button>
+                            </div>
+                        </div>
+                        <div v-if="formErrors.verificationCode" class="text-danger">{{ formErrors.verificationCode }}
+                        </div>
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>
-
     <!-- modal -->
     <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -77,6 +55,29 @@
                         <h5 class="card-title"><span class="choose"> Email Sent Successfylly To {{ formData.email
                                 }}</span></h5>
                         <p class="text-white">Please Check Your Email Box</p>
+                        <p class="text-white">And Close The Modal TO Set New Password</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal end -->
+    <!-- modal2 -->
+    <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <span class="close-icon" @click="modalClose">
+                        <i class="fas fa-times"></i>
+                    </span>
+
+                    <div class="mt-4 py-2">
+                        <h5 class="card-title"><span class="choose">Password Reset Successfullt</span></h5>
+                        <p class="text-white">Please Sign In To Continue</p>
+
                     </div>
 
 
@@ -87,75 +88,77 @@
 
     <!-- modal end -->
 </template>
+
 <script>
 import { Auth } from 'aws-amplify';
 export default {
     name: "SignIn",
-
     data() {
         return {
+            formSubmit: false,
             isModalOpen: false,
+            verificationCode: "",
+            confirmPassword: "", // Add confirmPassword field
+
             formData: {
                 email: "",
-                password: "",
             },
             formErrors: {
                 email: "",
-                password: "",
+                verificationCode: "",
             },
         };
     },
-
     methods: {
-
+        async submitForm2() {
+            const email = this.formData.email;
+            const verificationCode = this.verificationCode;
+            const newPassword = this.confirmPassword; // Use confirmPassword as a placeholder
+            try {
+                // Attempt to verify the code and set a new password
+                const data = await Auth.forgotPasswordSubmit(email, verificationCode, newPassword);
+                console.log("Verification successful:", data);
+                if (data == 'SUCCESS') {
+                    this.modal2 = true
+                }
+                // Prompt user to set a new password
+                // You can redirect them to a new page or display a modal for setting a new password
+            } catch (error) {
+                // Handle verification errors
+                console.error("Verification failed:", error);
+                // Display error messages or take appropriate actions based on error
+                this.formErrors.verificationCode = "Invalid verification code"; // Set error message
+            }
+        },
         modalClose() {
             console.log("close modal")
             this.isModalOpen = false
         },
-        // submitForm() {
-
-
-        //     console.log("Form submitted successfully");
-        //     const email = this.formData.email;
-        //     console.log("email", email);
-
-        //     const data = Auth.forgotPassword(email)
-        //     console.log("data is", data);
-        //     this.isModalOpen = true
-
-
-        // }
         async submitForm() {
             console.log("Form submitted successfully");
             const email = this.formData.email;
             console.log("email", email);
-
             try {
                 // Attempt to send forgot password request
                 await Auth.forgotPassword(email);
                 console.log("Forgot password request successful");
-                this.isModalOpen = true; // Assuming you're using this to display a modal
+                this.isModalOpen = true;
+                this.formSubmit = true;
+
             } catch (error) {
                 // Handle errors
                 console.error("Forgot password request failed:", error);
                 if (error.name === 'LimitExceededException') {
-                    // Display a user-friendly message about the limit being exceeded
                     alert("Attempt limit exceeded, please try again later.");
                 } else {
-                    // Handle other types of errors as needed
                     alert("An error occurred. Please try again later.");
                 }
             }
-        }
-
-
-
-
-
-
+        },
     },
 };
 </script>
+
 <style scoped>
 .modal-dialog {
     max-width: auto;

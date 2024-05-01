@@ -6,7 +6,7 @@
         <div class="form-content-home1">
           <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title">Sign <span class="form-span"> Up </span></h2>
-            <div class="signIn-div my-5">
+            <!-- <div class="signIn-div my-5">
               <button class="btn google-btn">
                 <i class="fa-brands fa-google-plus-g"></i> Google
               </button>
@@ -16,7 +16,7 @@
               <button class="btn google-btn">
                 <i class="fa-brands fa-apple"></i>Apple
               </button>
-            </div>
+            </div> -->
             <div class="row">
               <div class="col-md-6">
                 <label for="name" class="form-label">Name</label>
@@ -26,14 +26,14 @@
                   {{ formErrors.name }}
                 </div>
               </div>
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <label for="age" class="form-label">Age</label>
                 <input id="age" type="number" v-model="formData.age" class="form-control form-input"
                   placeholder="Enter here" />
                 <div v-if="formErrors.age" class="text-danger">
                   {{ formErrors.age }}
                 </div>
-              </div>
+              </div> -->
               <div class="col-md-6">
                 <label for="email" class="form-label">Email (verification)</label>
                 <input id="email" type="email" v-model="formData.email" class="form-control form-input"
@@ -42,29 +42,41 @@
                   {{ formErrors.email }}
                 </div>
               </div>
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <label for="phone" class="form-label">Phone number (verification)</label>
                 <input id="phone" type="tel" v-model="formData.phone" class="form-control form-input"
                   placeholder="Enter here" />
                 <div v-if="formErrors.phone" class="text-danger">
                   {{ formErrors.phone }}
                 </div>
-              </div>
-              <div class="col-md-6">
+              </div> -->
+              <!-- <div class="col-md-6">
                 <label for="socialMedia" class="form-label">Social media (optional)</label>
                 <input id="socialMedia" type="text" v-model="formData.socialMedia" class="form-control form-input"
                   placeholder="Enter here" />
-                <!-- <div v-if="formErrors.phone" class="text-danger">
-                  {{ formErrors.socialMedia }}
-                </div> -->
-              </div>
+              
+              </div> -->
               <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" v-model="formData.password" class="form-control form-input"
                   placeholder="Enter here" />
-                <div v-if="formErrors.phone" class="text-danger">
+                <div v-if="formErrors.password" class="text-danger">
                   {{ formErrors.password }}
                 </div>
+                <ul class="text-white">
+                  <li>
+                    <p>Password must be:</p>
+                  </li>
+                  <li :class="{ 'completed': isPasswordLengthValid }">
+                    <small>8 characters long</small>
+                  </li>
+                  <li :class="{ 'completed': isUppercaseValid }">
+                    <small>An uppercase letter</small>
+                  </li>
+                  <li :class="{ 'completed': isNumberValid }">
+                    <small>A number</small>
+                  </li>
+                </ul>
               </div>
 
               <div class="col-md-12">
@@ -181,7 +193,19 @@ export default {
     loggedIn() {
 
       return this.$store.state.auth;
+
     },
+    isPasswordLengthValid() {
+      return this.formData.password.length >= 8;
+    },
+    isUppercaseValid() {
+      const uppercaseRegex = /[A-Z]/;
+      return uppercaseRegex.test(this.formData.password);
+    },
+    isNumberValid() {
+      const numberRegex = /[0-9]/;
+      return numberRegex.test(this.formData.password);
+    }
   },
   mounted() {
     console.log(this.loggedIn)
@@ -191,6 +215,16 @@ export default {
     // }
   },
   methods: {
+    validatePassword() {
+      this.formErrors.password = '';
+      if (!this.isPasswordLengthValid) {
+        this.formErrors.password = 'Password must be at least 8 characters long.';
+      } else if (!this.isUppercaseValid) {
+        this.formErrors.password = 'Password must contain at least one uppercase letter.';
+      } else if (!this.isNumberValid) {
+        this.formErrors.password = 'Password must contain at least one number.';
+      }
+    },
     async submitForm() {
       this.validateForm();
       if (this.isFormValid()) {
@@ -198,11 +232,11 @@ export default {
         const mydata = {
 
           name: this.formData.name,
-          age: this.formData.age,
+          // age: this.formData.age,
           email: this.formData.email,
-          phone: this.formData.phone,
+          // phone: this.formData.phone,
           password: this.formData.password,
-          socialMedia: this.formData.socialMedia,
+          // socialMedia: this.formData.socialMedia,
         };
 
         console.log("Form submitted successfully", mydata);
@@ -226,30 +260,46 @@ export default {
         console.log("Form validation failed");
       }
     },
+    // validateForm() {
+    //   this.formErrors = {};
+
+    //   if (!this.formData.name) {
+    //     this.formErrors.name = "Name is required";
+    //   }
+
+    //   if (!this.formData.email) {
+    //     this.formErrors.email = "Email is required";
+    //   } else if (!this.isValidEmail(this.formData.email)) {
+    //     this.formErrors.email = "Invalid email format";
+    //   }
+
+    //   if (!this.formData.password) {
+    //     this.formErrors.password = "Password is required";
+    //   }
+    // },
     validateForm() {
       this.formErrors = {};
 
       if (!this.formData.name) {
         this.formErrors.name = "Name is required";
       }
-      if (!this.formData.age) {
-        this.formErrors.age = "Age is required";
-      }
+
       if (!this.formData.email) {
         this.formErrors.email = "Email is required";
       } else if (!this.isValidEmail(this.formData.email)) {
         this.formErrors.email = "Invalid email format";
       }
-      if (!this.formData.phone) {
-        this.formErrors.phone = "Phone number is required";
-      } else if (!this.isValidPhoneNumber(this.formData.phone)) {
-        this.formErrors.phone = "Invalid phone number format";
-      }
-      if (!this.formData.socialMedia) {
-        this.formErrors.socialMedia = ""; // Optional field
-      }
+
       if (!this.formData.password) {
         this.formErrors.password = "Password is required";
+      } else {
+        if (this.formData.password.length < 8) {
+          this.formErrors.password = "Password must be at least 8 characters long";
+        } else if (!/[A-Z]/.test(this.formData.password)) {
+          this.formErrors.password = "Password must contain at least one uppercase letter";
+        } else if (!/\d/.test(this.formData.password)) {
+          this.formErrors.password = "Password must contain at least one number";
+        }
       }
     },
 
@@ -265,6 +315,14 @@ export default {
       const emailPattern = /\S+@\S+\.\S+/;
       return emailPattern.test(email);
     },
+  },
+  watch: {
+    formData: {
+      handler() {
+        this.validatePassword();
+      },
+      deep: true
+    }
   },
 };
 </script>
@@ -286,5 +344,9 @@ export default {
   border: 1px solid #1a202c;
   border-radius: 5px;
   outline: 0;
+}
+
+.completed {
+  color: #FF7A00;
 }
 </style>
