@@ -111,7 +111,8 @@
                       {{ comment.comments }}
                     </p>
                     <img v-if="comment.image" @click="showModal(comment.image)"
-                      :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image" class="CommentImage">
+                      :src="'https://clownfish-app-quehu.ondigitalocean.app/' + comment.image" alt="Comment Image"
+                      class="CommentImage">
 
                   </div>
 
@@ -127,7 +128,8 @@
                       {{ comment.comments }}
                     </p>
                     <img v-if="comment.image" @click="showModal(comment.image)"
-                      :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image" class="CommentImage">
+                      :src="'https://clownfish-app-quehu.ondigitalocean.app/' + comment.image" alt="Comment Image"
+                      class="CommentImage">
 
 
                   </div>
@@ -138,8 +140,8 @@
                 <div class="modala-content">
                   <span class="close" @click="closeModal" style="color:#FF7A00">&times;</span>
                   <!-- <img :src="'http://137.184.111.69:5000/' + modalImageUrl" alt="Modal Image"> -->
-                  <vue-image-zoomer :regular="'http://137.184.111.69:5000/' + modalImageUrl" :imageClass="zoomImg"
-                    :img-class="zoomImg" :click-zoom="true" />
+                  <vue-image-zoomer :regular="'https://clownfish-app-quehu.ondigitalocean.app/' + modalImageUrl"
+                    :imageClass="zoomImg" :img-class="zoomImg" :click-zoom="true" />
                 </div>
               </div>
 
@@ -520,7 +522,7 @@ export default {
         this.isModal2Open = true;
         this.imgLoading = false;
       } else {
-        axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
+        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/comments', formData)
           .then(response => {
             // Handle success
             console.log('Post request successful:', response.data);
@@ -591,7 +593,7 @@ export default {
         const requestData = {
           id: this.id
         };
-        axios.post('http://137.184.111.69:5000/api/communities/likes', requestData)
+        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/likes', requestData)
           .then(response => {
             // Handle success
             console.log('Post request successful:', response.data)
@@ -612,7 +614,7 @@ export default {
         const requestData = {
           id: this.id
         };
-        axios.post('http://137.184.111.69:5000/api/communities/dislikes', requestData)
+        axios.post('https://clownfish-app-quehu.ondigitalocean.app/communities/dislikes', requestData)
           .then(response => {
             // Handle success
             console.log('Dislike request successful:', response.data);
@@ -635,7 +637,7 @@ export default {
       const requestData = {
         id: this.id
       };
-      axios.post('http://137.184.111.69:5000/api/communities/views', requestData)
+      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/views', requestData)
         .then(response => {
           // Handle success
           console.log('Post of views request successful:', response.data);
