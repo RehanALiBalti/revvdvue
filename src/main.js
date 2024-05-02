@@ -48,8 +48,8 @@ Amplify.configure({
     authenticationFlowType: "USER_SRP_AUTH",
     oauth: {
       domain: "revdot.auth.eu-north-1.amazoncognito.com",
-      redirectSignIn: "http://localhost:8081", // Specify the URI to redirect to after sign-in
-      redirectSignOut: "http://localhost:8081",
+      redirectSignIn: "http://137.184.111.69:8081/", // Specify the URI to redirect to after sign-in
+      redirectSignOut: "http://137.184.111.69:8081/",
       scope: ["email", "profile", "openid"],
       responseType: "code",
     },
