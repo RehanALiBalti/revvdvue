@@ -2119,6 +2119,15 @@ a:hover {
 	border-radius: 20px !important;
 }
 
+.eye {
+	position: absolute;
+	top: 67px;
+	right: 6%;
+	color: #F95F19;
+	cursor: pointer;
+
+}
+
 /* Responsive Styles */
 @media only screen and (max-width: 600px) {
 

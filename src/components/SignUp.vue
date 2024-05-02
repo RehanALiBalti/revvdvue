@@ -56,15 +56,12 @@
                   placeholder="Enter here" />
               
               </div> -->
-              <div class="col-md-6">
+              <!-- <div class="col-md-6 position-relative">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" v-model="formData.password" class="form-control form-input"
                   placeholder="Enter here" @input="checkStrength" />
-                <!-- <div class="strength-bars" v-if="formData.password != ''">
-                  <div class="strength-bar" :class="{ 'weak': passwordStrength === 'Weak' }"></div>
-                  <div class="strength-bar" :class="{ 'medium': passwordStrength === 'Medium' }"></div>
-                  <div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }"></div>
-                </div> -->
+                <span class="eye"><i class="fa-solid fa-eye"></i></span>
+             
                 <div class="strength-bars" v-if="formData.password !== ''">
                   <div class="strength-bar"
                     :class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }"></div>
@@ -80,21 +77,33 @@
                 <div v-if="formErrors.password" class="text-danger">
                   {{ formErrors.password }}
                 </div>
-                <!-- <ul class="text-white">
-                  <li>
-                    <p>Password must be:</p>
-                  </li>
-                  <li :class="{ 'completed': isPasswordLengthValid }">
-                    <small>8 characters long</small>
-                  </li>
-                  <li :class="{ 'completed': isUppercaseValid }">
-                    <small>An uppercase letter</small>
-                  </li>
-                  <li :class="{ 'completed': isNumberValid }">
-                    <small>A number</small>
-                  </li>
-                </ul> -->
+              
+              </div> -->
+              <div class="col-md-6 position-relative">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" v-model="formData.password" class="form-control form-input"
+                  placeholder="Enter here" @input="checkStrength" />
+                <span class="eye" @click="togglePasswordVisibility">
+                  <i class="fa-solid" :class="eyeIcon"></i>
+                </span>
+
+                <div class="strength-bars" v-if="formData.password !== ''">
+                  <div class="strength-bar"
+                    :class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }"></div>
+                  <div class="strength-bar"
+                    :class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }"></div>
+                  <div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }"></div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                  <p :class="passwordStrengthClass">{{ passwordStrength }}</p>
+                </div>
+
+                <div v-if="formErrors.password" class="text-danger">
+                  {{ formErrors.password }}
+                </div>
               </div>
+
               <div class="col-md-6">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                 <input type="password" id="confirmPassword" v-model="formData.confirmPassword"
@@ -104,17 +113,25 @@
                 </div>
               </div>
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                <input type="checkbox" id="check1" class="form-input m-0" placeholder="Enter here" />
+                <input type="checkbox" id="check1" class="form-input m-0" placeholder="Enter here"
+                  v-model="formData.check1" />
                 <label for="check1" class="form-label m-0 p-0">I have read and agree with the
                   <router-link to="/termofservice" class="termsService"> General Terms and Conditions</router-link>
                 </label>
               </div>
+              <div v-if="formErrors.check1" class="text-danger">
+                {{ formErrors.check1 }}
+              </div>
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
+                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here"
+                  v-model="formData.check2" />
                 <label for="check2" class="form-label m-0 p-0">Yes, I agree with the Use of My Data
                   According To The
                   <router-link to="/privacypolicy" class="termsService">Privacy Policy</router-link>
                 </label>
+              </div>
+              <div v-if="formErrors.check2" class="text-danger">
+                {{ formErrors.check2 }}
               </div>
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                 <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
@@ -224,6 +241,10 @@ export default {
         socialMedia: "empty",
         password: "",
         confirmPassword: "",
+        check1: "",
+        check2: "",
+        showPassword: false
+
       },
       formErrors: {
         name: "",
@@ -233,6 +254,8 @@ export default {
         socialMedia: "",
         password: "",
         confirmPassword: "",
+        check1: "",
+        check2: ""
       },
     };
   },
@@ -284,6 +307,9 @@ export default {
     isConfirmPasswordValid() {
       return this.formData.password === this.formData.confirmPassword;
     },
+    eyeIcon() {
+      return this.formData.showPassword ? 'fa-eye-slash' : 'fa-eye';
+    }
 
 
   },
@@ -296,6 +322,9 @@ export default {
     // }
   },
   methods: {
+    togglePasswordVisibility() {
+      this.formData.showPassword = !this.formData.showPassword;
+    },
     // checkStrength() {
     //   const password = this.password;
     //   let strength = '';
@@ -350,7 +379,7 @@ export default {
             (data) => {
               if (data.success == 1) {
                 this.isModalOpen = true
-                this.$router.push("/signin");
+                this.$router.push("/ourcommunity");
               } else {
                 this.isModalOpenFail = true
                 this.errorMessage = data.error
@@ -383,7 +412,13 @@ export default {
     // },
     validateForm() {
       this.formErrors = {};
-
+      // console.log("check1", this.formData.check1)
+      if (!this.formData.check2) {
+        this.formErrors.check1 = "Please Check the Privacy And Policy"
+      }
+      if (!this.formData.check1) {
+        this.formErrors.check1 = "Please Check the General Terms ANd Conditions"
+      }
       if (!this.formData.name) {
         this.formErrors.name = "Name is required";
       }
