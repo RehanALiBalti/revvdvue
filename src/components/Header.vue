@@ -122,9 +122,9 @@
                     </router-link>
                   </li>
                   <li data-code="signOut">
-                    <router-link class="userListATag" to="/signin" @click="logout">
+                    <div class="userListATag" @click="logout">
                       {{ $t('signOut') }}
-                    </router-link>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -260,7 +260,7 @@ export default {
 
         // Execute this code after sign-out is successful
 
-        console.log("User signed out successfully");
+        console.log("User signed out successfully", Auth.signOut());
       } catch (error) {
         // Handle sign-out errors
         console.error("Error signing out:", error);
