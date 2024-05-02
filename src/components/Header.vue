@@ -181,10 +181,15 @@ export default {
     window.addEventListener('storage', this.handleStorageChange.handleStorageChange);
     this.$router.beforeEach((to, from, next) => {
       // Set isOpen to false when the route changes
+      console.log("yessss", this.issOpen)
       this.issOpen = false;
       this.isOpen = false;
+      console.log("nooo", this.issOpen)
+      this.closeDropdownm()
+
       this.fetchProfileData()
       next();
+      this.issOpen = false;
     });
 
     //    this.fetchProfileData()
@@ -203,9 +208,13 @@ export default {
   },
 
   methods: {
+    closeDropdownm() {
+      this.issOpen = false;
+    },
     closeDropdown(event) {
       if (!this.$el.contains(event.target)) {
         this.isOpen = false;
+
       }
     },
     closeDropdown2(event) {
