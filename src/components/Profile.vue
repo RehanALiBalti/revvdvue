@@ -189,7 +189,7 @@ export default {
 
 			formData.append('userImage', this.$refs.fileInput.files[0]);
 
-			axios.post('http://137.184.111.69:5000/api/comments/users', formData)
+			axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/users', formData)
 				.then(response => {
 					// Handle success
 					console.log('Post request successful:', response.data);
