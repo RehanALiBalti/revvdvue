@@ -51,7 +51,7 @@
                                 <label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
                                 <select v-model="formData.intlPrefix1" id="intlPrefix1" class="form-select form-input">
                                     <option value="germany(+49)">Germany(+49)</option>
-                                    <option value="germany(+49)">pakistan(+92)</option>
+                                    <option value="pakistan(+92)">pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
@@ -69,7 +69,7 @@
                                 <label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
                                 <select v-model="formData.intlPrefix2" id="intlPrefix2" class="form-select form-input">
                                     <option value="germany(+49)">Germany(+49)</option>
-                                    <option value="germany(+49)">pakistan(+92)</option>
+                                    <option value="pakistan(+92)">pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
@@ -87,7 +87,7 @@
                                 <label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
                                 <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
                                     <option value="germany(+49)">Germany(+49)</option>
-                                    <option value="germany(+49)">pakistan(+92)</option>
+                                    <option value="pakistan(+92)">pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
