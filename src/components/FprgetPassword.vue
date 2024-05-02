@@ -273,7 +273,7 @@ export default {
         async submitForm2() {
             const email = this.formData.email;
             const verificationCode = this.verificationCode;
-            const newPassword = this.formData.email; // Use confirmPassword as a placeholder
+            const newPassword = this.formData.password; // Use confirmPassword as a placeholder
             try {
                 // Attempt to verify the code and set a new password
                 const data = await Auth.forgotPasswordSubmit(email, verificationCode, newPassword);
