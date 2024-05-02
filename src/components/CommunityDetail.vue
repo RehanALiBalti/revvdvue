@@ -614,7 +614,7 @@ export default {
         const requestData = {
           id: this.id
         };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/communities/dislikes', requestData)
+        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/dislikes', requestData)
           .then(response => {
             // Handle success
             console.log('Dislike request successful:', response.data);
