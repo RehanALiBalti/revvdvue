@@ -110,59 +110,50 @@
 						$t("updateProfile") }}</button>
 								</div> -->
 							</div>
+							<div class="col-md-12">
+								<div
+									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+										<span class="border-bottom-btn border-top-btn position-absolute">
+											<img src="@/assets/images/Group12engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+											<img src="@/assets/images/Path467engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+											<img src="@/assets/images/Path465engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<!-- data-bs-toggle="modal" -->
+										<button type="submit"
+											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+											id="submit-button" @click="isModalReset = true">
+											Change Password
+										</button>
+										<span class="border-bottom-btn border-left-btn new-popup position-absolute">
+											<img src="@/assets/images/Group11engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<span class="border-bottom-btn position-absolute">
+											<img src="@/assets/images/Path473engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+									</div>
+								</div>
+								<!-- <div class="list-item-btn position-relative submit-btn-div">
+									<button type="submit" class="signin-btnli submitNow" >{{
+						$t("updateProfile") }}</button>
+								</div> -->
+							</div>
 						</div>
 					</form>
-					<div class="row">
-						<h1>Reset Password</h1>
-						<div class="col-md-6">
-							<label for="socialMedia" class="form-label">Old Password</label>
-							<input v-model="oldPassword" id="socialMedia" type="text" name="socialMedia"
-								class="form-control form-input" placeholder="Enter here">
-						</div>
-						<div class="col-md-6">
-							<label for="socialMedia" class="form-label">New Password</label>
-							<input v-model="newPassword" id="socialMedia" type="text" name="socialMedia"
-								class="form-control form-input" placeholder="Enter here">
-						</div>
-						<div class="col-md-12">
-							<div
-								class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
-								<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-									<span class="border-bottom-btn border-top-btn position-absolute">
-										<img src="@/assets/images/Group12engine.png"
-											class="img-border position-absolute" alt="" />
-									</span>
 
-									<span
-										class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-										<img src="@/assets/images/Path467engine.png"
-											class="img-border position-absolute" alt="" />
-									</span>
-
-									<span
-										class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-										<img src="@/assets/images/Path465engine.png"
-											class="img-border position-absolute" alt="" />
-									</span>
-									<!-- data-bs-toggle="modal" -->
-									<button type="submit"
-										class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-										id="submit-button" @click="changePassword(oldPassword, newPassword)">
-										Update Pasword
-									</button>
-									<span class="border-bottom-btn border-left-btn new-popup position-absolute">
-										<img src="@/assets/images/Group11engine.png"
-											class="img-border position-absolute" alt="" />
-									</span>
-									<span class="border-bottom-btn position-absolute">
-										<img src="@/assets/images/Path473engine.png"
-											class="img-border position-absolute" alt="" />
-									</span>
-								</div>
-							</div>
-
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -207,6 +198,96 @@
 			</div>
 		</div>
 	</div>
+	<!-- modal success -->
+	<div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="modalSuccess === true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<span class="close-icon" @click="modalSuccess = false">
+						<i class="fas fa-times"></i>
+					</span>
+
+					<div class="mt-4 py-2">
+						<h5 class="card-title"><span class="choose">Congratulation </span></h5>
+
+						<p class="text-white">{{ SuccessMesage }}</p>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal restpasword -->
+	<div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalReset === true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<span class="close-icon" @click="isModalReset = false">
+						<i class="fas fa-times"></i>
+					</span>
+
+					<div class="mt-4 py-2">
+						<h5 class="card-title"><span class="choose">Reset Pssword </span></h5>
+
+						<div class="row">
+
+							<div class="col-md-12">
+								<label for="socialMedia" class="form-label">Old Password</label>
+								<input v-model="oldPassword" id="socialMedia" type="text" name="socialMedia"
+									class="form-control form-input" placeholder="Enter here">
+							</div>
+							<div class="col-md-12">
+								<label for="socialMedia" class="form-label">New Password</label>
+								<input v-model="newPassword" id="socialMedia" type="text" name="socialMedia"
+									class="form-control form-input" placeholder="Enter here">
+							</div>
+							<div class="col-md-12">
+								<div
+									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+										<span class="border-bottom-btn border-top-btn position-absolute">
+											<img src="@/assets/images/Group12engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+											<img src="@/assets/images/Path467engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+											<img src="@/assets/images/Path465engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<!-- data-bs-toggle="modal" -->
+										<button type="submit"
+											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+											id="submit-button" @click="changePassword(oldPassword, newPassword)">
+											Update Pasword
+										</button>
+										<span class="border-bottom-btn border-left-btn new-popup position-absolute">
+											<img src="@/assets/images/Group11engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<span class="border-bottom-btn position-absolute">
+											<img src="@/assets/images/Path473engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<!-- modal end -->
@@ -234,7 +315,10 @@ export default {
 			errorMessage: '',
 			formData: {},
 			oldPassword: "",
-			newPassword: ""
+			newPassword: "",
+			isModalReset: false,
+			modalSuccess: false,
+			successMessge: ""
 		};
 	},
 	methods: {
@@ -243,8 +327,16 @@ export default {
 				const user = await Auth.currentAuthenticatedUser();
 				const data = await Auth.changePassword(user, oldPassword, newPassword);
 				console.log(data);
+				if (data == 'SUCCESS') {
+					this.isModalReset = false
+					this.modalSuccess = true;
+					this.successMessge = "Password Reset Successfully"
+				}
 			} catch (err) {
 				console.log(err);
+				this.isModalReset = false
+				this.isModalOpenFail = true
+				this.errorMessage = err
 			}
 		},
 		openFileInput() {
@@ -359,6 +451,7 @@ export default {
 	created() {
 
 		// this.getprofile()
+		this.fetchProfileData()
 
 
 

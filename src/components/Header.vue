@@ -183,8 +183,11 @@ export default {
       // Set isOpen to false when the route changes
       this.issOpen = false;
       this.isOpen = false;
+      this.fetchProfileData()
       next();
     });
+
+    this.fetchProfileData()
 
   },
   beforeUnmount() {

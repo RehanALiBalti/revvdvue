@@ -73,7 +73,9 @@ function setprofile(data) {
 
       Auth.currentAuthenticatedUser()
         .then((user) => {
-          console.log("user", user);
+          console.log("authenuser", user);
+          console.log(user.signInUserSession.accessToken.jwtToken);
+
           Auth.updateUserAttributes(user, updatedAttributes)
             .then((result) => {
               resolve(result);
