@@ -112,7 +112,7 @@
             </li>
           </ul>
           <ul class="user-dropdown" :class="{ open: issOpen }" id="userDropdown">
-            <li data-code="profile">
+            <li data-code="profile" @click="issOpen = false">
               <router-link class="userListATag" to="/profile">
                 {{ $t('profile') }}
               </router-link>
