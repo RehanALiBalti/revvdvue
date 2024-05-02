@@ -107,27 +107,26 @@
 
 
                 </div>
-
-              </div>
-            </li>
-          </ul>
-          <ul class="user-dropdown" :class="{ open: issOpen }" id="userDropdown">
-            <li data-code="profile">
-              <router-link class="userListATag" to="/profile" @click="issOpen = false">
-                {{ $t('profile') }}
-              </router-link>
-            </li>
-            <li data-code="myAdds" class="position-relative">
-              <div class="cardOverlay d-flex pe-2 pt-2">
-                <img src="../../public/images/layer3.png">
-              </div>
-              <router-link class="userListATag" to="/myCarListing">
-                {{ $t('myAdds') }}
-              </router-link>
-            </li>
-            <li data-code="signOut">
-              <div class="userListATag" @click="logout">
-                {{ $t('signOut') }}
+                <ul class="user-dropdown" :class="{ open: issOpen }" id="userDropdown">
+                  <li data-code="profile">
+                    <router-link class="userListATag" to="/profile" @click="this.issOpen = false">
+                      {{ $t('profile') }}
+                    </router-link>
+                  </li>
+                  <li data-code="myAdds" class="position-relative">
+                    <div class="cardOverlay d-flex pe-2 pt-2">
+                      <img src="../../public/images/layer3.png">
+                    </div>
+                    <router-link class="userListATag" to="/myCarListing">
+                      {{ $t('myAdds') }}
+                    </router-link>
+                  </li>
+                  <li data-code="signOut">
+                    <div class="userListATag" @click="logout">
+                      {{ $t('signOut') }}
+                    </div>
+                  </li>
+                </ul>
               </div>
             </li>
           </ul>
