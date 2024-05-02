@@ -33,10 +33,15 @@
                   {{ formErrors.email }}
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12 position-relative">
                 <label for="password" class="form-label"> {{ $t('password') }}</label>
-                <input type="password" id="password" v-model="formData.password" class="form-control form-input"
-                  placeholder="Enter here" />
+                <!-- <input type="password" id="password" v-model="formData.password" class="form-control form-input"
+                  placeholder="Enter here" /> -->
+                <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
+                  class="form-control form-input" placeholder="Enter here" />
+                <span class="eye" @click="togglePasswordVisibility">
+                  <i class="fa-solid" :class="eyeIcon"></i>
+                </span>
                 <div v-if="formErrors.password" class="text-danger">
                   {{ formErrors.password }}
                 </div>
@@ -123,12 +128,20 @@ export default {
       formData: {
         email: "",
         password: "",
+        showPassword: false,
       },
       formErrors: {
         email: "",
         password: "",
       },
     };
+  },
+  computed: {
+
+    eyeIcon() {
+      return this.formData.showPassword ? 'fa-eye-slash' : 'fa-eye';
+
+    },
   },
   mounted() {
 
@@ -158,6 +171,9 @@ export default {
     });
   },
   methods: {
+    togglePasswordVisibility() {
+      this.formData.showPassword = !this.formData.showPassword;
+    },
     async handleFacebookLogin() {
       try {
         const response = await Auth.federatedSignIn({
