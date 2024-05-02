@@ -148,6 +148,9 @@
                                     <router-link to="/termofservice" class="termsService">{{
                         $t('GeneralTermsAndConditions') }}</router-link>
                                 </label>
+                                <div v-if="formErrors.check1" class="text-danger">
+                                    {{ formErrors.check1 }}
+                                </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
@@ -155,6 +158,9 @@
                                     <router-link to="/privacypolicy" class="termsService">{{ $t('PrivacyPolicy')
                                         }}</router-link>
                                 </label>
+                                <div v-if="formErrors.check2" class="text-danger">
+                                    {{ formErrors.check2 }}
+                                </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
@@ -251,11 +257,15 @@ export default {
                 prefix3: '',
                 mobilePhone: '',
                 email: '',
-                password: ""
+                password: "",
+                check1: "",
+                check2: "",
             },
             formErrors: {
 
                 password: "",
+                check1: "",
+                check2: ""
             },
 
         };
@@ -308,6 +318,24 @@ export default {
 
     },
     methods: {
+        validateForm() {
+            this.formErrors = {};
+            // console.log("check1", this.formData.check1)
+            if (!this.formData.check1) {
+                this.formErrors.check1 = "Please Check the Privacy And Policy"
+            }
+            if (!this.formData.check2) {
+                this.formErrors.check2 = "Please Check the General Terms ANd Conditions"
+            }
+
+            if (!this.formData.password) {
+                this.formErrors.password = "Password is required";
+            }
+
+
+
+
+        },
         validatePassword() {
             this.formErrors.password = '';
             if (!this.isPasswordLengthValid) {
@@ -326,23 +354,29 @@ export default {
         submitForm() {
             // Handle form submission here
             // console.log(this.formData);
-            this.$store.dispatch('auth/handleSignUp2',
-                this.formData)
-                .then(
-                    (data) => {
-                        if (data.success == 1) {
-                            this.isModalOpen = true
-                            this.$router.push("/ourcommunity");
-                        } else {
-                            this.isModalOpenFail = true
-                            this.errorMessage = data.error
-                        }
+            this.validateForm();
+            if (this.isFormValid()) {
+                this.$store.dispatch('auth/handleSignUp2',
+                    this.formData)
+                    .then(
+                        (data) => {
+                            if (data.success == 1) {
+                                this.isModalOpen = true
+                                this.$router.push("/ourcommunity");
+                            } else {
+                                this.isModalOpenFail = true
+                                this.errorMessage = data.error
+                            }
 
-                        console.log(data);
-                    })
+                            console.log(data);
+                        })
 
-        }
+            }
 
+        },
+        isFormValid() {
+            return Object.values(this.formErrors).every((error) => !error);
+        },
 
 
     },
