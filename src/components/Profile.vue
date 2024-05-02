@@ -8,7 +8,8 @@
 
 							<!-- <img v-if="image != ''" src="https://clownfish-app-quehu.ondigitalocean.app/ +${image} " class="user-profile-page-img" alt="user"
 								@click="openFileInput"> -->
-							<img v-if="image !== ''" :src="'https://clownfish-app-quehu.ondigitalocean.app/' + image"
+							<img v-if="image !== ''"
+								:src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
 								class="user-profile-page-img" alt="user" @click="openFileInput">
 
 							<div v-else>
