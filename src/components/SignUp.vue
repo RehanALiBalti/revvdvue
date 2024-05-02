@@ -391,8 +391,10 @@ export default {
           .then(
             (data) => {
               if (data.success == 1) {
-                this.isModalOpen = true
-                this.$router.push("/ourcommunity");
+                // this.isModalOpen = true
+                localStorage.setItem('login', true);
+                // window.location.reload();
+                //     this.$router.push("/profile");
               } else {
                 this.isModalOpenFail = true
                 this.errorMessage = data.error

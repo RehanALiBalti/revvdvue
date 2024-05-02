@@ -50,8 +50,8 @@
                             <div class="col-md-4">
                                 <label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
                                 <select v-model="formData.intlPrefix1" id="intlPrefix1" class="form-select form-input">
-                                    <option value="germany(+49)" selected>Germany(+49)</option>
-                                    <option value="germany(+49)" selected>pakistan(+92)</option>
+                                    <option value="germany(+49)">Germany(+49)</option>
+                                    <option value="germany(+49)">pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
@@ -68,8 +68,8 @@
                             <div class="col-md-4">
                                 <label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
                                 <select v-model="formData.intlPrefix2" id="intlPrefix2" class="form-select form-input">
-                                    <option value="germany(+49)" selected>Germany(+49)</option>
-                                    <option value="germany(+49)" selected>pakistan(+92)</option>
+                                    <option value="germany(+49)">Germany(+49)</option>
+                                    <option value="germany(+49)">pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
@@ -86,8 +86,8 @@
                             <div class="col-md-4">
                                 <label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
                                 <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
-                                    <option value="germany(+49)" selected>Germany(+49)</option>
-                                    <option value="germany(+49)" selected>pakistan(+92)</option>
+                                    <option value="germany(+49)">Germany(+49)</option>
+                                    <option value="germany(+49)">pakistan(+92)</option>
                                     <!-- Add more options if needed -->
                                 </select>
                             </div>
@@ -143,7 +143,8 @@
                 </ul> -->
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check1" class="form-input m-0" placeholder="Enter here" />
+                                <input type="checkbox" id="check1" v-model="formData.check1" class="form-input m-0"
+                                    placeholder="Enter here" />
                                 <label for="check1" class="form-label m-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                                     <router-link to="/termofservice" class="termsService">{{
                         $t('GeneralTermsAndConditions') }}</router-link>
@@ -153,8 +154,9 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
-                                <label for="check2" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
+                                <input type="checkbox" id="check1" v-model="formData.check2" class="form-input m-0"
+                                    placeholder="Enter here" />
+                                <label for="check1" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                                     <router-link to="/privacypolicy" class="termsService">{{ $t('PrivacyPolicy')
                                         }}</router-link>
                                 </label>
@@ -163,8 +165,8 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
-                                <label for="check2" class="form-label m-0 p-0">{{ $t('NoEmails') }}
+                                <input type="checkbox" id="check3" class="form-input m-0" placeholder="Enter here" />
+                                <label for="check3" class="form-label m-0 p-0">{{ $t('NoEmails') }}
 
                                 </label>
                             </div>
@@ -318,24 +320,7 @@ export default {
 
     },
     methods: {
-        validateForm() {
-            this.formErrors = {};
-            // console.log("check1", this.formData.check1)
-            if (!this.formData.check1) {
-                this.formErrors.check1 = "Please Check the Privacy And Policy"
-            }
-            if (!this.formData.check2) {
-                this.formErrors.check2 = "Please Check the General Terms ANd Conditions"
-            }
 
-            if (!this.formData.password) {
-                this.formErrors.password = "Password is required";
-            }
-
-
-
-
-        },
         validatePassword() {
             this.formErrors.password = '';
             if (!this.isPasswordLengthValid) {
@@ -351,31 +336,74 @@ export default {
             this.isModalOpen = false
         },
 
+        // submitForm() {
+        //     // Handle form submission here
+        //     // console.log(this.formData);
+        //     this.validateForm();
+        //     if (this.isFormValid()) {
+        //         this.$store.dispatch('auth/handleSignUp2',
+        //             this.formData)
+        //             .then(
+        //                 (data) => {
+        //                     if (data.success == 1) {
+        //                         this.isModalOpen = true
+        //                         this.$router.push("/ourcommunity");
+        //                     } else {
+        //                         this.isModalOpenFail = true
+        //                         this.errorMessage = data.error
+        //                     }
+
+        //                     console.log(data);
+        //                 })
+
+        //     }
+        //     else {
+        //         console.log("error", this.isFormValid())
+        //     }
+
+        // },
         submitForm() {
             // Handle form submission here
-            // console.log(this.formData);
             this.validateForm();
+
             if (this.isFormValid()) {
-                this.$store.dispatch('auth/handleSignUp2',
-                    this.formData)
-                    .then(
-                        (data) => {
-                            if (data.success == 1) {
-                                this.isModalOpen = true
-                                this.$router.push("/ourcommunity");
-                            } else {
-                                this.isModalOpenFail = true
-                                this.errorMessage = data.error
-                            }
-
-                            console.log(data);
-                        })
-
+                this.$store.dispatch('auth/handleSignUp2', this.formData)
+                    .then(data => {
+                        if (data.success === 1) {
+                            // this.isModalOpen = true;
+                            localStorage.setItem('login', true);
+                            //  this.$router.push("/ourcommunity");
+                        } else {
+                            this.isModalOpenFail = true;
+                            this.errorMessage = data.error;
+                        }
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error("Error during form submission:", error);
+                        // Handle error if needed
+                    });
+            } else {
+                console.log("Form is invalid");
             }
-
         },
+
         isFormValid() {
-            return Object.values(this.formErrors).every((error) => !error);
+            return Object.values(this.formErrors).every(error => !error);
+        },
+
+        validateForm() {
+            this.formErrors = {};
+
+            if (!this.formData.check1) {
+                this.formErrors.check1 = "   Please check the General Terms And Conditions";
+            }
+            if (!this.formData.check2) {
+                this.formErrors.check2 = "Please check the Privacy And Policy";
+            }
+            if (!this.formData.password) {
+                this.formErrors.password = "Password is required";
+            }
         },
 
 

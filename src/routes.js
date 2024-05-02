@@ -206,6 +206,9 @@ router.beforeEach((to, from, next) => {
   if (to.name == "SignIn" && isAuthenticated) {
     next("/ourcommunity");
   }
+  if (to.name == "SignUp" && isAuthenticated) {
+    next("/ourcommunity");
+  }
   if (isProtectedRoute && !isAuthenticated) {
     next("/signin"); // Redirect to signin if not authenticated
   } else {

@@ -8,7 +8,7 @@
           <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title"> {{ $t('signIn') }}</h2>
             <div class="signIn-div my-5">
-              <button class="btn google-btn" @click="handleGoogleLogin">
+              <button type="button" class="btn google-btn" @click="handleGoogleLogin">
                 <i class="fa-brands fa-google-plus-g"></i> Google
               </button>
               <!-- <div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout=""
@@ -16,7 +16,7 @@
               <!-- <button class="btn google-btn">
                 <i class="fa-brands fa-facebook"></i>Facebook
               </button> -->
-              <button class="btn google-btn" @click="handleFacebookLogin">
+              <button type="button" class="btn google-btn" @click="handleFacebookLogin">
                 <i class="fa-brands fa-facebook"></i> Facebook
               </button>
 

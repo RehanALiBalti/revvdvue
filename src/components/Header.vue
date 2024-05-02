@@ -187,7 +187,7 @@ export default {
       next();
     });
 
-    this.fetchProfileData()
+    //    this.fetchProfileData()
 
   },
   beforeUnmount() {
@@ -254,8 +254,10 @@ export default {
     async logout() {
       try {
         this.isLogin = false;
-        localStorage.setItem('login', false);
         await Auth.signOut();
+        localStorage.setItem('login', false);
+        this.$router.push("/signin");
+
         // Execute this code after sign-out is successful
 
         console.log("User signed out successfully");
