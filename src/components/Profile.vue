@@ -131,7 +131,7 @@
 												class="img-border position-absolute" alt="" />
 										</span>
 										<!-- data-bs-toggle="modal" -->
-										<button type="submit"
+										<button type="button"
 											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
 											id="submit-button" @click="isModalReset = true">
 											Change Password
