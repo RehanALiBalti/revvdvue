@@ -112,8 +112,8 @@
             </li>
           </ul>
           <ul class="user-dropdown" :class="{ open: issOpen }" id="userDropdown">
-            <li data-code="profile" @click="issOpen = false">
-              <router-link class="userListATag" to="/profile">
+            <li data-code="profile">
+              <router-link class="userListATag" to="/profile" @click="issOpen = false">
                 {{ $t('profile') }}
               </router-link>
             </li>
