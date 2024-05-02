@@ -6,7 +6,7 @@
       <div class="col-md-6 m-auto">
         <div class="form-content-home1">
           <form id="subscribe-form" @submit.prevent="submitForm">
-            <h2 class="form-title">Sign <span class="form-span"> In </span></h2>
+            <h2 class="form-title"> {{ $t('signIn') }}</h2>
             <div class="signIn-div my-5">
               <button class="btn google-btn" @click="handleGoogleLogin">
                 <i class="fa-brands fa-google-plus-g"></i> Google
@@ -26,7 +26,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label"> {{ $t('email') }}</label>
                 <input id="email" type="email" v-model="formData.email" class="form-control form-input"
                   placeholder="Enter here" />
                 <div v-if="formErrors.email" class="text-danger">
@@ -34,14 +34,14 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label"> {{ $t('password') }}</label>
                 <input type="password" id="password" v-model="formData.password" class="form-control form-input"
                   placeholder="Enter here" />
                 <div v-if="formErrors.password" class="text-danger">
                   {{ formErrors.password }}
                 </div>
                 <div class="d-flex justify-content-end align-items-center">
-                  <router-link to="/forget" class="termsService">Forgot Password?</router-link>
+                  <router-link to="/forget" class="termsService">{{ $t('ForgotPassword') }}?</router-link>
                 </div>
               </div>
 
@@ -65,7 +65,7 @@
                   <!-- <button type="submit" class="signin-btnli submitNow" id="submit-button" fdprocessedid="eysiqp">
 									Log In </button> -->
                   <button type="submit" class="signin-btnli submitNow" id="submit-button">
-                    Log In
+                    {{ $t('signIn') }}
                   </button>
                   <span class="border-bottom-btn border-left-btn position-absolute">
                     <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
@@ -75,7 +75,7 @@
                   </span>
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
-                  <router-link to="/dealerlogin" class="termsService">Go To Dealer Login</router-link>
+                  <router-link to="/dealerlogin" class="termsService">{{ $t('GoToDealerLogin') }}</router-link>
                 </div>
                 <!-- <div class="d-flex justify-content-end align-items-center">
                   <router-link to="/forget" class="termsService">Forgot Password?</router-link>

@@ -117,7 +117,7 @@
 
 
                 </div>
-                <div v-else class="d-flex flex-row">
+                <div v-else class="d-flex flex-column">
                   <div class="d-flex justify-start align-items-center ms-2">
                     <small class="uName">{{ comment.user_name }}</small>
                   </div>

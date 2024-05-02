@@ -121,5 +121,13 @@
   "abnormalWearPrevention": "It prevents abnormal wear and enhances noise performance through applying the design of an equal division of block stiffness. With the asymmetric tread pattern design, the outside section enhances handling performance. The inside section enhances tyre grip by improving drainage performance for driving on wet roads. These tyres are ideal for drivers who have high-performance vehicles and need a tyre to match.",
   "potHoleMileageGuarantee": "These tyres have a pot hole and mileage guarantee, which is very handy if you drive in an area that is prone to pot holes. They have improved block reliability and braking performance by way of a 3D section design.",
   "improvedDrainagePerformance": "The N Priz SH9i has improved drainage performance for driving on wet roads by increasing the width of the three-channel main groove and the shoulder lateral groove.",
-  "ourCommunity": "Our Community"
+  "ourCommunity": "Our Community",
+  "ForgotPassword": "Forgot Password",
+  "submit": "submit",
+  "EmailSentSuccessfullyTo": "Email Sent Successfully To",
+  "PleaseCheckYourEmailBox": "Please Check Your Email Box",
+  "AndCloseTheModalToSetNewPassword": "And Close The Modal To Set New Password",
+  "PasswordResetSuccessfully": "Password Reset Successfully",
+  "VerificationCode": "Verification Code",
+  "GoToDealerLogin": "Go To Dealer Login"
 }

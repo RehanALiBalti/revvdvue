@@ -73,6 +73,7 @@ function setprofile(data) {
 
       Auth.currentAuthenticatedUser()
         .then((user) => {
+          console.log("user", user);
           Auth.updateUserAttributes(user, updatedAttributes)
             .then((result) => {
               resolve(result);

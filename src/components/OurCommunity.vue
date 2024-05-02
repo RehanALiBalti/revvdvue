@@ -19,9 +19,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <!-- <span class="close-icon" @click="closeModel" data-bs-dismiss="modal" aria-label="Close">
-            <i class="fas fa-times"></i>
-          </span> -->
+          <router-link to="/offer"> <span class="close-icon" aria-label="Close">
+              <i class="fas fa-times"></i>
+            </span></router-link>
           <form @submit.prevent="submitFilter">
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> Filter </span></h5>
@@ -42,8 +42,7 @@
 
                   <div class="customSelect" @blur="isOpen = false">
                     <input type="text" class="form-select" v-model="make" placeholder="Select a Make"
-                      @click.stop="toggleDropdown" @focus="toggleDropdown" @input="filterMakeOptions"
-                      @change="getModels">
+                      @click="toggleDropdown" @input="filterMakeOptions" @change="getModels">
                     <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
                       <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
                         {{ option }}
@@ -121,7 +120,10 @@
                     <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                       <li v-for="(value, index) in GenfilteredOptions" :key="index"
                         @click="updateModels(value), this.isOpeng = false">
-                        {{ value.production_years }} ({{ value.generation }})
+                        <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+                        {{ value.production_years.split(' ')[0] }}
+                        <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
+                          }})</span>
                       </li>
                     </ul>
                     <ul v-else v-show="isOpeng" class="options-list">
@@ -179,14 +181,36 @@
             aria-label="Close">
             <i class="fas fa-times"></i>
           </span>
-          <form @submit.prevent="submitFilter">
+          <div>
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> Something Is Missing </span></h5>
               <p class="text-white">Please select make, model and year</p>
 
             </div>
 
-          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModal3 === true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="close-icon" @click="isModal3 = false" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </span>
+          <div>
+            <div class="mt-4 py-2">
+              <h5 class="card-title"><span class="choose"> Something Went Wrong</span></h5>
+              <p class="text-white">{{ error2 }}</p>
+              <p class="text-white">Try Again Later</p>
+
+
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
@@ -214,7 +238,8 @@ export default {
       isOpen: false,
       isOpenm: false,
       isOpeng: false,
-
+      isModal3: false,
+      error2: "",
       isModal2Open: false,
       makefilteredOptions: [],
       makes: [],
@@ -342,11 +367,11 @@ export default {
     },
     updateModels(value) {
       if (value) {
-        this.generation = value.generation;
+
         this.productionYear = value.production_years;
-        this.selectedData = value.generation + (value.production_years)
+        this.selectedData = value.production_years
       } else {
-        this.generation = null;
+
         this.productionYear = null;
       }
     },
@@ -434,38 +459,84 @@ export default {
     // },
 
     retrieveCommunities() {
-      if (this.make === "" || this.smodel === "") {
-        this.isModal2Open = true;
-      } else {
-        const data = {
-          make: this.make,
-          model: this.smodel,
-          generation: this.generation,
-          productionYear: this.productionYear
-        };
+      if (this.GenfilteredOptions == '') {
+        if (this.make === "" || this.smodel === "") {
+          this.isModal2Open = true;
+        } else {
+          const data = {
+            make: this.make,
+            model: this.smodel,
+            generation: this.generation,
+            productionYear: this.productionYear
+          };
 
-        CommunityDataService.create(data)
-          .then((response) => {
-            // Check if response data is an object
-            if (typeof response.data === 'object' && !Array.isArray(response.data)) {
-              const community = response.data;
+          CommunityDataService.create(data)
+            .then((response) => {
+              // Check if response data is an object
+              if (typeof response.data === 'object' && !Array.isArray(response.data)) {
+                const community = response.data;
 
-              // Assuming you have an ID in the response data
-              const communityId = community.id; // Adjust this based on your response data
-              // Programmatic navigation to the community details route
-              this.$router.push(`/communitydetails/${communityId}`);
-            } else {
-              // Handle the case when response data is an array
+                // Assuming you have an ID in the response data
+                const communityId = community.id; // Adjust this based on your response data
+                // Programmatic navigation to the community details route
+                this.$router.push(`/communitydetails/${communityId}`);
+              } else {
+                // Handle the case when response data is an array
 
-              const community = response.data[0];
-              this.$router.push(`/communitydetails/${community.id}`);
-              // Handle this case according to your requirements
-            }
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+                const community = response.data[0];
+                this.$router.push(`/communitydetails/${community.id}`);
+                // Handle this case according to your requirements
+              }
+            })
+            .catch((e) => {
+              console.log(e);
+              this.error2 = e.message
+              this.isModal3 = true
+            });
+        }
       }
+      else if (this.GenfilteredOptions != '') {
+        if (this.selectedData == "") {
+          this.isModal2Open = true
+        }
+        else {
+          if (this.make === "" || this.smodel === "") {
+            this.isModal2Open = true;
+          } else {
+            const data = {
+              make: this.make,
+              model: this.smodel,
+              generation: this.generation,
+              productionYear: this.productionYear
+            };
+
+            CommunityDataService.create(data)
+              .then((response) => {
+                // Check if response data is an object
+                if (typeof response.data === 'object' && !Array.isArray(response.data)) {
+                  const community = response.data;
+
+                  // Assuming you have an ID in the response data
+                  const communityId = community.id; // Adjust this based on your response data
+                  // Programmatic navigation to the community details route
+                  this.$router.push(`/communitydetails/${communityId}`);
+                } else {
+                  // Handle the case when response data is an array
+
+                  const community = response.data[0];
+                  this.$router.push(`/communitydetails/${community.id}`);
+                  // Handle this case according to your requirements
+                }
+              })
+              .catch((e) => {
+                console.log(e);
+                this.error2 = e.message
+                this.isModal3 = true
+              });
+          }
+        }
+      }
+
     },
 
     retrieveALLCommunities() {
@@ -791,7 +862,7 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-height: fit-content;
   max-height: 300px;
-  overflow: scroll;
+  overflow-y: scroll;
   color: #fff;
   transition: height 0.5s ease-in-out
 }

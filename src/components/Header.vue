@@ -19,7 +19,7 @@
           <ul class="navbar-nav ul-list ms-auto">
             <li class="list-item-btn position-relative">
 
-              <router-link class="nav-link" to="/" v-if="shouldShowLink">
+              <router-link class="nav-link" to="/" v-if="shouldShowLink && isLogin">
                 <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
                   viewBox="0 0 29 32">
                   <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
@@ -81,7 +81,7 @@
               </span>
             </li>
 
-            <li class="list-item-btn position-relative" v-if="isLogin == true">
+            <li class="list-item-btn position-relative">
               <div class="custom-select" @click="toggleDropdown" :class="{ open: isOpen }" @blur="toggled1">
                 <span class="dropdown-toggle" :class="{ up: isOpen }">{{ selectedLanguage }}</span>
                 <ul class="custom-options" v-show="isOpen" @click.stop id="country-language-selector"

@@ -125,5 +125,13 @@
   "abnormalWearPrevention": "Il prévient l'usure anormale et améliore les performances acoustiques en appliquant la conception d'une répartition égale de la rigidité des blocs. Avec la conception de motif de bande de roulement asymétrique, la section extérieure améliore les performances de manipulation. La section intérieure améliore l'adhérence du pneu en améliorant les performances de drainage pour la conduite sur routes mouillées. Ces pneus sont idéaux pour les conducteurs de véhicules haute performance qui ont besoin d'un pneu adapté.",
   "potHoleMileageGuarantee": "Ces pneus bénéficient d'une garantie contre les nids-de-poule et le kilométrage, ce qui est très pratique si vous conduisez dans une zone sujette aux nids-de-poule. Ils offrent une fiabilité accrue des blocs et des performances de freinage grâce à un design de section en 3D.",
   "improvedDrainagePerformance": "Le N Priz SH9i offre de meilleures performances de drainage pour conduire sur routes mouillées en augmentant la largeur de la rainure principale à trois canaux et de la rainure latérale de l'épaule.",
-  "ourCommunity": "Notre communauté"
+  "ourCommunity": "Notre communauté",
+  "ForgotPassword": " Mot de passe oublié",
+  "submit": "soumettre",
+  "EmailSentSuccessfullyTo": "Email envoyé avec succès à",
+  "PleaseCheckYourEmailBox": "Veuillez vérifier votre boîte de réception e-mail",
+  "AndCloseTheModalToSetNewPassword": "Et fermez la fenêtre modale pour définir un nouveau mot de passe",
+  "PasswordResetSuccessfully": "Réinitialisation du mot de passe réussie",
+  "VerificationCode": "Code de vérification",
+  "GoToDealerLogin": "Accéder à la connexion du concessionnaire"
 }

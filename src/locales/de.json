@@ -125,5 +125,13 @@
   "abnormalWearPrevention": "Es verhindert abnormalen Verschleiß und verbessert die Geräuschleistung durch Anwendung des Designs einer gleichmäßigen Aufteilung der Blocksteifigkeit. Mit dem asymmetrischen Laufflächenmuster-Design verbessert der äußere Abschnitt die Handling-Leistung. Der innere Abschnitt verbessert den Reifengriff, indem die Entwässerungsleistung für Fahrten auf nassen Straßen verbessert wird. Diese Reifen sind ideal für Fahrer von Hochleistungsfahrzeugen, die einen entsprechenden Reifen benötigen.",
   "potHoleMileageGuarantee": "Diese Reifen haben eine Schlagloch- und Kilometergarantie, was sehr praktisch ist, wenn Sie in einer Gegend fahren, die an Schlaglöcher gewöhnt ist. Sie haben eine verbesserte Blockzuverlässigkeit und Bremsleistung durch ein 3D-Schnitt-Design.",
   "improvedDrainagePerformance": "Der N Priz SH9i hat eine verbesserte Entwässerungsleistung für das Fahren auf nassen Straßen, indem die Breite des dreikanaligen Hauptprofils und des Schulterlängssprofils erhöht wird.",
-  "ourCommunity": "Unsere Gemeinschaft"
+  "ourCommunity": "Unsere Gemeinschaft",
+  "ForgotPassword": " Passwort vergessen",
+  "submit": "einreichen",
+  "EmailSentSuccessfullyTo": " E-Mail erfolgreich gesendet an",
+  "PleaseCheckYourEmailBox": "Bitte überprüfen Sie Ihr E-Mail-Postfach",
+  "AndCloseTheModalToSetNewPassword": "Schließen Sie das Modal, um ein neues Passwort festzulegen",
+  "PasswordResetSuccessfully": "Passwort erfolgreich zurückgesetzt",
+  "VerificationCode": "Verifizierungscode",
+  "GoToDealerLogin": "Zum Händler-Login gehen"
 }
