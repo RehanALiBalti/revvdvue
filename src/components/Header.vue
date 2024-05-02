@@ -109,7 +109,7 @@
                 </div>
                 <ul class="user-dropdown" :class="{ open: issOpen }" id="userDropdown">
                   <li data-code="profile">
-                    <router-link class="userListATag" to="/profile" @click="this.issOpen = false">
+                    <router-link class="userListATag" to="/profile">
                       {{ $t('profile') }}
                     </router-link>
                   </li>
@@ -122,9 +122,9 @@
                     </router-link>
                   </li>
                   <li data-code="signOut">
-                    <div class="userListATag" @click="logout">
+                    <router class="userListATag" @click="logout">
                       {{ $t('signOut') }}
-                    </div>
+                    </router>
                   </li>
                 </ul>
               </div>
