@@ -26,27 +26,27 @@
 							<div class="col-md-6">
 								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
 								<input v-model="fullname" id="name" type="text" name="name"
-									class="form-control form-input" placeholder="Enter here" required>
+									class="form-control form-input" placeholder="Enter here">
 							</div>
 							<div class="col-md-6">
 								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
 								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
-									placeholder="Enter here" required>
+									placeholder="Enter here">
 							</div>
 							<div class="col-md-6">
 								<label for="age" class="form-label">{{ $t('age') }}</label>
 								<input v-model="age" id="age" type="text" name="age" class="form-control form-input"
-									placeholder="Enter here" required>
+									placeholder="Enter here">
 							</div>
 							<div class="col-md-6">
 								<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
 								<input v-model="email" id="email" type="email" name="email"
-									class="form-control form-input" placeholder="Enter here" required>
+									class="form-control form-input" placeholder="Enter here">
 							</div>
 							<div class="col-md-6">
 								<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 								<input v-model="phone" id="phone" type="tel" name="phone"
-									class="form-control form-input" placeholder="Enter here" required>
+									class="form-control form-input" placeholder="Enter here">
 							</div>
 							<div class="col-md-6">
 								<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional') }}</label>
@@ -144,7 +144,7 @@
 					<div class="mt-4 py-2">
 						<h5 class="card-title"><span class="choose">Something Went Wronge </span></h5>
 
-						<p class="text-white">Please Try Again</p>
+						<p class="text-white">{{ errorMessage }}</p>
 					</div>
 
 
@@ -184,6 +184,7 @@ export default {
 			this.$refs.fileInput.click(); // Trigger click event on file input when icon is clicked
 		},
 		handleFileChange() {
+			console.log("filechange")
 			// Handle file change event and update this.image
 			const formData = new FormData();
 
@@ -247,12 +248,12 @@ export default {
 				console.log(data, typeof data);
 				if (data === "SUCCESS") {
 					this.isModalOpen = true;
-				} else {
-					this.isModalOpenFail = true;
 				}
 			} catch (error) {
 				console.error("Error updating user profile:", error);
 				// Handle error gracefully, e.g., display an error message to the user
+				this.errorMessage = error
+				this.isModalOpenFail = true
 			}
 		}
 		,

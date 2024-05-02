@@ -332,7 +332,7 @@ export default {
                     (data) => {
                         if (data.success == 1) {
                             this.isModalOpen = true
-                            this.$router.push("/signin");
+                            this.$router.push("/ourcommunity");
                         } else {
                             this.isModalOpenFail = true
                             this.errorMessage = data.error
