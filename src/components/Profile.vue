@@ -6,8 +6,11 @@
 					<form id="subscribe-form" @submit.prevent="updateUserAttributes">
 						<div class="user-profile-page">
 
-							<img v-if="image != ''" :src="image" class="user-profile-page-img" alt="user"
-								@click="openFileInput">
+							<!-- <img v-if="image != ''" src="https://clownfish-app-quehu.ondigitalocean.app/ +${image} " class="user-profile-page-img" alt="user"
+								@click="openFileInput"> -->
+							<img v-if="image !== ''" :src="'https://clownfish-app-quehu.ondigitalocean.app/' + image"
+								class="user-profile-page-img" alt="user" @click="openFileInput">
+
 							<div v-else>
 								<img src="../assets/img/uploadImage.png" height="150px" width="150px"
 									@click="openFileInput">
@@ -108,6 +111,57 @@
 							</div>
 						</div>
 					</form>
+					<div class="row">
+						<h1>Reset Password</h1>
+						<div class="col-md-6">
+							<label for="socialMedia" class="form-label">Old Password</label>
+							<input v-model="oldPassword" id="socialMedia" type="text" name="socialMedia"
+								class="form-control form-input" placeholder="Enter here">
+						</div>
+						<div class="col-md-6">
+							<label for="socialMedia" class="form-label">New Password</label>
+							<input v-model="newPassword" id="socialMedia" type="text" name="socialMedia"
+								class="form-control form-input" placeholder="Enter here">
+						</div>
+						<div class="col-md-12">
+							<div
+								class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+								<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+									<span class="border-bottom-btn border-top-btn position-absolute">
+										<img src="@/assets/images/Group12engine.png"
+											class="img-border position-absolute" alt="" />
+									</span>
+
+									<span
+										class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+										<img src="@/assets/images/Path467engine.png"
+											class="img-border position-absolute" alt="" />
+									</span>
+
+									<span
+										class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+										<img src="@/assets/images/Path465engine.png"
+											class="img-border position-absolute" alt="" />
+									</span>
+									<!-- data-bs-toggle="modal" -->
+									<button type="submit"
+										class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+										id="submit-button" @click="changePassword(oldPassword, newPassword)">
+										Update Pasword
+									</button>
+									<span class="border-bottom-btn border-left-btn new-popup position-absolute">
+										<img src="@/assets/images/Group11engine.png"
+											class="img-border position-absolute" alt="" />
+									</span>
+									<span class="border-bottom-btn position-absolute">
+										<img src="@/assets/images/Path473engine.png"
+											class="img-border position-absolute" alt="" />
+									</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -153,12 +207,14 @@
 		</div>
 	</div>
 
+
 	<!-- modal end -->
 </template>
 
 <script>
 
 import axios from 'axios';
+import { Auth } from 'aws-amplify';
 export default {
 	name: "UserProfile",
 	data() {
@@ -175,11 +231,21 @@ export default {
 			socialMedia: "",
 			password: "",
 			errorMessage: '',
-			formData: {}
+			formData: {},
+			oldPassword: "",
+			newPassword: ""
 		};
 	},
 	methods: {
-
+		async changePassword(oldPassword, newPassword) {
+			try {
+				const user = await Auth.currentAuthenticatedUser();
+				const data = await Auth.changePassword(user, oldPassword, newPassword);
+				console.log(data);
+			} catch (err) {
+				console.log(err);
+			}
+		},
 		openFileInput() {
 			this.$refs.fileInput.click(); // Trigger click event on file input when icon is clicked
 		},
@@ -189,7 +255,7 @@ export default {
 			const formData = new FormData();
 
 			formData.append('userImage', this.$refs.fileInput.files[0]);
-
+			console.log(this.$refs.fileInput.files[0]);
 			axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/users', formData)
 				.then(response => {
 					// Handle success
