@@ -81,8 +81,10 @@
               </div> -->
               <div class="col-md-6 position-relative">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" v-model="formData.password" class="form-control form-input"
-                  placeholder="Enter here" @input="checkStrength" />
+                <!-- <input type="password" id="password" v-model="formData.password" class="form-control form-input"
+                  placeholder="Enter here" @input="checkStrength" /> -->
+                <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
+                  class="form-control form-input" placeholder="Enter here" @input="checkStrength" />
                 <span class="eye" @click="togglePasswordVisibility">
                   <i class="fa-solid" :class="eyeIcon"></i>
                 </span>
@@ -104,10 +106,13 @@
                 </div>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-6 position-relative">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" id="confirmPassword" v-model="formData.confirmPassword"
-                  class="form-control form-input" placeholder="Confirm Password" />
+                <input :type="formData.showPassword2 ? 'text' : 'password'" id="confirmPassword"
+                  v-model="formData.confirmPassword" class="form-control form-input" placeholder="Confirm Password" />
+                <span class="eye" @click="togglePasswordVisibility2">
+                  <i class="fa-solid" :class="eyeIcon2"></i>
+                </span>
                 <div v-if="formErrors.confirmPassword" class="text-danger">
                   {{ formErrors.confirmPassword }}
                 </div>
@@ -243,7 +248,8 @@ export default {
         confirmPassword: "",
         check1: "",
         check2: "",
-        showPassword: false
+        showPassword: false,
+        showPassword2: false
 
       },
       formErrors: {
@@ -309,6 +315,10 @@ export default {
     },
     eyeIcon() {
       return this.formData.showPassword ? 'fa-eye-slash' : 'fa-eye';
+
+    },
+    eyeIcon2() {
+      return this.formData.showPassword2 ? 'fa-eye-slash' : 'fa-eye';
     }
 
 
@@ -324,6 +334,9 @@ export default {
   methods: {
     togglePasswordVisibility() {
       this.formData.showPassword = !this.formData.showPassword;
+    },
+    togglePasswordVisibility2() {
+      this.formData.showPassword2 = !this.formData.showPassword2;
     },
     // checkStrength() {
     //   const password = this.password;
