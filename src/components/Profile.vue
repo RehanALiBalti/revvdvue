@@ -110,7 +110,7 @@
 						$t("updateProfile") }}</button>
 								</div> -->
 							</div>
-							<div class="col-md-12">
+							<div class="col-md-12" v-if="socialSignIn == true">
 								<div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
@@ -318,10 +318,40 @@ export default {
 			newPassword: "",
 			isModalReset: false,
 			modalSuccess: false,
-			successMessge: ""
+			successMessge: "",
+			socialSignIn: false
 		};
 	},
 	methods: {
+		async checkIfGoogleOrFacebookUser() {
+			try {
+				const user = await Auth.currentAuthenticatedUser();
+				const identities = user.attributes.identities;
+
+				// Check if the user has identities
+				if (identities) {
+					// Iterate through the identities to check if Google or Facebook is one of them
+					for (const identity of identities) {
+						if (identity.providerName === 'Google') {
+							console.log('User signed in using Google');
+							this.socialSignIn = true
+						} else if (identity.providerName === 'Facebook') {
+							console.log('User signed in using Facebook');
+							this.socialSignIn = true
+						}
+						else {
+							this.socialSignIn = true
+						}
+					}
+				}
+			} catch (error) {
+				console.error('Error:', error);
+			}
+
+			console.log('User did not sign in using Google or Facebook');
+			return null;
+		}
+		,
 		async changePassword(oldPassword, newPassword) {
 			try {
 				const user = await Auth.currentAuthenticatedUser();
@@ -452,7 +482,7 @@ export default {
 
 		// this.getprofile()
 		this.fetchProfileData()
-
+		this.checkIfGoogleOrFacebookUser
 
 
 
