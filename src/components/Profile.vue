@@ -547,7 +547,13 @@ export default {
 				const data = await this.$store.dispatch("auth/getprofiledata");
 				// console.log("Profile data:", data);
 				this.UserData = data.result
+
 				console.log("userdata", this.UserData.name)
+				let social = false;
+				if ('identities' in this.UserData) {
+					social = true;
+				}
+				console.log(social)
 				this.name = this.UserData.name
 				this.email = this.UserData.email
 
