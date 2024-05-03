@@ -200,7 +200,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem("login") === "true";
+  const isAuthenticated = localStorage.getItem("login");
   console.log(to.name, isAuthenticated);
   const isProtectedRoute = protectedRoutes.includes(to.name);
   if (to.name == "SignIn" && isAuthenticated) {
