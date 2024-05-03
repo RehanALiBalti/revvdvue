@@ -359,6 +359,7 @@ export default {
 			try {
 				const user = await Auth.currentAuthenticatedUser();
 				const identities = user.attributes.identities;
+				console.log("identities", identities)
 				console.log("user.attributes.identities.providerName", user.attributes.identities.providerName)
 
 
