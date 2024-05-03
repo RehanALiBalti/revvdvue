@@ -327,7 +327,7 @@ export default {
 			try {
 				const user = await Auth.currentAuthenticatedUser();
 				const identities = user.attributes.identities;
-
+				console.log("identities", identities)
 				// Check if the user has identities
 				if (identities) {
 					// Iterate through the identities to check if Google or Facebook is one of them
