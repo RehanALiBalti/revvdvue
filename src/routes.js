@@ -201,7 +201,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem("login") === "true";
-  console.log(to.name);
+  console.log(to.name, isAuthenticated);
   const isProtectedRoute = protectedRoutes.includes(to.name);
   if (to.name == "SignIn" && isAuthenticated) {
     next("/ourcommunity");
@@ -209,6 +209,10 @@ router.beforeEach((to, from, next) => {
   if (to.name == "SignUp" && isAuthenticated) {
     next("/ourcommunity");
   }
+  if (to.name == "HomeLanding" && !isAuthenticated) {
+    next("/signin");
+  }
+
   if (isProtectedRoute && !isAuthenticated) {
     next("/signin"); // Redirect to signin if not authenticated
   } else {
