@@ -52,7 +52,7 @@ Amplify.configure({
       // redirectSignIn: "http://localhost:8081/",
       redirectSignOut: "https://master.d3fzkz9eceedzm.amplifyapp.com/",
       // redirectSignOut: "http://localhost:8081/",
-      scope: ["email", "profile", "openid"],
+      scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
       responseType: "code",
     },
   },
