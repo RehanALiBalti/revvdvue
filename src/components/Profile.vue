@@ -110,7 +110,7 @@
 						$t("updateProfile") }}</button>
 								</div> -->
 							</div>
-							<div class="col-md-12" v-if="socialSignIn == true">
+							<div class="col-md-12" v-if="socialSignIn == false">
 								<div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
@@ -340,7 +340,8 @@ export default {
 							this.socialSignIn = true
 						}
 						else {
-							this.socialSignIn = true
+							console.log('User signed normal');
+							this.socialSignIn = false
 						}
 					}
 				}
@@ -349,7 +350,7 @@ export default {
 			}
 
 			console.log('User did not sign in using Google or Facebook');
-			return null;
+			this.socialSignIn = false
 		}
 		,
 		async changePassword(oldPassword, newPassword) {
@@ -482,7 +483,7 @@ export default {
 
 		// this.getprofile()
 		this.fetchProfileData()
-		this.checkIfGoogleOrFacebookUser
+		this.checkIfGoogleOrFacebookUser()
 
 
 
@@ -491,6 +492,7 @@ export default {
 	mounted() {
 		this.fetchProfileData();
 		// this.getProfileImage()
+		this.checkIfGoogleOrFacebookUser()
 	},
 
 
