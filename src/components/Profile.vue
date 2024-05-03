@@ -359,6 +359,8 @@ export default {
 			try {
 				const user = await Auth.currentAuthenticatedUser();
 				const identities = user.attributes.identities;
+				console.log("user.attributes.identities.providerName", user.attributes.identities.providerName)
+
 
 				// Check if the user has identities
 				if (identities) {
