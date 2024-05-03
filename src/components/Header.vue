@@ -115,7 +115,8 @@
                 id="dropdownMenuButton3">
                 <div class="user-content-inner">
                   <div class="user-img-div">
-                    <img v-if="image != ''" :src=image class="user-img" alt="" />
+                    <img v-if="image != ''" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
+                      class="user-img" alt="" />
                   </div>
                   <span class="user-name" :class="{ open: issOpen }">
                     <!-- {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
@@ -299,6 +300,10 @@ export default {
 
       } catch (error) {
         console.error("Error fetching profile data:", error);
+        if (error.success == 0) {
+          localStorage.setItem('login', false);
+          this.$router.push("/signin");
+        }
       }
     },
     toggleNav() {
