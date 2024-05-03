@@ -553,7 +553,7 @@ export default {
 				if ('identities' in this.UserData) {
 					social = true;
 				}
-				console.log(social)
+				console.log("socialsttus", social)
 				this.name = this.UserData.name
 				this.email = this.UserData.email
 
