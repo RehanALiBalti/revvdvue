@@ -81,20 +81,38 @@
               </span>
             </li>
 
-            <li class="list-item-btn position-relative">
-              <div class="custom-select" @click="toggleDropdown" :class="{ open: isOpen }" @blur="toggled1">
+            <li class="">
+              <div class="dropdown ">
+                <button class="custom-select text-white" type="button" id="dropdownMenuButton2"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="" :class="{ up: isOpen }">{{ selectedLanguage }}</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark custom-options" aria-labelledby="dropdownMenuButton2">
+                  <li v-for="language in languages" :key="language.code" @click="selectLanguage(language.code)">
+                    {{ language.name }}
+                  </li>
+
+
+
+
+                </ul>
+              </div>
+              <!-- <div class="custom-select" @click="toggleDropdown" :class="{ open: isOpen }" @blur="toggled1">
                 <span class="dropdown-toggle" :class="{ up: isOpen }">{{ selectedLanguage }}</span>
                 <ul class="custom-options" v-show="isOpen" @click.stop id="country-language-selector"
                   :class="{ open: isOpen }" @blur="toggled1">
                   <li v-for="language in languages" :key="language.code" @click="selectLanguage(language.code)">
                     {{ language.name }}
                   </li>
+
                 </ul>
-              </div>
+
+              </div> -->
             </li>
 
-            <li class="list-item-btn position-relative" v-if="isLogin == true">
-              <div class="user-custom-box" @click="toggleDropdownUser" :class="{ open: issOpen }">
+            <li class="list-item-btn position-relative " v-if="isLogin == true">
+              <buttton type="button" class="dropdown user-custom-box" data-bs-toggle="dropdown" aria-expanded="false"
+                id="dropdownMenuButton3">
                 <div class="user-content-inner">
                   <div class="user-img-div">
                     <img v-if="image != ''" :src=image class="user-img" alt="" />
@@ -107,6 +125,45 @@
 
 
                 </div>
+
+                <ul class="dropdown-menu dropdown-menu-dark custom-options" aria-labelledby="dropdownMenuButton3">
+                  <li data-code="profile" @click="nextRoute">
+                    <router-link class="userListATag" to="/profile">
+                      {{ $t('profile') }}
+                    </router-link>
+                  </li>
+                  <li data-code="myAdds" class="position-relative">
+                    <div class="cardOverlay d-flex pe-2 pt-2">
+                      <img src="../../public/images/layer3.png">
+                    </div>
+                    <router-link class="userListATag" to="/myCarListing">
+                      {{ $t('myAdds') }}
+                    </router-link>
+                  </li>
+                  <li data-code="signOut">
+                    <router class="userListATag" @click="logout">
+                      {{ $t('signOut') }}
+                    </router>
+                  </li>
+
+
+
+
+                </ul>
+              </buttton>
+              <!-- <div class="user-custom-box" @click="toggleDropdownUser" :class="{ open: issOpen }">
+                <div class="user-content-inner">
+                  <div class="user-img-div">
+                    <img v-if="image != ''" :src=image class="user-img" alt="" />
+                  </div>
+                  <span class="user-name" :class="{ open: issOpen }">
+                {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
+            userAttributes.UserAttributes.find(attr => attr.Name === 'name').Value : '' }} -->
+              <!-- {{ userAttributes.name }}
+                  </span> -->
+
+
+              <!-- </div>
                 <ul class="user-dropdown" :class="{ open: issOpen }" id="userDropdown">
                   <li data-code="profile">
                     <router-link class="userListATag" to="/profile">
@@ -127,7 +184,7 @@
                     </router>
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </li>
           </ul>
         </div>
@@ -200,6 +257,7 @@ export default {
     document.body.removeEventListener('click', this.closeDropdown);
     document.body.removeEventListener('click', this.closeDropdown2);
 
+
   },
   mounted() {
     this.fetchProfileData()
@@ -208,6 +266,10 @@ export default {
   },
 
   methods: {
+    nextRoute() {
+      console.log('click')
+      this.$router.push("profile")
+    },
     closeDropdownm() {
       this.issOpen = false;
     },
@@ -302,6 +364,7 @@ export default {
   watch: {
     $route() {
       this.checkLoginStatus();
+
     }
   }
 }
@@ -325,7 +388,13 @@ export default {
 .cardOverlay img {
   position: absolute;
   width: 100%;
-  top: 0;
+  height: 100%;
+  top: -3px;
+  left: -8px;
+}
+
+.dropdown-menu {
+  background: #031726
 }
 
 @media screen and (max-width: 991px) {
