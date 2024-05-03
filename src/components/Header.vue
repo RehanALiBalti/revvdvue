@@ -302,7 +302,7 @@ export default {
         console.error("Error fetching profile data:", error);
         if (error.success == 0) {
           localStorage.setItem('login', false);
-          this.$router.push("/signin");
+          //     this.$router.push("/signin");
         }
       }
     },
