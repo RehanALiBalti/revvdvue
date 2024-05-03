@@ -332,10 +332,13 @@ export default {
 				if (identities) {
 					// Iterate through the identities to check if Google or Facebook is one of them
 					for (const identity of identities) {
+						console.log("identityproviderName ", identity.providerName)
 						if (identity.providerName === 'Google') {
 							console.log('User signed in using Google');
+							console.log("identityproviderName ", identity.providerName)
 							this.socialSignIn = true
 						} else if (identity.providerName === 'Facebook') {
+							console.log("identityproviderName ", identity.providerName)
 							console.log('User signed in using Facebook');
 							this.socialSignIn = true
 						}
