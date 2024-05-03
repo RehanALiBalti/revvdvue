@@ -121,7 +121,8 @@
                   <span class="user-name" :class="{ open: issOpen }">
                     <!-- {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
             userAttributes.UserAttributes.find(attr => attr.Name === 'name').Value : '' }} -->
-                    {{ userAttributes.name }}
+                    <!-- {{ userAttributes.name }} -->
+                    {{ userAttributes.name.split(' ')[0] }}
                   </span>
 
 
