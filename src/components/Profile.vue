@@ -234,12 +234,12 @@
 
 							<div class="col-md-12">
 								<label for="socialMedia" class="form-label">Old Password</label>
-								<input v-model="oldPassword" id="socialMedia" type="text" name="socialMedia"
+								<input v-model="oldPassword" id="socialMedia" type="password" name="socialMedia"
 									class="form-control form-input" placeholder="Enter here">
 							</div>
 							<div class="col-md-12">
 								<label for="socialMedia" class="form-label">New Password</label>
-								<input v-model="newPassword" id="socialMedia" type="text" name="socialMedia"
+								<input v-model="newPassword" id="socialMedia" type="password" name="socialMedia"
 									class="form-control form-input" placeholder="Enter here">
 							</div>
 							<div class="col-md-12">
