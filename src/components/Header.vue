@@ -270,7 +270,9 @@ export default {
   methods: {
     nextRoute() {
       console.log('click')
-      this.$router.push("profile")
+      // this.$router.push("profile")
+      this.$router.push({ name: "UserProfile" });
+
     },
     closeDropdownm() {
       this.issOpen = false;

@@ -552,6 +552,7 @@ export default {
 				let social = false;
 				if ('identities' in this.UserData) {
 					social = true;
+					this.socialSignIn = true
 				}
 				console.log("socialsttus", social)
 				this.name = this.UserData.name
@@ -582,7 +583,7 @@ export default {
 
 		// this.getprofile()
 		this.fetchProfileData()
-		this.checkIfGoogleOrFacebookUser()
+		// this.checkIfGoogleOrFacebookUser()
 
 
 
@@ -591,7 +592,7 @@ export default {
 	mounted() {
 		this.fetchProfileData();
 		// this.getProfileImage()
-		this.checkIfGoogleOrFacebookUser()
+		// this.checkIfGoogleOrFacebookUser()
 	},
 
 
