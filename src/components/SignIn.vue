@@ -196,7 +196,7 @@ export default {
         console.log('Google login response:', response);
       } catch (error) {
         // Handle login error
-        console.error('Google login error:', error);
+        alert.error('Google login error:', error);
       }
     },
     modalClose() {
