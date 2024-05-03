@@ -355,19 +355,54 @@ export default {
 		// 	console.log('User did not sign in using Google or Facebook');
 		// 	this.socialSignIn = false
 		// }
+		// async checkIfGoogleOrFacebookUser() {
+		// 	try {
+		// 		const user = await Auth.currentAuthenticatedUser();
+		// 		const identities = user.attributes.identities;
+		// 		console.log("identities", identities)
+		// 		console.log("user.attributes.identities.providerName", user.attributes.identities.providerName)
+
+
+		// 		// Check if the user has identities
+		// 		if (identities) {
+		// 			// Iterate through the identities
+		// 			for (const identity of identities) {
+		// 				console.log("Identity:", identity); // Log the entire identity object
+		// 				if (identity.providerName === 'Google') {
+		// 					console.log('User signed in using Google');
+		// 					this.socialSignIn = true;
+		// 					return; // Exit the loop since Google sign-in is detected
+		// 				} else if (identity.providerName === 'Facebook') {
+		// 					console.log('User signed in using Facebook');
+		// 					this.socialSignIn = true;
+		// 					return; // Exit the loop since Facebook sign-in is detected
+		// 				}
+		// 			}
+		// 			// If no Google or Facebook identity is found
+		// 			console.log('User signed in using another method');
+		// 			this.socialSignIn = false;
+		// 		} else {
+		// 			console.log('User does not have any identities');
+		// 			this.socialSignIn = false;
+		// 		}
+		// 	} catch (error) {
+		// 		console.error('Error:', error);
+		// 		this.socialSignIn = false;
+		// 	}
+		// }
+
 		async checkIfGoogleOrFacebookUser() {
 			try {
 				const user = await Auth.currentAuthenticatedUser();
 				const identities = user.attributes.identities;
-				console.log("identities", identities)
-				console.log("user.attributes.identities.providerName", user.attributes.identities.providerName)
-
+				console.log("identities", identities);
 
 				// Check if the user has identities
 				if (identities) {
 					// Iterate through the identities
 					for (const identity of identities) {
-						console.log("Identity:", identity); // Log the entire identity object
+						console.log("Identity:", identity); // Log each identity object separately
+						console.log("identity.providerName:", identity.providerName); // Log the providerName property of each identity
 						if (identity.providerName === 'Google') {
 							console.log('User signed in using Google');
 							this.socialSignIn = true;
