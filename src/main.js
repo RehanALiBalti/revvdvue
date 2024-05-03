@@ -50,7 +50,7 @@ Amplify.configure({
       domain: "revdot.auth.eu-north-1.amazoncognito.com",
       redirectSignIn: "https://master.d3fzkz9eceedzm.amplifyapp.com/",
       // redirectSignIn: "http://localhost:8081/",
-      redirectSignOut: "https://master.d3fzkz9eceedzm.amplifyapp.com/",
+      redirectSignOut: "https://master.d3fzkz9eceedzm.amplifyapp.com/signin",
       // redirectSignOut: "http://localhost:8081/",
       scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
       responseType: "code",
