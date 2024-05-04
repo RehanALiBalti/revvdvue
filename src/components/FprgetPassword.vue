@@ -260,6 +260,29 @@ export default {
 
     },
     methods: {
+        submitForm3() {
+
+            console.log("Form submitted successfully");
+            const mydata = {
+                email: this.formData.email,
+                password: this.formData.password,
+            };
+            this.$store.dispatch("auth/handleSignIn", mydata).then((data) => {
+                if (data.success == 1) {
+                    localStorage.setItem('login', true);
+                    localStorage.setItem('data', data.result);
+
+                    // Redirect to '/landing' route
+                    this.$router.push('/ourcommunity');
+
+                } else {
+                    this.isModalOpen = true
+                }
+
+                console.log(data);
+            });
+
+        },
         validatePassword() {
             this.formErrors.password = '';
             if (!this.isPasswordLengthValid) {
@@ -281,7 +304,9 @@ export default {
                 console.log(newPassword)
                 console.log("Verification successful:", data);
                 if (data == 'SUCCESS') {
-                    this.modal2 = true
+                    this.modal2 = true;
+                    this.submitForm3();
+
                 }
                 // Prompt user to set a new password
                 // You can redirect them to a new page or display a modal for setting a new password
