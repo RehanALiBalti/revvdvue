@@ -12,12 +12,12 @@
               <div class="col-md-12">
                 <label for="title" class="form-label">Forum Tittle</label>
                 <input v-model="formData.title" id="title" type="text" name="title" class="form-control form-input"
-                  placeholder="Enter here" />
+                  :placeholder="$t('Enter here')" />
               </div>
               <div class="col-md-12">
                 <label for="description" class="form-label">Forum Description</label>
                 <textarea v-model="formData.description" id="description" class="form-control form-input"
-                  name="description" placeholder="Enter here" rows="4"></textarea>
+                  name="description" :placeholder="$t('Enter here')" rows="4"></textarea>
               </div>
 
               <div class="col-md-12">

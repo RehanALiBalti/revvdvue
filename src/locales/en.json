@@ -4,7 +4,7 @@
   "oneStopShop": "The one stop shop for modified and high performance cars enthusiasts, a thriving car community platform and a haven for tuning shops.",
   "startEngine": "Start Engine",
   "subscribe": "Subscribe ",
-  "myAdds": "My Adds",
+  "myAds": "My Ads",
   "signOut": "Sign Out",
   "Now": "Now",
   "userType": "Are You",
@@ -151,5 +151,10 @@
   "OnlineRegistrationForm": "Online Registration Form",
   "ForDealers": "For Dealers",
   "AlreadyRegisteredNote": "Are you already registered on mobile de? simply contact our customer service at 03081097-500 and have your account reactivated.",
-  "LocationOfVehicle": "Your Address (Location Of Vehicle)"
+  "LocationOfVehicle": "Your Address (Location Of Vehicle)",
+  "Enter here": "Enter here",
+  "Confirm Password": "Confirm Password",
+  "Select a Make": "Select a Make",
+  "Select a Model": "Select a Model",
+  "Production Years(Generation)": "Production Years(Generation)"
 }

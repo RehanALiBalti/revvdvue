@@ -28,7 +28,7 @@
               <div class="col-md-12">
                 <label for="email" class="form-label"> {{ $t('email') }}</label>
                 <input id="email" type="email" v-model="formData.email" class="form-control form-input"
-                  placeholder="Enter here" />
+                  :placeholder="$t('Enter here')" />
                 <div v-if="formErrors.email" class="text-danger">
                   {{ formErrors.email }}
                 </div>
@@ -36,9 +36,9 @@
               <div class="col-md-12 position-relative">
                 <label for="password" class="form-label"> {{ $t('password') }}</label>
                 <!-- <input type="password" id="password" v-model="formData.password" class="form-control form-input"
-                  placeholder="Enter here" /> -->
+                   :placeholder="$t('Enter here')"/> -->
                 <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
-                  class="form-control form-input" placeholder="Enter here" />
+                  class="form-control form-input" :placeholder="$t('Enter here')" />
                 <span class="eye" @click="togglePasswordVisibility">
                   <i class="fa-solid" :class="eyeIcon"></i>
                 </span>

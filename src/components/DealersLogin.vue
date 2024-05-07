@@ -5,7 +5,7 @@
             <div class="col-md-12 m-auto">
                 <div class="form-content-home1">
 
-                    <form id="subscribe-form" @submit.prevent="submitForm">
+                    <form id="subscribe-form" @submit.prevent="submitProfileForm, submitForm">
                         <h2 class="form-title">{{ $t('OnlineRegistrationForm') }}<span class="form-span"> {{
                         $t('ForDealers') }} </span>
                         </h2>
@@ -15,101 +15,109 @@
                                 <h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
                                 <label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
                                 <input v-model="formData.companyName" id="companyName" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-6">
                                 <label for="street" class="form-label">{{ $t('Street') }}</label>
                                 <input v-model="formData.street" id="street" type="text" class="form-control form-input"
-                                    placeholder="Enter here" />
+                                    :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
                                 <label for="streetNo" class="form-label">No.</label>
                                 <input v-model="formData.streetNo" id="streetNo" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
                                 <label for="street2" class="form-label">{{ $t('Street') }} 2</label>
                                 <input v-model="formData.street2" id="street2" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
                                 <label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
                                 <input v-model="formData.zipCode" id="zipCode" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
                                 <label for="city" class="form-label">{{ $t('City') }}</label>
                                 <input v-model="formData.city" id="city" type="text" class="form-control form-input"
-                                    placeholder="Enter here" />
+                                    :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-6">
                                 <label for="country" class="form-label">{{ $t('Country') }}</label>
                                 <input v-model="formData.country" id="country" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-4">
                                 <label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
-                                <select v-model="formData.intlPrefix1" id="intlPrefix1" class="form-select form-input">
+                                <!-- <select v-model="formData.intlPrefix1" id="intlPrefix1" class="form-select form-input">
                                     <option value="germany(+49)">Germany(+49)</option>
                                     <option value="pakistan(+92)">pakistan(+92)</option>
-                                    <!-- Add more options if needed -->
-                                </select>
+                               
+                                </select> -->
+                                <input v-model="formData.intlPrefix1" id="fax" type="text"
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
                                 <label for="prefix1" class="form-label">{{ $t('Prefix1') }}</label>
                                 <input v-model="formData.prefix1" id="prefix1" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-5">
                                 <label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
                                 <input v-model="formData.phone1" id="phone1" type="text" class="form-control form-input"
-                                    placeholder="Enter here" />
+                                    :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-4">
                                 <label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
-                                <select v-model="formData.intlPrefix2" id="intlPrefix2" class="form-select form-input">
+                                <!-- <select v-model="formData.intlPrefix2" id="intlPrefix2" class="form-select form-input">
                                     <option value="germany(+49)">Germany(+49)</option>
                                     <option value="pakistan(+92)">pakistan(+92)</option>
-                                    <!-- Add more options if needed -->
-                                </select>
+                                  
+                                </select> -->
+                                <input v-model="formData.intlPrefix2" id="intlPrefix2" type="text"
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
                                 <label for="prefix2" class="form-label">{{ $t('Prefix1') }}</label>
                                 <input v-model="formData.prefix2" id="prefix2" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-5">
                                 <label for="fax" class="form-label">{{ $t('Fax') }}</label>
                                 <input v-model="formData.fax" id="fax" type="text" class="form-control form-input"
-                                    placeholder="Enter here" />
+                                    :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-4">
                                 <label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
-                                <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
+                                <!-- <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
                                     <option value="germany(+49)">Germany(+49)</option>
                                     <option value="pakistan(+92)">pakistan(+92)</option>
-                                    <!-- Add more options if needed -->
-                                </select>
+
+                                </select> -->
+                                <input v-model="formData.intlPrefix3" id="fax" type="text"
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
-                                <label for="prefix3" class="form-label">{}</label>
+                                <label for="prefix3" class="form-label">{{ $t('Prefix1') }}</label>
                                 <input v-model="formData.prefix3" id="prefix3" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-5">
                                 <label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
                                 <input v-model="formData.mobilePhone" id="mobilePhone" type="text"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">{{ $t('Email') }}</label>
                                 <input v-model="formData.email" id="email" type="email" class="form-control form-input"
-                                    placeholder="Enter here" />
+                                    :placeholder="$t('Enter here')" />
+                                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
+                                    :placeholder="$t('Enter here')" value="dealer" />
                             </div>
                             <div class="col-md-6">
                                 <label for="password" class="form-label">{{ $t('password') }}</label>
                                 <input type="password" id="password" v-model="formData.password"
-                                    class="form-control form-input" placeholder="Enter here" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
                                 <div class="strength-bars" v-if="formData.password !== ''">
                                     <div class="strength-bar"
                                         :class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }">
@@ -144,9 +152,9 @@
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check1" v-model="formData.check1" class="form-input m-0"
-                                    placeholder="Enter here" />
+                                    :placeholder="$t('Enter here')" />
                                 <label for="check1" class="form-label m-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
-                                    <router-link to="/termofservice" class="termsService">{{
+                                    <router-link to="/termofservice" class="termsService" target="_blank">{{
                         $t('GeneralTermsAndConditions') }}</router-link>
                                 </label>
                                 <div v-if="formErrors.check1" class="text-danger">
@@ -155,17 +163,19 @@
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check1" v-model="formData.check2" class="form-input m-0"
-                                    placeholder="Enter here" />
+                                    :placeholder="$t('Enter here')" />
                                 <label for="check1" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
-                                    <router-link to="/privacypolicy" class="termsService">{{ $t('PrivacyPolicy')
-                                        }}</router-link>
+                                    <router-link to="/privacypolicy" class="termsService" target="_blank">{{
+                        $t('PrivacyPolicy')
+                    }}</router-link>
                                 </label>
                                 <div v-if="formErrors.check2" class="text-danger">
                                     {{ formErrors.check2 }}
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check3" class="form-input m-0" placeholder="Enter here" />
+                                <input type="checkbox" id="check3" class="form-input m-0"
+                                    :placeholder="$t('Enter here')" />
                                 <label for="check3" class="form-label m-0 p-0">{{ $t('NoEmails') }}
 
                                 </label>
@@ -231,9 +241,29 @@
     </div>
 
     <!-- modal end -->
+    <!-- modal fail -->
+    <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpenFail === true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <span class="close-icon" @click="isModalOpenFail = false">
+                        <i class="fas fa-times"></i>
+                    </span>
+
+                    <div class="mt-4 py-2">
+                        <h5 class="card-title"><span class="choose">Something Went Wronge </span></h5>
+                        <p class="text-white">{{ this.errorMessage }}</p>
+                        <p class="text-white">Please Try Again</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
-
+import axios from 'axios';
 
 export default {
     name: "DealersLogin",
@@ -241,6 +271,8 @@ export default {
     data() {
         return {
             isModalOpen: false,
+            isModalOpenFail: false,
+            errorMessage: "",
             formData: {
                 companyName: '',
                 street: '',
@@ -262,6 +294,7 @@ export default {
                 password: "",
                 check1: "",
                 check2: "",
+                role: "dealer"
             },
             formErrors: {
 
@@ -320,7 +353,20 @@ export default {
 
     },
     methods: {
+        async submitProfileForm() {
+            try {
+                // Make a POST request to the API endpoint
+                const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', this.formData);
 
+                // Handle success response
+                console.log('Form data submitted successfully:', response.data);
+                // You can perform further actions here, such as redirecting the user or showing a success message
+            } catch (error) {
+                // Handle error
+                console.error('Error submitting form data:', error);
+                // You can show an error message to the user or handle the error in any other appropriate way
+            }
+        },
         validatePassword() {
             this.formErrors.password = '';
             if (!this.isPasswordLengthValid) {
@@ -363,17 +409,22 @@ export default {
 
         // },
         submitForm() {
+            console.log(this.formData)
             // Handle form submission here
             this.validateForm();
 
             if (this.isFormValid()) {
+
                 this.$store.dispatch('auth/handleSignUp2', this.formData)
                     .then(data => {
                         if (data.success === 1) {
+                            console.log("result", data.result)
                             // this.isModalOpen = true;
+                            alert(data.result)
                             localStorage.setItem('login', true);
                             //  this.$router.push("/ourcommunity");
                         } else {
+                            console.log("in else")
                             this.isModalOpenFail = true;
                             this.errorMessage = data.error;
                         }

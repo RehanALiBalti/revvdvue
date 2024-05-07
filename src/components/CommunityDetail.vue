@@ -153,7 +153,7 @@
         </div>
         <div class="commentsByReceiver position-relative">
           <!-- <textarea v-model="newComment" id="inputComments" type="text" name="inputComments"
-            class="form-control form-input inputComments" placeholder="Enter here" @keydown.enter="postComment"
+            class="form-control form-input inputComments"  :placeholder="$t('Enter here')"@keydown.enter="postComment"
             ref="commentTextarea"></textarea> -->
           <!-- Check if textarea is not empty -->
 
@@ -904,5 +904,9 @@ export default {
 
 .close:hover {
   color: #ccc;
+}
+
+.communityDetails-section {
+  min-height: 90vh;
 }
 </style>

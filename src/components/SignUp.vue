@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-8 m-auto">
         <div class="form-content-home1">
-          <form id="subscribe-form" @submit.prevent="submitForm">
+          <form id="subscribe-form" @submit.prevent="submitProfileForm, submitForm">
             <h2 class="form-title">Sign <span class="form-span"> Up </span></h2>
             <!-- <div class="signIn-div my-5">
               <button class="btn google-btn">
@@ -21,15 +21,17 @@
               <div class="col-md-6">
                 <label for="name" class="form-label">Nick Name</label>
                 <input id="name" type="text" v-model="formData.name" class="form-control form-input"
-                  placeholder="Enter here" />
+                  :placeholder="$t('Enter here')" />
                 <div v-if="formErrors.name" class="text-danger">
                   {{ formErrors.name }}
                 </div>
+                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
+                  :placeholder="$t('Enter here')" value="user" />
               </div>
               <!-- <div class="col-md-6">
                 <label for="age" class="form-label">Age</label>
                 <input id="age" type="number" v-model="formData.age" class="form-control form-input"
-                  placeholder="Enter here" />
+                   :placeholder="$t('Enter here')"/>
                 <div v-if="formErrors.age" class="text-danger">
                   {{ formErrors.age }}
                 </div>
@@ -37,7 +39,7 @@
               <div class="col-md-6">
                 <label for="email" class="form-label">Email (verification)</label>
                 <input id="email" type="email" v-model="formData.email" class="form-control form-input"
-                  placeholder="Enter here" />
+                  :placeholder="$t('Enter here')" />
                 <div v-if="formErrors.email" class="text-danger">
                   {{ formErrors.email }}
                 </div>
@@ -45,7 +47,7 @@
               <!-- <div class="col-md-6">
                 <label for="phone" class="form-label">Phone number (verification)</label>
                 <input id="phone" type="tel" v-model="formData.phone" class="form-control form-input"
-                  placeholder="Enter here" />
+                   :placeholder="$t('Enter here')"/>
                 <div v-if="formErrors.phone" class="text-danger">
                   {{ formErrors.phone }}
                 </div>
@@ -53,13 +55,13 @@
               <!-- <div class="col-md-6">
                 <label for="socialMedia" class="form-label">Social media (optional)</label>
                 <input id="socialMedia" type="text" v-model="formData.socialMedia" class="form-control form-input"
-                  placeholder="Enter here" />
+                   :placeholder="$t('Enter here')"/>
               
               </div> -->
               <!-- <div class="col-md-6 position-relative">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" v-model="formData.password" class="form-control form-input"
-                  placeholder="Enter here" @input="checkStrength" />
+                   :placeholder="$t('Enter here')"@input="checkStrength" />
                 <span class="eye"><i class="fa-solid fa-eye"></i></span>
              
                 <div class="strength-bars" v-if="formData.password !== ''">
@@ -82,9 +84,9 @@
               <div class="col-md-6 position-relative">
                 <label for="password" class="form-label">Password</label>
                 <!-- <input type="password" id="password" v-model="formData.password" class="form-control form-input"
-                  placeholder="Enter here" @input="checkStrength" /> -->
+                   :placeholder="$t('Enter here')"@input="checkStrength" /> -->
                 <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
-                  class="form-control form-input" placeholder="Enter here" @input="checkStrength" />
+                  class="form-control form-input" :placeholder="$t('Enter here')" @input="checkStrength" />
                 <span class="eye" @click="togglePasswordVisibility">
                   <i class="fa-solid" :class="eyeIcon"></i>
                 </span>
@@ -107,9 +109,9 @@
               </div>
 
               <div class="col-md-6 position-relative">
-                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <label for="confirmPassword" class="form-label">{{ $t('Enter here') }}</label>
                 <input :type="formData.showPassword2 ? 'text' : 'password'" id="confirmPassword"
-                  v-model="formData.confirmPassword" class="form-control form-input" placeholder="Confirm Password" />
+                  v-model="formData.confirmPassword" class="form-control form-input" :placeholder="$t('Enter here')" />
                 <span class="eye" @click="togglePasswordVisibility2">
                   <i class="fa-solid" :class="eyeIcon2"></i>
                 </span>
@@ -118,29 +120,29 @@
                 </div>
               </div>
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                <input type="checkbox" id="check1" class="form-input m-0" placeholder="Enter here"
-                  v-model="formData.check1" />
-                <label for="check1" class="form-label m-0 p-0">I have read and agree with the
-                  <router-link to="/termofservice" class="termsService"> General Terms and Conditions</router-link>
+                <input type="checkbox" id="check1" class="form-input m-0" v-model="formData.check1" />
+                <label for="check1" class="form-label m-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
+                  <router-link to="/termofservice" class="termsService" target="_blank"> {{
+            $t('GeneralTermsAndConditions')
+          }}</router-link>
                 </label>
               </div>
               <div v-if="formErrors.check1" class="text-danger">
                 {{ formErrors.check1 }}
               </div>
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here"
-                  v-model="formData.check2" />
-                <label for="check2" class="form-label m-0 p-0">Yes, I agree with the Use of My Data
-                  According To The
-                  <router-link to="/privacypolicy" class="termsService">Privacy Policy</router-link>
+                <input type="checkbox" id="check2" class="form-input m-0" v-model="formData.check2" />
+                <label for="check2" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
+                  <router-link to="/privacypolicy" class="termsService" target="_blank">{{ $t('PrivacyPolicy')
+                    }}</router-link>
                 </label>
               </div>
               <div v-if="formErrors.check2" class="text-danger">
                 {{ formErrors.check2 }}
               </div>
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                <input type="checkbox" id="check2" class="form-input m-0" placeholder="Enter here" />
-                <label for="check2" class="form-label m-0 p-0">I don't want to recieve emails
+                <input type="checkbox" id="check2" class="form-input m-0" :placeholder="$t('Enter here')" />
+                <label for="check2" class="form-label m-0 p-0">{{ $t('NoEmails') }}
 
                 </label>
               </div>
@@ -226,7 +228,7 @@
   <!-- modal end -->
 </template>
 <script>
-
+import axios from 'axios';
 
 export default {
   name: "SignUp",
@@ -249,7 +251,8 @@ export default {
         check1: "",
         check2: "",
         showPassword: false,
-        showPassword2: false
+        showPassword2: false,
+        role: "user"
 
       },
       formErrors: {
@@ -332,6 +335,34 @@ export default {
     // }
   },
   methods: {
+    // async getData() {
+    //   try {
+    //     // Make a POST request to the API endpoint with only the email field
+    //     const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', { email: this.formData.email });
+
+    //     // Handle success response
+    //     console.log('Email submitted successfully:', response.data);
+    //     // You can perform further actions here, such as redirecting the user or showing a success message
+    //   } catch (error) {
+    //     // Handle error
+    //     console.error('Error submitting email:', error);
+    //     // You can show an error message to the user or handle the error in any other appropriate way
+    //   }
+    // },
+    async submitProfileForm() {
+      try {
+        // Make a POST request to the API endpoint
+        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', this.formData);
+
+        // Handle success response
+        console.log('Form data submitted successfully:', response.data);
+        // You can perform further actions here, such as redirecting the user or showing a success message
+      } catch (error) {
+        // Handle error
+        console.error('Error submitting form data:', error);
+        // You can show an error message to the user or handle the error in any other appropriate way
+      }
+    },
     togglePasswordVisibility() {
       this.formData.showPassword = !this.formData.showPassword;
     },
@@ -371,7 +402,9 @@ export default {
         this.formErrors.password = 'Password must contain at least one number.';
       }
     },
+
     async submitForm() {
+      console.log(this.formData)
       this.validateForm();
       if (this.isFormValid()) {
         // Submit form data

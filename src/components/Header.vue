@@ -139,7 +139,7 @@
                       <img src="../../public/images/layer3.png">
                     </div>
                     <router-link class="userListATag" to="/myCarListing">
-                      {{ $t('myAdds') }}
+                      {{ $t('myAds') }}
                     </router-link>
                   </li>
                   <li data-code="signOut">

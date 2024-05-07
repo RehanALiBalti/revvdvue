@@ -30,27 +30,27 @@
 							<div class="col-md-6">
 								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
 								<input v-model="fullname" id="name" type="text" name="name"
-									class="form-control form-input" placeholder="Enter here" required>
+									class="form-control form-input" :placeholder="$t('Enter here')" required>
 							</div>
 							<div class="col-md-6">
 								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
 								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
-									placeholder="Enter here" required>
+									:placeholder="$t('Enter here')" required>
 							</div>
 							<div class="col-md-6">
 								<label for="age" class="form-label">{{ $t('age') }}</label>
 								<input v-model="age" id="age" type="text" name="age" class="form-control form-input"
-									placeholder="Enter here" required>
+									:placeholder="$t('Enter here')" required>
 							</div>
 							<div class="col-md-6">
 								<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
 								<input v-model="email" id="email" type="email" name="email"
-									class="form-control form-input" placeholder="Enter here" required>
+									class="form-control form-input" :placeholder="$t('Enter here')" required>
 							</div>
 							<div class="col-md-6">
 								<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 								<input v-model="phone" id="phone" type="tel" name="phone"
-									class="form-control form-input" placeholder="Enter here" required>
+									class="form-control form-input" :placeholder="$t('Enter here')" required>
 							</div>
 							<div class="col-md-6">
 								<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional') }}</label>
@@ -66,7 +66,7 @@
 									ref="fileInput">
 							</div>
 							<div class="col-md-12">
-								<p id="errormsg">{{ errorMessage }}</p>
+								<!-- <p id="errormsg">{{ errorMessage }}</p> -->
 							</div>
 							<div class="col-md-12">
 								<div

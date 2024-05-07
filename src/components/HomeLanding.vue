@@ -79,7 +79,7 @@
           <div class="col-md-4">
             <label for="email" class="form-label">{{ $t('contactEmail') }}</label>
             <input v-model="formData.email" id="email" type="email" name="email" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
             <!-- Error message for Email -->
             <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
@@ -87,14 +87,14 @@
           <div class="col-md-4">
             <label for="phone" class="form-label">{{ $t('phoneNumber') }}</label>
             <input v-model="formData.phone" type="tel" id="phone" name="phone" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
             <!-- Error message for Phone -->
             <!-- <p class="text-danger" v-if="!formData.phone">${{ $t('enterPhoneNumber') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isPhoneValid">Please enter a valid phone number.</p> -->
           </div>
           <div class="col-md-6">
             <label for="country" class="form-label">{{ $t('country') }}</label>
-            <!-- <input type="text" id="country" class="form-control form-input" placeholder="Enter here" required> -->
+            <!-- <input type="text" id="country" class="form-control form-input"  :placeholder="$t('Enter here')"required> -->
             <select v-model="formData.country" class="form-select form-control form-input" name="country" id="country">
               <option value="">Select Country</option>
               <option value="AF">Afghanistan</option>
@@ -360,7 +360,7 @@
             <!-- <select class="form-select form-control form-input" id="city" onchange="fetchCities()">
 							</select> -->
             <input v-model="formData.city" type="text" id="city" name="city" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
             <!-- Error message for City -->
             <!-- <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p> -->
           </div>
@@ -445,7 +445,7 @@
         <!-- Grid row -->
         <div class="row mt-3">
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-4 col-xl-4 mb-4 position-relative">
+          <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
               <img src="../../public/images/layer1.png">
             </div>
@@ -497,7 +497,7 @@
           <!-- Grid column -->
 
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+          <div class="col-12 col-md-6 col-lg-4 col-xl-4 mx-auto mb-4">
             <!-- Links -->
             <h5 class="h5-title text-capitalize mb-4">{{ $t('contactUs') }}:</h5>
             <div class="footer-loction-div">
@@ -545,7 +545,7 @@
           <!-- Grid column -->
 
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+          <div class="col-12 col-md-6 col-lg-4 col-xl-4 mx-auto mb-4">
             <!-- Links -->
             <h5 class="h5-title text-capitalize mb-4">{{ $t('information') }}:</h5>
             <p>
@@ -876,12 +876,27 @@ export default {
   position: absolute;
   width: 100%;
   top: 0;
+  height: 100%
 }
 
 @media screen and (max-width: 991px) {
 
   div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius .img-border {
     left: 91px;
+  }
+
+
+}
+
+@media(max-width:768px) {
+  .cardOverlay img {
+    height: 100%;
+  }
+}
+
+@media(max-width:375px) {
+  .cardOverlay img {
+    height: 89%;
   }
 }
 </style>

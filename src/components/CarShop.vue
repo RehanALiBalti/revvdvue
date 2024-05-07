@@ -9,7 +9,7 @@
           <div class="col-md-4">
             <label for="title" class="form-label">{{ $t('add') }} {{ $t('title') }}</label>
             <input v-model="formData.title" id="title" type="text" name="title" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="brand" class="form-label">
@@ -27,83 +27,83 @@
           <div class="col-md-4">
             <label for="bodyType" class="form-label">{{ $t('bodyType') }}</label>
             <input v-model="formData.bodyType" id="bodyType" type="text" name="bodyType" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="type" class="form-label">{{ $t('type') }}</label>
             <input v-model="formData.type" type="text" id="type" name="type" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="seats" class="form-label">{{ $t('seats') }}</label>
             <input v-model.number="formData.seats" type="number" id="seats" name="seats" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="doors" class="form-label">{{ $t('doors') }}</label>
             <input v-model.number="formData.doors" type="number" id="doors" name="doors" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="countryVersion" class="form-label">{{ $t('countryVersion') }}</label>
             <input v-model="formData.countryVersion" type="text" id="countryVersion" name="countryVersion"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="offerNumber" class="form-label">{{ $t('officeNumber') }}</label>
             <input v-model.number="formData.offerNumber" type="number" id="offerNumber" name="offerNumber"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="modelCode" class="form-label">{{ $t('modelCode') }}</label>
             <input v-model="formData.modelCode" type="text" id="modelCode" name="modelCode"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="milage" class="form-label">{{ $t('mileage') }}</label>
             <input v-model.number="formData.milage" type="number" id="milage" name="milage"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="firstRegistration" class="form-label">{{ $t('firstRegistration') }}</label>
             <input v-model="formData.firstRegistration" type="text" id="firstRegistration" name="firstRegistration"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="generalInspection" class="form-label">{{ $t('inspection') }}</label>
             <input v-model="formData.generalInspection" type="text" id="generalInspection" name="generalInspection"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="previousOwners" class="form-label">{{ $t('previousOwners') }}</label>
             <input v-model="formData.previousOwners" type="text" id="previousOwners" name="previousOwners"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="fullServiceHistory" class="form-label">{{ $t('fullServiceHistory') }}</label>
             <input v-model="formData.fullServiceHistory" type="text" id="fullServiceHistory" name="fullServiceHistory"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="nonSmokerVehicle" class="form-label">{{ $t('nonSmokerVehicle') }}
             </label>
             <input v-model="formData.nonSmokerVehicle" type="text" id="nonSmokerVehicle" name="nonSmokerVehicle"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-4">
             <label for="price" class="form-label">{{ $t('price') }} </label>
             <input v-model.number="formData.price" type="number" id="price" name="price" class="form-control form-input"
-              placeholder="Enter here" />
+              :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-8">
             <label for="descriptionTitle" class="form-label">{{ $t('descriptionTitle') }}</label>
             <input v-model="formData.descriptionTitle" type="text" id="descriptionTitle" name="descriptionTitle"
-              class="form-control form-input" placeholder="Enter here" />
+              class="form-control form-input" :placeholder="$t('Enter here')" />
           </div>
           <div class="col-md-12">
             <label for="fullDescription" class="form-label">{{ $t('fullDescription') }}</label>
             <textarea v-model="formData.fullDescription" id="fullDescription" class="form-control form-input"
-              name="fullDescription" placeholder="Enter here" rows="4"></textarea>
+              name="fullDescription" :placeholder="$t('Enter here')" rows="4"></textarea>
           </div>
 
           <div class="col-md-12">

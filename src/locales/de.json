@@ -4,7 +4,7 @@
   "oneStopShop": "Die erste Anlaufstelle für modifizierte und leistungsstarke Auto-Enthusiasten, eine blühende Autogemeinschaftsplattform und ein Paradies für Tuningwerkstätten.",
   "startEngine": "Motor Starten",
   "subscribe": "Jetzt ",
-  "myAdds": "Meine Anzeigen",
+  "myAds": "Meine Anzeigen",
   "signOut": "Abmelden",
   "Now": "Abonnieren",
 
@@ -154,5 +154,10 @@
   "OnlineRegistrationForm": "Online-Registrierungsformular",
   "ForDealers": "Für Händler",
   "AlreadyRegisteredNote": "Sind Sie bereits auf mobile.de registriert? Kontaktieren Sie einfach unseren Kundenservice unter 03081097-500 und lassen Sie Ihr Konto reaktivieren.",
-  "LocationOfVehicle": "Ihre Adresse (Fahrzeugstandort)"
+  "LocationOfVehicle": "Ihre Adresse (Fahrzeugstandort)",
+  "Enter here": "Hier eingeben",
+  "Confirm Password": "Passwort bestätigen",
+  "Select a Make": "Wählen Sie eine Marke",
+  "Select a Model": "Modell auswählen",
+  "Production Years(Generation)": "Produktionsjahre (Generation)"
 }

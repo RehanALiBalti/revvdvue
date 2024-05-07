@@ -24,7 +24,7 @@
             </span></router-link>
           <form @submit.prevent="submitFilter">
             <div class="mt-4 py-2">
-              <h5 class="card-title"><span class="choose"> Filter </span></h5>
+              <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
             </div>
             <div class="row">
 
@@ -41,7 +41,7 @@
 
 
                   <div class="customSelect" @blur="isOpen = false">
-                    <input type="text" class="form-select" v-model="make" placeholder="Select a Make"
+                    <input type="text" class="form-select" v-model="make" :placeholder="$t('Select a Make')"
                       @click="toggleDropdown" @input="filterMakeOptions" @change="getModels">
                     <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
                       <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
@@ -61,7 +61,7 @@
                 <div class="mt-2  d-flex justify-content-center align-items-center borderBr ">
 
                   <div class="customSelect w-100" @blur="isOpenm = false">
-                    <input type="text" class=" form-select" v-model="smodel" placeholder="Select an option"
+                    <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
                       @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
                       @change="getModels">
                     <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
@@ -115,7 +115,7 @@
 
                 <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
                   <div class="customSelect w-100">
-                    <input type="text" class="form-select" placeholder="Production Years(Generation)"
+                    <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
                       @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng">
                     <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                       <li v-for="(value, index) in GenfilteredOptions" :key="index"
