@@ -4,19 +4,9 @@
     <div class="row">
       <div class="col-md-8 m-auto">
         <div class="form-content-home1">
-          <form id="subscribe-form" @submit.prevent="submitProfileForm, submitForm">
+          <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title">Sign <span class="form-span"> Up </span></h2>
-            <!-- <div class="signIn-div my-5">
-              <button class="btn google-btn">
-                <i class="fa-brands fa-google-plus-g"></i> Google
-              </button>
-              <button class="btn google-btn">
-                <i class="fa-brands fa-facebook"></i>Facebook
-              </button>
-              <button class="btn google-btn">
-                <i class="fa-brands fa-apple"></i>Apple
-              </button>
-            </div> -->
+
             <div class="row">
               <div class="col-md-6">
                 <label for="name" class="form-label">Nick Name</label>
@@ -28,14 +18,7 @@
                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
                   :placeholder="$t('Enter here')" value="user" />
               </div>
-              <!-- <div class="col-md-6">
-                <label for="age" class="form-label">Age</label>
-                <input id="age" type="number" v-model="formData.age" class="form-control form-input"
-                   :placeholder="$t('Enter here')"/>
-                <div v-if="formErrors.age" class="text-danger">
-                  {{ formErrors.age }}
-                </div>
-              </div> -->
+
               <div class="col-md-6">
                 <label for="email" class="form-label">Email (verification)</label>
                 <input id="email" type="email" v-model="formData.email" class="form-control form-input"
@@ -44,47 +27,10 @@
                   {{ formErrors.email }}
                 </div>
               </div>
-              <!-- <div class="col-md-6">
-                <label for="phone" class="form-label">Phone number (verification)</label>
-                <input id="phone" type="tel" v-model="formData.phone" class="form-control form-input"
-                   :placeholder="$t('Enter here')"/>
-                <div v-if="formErrors.phone" class="text-danger">
-                  {{ formErrors.phone }}
-                </div>
-              </div> -->
-              <!-- <div class="col-md-6">
-                <label for="socialMedia" class="form-label">Social media (optional)</label>
-                <input id="socialMedia" type="text" v-model="formData.socialMedia" class="form-control form-input"
-                   :placeholder="$t('Enter here')"/>
-              
-              </div> -->
-              <!-- <div class="col-md-6 position-relative">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" v-model="formData.password" class="form-control form-input"
-                   :placeholder="$t('Enter here')"@input="checkStrength" />
-                <span class="eye"><i class="fa-solid fa-eye"></i></span>
-             
-                <div class="strength-bars" v-if="formData.password !== ''">
-                  <div class="strength-bar"
-                    :class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }"></div>
-                  <div class="strength-bar"
-                    :class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }"></div>
-                  <div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }"></div>
-                </div>
 
-                <div class="d-flex justify-content-end">
-                  <p :class="passwordStrengthClass">{{ passwordStrength }}</p>
-                </div>
-
-                <div v-if="formErrors.password" class="text-danger">
-                  {{ formErrors.password }}
-                </div>
-              
-              </div> -->
               <div class="col-md-6 position-relative">
                 <label for="password" class="form-label">Password</label>
-                <!-- <input type="password" id="password" v-model="formData.password" class="form-control form-input"
-                   :placeholder="$t('Enter here')"@input="checkStrength" /> -->
+
                 <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
                   class="form-control form-input" :placeholder="$t('Enter here')" @input="checkStrength" />
                 <span class="eye" @click="togglePasswordVisibility">
@@ -152,7 +98,7 @@
               <div class="col-md-12">
                 <div class="list-item-btn position-relative submit-btn-div">
                   <span class="border-bottom-btn border-top-btn position-absolute">
-                    <!-- <img src="<?= base_url('/assets/images/Group12.png')?>" class="img-border position-absolute" alt=""> -->
+
                     <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                   </span>
 
@@ -229,6 +175,7 @@
 </template>
 <script>
 import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
   name: "SignUp",
@@ -335,20 +282,8 @@ export default {
     // }
   },
   methods: {
-    // async getData() {
-    //   try {
-    //     // Make a POST request to the API endpoint with only the email field
-    //     const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', { email: this.formData.email });
+    ...mapActions(['signup']),
 
-    //     // Handle success response
-    //     console.log('Email submitted successfully:', response.data);
-    //     // You can perform further actions here, such as redirecting the user or showing a success message
-    //   } catch (error) {
-    //     // Handle error
-    //     console.error('Error submitting email:', error);
-    //     // You can show an error message to the user or handle the error in any other appropriate way
-    //   }
-    // },
     async submitProfileForm() {
       try {
         // Make a POST request to the API endpoint
@@ -356,6 +291,10 @@ export default {
 
         // Handle success response
         console.log('Form data submitted successfully:', response.data);
+        const { email, name, role } = this.formData;
+        // this.$store.signup({ email, name, role });
+        this.$store.dispatch('auth/signup', { email, name, role });
+
         // You can perform further actions here, such as redirecting the user or showing a success message
       } catch (error) {
         // Handle error
@@ -369,27 +308,6 @@ export default {
     togglePasswordVisibility2() {
       this.formData.showPassword2 = !this.formData.showPassword2;
     },
-    // checkStrength() {
-    //   const password = this.password;
-    //   let strength = '';
-
-    //   // Password strength rules (you can adjust these according to your requirements)
-    //   const minLength = 2;
-    //   const minMedium = 6;
-    //   const minStrong = 8;
-
-    //   if (password.length < minLength) {
-    //     strength = 'weak';
-    //   } else if (password.length < minMedium) {
-    //     strength = 'medium';
-    //   } else if (password.length < minStrong) {
-    //     strength = 'strong';
-    //   } else {
-    //     strength = 'very strong';
-    //   }
-
-    //   this.strength = strength;
-    // },
 
 
     validatePassword() {
@@ -407,6 +325,7 @@ export default {
       console.log(this.formData)
       this.validateForm();
       if (this.isFormValid()) {
+        this.submitProfileForm()
         // Submit form data
         const mydata = {
 
@@ -424,6 +343,7 @@ export default {
           .then(
             (data) => {
               if (data.success == 1) {
+
                 // this.isModalOpen = true
                 localStorage.setItem('login', true);
                 // window.location.reload();
@@ -441,23 +361,7 @@ export default {
         console.log("Form validation failed");
       }
     },
-    // validateForm() {
-    //   this.formErrors = {};
 
-    //   if (!this.formData.name) {
-    //     this.formErrors.name = "Name is required";
-    //   }
-
-    //   if (!this.formData.email) {
-    //     this.formErrors.email = "Email is required";
-    //   } else if (!this.isValidEmail(this.formData.email)) {
-    //     this.formErrors.email = "Invalid email format";
-    //   }
-
-    //   if (!this.formData.password) {
-    //     this.formErrors.password = "Password is required";
-    //   }
-    // },
     validateForm() {
       this.formErrors = {};
       // console.log("check1", this.formData.check1)

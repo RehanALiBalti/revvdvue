@@ -5,7 +5,7 @@
             <div class="col-md-12 m-auto">
                 <div class="form-content-home1">
 
-                    <form id="subscribe-form" @submit.prevent="submitProfileForm, submitForm">
+                    <form id="subscribe-form" @submit.prevent="submitForm">
                         <h2 class="form-title">{{ $t('OnlineRegistrationForm') }}<span class="form-span"> {{
                         $t('ForDealers') }} </span>
                         </h2>
@@ -14,7 +14,7 @@
                             <div class="col-md-12">
                                 <h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
                                 <label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
-                                <input v-model="formData.companyName" id="companyName" type="text"
+                                <input v-model="formData.name" id="companyName" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-6">
@@ -274,7 +274,7 @@ export default {
             isModalOpenFail: false,
             errorMessage: "",
             formData: {
-                companyName: '',
+                name: '',
                 street: '',
                 streetNo: '',
                 street2: '',
@@ -414,7 +414,7 @@ export default {
             this.validateForm();
 
             if (this.isFormValid()) {
-
+                this.submitProfileForm()
                 this.$store.dispatch('auth/handleSignUp2', this.formData)
                     .then(data => {
                         if (data.success === 1) {

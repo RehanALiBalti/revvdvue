@@ -6,6 +6,7 @@ import "bootstrap";
 // import 'bootstrap-vue/dist/css/bootstrap-vue.css'
 import router from "./routes";
 import store from "./store";
+
 import { Amplify } from "aws-amplify";
 import { createI18n } from "vue-i18n";
 import "swiper/css";
