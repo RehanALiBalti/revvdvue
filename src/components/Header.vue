@@ -7,23 +7,25 @@
           <img class="logo-header" src="@/assets/images/RevvdoutLogo.svg" alt="Logo" draggable="false" height="30" />
 
         </router-link>
-        <router-link class="nav-link navLinkmd d-block d-lg-none" to="/" v-if="shouldShowLink && isLogin">
-          <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32" viewBox="0 0 29 32">
-            <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
-              <path id="Path_1085" data-name="Path 1085"
-                d="M4.5,13.5,18,3,31.5,13.5V30a3,3,0,0,1-3,3H7.5a3,3,0,0,1-3-3Z" fill="none" stroke="#fff"
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-              <path id="Path_1086" data-name="Path 1086" d="M13.5,33V18h9V33" fill="none" stroke="#fff"
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-            </g>
-          </svg>
-        </router-link>
-        <button class="navbar-toggler" type="button" aria-controls="navbarNavDropdown" aria-expanded="false"
-          aria-label="Toggle navigation" @click="toggleNav">
-          <span class="icon">
-            <i class="fa-solid fa-bars"></i>
-          </span>
-        </button>
+        <div class="d-flex gap-2">
+          <router-link class="nav-link navLinkmd d-block d-lg-none" to="/" v-if="shouldShowLink && isLogin">
+            <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32" viewBox="0 0 29 32">
+              <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
+                <path id="Path_1085" data-name="Path 1085"
+                  d="M4.5,13.5,18,3,31.5,13.5V30a3,3,0,0,1-3,3H7.5a3,3,0,0,1-3-3Z" fill="none" stroke="#fff"
+                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                <path id="Path_1086" data-name="Path 1086" d="M13.5,33V18h9V33" fill="none" stroke="#fff"
+                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+              </g>
+            </svg>
+          </router-link>
+          <button class="navbar-toggler" type="button" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation" @click="toggleNav">
+            <span class="icon">
+              <i class="fa-solid fa-bars"></i>
+            </span>
+          </button>
+        </div>
         <div class="collapse navbar-collapse" :class="{ 'show': isNavOpen }" id="navbarNavDropdown">
 
 
@@ -96,7 +98,7 @@
               <div class="dropdown ">
                 <button class="custom-select text-white w-100 minwBtn" type="button" id="dropdownMenuButton2"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  <span class="" :class="{ up: isOpen }">{{ selectedLanguage }}</span>
+                  <span class="d-flex" :class="{ up: isOpen }">{{ selectedLanguage }}</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark custom-options" aria-labelledby="dropdownMenuButton2">
                   <li v-for="language in languages" :key="language.code" @click="selectLanguage(language.code)">
@@ -125,7 +127,7 @@
               <buttton type="button" class="dropdown user-custom-box w-100" data-bs-toggle="dropdown"
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
-                  <div class="user-img-div">
+                  <div class="user-img-div d-none d-lg-block">
                     <img v-if="image != ''" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
                       class="user-img" alt="" />
                   </div>

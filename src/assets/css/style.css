@@ -455,7 +455,7 @@ video::-webkit-media-controls {
 	padding: 3px;
 	position: absolute;
 	top: 38%;
-	right: 0px;
+	right: 10px;
 	transform: translateY(-50%);
 	pointer-events: none;
 	transform: rotate(45deg);
@@ -1389,9 +1389,9 @@ a.footer-main-addresss:hover {
 	text-align: center;
 	/* background-image: linear-gradient(rgba(0, 11, 28, 0.7), rgba(0, 11, 28, 0.7)),
 		url("../images/Groupaa1.png"); */
-	/* background-image: linear-gradient(rgba(0, 11, 28, 0.7), rgba(0, 11, 28, 0.7)),
-		url("../images/Groupaa1.png"); */
-	background: url("../images/Groupaa1.png");
+	background-image: linear-gradient(rgba(0, 11, 28, 0.9), rgba(0, 11, 28, 0.9)),
+		url("../images/ncar.png");
+	/* background: url("../images/Groupaa1.png"); */
 	;
 	background-repeat: no-repeat;
 	background-size: cover;
