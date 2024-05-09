@@ -159,7 +159,7 @@
 						<div class="user-profile-page">
 							<h2 class="form-title mt-2 mb-0">
 
-								{{ formData.name }} {{ this.userID }}
+								{{ formData.CompanyName }} {{ this.userID }}
 							</h2>
 
 
@@ -171,10 +171,10 @@
 							<div class="col-md-12">
 								<h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
 								<label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
-								<input v-model="formData.name" id="companyName" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
+								<!-- <input v-model="formData.name" id="companyName" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" /> -->
 
-								<input v-model="formData.UserName" id="companyName mt-2" type="text"
+								<input v-model="formData.CompanyName" id="companyName mt-2" type="text"
 									class="form-control form-input" />
 							</div>
 							<div class="col-md-6">
@@ -272,12 +272,12 @@
 			class="form-control form-input" :placeholder="$t('Enter here')" />
 		<div class="strength-bars" v-if="formData.password !== ''">
 			<div class="strength-bar"
-				:class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }">
+				:class="{ 'weak: passwordStrength === 'Weak', 'strong: passwordStrength === 'Strong' }">
 			</div>
 			<div class="strength-bar"
-				:class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
+				:class="{ 'medium: passwordStrength === 'Medium', 'strong: passwordStrength === 'Strong' }">
 			</div>
-			<div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }">
+			<div class="strength-bar" :class="{ 'strong: passwordStrength === 'Strong' }">
 			</div>
 		</div>
 
@@ -488,7 +488,7 @@ export default {
 			role: '',
 			// formData: {},
 			formData: {
-				UserName: "",
+				CompanyName: "",
 				name: '',
 				street: '',
 				streetNo: '',
@@ -519,6 +519,7 @@ export default {
 		};
 	},
 	methods: {
+
 		// async checkIfGoogleOrFacebookUser() {
 		// 	try {
 		// 		const user = await Auth.currentAuthenticatedUser();
@@ -736,6 +737,62 @@ export default {
 			}
 		}
 		,
+		async updateUserAttributesDealer() {
+			// console.log(this.formData)
+			const updatedProfile = {
+
+				city: this.formData.city,
+
+				companyName: this.formData.CompanyName,
+
+				country: this.formData.country,
+
+
+				emailForCustomer: this.formData.email,
+
+				faxCustomer: this.formData.fax,
+
+				interanetPrefix1: this.formData.intlPrefix1,
+
+				interanetPrefix2: this.formData.intlPrefix2,
+
+				interanetPrefix3: this.formData.intlPrefix3,
+
+				mobileCustomer: this.formData.mobilePhone,
+
+				number: this.formData.phone1,
+
+				phoneCustomer: this.formData.phone1,
+
+				prefix1: this.formData.prefix1,
+				prefix2: this.formData.prefix2,
+
+				prefix3: this.formData.prefix3,
+
+				street1: this.formData.street,
+
+				street2: this.formData.street2,
+
+				zipCode: this.formData.zipCode,
+
+				email: this.formData.email
+
+
+			}
+			console.log("The profile data", updatedProfile);
+			try {
+				const data = await this.$store.dispatch("auth/handleProfile2", updatedProfile);
+				console.log(data, typeof data);
+				if (data === "SUCCESS") {
+					this.isModalOpen = true;
+				}
+			} catch (error) {
+				console.error("Error updating user profile:", error);
+				// Handle error gracefully, e.g., display an error message to the user
+				this.errorMessage = error
+				this.isModalOpenFail = true
+			}
+		},
 
 		async fetchProfileData() {
 			try {
@@ -749,19 +806,20 @@ export default {
 				console.log("userdata nick name", this.UserData.nickname)
 				this.role = this.UserData.nickname
 				if (this.role == "delear") {
-					this.formData.UserName = this.UserData.name;
+					this.formData.CompanyName = this.UserData.name;
 					this.formData.email = this.UserData.email
-					this.formData.mobilePhone = this.UserData["custom:phoneCustomer"]
+					this.formData.mobilePhone = this.UserData["custom:mobileCustomer"]
 					this.formData.prefix3 = this.UserData["custom:prefix3"]
 					this.formData.intlPrefix3 = this.UserData["custom:street1"]
 					this.formData.fax = this.UserData["custom:faxCustomer"]
 					this.formData.prefix2 = this.UserData["custom:prefix2"]
+					this.formData.prefix1 = this.UserData["custom:prefix1"]
 					this.formData.intlPrefix1 = this.UserData["custom:interanetPrefix1"]
-					this.formData.phone1 = this.UserData["custom:number"]
+					this.formData.phone1 = this.UserData["custom:phoneCustomer"]
 					this.formData.intlPrefix2 = this.UserData["custom:interanetPrefix2"]
 
 					this.formData.street = this.UserData["custom:street1"]
-					this.formData.streetNo = this.UserData["custom:street1"]
+					this.formData.streetNo = this.UserData["custom:number"]
 					this.formData.street2 = this.UserData["custom:street2"]
 					this.formData.zipCode = this.UserData["custom:zipCode"]
 					this.formData.city = this.UserData["custom:city"]

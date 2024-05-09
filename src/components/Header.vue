@@ -240,6 +240,7 @@ export default {
     window.addEventListener('storage', this.handleStorageChange.handleStorageChange);
     this.$router.beforeEach((to, from, next) => {
       // Set isOpen to false when the route changes
+      this.isLogin = localStorage.getItem('login')
       console.log("yessss", this.issOpen)
       this.issOpen = false;
       this.isOpen = false;
@@ -258,13 +259,14 @@ export default {
     window.removeEventListener('storage', this.handleStorageChange.handleStorageChange);
     document.body.removeEventListener('click', this.closeDropdown);
     document.body.removeEventListener('click', this.closeDropdown2);
-
+    this.isLogin = localStorage.getItem('login')
 
   },
   mounted() {
     this.fetchProfileData()
     document.body.addEventListener('click', this.closeDropdown);
     document.body.addEventListener('click', this.closeDropdown2);
+    this.isLogin = localStorage.getItem('login')
   },
 
   methods: {

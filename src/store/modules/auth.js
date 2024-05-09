@@ -82,6 +82,55 @@ const actions = {
 
     return result;
   },
+  async handleProfile2(
+    context,
+    {
+      city,
+      companyName,
+      country,
+      emailForCustomer,
+      faxCustomer,
+      interanetPrefix1,
+      interanetPrefix2,
+      interanetPrefix3,
+      mobileCustomer,
+      number,
+      phoneCustomer,
+      prefix1,
+      prefix2,
+      prefix3,
+      street1,
+      street2,
+      zipCode,
+      email,
+    }
+  ) {
+    console.log("in handle profile");
+    const data = {
+      city,
+      companyName,
+      country,
+      emailForCustomer,
+      faxCustomer,
+      interanetPrefix1,
+      interanetPrefix2,
+      interanetPrefix3,
+      mobileCustomer,
+      number,
+      phoneCustomer,
+      prefix1,
+      prefix2,
+      prefix3,
+      street1,
+      street2,
+      zipCode,
+      email,
+    };
+    console.log("handle profile");
+    const result = await AuthService.setprofile2(data);
+
+    return result;
+  },
   async handleSignUp(
     context,
     // { name, age, password, email, phone, socialMedia }

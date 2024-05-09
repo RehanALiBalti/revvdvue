@@ -201,17 +201,21 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem("login") === "true";
-  console.log(to.name);
+
   const isProtectedRoute = protectedRoutes.includes(to.name);
-  // if (to.name == "SignIn" && isAuthenticated) {
-  //   next("/ourcommunity");
-  // }
-  // if (to.name == "SignUp" && isAuthenticated) {
-  //   next("/ourcommunity");
-  // }
-  if (isProtectedRoute && !isAuthenticated) {
+  console.log("balti", to.name, isAuthenticated, isProtectedRoute);
+  //
+  if (to.name == "SignIn" && isAuthenticated) {
+    next("/ourcommunity");
+  } else if (to.name == "SignUp" && isAuthenticated) {
+    next("/ourcommunity");
+  } else if (to.name == "DealersLogin" && isAuthenticated) {
+    next("/ourcommunity");
+  } else if (isProtectedRoute && !isAuthenticated) {
+    console.log("my check1");
     next("/signin"); // Redirect to signin if not authenticated
   } else {
+    console.log("my check2");
     next(); // Proceed to the route
   }
 });
