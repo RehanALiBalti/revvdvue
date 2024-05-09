@@ -1182,6 +1182,15 @@ export default {
 	right: 3px;
 }
 
+@media(max-width:786px) {
+	.cardOverlay img {
+		position: absolute;
+		width: 100%;
+		top: 10px;
+		height: 100%
+	}
+
+}
 
 @media (min-width: 576px) {
 	.modal-dialog {

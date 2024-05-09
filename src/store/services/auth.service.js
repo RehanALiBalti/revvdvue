@@ -61,11 +61,15 @@ function setprofile(data) {
         email: data.email,
         phone_number: data.phone,
         name: data.name,
-        website: data.socialMedia,
+
         "custom:fullname": data.fullname, // Correctly access fullName property
         "custom:age": data.age,
         // Add other attributes you want to update
       };
+      if (data.socialMedia) {
+        updatedAttributes.website = data.socialMedia;
+      }
+
       if (data.image !== "") {
         updatedAttributes.picture = data.image;
       }
@@ -81,7 +85,14 @@ function setprofile(data) {
               resolve(result);
             })
             .catch((error) => {
-              reject(error);
+              const errorString =
+                typeof error === "string" ? error : String(error);
+              const cleanedErrorMessage = errorString.replace(
+                /^InvalidParameterException:\s*/,
+                ""
+              );
+              console.log("ttt", error, typeof error);
+              reject(cleanedErrorMessage);
             });
         })
         .catch((error) => {
