@@ -118,10 +118,11 @@
                     <img v-if="image != ''" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
                       class="user-img" alt="" />
                   </div>
-                  <span class="user-name" :class="{ open: issOpen }">
-                    <!-- {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
-            userAttributes.UserAttributes.find(attr => attr.Name === 'name').Value : '' }} -->
-                    <!-- {{ userAttributes.name }} -->
+                  <span class="user-name" :class="{ open: issOpen }" v-if="userName !== ''">
+                    {{ userName ? userName.split(' ')[0] : '' }}
+                  </span>
+                  <span class="user-name" :class="{ open: issOpen }" v-else>
+
                     {{ userAttributes.name ? userAttributes.name.split(' ')[0] : '' }}
                   </span>
 
@@ -188,6 +189,7 @@
                 </ul>
               </div> -->
             </li>
+
           </ul>
         </div>
       </div>
@@ -198,6 +200,7 @@
 
 <script>
 import { Auth } from 'aws-amplify';
+import { mapGetters } from 'vuex';
 export default {
 
   name: "HeaderItem",
@@ -220,6 +223,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('auth', ['userName', 'userEmail', 'userRole', 'userId']),
     handleStorageChange() {
       return {
         handleStorageChange() {

@@ -117,11 +117,17 @@
   <!-- modal end -->
 </template>
 <script>
+import axios from 'axios';
 import { Auth, Hub } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
+import { mapActions } from 'vuex';
+// import OurCommunity from './OurCommunity.vue';
 export default {
   name: "SignIn",
-
+  components: {
+    // Register the component
+    // OurCommunity
+  },
   data() {
     return {
       isModalOpen: false,
@@ -152,7 +158,8 @@ export default {
 
 
         // Redirect to '/landing' route
-        this.$router.push('/ourcommunity');
+        // this.$router.push('/ourcommunity');
+        this.$router.push({ name: 'OurCommunity' });
       }
       /*
       switch (event) {
@@ -171,6 +178,30 @@ export default {
     });
   },
   methods: {
+    ...mapActions(['signup']),
+    async submitProfileForm() {
+      try {
+        // Make a POST request to the API endpoint
+        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', { email: this.formData.email });
+
+        // Handle success response
+        console.log('Form data submitted successfully:', response.data[0]);
+        // const { email, name, role } = response.data;
+        const email = response.data[0].email
+        const name = response.data[0].name
+        const role = response.data[0].role
+        // this.$store.signup({ email, name, role });
+        console.log("data", { email, name, role })
+        this.$store.dispatch('auth/signup', { email, name, role });
+
+
+        // You can perform further actions here, such as redirecting the user or showing a success message
+      } catch (error) {
+        // Handle error
+        console.error('Error submitting form data:', error);
+        // You can show an error message to the user or handle the error in any other appropriate way
+      }
+    },
     togglePasswordVisibility() {
       this.formData.showPassword = !this.formData.showPassword;
     },
@@ -207,6 +238,7 @@ export default {
       this.validateForm();
       if (this.isFormValid()) {
         console.log("Form submitted successfully");
+        this.submitProfileForm()
         const mydata = {
           email: this.formData.email,
           password: this.formData.password,

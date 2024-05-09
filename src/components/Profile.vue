@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-8 m-auto">
 				<div class="form-content-home1">
-					<form id="subscribe-form" @submit.prevent="updateUserAttributes">
+					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="this.role == 'user'">
 						<div class="user-profile-page">
 
 							<!-- <img v-if="image != ''" src="https://clownfish-app-quehu.ondigitalocean.app/ +${image} " class="user-profile-page-img" alt="user"
@@ -22,6 +22,8 @@
 
 								{{ name }}
 							</h2>
+
+
 							<p class="map-para email-user-profile-page-para">
 								{{ email }}
 							</p>
@@ -150,6 +152,182 @@
 									<button type="submit" class="signin-btnli submitNow" >{{
 						$t("updateProfile") }}</button>
 								</div> -->
+							</div>
+						</div>
+					</form>
+
+					<form id="subscribe-form" @submit.prevent="updateDealer" v-if="this.role == 'dealer'">
+
+						<div class="user-profile-page">
+							<h2 class="form-title mt-2 mb-0">
+
+								{{ formData.name }}
+							</h2>
+
+
+							<p class="map-para email-user-profile-page-para">
+								{{ formData.email }}
+							</p>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
+								<label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
+								<input v-model="formData.name" id="companyName" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-6">
+								<label for="street" class="form-label">{{ $t('Street') }}</label>
+								<input v-model="formData.street" id="street" type="text" class="form-control form-input"
+									:placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-3">
+								<label for="streetNo" class="form-label">No.</label>
+								<input v-model="formData.streetNo" id="streetNo" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-3">
+								<label for="street2" class="form-label">{{ $t('Street') }} 2</label>
+								<input v-model="formData.street2" id="street2" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-3">
+								<label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
+								<input v-model="formData.zipCode" id="zipCode" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-3">
+								<label for="city" class="form-label">{{ $t('City') }}</label>
+								<input v-model="formData.city" id="city" type="text" class="form-control form-input"
+									:placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-6">
+								<label for="country" class="form-label">{{ $t('Country') }}</label>
+								<input v-model="formData.country" id="country" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-4">
+								<label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
+								<!-- <select v-model="formData.intlPrefix1" id="intlPrefix1" class="form-select form-input">
+                                    <option value="germany(+49)">Germany(+49)</option>
+                                    <option value="pakistan(+92)">pakistan(+92)</option>
+                               
+                                </select> -->
+								<input v-model="formData.intlPrefix1" id="fax" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-3">
+								<label for="prefix1" class="form-label">{{ $t('Prefix1') }}</label>
+								<input v-model="formData.prefix1" id="prefix1" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-5">
+								<label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
+								<input v-model="formData.phone1" id="phone1" type="text" class="form-control form-input"
+									:placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-4">
+								<label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
+								<!-- <select v-model="formData.intlPrefix2" id="intlPrefix2" class="form-select form-input">
+                                    <option value="germany(+49)">Germany(+49)</option>
+                                    <option value="pakistan(+92)">pakistan(+92)</option>
+                                  
+                                </select> -->
+								<input v-model="formData.intlPrefix2" id="intlPrefix2" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-3">
+								<label for="prefix2" class="form-label">{{ $t('Prefix1') }}</label>
+								<input v-model="formData.prefix2" id="prefix2" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-5">
+								<label for="fax" class="form-label">{{ $t('Fax') }}</label>
+								<input v-model="formData.fax" id="fax" type="text" class="form-control form-input"
+									:placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-4">
+								<label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
+								<!-- <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
+                                    <option value="germany(+49)">Germany(+49)</option>
+                                    <option value="pakistan(+92)">pakistan(+92)</option>
+
+                                </select> -->
+								<input v-model="formData.intlPrefix3" id="fax" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-3">
+								<label for="prefix3" class="form-label">{{ $t('Prefix1') }}</label>
+								<input v-model="formData.prefix3" id="prefix3" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-5">
+								<label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
+								<input v-model="formData.mobilePhone" id="mobilePhone" type="text"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+							</div>
+							<div class="col-md-6">
+								<label for="email" class="form-label">{{ $t('Email') }}</label>
+								<input v-model="formData.email" id="email" type="email" class="form-control form-input"
+									:placeholder="$t('Enter here')" />
+								<input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
+									:placeholder="$t('Enter here')" value="dealer" />
+							</div>
+							<!-- <div class="col-md-6">
+								<label for="password" class="form-label">{{ $t('password') }}</label>
+								<input type="password" id="password" v-model="formData.password"
+									class="form-control form-input" :placeholder="$t('Enter here')" />
+								<div class="strength-bars" v-if="formData.password !== ''">
+									<div class="strength-bar"
+										:class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }">
+									</div>
+									<div class="strength-bar"
+										:class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
+									</div>
+									<div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }">
+									</div>
+								</div>
+
+								<div class="d-flex justify-content-end">
+									<p :class="passwordStrengthClass">{{ passwordStrength }}</p>
+								</div>
+								<div v-if="formErrors.password" class="text-danger">
+									{{ formErrors.password }}
+								</div>
+
+							</div> -->
+
+							<div class="col-md-12">
+								<p id="errormsg"></p>
+							</div>
+							<div class="col-md-12">
+								<div class="list-item-btn position-relative submit-btn-div">
+									<span class="border-bottom-btn border-top-btn position-absolute">
+										<img src="@/assets/images/Group12.png" class="img-border position-absolute"
+											alt="" />
+									</span>
+									<span
+										class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+										<img src="@/assets/images/Path467.png" class="img-border position-absolute"
+											alt="" />
+									</span>
+									<span
+										class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+										<img src="@/assets/images/Path465.png" class="img-border position-absolute"
+											alt="" />
+									</span>
+									<button type="submit" class="signin-btnli submitNow" id="submit-button">
+										{{ $t('submit') }}
+									</button>
+									<span class="border-bottom-btn border-left-btn position-absolute">
+										<img src="@/assets/images/Group11.png" class="img-border position-absolute"
+											alt="" />
+									</span>
+									<span class="border-bottom-btn position-absolute">
+										<img src="@/assets/images/Path473.png" class="img-border position-absolute"
+											alt="" />
+									</span>
+								</div>
 							</div>
 						</div>
 					</form>
@@ -290,6 +468,7 @@
 	</div>
 
 
+
 	<!-- modal end -->
 </template>
 
@@ -297,6 +476,11 @@
 
 import axios from 'axios';
 import { Auth } from 'aws-amplify';
+import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
+
+
+
 export default {
 	name: "UserProfile",
 	data() {
@@ -313,16 +497,164 @@ export default {
 			socialMedia: "",
 			password: "",
 			errorMessage: '',
-			formData: {},
+			// formData: {},
 			oldPassword: "",
 			newPassword: "",
 			isModalReset: false,
 			modalSuccess: false,
 			successMessge: "",
-			socialSignIn: false
+			socialSignIn: false,
+			role: "",
+			userId: "",
+			dataTobeUpdated: {
+				name: '',
+				street: '',
+				streetNo: '',
+				street2: '',
+				zipCode: '',
+				city: '',
+				country: '',
+				intlPrefix1: '',
+				prefix1: '',
+				phone1: '',
+				intlPrefix2: '',
+				prefix2: '',
+				fax: '',
+				intlPrefix3: '',
+				prefix3: '',
+				mobilePhone: '',
+
+			},
+
+			formData: {
+				name: '',
+				street: '',
+				streetNo: '',
+				street2: '',
+				zipCode: '',
+				city: '',
+				country: '',
+				intlPrefix1: '',
+				prefix1: '',
+				phone1: '',
+				intlPrefix2: '',
+				prefix2: '',
+				fax: '',
+				intlPrefix3: '',
+				prefix3: '',
+				mobilePhone: '',
+				email: '',
+				password: "",
+				check1: "",
+				check2: "",
+				role: "dealer"
+			},
 		};
 	},
+	computed: {
+		...mapGetters('auth', ['userName', 'userEmail', 'userRole', 'userId']),
+	},
 	methods: {
+		// ...mapActions(['getProfileData']),
+
+		...mapActions(['signup']),
+		async submitProfileForm() {
+
+			try {
+
+				// Make a POST request to the API endpoint
+				const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', { email: this.UserData.email });
+
+				// Handle success response
+				console.log('Form data submitted successfully:', response.data[0]);
+
+				// const { email, name, role } = response.data;
+				const email = response.data[0].email
+				const name = response.data[0].name
+				const role = response.data[0].role
+				this.role = response.data[0].role
+				this.userId = response.data[0].id
+				// this.$store.signup({ email, name, role });
+				console.log("data", { email, name, role })
+				this.$store.dispatch('auth/signup', { email, name, role });
+
+				this.formData.city = response.data[0].city
+				this.formData.name = response.data[0].name
+				this.formData.country = response.data[0].country;
+				this.formData.email = response.data[0].email;
+				this.formData.fax = response.data[0].fax;
+				this.formData.id = response.data[0].id;
+				this.formData.intlPrefix1 = response.data[0].intlPrefix1;
+				this.formData.intlPrefix2 = response.data[0].intlPrefix2;
+				this.formData.intlPrefix3 = response.data[0].intlPrefix3;
+				this.formData.phone1 = response.data[0].mobilePhone;
+				this.formData.password = response.data[0].password;
+				this.formData.prefix1 = response.data[0].prefix1;
+				this.formData.prefix2 = response.data[0].prefix2;
+				this.formData.prefix3 = response.data[0].prefix3;
+				this.formData.role = response.data[0].role;
+				this.formData.street = response.data[0].street;
+				this.formData.street2 = response.data[0].street2;
+				this.formData.streetNo = response.data[0].streetNo;
+				this.formData.zipCode = response.data[0].zipCode;
+
+				// You can perform further actions here, such as redirecting the user or showing a success message
+			} catch (error) {
+				// Handle error
+				console.error('Error in submitting data:', error);
+				// You can show an error message to the user or handle the error in any other appropriate way
+			}
+		},
+		async updateDealer() {
+			this.dataTobeUpdated.name = this.formData.name;
+			this.dataTobeUpdated.street = this.formData.street;
+			this.dataTobeUpdated.streetNo = this.formData.streetNo;
+			this.dataTobeUpdated.street2 = this.formData.street2;
+			this.dataTobeUpdated.zipCode = this.formData.zipCode;
+			this.dataTobeUpdated.city = this.formData.city;
+			this.dataTobeUpdated.country = this.formData.country;
+			this.dataTobeUpdated.intlPrefix1 = this.formData.intlPrefix1;
+			this.dataTobeUpdated.prefix1 = this.formData.prefix1;
+			this.dataTobeUpdated.phone1 = this.formData.phone1;
+			this.dataTobeUpdated.intlPrefix2 = this.formData.intlPrefix2;
+			this.dataTobeUpdated.prefix2 = this.formData.prefix2;
+			this.dataTobeUpdated.fax = this.formData.fax;
+			this.dataTobeUpdated.intlPrefix3 = this.formData.intlPrefix3;
+			this.dataTobeUpdated.prefix3 = this.formData.prefix3;
+			this.dataTobeUpdated.mobilePhone = this.formData.mobilePhone;
+
+
+			console.log(`${this.userId}`)
+			console.log(`https://clownfish-app-quehu.ondigitalocean.app/api/users/${this.userId}`, this.dataTobeUpdated)
+			try {
+				// Make a put request to the API endpoint
+
+				const response = await axios.put(`https://clownfish-app-quehu.ondigitalocean.app/api/users/${this.userId}`, this.dataTobeUpdated);
+
+				// Handle success response
+				console.log('Form data submitted successfully:', response.data.message);
+				this.submitProfileForm()
+				// const { email, name, role } = response.data;
+				this.isModalOpen = true
+
+				// You can perform further actions here, such as redirecting the user or showing a success message
+			} catch (error) {
+				// Handle error
+				console.error('Error in updating data:', error);
+				// You can show an error message to the user or handle the error in any other appropriate way
+			}
+		},
+		// async getData() {
+		// 	try {
+		// 		// Call the action with the form data
+		// 		const response = await this.getProfileData(this.formData);
+		// 		console.log('Email submitted successfully:', response);
+		// 		// Handle success response, such as updating UI or showing a success message
+		// 	} catch (error) {
+		// 		// Handle error, such as displaying an error message to the user
+		// 		console.error('Error submitting email:', error);
+		// 	}
+		// },
 		// async checkIfGoogleOrFacebookUser() {
 		// 	try {
 		// 		const user = await Auth.currentAuthenticatedUser();
@@ -477,7 +809,7 @@ export default {
 				.then(response => {
 					// Handle success
 					console.log('Post request successful:', response.data);
-					this.image = response.data.photo_url
+					this.image = response.data[0].photo_url
 					// Optionally, update the comments data with the response data if needed
 					// this.comments = response.data;
 
@@ -562,6 +894,7 @@ export default {
 				this.phone = this.UserData.phone_number
 				this.age = this.UserData["custom:age"]
 				this.fullname = this.UserData["custom:fullname"]
+				this.submitProfileForm()
 				if (this.UserData.picture) {
 					this.image = this.UserData.picture
 				}
@@ -583,6 +916,7 @@ export default {
 
 		// this.getprofile()
 		this.fetchProfileData()
+		// this.getProfileData()
 		// this.checkIfGoogleOrFacebookUser()
 
 
@@ -591,6 +925,9 @@ export default {
 	},
 	mounted() {
 		this.fetchProfileData();
+		// this.getProfileData()
+		this.role = this.userRole;
+
 		// this.getProfileImage()
 		// this.checkIfGoogleOrFacebookUser()
 	},
