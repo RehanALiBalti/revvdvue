@@ -212,7 +212,7 @@ function register(name, password, email) {
 }
 
 function register2(
-  companyName,
+  name,
   street,
   streetNo,
   street2,
@@ -233,7 +233,7 @@ function register2(
 ) {
   console.log(
     "before request",
-    companyName,
+    name,
     street,
     streetNo,
     street2,
@@ -258,26 +258,29 @@ function register2(
     Auth.signUp({
       username: email,
       password: password,
-
       email: email,
-      companyName: companyName,
-      street1: streetNo,
-      number: mobilePhone,
-      street2: street2,
-      zipCode: zipCode,
-      country: country,
-      interanetPrefix1: intlPrefix1,
-      prefix1: prefix1,
-      phoneCustomer: phone1,
-      interanetPrefix2: intlPrefix2,
-      prefix2: prefix2,
-      faxCustomer: fax,
-      interanetPrefix3: intlPrefix3,
-      city: city,
-      prefix3: prefix3,
-      mobileCustomer: mobilePhone,
-      emailForCustomer: email,
-      dealerPassword: password,
+      attributes: {
+        name: name,
+        "custom:companyName": name,
+        nickname: "delear",
+        "custom:street1": street,
+        "custom:number": mobilePhone,
+        "custom:street2": street2,
+        "custom:zipCode": zipCode,
+        "custom:country": country,
+        "custom:interanetPrefix1": intlPrefix1,
+        "custom:prefix1": prefix1,
+        "custom:phoneCustomer": phone1,
+        "custom:interanetPrefix2": intlPrefix2,
+        "custom:prefix2": prefix2,
+        "custom:faxCustomer": fax,
+        "custom:interanetPrefix3": intlPrefix3,
+        "custom:city": city,
+        "custom:prefix3": prefix3,
+        "custom:mobileCustomer": mobilePhone,
+        "custom:emailForCustomer": email,
+        "custom:dealerPassword": password,
+      },
 
       autoConfirm: true,
       autoSignIn: {

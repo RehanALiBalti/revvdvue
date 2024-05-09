@@ -106,7 +106,7 @@ const actions = {
   async handleSignUp2(
     context,
     {
-      companyName,
+      name,
       street,
       streetNo,
       street2,
@@ -129,7 +129,7 @@ const actions = {
     console.log("yes", context);
     try {
       const result = await AuthService.register2(
-        companyName,
+        name,
         street,
         streetNo,
         street2,

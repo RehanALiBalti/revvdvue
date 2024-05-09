@@ -409,25 +409,28 @@ export default {
 
         // },
         submitForm() {
-            console.log(this.formData)
+            console.log("befor", this.formData)
             // Handle form submission here
             this.validateForm();
 
             if (this.isFormValid()) {
-                this.submitProfileForm()
+                //this.submitProfileForm()
+
                 this.$store.dispatch('auth/handleSignUp2', this.formData)
                     .then(data => {
+
                         if (data.success === 1) {
                             console.log("result", data.result)
-                            // this.isModalOpen = true;
-                            alert(data.result)
+                            //this.isModalOpen = true;
+
                             localStorage.setItem('login', true);
-                            //  this.$router.push("/ourcommunity");
+                            this.$router.push("/ourcommunity");
                         } else {
                             console.log("in else")
                             this.isModalOpenFail = true;
                             this.errorMessage = data.error;
                         }
+
                         console.log(data);
                     })
                     .catch(error => {
