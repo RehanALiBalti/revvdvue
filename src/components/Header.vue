@@ -257,6 +257,7 @@ export default {
       console.log("yessss", this.issOpen)
       this.issOpen = false;
       this.isOpen = false;
+      this.isNavOpen=false
       console.log("nooo", this.issOpen)
       this.closeDropdownm()
 
