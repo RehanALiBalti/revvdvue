@@ -54,7 +54,7 @@
           <div class="col-md-4">
             <label for="name" class="form-label"> {{ $t('userType') }} </label>
             <select v-model="formData.userType" id="name" name="usertype" class="form-select form-control form-input">
-              <option value="">Select</option>
+              <option value="">{{ $t('select') }}</option>
               <option value="Tunning/Performance Shop">
                 Tunning/Performance Shop
               </option>
@@ -96,7 +96,7 @@
             <label for="country" class="form-label">{{ $t('country') }}</label>
             <!-- <input type="text" id="country" class="form-control form-input"  :placeholder="$t('Enter here')"required> -->
             <select v-model="formData.country" class="form-select form-control form-input" name="country" id="country">
-              <option value="">Select Country</option>
+              <option value="">{{ $t('SelectCountry') }}</option>
               <option value="AF">Afghanistan</option>
               <option value="AX">Aland Islands</option>
               <option value="AL">Albania</option>
@@ -367,8 +367,7 @@
           <div class="col-md-12">
             <label for="message" class="form-label">{{ $t('becomeAmbassador') }}</label>
             <textarea v-model="formData.message" id="message" class="form-control form-input h-auto" name="message"
-              placeholder="We are looking for driven car enthusiasts to join our team of brand advocates, tell us about who you are, what you do and why you think you are a good fit."
-              rows="4"></textarea>
+              :placeholder="$t('Wearelookingfor')" rows="4"></textarea>
             <!-- Error message for Message -->
             <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
           </div>
@@ -378,12 +377,12 @@
             <div class="check-field">
               <input type="checkbox" id="acceptCondition" v-model="formData.acceptCondition" class="form-check-input" />
               <label for="acceptCondition" class="form-label">
-                I agree to Revvdout
-                <router-link class="termsService" to="">Terms of Service
+                {{ $t('agree') }}
+                <router-link class="termsService" to="/termofservice" target="_blank">{{ $t('TermsofService') }}
                 </router-link>
-                and the use of personal data as explained in Revvdout
-                <router-link class="termsService" to="">
-                  Privacy Policy.
+                {{ $t('useofpersonaldata') }}
+                <router-link class="termsService" to="/privacypolicy" target="_blank">
+                  {{ $t('PrivacyPolicy') }}
                 </router-link>
                 *
               </label>

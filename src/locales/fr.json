@@ -159,5 +159,10 @@
   "Confirm Password": "Confirmez le mot de passe",
   "Select a Make": "Sélectionnez une marque",
   "Select a Model": "Sélectionnez un modèle",
-  "Production Years(Generation)": "Années de production (Génération)"
+  "Production Years(Generation)": "Années de production (Génération)",
+  "SelectCountry": "Sélectionner le pays",
+  "Wearelookingfor": "Nous recherchons des passionnés de voitures motivés pour rejoindre notre équipe de promoteurs de marque. Parlez-nous de qui vous êtes, de ce que vous faites et pourquoi vous pensez être bien adapté.",
+  "agree": "Je suis d'accord avec Revvdout",
+  "useofpersonaldata": "et l'utilisation des données personnelles telles qu'expliquées dans Revvdout",
+  "TermsofService": "Conditions d'utilisation"
 }

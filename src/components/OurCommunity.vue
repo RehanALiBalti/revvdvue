@@ -153,7 +153,7 @@
                     <!-- data-bs-toggle="modal" -->
                     <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
                       data-bs-target="#mailModal" @click="retrieveCommunities">
-                      Proceed
+                      {{ $t('proceed') }}
                     </button>
                     <span class="border-bottom-btn border-left-btn new-popup position-absolute">
                       <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
