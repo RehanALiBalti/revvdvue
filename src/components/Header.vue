@@ -123,7 +123,7 @@
               </div> -->
             </li>
 
-            <li class=" position-relative " v-if="isLogin == true">
+            <li class=" position-relative " v-if="isLogin == true" style="min-width:150px">
               <buttton type="button" class="dropdown user-custom-box w-100" data-bs-toggle="dropdown"
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
@@ -257,7 +257,7 @@ export default {
       console.log("yessss", this.issOpen)
       this.issOpen = false;
       this.isOpen = false;
-      this.isNavOpen=false
+      this.isNavOpen = false
       console.log("nooo", this.issOpen)
       this.closeDropdownm()
 

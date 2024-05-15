@@ -5,7 +5,7 @@
       <div class="col-md-8 m-auto">
         <div class="form-content-home1">
           <form id="subscribe-form" @submit.prevent="submitForm">
-            <h2 class="form-title">Sign <span class="form-span"> Up </span></h2>
+            <h2 class="form-title">{{ $t('signUp') }}</h2>
 
             <div class="row">
               <div class="col-md-6">
@@ -55,9 +55,10 @@
               </div>
 
               <div class="col-md-6 position-relative">
-                <label for="confirmPassword" class="form-label">{{ $t('Enter here') }}</label>
+                <label for="confirmPassword" class="form-label">{{ $t('ConfirmPassword') }}</label>
                 <input :type="formData.showPassword2 ? 'text' : 'password'" id="confirmPassword"
-                  v-model="formData.confirmPassword" class="form-control form-input" :placeholder="$t('Enter here')" />
+                  v-model="formData.confirmPassword" class="form-control form-input"
+                  :placeholder="$t('ConfirmPassword')" />
                 <span class="eye" @click="togglePasswordVisibility2">
                   <i class="fa-solid" :class="eyeIcon2"></i>
                 </span>
@@ -111,7 +112,7 @@
                     <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                   </span>
                   <button type="submit" class="signin-btnli submitNow" id="submit-button">
-                    Sign Up
+                    {{ $t('signUp') }}
                   </button>
                   <span class="border-bottom-btn border-left-btn position-absolute">
                     <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
@@ -242,7 +243,7 @@ export default {
         return 'Strong';
       } else if (
         this.isPasswordLengthValid ||
-        this.isUppercaseValid ||
+
         this.isNumberValid
       ) {
         return 'Medium';

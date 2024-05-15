@@ -63,7 +63,10 @@
                   <div class="customSelect w-100" @blur="isOpenm = false">
                     <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
                       @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
-                      @change="getModels">
+                      @change="getModels" v-if="make == ''" disabled>
+                    <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
+                      @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
+                      @change="getModels" v-else>
                     <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
                       <li v-for="(option, index) in modelfilteredOptions" :key="index"
                         @click="selectOptionModel(option.model)">
@@ -78,45 +81,18 @@
                 </div>
               </div>
 
-              <!-- <div class="col-md-12">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="generation" @change="getYears">
-                    <option value="" selected disabled>Generation</option>
-                    <option v-for="(value, index) in generations" :key="index" :value="value">
-                      {{ value }}
-                    </option>
-                  </select>
-                </div>
-              </div>
 
-              <div class="col-md-12">
-                <div class="mt-2 py-2 d-flex justify-content-center align-items-center">
-                  <select class="form-select" v-model="productionYear">
-                    <option value="" selected disabled>Production Years</option>
-                    <option v-for="(value, index) in productionYears" :key="index" :value="value">
-                      {{ value }}
-                    </option>
-                  </select>
-                </div>
-              </div> -->
+
               <div class="col-md-12 z-0">
-                <!-- <div class="mt-2 py-2 d-flex justify-content-center align-items-center z-0 borderBr">
-                  <select class="form-select z-0 fselect1" @change="updateModels" v-model="selectedData"
-                    @focus="isOpenm = false">
-                    <option value="" selected>Production Years(Generation)</option>
-                    <option v-for="(value, index) in dataGy" :key="index" :value="value">
-                      {{ value.production_years }} ( {{ value.generation }} )
-                    </option>
-                  </select>
-              
 
-                </div> -->
 
 
                 <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
                   <div class="customSelect w-100">
                     <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                      @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng">
+                      @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" v-if="smodel == ''" disabled>
+                    <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
+                      @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" v-else>
                     <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                       <li v-for="(value, index) in GenfilteredOptions" :key="index"
                         @click="updateModels(value), this.isOpeng = false">

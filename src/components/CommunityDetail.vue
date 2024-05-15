@@ -106,15 +106,20 @@
                   <div class="d-flex justify-content-end align-items-center me-2">
                     <small class="uName">{{ comment.user_name }}</small>
                   </div>
-                  <div class="receiver-chats ">
+                  <div class="receiver-chats " v-if="comments.length">
                     <p class="receiver-chats-para">
                       {{ comment.comments }}
                     </p>
-                    <img v-if="comment.image" @click="showModal(comment.image)"
+                    <!-- <img v-if="comment.image" @click="showModal(comment.image)"
                       :src="'https://clownfish-app-quehu.ondigitalocean.app/' + comment.image" alt="Comment Image"
-                      class="CommentImage">
+                      class="CommentImage"> -->
+                    <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image" class="CommentImage"
+                      @click="openViewer2(comment.image)" />
 
                   </div>
+                  <p v-else>No comments to display</p>
+                  <!-- Hidden div to hold the clicked image for viewer -->
+
 
 
                 </div>
@@ -122,19 +127,26 @@
                   <div class="d-flex justify-start align-items-center ms-2">
                     <small class="uName">{{ comment.user_name }}</small>
                   </div>
-                  <div class="sender-chats">
-
-                    <p class="sender-chats-para">
-                      {{ comment.comments }}
-                    </p>
-                    <img v-if="comment.image" @click="showModal(comment.image)"
-                      :src="'https://clownfish-app-quehu.ondigitalocean.app/' + comment.image" alt="Comment Image"
-                      class="CommentImage">
-
-
+                  <div class="sender-chats" v-if="comments.length">
+                    <div>
+                      <p class="sender-chats-para">
+                        {{ comment.comments }}
+                      </p>
+                      <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
+                        class="CommentImage" @click="openViewer(comment.image)" />
+                    </div>
                   </div>
+                  <p v-else>No comments to display</p>
+                  <!-- Hidden div to hold the clicked image for viewer -->
+
                 </div>
               </div>
+            </div>
+            <div ref="viewerContainer2">
+              <img :src="currentImage2" id="currentImage2" alt="Current  Image" class="d-none" />
+            </div>
+            <div ref="viewerContainer">
+              <img :src="currentImage" id="currentImage" alt="Current  Image" class="d-none" />
               <!-- Modal -->
               <div class="modala" v-if="modalVisible">
                 <div class="modala-content">
@@ -239,6 +251,8 @@ import axios from 'axios';
 
 import CommentDataService from "../services/CommentDataService";
 
+import Viewer from 'viewerjs';
+import 'viewerjs/dist/viewer.css';
 export default {
   name: "CommunityDetail",
 
@@ -262,7 +276,10 @@ export default {
       comments: [],
       newComment: "",
       image: null,
-      nspeakers: ''
+      nspeakers: '',
+      currentImage: "",
+      currentImage2: "",
+
     };
   },
   created() {
@@ -298,6 +315,97 @@ export default {
   },
 
   methods: {
+    getImageUrl(imagePath) {
+      return `https://clownfish-app-quehu.ondigitalocean.app/${imagePath}`;
+    },
+    // openViewer(imagePath) {
+    //   this.currentImage = this.getImageUrl(imagePath);
+
+    //   this.$nextTick(() => {
+    //     const viewer = new Viewer(document.getElementById('currentImage'), {
+    //       inline: false,
+    //       viewed() {
+    //         viewer.zoomTo(1);
+    //       }
+    //     });
+    //     viewer.show();
+    //   });
+    // },
+    openViewer(imagePath) {
+      this.currentImage = this.getImageUrl(imagePath);
+      const viewerElement = this.$refs.viewerContainer;
+      if (viewerElement) {
+        // Destroy previous instance if it exists
+        if (this.viewerInstance) {
+          this.viewerInstance.destroy();
+        }
+        this.$nextTick(() => {
+          // Initialize new Viewer instance and store reference
+          this.viewerInstance = new Viewer(viewerElement, {
+            inline: false,
+            viewed() {
+              // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
+
+            },
+            toolbar: {
+              zoomIn: true,
+              zoomOut: true,
+              oneToOne: true, // Reset to original size
+              rotateLeft: true,
+              rotateRight: true,
+              flipHorizontal: true,
+              flipVertical: true,
+              reset: true
+            }
+          });
+          this.viewerInstance.show();
+        });
+      }
+    },
+    // openViewer2(imagePath) {
+    //   this.currentImage2 = this.getImageUrl(imagePath);
+    //   console.log(document.getElementById('currentImage2'))
+    //   this.$nextTick(() => {
+    //     const viewer = new Viewer(document.getElementById('currentImage2'), {
+    //       inline: false,
+    //       viewed() {
+    //         viewer.zoomTo(3);
+    //       }
+    //     });
+    //     viewer.show();
+    //   });
+    // },
+    openViewer2(imagePath) {
+      this.currentImage2 = this.getImageUrl(imagePath);
+      const viewerElement = this.$refs.viewerContainer2;
+      if (viewerElement) {
+        // Destroy previous instance if it exists
+        if (this.viewerInstance) {
+          this.viewerInstance.destroy();
+        }
+        this.$nextTick(() => {
+          // Initialize new Viewer instance and store reference
+          this.viewerInstance = new Viewer(viewerElement, {
+            inline: false,
+            viewed() {
+              // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
+            },
+            toolbar: {
+              zoomIn: true,
+              zoomOut: true,
+              oneToOne: true, // Reset to original size
+              rotateLeft: true,
+              rotateRight: true,
+              flipHorizontal: true,
+              flipVertical: true,
+              reset: true
+            }
+          });
+          this.viewerInstance.show();
+        });
+      }
+    },
+
     showModal(imageUrl) {
       console.log(imageUrl)
       this.modalImageUrl = imageUrl;
@@ -355,26 +463,7 @@ export default {
         console.error("Error fetching profile data:", error);
       }
     },
-    // getComments() {
 
-    //   const id = this.$route.params.id
-
-
-
-    //   CommentDataService.getAllByCommunity(id)
-    //     .then(response => {
-
-    //       this.comments = response.data
-    //       console.log("comments number", this.comments)
-
-
-
-    //     })
-    //     .catch(error => {
-    //       // Handle error
-    //       console.error('Error making post request:', error);
-    //     });
-    // },
     getComments() {
       const id = this.$route.params.id;
       CommentDataService.getAllByCommunity(id)
@@ -409,93 +498,7 @@ export default {
 
 
 
-    // postComment() {
-    //   this.imgLoading = true;
-    //   const formData = new FormData();
-    //   formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
-    //   formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
-    //   formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
-    //   formData.append('user_email', this.user_email);
 
-    //   // Check if formData is empty
-    //   if (this.imageUrl == "" && this.newComment == "") {
-    //     this.isModal2Open = true;
-    //   } else {
-    //     axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
-    //       .then(response => {
-    //         // Handle success
-    //         console.log('Post request successful:', response.data);
-    //         // Append the new comment to the comments array
-    //         this.comments.push(response.data);
-    //         // Clear inputs
-    //         this.newComment = "";
-    //         this.imageUrl = "";
-    //         this.$refs.fileInput.value = '';
-    //         this.$nextTick(() => {
-    //           this.scrollToBottom();
-    //         });
-    //         this.imgLoading = false;
-    //       })
-    //       .catch(error => {
-    //         // Handle error
-    //         console.error('Error making post request:', error);
-    //         this.imgLoading = false;
-    //       });
-    //   }
-    // },
-    // postComment() {
-    //   // Set imgLoading to true before making the request
-    //   this.imgLoading = true;
-    //   const file = this.$refs.fileInput.files[0];
-    //   const maxSizeInBytes = 1 * 1024 * 1024; // 1 MB
-    //   if (file.size > maxSizeInBytes) {
-    //     // Provide feedback to the user that the image size exceeds the limit
-    //     this.isModal3Open = true
-
-    //     this.imgLoading = false; // Reset imgLoading
-    //     return;
-    //   }
-
-    //   const formData = new FormData();
-    //   formData.append('image', this.$refs.fileInput.files[0]); // Append the selected file
-    //   formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
-    //   formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
-    //   formData.append('user_email', this.user_email);
-
-    //   // Check if formData is empty
-    //   if (this.imageUrl == "" && this.newComment == "") {
-    //     this.isModal2Open = true;
-    //     this.imgLoading = false;
-    //   } else {
-    //     axios.post('http://137.184.111.69:5000/api/comments/comments', formData)
-    //       .then(response => {
-    //         // Handle success
-    //         console.log('Post request successful:', response.data);
-    //         // Append the new comment to the comments array
-    //         this.comments.push(response.data);
-    //         // Clear inputs
-    //         this.newComment = "";
-    //         this.imageUrl = "";
-
-    //         // Check if this.$refs.fileInput exists before accessing its properties
-    //         if (this.$refs.fileInput) {
-    //           this.$refs.fileInput.value = '';
-    //         }
-
-    //         this.$nextTick(() => {
-    //           this.scrollToBottom();
-    //         });
-    //         // Set imgLoading back to false after successful response
-    //         this.imgLoading = false;
-    //       })
-    //       .catch(error => {
-    //         // Handle error
-    //         console.error('Error making post request:', error);
-    //         // Set imgLoading back to false after error
-    //         this.imgLoading = false;
-    //       });
-    //   }
-    // }
     postComment() {
       // Set imgLoading to true before making the request
       this.imgLoading = true;

@@ -446,7 +446,7 @@
           <!-- Grid column -->
           <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-              <img src="../../public/images/layer1.png">
+              <img src="../../public/images/layer22.png">
             </div>
             <!-- Content -->
             <h5 class="h5-title text-capitalize mb-4">{{ $t('weeklyStory') }}</h5>
@@ -470,24 +470,27 @@
 
             <ul class="icons-list footer-icons-list my-5">
               <li class="icons-list-item">
-                <router-link class="icons-list-atag" to="">
+                <router-link class="icons-list-atag" to="https://www.facebook.com/revvdout?mibextid=LQQJ4d"
+                  target="_blank">
                   <i class="fab fa-facebook-f"></i>
                 </router-link>
               </li>
 
               <li class="icons-list-item">
-                <router-link class="icons-list-atag" to="">
+                <router-link class="icons-list-atag" to="https://twitter.com/revvdout" target="_blank">
                   <i class="fab fa-x-twitter"></i>
                 </router-link>
               </li>
 
               <li class="icons-list-item">
-                <router-link class="icons-list-atag" to="">
+                <router-link class="icons-list-atag" to="https://www.tiktok.com/@revvdout?_t=8mJOwpObgzW&_r=1"
+                  target='_blank'>
                   <i class="fa-brands fa-tiktok"></i>
                 </router-link>
               </li>
               <li class="icons-list-item">
-                <router-link class="icons-list-atag" to="">
+                <router-link class="icons-list-atag"
+                  to="https://www.instagram.com/revvdout/?igshid=c2g3bzQ0bTZsdHlk&amp;utm_source=qr" target='_blank'>
                   <i class="fab fa-instagram"></i>
                 </router-link>
               </li>

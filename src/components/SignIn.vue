@@ -249,7 +249,7 @@ export default {
             localStorage.setItem('data', data.result);
 
             // Redirect to '/landing' route
-            this.$router.push('/ourcommunity');
+            this.$router.push('/');
 
           } else {
             this.isModalOpen = true

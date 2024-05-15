@@ -35,8 +35,7 @@
                     </a>
                 </li>
                 <li class="icons-list-item">
-                    <a class="icons-list-atag"
-                        href="https://www.instagram.com/revvdout/?igshid=c2g3bzQ0bTZsdHlk&amp;utm_source=qr"
+                    <a class="icons-list-atag" href="https://www.tiktok.com/@revvdout?_t=8mJOwpObgzW&_r=1"
                         target="_blank">
                         <i class="fab fa-tiktok"></i>
                     </a>

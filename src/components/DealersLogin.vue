@@ -332,7 +332,7 @@ export default {
                 return 'Strong';
             } else if (
                 this.isPasswordLengthValid ||
-                this.isUppercaseValid ||
+
                 this.isNumberValid
             ) {
                 return 'Medium';
