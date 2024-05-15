@@ -347,25 +347,18 @@ export default {
               // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
 
             },
-            toolbar: false
+            toolbar: false,
+            zoomable: true, // Enable zooming
+            movable: true,// Disable panning,
+            minScale: 1, // Minimum scale (no zooming out)
+            maxScale: 3,// Maximum scale (zoom in up to 3 times)
+            boundary: true
           });
           this.viewerInstance.show();
         });
       }
     },
-    // openViewer2(imagePath) {
-    //   this.currentImage2 = this.getImageUrl(imagePath);
-    //   console.log(document.getElementById('currentImage2'))
-    //   this.$nextTick(() => {
-    //     const viewer = new Viewer(document.getElementById('currentImage2'), {
-    //       inline: false,
-    //       viewed() {
-    //         viewer.zoomTo(3);
-    //       }
-    //     });
-    //     viewer.show();
-    //   });
-    // },
+
     openViewer2(imagePath) {
       this.currentImage2 = this.getImageUrl(imagePath);
       const viewerElement = this.$refs.viewerContainer2;
@@ -380,8 +373,14 @@ export default {
             inline: false,
             viewed() {
               // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
+
             },
             toolbar: false,
+            zoomable: true, // Enable zooming
+            movable: true, // Disable panning
+            minScale: 1, // Minimum scale (no zooming out)
+            maxScale: 3,// Maximum scale (zoom in up to 3 times)
+            boundary: true
           });
           this.viewerInstance.show();
         });
