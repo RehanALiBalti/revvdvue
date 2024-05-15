@@ -242,7 +242,7 @@ export default {
       ) {
         return 'Strong';
       } else if (
-        this.isPasswordLengthValid ||
+        this.isPasswordLengthValid &&
 
         this.isNumberValid
       ) {
