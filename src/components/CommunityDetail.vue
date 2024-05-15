@@ -347,16 +347,7 @@ export default {
               // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
 
             },
-            toolbar: {
-              zoomIn: true,
-              zoomOut: true,
-              oneToOne: true, // Reset to original size
-              rotateLeft: true,
-              rotateRight: true,
-              flipHorizontal: true,
-              flipVertical: true,
-              reset: true
-            }
+            toolbar: false
           });
           this.viewerInstance.show();
         });
@@ -390,16 +381,7 @@ export default {
             viewed() {
               // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
             },
-            toolbar: {
-              zoomIn: true,
-              zoomOut: true,
-              oneToOne: true, // Reset to original size
-              rotateLeft: true,
-              rotateRight: true,
-              flipHorizontal: true,
-              flipVertical: true,
-              reset: true
-            }
+            toolbar: false,
           });
           this.viewerInstance.show();
         });
