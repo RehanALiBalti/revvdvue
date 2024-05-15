@@ -159,7 +159,7 @@ export default {
 
         // Redirect to '/landing' route
         // this.$router.push('/ourcommunity');
-        this.$router.push({ name: 'OurCommunity' });
+        this.$router.push({ name: 'HomeLanding' });
       }
       /*
       switch (event) {
