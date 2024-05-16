@@ -78,28 +78,6 @@
             </div>
             <div class="communityDetails-chatContent" id="chat-messages" ref="commentsContainer">
 
-              <!-- <div v-for="comment in comments" :key="comment.comments">
-                <div v-if="comment.user_email == user_email" class="d-flex flex-column">
-                  <div class="receiver-chats ">
-                    <p class="receiver-chats-para">
-                      {{ comment.comments }}
-                    </p>
-                    <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
-                      class="CommentImage">
-                  </div>
-                </div>
-                <div v-else class="d-flex flex-column">
-                  <div class="sender-chats">
-                    <p class="sender-chats-para">
-                      {{ comment.comments }}
-                    </p>
-
-                    <img v-if="comment.image" :src="'http://137.184.111.69:5000/' + comment.image" alt="Comment Image"
-                      class="CommentImage">
-
-                  </div>
-                </div>
-              </div> -->
               <div v-for="comment in comments" :key="comment.comments">
 
                 <div v-if="comment.user_email == user_email" class="d-flex flex-column position-relative">
@@ -147,18 +125,6 @@
             </div>
             <div ref="viewerContainer">
               <img :src="currentImage" id="currentImage" alt="Current  Image" class="d-none" />
-              <!-- Modal -->
-              <div class="modala" v-if="modalVisible">
-                <div class="modala-content">
-                  <span class="close" @click="closeModal" style="color:#FF7A00">&times;</span>
-                  <!-- <img :src="'http://137.184.111.69:5000/' + modalImageUrl" alt="Modal Image"> -->
-                  <vue-image-zoomer :regular="'https://clownfish-app-quehu.ondigitalocean.app/' + modalImageUrl"
-                    :imageClass="zoomImg" :img-class="zoomImg" :click-zoom="true" />
-                </div>
-              </div>
-
-
-
             </div>
           </div>
 
@@ -199,6 +165,7 @@
         </form>
       </div>
     </div>
+
   </section>
 
 
@@ -318,19 +285,7 @@ export default {
     getImageUrl(imagePath) {
       return `https://clownfish-app-quehu.ondigitalocean.app/${imagePath}`;
     },
-    // openViewer(imagePath) {
-    //   this.currentImage = this.getImageUrl(imagePath);
 
-    //   this.$nextTick(() => {
-    //     const viewer = new Viewer(document.getElementById('currentImage'), {
-    //       inline: false,
-    //       viewed() {
-    //         viewer.zoomTo(1);
-    //       }
-    //     });
-    //     viewer.show();
-    //   });
-    // },
     openViewer(imagePath) {
       this.currentImage = this.getImageUrl(imagePath);
       const viewerElement = this.$refs.viewerContainer;
@@ -347,12 +302,24 @@ export default {
               // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
 
             },
-            toolbar: false,
+            // toolbar: false,
+            toolbar: {
+              zoomIn: true,
+              zoomOut: true,
+
+            },
             zoomable: true, // Enable zooming
             movable: true,// Disable panning,
             minScale: 1, // Minimum scale (no zooming out)
             maxScale: 3,// Maximum scale (zoom in up to 3 times)
-            boundary: true
+            boundary: false,
+            zoomOnWheel: false,
+            fullscreen: false, // Enable fullscreen view
+            minX: 100, // Minimum X coordinate (left boundary)
+            maxX: 200, // Maximum X coordinate (right boundary)
+            minY: 0, // Minimum Y coordinate (top boundary)
+            maxY: 300 // Maximum Y coordinate (bottom boundary)
+
           });
           this.viewerInstance.show();
         });
@@ -375,12 +342,35 @@ export default {
               // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
 
             },
-            toolbar: false,
+            // toolbar: false,
+            // zoomable: true, // Enable zooming
+            // movable: true, // Disable panning
+            // minScale: 1, // Minimum scale (no zooming out)
+            // maxScale: 3,// Maximum scale (zoom in up to 3 times)
+            // boundary: false,
+            // zoomOnWheel: false,
+            // fullscreen: false,// Enable fullscreen view
+            // minX: 100, // Minimum X coordinate (left boundary)
+            // maxX: 200, // Maximum X coordinate (right boundary)
+            // minY: 0, // Minimum Y coordinate (top boundary)
+            // maxY: 300 // Maximum Y coordinate (bottom boundary)
+            toolbar: {
+              zoomIn: true,
+              zoomOut: true,
+
+            },
             zoomable: true, // Enable zooming
-            movable: true, // Disable panning
+            movable: true,// Disable panning,
             minScale: 1, // Minimum scale (no zooming out)
             maxScale: 3,// Maximum scale (zoom in up to 3 times)
-            boundary: true
+            boundary: false,
+            zoomOnWheel: false,
+            fullscreen: false, // Enable fullscreen view
+            minX: 100, // Minimum X coordinate (left boundary)
+            maxX: 200, // Maximum X coordinate (right boundary)
+            minY: 0, // Minimum Y coordinate (top boundary)
+            maxY: 300 // Maximum Y coordinate (bottom boundary)
+
           });
           this.viewerInstance.show();
         });

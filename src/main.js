@@ -21,8 +21,8 @@ import fr from "./locales/fr.json";
 // import vSelect from "vue-select";
 import VueImageZoomer from "vue-image-zoomer";
 import "vue-image-zoomer/dist/style.css";
-import 'viewerjs/dist/viewer.css'
-import VueViewer from 'v-viewer'
+import "viewerjs/dist/viewer.css";
+import VueViewer from "v-viewer";
 
 const i18n = createI18n({
   legacy: false, // Use Composition API
