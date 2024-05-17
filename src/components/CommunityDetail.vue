@@ -313,7 +313,7 @@ export default {
             minScale: 1, // Minimum scale (no zooming out)
             maxScale: 3,// Maximum scale (zoom in up to 3 times)
             boundary: false,
-            zoomOnWheel: false,
+            zoomOnWheel: true,
             fullscreen: false, // Enable fullscreen view
             minX: 100, // Minimum X coordinate (left boundary)
             maxX: 200, // Maximum X coordinate (right boundary)
@@ -364,7 +364,7 @@ export default {
             minScale: 1, // Minimum scale (no zooming out)
             maxScale: 3,// Maximum scale (zoom in up to 3 times)
             boundary: false,
-            zoomOnWheel: false,
+            zoomOnWheel: true,
             fullscreen: false, // Enable fullscreen view
             minX: 100, // Minimum X coordinate (left boundary)
             maxX: 200, // Maximum X coordinate (right boundary)
