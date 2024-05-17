@@ -2375,8 +2375,9 @@ a:hover {
 }
 
 @media screen and (max-width: 767px) {
-	.banner-title {
-		/* font-size: 42px; */
+
+	.icons-list .icons-list-item .icons-list-atag {
+		width: 70px;
 	}
 
 	.map-para.line-height-termsOfService {
@@ -2456,6 +2457,14 @@ a:hover {
 }
 
 @media screen and (max-width: 445px) {
+	.icons-list .icons-list-item .icons-list-atag {
+		width: 50px;
+	}
+
+	.icons-list.footer-icons-list .icons-list-item .icons-list-atag {
+		width: 50px;
+	}
+
 	.pagination {
 		flex-wrap: wrap;
 		justify-content: center;

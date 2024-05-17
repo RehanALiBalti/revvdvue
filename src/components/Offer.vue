@@ -7,9 +7,9 @@
 						<img src="../../public/images/layer2.png">
 					</div>
 					<div class="card z-0">
-						<div class="card-body">
+						<div class="card-body d-flex flex-column justify-content-center align-items-center">
 							<h5 class="card-title">{{ $t('buy') }}</h5>
-							<p class="card-text">
+							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
@@ -45,6 +45,7 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 
@@ -53,9 +54,9 @@
 						<img src="../../public/images/layer2.png">
 					</div>
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body d-flex flex-column justify-content-center align-items-center">
 							<h5 class="card-title">{{ $t('sell') }}</h5>
-							<p class="card-text">
+							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
@@ -95,9 +96,9 @@
 
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4">
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body d-flex flex-column justify-content-center align-items-center">
 							<h5 class="card-title">{{ $t('community') }}</h5>
-							<p class="card-text">
+							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
@@ -142,9 +143,9 @@
 						<img src="../../public/images/layer2.png">
 					</div>
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body d-flex flex-column justify-content-center align-items-center">
 							<h5 class="card-title">{{ $t('carShop') }}</h5>
-							<p class="card-text">
+							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
@@ -187,9 +188,9 @@
 						<img src="../../public/images/layer2.png">
 					</div>
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body d-flex flex-column justify-content-center align-items-center">
 							<h5 class="card-title">{{ $t('marketPlace') }}</h5>
-							<p class="card-text">
+							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
@@ -1250,6 +1251,36 @@ export default {
 		border-color: #f95f19;
 		outline: 0;
 		box-shadow: none;
+	}
+
+
+}
+
+@media(max-width:461px) {
+	.ctext {
+		width: 50%
+	}
+
+	.cardOverlay img {
+		position: absolute;
+		width: 75%;
+		top: 10px;
+		object-fit: contain;
+		height: 102%;
+	}
+}
+
+@media (min-width: 462px) and (max-width: 572px) {
+	.ctext {
+		width: 50%
+	}
+
+	.cardOverlay img {
+		position: absolute;
+		width: 47%;
+		top: 10px;
+		/* object-fit: contain; */
+		height: 102%;
 	}
 }
 </style>
