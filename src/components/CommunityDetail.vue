@@ -302,12 +302,12 @@ export default {
               // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
 
             },
-            // toolbar: false,
-            toolbar: {
-              zoomIn: true,
-              zoomOut: true,
+            toolbar: false,
+            // toolbar: {
+            //   zoomIn: true,
+            //   zoomOut: true,
 
-            },
+            // },
             zoomable: true, // Enable zooming
             movable: true,// Disable panning,
             minScale: 1, // Minimum scale (no zooming out)
@@ -342,7 +342,7 @@ export default {
               // this.viewerInstance.zoomTo(3); // Use this.viewerInstance
 
             },
-            // toolbar: false,
+            toolbar: false,
             // zoomable: true, // Enable zooming
             // movable: true, // Disable panning
             // minScale: 1, // Minimum scale (no zooming out)
@@ -354,11 +354,11 @@ export default {
             // maxX: 200, // Maximum X coordinate (right boundary)
             // minY: 0, // Minimum Y coordinate (top boundary)
             // maxY: 300 // Maximum Y coordinate (bottom boundary)
-            toolbar: {
-              zoomIn: true,
-              zoomOut: true,
+            // toolbar: {
+            //   zoomIn: true,
+            //   zoomOut: true,
 
-            },
+            // },
             zoomable: true, // Enable zooming
             movable: true,// Disable panning,
             minScale: 1, // Minimum scale (no zooming out)
