@@ -149,7 +149,7 @@
                   </li>
                   <li data-code="myAdds" class="position-relative">
                     <div class="cardOverlay d-flex pe-2 pt-2">
-                      <img src="../../public/images/layer3.png">
+                      <img src="../../public/images/3.png">
                     </div>
                     <router-link class="userListATag" to="/myCarListing">
                       {{ $t('myAds') }}

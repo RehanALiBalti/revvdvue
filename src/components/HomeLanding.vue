@@ -446,7 +446,7 @@
           <!-- Grid column -->
           <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
-              <img src="../../public/images/layer22.png">
+              <img src="../../public/images/2.png">
             </div>
             <!-- Content -->
             <h5 class="h5-title text-capitalize mb-4">{{ $t('weeklyStory') }}</h5>
