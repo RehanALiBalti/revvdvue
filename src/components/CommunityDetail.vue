@@ -318,7 +318,10 @@ export default {
             minX: 100, // Minimum X coordinate (left boundary)
             maxX: 200, // Maximum X coordinate (right boundary)
             minY: 0, // Minimum Y coordinate (top boundary)
-            maxY: 300 // Maximum Y coordinate (bottom boundary)
+            maxY: 300,// Maximum Y coordinate (bottom boundary)
+            title: false,
+            navbar: false,
+            tooltip: false,
 
           });
           this.viewerInstance.show();
@@ -369,10 +372,14 @@ export default {
             minX: 100, // Minimum X coordinate (left boundary)
             maxX: 200, // Maximum X coordinate (right boundary)
             minY: 0, // Minimum Y coordinate (top boundary)
-            maxY: 300 // Maximum Y coordinate (bottom boundary)
+            maxY: 300,// Maximum Y coordinate (bottom boundary)
 
-          });
-          this.viewerInstance.show();
+            title: false,
+            navbar: false,
+            tooltip: false
+          }),
+
+            this.viewerInstance.show();
         });
       }
     },
