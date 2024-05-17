@@ -100,7 +100,8 @@
                   data-bs-toggle="dropdown" aria-expanded="false">
                   <span class="d-flex" :class="{ up: isOpen }">{{ selectedLanguage }}</span>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-dark custom-options" aria-labelledby="dropdownMenuButton2">
+                <ul class="dropdown-menu dropdown-menu-dark custom-options w-50 w-lg-100 ms-auto ms-lg-0"
+                  aria-labelledby="dropdownMenuButton2">
                   <li v-for="language in languages" :key="language.code" @click="selectLanguage(language.code)">
                     {{ language.name }}
                   </li>
@@ -141,7 +142,8 @@
 
                 </div>
 
-                <ul class="dropdown-menu dropdown-menu-dark custom-options" aria-labelledby="dropdownMenuButton3">
+                <ul class="dropdown-menu dropdown-menu-dark custom-options w-50 w-lg-100 ms-auto ms-lg-0"
+                  aria-labelledby="dropdownMenuButton3">
                   <li data-code="profile" @click="nextRoute">
                     <router-link class="userListATag" to="/profile">
                       {{ $t('profile') }}
