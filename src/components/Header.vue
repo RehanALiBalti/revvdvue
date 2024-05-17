@@ -1,8 +1,8 @@
 <template>
   <section class="header">
 
-    <nav class="navbar navbar-expand-lg sticky-top p-3">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg sticky-top p-1 p-md-3">
+      <div class="container px-0 px-md-1">
         <router-link class="navbar-brand" to="/">
           <img class="logo-header" src="@/assets/images/RevvdoutLogo.svg" alt="Logo" draggable="false" height="30" />
 
@@ -19,7 +19,7 @@
               </g>
             </svg>
           </router-link>
-          <button class="navbar-toggler" type="button" aria-controls="navbarNavDropdown" aria-expanded="false"
+          <button class="navbar-toggler pe-0" type="button" aria-controls="navbarNavDropdown" aria-expanded="false"
             aria-label="Toggle navigation" @click="toggleNav">
             <span class="icon">
               <i class="fa-solid fa-bars"></i>
