@@ -58,7 +58,7 @@
                 <label for="confirmPassword" class="form-label">{{ $t('ConfirmPassword') }}</label>
                 <input :type="formData.showPassword2 ? 'text' : 'password'" id="confirmPassword"
                   v-model="formData.confirmPassword" class="form-control form-input"
-                  :placeholder="$t('ConfirmPassword')" />
+                  :placeholder="$t('Enter here')" />
                 <span class="eye" @click="togglePasswordVisibility2">
                   <i class="fa-solid" :class="eyeIcon2"></i>
                 </span>
