@@ -30,14 +30,7 @@
 
               <div class="col-md-12 z-0 ">
                 <div class="mt-2   d-flex justify-content-center align-items-center borderBr">
-                  <!-- <select class="form-select" v-model="make" @change="getModels(), getGenerations">
-                    <option value="" selected disabled>Make</option>
-                    <option v-for="(make, index) in makes" :key="index" :value="make.make">
-                      {{ make.make }}
-                    </option>
-                  </select> -->
-                  <!-- <v-select class="w-100 " v-model="make" :options="makes" label="model" placeholder="Make"
-                    @change="getModels" :filterable="true"></v-select> -->
+
 
 
                   <div class="customSelect" @blur="isOpen = false">
@@ -294,6 +287,7 @@ export default {
     filterMakeOptions() {
       this.modelfilteredOptions = [];
       this.selectedData = "";
+      this.smodel = ""
       const query = this.make.toLowerCase();
       if (query === '') {
         this.makefilteredOptions = this.makes;
@@ -302,6 +296,7 @@ export default {
       }
     },
     filterModelOptions() {
+      this.selectedData=""
 
       console.log(this.smodel);
       const query = this.smodel.toLowerCase();

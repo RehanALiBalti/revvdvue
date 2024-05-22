@@ -135,20 +135,13 @@
                                 <div v-if="formErrors.password" class="text-danger">
                                     {{ formErrors.password }}
                                 </div>
-                                <!-- <ul class="text-white">
-                  <li>
-                    <p>Password must be:</p>
-                  </li>
-                  <li :class="{ 'completed': isPasswordLengthValid }">
-                    <small>8 characters long</small>
-                  </li>
-                  <li :class="{ 'completed': isUppercaseValid }">
-                    <small>An uppercase letter</small>
-                  </li>
-                  <li :class="{ 'completed': isNumberValid }">
-                    <small>A number</small>
-                  </li>
-                </ul> -->
+                                <div class="col-md-12">
+                                    <ul class="text-white">
+                                        <li>Password must be at least 8 characters long.</li>
+                                        <li>Password must contain at least one uppercase letter.</li>
+                                        <li>Password must contain at least one number.</li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check1" v-model="formData.check1" class="form-input m-0"
@@ -527,7 +520,7 @@ export default {
 }
 
 .text-red {
-    color: #ff4d4f;
+    color: #52c41a;
     /* or any other style for weak password */
 }
 
@@ -542,7 +535,7 @@ export default {
 }
 
 .weak {
-    background-color: #ff4d4f !important;
+    background-color: #52c41a !important;
     /* Red color for weak */
 }
 

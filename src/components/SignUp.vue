@@ -57,14 +57,21 @@
               <div class="col-md-6 position-relative">
                 <label for="confirmPassword" class="form-label">{{ $t('ConfirmPassword') }}</label>
                 <input :type="formData.showPassword2 ? 'text' : 'password'" id="confirmPassword"
-                  v-model="formData.confirmPassword" class="form-control form-input"
-                  :placeholder="$t('Enter here')" />
+                  v-model="formData.confirmPassword" class="form-control form-input" :placeholder="$t('Enter here')" />
                 <span class="eye" @click="togglePasswordVisibility2">
                   <i class="fa-solid" :class="eyeIcon2"></i>
                 </span>
                 <div v-if="formErrors.confirmPassword" class="text-danger">
                   {{ formErrors.confirmPassword }}
                 </div>
+
+              </div>
+              <div class="col-md-12">
+                <ul class="text-white">
+                  <li>Password must be at least 8 characters long.</li>
+                  <li>Password must contain at least one uppercase letter.</li>
+                  <li>Password must contain at least one number.</li>
+                </ul>
               </div>
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                 <input type="checkbox" id="check1" class="form-input m-0" v-model="formData.check1" />
@@ -469,7 +476,7 @@ export default {
 }
 
 .text-red {
-  color: #ff4d4f;
+  color: #52c41a;
   /* or any other style for weak password */
 }
 
@@ -484,7 +491,7 @@ export default {
 }
 
 .weak {
-  background-color: #ff4d4f;
+  background-color: #52c41a;
   /* Red color for weak */
 }
 
