@@ -39,7 +39,8 @@
 
                 <div class="strength-bars" v-if="formData.password !== ''">
                   <div class="strength-bar"
-                    :class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }"></div>
+                    :class="{ 'weak': passwordStrength === 'Weak', 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
+                  </div>
                   <div class="strength-bar"
                     :class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }"></div>
                   <div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }"></div>

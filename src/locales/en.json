@@ -132,6 +132,7 @@
   "GoToDealerLogin": "Go To Dealer Login",
   "CompanyName": "Company Name (according to VAT ID confirmation)",
   "Street": "Street (Please no post-office box)",
+  "Street2": "Street 2 (Please no post-office box)",
   "ZipCode": "Zip Code",
   "City": "City",
   "Country": "Country",

@@ -27,14 +27,15 @@
                                 <input v-model="formData.streetNo" id="streetNo" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
-                            <div class="col-md-3">
-                                <label for="street2" class="form-label">{{ $t('Street') }} 2</label>
-                                <input v-model="formData.street2" id="street2" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div>
+
                             <div class="col-md-3">
                                 <label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
                                 <input v-model="formData.zipCode" id="zipCode" type="text"
+                                    class="form-control form-input" :placeholder="$t('Enter here')" />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="street2" class="form-label">{{ $t('Street2') }} </label>
+                                <input v-model="formData.street2" id="street2" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
@@ -47,21 +48,18 @@
                                 <input v-model="formData.country" id="country" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
-                                <!-- <select v-model="formData.intlPrefix1" id="intlPrefix1" class="form-select form-input">
-                                    <option value="germany(+49)">Germany(+49)</option>
-                                    <option value="pakistan(+92)">pakistan(+92)</option>
-                               
-                                </select> -->
+
                                 <input v-model="formData.intlPrefix1" id="fax" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
                             <div class="col-md-3">
+
                                 <label for="prefix1" class="form-label">{{ $t('Prefix1') }}</label>
                                 <input v-model="formData.prefix1" id="prefix1" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div>
+                            </div> -->
                             <div class="col-md-5">
                                 <label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
                                 <input v-model="formData.phone1" id="phone1" type="text" class="form-control form-input"
@@ -120,7 +118,7 @@
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                                 <div class="strength-bars" v-if="formData.password !== ''">
                                     <div class="strength-bar"
-                                        :class="{ 'weak': passwordStrength === 'Weak', 'strong': passwordStrength === 'Strong' }">
+                                        :class="{ 'weak': passwordStrength === 'Weak', 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
                                     </div>
                                     <div class="strength-bar"
                                         :class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">

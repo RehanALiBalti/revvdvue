@@ -136,6 +136,7 @@
   "GoToDealerLogin": "Accéder à la connexion du concessionnaire",
   "CompanyName": "Nom de l'entreprise (selon confirmation du numéro de TVA)",
   "Street": "Rue (Pas de boîte postale)",
+  "Street2": "Rue 2 (Pas de boîte postale)",
   "ZipCode": "Code postal",
   "City": "Ville",
   "Country": "Pays",

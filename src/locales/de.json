@@ -136,6 +136,7 @@
   "GoToDealerLogin": "Zum Händler-Login gehen",
   "CompanyName": "Firmenname (gemäß USt-ID-Bestätigung)",
   "Street": "Straße (Bitte keine Postfach)",
+  "Street2": "Straße2 (Bitte keine Postfach)",
   "ZipCode": "Postleitzahl",
   "City": "Stadt",
   "Country": "Land",
