@@ -296,7 +296,7 @@ export default {
       }
     },
     filterModelOptions() {
-      this.selectedData=""
+      this.selectedData = ""
 
       console.log(this.smodel);
       const query = this.smodel.toLowerCase();
@@ -536,7 +536,7 @@ export default {
           .then((response) => {
             this.models = response.data;
             this.modelfilteredOptions = response.data;
-            console.log(response.data)
+
           })
           .catch((e) => {
             console.log(e);
@@ -575,6 +575,7 @@ export default {
     // },
     getGenerations() {
       console.log('in generation', "make", this.make, "modal", this.smodel);
+      this.selectedData = ""
       CarDataService.getGenerations(this.make, this.smodel)
         .then((response) => {
           const data = response.data;

@@ -767,9 +767,7 @@ export default {
 .form-check-input {
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 1.1);
   position: relative;
-  top: 15px;
-  width: 1.7em;
-  height: 1.2em;
+
   cursor: pointer;
   background-color: #f95f19 !important;
   border: none !important;

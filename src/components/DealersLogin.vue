@@ -138,13 +138,14 @@
                                         <li>Password must be at least 8 characters long.</li>
                                         <li>Password must contain at least one uppercase letter.</li>
                                         <li>Password must contain at least one number.</li>
+                                        <li>Password Must contain at least one symbol</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check1" v-model="formData.check1" class="form-input m-0"
-                                    :placeholder="$t('Enter here')" />
-                                <label for="check1" class="form-label m-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
+                                <input type="checkbox" id="check1" v-model="formData.check1"
+                                    class="form-check-input m-0" :placeholder="$t('Enter here')" />
+                                <label for="check1" class="form-label mt-4 mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                                     <router-link to="/termofservice" class="termsService" target="_blank">{{
                         $t('GeneralTermsAndConditions') }}</router-link>
                                 </label>
@@ -153,9 +154,9 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check1" v-model="formData.check2" class="form-input m-0"
-                                    :placeholder="$t('Enter here')" />
-                                <label for="check1" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
+                                <input type="checkbox" id="check1" v-model="formData.check2"
+                                    class="form-check-input m-0" :placeholder="$t('Enter here')" />
+                                <label for="check1" class="form-label mt-4 mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                                     <router-link to="/privacypolicy" class="termsService" target="_blank">{{
                         $t('PrivacyPolicy')
                     }}</router-link>
@@ -165,9 +166,9 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check3" class="form-input m-0"
+                                <input type="checkbox" id="check3" class="form-check-input m-0"
                                     :placeholder="$t('Enter here')" />
-                                <label for="check3" class="form-label m-0 p-0">{{ $t('NoEmails') }}
+                                <label for="check3" class="form-label mt-4 mb-0 p-0">{{ $t('NoEmails') }}
 
                                 </label>
                             </div>
@@ -305,6 +306,13 @@ export default {
         isPasswordLengthValid() {
             return this.formData.password.length >= 8;
         },
+        isContainSpecialchar() {
+            const password = this.formData.password;
+            const minLength = 8;
+            const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+
+            return password.length >= minLength && specialCharPattern.test(password);
+        },
         isUppercaseValid() {
             const uppercaseRegex = /[A-Z]/;
             return uppercaseRegex.test(this.formData.password);
@@ -318,7 +326,8 @@ export default {
             if (
                 this.isPasswordLengthValid &&
                 this.isUppercaseValid &&
-                this.isNumberValid
+                this.isNumberValid &&
+                this.isContainSpecialchar
             ) {
                 return 'Strong';
             } else if (
@@ -366,6 +375,9 @@ export default {
                 this.formErrors.password = 'Password must contain at least one uppercase letter.';
             } else if (!this.isNumberValid) {
                 this.formErrors.password = 'Password must contain at least one number.';
+            }
+            else if (!this.isContainSpecialchar) {
+                this.formErrors.password = "Password Must contain at least one symbol"
             }
         },
         modalClose() {
@@ -559,5 +571,14 @@ export default {
     margin: 0 2px;
     border-radius: 2px;
     background: #fff;
+}
+
+.form-check-input {
+    box-shadow: 2px 3px 6px rgba(0, 0, 0, 1.1);
+    position: relative;
+
+    cursor: pointer;
+    background-color: #f95f19 !important;
+    border: none !important;
 }
 </style>
