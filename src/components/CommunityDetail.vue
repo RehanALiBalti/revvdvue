@@ -53,7 +53,7 @@
                     <div class="like-community">
                       <i class="fa-solid fa-comments"></i>
                       <small>Comments</small>
-                      <!-- <span class="total-likes">{{ communityData.comments }}</span> -->
+
                       <span class="total-likes">{{ this.comments.length }}</span>
                     </div>
                     <div class="like-community">
@@ -78,7 +78,7 @@
             </div>
             <div class="communityDetails-chatContent" id="chat-messages" ref="commentsContainer">
 
-              <div v-for="comment in comments" :key="comment.comments">
+              <!-- <div v-for="comment in comments" :key="comment.comments">
 
                 <div v-if="comment.user_email == user_email" class="d-flex flex-column position-relative">
                   <div class="d-flex justify-content-end align-items-center me-2">
@@ -88,15 +88,13 @@
                     <p class="receiver-chats-para">
                       {{ comment.comments }}
                     </p>
-                    <!-- <img v-if="comment.image" @click="showModal(comment.image)"
-                      :src="'https://clownfish-app-quehu.ondigitalocean.app/' + comment.image" alt="Comment Image"
-                      class="CommentImage"> -->
+                  
                     <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image" class="CommentImage"
                       @click="openViewer2(comment.image)" />
 
                   </div>
                   <p v-else>No comments to display</p>
-                  <!-- Hidden div to hold the clicked image for viewer -->
+                
 
 
 
@@ -115,10 +113,68 @@
                     </div>
                   </div>
                   <p v-else>No comments to display</p>
-                  <!-- Hidden div to hold the clicked image for viewer -->
+             
+
+                </div>
+              </div> -->
+              <div v-for="comment in comments" :key="comment.comments">
+                <div v-if="comment.user_email == user_email" class="d-flex flex-column position-relative">
+                  <div class="d-flex justify-content-end align-items-center me-2">
+                    <small class="uName">{{ comment.user_name }}</small>
+                  </div>
+                  <div class="receiver-chats" v-if="comments.length">
+                    <p class="receiver-chats-para">{{ comment.comments }}</p>
+                    <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image" class="CommentImage"
+                      @click="openViewer2(comment.image)" />
+
+                    <div>
+                      <p class="text-white text-end fonts1" @click="toggleReply(comment.id)"> <i
+                          class="fa-solid fa-reply"></i>
+                        Reply </p>
+                    </div>
+                    <div v-if="showReplyInput === comment.id">
+                      <div class="d-flex">
+                        <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
+                        <button class="btn bg-white " @click="submitReply(comment.id)">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <p v-else>No comments to display</p>
+
+                  <!-- <div v-if="showReplyInput === comment.id">
+                    <input type="text" v-model="replyText" placeholder="Type your reply here">
+                    <button class="btn btn-info w-fit" @click="submitReply(comment.id)">Submit</button>
+                  </div> -->
+                </div>
+
+                <div v-else class="d-flex flex-column">
+                  <div class="d-flex justify-start align-items-center ms-2">
+                    <small class="uName">{{ comment.user_name }}</small>
+                  </div>
+                  <div class="sender-chats" v-if="comments.length">
+                    <div>
+                      <p class="sender-chats-para">{{ comment.comments }}</p>
+                      <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
+                        class="CommentImage" @click="openViewer(comment.image)" />
+                    </div>
+                    <div>
+                      <p class="text-white text-end fonts1" @click="toggleReply(comment.id)"> <i
+                          class="fa-solid fa-reply"></i>
+                        Reply </p>
+                    </div>
+                    <div v-if="showReplyInput === comment.id">
+                      <div class="d-flex">
+                        <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
+                        <button class="btn bg-white " @click="submitReply(comment.id)">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <p v-else>No comments to display</p>
+
 
                 </div>
               </div>
+
             </div>
             <div ref="viewerContainer2">
               <img :src="currentImage2" id="currentImage2" alt="Current  Image" class="d-none" />
@@ -225,6 +281,11 @@ export default {
 
   data() {
     return {
+      // reply
+      showReplyInput: null,
+      replyText: '',
+      replies: [],
+      // reply
       zoomImg: "zoomImg",
       isloadingLike: false,
       modalVisible: false,
@@ -282,6 +343,58 @@ export default {
   },
 
   methods: {
+    // reply
+    toggleReply(commentId) {
+      if (this.showReplyInput === commentId) {
+        this.showReplyInput = null;
+      } else {
+        this.showReplyInput = commentId;
+      }
+    },
+    submitReply(commentId) {
+
+
+      const formData = new FormData();
+      console.log(commentId)
+      formData.append('comment_id', commentId); // Assuming `this.id` contains the community ID
+      formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
+      formData.append('user_email', this.user_email);
+      formData.append('user_name', this.user_name);
+
+
+
+      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/replies/reply', formData)
+        .then(response => {
+          // Handle success
+          console.log('Post request successful of repies:', response.data);
+          // Append the new comment to the comments array
+          this.replies.push(response.data);
+          // Clear inputs
+
+
+
+          this.replyText = '';
+          this.showReplyInput = null;
+
+          // Set imgLoading back to false after successful response
+
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error making post request:', error);
+          // Set imgLoading back to false after error
+
+          this.replyText = '';
+          this.showReplyInput = null;
+        });
+
+      // Clear the reply input
+      this.replyText = '';
+      this.showReplyInput = null;
+    },
+
+
+    // reply
     getImageUrl(imagePath) {
       return `https://clownfish-app-quehu.ondigitalocean.app/${imagePath}`;
     },
@@ -346,22 +459,7 @@ export default {
 
             },
             toolbar: false,
-            // zoomable: true, // Enable zooming
-            // movable: true, // Disable panning
-            // minScale: 1, // Minimum scale (no zooming out)
-            // maxScale: 3,// Maximum scale (zoom in up to 3 times)
-            // boundary: false,
-            // zoomOnWheel: false,
-            // fullscreen: false,// Enable fullscreen view
-            // minX: 100, // Minimum X coordinate (left boundary)
-            // maxX: 200, // Maximum X coordinate (right boundary)
-            // minY: 0, // Minimum Y coordinate (top boundary)
-            // maxY: 300 // Maximum Y coordinate (bottom boundary)
-            // toolbar: {
-            //   zoomIn: true,
-            //   zoomOut: true,
 
-            // },
             zoomable: true, // Enable zooming
             movable: true,// Disable panning,
             minScale: 1, // Minimum scale (no zooming out)
@@ -535,38 +633,7 @@ export default {
 
     ,
 
-    // addLike() {
-    //   // Check if the like has already been added for this item in this session
 
-    //   if (!localStorage.getItem('liked-' + this.id)) {
-    //     const requestData = {
-    //       id: this.id
-    //     };
-    //     axios.post('http://137.184.111.69:5000/api/communities/likes', requestData)
-    //       .then(response => {
-    //         // Handle success
-    //         console.log('Post request successful:', response.data);
-
-    //         // Set the flag in local storage with the respective ID
-    //         localStorage.setItem('liked-' + this.id, true);
-    //         console.log(`liked-${this.id}`)
-    //         this.isLike = localStorage.getItem(`liked-${this.id}`);
-    //         this.fetchCommunityData()
-
-    //       })
-    //       .catch(error => {
-    //         // Handle error
-    //         console.error('Error making post request:', error);
-    //       });
-    //   } else {
-    //     // If the like has already been added, you may want to show a message or handle the situation differently
-    //     console.log('Like already added for this item.');
-    //     this.isLike = localStorage.getItem(`liked-${this.id}`);
-
-    //     console.log()
-
-    //   }
-    // },
     addLike() {
       this.isloadingLike = true
       // Check if the like has already been added for this item in this session
@@ -674,6 +741,12 @@ export default {
 </script>
 
 <style scoped>
+.fonts1 {
+  color: #F95F19;
+  cursor: pointer;
+  font-size: 10px
+}
+
 .likeBtn {
   background: transparent;
   width: fit-content;

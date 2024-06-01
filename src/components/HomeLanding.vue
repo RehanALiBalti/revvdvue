@@ -43,351 +43,161 @@
   </div>
 
   <div class="container my-5">
+    <div class="modal show d-block modalaa" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <!-- <router-link to="/offer"> <span class="close-icon" aria-label="Close">
+                <i class="fas fa-times"></i>
+              </span></router-link> -->
+            <form>
+              <div class="mt-4 py-2">
+                <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
+              </div>
+              <div class="row">
+
+                <div class="col-md-6 z-0 ">
+                  <div class="mt-2   d-flex justify-content-center align-items-center ">
+
+
+
+                    <select v-model="filters.make" class="form-select" @change="filterStories">
+                      <option value="">Select Make</option>
+                      <option v-for="make in makes" :key="make" :value="make">{{ make }}</option>
+                    </select>
+
+
+                  </div>
+                </div>
+
+                <div class="col-md-6 z-0">
+                  <div class="mt-2  d-flex justify-content-center align-items-center  ">
+
+                    <select v-model="filters.make" class="form-select" @change="filterStories">
+                      <option value="">Select Modal</option>
+                      <option v-for="make in makes" :key="make" :value="make">{{ make }}</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-6 z-0">
+
+
+
+                  <div class="mt-2 d-flex justify-content-center align-items-center   ">
+
+
+                    <select v-model="filters.make" class="form-select" @change="filterStories">
+                      <option value="">Select Year</option>
+                      <option v-for="make in makes" :key="make" :value="make">{{ make }}</option>
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+                <div class="col-md-6 m-auto z-0">
+                  <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto mt-2">
+                    <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+                      <span class="border-bottom-btn border-top-btn position-absolute">
+                        <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
+                      </span>
+
+                      <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+                        <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
+                      </span>
+
+                      <span
+                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+                        <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
+                      </span>
+                      <!-- data-bs-toggle="modal" -->
+                      <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                        data-bs-target="#mailModal">
+                        {{ $t('proceed') }}
+                      </button>
+                      <span class="border-bottom-btn border-left-btn new-popup position-absolute">
+                        <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
+                      </span>
+                      <span class="border-bottom-btn position-absolute">
+                        <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="form-content-home1">
       <!-- action="#" method="POST" data-bs-toggle="modal" -->
       <form id="subscribe-form" @submit.prevent="submitForm">
         <h2 class="form-title">
-          {{ $t('subscribe') }}
-          <span class="form-span">{{ $t('Now') }}</span>
+          {{ $t('Share your story !') }}
+          <span class="form-span">{{ $t('Now') }} !</span>
         </h2>
         <div class="row">
-          <div class="col-md-4">
-            <label for="name" class="form-label"> {{ $t('userType') }} </label>
-            <select v-model="formData.userType" id="name" name="usertype" class="form-select form-control form-input">
-              <option value="">{{ $t('select') }}</option>
-              <option value="Tunning/Performance Shop">
-                Tunning/Performance Shop
-              </option>
-              <option value="Private Car Seller">Private Car Seller</option>
-              <option value="Professional Car Seller">
-                Professional Car Seller
-              </option>
-              <option value="Cosmetics modification shop Performance Modifications shop">
-                Cosmetics modification shop
-              </option>
-              <option value="Car Photography">Car Photographer</option>
-              <option value="Car Spotter">Car Spotter</option>
-              <option value="Car Club">Car Club</option>
-              <option value="Car Animator/Illustrator">
-                Car Animator/Illustrator
-              </option>
-            </select>
-            <!-- Error message for Country -->
-            <!-- <p class="text-danger" v-if="!formData.userType">{{ $t('selectUserType') }}</p> -->
+          <div class="col-md-12">
+            <label for="name" class="form-label"> Tell us your car story together. </label>
+            <input v-model="formData.email" id="email" type="email" name="email" class="form-control form-input"
+              :placeholder="$t('Enter here')" />
 
           </div>
-          <div class="col-md-4">
-            <label for="email" class="form-label">{{ $t('contactEmail') }}</label>
+          <div class="col-md-12">
+            <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
+              or any specific features ? </label>
+            <input v-model="formData.email" id="email" type="email" name="email" class="form-control form-input"
+              :placeholder="$t('Enter here')" />
+
+          </div>
+          <div class="col-md-12">
+            <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve had
+              with your car that stands out the most? </label>
             <input v-model="formData.email" id="email" type="email" name="email" class="form-control form-input"
               :placeholder="$t('Enter here')" />
             <!-- Error message for Email -->
             <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
           </div>
-          <div class="col-md-4">
-            <label for="phone" class="form-label">{{ $t('phoneNumber') }}</label>
+          <div class="col-md-12">
+            <label for="phone" class="form-label"> If you could give advice to someone just starting their journey to
+              modify their car, what would it be and why?</label>
             <input v-model="formData.phone" type="tel" id="phone" name="phone" class="form-control form-input"
               :placeholder="$t('Enter here')" />
             <!-- Error message for Phone -->
             <!-- <p class="text-danger" v-if="!formData.phone">${{ $t('enterPhoneNumber') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isPhoneValid">Please enter a valid phone number.</p> -->
           </div>
-          <div class="col-md-6">
-            <label for="country" class="form-label">{{ $t('country') }}</label>
-            <!-- <input type="text" id="country" class="form-control form-input"  :placeholder="$t('Enter here')"required> -->
-            <select v-model="formData.country" class="form-select form-control form-input" name="country" id="country">
-              <option value="">{{ $t('SelectCountry') }}</option>
-              <option value="AF">Afghanistan</option>
-              <option value="AX">Aland Islands</option>
-              <option value="AL">Albania</option>
-              <option value="DZ">Algeria</option>
-              <option value="AS">American Samoa</option>
-              <option value="AD">Andorra</option>
-              <option value="AO">Angola</option>
-              <option value="AI">Anguilla</option>
-              <option value="AQ">Antarctica</option>
-              <option value="AG">Antigua and Barbuda</option>
-              <option value="AR">Argentina</option>
-              <option value="AM">Armenia</option>
-              <option value="AW">Aruba</option>
-              <option value="AU">Australia</option>
-              <option value="AT">Austria</option>
-              <option value="AZ">Azerbaijan</option>
-              <option value="BS">Bahamas</option>
-              <option value="BH">Bahrain</option>
-              <option value="BD">Bangladesh</option>
-              <option value="BB">Barbados</option>
-              <option value="BY">Belarus</option>
-              <option value="BE">Belgium</option>
-              <option value="BZ">Belize</option>
-              <option value="BJ">Benin</option>
-              <option value="BM">Bermuda</option>
-              <option value="BT">Bhutan</option>
-              <option value="BO">Bolivia</option>
-              <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-              <option value="BA">Bosnia and Herzegovina</option>
-              <option value="BW">Botswana</option>
-              <option value="BV">Bouvet Island</option>
-              <option value="BR">Brazil</option>
-              <option value="IO">British Indian Ocean Territory</option>
-              <option value="BN">Brunei Darussalam</option>
-              <option value="BG">Bulgaria</option>
-              <option value="BF">Burkina Faso</option>
-              <option value="BI">Burundi</option>
-              <option value="KH">Cambodia</option>
-              <option value="CM">Cameroon</option>
-              <option value="CA">Canada</option>
-              <option value="CV">Cape Verde</option>
-              <option value="KY">Cayman Islands</option>
-              <option value="CF">Central African Republic</option>
-              <option value="TD">Chad</option>
-              <option value="CL">Chile</option>
-              <option value="CN">China</option>
-              <option value="CX">Christmas Island</option>
-              <option value="CC">Cocos (Keeling) Islands</option>
-              <option value="CO">Colombia</option>
-              <option value="KM">Comoros</option>
-              <option value="CG">Congo</option>
-              <option value="CD">
-                Congo, Democratic Republic of the Congo
-              </option>
-              <option value="CK">Cook Islands</option>
-              <option value="CR">Costa Rica</option>
-              <option value="CI">Cote D'Ivoire</option>
-              <option value="HR">Croatia</option>
-              <option value="CU">Cuba</option>
-              <option value="CW">Curacao</option>
-              <option value="CY">Cyprus</option>
-              <option value="CZ">Czech Republic</option>
-              <option value="DK">Denmark</option>
-              <option value="DJ">Djibouti</option>
-              <option value="DM">Dominica</option>
-              <option value="DO">Dominican Republic</option>
-              <option value="EC">Ecuador</option>
-              <option value="EG">Egypt</option>
-              <option value="SV">El Salvador</option>
-              <option value="GQ">Equatorial Guinea</option>
-              <option value="ER">Eritrea</option>
-              <option value="EE">Estonia</option>
-              <option value="ET">Ethiopia</option>
-              <option value="FK">Falkland Islands (Malvinas)</option>
-              <option value="FO">Faroe Islands</option>
-              <option value="FJ">Fiji</option>
-              <option value="FI">Finland</option>
-              <option value="FR">France</option>
-              <option value="GF">French Guiana</option>
-              <option value="PF">French Polynesia</option>
-              <option value="TF">French Southern Territories</option>
-              <option value="GA">Gabon</option>
-              <option value="GM">Gambia</option>
-              <option value="GE">Georgia</option>
-              <option value="DE">Germany</option>
-              <option value="GH">Ghana</option>
-              <option value="GI">Gibraltar</option>
-              <option value="GR">Greece</option>
-              <option value="GL">Greenland</option>
-              <option value="GD">Grenada</option>
-              <option value="GP">Guadeloupe</option>
-              <option value="GU">Guam</option>
-              <option value="GT">Guatemala</option>
-              <option value="GG">Guernsey</option>
-              <option value="GN">Guinea</option>
-              <option value="GW">Guinea-Bissau</option>
-              <option value="GY">Guyana</option>
-              <option value="HT">Haiti</option>
-              <option value="HM">Heard Island and Mcdonald Islands</option>
-              <option value="VA">Holy See (Vatican City State)</option>
-              <option value="HN">Honduras</option>
-              <option value="HK">Hong Kong</option>
-              <option value="HU">Hungary</option>
-              <option value="IS">Iceland</option>
-              <option value="IN">India</option>
-              <option value="ID">Indonesia</option>
-              <option value="IR">Iran, Islamic Republic of</option>
-              <option value="IQ">Iraq</option>
-              <option value="IE">Ireland</option>
-              <option value="IM">Isle of Man</option>
-              <option value="IL">Israel</option>
-              <option value="IT">Italy</option>
-              <option value="JM">Jamaica</option>
-              <option value="JP">Japan</option>
-              <option value="JE">Jersey</option>
-              <option value="JO">Jordan</option>
-              <option value="KZ">Kazakhstan</option>
-              <option value="KE">Kenya</option>
-              <option value="KI">Kiribati</option>
-              <option value="KP">Korea, Democratic People's Republic of</option>
-              <option value="KR">Korea, Republic of</option>
-              <option value="KW">Kuwait</option>
-              <option value="KG">Kyrgyzstan</option>
-              <option value="LA">Lao People's Democratic Republic</option>
-              <option value="LV">Latvia</option>
-              <option value="LB">Lebanon</option>
-              <option value="LS">Lesotho</option>
-              <option value="LR">Liberia</option>
-              <option value="LY">Libyan Arab Jamahiriya</option>
-              <option value="LI">Liechtenstein</option>
-              <option value="LT">Lithuania</option>
-              <option value="LU">Luxembourg</option>
-              <option value="MO">Macao</option>
-              <option value="MK">
-                Macedonia, the Former Yugoslav Republic of
-              </option>
-              <option value="MG">Madagascar</option>
-              <option value="MW">Malawi</option>
-              <option value="MY">Malaysia</option>
-              <option value="MV">Maldives</option>
-              <option value="ML">Mali</option>
-              <option value="MT">Malta</option>
-              <option value="MH">Marshall Islands</option>
-              <option value="MQ">Martinique</option>
-              <option value="MR">Mauritania</option>
-              <option value="MU">Mauritius</option>
-              <option value="YT">Mayotte</option>
-              <option value="MX">Mexico</option>
-              <option value="FM">Micronesia, Federated States of</option>
-              <option value="MD">Moldova, Republic of</option>
-              <option value="MC">Monaco</option>
-              <option value="MN">Mongolia</option>
-              <option value="ME">Montenegro</option>
-              <option value="MS">Montserrat</option>
-              <option value="MA">Morocco</option>
-              <option value="MZ">Mozambique</option>
-              <option value="MM">Myanmar</option>
-              <option value="NA">Namibia</option>
-              <option value="NR">Nauru</option>
-              <option value="NP">Nepal</option>
-              <option value="NL">Netherlands</option>
-              <option value="NC">New Caledonia</option>
-              <option value="NZ">New Zealand</option>
-              <option value="NI">Nicaragua</option>
-              <option value="NE">Niger</option>
-              <option value="NG">Nigeria</option>
-              <option value="NU">Niue</option>
-              <option value="NF">Norfolk Island</option>
-              <option value="MP">Northern Mariana Islands</option>
-              <option value="NO">Norway</option>
-              <option value="OM">Oman</option>
-              <option value="PK">Pakistan</option>
-              <option value="PW">Palau</option>
-              <option value="PS">Palestinian Territory, Occupied</option>
-              <option value="PA">Panama</option>
-              <option value="PG">Papua New Guinea</option>
-              <option value="PY">Paraguay</option>
-              <option value="PE">Peru</option>
-              <option value="PH">Philippines</option>
-              <option value="PN">Pitcairn</option>
-              <option value="PL">Poland</option>
-              <option value="PT">Portugal</option>
-              <option value="PR">Puerto Rico</option>
-              <option value="QA">Qatar</option>
-              <option value="RE">Reunion</option>
-              <option value="RO">Romania</option>
-              <option value="RU">Russian Federation</option>
-              <option value="RW">Rwanda</option>
-              <option value="BL">Saint Barthelemy</option>
-              <option value="SH">Saint Helena</option>
-              <option value="KN">Saint Kitts and Nevis</option>
-              <option value="LC">Saint Lucia</option>
-              <option value="MF">Saint Martin</option>
-              <option value="PM">Saint Pierre and Miquelon</option>
-              <option value="VC">Saint Vincent and the Grenadines</option>
-              <option value="WS">Samoa</option>
-              <option value="SM">San Marino</option>
-              <option value="ST">Sao Tome and Principe</option>
-              <option value="SA">Saudi Arabia</option>
-              <option value="SN">Senegal</option>
-              <option value="RS">Serbia</option>
-              <option value="SC">Seychelles</option>
-              <option value="SL">Sierra Leone</option>
-              <option value="SG">Singapore</option>
-              <option value="SX">Sint Maarten</option>
-              <option value="SK">Slovakia</option>
-              <option value="SI">Slovenia</option>
-              <option value="SB">Solomon Islands</option>
-              <option value="SO">Somalia</option>
-              <option value="ZA">South Africa</option>
-              <option value="GS">
-                South Georgia and the South Sandwich Islands
-              </option>
-              <option value="SS">South Sudan</option>
-              <option value="ES">Spain</option>
-              <option value="LK">Sri Lanka</option>
-              <option value="SD">Sudan</option>
-              <option value="SR">Suriname</option>
-              <option value="SJ">Svalbard and Jan Mayen</option>
-              <option value="SE">Sweden</option>
-              <option value="CH">Switzerland</option>
-              <option value="SY">Syrian Arab Republic</option>
-              <option value="TW">Taiwan, Province of China</option>
-              <option value="TJ">Tajikistan</option>
-              <option value="TZ">Tanzania, United Republic of</option>
-              <option value="TH">Thailand</option>
-              <option value="TL">Timor-Leste</option>
-              <option value="TG">Togo</option>
-              <option value="TK">Tokelau</option>
-              <option value="TO">Tonga</option>
-              <option value="TT">Trinidad and Tobago</option>
-              <option value="TN">Tunisia</option>
-              <option value="TR">Turkey</option>
-              <option value="TM">Turkmenistan</option>
-              <option value="TC">Turks and Caicos Islands</option>
-              <option value="TV">Tuvalu</option>
-              <option value="UG">Uganda</option>
-              <option value="UA">Ukraine</option>
-              <option value="AE">United Arab Emirates</option>
-              <option value="GB">United Kingdom</option>
-              <option value="US">United States</option>
-              <option value="UM">United States Minor Outlying Islands</option>
-              <option value="UY">Uruguay</option>
-              <option value="UZ">Uzbekistan</option>
-              <option value="VU">Vanuatu</option>
-              <option value="VE">Venezuela</option>
-              <option value="VN">Viet Nam</option>
-              <option value="VG">Virgin Islands, British</option>
-              <option value="VI">Virgin Islands, U.s.</option>
-              <option value="WF">Wallis and Futuna</option>
-              <option value="EH">Western Sahara</option>
-              <option value="YE">Yemen</option>
-              <option value="ZM">Zambia</option>
-              <option value="ZW">Zimbabwe</option>
-            </select>
-            <!-- Error message for Country -->
-            <!-- <p class="text-danger" v-if="!formData.country">{{ $t('selectCountry') }}.</p> -->
-          </div>
-          <div class="col-md-6">
-            <label for="city" class="form-label">{{ $t('city') }}</label>
-            <!-- <select class="form-select form-control form-input" id="city" onchange="fetchCities()">
-							</select> -->
-            <input v-model="formData.city" type="text" id="city" name="city" class="form-control form-input"
-              :placeholder="$t('Enter here')" />
-            <!-- Error message for City -->
-            <!-- <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p> -->
+          <div class="col-md-12">
+            <label for="country" class="form-label"> What is the name of your story that you would like to choose?
+            </label>
+            <input v-model="formData.phone" type="tel" id="phone" name="phone" class="form-control form-input"
+              placeholder="I.e.Check out SG’s C63 black series build. " />
           </div>
           <div class="col-md-12">
-            <label for="message" class="form-label">{{ $t('becomeAmbassador') }}</label>
+            <label for="message" class="form-label">Add your social media link(s) </label>
             <textarea v-model="formData.message" id="message" class="form-control form-input h-auto" name="message"
-              :placeholder="$t('Wearelookingfor')" rows="4"></textarea>
+              :placeholder="$t('Enter here')" rows="4"></textarea>
             <!-- Error message for Message -->
             <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
           </div>
-
-
-          <div class="col-md-12">
-            <div class="check-field">
-              <input type="checkbox" id="acceptCondition" v-model="formData.acceptCondition" class="form-check-input" />
-              <label for="acceptCondition" class="form-label">
-                {{ $t('agree') }}
-                <router-link class="termsService" to="/termofservice" target="_blank">{{ $t('TermsofService') }}
-                </router-link>
-                {{ $t('useofpersonaldata') }}
-                <router-link class="termsService" to="/privacypolicy" target="_blank">
-                  {{ $t('PrivacyPolicy') }}
-                </router-link>
-                *
-              </label>
-            </div>
+          <div class="col-md-6">
+            <label for="city" class="form-label">Upload Pictures Max 8</label>
+            <!-- <select class="form-select form-control form-input" id="city" onchange="fetchCities()">
+							</select> -->
+            <input type="file" id="city" name="city" class="form-control form-input" accepct="jgp,png" />
+            <!-- Error message for City -->
+            <!-- <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p> -->
           </div>
+
+
+
+
           <div class="col-md-12">
             <div class="list-item-btn position-relative submit-btn-div">
               <span class="border-bottom-btn border-top-btn position-absolute">
@@ -585,6 +395,12 @@ export default {
 
   data() {
     return {
+      filters: {
+        make: '',
+        model: '',
+        year: ''
+      },
+      isModalOpen: true,
       formData: {
         userType: "",
         email: "",
@@ -758,6 +574,156 @@ export default {
 };
 
 </script>
+
+<style scoped>
+@import "vue-select/dist/vue-select.css";
+
+.modalaa {
+  position: static !important;
+  background: transparent !important;
+}
+
+
+.modal-dialog {
+  max-width: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: transparent;
+  background-clip: padding-box;
+  border: 1px solid #1a202c;
+  border-radius: 5px;
+  outline: 0;
+  box-shadow: rgba(28, 30, 63, 0.4) 0px 30px 90px;
+}
+
+.form-select {
+  display: block;
+  width: 100%;
+  max-width: 920px;
+  height: 50px;
+  padding: 0.375rem 2.25rem 0.375rem 1.75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #c5c5c5;
+  background-color: #000b1c;
+  /* background-image: url("../images/Icon\ awesome-chevron-down.png"); */
+  background-image: url("../assets/images/Icon\ awesome-chevron-down.png");
+  background-repeat: no-repeat;
+  background-position: right 1.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #1a202c;
+  border-radius: 5px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: "Gruppo", sans-serif;
+  cursor: pointer;
+}
+
+.modal-dialog {
+  width: 100%;
+  max-width: 1000px;
+  margin: 1.75rem auto;
+  position: relative;
+}
+
+.form-select:focus {
+  border-color: #f95f19;
+  outline: 0;
+  box-shadow: none;
+}
+
+
+.alertbg {
+  background: #FF7A00;
+  color: #fff;
+}
+
+.getAll {
+  background: #5D3327 !important;
+  color: #fff
+}
+
+.genCard .singleGen {
+  cursor: pointer;
+  marker: none;
+  width: 100%;
+}
+
+.genCard .singleGen:hover {
+  background: #f95f19;
+  color: #fff
+}
+
+.borderBr {
+  border: 1px solid #f95f19;
+  width: 100% !important;
+  border-radius: 10px;
+}
+
+/* new */
+
+.customSelect {
+
+  width: 100%;
+  padding: 1px;
+}
+
+.customSelect input {
+  width: 100% !important;
+  max-width: 100% !important;
+  border: 0px transparent !important;
+}
+
+.selected-option {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.options-list {
+  position: static;
+  /* top: 100%;
+  left: 0; */
+  width: 100%;
+  background-color: #031726;
+
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: fit-content;
+  max-height: 300px;
+  overflow-y: scroll;
+  color: #fff;
+  transition: height 0.5s ease-in-out
+}
+
+.options-list li {
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+}
+
+.options-list li:hover {
+  background-color: #083f68;
+}
+</style>
 
 <style scoped>
 .form-control.form-input.h-auto {

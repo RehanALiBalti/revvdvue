@@ -198,6 +198,7 @@
 
 .sender-chats {
 	width: fit-content;
+	min-width: 150px;
 	max-width: 770px;
 	max-height: 400px;
 	overflow-y: auto;
@@ -234,6 +235,7 @@
 
 .receiver-chats {
 	width: fit-content;
+	min-width: 150px;
 	max-width: 770px;
 	max-height: 400px;
 	overflow-y: auto;

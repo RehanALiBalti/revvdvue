@@ -26,6 +26,8 @@ import DealersLogin from "@/components/DealersLogin";
 import ForgetPassword from "@/components/FprgetPassword.vue";
 import PrivacyPolicy from "./components/PrivacyPolicy.vue";
 import TermsOfService from "./components/TermsOfService.vue";
+import ContactUs from "./components/ContactUs.vue";
+import FeaturedStory from "./components/FeaturedStory.vue";
 
 const routes = [
   {
@@ -169,6 +171,16 @@ const routes = [
     name: "TermsOfService",
     component: TermsOfService,
   },
+  {
+    path: "/contact",
+    name: "ContactUs",
+    component: ContactUs,
+  },
+  {
+    path: "/featuredstory",
+    name: "FeaturedStory",
+    component: FeaturedStory,
+  },
 ];
 
 // Define a list of routes that require authentication
@@ -193,6 +205,7 @@ const protectedRoutes = [
   "CarShopDetail",
   "CarsListing",
   "MarketPlace",
+  "ContactUs",
 ];
 const router = createRouter({
   history: createWebHistory(),

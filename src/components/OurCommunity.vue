@@ -376,58 +376,7 @@ export default {
           console.log(e);
         });
     },
-    // retrieveCommunities() {
-    //   if (this.make == "" || this.model == "") {
-    //     this.isModal2Open = true
-    //   }
 
-    //   else {
-    //     const data = {
-    //       make: this.make,
-    //       model: this.model,
-    //       generation: this.generation,
-    //       productionYear: this.productionYear
-    //     }
-    //     console.log(data)
-
-    //     CommunityDataService.create(data)
-    //       .then((response) => {
-    //         this.communities = response.data;
-    //         console.log("communities", this.communities)
-    //       })
-    //       .catch((e) => {
-    //         console.log(e);
-    //       });
-    //   }
-    // },
-    // retrieveCommunities() {
-    //   if (this.make == "" || this.model == "") {
-    //     this.isModal2Open = true;
-    //   } else {
-    //     const data = {
-    //       make: this.make,
-    //       model: this.model,
-    //       generation: this.generation,
-    //       productionYear: this.productionYear
-    //     };
-    //     console.log(data);
-
-    //     CommunityDataService.create(data)
-    //       .then((response) => {
-
-    //         this.communities = response.data[0];
-    //         console.log("communities", this.communities);
-    //         // Assuming you have an ID in the response data, replace community.id with the actual ID
-    //         console.log("cid", this.communities.id)
-    //         const communityId = this.communities.id; // Adjust this based on your response data
-    //         // Programmatic navigation to the community details route
-    //         this.$router.push(`/communitydetails/${communityId}`);
-    //       })
-    //       .catch((e) => {
-    //         console.log(e);
-    //       });
-    //   }
-    // },
 
     retrieveCommunities() {
       if (this.GenfilteredOptions == '') {
@@ -545,34 +494,7 @@ export default {
 
     },
 
-    // getGenerations() {
 
-    //   console.log('in generation', "make", this.make, "modal", this.smodel)
-    //   CarDataService.getGenerations(this.make, this.smodel)
-    //     .then((response) => {
-    //       const data = response.data;
-    //       console.log("data is", data)
-    //       this.dataGy = data;
-    //       this.GenfilteredOptions = data
-
-    //       data.forEach((item) => {
-    //         if (
-    //           item.generation != "" &&
-    //           item.generation != "-" &&
-    //           item.generation != "??" &&
-    //           item.generation != "?"
-    //         ) {
-    //           this.generations.push(item.generation);
-    //           this.productionYears.push(item.production_years);
-    //         }
-    //       });
-    //       this.generations = [...new Set(this.generations)];
-    //       this.productionYears = [...new Set(this.productionYears)];
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
     getGenerations() {
       console.log('in generation', "make", this.make, "modal", this.smodel);
       this.selectedData = ""
