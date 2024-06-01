@@ -117,7 +117,7 @@
 
                 </div>
               </div> -->
-              <div v-for="comment in comments" :key="comment.comments">
+              <div v-for="comment in comments" :key="comment.id">
                 <div v-if="comment.user_email == user_email" class="d-flex flex-column position-relative">
                   <div class="d-flex justify-content-end align-items-center me-2">
                     <small class="uName">{{ comment.user_name }}</small>
@@ -126,25 +126,39 @@
                     <p class="receiver-chats-para">{{ comment.comments }}</p>
                     <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image" class="CommentImage"
                       @click="openViewer2(comment.image)" />
-
                     <div>
-                      <p class="text-white text-end fonts1" @click="toggleReply(comment.id)"> <i
-                          class="fa-solid fa-reply"></i>
-                        Reply </p>
+                      <p class="text-white text-end fonts1" @click="toggleReply(comment.id)">
+                        <i class="fa-solid fa-reply"></i> Reply
+                      </p>
                     </div>
                     <div v-if="showReplyInput === comment.id">
-                      <div class="d-flex">
+                      <div class="input-group">
                         <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
-                        <button class="btn bg-white " @click="submitReply(comment.id)">Submit</button>
+                        <span class=" input-group-text" @click="submitReply(comment.id)">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
+                            viewBox="0 0 31.5 27">
+                            <path id="Icon_material-send" data-name="Icon material-send"
+                              d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)"
+                              fill="#f95f19" />
+                          </svg>
+                        </span>
+                      </div>
+                      <p class="text-white mt-3 mb-0">All Replies</p>
+                      <hr class="mt-0 " style="opacity:1">
+                      <div class="" v-for="reply in replies" :key="reply.id"
+                        v-show="comment.id == reply.comment_id && reply.comments != ''">
+                        <div class="d-flex justify-between align-items-center   px-2  replyBox" style="">
+                          <p class="sender-chats-para m-0 p-0"
+                            v-if="comment.id == reply.comment_id && reply.comments != ''">
+                            {{
+          reply.comments }} </p>
+                          <p class="uName m-0" v-if="comment.id == reply.comment_id && reply.comments != ''">{{
+          reply.user_name }} </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <p v-else>No comments to display</p>
-
-                  <!-- <div v-if="showReplyInput === comment.id">
-                    <input type="text" v-model="replyText" placeholder="Type your reply here">
-                    <button class="btn btn-info w-fit" @click="submitReply(comment.id)">Submit</button>
-                  </div> -->
+                  <p v-else class="text-white">No comments to display</p>
                 </div>
 
                 <div v-else class="d-flex flex-column">
@@ -156,22 +170,41 @@
                       <p class="sender-chats-para">{{ comment.comments }}</p>
                       <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
                         class="CommentImage" @click="openViewer(comment.image)" />
+
                     </div>
                     <div>
-                      <p class="text-white text-end fonts1" @click="toggleReply(comment.id)"> <i
-                          class="fa-solid fa-reply"></i>
-                        Reply </p>
+                      <p class="text-white text-end fonts1" @click="toggleReply(comment.id)">
+                        <i class="fa-solid fa-reply"></i> Reply
+                      </p>
                     </div>
                     <div v-if="showReplyInput === comment.id">
-                      <div class="d-flex">
+                      <div class="input-group">
                         <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
-                        <button class="btn bg-white " @click="submitReply(comment.id)">Submit</button>
+                        <span class=" input-group-text" @click="submitReply(comment.id)">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
+                            viewBox="0 0 31.5 27">
+                            <path id="Icon_material-send" data-name="Icon material-send"
+                              d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)"
+                              fill="#f95f19" />
+                          </svg>
+                        </span>
+                      </div>
+                      <p class="text-white mt-3 mb-0">All Replies</p>
+                      <hr class="mt-0 " style="opacity:1">
+                      <div class="" v-for="reply in replies" :key="reply.id"
+                        v-show="comment.id == reply.comment_id && reply.comments != ''">
+                        <div class="d-flex justify-between align-items-center   px-2  replyBox" style="">
+                          <p class="sender-chats-para m-0 p-0"
+                            v-if="comment.id == reply.comment_id && reply.comments != ''">
+                            {{
+          reply.comments }} </p>
+                          <p class="uName m-0" v-if="comment.id == reply.comment_id && reply.comments != ''">{{
+          reply.user_name }} </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <p v-else>No comments to display</p>
-
-
                 </div>
               </div>
 
@@ -324,6 +357,8 @@ export default {
 
 
 
+
+
   },
   computed: {
 
@@ -343,6 +378,9 @@ export default {
   },
 
   methods: {
+    filteredReplies(commentId) {
+      return this.replies.filter(reply => reply.comment_id === commentId && reply.comments);
+    },
     // reply
     toggleReply(commentId) {
       if (this.showReplyInput === commentId) {
@@ -351,39 +389,53 @@ export default {
         this.showReplyInput = commentId;
       }
     },
+
+    // get reply 
+    getreply(commentId) {
+      console.log("reply function is calling on id", commentId)
+      axios.get(`https://clownfish-app-quehu.ondigitalocean.app/api/replies/replyall/${commentId}`)
+        .then(response => {
+          this.replies.push(...response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching replies:', error);
+        });
+    },
     submitReply(commentId) {
+      const formData = new URLSearchParams();
+      console.log(commentId);
+      console.log(this.replyText);
+      console.log(this.user_email);
+      console.log(this.user_name);
 
-
-      const formData = new FormData();
-      console.log(commentId)
       formData.append('comment_id', commentId); // Assuming `this.id` contains the community ID
       formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
       formData.append('user_name', this.user_name);
 
+      // Log the form data
+      console.log("formData", formData.toString());
 
-
-      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/replies/reply', formData)
+      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/replies/reply', formData.toString(), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
         .then(response => {
           // Handle success
-          console.log('Post request successful of repies:', response.data);
+          console.log('Post request successful of replies:', response.data);
           // Append the new comment to the comments array
           this.replies.push(response.data);
+          console.log("rrr", this.replies)
           // Clear inputs
-
-
-
           this.replyText = '';
           this.showReplyInput = null;
-
           // Set imgLoading back to false after successful response
-
         })
         .catch(error => {
           // Handle error
           console.error('Error making post request:', error);
           // Set imgLoading back to false after error
-
           this.replyText = '';
           this.showReplyInput = null;
         });
@@ -391,7 +443,49 @@ export default {
       // Clear the reply input
       this.replyText = '';
       this.showReplyInput = null;
-    },
+    }
+    ,
+    //   const formData = new FormData();
+    //   console.log(commentId)
+    //   console.log(this.replyText)
+    //   console.log(this.user_email)
+    //   console.log(this.user_name)
+    //   formData.append('comment_id', commentId); // Assuming `this.id` contains the community ID
+    //   formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
+    //   formData.append('user_email', this.user_email);
+    //   formData.append('user_name', this.user_name);
+
+
+    //   // console.log("f_daata", formData)
+    //   axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/replies/reply', formData)
+    //     .then(response => {
+    //       // Handle success
+    //       console.log('Post request successful of repies:', response.data);
+    //       // Append the new comment to the comments array
+    //       this.replies.push(response.data);
+    //       // Clear inputs
+
+
+
+    //       this.replyText = '';
+    //       this.showReplyInput = null;
+
+    //       // Set imgLoading back to false after successful response
+
+    //     })
+    //     .catch(error => {
+    //       // Handle error
+    //       console.error('Error making post request:', error);
+    //       // Set imgLoading back to false after error
+
+    //       this.replyText = '';
+    //       this.showReplyInput = null;
+    //     });
+
+    //   // Clear the reply input
+    //   this.replyText = '';
+    //   this.showReplyInput = null;
+    // },
 
 
     // reply
@@ -546,6 +640,9 @@ export default {
         .then(response => {
           this.comments = response.data;
           console.log("com ", this.comments)
+          this.comments.forEach(comment => {
+            this.getreply(comment.id);
+          });
 
         })
         .catch(error => {
@@ -595,6 +692,7 @@ export default {
       formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
       formData.append('user_name', this.user_name);
+      console.log(formData)
 
       // Check if formData is empty
       if (this.imageUrl == "" && this.newComment == "") {
@@ -741,6 +839,13 @@ export default {
 </script>
 
 <style scoped>
+.replyBox {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-block: 0.5rem
+}
+
 .fonts1 {
   color: #F95F19;
   cursor: pointer;
