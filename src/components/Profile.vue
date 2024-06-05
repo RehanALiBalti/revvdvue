@@ -59,15 +59,13 @@
 									class="form-control form-input" placeholder="Enter here">
 							</div>
 							<div class="col-md-6 d-none">
-								<!-- <label for="password" class="form-label">{{ $t('password') }}</label>
-								<input v-model="password" type="password" id="password" name="password"
-									class="form-control form-input" placeholder="Enter here"> -->
+
 								<label class="form-label" for="image">Select Image</label>
 								<input type="file" class="form-control-file my-2" @change="handleFileChange"
 									ref="fileInput">
 							</div>
 							<div class="col-md-12">
-								<!-- <p id="errormsg">{{ errorMessage }}</p> -->
+
 							</div>
 							<div class="col-md-12">
 								<div
@@ -171,8 +169,7 @@
 							<div class="col-md-12">
 								<h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
 								<label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
-								<!-- <input v-model="formData.name" id="companyName" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" /> -->
+
 
 								<input v-model="formData.CompanyName" id="companyName mt-2" type="text"
 									class="form-control form-input" />
@@ -241,11 +238,7 @@
 							</div>
 							<div class="col-md-4">
 								<label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
-								<!-- <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
-			<option value="germany(+49)">Germany(+49)</option>
-			<option value="pakistan(+92)">pakistan(+92)</option>
 
-		</select> -->
 								<input v-model="formData.intlPrefix3" id="fax" type="text"
 									class="form-control form-input" :placeholder="$t('Enter here')" />
 							</div>
@@ -266,29 +259,8 @@
 								<input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
 									:placeholder="$t('Enter here')" value="dealer" />
 							</div>
-							<!-- <div class="col-md-6">
-		<label for="password" class="form-label">{{ $t('password') }}</label>
-		<input type="password" id="password" v-model="formData.password"
-			class="form-control form-input" :placeholder="$t('Enter here')" />
-		<div class="strength-bars" v-if="formData.password !== ''">
-			<div class="strength-bar"
-				:class="{ 'weak: passwordStrength === 'Weak', 'strong: passwordStrength === 'Strong' }">
-			</div>
-			<div class="strength-bar"
-				:class="{ 'medium: passwordStrength === 'Medium', 'strong: passwordStrength === 'Strong' }">
-			</div>
-			<div class="strength-bar" :class="{ 'strong: passwordStrength === 'Strong' }">
-			</div>
-		</div>
 
-		<div class="d-flex justify-content-end">
-			<p :class="passwordStrengthClass">{{ passwordStrength }}</p>
-		</div>
-		<div v-if="formErrors.password" class="text-danger">
-			{{ formErrors.password }}
-		</div>
 
-	</div> -->
 
 							<div class="col-md-12">
 								<p id="errormsg"></p>

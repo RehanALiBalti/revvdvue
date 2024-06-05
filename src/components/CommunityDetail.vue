@@ -22,7 +22,7 @@
 
                   <h2 class="card-title-h2 community-title text-start">
 
-                    <!-- Koenigsegg agera one: <span> 1 </span> -->
+
                     {{ communityData.make }} <span> {{ communityData.model }}</span>
                   </h2>
 
@@ -122,12 +122,15 @@
                   <div class="d-flex justify-content-end align-items-center me-2">
                     <small class="uName">{{ comment.user_name }}</small>
                   </div>
-                  <div class="receiver-chats" v-if="comments.length">
+                  <!-- <div class="receiver-chats" v-if="comments.length">
+
+
                     <p class="receiver-chats-para">{{ comment.comments }}</p>
                     <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image" class="CommentImage"
                       @click="openViewer2(comment.image)" />
-                    <div>
-                      <p class="text-white text-end fonts1" @click="toggleReply(comment.id)">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <small class="text-white fonts1">{{ formatDate(comment.created_date) }}</small>
+                      <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
                         <i class="fa-solid fa-reply"></i> Reply
                       </p>
                     </div>
@@ -145,40 +148,129 @@
                       </div>
                       <p class="text-white mt-3 mb-0">All Replies</p>
                       <hr class="mt-0 " style="opacity:1">
-                      <div class="" v-for="reply in replies" :key="reply.id"
+                    
+                      <div class="p-2" v-for="reply in replies" :key="reply.id"
                         v-show="comment.id == reply.comment_id && reply.comments != ''">
-                        <div class="d-flex justify-between align-items-center   px-2  replyBox" style="">
-                          <p class="sender-chats-para m-0 p-0"
-                            v-if="comment.id == reply.comment_id && reply.comments != ''">
-                            {{
-          reply.comments }} </p>
-                          <p class="uName m-0" v-if="comment.id == reply.comment_id && reply.comments != ''">{{
+                        <div class="  replyBox row" style="">
+                          <div class="col-md-2">
+                            <img :src="this.userImage" alt="" width="50px">
+                          </div>
+                          <div class="col-md-10">
+                            <p class="uName m-0" v-if="comment.id == reply.comment_id && reply.comments != ''">{{
           reply.user_name }} </p>
+                            <p class="sender-chats-para m-0 p-0"
+                              v-if="comment.id == reply.comment_id && reply.comments != ''">
+                              {{
+          reply.comments }} </p>
+
+
+                          </div>
+
                         </div>
                       </div>
+                    </div>
+                  </div> -->
+                  <div class="receiver-chats" v-if="comments.length">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <img :src="this.userImage" alt="" width="50px">
+
+                      </div>
+                      <div class="col-md-8">
+                        <div>
+                          <small class="uName">{{ comment.user_name }}</small> <br>
+                          <small class="text-white fonts1 mb-2 ms-0">{{ formatDate(comment.created_date) }}</small>
+                          <p class="sender-chats-para">{{ comment.comments }}</p>
+                          <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
+                            class="CommentImage" @click="openViewer(comment.image)" />
+
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="d-flex justify-content-end align-items-center">
+
+                      <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
+                        <i class="fa-solid fa-reply"></i> Reply
+                      </p>
+                    </div>
+                    <div v-if="showReplyInput === comment.id">
+                      <div class="input-group">
+                        <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
+                        <span class="input-group-text" @click="openFileInput2">
+                          <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
+                        </span>
+
+                        <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
+                        <span class=" input-group-text" @click="submitReply(comment.id)">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
+                            viewBox="0 0 31.5 27">
+                            <path id="Icon_material-send" data-name="Icon material-send"
+                              d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)"
+                              fill="#f95f19" />
+                          </svg>
+                        </span>
+                      </div>
+                      <p class="text-white mt-3 mb-0">All Replies</p>
+                      <hr class="mt-0 " style="opacity:1">
+                      <div class="p-2" v-for="reply in replies" :key="reply.id" v-show="comment.id == reply.comment_id">
+                        <div class="replyBox row">
+                          <div class="col-md-2">
+                            <img :src="this.userImage" class="UsrImage" alt="user_image" width="50px"
+                              style="object-fit:cover">
+                          </div>
+                          <div class="col-md-10">
+                            <p class="uName m-0" v-if="reply.user_name">{{ reply.user_name }}</p>
+                            <p class="sender-chats-para m-0 p-0" v-if="reply.comments">{{ reply.comments }}</p>
+                            <img v-if="reply.image" :src="getImageUrl(reply.image)" alt="Comment Image"
+                              class="CommentImage" @click="openViewer(reply.image)" />
+                          </div>
+                        </div>
+                      </div>
+
+
                     </div>
                   </div>
                   <p v-else class="text-white">No comments to display</p>
                 </div>
 
                 <div v-else class="d-flex flex-column">
-                  <div class="d-flex justify-start align-items-center ms-2">
-                    <small class="uName">{{ comment.user_name }}</small>
-                  </div>
-                  <div class="sender-chats" v-if="comments.length">
-                    <div>
-                      <p class="sender-chats-para">{{ comment.comments }}</p>
-                      <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
-                        class="CommentImage" @click="openViewer(comment.image)" />
 
+                  <div class="sender-chats" v-if="comments.length">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <img :src="this.userImage" alt="" width="50px">
+
+                      </div>
+                      <div class="col-md-8">
+                        <div>
+                          <small class="uName">{{ comment.user_name }}</small> <br>
+                          <small class="text-white fonts1 mb-2 ms-0">{{ formatDate(comment.created_date) }}</small>
+                          <p class="sender-chats-para">{{ comment.comments }}</p>
+                          <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
+                            class="CommentImage" @click="openViewer(comment.image)" />
+
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <p class="text-white text-end fonts1" @click="toggleReply(comment.id)">
+
+
+
+                    <div class="d-flex justify-content-end align-items-center">
+
+                      <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
                         <i class="fa-solid fa-reply"></i> Reply
                       </p>
                     </div>
                     <div v-if="showReplyInput === comment.id">
                       <div class="input-group">
+                        <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
+                        <span class="input-group-text" @click="openFileInput2">
+                          <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
+                        </span>
+
                         <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
                         <span class=" input-group-text" @click="submitReply(comment.id)">
                           <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
@@ -191,17 +283,22 @@
                       </div>
                       <p class="text-white mt-3 mb-0">All Replies</p>
                       <hr class="mt-0 " style="opacity:1">
-                      <div class="" v-for="reply in replies" :key="reply.id"
-                        v-show="comment.id == reply.comment_id && reply.comments != ''">
-                        <div class="d-flex justify-between align-items-center   px-2  replyBox" style="">
-                          <p class="sender-chats-para m-0 p-0"
-                            v-if="comment.id == reply.comment_id && reply.comments != ''">
-                            {{
-          reply.comments }} </p>
-                          <p class="uName m-0" v-if="comment.id == reply.comment_id && reply.comments != ''">{{
-          reply.user_name }} </p>
+                      <div class="p-2" v-for="reply in replies" :key="reply.id" v-show="comment.id == reply.comment_id">
+                        <div class="replyBox row">
+                          <div class="col-md-2">
+                            <img :src="this.userImage" class="UsrImage" alt="user_image" width="50px"
+                              style="object-fit:cover">
+                          </div>
+                          <div class="col-md-10">
+                            <p class="uName m-0" v-if="reply.user_name">{{ reply.user_name }}</p>
+                            <p class="sender-chats-para m-0 p-0" v-if="reply.comments">{{ reply.comments }}</p>
+                            <img v-if="reply.image" :src="getImageUrl(reply.image)" alt="Comment Image"
+                              class="CommentImage" @click="openViewer(reply.image)" />
+                          </div>
                         </div>
                       </div>
+
+
                     </div>
                   </div>
                   <p v-else>No comments to display</p>
@@ -309,15 +406,20 @@ import CommentDataService from "../services/CommentDataService";
 
 import Viewer from 'viewerjs';
 import 'viewerjs/dist/viewer.css';
+import moment from 'moment';
+import userImage from "../assets/images/userImg.png"
+
 export default {
   name: "CommunityDetail",
 
   data() {
     return {
-      // reply
+      // reply:
+      userImage: userImage,
       showReplyInput: null,
       replyText: '',
       replies: [],
+      rImage: "",
       // reply
       zoomImg: "zoomImg",
       isloadingLike: false,
@@ -334,6 +436,7 @@ export default {
       ,
       user_email: "",
       user_name: "",
+      user_image: "",
       comments: [],
       newComment: "",
       image: null,
@@ -378,6 +481,41 @@ export default {
   },
 
   methods: {
+
+    handleImageChange(event) {
+      const file = event.target.files[0];
+
+      // Do something with the selected file, like saving it to data or uploading it
+      this.rImage = file;
+    },
+    openFileInput2() {
+      // Trigger click event of file input
+      document.getElementById('rImage').click();
+    },
+
+
+    formatDate(date) {
+      const now = moment();
+      const createdDate = moment(date);
+      const duration = moment.duration(now.diff(createdDate));
+
+      if (duration.asSeconds() < 60) {
+        return 'Now';
+      } else if (duration.asMinutes() < 60) {
+        return `${Math.floor(duration.asMinutes())} minute${Math.floor(duration.asMinutes()) > 1 ? 's' : ''} ago`;
+      } else if (duration.asHours() < 24) {
+        return `${Math.floor(duration.asHours())} hour${Math.floor(duration.asHours()) > 1 ? 's' : ''} ago`;
+      } else if (duration.asDays() < 7) {
+        return `${Math.floor(duration.asDays())} day${Math.floor(duration.asDays()) > 1 ? 's' : ''} ago`;
+      } else if (duration.asWeeks() < 4) {
+        return `${Math.floor(duration.asWeeks())} week${Math.floor(duration.asWeeks()) > 1 ? 's' : ''} ago`;
+      } else if (duration.asMonths() < 12) {
+        return `${Math.floor(duration.asMonths())} month${Math.floor(duration.asMonths()) > 1 ? 's' : ''} ago`;
+      } else {
+        return `${Math.floor(duration.asYears())} year${Math.floor(duration.asYears()) > 1 ? 's' : ''} ago`;
+      }
+    },
+
     filteredReplies(commentId) {
       return this.replies.filter(reply => reply.comment_id === commentId && reply.comments);
     },
@@ -402,7 +540,7 @@ export default {
         });
     },
     submitReply(commentId) {
-      const formData = new URLSearchParams();
+      const formData = new FormData()
       console.log(commentId);
       console.log(this.replyText);
       console.log(this.user_email);
@@ -412,11 +550,13 @@ export default {
       formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
       formData.append('user_name', this.user_name);
+      formData.append('rimage', this.rImage);
+      console.log("r_imag", this.rImage)
 
       // Log the form data
-      console.log("formData", formData.toString());
+      console.log("formData", formData);
 
-      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/replies/reply', formData.toString(), {
+      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/replies/reply', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -429,7 +569,7 @@ export default {
           console.log("rrr", this.replies)
           // Clear inputs
           this.replyText = '';
-          this.showReplyInput = null;
+          // this.showReplyInput = null;
           // Set imgLoading back to false after successful response
         })
         .catch(error => {
@@ -437,7 +577,7 @@ export default {
           console.error('Error making post request:', error);
           // Set imgLoading back to false after error
           this.replyText = '';
-          this.showReplyInput = null;
+          // this.showReplyInput = null;
         });
 
       // Clear the reply input
@@ -621,10 +761,13 @@ export default {
       try {
         console.log("Fetching profile data...");
         const data = await this.$store.dispatch("auth/getprofiledata");
-        // console.log("Profile data:", data);
+        console.log("Profile data:", data);
         // this.userAttributes = data.result
         this.user_email = data.result.email;
         this.user_name = data.result.name;
+        this.user_image = data.result.picture
+        console.log(this.user_image)
+
 
         // console.log("userdata", this.user_name)
 
@@ -674,9 +817,11 @@ export default {
 
     postComment() {
       // Set imgLoading to true before making the request
+      console.log(this.user_image)
       this.imgLoading = true;
 
       const file = this.$refs.fileInput.files[0];
+      console.log("post comment image ifle", file)
       const maxSizeInBytes = 3 * 1024 * 1024; // 3 MB
 
       if (file && file.size > maxSizeInBytes) {
@@ -692,7 +837,9 @@ export default {
       formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
       formData.append('user_name', this.user_name);
-      console.log(formData)
+      formData.append('image', this.user_name);
+      // formData.append('User_imagimage', this.user_image)
+
 
       // Check if formData is empty
       if (this.imageUrl == "" && this.newComment == "") {
@@ -839,11 +986,20 @@ export default {
 </script>
 
 <style scoped>
+.UsrImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 8px;
+  object-fit: cover
+}
+
 .replyBox {
   border: 1px solid;
   border-radius: 5px;
   padding: 1rem;
-  margin-block: 0.5rem
+  margin-block: 0.8rem;
+  background: #1A202C;
+
 }
 
 .fonts1 {

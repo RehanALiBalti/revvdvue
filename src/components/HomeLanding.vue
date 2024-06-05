@@ -43,14 +43,15 @@
   </div>
 
   <div class="container my-5">
-    <div class="modal show d-block modalaa" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
+
+    <!-- <div class="modal show d-block modalaa" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body text-center">
-            <!-- <router-link to="/offer"> <span class="close-icon" aria-label="Close">
+           <router-link to="/offer"> <span class="close-icon" aria-label="Close">
                 <i class="fas fa-times"></i>
-              </span></router-link> -->
-            <form>
+              </span></router-link>
+      <form>
               <div class="mt-4 py-2">
                 <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
               </div>
@@ -114,7 +115,7 @@
                         class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
                         <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
                       </span>
-                      <!-- data-bs-toggle="modal" -->
+                     
                       <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
                         data-bs-target="#mailModal">
                         {{ $t('proceed') }}
@@ -133,33 +134,94 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="form-content-home1">
       <!-- action="#" method="POST" data-bs-toggle="modal" -->
-      <form id="subscribe-form" @submit.prevent="submitForm">
+      <form id="subscribe-form" @submit.prevent="retrieveCommunities">
         <h2 class="form-title">
           {{ $t('Share your story !') }}
           <span class="form-span">{{ $t('Now') }} !</span>
         </h2>
         <div class="row">
+          <div class="col-md-6">
+
+            <div class="customSelect" @blur="isOpen = false">
+              <label for="country" class="form-label">Make
+              </label>
+              <input type="text" class="form-select" v-model="make" :placeholder="$t('Select a Make')"
+                @click="toggleDropdown" @input="filterMakeOptions" @change="getModels">
+              <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
+                <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
+                  {{ option }}
+                </li>
+              </ul>
+              <ul v-else v-show="isOpen" class="options-list">
+
+              </ul>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <label for="country" class="form-label">Modal
+            </label>
+            <div class="customSelect w-100" @blur="isOpenm = false">
+              <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
+                @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions" @change="getModels"
+                v-if="make == ''" disabled>
+              <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
+                @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions" @change="getModels"
+                v-else>
+              <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
+                <li v-for="(option, index) in modelfilteredOptions" :key="index"
+                  @click="selectOptionModel(option.model)">
+                  {{ option.model }}
+                </li>
+              </ul>
+              <ul v-else v-show="isOpenm" class="options-list">
+
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <label for="country" class="form-label">Production Year Generation
+            </label>
+            <div class="customSelect w-100">
+              <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
+                @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" v-if="smodel == ''" disabled>
+              <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
+                @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" v-else>
+              <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
+                <li v-for="(value, index) in GenfilteredOptions" :key="index"
+                  @click="updateModels(value), this.isOpeng = false">
+                  <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+                  {{ value.production_years.split(' ')[0] }}
+                  <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
+                    }})</span>
+                </li>
+              </ul>
+              <ul v-else v-show="isOpeng" class="options-list">
+
+              </ul>
+            </div>
+          </div>
           <div class="col-md-12">
             <label for="name" class="form-label"> Tell us your car story together. </label>
-            <input v-model="formData.email" id="email" type="email" name="email" class="form-control form-input"
-              :placeholder="$t('Enter here')" />
+            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
+              rows="4"></textarea>
 
           </div>
           <div class="col-md-12">
             <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
               or any specific features ? </label>
-            <input v-model="formData.email" id="email" type="email" name="email" class="form-control form-input"
-              :placeholder="$t('Enter here')" />
+            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
+              rows="4"></textarea>
 
           </div>
           <div class="col-md-12">
             <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve had
               with your car that stands out the most? </label>
-            <input v-model="formData.email" id="email" type="email" name="email" class="form-control form-input"
-              :placeholder="$t('Enter here')" />
+            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
+              rows="4"></textarea>
             <!-- Error message for Email -->
             <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
@@ -167,22 +229,19 @@
           <div class="col-md-12">
             <label for="phone" class="form-label"> If you could give advice to someone just starting their journey to
               modify their car, what would it be and why?</label>
-            <input v-model="formData.phone" type="tel" id="phone" name="phone" class="form-control form-input"
-              :placeholder="$t('Enter here')" />
-            <!-- Error message for Phone -->
-            <!-- <p class="text-danger" v-if="!formData.phone">${{ $t('enterPhoneNumber') }}</p> -->
-            <!-- <p class="text-danger" v-else-if="!isPhoneValid">Please enter a valid phone number.</p> -->
+            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
+              rows="4"></textarea>
           </div>
           <div class="col-md-12">
             <label for="country" class="form-label"> What is the name of your story that you would like to choose?
             </label>
-            <input v-model="formData.phone" type="tel" id="phone" name="phone" class="form-control form-input"
+            <input type="tel" id="phone" name="phone" class="form-control form-input"
               placeholder="I.e.Check out SG’s C63 black series build. " />
           </div>
-          <div class="col-md-12">
+          <div class="col-md-6">
             <label for="message" class="form-label">Add your social media link(s) </label>
-            <textarea v-model="formData.message" id="message" class="form-control form-input h-auto" name="message"
-              :placeholder="$t('Enter here')" rows="4"></textarea>
+            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
+              rows="4"></textarea>
             <!-- Error message for Message -->
             <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
           </div>
@@ -390,31 +449,378 @@
 
 <script>
 
+import CarDataService from "../services/CarDataService";
+import CommunityDataService from "../services/CommunityDataService";
 export default {
   name: "HomeLanding",
 
   data() {
     return {
-      filters: {
-        make: '',
-        model: '',
-        year: ''
+      user: {
+        email: ''
       },
+      isOpen: false,
+      isOpenm: false,
+      isOpeng: false,
+      isModal3: false,
+      error2: "",
+      isModal2Open: false,
+      makefilteredOptions: [],
+      makes: [],
+      make: "",
+      smodel: "",
       isModalOpen: true,
-      formData: {
-        userType: "",
-        email: "",
-        phone: "",
-        country: "",
-        city: "",
-        message: "",
-        acceptCondition: false,
-        errorMessage: "",
+      modelfilteredOptions: [],
+      models: [],
+      generation: "",
+      generations: [],
+      GenfilteredOptions: [],
+      filteredGenerations: [],
+      productionYear: "",
+      productionYears: [],
+      communities: [],
+      itemsPerPage: 5, // Number of communities per page
+      currentPage: 1, //current Page
+      filteredCommunities: [], // Communities to display on the current page
+
+      selectedFilters: {
+        make: "",
+        model: "",
+        generation: "",
+        productionYears: "",
       },
-      //   showModal: false,
+      dataGy: [],
+      selectedData: ''
     };
   },
   methods: {
+    toggleOpeng() {
+      console.log('opneg')
+      this.isOpeng = !this.isOpeng
+    },
+    GenfilterOption() {
+      const query = this.selectedData.toLowerCase();
+      if (query === '') {
+        this.GenfilteredOptions = this.dataGy;
+      } else {
+        this.GenfilteredOptions = this.dataGy.filter(option =>
+          option.production_years.toLowerCase().includes(query)
+        );
+        console.log(this.GenfilteredOptions)
+      }
+    },
+
+    filterMakeOptions() {
+      this.modelfilteredOptions = [];
+      this.selectedData = "";
+      this.smodel = ""
+      const query = this.make.toLowerCase();
+      if (query === '') {
+        this.makefilteredOptions = this.makes;
+      } else {
+        this.makefilteredOptions = this.makes.filter(option => option.toLowerCase().includes(query));
+      }
+    },
+    filterModelOptions() {
+      this.selectedData = ""
+
+      console.log(this.smodel);
+      const query = this.smodel.toLowerCase();
+
+      if (query === '') {
+        this.modelfilteredOptions = this.models;
+      } else {
+
+        this.modelfilteredOptions = this.models.filter(option => option && option.model && option.model.toLowerCase().includes(query));
+      }
+    },
+
+
+
+
+    toggleDropdown() {
+      this.isOpen = !this.isOpen;
+    },
+    toggleDropdownm() {
+      this.isOpenm = !this.isOpenm;
+    },
+    toggleDropdownmo() {
+      this.isOpenm = !this.isOpenm;
+    },
+    selectOption(option) {
+
+      this.make = option;
+      this.isOpen = false;
+      this.getModels()
+
+    },
+    selectOptionModel(option) {
+
+      this.smodel = option;
+      this.isOpenm = false;
+      this.getGenerations()
+
+
+    },
+    updateModels(value) {
+      if (value) {
+
+        this.productionYear = value.production_years;
+        this.selectedData = value.production_years
+      } else {
+
+        this.productionYear = null;
+      }
+    },
+    getData() {
+
+      this.filterGenerations()
+      this.getYears()
+    },
+    filterGenerations() {
+      // Filter the generations based on input
+      this.filteredGenerations = this.generations.filter(gen => gen.toLowerCase().includes(this.generation.toLowerCase()));
+    },
+    selectGeneration(option) {
+      // Set the selected option
+      this.generation = option;
+      // Clear the filtered list
+      this.filteredGenerations = [];
+    },
+    retrieveCars() {
+      this.models = [];
+      this.generations = [];
+      this.productionYears = [];
+      CarDataService.getAll()
+        .then((response) => {
+          this.makes = response.data.map(item => item.make);
+          this.makefilteredOptions = response.data.map(item => item.make);
+          console.log("make are :", response.data.map(item => item.make))
+
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+
+    retrieveCommunities() {
+      if (this.GenfilteredOptions == '') {
+        if (this.make === "" || this.smodel === "") {
+          this.isModal2Open = true;
+        } else {
+          const data = {
+            make: this.make,
+            model: this.smodel,
+            generation: this.generation,
+            productionYear: this.productionYear
+          };
+
+          CommunityDataService.create(data)
+            .then((response) => {
+              // Check if response data is an object
+              if (typeof response.data === 'object' && !Array.isArray(response.data)) {
+                const community = response.data;
+
+                // Assuming you have an ID in the response data
+                const communityId = community.id; // Adjust this based on your response data
+                // Programmatic navigation to the community details route
+                this.$router.push(`/communitydetails/${communityId}`);
+              } else {
+                // Handle the case when response data is an array
+
+                const community = response.data[0];
+                this.$router.push(`/communitydetails/${community.id}`);
+                // Handle this case according to your requirements
+              }
+            })
+            .catch((e) => {
+              console.log(e);
+              this.error2 = e.message
+              this.isModal3 = true
+            });
+        }
+      }
+      else if (this.GenfilteredOptions != '') {
+        if (this.selectedData == "") {
+          this.isModal2Open = true
+        }
+        else {
+          if (this.make === "" || this.smodel === "") {
+            this.isModal2Open = true;
+          } else {
+            const data = {
+              make: this.make,
+              model: this.smodel,
+              generation: this.generation,
+              productionYear: this.productionYear
+            };
+
+            CommunityDataService.create(data)
+              .then((response) => {
+                // Check if response data is an object
+                if (typeof response.data === 'object' && !Array.isArray(response.data)) {
+                  const community = response.data;
+
+                  // Assuming you have an ID in the response data
+                  const communityId = community.id; // Adjust this based on your response data
+                  // Programmatic navigation to the community details route
+                  this.$router.push(`/communitydetails/${communityId}`);
+                } else {
+                  // Handle the case when response data is an array
+
+                  const community = response.data[0];
+                  this.$router.push(`/communitydetails/${community.id}`);
+                  // Handle this case according to your requirements
+                }
+              })
+              .catch((e) => {
+                console.log(e);
+                this.error2 = e.message
+                this.isModal3 = true
+              });
+          }
+        }
+      }
+
+    },
+
+    retrieveALLCommunities() {
+
+
+      CommunityDataService.getAll()
+        .then((response) => {
+          this.communities = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    getModels() {
+      console.log("get modals")
+      this.selectedData = ""
+      this.smodel = ""
+      this.generations = [];
+      this.GenfilteredOptions = []
+      this.productionYears = [];
+      if (this.make == "") {
+        this.modelfilteredOptions = ""
+      }
+      else {
+        CarDataService.getModels(this.make)
+          .then((response) => {
+            this.models = response.data;
+            this.modelfilteredOptions = response.data;
+            console.log("modal filter options ", this.modelfilteredOptions)
+
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+
+    },
+
+
+    getGenerations() {
+      console.log('in generation', "make", this.make, "modal", this.smodel);
+      this.selectedData = ""
+      CarDataService.getGenerations(this.make, this.smodel)
+        .then((response) => {
+          const data = response.data;
+          console.log("data is", data);
+          this.dataGy = data;
+
+          this.GenfilteredOptions = data.filter(item => {
+            return (
+              item.generation !== "" &&
+              item.generation !== "-" &&
+              item.generation !== "??" &&
+              item.generation !== "?"
+            );
+          });
+
+          this.generations = [...new Set(this.GenfilteredOptions.map(item => item.generation))];
+          this.productionYears = [...new Set(this.GenfilteredOptions.map(item => item.production_years))];
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    getYears() {
+
+
+      this.productionYears = []
+      CommunityDataService.getFiltered(this.make, this.model, this.generation, this.productionYear)
+
+        .then((response) => {
+          const data = response.data;
+
+
+          data.forEach((item) => {
+            if (
+              item.generation != "" &&
+              item.generation != "-" &&
+              item.generation != "??" &&
+              item.generation != "?"
+            ) {
+
+              this.generations.push(item.generation);
+
+              this.productionYears.push(item.production_years);
+            }
+          });
+          this.generations = [...new Set(this.generations)];
+          this.productionYears = [...new Set(this.productionYears)];
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+
+
+
+
+    closeModel() {
+      // Hide the modal
+      this.hideFilterModal();
+    },
+    hideFilterModal() {
+      // Hide the modal using the ref
+      // const modal = this.$refs.modalRef;
+      // if (modal) {
+      //   modal.classList.remove("show");
+      //   modal.style.display = "none";
+      // }
+
+      // this.isModalOpen = false
+      this.isModalOpen = true
+    },
+
+    handleOutsideClick(event) {
+      const modal = this.$refs.modalRef;
+      if (modal && !modal.contains(event.target)) {
+        // If the click occurred outside the modal, hide it
+        this.hideFilterModal();
+      }
+    },
+    submitFilter() {
+      if (this.make == '' && this.model == '') {
+        this.hideFilterModal();
+        this.isModal2Open = true
+      }
+      else
+        this.hideFilterModal();
+    },
+    showFilterModal() {
+
+
+      this.isModalOpen = true
+
+
+    },
     handleStorageChange(event) {
       if (event.key === 'login') {
         this.isLogin = JSON.parse(event.newValue);
@@ -479,67 +885,7 @@ export default {
     //   // Open the modal after successful form submission
     //   this.showModal();
     // },
-    submitForm() {
-      // Reset error message
-      this.formData.errorMessage = "";
 
-      // Validate userType
-      if (this.formData.userType === "") {
-        this.formData.errorMessage = "Please select a user type";
-        return;
-      }
-
-      // Validate email
-      const emailRegex = /^\S+@\S+\.\S+$/;
-      if (this.formData.email === "") {
-        this.formData.errorMessage = "Please enter your email address";
-        return;
-      } else if (!emailRegex.test(this.formData.email)) {
-        this.formData.errorMessage = "Please enter a valid email address";
-        return;
-      }
-
-      // Validate phone
-      const phoneRegex = /^\+?(\d.*){3,}$/;
-      if (this.formData.phone === "") {
-        this.formData.errorMessage = "Please enter your phone number.";
-        return;
-      } else if (!phoneRegex.test(this.formData.phone)) {
-        this.formData.errorMessage = "Please enter a valid phone number.";
-        return;
-      }
-
-      // Validate country
-      if (this.formData.country === "") {
-        this.formData.errorMessage = "Please select your country.";
-        return;
-      }
-
-      // Validate city
-      if (this.formData.city === "") {
-        this.formData.errorMessage = "Please enter your city.";
-        return;
-      }
-
-      // Validate message
-      if (this.formData.message === "") {
-        this.formData.errorMessage = "Please enter your message.";
-        return;
-      }
-
-      // Validate acceptCondition
-      if (!this.formData.acceptCondition) {
-        this.formData.errorMessage = "Please accept the terms and conditions.";
-        return;
-      }
-
-      // If all validations pass, you can proceed with form submission
-      console.log("Form submitted successfully!");
-      console.log("Form data:", this.formData);
-
-      // Open the modal after successful form submission
-      this.showModal();
-    },
 
     // Method to show the modal
     showModal() {
@@ -564,11 +910,18 @@ export default {
   mounted() {
 
     window.addEventListener('storage', this.handleStorageChange);
+    this.retrieveCars();
+    // this.retrieveALLCommunities();
+    // Show the modal when the component is mounted
+    this.showFilterModal();
+    // Add event listener to the document body for clicks
+    document.body.addEventListener("click", this.handleOutsideClick);
+
 
 
   },
   beforeUnmount() {
-
+    document.body.removeEventListener("click", this.handleOutsideClick);
     window.removeEventListener('storage', this.handleStorageChange); // Remove the event listener
   },
 };
