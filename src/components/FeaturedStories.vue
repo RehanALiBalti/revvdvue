@@ -197,7 +197,7 @@
                 </div> -->
 
                 <div class="col-md-12 px-4">
-                    <button type="button" class="btn btn-danger" @click="this.GetStories">Get Storeis</button>
+                   
                     <div class="row">
                         <!-- template -->
                         <div class="card-sorting-content col-md-12" v-for="(car, index) in paginatedCars" :key="index">
