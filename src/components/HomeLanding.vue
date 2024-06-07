@@ -137,7 +137,8 @@
     </div> -->
     <div class="form-content-home1">
       <!-- action="#" method="POST" data-bs-toggle="modal" -->
-      <form id="subscribe-form" @submit.prevent="retrieveCommunities">
+      <!-- @submit.prevent="retrieveCommunities" -->
+      <form id="subscribe-form" @submit.prevent="SubmitStory">
         <h2 class="form-title">
           {{ $t('Share your story !') }}
           <span class="form-span">{{ $t('Now') }} !</span>
@@ -148,7 +149,7 @@
             <div class="customSelect" @blur="isOpen = false">
               <label for="country" class="form-label">Make
               </label>
-              <input type="text" class="form-select" v-model="make" :placeholder="$t('Select a Make')"
+              <input type="text" class="form-select" v-model="formData.make" :placeholder="$t('Select a Make')"
                 @click="toggleDropdown" @input="filterMakeOptions" @change="getModels">
               <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
                 <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
@@ -165,10 +166,10 @@
             <label for="country" class="form-label">Modal
             </label>
             <div class="customSelect w-100" @blur="isOpenm = false">
-              <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
+              <input type="text" class=" form-select" v-model="formData.model" :placeholder="$t('Select a Model')"
                 @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions" @change="getModels"
-                v-if="make == ''" disabled>
-              <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
+                v-if="formData.make == ''" disabled>
+              <input type="text" class=" form-select" v-model="formData.model" :placeholder="$t('Select a Model')"
                 @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions" @change="getModels"
                 v-else>
               <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
@@ -178,7 +179,7 @@
                 </li>
               </ul>
               <ul v-else v-show="isOpenm" class="options-list">
-
+                <li>{{ modelfilteredOptions.length }}</li>
               </ul>
             </div>
           </div>
@@ -187,9 +188,10 @@
             </label>
             <div class="customSelect w-100">
               <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" v-if="smodel == ''" disabled>
+                @input="GenfilterOption" v-model="formData.year" @click="toggleOpeng" v-if="formData.model == ''"
+                disabled>
               <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" v-else>
+                @input="GenfilterOption" v-model="formData.year" @click="toggleOpeng" v-else>
               <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                 <li v-for="(value, index) in GenfilteredOptions" :key="index"
                   @click="updateModels(value), this.isOpeng = false">
@@ -207,21 +209,21 @@
           <div class="col-md-12">
             <label for="name" class="form-label"> Tell us your car story together. </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              rows="4"></textarea>
+              v-model="formData.story" rows="4"></textarea>
 
           </div>
           <div class="col-md-12">
             <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
               or any specific features ? </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              rows="4"></textarea>
+              v-model="formData.modifications" rows="4"></textarea>
 
           </div>
           <div class="col-md-12">
             <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve had
               with your car that stands out the most? </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              rows="4"></textarea>
+              v-model="formData.memorable" rows="4"></textarea>
             <!-- Error message for Email -->
             <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
@@ -230,18 +232,18 @@
             <label for="phone" class="form-label"> If you could give advice to someone just starting their journey to
               modify their car, what would it be and why?</label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              rows="4"></textarea>
+              v-model="formData.advice" rows="4"></textarea>
           </div>
           <div class="col-md-12">
             <label for="country" class="form-label"> What is the name of your story that you would like to choose?
             </label>
             <input type="tel" id="phone" name="phone" class="form-control form-input"
-              placeholder="I.e.Check out SG’s C63 black series build. " />
+              placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
           </div>
           <div class="col-md-6">
             <label for="message" class="form-label">Add your social media link(s) </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              rows="4"></textarea>
+              rows="4" v-model="formData.social_media"></textarea>
             <!-- Error message for Message -->
             <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
           </div>
@@ -249,7 +251,10 @@
             <label for="city" class="form-label">Upload Pictures Max 8</label>
             <!-- <select class="form-select form-control form-input" id="city" onchange="fetchCities()">
 							</select> -->
-            <input type="file" id="city" name="city" class="form-control form-input" accepct="jgp,png" />
+            <!-- <input type="file" id="city" name="city" class="form-control form-input" accepct="jgp,png"
+              v-bind="formData.storyImages" /> -->
+            <input type="file" id="storyImages" name="storyImages" class="form-control form-input" accept=".jpg,.png"
+              multiple v-on:change="validateFiles" />
             <!-- Error message for City -->
             <!-- <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p> -->
           </div>
@@ -448,6 +453,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
@@ -489,17 +495,143 @@ export default {
         generation: "",
         productionYears: "",
       },
+      formData: {
+        make: "",
+        model: "",
+        year: "",
+        user_name: "",
+        user_email: "",
+        story: "",
+        modifications: "",
+        memorable: "",
+        advice: "",
+        story_name: "",
+        social_media: "",
+        storyImages: [],
+
+
+      },
       dataGy: [],
       selectedData: ''
     };
   },
   methods: {
+    async fetchProfileData() {
+      try {
+        // console.log("Fetching profile data...");
+        const data = await this.$store.dispatch("auth/getprofiledata");
+        // console.log("Profile data:", data);
+        this.UserData = data.result
+        console.log("user data", this.UserData)
+
+
+        console.log("userdata nick name", this.UserData.nickname)
+        this.role = this.UserData.nickname
+        if (this.role == "delear") {
+          this.formData.user_name = this.UserData.name;
+          this.formData.user_email = this.UserData.email
+
+
+        } else {
+          let social = false;
+          if ('identities' in this.UserData) {
+            social = true;
+            this.socialSignIn = true
+          }
+          console.log("socialsttus", social)
+          this.formData.user_name = this.UserData.name
+          this.formData.user_email = this.UserData.email
+
+
+
+        }
+
+
+
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    },
+    validateFiles(event) {
+      const files = event.target.files;
+      if (files.length > 8) {
+        alert('You can upload a maximum of 8 pictures.');
+        event.target.value = ''; // Clear the input
+        return;
+      }
+      this.formData.storyImages = Array.from(files); // Store the selected files
+    },
+
+    // SubmitStory() {
+    //   console.log("submit story", this.formData)
+    //   axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/stories', this.formData)
+    //     .then(response => {
+    //       // Handle success
+    //       console.log('Post request successful:', response.data);
+    //       // Append the new comment to the comments array
+
+
+    //       // Check if this.$refs.fileInput exists before accessing its properties
+
+
+
+
+    //     })
+    //     .catch(error => {
+    //       // Handle error
+    //       console.error('Error making post request:', error);
+    //       // Set imgLoading back to false after error
+
+    //     });
+    // },
+    SubmitStory() {
+      console.log("submit story", this.formData);
+
+      // Create a new FormData object
+      let data = new FormData();
+
+      // Append text fields to FormData
+      data.append('user_name', this.formData.user_name);
+      data.append('user_email', this.formData.user_email);
+      data.append('story', this.formData.story);
+      data.append('make', this.formData.make);
+      data.append('model', this.formData.model);
+      data.append('year', this.formData.year);
+      data.append('modifications', this.formData.modifications);
+      data.append('memorable', this.formData.memorable);
+      data.append('advice', this.formData.advice);
+      data.append('story_name', this.formData.story_name);
+      data.append('social_media', this.formData.social_media);
+
+      // Append files to FormData
+      this.formData.storyImages.forEach((file) => {
+        data.append('storyImages', file);
+      });
+
+      // Send POST request using Axios
+      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/stories', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then(response => {
+          // Handle success
+          console.log('Post request successful:', response.data);
+          // Handle success actions here
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error making post request:', error);
+          // Handle error actions here
+        });
+    }
+    ,
     toggleOpeng() {
       console.log('opneg')
       this.isOpeng = !this.isOpeng
     },
     GenfilterOption() {
-      const query = this.selectedData.toLowerCase();
+      const query = this.formData.year.toLowerCase();
       if (query === '') {
         this.GenfilteredOptions = this.dataGy;
       } else {
@@ -512,9 +644,10 @@ export default {
 
     filterMakeOptions() {
       this.modelfilteredOptions = [];
-      this.selectedData = "";
+      // this.selectedData = "";
+      this.formData.year = ""
       this.smodel = ""
-      const query = this.make.toLowerCase();
+      const query = this.filterData.make.toLowerCase();
       if (query === '') {
         this.makefilteredOptions = this.makes;
       } else {
@@ -522,7 +655,8 @@ export default {
       }
     },
     filterModelOptions() {
-      this.selectedData = ""
+      // this.selectedData = ""
+      this.formData.year = ""
 
       console.log(this.smodel);
       const query = this.smodel.toLowerCase();
@@ -549,14 +683,14 @@ export default {
     },
     selectOption(option) {
 
-      this.make = option;
+      this.formData.make = option;
       this.isOpen = false;
       this.getModels()
 
     },
     selectOptionModel(option) {
 
-      this.smodel = option;
+      this.formData.model = option;
       this.isOpenm = false;
       this.getGenerations()
 
@@ -566,7 +700,8 @@ export default {
       if (value) {
 
         this.productionYear = value.production_years;
-        this.selectedData = value.production_years
+        // this.selectedData = value.production_years
+        this.formData.year = value.production_years
       } else {
 
         this.productionYear = null;
@@ -610,8 +745,8 @@ export default {
           this.isModal2Open = true;
         } else {
           const data = {
-            make: this.make,
-            model: this.smodel,
+            make: this.formData.make,
+            model: this.formData.model,
             generation: this.generation,
             productionYear: this.productionYear
           };
@@ -642,7 +777,7 @@ export default {
         }
       }
       else if (this.GenfilteredOptions != '') {
-        if (this.selectedData == "") {
+        if (this.formData.year == "") {
           this.isModal2Open = true
         }
         else {
@@ -698,16 +833,16 @@ export default {
     },
     getModels() {
       console.log("get modals")
-      this.selectedData = ""
+      this.formData.year = ""
       this.smodel = ""
       this.generations = [];
       this.GenfilteredOptions = []
       this.productionYears = [];
-      if (this.make == "") {
+      if (this.formData.make == "") {
         this.modelfilteredOptions = ""
       }
       else {
-        CarDataService.getModels(this.make)
+        CarDataService.getModels(this.formData.make)
           .then((response) => {
             this.models = response.data;
             this.modelfilteredOptions = response.data;
@@ -723,9 +858,9 @@ export default {
 
 
     getGenerations() {
-      console.log('in generation', "make", this.make, "modal", this.smodel);
-      this.selectedData = ""
-      CarDataService.getGenerations(this.make, this.smodel)
+      // console.log('in generation', "make", this.make, "modal", this.smodel);
+      this.formData.year = ""
+      CarDataService.getGenerations(this.formData.make, this.formData.model)
         .then((response) => {
           const data = response.data;
           console.log("data is", data);
@@ -907,16 +1042,27 @@ export default {
       }
     },
   },
+  created() {
+
+    // this.getprofile()
+    this.fetchProfileData()
+    // this.checkIfGoogleOrFacebookUser()
+
+
+
+
+  },
+
   mounted() {
 
     window.addEventListener('storage', this.handleStorageChange);
     this.retrieveCars();
     // this.retrieveALLCommunities();
     // Show the modal when the component is mounted
-    this.showFilterModal();
+    // this.showFilterModal();
     // Add event listener to the document body for clicks
     document.body.addEventListener("click", this.handleOutsideClick);
-
+    this.fetchProfileData();
 
 
   },

@@ -28,6 +28,8 @@ import PrivacyPolicy from "./components/PrivacyPolicy.vue";
 import TermsOfService from "./components/TermsOfService.vue";
 import ContactUs from "./components/ContactUs.vue";
 import FeaturedStory from "./components/FeaturedStory.vue";
+import ForumPage from "./components/ForumPage.vue";
+import FeaturedStories from "./components/FeaturedStories.vue";
 
 const routes = [
   {
@@ -181,13 +183,23 @@ const routes = [
     name: "FeaturedStory",
     component: FeaturedStory,
   },
+  {
+    path: "/forum",
+    name: "ForumPage",
+    component: ForumPage,
+  },
+  {
+    path: "/stories",
+    name: "FeaturedStories",
+    component: FeaturedStories,
+  },
 ];
 
 // Define a list of routes that require authentication
 const protectedRoutes = [
   "HomeLanding",
   "HomeItem",
-
+  "ForumPage",
   "CreateCommunity",
   "OurCommunity",
   "CommunityDetail",
