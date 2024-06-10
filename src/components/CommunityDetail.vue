@@ -34,7 +34,11 @@
                     <p class=" community-title card-title-h2 my-0 ms-2 text-end"> {{
           communityData.generation }}</p>
                   </div>
-                  <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
+                  <div>
+                    <p class=" community-title my-0 ms-2 text-white"> {{
+          forumData.description }}</p>
+                  </div>
+                  <!-- <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
                     <button v-if="isloadingLike" class="like-community likeBtn" id="like" @click="addLike" disabled>
                       <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
                       <small v-if="isLike">Liked</small>
@@ -60,6 +64,34 @@
                       <i class="fa-solid fa-eye"></i>
                       <small>Views</small>
                       <span class="total-likes">{{ communityData.views }}</span>
+                    </div>
+                  </div> -->
+                  <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
+                    <button v-if="isloadingLike" class="like-community likeBtn" id="like" @click="addLike" disabled>
+                      <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
+                      <small v-if="isLike">Liked</small>
+                      <small v-else>Like</small>
+                      <span class="total-likes">{{ forumData.likes
+                        }}</span>
+                    </button>
+                    <button v-else class="like-community likeBtn" id="like" @click="addLike">
+                      <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
+                      <small v-if="isLike">Liked</small>
+                      <small v-else>Like</small>
+                      <span class="total-likes">{{ forumData.likes
+                        }}</span>
+                    </button>
+
+                    <div class="like-community">
+                      <i class="fa-solid fa-comments"></i>
+                      <small>Comments</small>
+
+                      <span class="total-likes">{{ forumData.comments }}</span>
+                    </div>
+                    <div class="like-community">
+                      <i class="fa-solid fa-eye"></i>
+                      <small>Views</small>
+                      <span class="total-likes">{{ forumData.views }}</span>
                     </div>
                   </div>
                 </div>
@@ -199,12 +231,13 @@
                     <div v-if="showReplyInput === comment.id">
                       <div class="input-group">
                         <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
-                        <span class="input-group-text" @click="openFileInput2">
+                        <span class="input-group-text igt-left" @click="openFileInput2">
                           <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                         </span>
 
-                        <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
-                        <span class=" input-group-text" @click="submitReply(comment.id)">
+                        <input class="form-control formc1" type="text" v-model="replyText"
+                          placeholder="Type your reply here">
+                        <span class=" input-group-text igt-right" @click="submitReply(comment.id)">
                           <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
                             viewBox="0 0 31.5 27">
                             <path id="Icon_material-send" data-name="Icon material-send"
@@ -267,12 +300,13 @@
                     <div v-if="showReplyInput === comment.id">
                       <div class="input-group">
                         <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
-                        <span class="input-group-text" @click="openFileInput2">
+                        <span class="input-group-text igt-left " @click="openFileInput2">
                           <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                         </span>
 
-                        <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
-                        <span class=" input-group-text" @click="submitReply(comment.id)">
+                        <input class="form-control formc1" type="text" v-model="replyText"
+                          placeholder="Type your reply here">
+                        <span class=" input-group-text igt-right" @click="submitReply(comment.id)">
                           <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
                             viewBox="0 0 31.5 27">
                             <path id="Icon_material-send" data-name="Icon material-send"
@@ -414,6 +448,9 @@ export default {
 
   data() {
     return {
+      pageId: "",
+      forumId: "",
+      forumData: [],
       // reply:
       userImage: userImage,
       showReplyInput: null,
@@ -453,11 +490,13 @@ export default {
   mounted() {
     this.fetchProfileData()
     this.id = this.$route.params.id
+    this.forumId = this.$route.params.fid
     this.getComments()
     this.isLiked()
     this.fetchCommunityData();
     this.addView()
-
+    this.pageId = this.$route.params.id;
+    this.formSubmit()
 
 
 
@@ -481,6 +520,45 @@ export default {
   },
 
   methods: {
+
+    formSubmit() {
+      const formData = new FormData();
+      // alert(this.pageId)
+      formData.append('filter_id', this.pageId)
+
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
+        }
+      };
+      axios
+        .post("https://buzzwaretech.com/adminrev/Api/readallforums", formData, config)
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.success && Array.isArray(response.data.forums)) {
+            this.communities = response.data.forums;
+            const filteredCommunities = response.data.forums.filter(item => item.id === this.forumId);
+            console.log("fiter data", filteredCommunities)
+            this.forumData = filteredCommunities[0]
+            console.log("forum data", this.forumData.description)
+          } else {
+            console.error(
+              "API response does not contain forums array:",
+              response.data
+            );
+            this.communities = [];
+          }
+
+        })
+        .catch((error) => {
+          console.error("There was an error!", error);
+          this.communities = [];
+        })
+        .finally(() => {
+          this.submitting = false;
+        });
+    },
 
     handleImageChange(event) {
       const file = event.target.files[0];
@@ -878,52 +956,87 @@ export default {
 
     ,
 
+    // like service created by khang
+    // addLike() {
+    //   this.isloadingLike = true
+    //   // Check if the like has already been added for this item in this session
+    //   if (!localStorage.getItem('liked-' + this.id)) {
+    //     const requestData = {
+    //       id: this.id
+    //     };
+    //     axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/likes', requestData)
+    //       .then(response => {
+    //         // Handle success
+    //         console.log('Post request successful:', response.data)
+    //         this.isloadingLike = false
+
+    //         // Set the flag in local storage with the respective ID
+    //         localStorage.setItem('liked-' + this.id, true);
+    //         console.log(`liked-${this.id}`)
+    //         this.isLike = localStorage.getItem(`liked-${this.id}`);
+    //         this.fetchCommunityData();
+    //       })
+    //       .catch(error => {
+    //         // Handle error
+    //         console.error('Error making post request:', error);
+    //       });
+    //   } else {
+    //     // If the like has already been added, you may want to remove the like
+    //     const requestData = {
+    //       id: this.id
+    //     };
+    //     axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/dislikes', requestData)
+    //       .then(response => {
+    //         // Handle success
+    //         console.log('Dislike request successful:', response.data);
+    //         this.isloadingLike = false
+
+    //         // Remove the flag from local storage
+    //         localStorage.removeItem('liked-' + this.id);
+    //         console.log(`Disliked-${this.id}`)
+    //         this.isLike = false;
+    //         this.fetchCommunityData();
+    //       })
+    //       .catch(error => {
+    //         // Handle error
+    //         console.error('Error making dislike request:', error);
+    //       });
+    //   }
+    // }
+
 
     addLike() {
-      this.isloadingLike = true
+      this.isloadingLike = true;
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
+        }
+      };
+      const formData = new FormData();
+      // alert(this.pageId)
+      formData.append('forumid', this.forumId)
+      formData.append('userId', this.user_email)
       // Check if the like has already been added for this item in this session
-      if (!localStorage.getItem('liked-' + this.id)) {
-        const requestData = {
-          id: this.id
-        };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/likes', requestData)
-          .then(response => {
-            // Handle success
-            console.log('Post request successful:', response.data)
-            this.isloadingLike = false
 
-            // Set the flag in local storage with the respective ID
-            localStorage.setItem('liked-' + this.id, true);
-            console.log(`liked-${this.id}`)
-            this.isLike = localStorage.getItem(`liked-${this.id}`);
-            this.fetchCommunityData();
-          })
-          .catch(error => {
-            // Handle error
-            console.error('Error making post request:', error);
-          });
-      } else {
-        // If the like has already been added, you may want to remove the like
-        const requestData = {
-          id: this.id
-        };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/dislikes', requestData)
-          .then(response => {
-            // Handle success
-            console.log('Dislike request successful:', response.data);
-            this.isloadingLike = false
 
-            // Remove the flag from local storage
-            localStorage.removeItem('liked-' + this.id);
-            console.log(`Disliked-${this.id}`)
-            this.isLike = false;
-            this.fetchCommunityData();
-          })
-          .catch(error => {
-            // Handle error
-            console.error('Error making dislike request:', error);
-          });
-      }
+      axios.post('https://buzzwaretech.com/adminrev/Api/likeform', formData, config)
+        .then(response => {
+          // Handle success
+          console.log('Post request successful:', response.data)
+          this.isloadingLike = false
+
+          // Set the flag in local storage with the respective ID
+          localStorage.setItem('liked-' + this.id, true);
+          console.log(`liked-${this.id}`)
+          this.isLike = localStorage.getItem(`liked-${this.id}`);
+          this.fetchCommunityData();
+        })
+        .catch(error => {
+          // Handle error
+          console.error('Error making post request:', error);
+        });
+
     }
     ,
     addView() {
@@ -1223,5 +1336,15 @@ export default {
 
 .communityDetails-section {
   min-height: 90vh;
+}
+
+.igt-right {
+  border: 1px solid;
+  border-left: 0px transparent;
+  background: transparent;
+}
+
+.formc1 {
+  border-right: 0px transparent !important;
 }
 </style>

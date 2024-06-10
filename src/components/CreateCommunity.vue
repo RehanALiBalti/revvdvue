@@ -1,5 +1,4 @@
 <template>
-
   <div class="container my-5">
     <div class="row">
       <div class="col-md-6 m-auto">
@@ -10,29 +9,27 @@
             </h2>
             <div class="row">
               <div class="col-md-12">
-                <label for="title" class="form-label">Forum Tittle</label>
+                <label for="title" class="form-label">Forum Title</label>
                 <input v-model="formData.title" id="title" type="text" name="title" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
               </div>
               <div class="col-md-12">
                 <label for="description" class="form-label">Forum Description</label>
-                <textarea v-model="formData.description" id="description" class="form-control form-input"
-                  name="description" :placeholder="$t('Enter here')" rows="4"></textarea>
+                <textarea v-model="formData.description" id="description" class="form-control form-input tarea"
+                  name="description" :placeholder="$t('Enter here')" rows="4" cols="20"></textarea>
               </div>
-
               <div class="col-md-12">
                 <p v-if="errorMessage" class="text-danger" id="errormsg">{{ errorMessage }}</p>
+                <p v-if="successMessage" class="text-success" id="successmsg">{{ successMessage }}</p>
               </div>
               <div class="col-md-12">
                 <div class="list-item-btn position-relative submit-btn-div">
                   <span class="border-bottom-btn border-top-btn position-absolute">
                     <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                   </span>
-
                   <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
                     <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
                   </span>
-
                   <span
                     class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                     <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
@@ -40,8 +37,6 @@
                   <button type="submit" class="signin-btnli submitNow" id="submit-button" :disabled="submitting">
                     Create Now
                   </button>
-                  <!-- <a href="<?= base_url('site/community')?>" class="signin-btnli submitNow" id="submit-button" fdprocessedid="eysiqp">
-									Create Now</a> -->
                   <span class="border-bottom-btn border-left-btn position-absolute">
                     <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
                   </span>
@@ -56,87 +51,77 @@
       </div>
     </div>
   </div>
-
-  <div class="container mt-5">
-    <div class="map-desc">
-      <div class="map-para-div">
-        <p class="map-para">
-          Lorem Ipsum is simply dummy text of the printing &amp; typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s,
-        </p>
-      </div>
-      <ul class="icons-list">
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
-
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <!-- <i class="fab fa-twitter"></i> -->
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
-        </li>
-
-        <!-- <li class="icons-list-item">
-						<a class="icons-list-atag" href="">
-							<i class="fa-brands fa-youtube"></i>
-						</a>
-					</li> -->
-        <li class="icons-list-item">
-          <a class="icons-list-atag" href="">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: "CreateCommunity",
 
   data() {
     return {
+
       formData: {
+        pageId: "",
         title: "",
         description: "",
       },
       errorMessage: "",
+      successMessage: "",
       submitting: false,
     };
   },
+  mounted() {
+    this.formData.pageId = this.$route.params.id;
+  },
   methods: {
     validateForm() {
+      this.errorMessage = "";
+      this.successMessage = "";
       if (!this.formData.title || !this.formData.description) {
-        this.errorMessage = "please fill in all fields.";
+        this.errorMessage = "Please fill in all fields.";
         return;
       }
-      // If the form is valid, you can submit it
-      this.submitForm();
+      // If the form is valid, submit it
+      this.formSubmit();
     },
-    submitForm() {
-      // Set submitting to true to disable the submit button while processing
+    formSubmit() {
       this.submitting = true;
 
-      // Simulate form submission
-      setTimeout(() => {
-        // Reset form data
-        this.formData.title = "",
-          this.formData.description = "",
+      const formData = new FormData();
+      formData.append('filter_id', this.formData.pageId)
+      formData.append('title', this.formData.title);
+      formData.append('description', this.formData.description);
 
-          // Reset error message
-          this.errorMessage = '';
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
+        }
+      };
 
-        // Set submitting back to false to enable the submit button
-        this.submitting = false;
-      }, 2000); // Simulating a 2-second delay for submission
-    },
-  },
+      axios.post('https://buzzwaretech.com/adminrev/Api/addforumdata', formData, config)
+        .then(response => {
+          console.log(response.data);
+          this.successMessage = "Form submitted successfully!";
+          this.formData.title = "";
+          this.formData.description = "";
+        })
+        .catch(error => {
+          console.error('There was an error!', error);
+          this.errorMessage = "There was an error submitting the form.";
+        })
+        .finally(() => {
+          this.submitting = false;
+        });
+    }
+  }
 };
 </script>
-<style scoped></style>
+
+<style scoped>
+.tarea {
+  height: 10rem !important;
+}
+</style>

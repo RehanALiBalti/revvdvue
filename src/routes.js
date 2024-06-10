@@ -56,7 +56,7 @@ const routes = [
   {
     name: "CreateCommunity",
     component: CreateCommunity,
-    path: "/createcommunity",
+    path: "/createcommunity/:id",
   },
   {
     name: "OurCommunity",
@@ -66,7 +66,7 @@ const routes = [
   {
     name: "CommunityDetail",
     component: CommunityDetail,
-    path: "/communitydetails/:id",
+    path: "/communitydetails/:id/:fid",
   },
   {
     name: "UserProfile",
@@ -184,7 +184,7 @@ const routes = [
     component: FeaturedStory,
   },
   {
-    path: "/forum",
+    path: "/community/:id",
     name: "ForumPage",
     component: ForumPage,
   },

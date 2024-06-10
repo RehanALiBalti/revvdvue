@@ -100,6 +100,26 @@
                     </ul>
                   </div>
                 </div>
+                <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
+                  <div class="customSelect w-100">
+                    <input type="text" class="form-select" :placeholder="$t('Specification')" @input="GenfilterOption"
+                      v-model="selectedData" @click="toggleOpeng" v-if="smodel == ''" disabled>
+                    <input type="text" class="form-select" :placeholder="$t('Specification')" @input="GenfilterOption"
+                      v-model="selectedData" @click="toggleOpeng" v-else>
+                    <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
+                      <li v-for="(value, index) in GenfilteredOptions" :key="index"
+                        @click="updateModels(value), this.isOpeng = false">
+                        <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+                        {{ value.production_years.split(' ')[0] }}
+                        <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
+                          }})</span>
+                      </li>
+                    </ul>
+                    <ul v-else v-show="isOpeng" class="options-list">
+
+                    </ul>
+                  </div>
+                </div>
 
               </div>
 
@@ -394,18 +414,20 @@ export default {
             .then((response) => {
               // Check if response data is an object
               if (typeof response.data === 'object' && !Array.isArray(response.data)) {
-                const community = response.data;
+                // const community = response.data;
 
                 // Assuming you have an ID in the response data
-                const communityId = community.id; // Adjust this based on your response data
+                // const communityId = community.id; // Adjust this based on your response data
                 // Programmatic navigation to the community details route
-                this.$router.push(`/communitydetails/${communityId}`);
+                ///  this.$router.push(`/communitydetails/${communityId}`);
+                this.$router.push(`/`)
               } else {
                 // Handle the case when response data is an array
 
-                const community = response.data[0];
-                this.$router.push(`/communitydetails/${community.id}`);
+                // const community = response.data[0];
+                // this.$router.push(`/communitydetails/${community.id}`);
                 // Handle this case according to your requirements
+                this.$router.push(`/`)
               }
             })
             .catch((e) => {
@@ -439,12 +461,16 @@ export default {
                   // Assuming you have an ID in the response data
                   const communityId = community.id; // Adjust this based on your response data
                   // Programmatic navigation to the community details route
-                  this.$router.push(`/communitydetails/${communityId}`);
+                  // this.$router.push(`/communitydetails/${communityId}`);
+                  this.$router.push(`/community/${communityId}`)
                 } else {
                   // Handle the case when response data is an array
 
                   const community = response.data[0];
-                  this.$router.push(`/communitydetails/${community.id}`);
+                  const communityId = community.id;
+                  // this.$router.push(`/communitydetails/${community.id}`);
+                  // this.$router.push(`/`)
+                  this.$router.push(`/community/${communityId}`)
                   // Handle this case according to your requirements
                 }
               })
