@@ -713,7 +713,8 @@ export default {
           // Handle success
           console.log('Post request successful of replies:', response.data);
           // Append the new comment to the comments array
-          this.replies.push(response.data);
+          // this.replies.push(response.data);
+          this.getreply(commentId)
           console.log("rrr", this.replies)
           // Clear inputs
           this.replyText = '';
@@ -1009,6 +1010,7 @@ export default {
             // Clear inputs
             this.newComment = "";
             this.imageUrl = "";
+            this.getComments()
             this.getNoOfComments()
             // Check if this.$refs.fileInput exists before accessing its properties
             if (this.$refs.fileInput) {
