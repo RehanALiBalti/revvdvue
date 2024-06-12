@@ -83,9 +83,10 @@
                 <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
                   <div class="customSelect w-100">
                     <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                      @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" v-if="smodel == ''" disabled>
+                      @input="GenfilterOption" v-model="selectedData" @change="changeGen" @click="toggleOpeng"
+                      v-if="smodel == ''" disabled>
                     <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                      @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" v-else>
+                      @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" @change="changeGen" v-else>
                     <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                       <li v-for="(value, index) in GenfilteredOptions" :key="index"
                         @click="updateModels(value), this.isOpeng = false">
@@ -102,17 +103,22 @@
                 </div>
                 <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
                   <div class="customSelect w-100">
-                    <input type="text" class="form-select" :placeholder="$t('Specification')" @input="GenfilterOption"
-                      v-model="selectedData" @click="toggleOpeng" v-if="smodel == ''" disabled>
-                    <input type="text" class="form-select" :placeholder="$t('Specification')" @input="GenfilterOption"
-                      v-model="selectedData" @click="toggleOpeng" v-else>
-                    <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
-                      <li v-for="(value, index) in GenfilteredOptions" :key="index"
-                        @click="updateModels(value), this.isOpeng = false">
-                        <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
-                        {{ value.production_years.split(' ')[0] }}
-                        <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
-                          }})</span>
+                    <input type="text" class="form-select" :placeholder="$t('Specification')" v-model="specfications"
+                      @click="toggleOpengs" v-if="smodel == ''" disabled @input="filterSpecificationOptions">
+                    <input type="text" class="form-select" :placeholder="$t('Specification')" v-model="specfications"
+                      @click="toggleOpengs" @input="filterSpecificationOptions" v-else>
+                    <!-- <ul v-show="isOpengs" class="options-list" v-if="specifctionOptions.length > 0">
+                      <li v-for="(value, index) in specifctionOptions" :key="index"
+                        @click="updatesepecification(value), this.isOpengs = false">
+                      
+                        <span>{{ value.specification
+                          }}</span>
+                      </li>
+                    </ul> -->
+                    <ul v-show="isOpengs" class="options-list" v-if="filteredSpecificationOptions.length > 0">
+                      <li v-for="(value, index) in filteredSpecificationOptions" :key="index"
+                        @click="updatesepecification(value)">
+                        {{ value.specification }}
                       </li>
                     </ul>
                     <ul v-else v-show="isOpeng" class="options-list">
@@ -140,8 +146,12 @@
                       <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
                     </span>
                     <!-- data-bs-toggle="modal" -->
-                    <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                    <!-- <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
                       data-bs-target="#mailModal" @click="retrieveCommunities">
+                      {{ $t('proceed') }}
+                    </button> -->
+                    <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                      data-bs-target="#mailModal" @click="sendForumData">
                       {{ $t('proceed') }}
                     </button>
                     <span class="border-bottom-btn border-left-btn new-popup position-absolute">
@@ -173,7 +183,7 @@
           <div>
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> Something Is Missing </span></h5>
-              <p class="text-white">Please select make, model and year</p>
+              <p class="text-white">Please select make, model and specifications</p>
 
             </div>
 
@@ -207,6 +217,7 @@
 </template>
 
 <script>
+
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
 // import { defineComponent } from 'vue';
@@ -227,7 +238,9 @@ export default {
       isOpen: false,
       isOpenm: false,
       isOpeng: false,
+      isOpengs: false,
       isModal3: false,
+      specfications: "",
       error2: "",
       isModal2Open: false,
       makefilteredOptions: [],
@@ -255,7 +268,26 @@ export default {
         productionYears: "",
       },
       dataGy: [],
-      selectedData: ''
+      selectedData: '',
+      filteredSpecificationOptions: [],
+      specifctionOptions: [
+        { specification: "Engine" },
+        { specification: "Powertrain and transmission" },
+        { specification: "Fuel" },
+        { specification: "Ignition System" },
+        { specification: "Cooling" },
+        { specification: "Lubrication" },
+        { specification: "Electrical System & Sound System" },
+        { specification: "Suspension and Steering" },
+        { specification: "Braking System" },
+        { specification: "Exhaust System" },
+        { specification: "Forced induction" },
+        { specification: "ECU" },
+        { specification: "Wheels and Tires" },
+        { specification: "Nitrous" },
+        { specification: "Body Parts" },
+        { specification: "Interior" }
+      ],
     };
   },
   computed: {
@@ -292,7 +324,20 @@ export default {
       console.log('opneg')
       this.isOpeng = !this.isOpeng
     },
+    toggleOpengs() {
+      console.log('opneg')
+      this.isOpengs = !this.isOpengs
+    },
+    updatesepecification(value) {
+
+      console.log("click spec", value)
+      this.specfications = value.specification
+      this.toggleOpengs()
+      // alert(this.specfications)
+    },
     GenfilterOption() {
+      this.specfications = ""
+      this.filteredSpecificationOptions = this.specifctionOptions
       const query = this.selectedData.toLowerCase();
       if (query === '') {
         this.GenfilteredOptions = this.dataGy;
@@ -307,6 +352,7 @@ export default {
     filterMakeOptions() {
       this.modelfilteredOptions = [];
       this.selectedData = "";
+
       this.smodel = ""
       const query = this.make.toLowerCase();
       if (query === '') {
@@ -317,6 +363,8 @@ export default {
     },
     filterModelOptions() {
       this.selectedData = ""
+      this.specfications = ""
+      this.filteredSpecificationOptions = this.specifctionOptions
 
       console.log(this.smodel);
       const query = this.smodel.toLowerCase();
@@ -329,7 +377,14 @@ export default {
       }
     },
 
-
+    filterSpecificationOptions() {
+      const query = this.specfications.toLowerCase();
+      if (query === '') {
+        this.filteredSpecificationOptions = this.specifctionOptions;
+      } else {
+        this.filteredSpecificationOptions = this.specifctionOptions.filter(option => option && option.specification && option.specification.toLowerCase().includes(query));
+      }
+    },
 
 
     toggleDropdown() {
@@ -357,6 +412,8 @@ export default {
 
     },
     updateModels(value) {
+      this.specfications = ""
+      this.filteredSpecificationOptions = this.specifctionOptions
       if (value) {
 
         this.productionYear = value.production_years;
@@ -484,7 +541,65 @@ export default {
       }
 
     },
+    // async sendForumData() {
+    //   try {
+    //     // Make the GET request with query parameters
+    //     const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/communities/filter', {
+    //       params: {
+    //         make: this.make,
+    //         model: this.smodel,
+    //         peoduction_years: this.selectedData,
+    //         specifications: this.specification
+    //       }
+    //     });
 
+    //     // Handle the response data
+    //     console.log("new get response", response.data);
+    //   } catch (error) {
+    //     // Handle any errors
+    //     console.error('Error making GET request:', error);
+    //   }
+    // }
+    // sendForumData() {
+    //   // Get the dynamic parameters
+    //   const make = this.make;
+    //   const model = this.smodel;
+    //   const production_years = this.selectedData;
+    //   const specifications = this.specfications;
+    //   // alert("specification", specifications)
+    //   // Construct the URL with the dynamic parameters
+    //   if (this.make == '' && this.model == '' && this.specfications) {
+    //     this.hideFilterModal();
+    //     this.isModal2Open = true
+    //   }
+    //   else {
+    //     const routeUrl = `/community/${make}/${model}/${production_years}/${specifications}`;
+
+    //     // Navigate to the constructed URL
+    //     this.$router.push({ path: routeUrl });
+    //   }
+    // }
+    sendForumData() {
+      // Get the dynamic parameters
+      const make = this.make;
+      const model = this.smodel;
+      const production_years = this.selectedData;
+      const specifications = this.specfications;
+
+      // Construct the URL with the dynamic parameters
+      if (make === '' || model === '' || specifications === '') {
+        // Hide the current modal and open the second modal if any of the fields are empty
+        this.hideFilterModal();
+        this.isModal2Open = true;
+      } else {
+        const routeUrl = `/community/${make}/${model}/${production_years}/${specifications}`;
+
+        // Navigate to the constructed URL
+        this.$router.push({ path: routeUrl });
+      }
+    }
+
+    ,
     retrieveALLCommunities() {
 
 
@@ -496,10 +611,19 @@ export default {
           console.log(e);
         });
     },
+    changeGen() {
+      // alert("change gen")
+      this.specfications = ""
+      this.filteredSpecificationOptions = this.specifctionOptions
+    },
     getModels() {
       console.log("get modals")
+      this.specfications = ""
+      this.filteredSpecificationOptions = this.specifctionOptions
       this.selectedData = ""
       this.smodel = ""
+
+
       this.generations = [];
       this.GenfilteredOptions = []
       this.productionYears = [];

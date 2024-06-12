@@ -53,20 +53,31 @@ const routes = [
     component: SignIn,
     path: "/signin",
   },
+  // {
+  //   name: "CreateCommunity",
+  //   component: CreateCommunity,
+  //   path: "/createcommunity/:id",
+  // },
+
   {
     name: "CreateCommunity",
     component: CreateCommunity,
-    path: "/createcommunity/:id",
+    path: "/createcommunity/:make/:modal/:production_years/:specifications",
   },
   {
     name: "OurCommunity",
     component: OurCommunity,
     path: "/ourcommunity",
   },
+  // {
+  //   name: "CommunityDetail",
+  //   component: CommunityDetail,
+  //   path: "/communitydetails/:id/:fid",
+  // },
   {
     name: "CommunityDetail",
     component: CommunityDetail,
-    path: "/communitydetails/:id/:fid",
+    path: "/communitydetails/:id",
   },
   {
     name: "UserProfile",
@@ -185,6 +196,11 @@ const routes = [
   },
   {
     path: "/community/:id",
+    name: "ForumPage",
+    component: ForumPage,
+  },
+  {
+    path: "/community/:make/:modal/:production_years/:specifications",
     name: "ForumPage",
     component: ForumPage,
   },

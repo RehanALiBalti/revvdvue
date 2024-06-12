@@ -134,11 +134,11 @@ const actions = {
   async handleSignUp(
     context,
     // { name, age, password, email, phone, socialMedia }
-    { name, password, email }
+    { nickname, password, email }
   ) {
     console.log("yes", context);
     try {
-      const result = await AuthService.register(name, password, email);
+      const result = await AuthService.register(nickname, password, email);
 
       // Commit mutations or perform other actions if needed
       context.commit("setUser", result);

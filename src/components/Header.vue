@@ -124,7 +124,7 @@
               </div> -->
             </li>
 
-            <li class=" position-relative " v-if="isLogin == true" style="min-width:150px">
+            <li class=" position-relative " style="min-width:150px" v-if="isLogin != false">
               <buttton type="button" class="dropdown user-custom-box w-100" data-bs-toggle="dropdown"
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
@@ -136,7 +136,9 @@
                     <!-- {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
             userAttributes.UserAttributes.find(attr => attr.Name === 'name').Value : '' }} -->
                     <!-- {{ userAttributes.name }} -->
-                    {{ userAttributes.name ? userAttributes.name.split(' ')[0] : '' }}
+                    <!-- {{ userAttributes.name ? userAttributes.name.split(' ')[0] : '' }} -->
+                    {{ userAttributes.name ? userAttributes.name.split('').slice(0, 5).join(' ') : '' }}
+
                   </span>
 
 
@@ -213,6 +215,7 @@
 
 <script>
 import { Auth } from 'aws-amplify';
+import axios from 'axios';
 export default {
 
   name: "HeaderItem",
@@ -224,6 +227,7 @@ export default {
       issOpen: false,
       isNavOpen: false,
       selectedLanguage: "en",
+      sub: "",
       // userAttributes: JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData')),
       userAttributes: [],
       isLogin: JSON.parse(localStorage.getItem('login')) || false,
@@ -278,8 +282,9 @@ export default {
     this.isLogin = localStorage.getItem('login')
 
   },
-  mounted() {
-    this.fetchProfileData()
+  async mounted() {
+    await this.fetchProfileData()
+    await this.fetchproData()
     document.body.addEventListener('click', this.closeDropdown);
     document.body.addEventListener('click', this.closeDropdown2);
     this.isLogin = localStorage.getItem('login')
@@ -310,9 +315,10 @@ export default {
       try {
         console.log("Fetching profile data...");
         const data = await this.$store.dispatch("auth/getprofiledata");
-        console.log("Profile data:", data);
+        console.log("Profile data in heder:", data.result.sub);
+        this.sub = data.result.sub
         this.userAttributes = data.result
-        console.log("userdataattribtes", this.userAttributes.picture)
+        console.log("userdataattribtes in header", this.userAttributes.picture)
         if (this.userAttributes.picture) {
           this.image = this.userAttributes.picture
         }
@@ -325,6 +331,42 @@ export default {
           localStorage.setItem('login', false);
           //     this.$router.push("/signin");
         }
+      }
+    },
+    // async fetchproData() {
+    //   try {
+    //     // Make the GET request with query parameters
+    //     const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/users/', {
+    //       params: {
+    //         sub: this.sub
+    //       }
+    //     });
+
+    //     // Handle the response data
+    //     console.log("new porofile Data is", response.data[0].image);
+    //     this.image = response.data[0].image
+    //   } catch (error) {
+    //     // Handle any errors
+    //     console.error('Error making GET request:', error);
+    //   }
+    // },
+
+    async fetchproData() {
+      const myid = this.sub
+      const url = 'https://clownfish-app-quehu.ondigitalocean.app/api/users/sub?sub=' + myid;
+      console.log("jaloru", myid, url);
+      try {
+        // Make the GET request with query parameters
+        const response = await axios.get(url);
+
+        // Handle the response data
+        // console.log(this.formData.sub, "new porofile Data is", response.data);
+        this.image = response.data.image
+        console.log("the image of user dloru", this.image)
+        //				this.image = response.data[0].image
+      } catch (error) {
+        // Handle any errors
+        console.error('Error making GET request:', error);
       }
     },
     toggleNav() {

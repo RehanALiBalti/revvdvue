@@ -10,7 +10,7 @@
             <div class="row">
               <div class="col-md-6">
                 <label for="name" class="form-label">Nick Name</label>
-                <input id="name" type="text" v-model="formData.name" class="form-control form-input"
+                <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
                 <div v-if="formErrors.name" class="text-danger">
                   {{ formErrors.name }}
@@ -198,7 +198,8 @@ export default {
       isModalOpenFail: false,
       errorMessage: "",
       formData: {
-        name: "",
+
+        nickname: "",
         age: "",
         email: "",
         phone: "",
@@ -310,6 +311,7 @@ export default {
 
         // Handle success response
         console.log('Form data submitted successfully:', response.data);
+
         const { email, name, role } = this.formData;
         // this.$store.signup({ email, name, role });
         this.$store.dispatch('auth/signup', { email, name, role });
@@ -347,11 +349,11 @@ export default {
       console.log(this.formData)
       this.validateForm();
       if (this.isFormValid()) {
-        this.submitProfileForm()
+
         // Submit form data
         const mydata = {
 
-          name: this.formData.name,
+          nickname: this.formData.nickname.trim().toLowerCase(),
           // age: this.formData.age,
           email: this.formData.email,
           phone: this.formData.phone,
@@ -360,23 +362,40 @@ export default {
         };
 
         console.log("Form submitted successfully", mydata);
-        this.$store.dispatch('auth/handleSignUp',
-          mydata)
-          .then(
-            (data) => {
-              if (data.success == 1) {
+        try {
+          const url = `https://clownfish-app-quehu.ondigitalocean.app/api/users/nickname?nickname=${mydata.nickname}`;
+          const response = await axios.get(url);
+          console.log("respi", response)
+          if (response.data.count == 0) {
 
-                // this.isModalOpen = true
-                localStorage.setItem('login', true);
-                // window.location.reload();
-                //     this.$router.push("/profile");
-              } else {
-                this.isModalOpenFail = true
-                this.errorMessage = data.error
-              }
+            this.$store.dispatch('auth/handleSignUp',
+              mydata)
+              .then(
+                (data) => {
+                  if (data.success == 1) {
 
-              console.log(data);
-            })
+                    // this.isModalOpen = true
+                    //                this.submitProfileForm()
+                    localStorage.setItem('login', true);
+                    // window.location.reload();
+                    //     this.$router.push("/profile");
+                  } else {
+                    this.isModalOpenFail = true
+                    this.errorMessage = data.error
+                  }
+
+                  console.log(data);
+                })
+          }
+          else {
+            alert("Nick Name Already Exists")
+          }
+        }
+        catch (error) {
+          console.log("error", error)
+        }
+        // console.log('User information retrieved successfully:', response.data);
+
 
 
       } else {
@@ -393,8 +412,8 @@ export default {
       if (!this.formData.check1) {
         this.formErrors.check1 = "Please Check the General Terms ANd Conditions"
       }
-      if (!this.formData.name) {
-        this.formErrors.name = "Name is required";
+      if (!this.formData.nickname) {
+        this.formErrors.nickname = "Name is required";
       }
 
       if (!this.formData.email) {

@@ -3,13 +3,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="heading-car">
+                    <!-- <div class="heading-car">
                         <h1 class="banner-title">
                             {{ communityData.make }} {{ communityData.model }}
                         </h1>
                         <h1 class="banner-title">{{ communityData.production_years }}</h1>
+                    </div> -->
+                    <div class="heading-car">
+                        <h1 class="banner-title">
+                            {{ make }} {{ modal }}
+                        </h1>
+                        <h1 class="banner-title">{{ production_years }}</h1>
+                        <h1 class="banner-title">{{ specifications }}</h1>
                     </div>
-                    <div class="btns-community">
+                    <div class="btns-community mb-5">
                         <div class="btn-div-create-forum position-relative">
                             <span class="border-bottom-btn border-top-btn position-absolute">
                                 <img src="@/assets/images/Group12white.png" class="img-border position-absolute"
@@ -26,7 +33,8 @@
                                 <img src="@/assets/images/Path465white.png" class="img-border position-absolute"
                                     alt="" />
                             </span>
-                            <router-link :to="`/CreateCommunity/${pageId}`" class="signin-btnli signup-btnli">
+                            <router-link :to="`/CreateCommunity/${make}/${modal}/${production_years}/${specifications}`"
+                                class="signin-btnli signup-btnli">
                                 Create Forum
                             </router-link>
                             <span class="border-bottom-btn border-left-btn position-absolute">
@@ -65,6 +73,7 @@
 
     <section class="community-section my-5 pt-3">
         <div class="container">
+
             <div class="row g-4">
                 <div class="col-md-12 px-4">
                     <div v-if="filteredCommunities.length === 0">
@@ -73,7 +82,7 @@
                     <div class="col-12 mb-4 m-auto" v-for="community in filteredCommunities" :key="community.id">
                         <div>
                             <div class="communtiy-content">
-                                <router-link :to="`/communitydetails/${pageId}/${community.id}`">
+                                <router-link :to="`/communitydetails/${community.id}`">
                                     <div class="card-title-div">
                                         <h2 class="card-title-h2 community-title">
                                             {{ community.title }} <span> {{ community.count }} </span>
@@ -187,11 +196,16 @@
 </template>
 
 <script>
+import CommunityDataService from "@/services/CommunityDataService";
 import axios from "axios";
 
 export default {
     data() {
         return {
+            make: "",
+            modal: "",
+            production_years: "",
+            specifications: "",
             pageId: "",
             communityData: [],
             communities: [], // Initialize as an empty array
@@ -236,6 +250,60 @@ export default {
         },
     },
     methods: {
+        getNoOfComments(id) {
+
+            const apiUrl = `https://clownfish-app-quehu.ondigitalocean.app/api/comments/count?community_id=${id}`;
+
+            axios.get(apiUrl)
+                .then(response => {
+                    console.log('No Of Comments:', response.data.count);
+                    this.totalComments = response.data.count
+
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        },
+        async getForumData() {
+            try {
+                // Make the GET request with query parameters
+                const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/communities/filter', {
+                    params: {
+                        make: this.make,
+                        model: this.modal,
+                        production_years: this.production_years,
+                        specifications: this.specifications
+                    }
+                });
+
+                // Handle the response data
+                console.log("new get response", response.data);
+                this.filteredCommunities = response.data
+                for (const forum of this.filteredCommunities) {
+                    await this.getNoOfComments(forum.id);
+                }
+
+
+            } catch (error) {
+                // Handle any errors
+                console.error('Error making GET request:', error);
+            }
+        },
+
+        fetchCommunityData() {
+            const id = this.$route.params.id; // Get the community id from the route parameters
+            CommunityDataService.get(id)
+                .then(response => {
+                    // Set the fetched community data to the component's data
+                    this.communityData = response.data;
+                    console.log("data oof views", this.communityData)
+                    this.loading = false;
+                })
+                .catch(error => {
+                    console.error('Error fetching community data:', error);
+                });
+
+        },
         paginateCommunities() {
             if (Array.isArray(this.communities)) {
                 const [start, end] = this.paginationRange;
@@ -263,7 +331,7 @@ export default {
         },
         formSubmit() {
             const formData = new FormData();
-            alert(this.pageId)
+            // alert(this.pageId)
             formData.append('filter_id', this.pageId)
 
             const config = {
@@ -297,11 +365,18 @@ export default {
         },
     },
     mounted() {
-        this.pageId = this.$route.params.id;
-        this.formSubmit();
+        // this.pageId = this.$route.params.id;
+        this.make = this.$route.params.make
+        this.modal = this.$route.params.modal
+        this.production_years = this.$route.params.production_years
+        this.specifications = this.$route.params.specifications
+        console.log("params data is", this.make, this.modal, this.production_years, this.specifications)
+        this.getForumData()
+        // this.formSubmit();
+        // this.fetchCommunityData()
         // Initially paginate communities
 
-        console.log("page id is", this.pageId)
+        // console.log("page id is", this.pageId)
         this.paginateCommunities();
     },
     watch: {
@@ -317,4 +392,7 @@ export default {
 
 <style scoped>
 /* Your CSS styles here */
+.fh2 {
+    color: #F95F19;
+}
 </style>

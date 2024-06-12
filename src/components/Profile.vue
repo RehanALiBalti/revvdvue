@@ -61,8 +61,7 @@
 							<div class="col-md-6 d-none">
 
 								<label class="form-label" for="image">Select Image</label>
-								<input type="file" class="form-control-file my-2" @change="handleFileChange"
-									ref="fileInput">
+								<input type="file" class="form-control-file my-2" ref="fileInput">
 							</div>
 							<div class="col-md-12">
 
@@ -519,6 +518,8 @@ export default {
 				prefix3: '',
 				mobilePhone: '',
 				email: '',
+				sub: "",
+				cognitoId: ""
 
 
 			},
@@ -723,7 +724,46 @@ export default {
 
 
 		// },
+
+		async submitProfileForm() {
+			try {
+				console.log("sub ID", this.formData.sub)
+				console.log("this is formData", this.formData)
+				const formData = new FormData();
+
+				formData.append('image', this.$refs.fileInput.files[0]);
+				formData.append('name', this.name);
+				formData.append('age', this.age);
+				formData.append('email', this.email);
+				formData.append('phone', this.phone);
+				formData.append("socialMedia", this.socialMedia)
+				// Make a POST request to the API endpoint
+				console.log("fffdata", this.formData)
+				const response = await axios.put(`https://clownfish-app-quehu.ondigitalocean.app/api/users/${this.formData.sub}`, formData);
+
+				// Handle success response
+				console.log('Form data submitted successfully:', response.data);
+				const profiledata = this.fetchproData();
+				return profiledata;
+
+
+
+
+				// const { email, name, role, sub, cognitoId } = this.formData;
+				// // this.$store.signup({ email, name, role });
+				// this.$store.dispatch('auth/signup', { email, name, role, sub, cognitoId });
+
+				// You can perform further actions here, such as redirecting the user or showing a success message
+			} catch (error) {
+				// Handle error
+				console.error('Error submitting form data:', error);
+				// You can show an error message to the user or handle the error in any other appropriate way
+			}
+		},
 		async updateUserAttributes() {
+			const profiledata = this.submitProfileForm();
+			console.log(profiledata);
+
 			const updatedProfile = {
 				fullname: this.fullname, // Correct the key to fullName if needed
 				name: this.name,
@@ -741,6 +781,7 @@ export default {
 				console.log(data, typeof data);
 				if (data === "SUCCESS") {
 					this.isModalOpen = true;
+
 				}
 			} catch (error) {
 				console.error("Error updating user profile:", error);
@@ -813,7 +854,9 @@ export default {
 				const data = await this.$store.dispatch("auth/getprofiledata");
 				// console.log("Profile data:", data);
 				this.UserData = data.result
-				console.log("user data", this.UserData)
+				console.log("user dataddfdd", this.UserData)
+				this.formData.sub = this.UserData.sub
+				this.formData.cognitoId = this.UserData.sub
 
 
 				console.log("userdata nick name", this.UserData.nickname)
@@ -862,7 +905,29 @@ export default {
 			} catch (error) {
 				console.error("Error fetching profile data:", error);
 			}
-		}
+		},
+
+
+		async fetchproData() {
+			const myid = this.formData.sub
+			const url = 'https://clownfish-app-quehu.ondigitalocean.app/api/users/sub?sub=' + myid;
+			console.log("jaloru", myid, url);
+			try {
+				// Make the GET request with query parameters
+				const response = await axios.get(url);
+
+				// Handle the response data
+				console.log(this.formData.sub, "new porofile Data is", response.data);
+				this.image = response.data.image
+				//				this.image = response.data[0].image
+			} catch (error) {
+				// Handle any errors
+				console.error('Error making GET request:', error);
+			}
+		},
+
+
+
 		// isFormValid() {
 		// 	// Basic form validation
 		// 	return this.name && this.email && this.age && this.phone;
@@ -882,8 +947,9 @@ export default {
 
 
 	},
-	mounted() {
-		this.fetchProfileData();
+	async mounted() {
+		await this.fetchProfileData();
+		await this.fetchproData()
 		// this.getProfileImage()
 		// this.checkIfGoogleOrFacebookUser()
 	},

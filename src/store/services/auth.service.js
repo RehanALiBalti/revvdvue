@@ -70,9 +70,9 @@ function setprofile(data) {
         updatedAttributes.website = data.socialMedia;
       }
 
-      if (data.image !== "") {
-        updatedAttributes.picture = data.image;
-      }
+      // if (data.image !== "") {
+      //   updatedAttributes.picture = data.image;
+      // }
       console.log("update", updatedAttributes);
 
       Auth.currentAuthenticatedUser()
@@ -266,7 +266,7 @@ function register(name, password, email) {
       attributes: {
         email: email,
 
-        name: name,
+        nickname: name,
 
         //   'custom:fullname':name,
         //   'custom:age':age,
@@ -280,6 +280,10 @@ function register(name, password, email) {
     })
       .then(({ user }) => {
         console.log("Auth Service test11", user);
+        // Auth.currentAuthenticatedUser()
+        // .then((user) => {
+        //   console.log("authenuser", user);
+        // })
 
         const response = { success: 1, result: user };
         resolve(response);

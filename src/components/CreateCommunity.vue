@@ -62,10 +62,19 @@ export default {
   data() {
     return {
 
+      // formData: {
+      //   pageId: "",
+      //   title: "",
+      //   description: "",
+      // },
       formData: {
-        pageId: "",
+
         title: "",
         description: "",
+        make: '',
+        model: '',
+        production_years: '',
+        specifications: ''
       },
       errorMessage: "",
       successMessage: "",
@@ -74,6 +83,12 @@ export default {
   },
   mounted() {
     this.formData.pageId = this.$route.params.id;
+    this.formData.make = this.$route.params.make;
+    this.formData.model = this.$route.params.modal
+    console.log("modal", this.formData.model)
+    this.formData.production_years = this.$route.params.production_years
+    this.formData.specifications = this.$route.params.specifications
+
   },
   methods: {
     validateForm() {
@@ -86,37 +101,65 @@ export default {
       // If the form is valid, submit it
       this.formSubmit();
     },
-    formSubmit() {
-      this.submitting = true;
+    // formSubmit() {
+    //   this.submitting = true;
 
-      const formData = new FormData();
-      formData.append('filter_id', this.formData.pageId)
-      formData.append('title', this.formData.title);
-      formData.append('description', this.formData.description);
+    //   const formData = new FormData();
+    //   formData.append('filter_id', this.formData.pageId)
+    //   formData.append('title', this.formData.title);
+    //   formData.append('description', this.formData.description);
 
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
-        }
+    //   const config = {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //       'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
+    //     }
+    //   };
+
+    //   axios.post('https://buzzwaretech.com/adminrev/Api/addforumdata', formData, config)
+    //     .then(response => {
+    //       console.log(response.data);
+    //       this.successMessage = "Form submitted successfully!";
+    //       this.formData.title = "";
+    //       this.formData.description = "";
+    //     })
+    //     .catch(error => {
+    //       console.error('There was an error!', error);
+    //       this.errorMessage = "There was an error submitting the form.";
+    //     })
+    //     .finally(() => {
+    //       this.submitting = false;
+    //     });
+    // }
+
+    async formSubmit() {
+      // Data to be sent in the POST request
+      const postData = {
+        title: this.formData.title,
+        description: this.formData.description,
+        make: this.formData.make,
+        model: this.formData.model,
+        production_years: this.formData.production_years,
+        specifications: this.formData.specifications
       };
 
-      axios.post('https://buzzwaretech.com/adminrev/Api/addforumdata', formData, config)
-        .then(response => {
-          console.log(response.data);
-          this.successMessage = "Form submitted successfully!";
-          this.formData.title = "";
-          this.formData.description = "";
-        })
-        .catch(error => {
-          console.error('There was an error!', error);
-          this.errorMessage = "There was an error submitting the form.";
-        })
-        .finally(() => {
-          this.submitting = false;
-        });
+      try {
+        // Make the POST request with the specified data
+        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/', postData);
+
+        // Handle the response data
+        console.log(response.data);
+        const routeUrl = `/community/${postData.make}/${postData.model}/${postData.production_years}/${postData.specifications}`;
+
+        // Navigate to the constructed URL
+        this.$router.push({ path: routeUrl });
+      } catch (error) {
+        // Handle any errors
+        console.error('Error making POST request:', error);
+      }
     }
   }
+
 };
 </script>
 
