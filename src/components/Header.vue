@@ -129,7 +129,7 @@
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
                   <div class="user-img-div d-none d-lg-block">
-                    <img v-if="image != ''" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
+                    <img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
                       class="user-img" alt="" />
                   </div>
                   <span class="user-name" :class="{ open: issOpen }">
