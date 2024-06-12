@@ -1814,6 +1814,8 @@ a.signin-btnli:hover {
 	height: 1.2em;
 	cursor: pointer;
 	background-color: #f95f19 !important;
+	height: 20px !important;
+	width: 20px !important;
 }
 
 .form-check-input:checked {

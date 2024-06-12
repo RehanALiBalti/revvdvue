@@ -545,5 +545,7 @@ export default {
   cursor: pointer;
   background-color: #f95f19 !important;
   border: none !important;
+  height: 20px !important;
+  width: 20px !important;
 }
 </style>
