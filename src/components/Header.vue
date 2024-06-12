@@ -130,8 +130,9 @@
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
                   <div class="user-img-div d-none d-lg-block">
-                    <img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
-                      class="user-img" alt="" />
+                    <!-- <img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
+                      class="user-img" alt="" /> -->
+                    <img :src="state.profileImage" class="user-img" alt="User Image" />
                   </div>
                   <span class="user-name" :class="{ open: issOpen }">
                     <!-- {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
@@ -217,8 +218,12 @@
 <script>
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
+import { useProfileImage } from '@/composables/useProfileImage';
 export default {
-
+  setup() {
+    const { state } = useProfileImage();
+    return { state };
+  },
   name: "HeaderItem",
 
   data() {
@@ -269,6 +274,7 @@ export default {
       this.closeDropdownm()
 
       this.fetchProfileData()
+      this.fetchproData()
       next();
       this.issOpen = false;
     });

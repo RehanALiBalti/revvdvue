@@ -6,11 +6,12 @@
 
 					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'delear'">
 						<div class="user-profile-page">
-
+							<img :src="state.profileImage" class="user-profile-page-img" alt="Profile Image"
+								v-if="this.image != ''" @click="openFileInput" />
 							<!-- <img v-if="image != ''" src="https://clownfish-app-quehu.ondigitalocean.app/ +${image} " class="user-profile-page-img" alt="user"
 								@click="openFileInput"> -->
-							<img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
-								class="user-profile-page-img" alt="user" @click="openFileInput">
+							<!-- <img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
+								class="user-profile-page-img" alt="user" @click="openFileInput"> -->
 
 							<div v-else>
 								<img src="../assets/img/uploadImage.png" height="150px" width="150px"
@@ -480,7 +481,21 @@
 
 import axios from 'axios';
 import { Auth } from 'aws-amplify';
+import { useProfileImage } from '@/composables/useProfileImage';
+
 export default {
+	setup() {
+		const { state, setProfileImage } = useProfileImage();
+
+		const changeProfileImage = (newSrc) => {
+			setProfileImage(newSrc);
+		};
+		return {
+			state,
+			changeProfileImage
+		};
+
+	},
 	name: "UserProfile",
 	data() {
 		return {
@@ -918,6 +933,8 @@ export default {
 				// Handle the response data
 				console.log(this.formData.sub, "new porofile Data is", response.data);
 				this.image = response.data.image
+				let imageUrl = "https://clownfish-app-quehu.ondigitalocean.app/users/" + this.image;
+				this.changeProfileImage(imageUrl)
 				//				this.image = response.data[0].image
 			} catch (error) {
 				// Handle any errors

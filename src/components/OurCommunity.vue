@@ -183,7 +183,7 @@
           <div>
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> Something Is Missing </span></h5>
-              <p class="text-white">Please select make, model and specifications</p>
+              <p class="text-white">Please select make, model, production Year and specifications</p>
 
             </div>
 
@@ -579,6 +579,55 @@ export default {
     //     this.$router.push({ path: routeUrl });
     //   }
     // }
+    // sendForumData() {
+    //   // Get the dynamic parameters
+    //   const make = this.make;
+    //   const model = this.smodel;
+    //   const production_years = this.selectedData;
+    //   const specifications = this.specfications;
+
+    //   // Construct the URL with the dynamic parameters
+    //   if (make === '' || model === '' || specifications === '') {
+    //     // Hide the current modal and open the second modal if any of the fields are empty
+    //     this.hideFilterModal();
+    //     this.isModal2Open = true;
+    //   } else {
+    //     const routeUrl = `/community/${make}/${model}/${production_years}/${specifications}`;
+
+    //     // Navigate to the constructed URL
+    //     this.$router.push({ path: routeUrl });
+    //   }
+    // }
+    // sendForumData() {
+    //   // Get the dynamic parameters
+    //   const make = this.make;
+    //   const model = this.smodel;
+    //   const production_years = this.selectedData;
+    //   const specifications = this.specfications;
+
+    //   // Construct the base URL with mandatory parameters
+    //   let routeUrl = `/community/${make}/${model}`;
+
+    //   // Include production_years if it is not empty
+    //   if (production_years !== '') {
+    //     routeUrl += `/${production_years}`;
+    //   }
+
+    //   // Add specifications to the URL
+    //   routeUrl += `/${specifications}`;
+
+    //   // Check if any mandatory fields are empty
+    //   if (make === '' || model === '' || specifications === '') {
+    //     // Hide the current modal and open the second modal if any of the fields are empty
+    //     this.hideFilterModal();
+    //     this.isModal2Open = true;
+    //   } else {
+    //     alert(routeUrl)
+    //     // Navigate to the constructed URL
+
+    //     this.$router.push({ path: routeUrl });
+    //   }
+    // }
     sendForumData() {
       // Get the dynamic parameters
       const make = this.make;
@@ -586,18 +635,25 @@ export default {
       const production_years = this.selectedData;
       const specifications = this.specfications;
 
-      // Construct the URL with the dynamic parameters
-      if (make === '' || model === '' || specifications === '') {
+      // Check if any mandatory fields are empty
+      if (!make || !model || !specifications) {
         // Hide the current modal and open the second modal if any of the fields are empty
         this.hideFilterModal();
         this.isModal2Open = true;
-      } else {
-        const routeUrl = `/community/${make}/${model}/${production_years}/${specifications}`;
-
-        // Navigate to the constructed URL
-        this.$router.push({ path: routeUrl });
+        return;
       }
+
+      // Construct the URL with or without production_years
+      let routeUrl = `/community/${make}/${model}`;
+      if (production_years) {
+        routeUrl += `/${production_years}`;
+      }
+      routeUrl += `/${specifications}`;
+
+      // Navigate to the constructed URL
+      this.$router.push({ path: routeUrl });
     }
+
 
     ,
     retrieveALLCommunities() {

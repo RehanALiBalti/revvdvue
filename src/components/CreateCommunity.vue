@@ -3,10 +3,13 @@
     <div class="row">
       <div class="col-md-6 m-auto">
         <div class="form-content-home1">
-          <form id="subscribe-form" @submit.prevent="validateForm">
+          <form id="subscribe-form position-relative" @submit.prevent="validateForm">
             <h2 class="form-title">
               Create <span class="form-span"> Forum </span>
             </h2>
+            <div v-if="loading" class="d-flex justify-content-center loader">
+              <div class="box"></div>
+            </div>
             <div class="row">
               <div class="col-md-12">
                 <label for="title" class="form-label">Forum Title</label>
@@ -22,6 +25,7 @@
                 <p v-if="errorMessage" class="text-danger" id="errormsg">{{ errorMessage }}</p>
                 <p v-if="successMessage" class="text-success" id="successmsg">{{ successMessage }}</p>
               </div>
+
               <div class="col-md-12">
                 <div class="list-item-btn position-relative submit-btn-div">
                   <span class="border-bottom-btn border-top-btn position-absolute">
@@ -34,7 +38,7 @@
                     class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                     <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                   </span>
-                  <button type="submit" class="signin-btnli submitNow" id="submit-button" :disabled="submitting">
+                  <button type="submit" class="signin-btnli submitNow" id="submit-button" :disabled="loading">
                     Create Now
                   </button>
                   <span class="border-bottom-btn border-left-btn position-absolute">
@@ -61,7 +65,7 @@ export default {
 
   data() {
     return {
-
+      loading: false,
       // formData: {
       //   pageId: "",
       //   title: "",
@@ -88,6 +92,8 @@ export default {
     console.log("modal", this.formData.model)
     this.formData.production_years = this.$route.params.production_years
     this.formData.specifications = this.$route.params.specifications
+    console.log("pyaer", this.formData.production_years)
+    alert("pyear", this.formData.production_years)
 
   },
   methods: {
@@ -132,8 +138,37 @@ export default {
     //     });
     // }
 
+    // async formSubmit() {
+    //   // Data to be sent in the POST request
+    //   this.loading = true
+    //   const postData = {
+    //     title: this.formData.title,
+    //     description: this.formData.description,
+    //     make: this.formData.make,
+    //     model: this.formData.model,
+    //     production_years: this.formData.production_years,
+    //     specifications: this.formData.specifications
+    //   };
+
+    //   try {
+    //     // Make the POST request with the specified data
+    //     const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/', postData);
+
+    //     // Handle the response data
+    //     console.log(response.data);
+    //     const routeUrl = `/community/${postData.make}/${postData.model}/${postData.production_years}/${postData.specifications}`;
+
+    //     // Navigate to the constructed URL
+    //     this.loading = false;
+    //     this.$router.push({ path: routeUrl });
+    //   } catch (error) {
+    //     // Handle any errors
+    //     console.error('Error making POST request:', error);
+    //   }
+    // }
     async formSubmit() {
       // Data to be sent in the POST request
+      this.loading = true;
       const postData = {
         title: this.formData.title,
         description: this.formData.description,
@@ -148,16 +183,31 @@ export default {
         const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/', postData);
 
         // Handle the response data
+
         console.log(response.data);
-        const routeUrl = `/community/${postData.make}/${postData.model}/${postData.production_years}/${postData.specifications}`;
+        alert("sdas")
+
+        // Construct the base URL with mandatory parameters
+        let routeUrl = `/community/${postData.make}/${postData.model}`;
+
+        // Include production_years if it is not empty
+        if (postData.production_years) {
+          routeUrl += `/${postData.production_years}`;
+        }
+
+        // Add specifications to the URL
+        routeUrl += `/${postData.specifications}`;
 
         // Navigate to the constructed URL
+        this.loading = false;
         this.$router.push({ path: routeUrl });
       } catch (error) {
         // Handle any errors
+        this.loading = false;
         console.error('Error making POST request:', error);
       }
     }
+
   }
 
 };
@@ -166,5 +216,34 @@ export default {
 <style scoped>
 .tarea {
   height: 10rem !important;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  z-index: 9;
+  background: transparent;
+  height: fit-content;
+  width: fit-content;
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: #FF7A00 transparent;
+  animation: spin 1s infinite ease-out;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

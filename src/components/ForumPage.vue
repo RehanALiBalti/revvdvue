@@ -34,7 +34,11 @@
                                     alt="" />
                             </span>
                             <router-link :to="`/CreateCommunity/${make}/${modal}/${production_years}/${specifications}`"
-                                class="signin-btnli signup-btnli">
+                                class="signin-btnli signup-btnli" v-if="production_years">
+                                Create Forum
+                            </router-link>
+                            <router-link :to="`/CreateCommunity/${make}/${modal}/${specifications}`"
+                                class="signin-btnli signup-btnli" v-else>
                                 Create Forum
                             </router-link>
                             <span class="border-bottom-btn border-left-btn position-absolute">
@@ -250,20 +254,45 @@ export default {
         },
     },
     methods: {
-        getNoOfComments(id) {
+        // getNoOfComments(id) {
 
-            const apiUrl = `https://clownfish-app-quehu.ondigitalocean.app/api/comments/count?community_id=${id}`;
+        //     const apiUrl = `https://clownfish-app-quehu.ondigitalocean.app/api/comments/count?community_id=${id}`;
 
-            axios.get(apiUrl)
-                .then(response => {
-                    console.log('No Of Comments:', response.data.count);
-                    this.totalComments = response.data.count
+        //     axios.get(apiUrl)
+        //         .then(response => {
+        //             console.log('No Of Comments:', response.data.count);
+        //             this.totalComments = response.data.count
 
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-        },
+        //         })
+        //         .catch(error => {
+        //             console.error('Error fetching data:', error);
+        //         });
+        // },
+        // async getForumData() {
+        //     try {
+        //         // Make the GET request with query parameters
+        //         const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/communities/filter', {
+        //             params: {
+        //                 make: this.make,
+        //                 model: this.modal,
+        //                 production_years: this.production_years,
+        //                 specifications: this.specifications
+        //             }
+        //         });
+
+        //         // Handle the response data
+        //         console.log("new get response", response.data);
+        //         this.filteredCommunities = response.data
+        //         for (const forum of this.filteredCommunities) {
+        //             await this.getNoOfComments(forum.id);
+        //         }
+
+
+        //     } catch (error) {
+        //         // Handle any errors
+        //         console.error('Error making GET request:', error);
+        //     }
+        // },
         async getForumData() {
             try {
                 // Make the GET request with query parameters
@@ -278,17 +307,33 @@ export default {
 
                 // Handle the response data
                 console.log("new get response", response.data);
-                this.filteredCommunities = response.data
-                for (const forum of this.filteredCommunities) {
-                    await this.getNoOfComments(forum.id);
+                this.filteredCommunities = response.data;
+
+                // Fetch and update comment counts for each community
+                for (const community of this.filteredCommunities) {
+                    await this.getNoOfComments(community);
                 }
-
-
             } catch (error) {
                 // Handle any errors
                 console.error('Error making GET request:', error);
             }
         },
+
+        getNoOfComments(community) {
+            const apiUrl = `https://clownfish-app-quehu.ondigitalocean.app/api/comments/count?community_id=${community.id}`;
+
+            axios.get(apiUrl)
+                .then(response => {
+                    console.log('No Of Comments:', response.data.count);
+                    // this.$set(community, 'comments', response.data.count); // Update the community object
+                    community.comments = response.data.count
+                })
+
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        },
+
 
         fetchCommunityData() {
             const id = this.$route.params.id; // Get the community id from the route parameters
@@ -367,7 +412,7 @@ export default {
     mounted() {
         // this.pageId = this.$route.params.id;
         this.make = this.$route.params.make
-        this.modal = this.$route.params.modal
+        this.modal = this.$route.params.model
         this.production_years = this.$route.params.production_years
         this.specifications = this.$route.params.specifications
         console.log("params data is", this.make, this.modal, this.production_years, this.specifications)

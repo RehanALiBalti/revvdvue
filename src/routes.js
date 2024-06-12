@@ -60,9 +60,14 @@ const routes = [
   // },
 
   {
-    name: "CreateCommunity",
+    name: "CreateCommunityWithproduction_years",
     component: CreateCommunity,
     path: "/createcommunity/:make/:modal/:production_years/:specifications",
+  },
+  {
+    name: "CreateCommunityWithOutproduction_years",
+    component: CreateCommunity,
+    path: "/createcommunity/:make/:modal/:specifications",
   },
   {
     name: "OurCommunity",
@@ -199,11 +204,27 @@ const routes = [
     name: "ForumPage",
     component: ForumPage,
   },
+  // {
+  //   path: "/community/:make/:modal/:production_years/:specifications",
+  //   name: "ForumPage",
+  //   component: ForumPage,
+  // },
+  // {
+  //   path: "/community/:make/:modal/:specifications",
+  //   name: "ForumPage",
+  //   component: ForumPage,
+  // },
   {
-    path: "/community/:make/:modal/:production_years/:specifications",
-    name: "ForumPage",
+    path: "/community/:make/:model/:production_years/:specifications",
+    name: "ForumPageWithYears",
     component: ForumPage,
   },
+  {
+    path: "/community/:make/:model/:specifications",
+    name: "ForumPageWithoutYears",
+    component: ForumPage,
+  },
+
   {
     path: "/stories",
     name: "FeaturedStories",

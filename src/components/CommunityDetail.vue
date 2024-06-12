@@ -73,8 +73,10 @@
                     </div>
                   </div> -->
                   <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
+                    <h1>Pakitan</h1>
                     <button v-if="isloadingLike" class="like-community likeBtn" id="like" @click="addLike" disabled>
                       <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
+
                       <small v-if="isLike">Liked</small>
                       <small v-else>Like</small>
                       <!-- <span class="total-likes">{{ forumData.likes
@@ -82,6 +84,7 @@
                     </button>
                     <button v-else class="like-community likeBtn" id="like" @click="addLike">
                       <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
+
                       <small v-if="isLike">Liked</small>
                       <small v-else>Like</small>
                       <span class="total-likes" v-if="forumData">{{ forumData.likes
@@ -309,8 +312,10 @@
 
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                          <button class="like-community likeBtn" id="like" @click="addLike2(comment.id)">
-                            <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
+
+                          <button class="like-community likeBtn" id="like" @click="addLike3(comment.id)">
+                            <i class="fa-solid fa-thumbs-up"></i>
+
                             <small v-if="isLike">Liked</small>
                             <small v-else>Like</small>
                             <span class="total-likes">{{ comment.likes
@@ -1036,57 +1041,91 @@ export default {
 
 
     // like service created by khang
-    addLike() {
-      this.isloadingLike = true
-      // Check if the like has already been added for this item in this session
-      if (!localStorage.getItem('liked-' + this.id)) {
-        const requestData = {
-          id: this.id
-        };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/likes', requestData)
-          .then(response => {
-            // Handle success
-            console.log('Post request successful:', response.data)
-            this.isloadingLike = false
+    //     addLike() {
+    //       this.isloadingLike = true
+    //       // Check if the like has already been added for this item in this session
+    //       if (!localStorage.getItem('liked-' + this.id)) {
+    //         const requestData = {
+    //           id: this.id
+    //         };
+    //         axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/likes', requestData)
+    //           .then(response => {
+    //             // Handle success
+    //             console.log('Post request successful:', response.data)
+    //             this.isloadingLike = false
 
-            // Set the flag in local storage with the respective ID
-            localStorage.setItem('liked-' + this.id, true);
-            console.log(`liked-${this.id}`)
-            this.isLike = localStorage.getItem(`liked-${this.id}`);
-            this.fetchCommunityData();
-            this.getForumData()
-            this.getComments()
-          })
-          .catch(error => {
-            // Handle error
-            console.error('Error making post request:', error);
-          });
-      } else {
-        // If the like has already been added, you may want to remove the like
-        const requestData = {
-          id: this.id
-        };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/dislikes', requestData)
-          .then(response => {
-            // Handle success
-            console.log('Dislike request successful:', response.data);
-            this.isloadingLike = false
+    //             // Set the flag in local storage with the respective ID
+    //             /*
+    //             localStorage.setItem('liked-' + this.id, true);
+    //             console.log(`liked-${this.id}`)
+    // */
+    //             this.isLike = localStorage.getItem(`liked-${this.id}`);
+    //             this.fetchCommunityData();
+    //             this.getForumData()
+    //             this.getComments()
+    //           })
+    //           .catch(error => {
+    //             // Handle error
+    //             console.error('Error making post request:', error);
+    //           });
+    //       } else {
+    //         // If the like has already been added, you may want to remove the like
+    //         const requestData = {
+    //           id: this.id
+    //         };
+    //         axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/dislikes', requestData)
+    //           .then(response => {
+    //             // Handle success
+    //             console.log('Dislike request successful:', response.data);
+    //             this.isloadingLike = false
 
-            // Remove the flag from local storage
-            localStorage.removeItem('liked-' + this.id);
-            console.log(`Disliked-${this.id}`)
-            this.isLike = false;
-            this.getForumData()
-            this.getComments()
-            this.fetchCommunityData();
-          })
-          .catch(error => {
-            // Handle error
-            console.error('Error making dislike request:', error);
-          });
+    //             // Remove the flag from local storage
+    //             localStorage.removeItem('liked-' + this.id);
+    //             console.log(`Disliked-${this.id}`)
+    //             this.isLike = false;
+    //             this.getForumData()
+    //             this.getComments()
+    //             this.fetchCommunityData();
+    //           })
+    //           .catch(error => {
+    //             // Handle error
+    //             console.error('Error making dislike request:', error);
+    //           });
+    //       }
+    //     },
+
+
+    async addLike() {
+      // Indicate loading state
+      this.loading = true;
+      console.log("id:", this.pageId, "type", "sub:", this.sub)
+      // Create FormData instance
+      const formData = new FormData();
+      formData.append('id', this.pageId);
+      formData.append('type', "community");
+      formData.append('sub', this.sub);
+
+      try {
+        // Make the POST request with the FormData instance
+        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/likes/like', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+        // Handle the response data
+        console.log(response.data);
+
+        // Additional logic after successful request
+        this.loading = false;
+        // Navigate or update the UI as needed
+      } catch (error) {
+        // Handle any errors
+        this.loading = false;
+        console.error('Error making POST request:', error);
       }
-    },
-
+    }
+    ,
     addLike2(cid) {
       console.log("click comment with", cid)
       // alert(cid)
@@ -1096,7 +1135,7 @@ export default {
         const requestData = {
           id: cid
         };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/likes', requestData)
+        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/likes', requestData)
           .then(response => {
             // Handle success
             console.log('Post request successful:', response.data)
@@ -1104,7 +1143,7 @@ export default {
 
             // Set the flag in local storage with the respective ID
             localStorage.setItem('cliked-' + this.id, true);
-            console.log(`lciked-${this.id}`)
+            console.log(`cliked-${this.id}`)
             this.isLike = localStorage.getItem(`cliked-${this.id}`);
             this.fetchCommunityData();
             this.getForumData()
@@ -1118,7 +1157,7 @@ export default {
         const requestData = {
           id: cid
         };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/dislikes', requestData)
+        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/dislikes', requestData)
           .then(response => {
             // Handle success
             console.log('Dislike request successful:', response.data);
