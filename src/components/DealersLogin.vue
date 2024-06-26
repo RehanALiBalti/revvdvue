@@ -6,10 +6,9 @@
                 <div class="form-content-home1">
 
                     <form id="subscribe-form" @submit.prevent="submitForm">
-                        <h2 class="form-title">{{ $t('OnlineRegistrationForm') }}<span class="form-span"> {{
-                        $t('ForDealers') }} </span>
+                        <h2 class="form-title">{{ $t('OnlineRegistrationForm') }}
                         </h2>
-                        <small class="text-white">{{ $t('AlreadyRegisteredNote') }}</small>
+                        <!-- <small class="text-white">{{ $t('AlreadyRegisteredNote') }}</small> -->
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
@@ -33,17 +32,17 @@
                                 <input v-model="formData.zipCode" id="zipCode" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
-                            <div class="col-md-3">
+                            <!-- <div class="col-md-3">
                                 <label for="street2" class="form-label">{{ $t('Street2') }} </label>
                                 <input v-model="formData.street2" id="street2" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div>
+                            </div> -->
                             <div class="col-md-3">
                                 <label for="city" class="form-label">{{ $t('City') }}</label>
                                 <input v-model="formData.city" id="city" type="text" class="form-control form-input"
                                     :placeholder="$t('Enter here')" />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="country" class="form-label">{{ $t('Country') }}</label>
                                 <input v-model="formData.country" id="country" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
@@ -60,18 +59,14 @@
                                 <input v-model="formData.prefix1" id="prefix1" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div> -->
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
                                 <input v-model="formData.phone1" id="phone1" type="text" class="form-control form-input"
                                     :placeholder="$t('Enter here')" />
                             </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
-                                <!-- <select v-model="formData.intlPrefix2" id="intlPrefix2" class="form-select form-input">
-                                    <option value="germany(+49)">Germany(+49)</option>
-                                    <option value="pakistan(+92)">pakistan(+92)</option>
-                                  
-                                </select> -->
+                               
                                 <input v-model="formData.intlPrefix2" id="intlPrefix2" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
@@ -79,19 +74,15 @@
                                 <label for="prefix2" class="form-label">{{ $t('Prefix1') }}</label>
                                 <input v-model="formData.prefix2" id="prefix2" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div>
-                            <div class="col-md-5">
+                            </div> -->
+                            <div class="col-md-6">
                                 <label for="fax" class="form-label">{{ $t('Fax') }}</label>
                                 <input v-model="formData.fax" id="fax" type="text" class="form-control form-input"
                                     :placeholder="$t('Enter here')" />
                             </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
-                                <!-- <select v-model="formData.intlPrefix3" id="intlPrefix3" class="form-select form-input">
-                                    <option value="germany(+49)">Germany(+49)</option>
-                                    <option value="pakistan(+92)">pakistan(+92)</option>
-
-                                </select> -->
+                              
                                 <input v-model="formData.intlPrefix3" id="fax" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
                             </div>
@@ -99,8 +90,8 @@
                                 <label for="prefix3" class="form-label">{{ $t('Prefix1') }}</label>
                                 <input v-model="formData.prefix3" id="prefix3" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div>
-                            <div class="col-md-5">
+                            </div> -->
+                            <div class="col-md-6">
                                 <label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
                                 <input v-model="formData.mobilePhone" id="mobilePhone" type="text"
                                     class="form-control form-input" :placeholder="$t('Enter here')" />

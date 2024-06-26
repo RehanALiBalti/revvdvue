@@ -6,7 +6,11 @@
       <div class="row">
         <div class="col-12">
           <div class="heading-car">
-            <h1 class="banner-title">{{ $t("ourCommunity") }}</h1>
+            <!-- <h1 class="banner-title">{{ $t("ourCommunity") }}</h1> -->
+            <h1 class="banner-title">Car Community Threads </h1>
+            <small class="text-center text-white">Check our community threads to get answers for your car related
+              questions. You
+              can search by car make, model and also by thread category. </small>
           </div>
 
         </div>
@@ -103,9 +107,9 @@
                 </div>
                 <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
                   <div class="customSelect w-100">
-                    <input type="text" class="form-select" :placeholder="$t('Specification')" v-model="specfications"
+                    <input type="text" class="form-select" :placeholder="$t('Thread Category')" v-model="specfications"
                       @click="toggleOpengs" v-if="smodel == ''" disabled @input="filterSpecificationOptions">
-                    <input type="text" class="form-select" :placeholder="$t('Specification')" v-model="specfications"
+                    <input type="text" class="form-select" :placeholder="$t('Thread Category')" v-model="specfications"
                       @click="toggleOpengs" @input="filterSpecificationOptions" v-else>
                     <!-- <ul v-show="isOpengs" class="options-list" v-if="specifctionOptions.length > 0">
                       <li v-for="(value, index) in specifctionOptions" :key="index"

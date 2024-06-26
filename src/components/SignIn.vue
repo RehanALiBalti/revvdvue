@@ -105,7 +105,7 @@
 
           <div class="mt-4 py-2">
             <h5 class="card-title"><span class="choose"> Email or Password is Incorrect </span></h5>
-            <p class="text-white">Please Varify Email And Password</p>
+            <p class="text-white">Please Verify Email And Password</p>
           </div>
 
 

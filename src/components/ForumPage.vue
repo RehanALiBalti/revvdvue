@@ -10,11 +10,11 @@
                         <h1 class="banner-title">{{ communityData.production_years }}</h1>
                     </div> -->
                     <div class="heading-car">
-                        <h1 class="banner-title">
+                        <!-- <h1 class="banner-title">
                             {{ make }} {{ modal }}
-                        </h1>
-                        <h1 class="banner-title">{{ production_years }}</h1>
-                        <h1 class="banner-title">{{ specifications }}</h1>
+                        </h1> -->
+                        <!-- <h1 class="banner-title">{{ production_years }}</h1> -->
+                        <!-- <h1 class="banner-title fh2">{{ specifications }}</h1> -->
                     </div>
                     <div class="btns-community mb-5">
                         <div class="btn-div-create-forum position-relative">
@@ -35,7 +35,7 @@
                             </span>
                             <router-link :to="`/CreateCommunity/${make}/${modal}/${production_years}/${specifications}`"
                                 class="signin-btnli signup-btnli" v-if="production_years">
-                                Create Forum
+                                Create New Thread
                             </router-link>
                             <router-link :to="`/CreateCommunity/${make}/${modal}/${specifications}`"
                                 class="signin-btnli signup-btnli" v-else>
@@ -62,12 +62,14 @@
                 <div class="col-12">
                     <nav aria-label="breadcrumb" class="nav-breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <router-link class="breadcrumb-item-a-tag" to="/home">Home</router-link>
+                            <li class="breadcrumb-item fh2">
+                                {{ make }}
                             </li>
-                            <li class="breadcrumb-item">
-                                <router-link class="breadcrumb-item-a-tag" to="/ourcommunity">Forum</router-link>
+                            <li class="breadcrumb-item fh2">
+                                {{ modal }}
                             </li>
+                            <li class="breadcrumb-item fh2">{{ production_years }}</li>
+                            <li class="breadcrumb-item fh2">{{ specifications }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -101,11 +103,11 @@
                                 <div class="list-community-add">
                                     <div class="like-community">
                                         <i class="fa-solid fa-thumbs-up"></i><span class="total-likes">{{
-                                community.likes }}</span>
+                                    community.likes }}</span>
                                     </div>
                                     <div class="like-community">
                                         <i class="fa-solid fa-comments"></i><span class="total-likes">{{
-                                community.comments }}</span>
+                                    community.comments }}</span>
                                     </div>
                                     <div class="like-community">
                                         <i class="fa-solid fa-eye"></i><span class="total-likes">{{ community.views

@@ -9,7 +9,7 @@
 
             <div class="row">
               <div class="col-md-6">
-                <label for="name" class="form-label">Nick Name</label>
+                <label for="name" class="form-label">Full Name</label>
                 <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
                 <div v-if="formErrors.name" class="text-danger">

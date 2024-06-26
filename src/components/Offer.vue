@@ -1072,9 +1072,10 @@
 		<div class="banner-content">
 			<!-- <h1 class="banner-title">Changing the Car World</h1> -->
 			<p class="banner-para">
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-				Lorem Ipsum has been the industry's standard dummy text ever since
-				the 1500s,
+				Welcome to our ultimate platform for car enthusiasts! Explore our five core modules: a marketplace for
+				buying and selling modified and super cars, vibrant community forum threads for engaging with fellow
+				enthusiasts, a car shops finder to locate the best maintenance and upgrade services, and a parts
+				marketplace for discovering a wide selection of vehicle components.
 			</p>
 		</div>
 	</div>
@@ -1166,7 +1167,7 @@ export default {
 	position: absolute;
 	width: 100%;
 	top: 0;
-	height:110%
+	height: 110%
 }
 
 

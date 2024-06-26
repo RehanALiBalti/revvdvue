@@ -2,11 +2,11 @@
     <div class="container mt-5">
         <div class="map-desc">
             <div class="map-para-div">
-                <p class="map-para">
+                <!-- <p class="map-para">
                     Lorem Ipsum is simply dummy text of the printing & typesetting
                     industry. Lorem Ipsum has been the industry's standard dummy text ever
                     since the 1500s,
-                </p>
+                </p> -->
             </div>
             <ul class="icons-list">
                 <li class="icons-list-item">

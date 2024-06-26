@@ -140,7 +140,7 @@
       <!-- @submit.prevent="retrieveCommunities" -->
       <form id="subscribe-form" @submit.prevent="SubmitStory">
         <h2 class="form-title">
-          {{ $t('Share your story !') }}
+          {{ $t('Share your story ') }}
           <span class="form-span">{{ $t('Now') }} !</span>
         </h2>
         <div class="row">
@@ -163,7 +163,7 @@
 
           </div>
           <div class="col-md-6">
-            <label for="country" class="form-label">Modal
+            <label for="country" class="form-label">Model
             </label>
             <div class="customSelect w-100" @blur="isOpenm = false">
               <input type="text" class=" form-select" v-model="formData.model" :placeholder="$t('Select a Model')"
@@ -207,7 +207,7 @@
             </div>
           </div>
           <div class="col-md-12">
-            <label for="name" class="form-label"> Tell us your car story together. </label>
+            <label for="name" class="form-label"> Tell us your car story together </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
               v-model="formData.story" rows="4"></textarea>
 
@@ -330,9 +330,9 @@
               </div>
               <div class="car-content-desc">
                 <h6 class="car-content-title">Koenigsegg agera one:1</h6>
-                <p class="car-content-para">
+                <!-- <p class="car-content-para">
                   Lorem 9. Ipsum is simply, dummy text is that, Warrington, WA4
-                </p>
+                </p> -->
               </div>
             </div>
 
@@ -342,7 +342,7 @@
               </router-link>
             </div>
 
-            <ul class="icons-list footer-icons-list my-5">
+            <!-- <ul class="icons-list footer-icons-list my-5">
               <li class="icons-list-item">
                 <router-link class="icons-list-atag" to="https://www.facebook.com/revvdout?mibextid=LQQJ4d"
                   target="_blank">
@@ -368,7 +368,7 @@
                   <i class="fab fa-instagram"></i>
                 </router-link>
               </li>
-            </ul>
+            </ul> -->
           </div>
           <!-- Grid column -->
 
@@ -376,7 +376,7 @@
           <div class="col-12 col-md-6 col-lg-4 col-xl-4 mx-auto mb-4">
             <!-- Links -->
             <h5 class="h5-title text-capitalize mb-4">{{ $t('contactUs') }}:</h5>
-            <div class="footer-loction-div">
+            <!-- <div class="footer-loction-div">
               <svg xmlns="http://www.w3.org/2000/svg" class="footer-location-icon" width="12" height="17"
                 viewBox="0 0 12 17">
                 <path id="Icon_material-location-on" data-name="Icon material-location-on"
@@ -387,9 +387,9 @@
             </div>
             <p class="text-reset">
               Lorem 9. Ipsum is simply, dummy text is that, Warrington, WA4
-            </p>
+            </p> -->
 
-            <div class="footer-loction-div">
+            <!-- <div class="footer-loction-div">
               <svg xmlns="http://www.w3.org/2000/svg" class="footer-location-icon" width="16" height="16"
                 viewBox="0 0 16 16">
                 <path id="Icon_ionic-ios-time" data-name="Icon ionic-ios-time"
@@ -397,7 +397,7 @@
                   transform="translate(-3.375 -3.375)" fill="#f95f19" />
               </svg>
               <h6 class="footer-main-addresss">{{ $t('openingHours') }}</h6>
-            </div>
+            </div> -->
 
             <div class="footer-loction-div">
               <svg xmlns="http://www.w3.org/2000/svg" class="footer-location-icon" width="18" height="14.4"
@@ -406,9 +406,9 @@
                   d="M19.2,6H4.8A1.8,1.8,0,0,0,3.009,7.8L3,18.6a1.805,1.805,0,0,0,1.8,1.8H19.2A1.805,1.805,0,0,0,21,18.6V7.8A1.805,1.805,0,0,0,19.2,6Zm0,3.6L12,14.1,4.8,9.6V7.8L12,12.3l7.2-4.5Z"
                   transform="translate(-3 -6)" fill="#f95f19" />
               </svg>
-              <h6 class="footer-main-addresss">example@info.com</h6>
+              <h6 class="footer-main-addresss">Info@revvdout.com </h6>
             </div>
-
+            <!-- 
             <div class="footer-loction-div">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                 <path id="Icon_awesome-phone-alt" data-name="Icon awesome-phone-alt"
@@ -416,7 +416,7 @@
                   transform="translate(0 0)" fill="#f95f19" />
               </svg>
               <h6 class="footer-main-addresss">+0-000-000-0000</h6>
-            </div>
+            </div> -->
           </div>
           <!-- Grid column -->
 
@@ -424,21 +424,21 @@
           <div class="col-12 col-md-6 col-lg-4 col-xl-4 mx-auto mb-4">
             <!-- Links -->
             <h5 class="h5-title text-capitalize mb-4">{{ $t('information') }}:</h5>
-            <p>
+            <!-- <p>
               <router-link to="#!" class="footer-main-addresss">{{ $t('home') }}</router-link>
-            </p>
+            </p> -->
             <p>
               <router-link to="#!" class="footer-main-addresss">{{ $t('aboutUs') }}</router-link>
             </p>
-            <p>
+            <!-- <p>
               <router-link to="#!" class="footer-main-addresss">{{ $t('carListing') }}</router-link>
-            </p>
-            <p>
+            </p> -->
+            <!-- <p>
               <router-link to="#!" class="footer-main-addresss">{{ $t('faq') }}</router-link>
             </p>
             <p>
               <router-link to="#!" class="footer-main-addresss">{{ $t('contactUs') }}</router-link>
-            </p>
+            </p> -->
           </div>
           <!-- Grid column -->
         </div>
@@ -1325,7 +1325,8 @@ export default {
 .cardOverlay {
 
   position: absolute;
-  height: 65%;
+  /* height: 65%; */
+  height: 100%;
   width: 96%;
 
   /* background: url('../../public/images/layer2.png');
