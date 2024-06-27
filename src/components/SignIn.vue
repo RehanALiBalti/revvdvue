@@ -236,7 +236,7 @@ export default {
       try {
         const response = await Auth.federatedSignIn({ provider: 'Google' });
         // Handle successful login
-        console.log('Google login response:', response);
+        await console.log('Google login response:', response);
       } catch (error) {
         // Handle login error
         alert.error('Google login error:', error);
