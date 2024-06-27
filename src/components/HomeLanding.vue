@@ -1347,7 +1347,7 @@ export default {
 
   position: absolute;
   /* height: 65%; */
-  height: 100%;
+  height: 102%;
   width: 96%;
 
   /* background: url('../../public/images/layer2.png');

@@ -400,7 +400,9 @@ export default {
                     //                this.submitProfileForm()
                     localStorage.setItem('login', true);
                     // window.location.reload();
-                    this.$router.push("/profile");
+                    // this.$router.push("/profile");
+
+                    this.$router.push({ name: 'UserProfile' })
                   } else {
                     this.isModalOpenFail = true
                     this.errorMessage = data.error

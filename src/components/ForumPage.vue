@@ -509,6 +509,10 @@ export default {
 
 <style scoped>
 /* Your CSS styles here */
+.community-section {
+    min-height: 60vh
+}
+
 .fh2 {
     color: #F95F19;
     font-size: 18px;
