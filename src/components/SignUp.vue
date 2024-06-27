@@ -249,7 +249,7 @@ export default {
   },
   computed: {
     loggedIn() {
-
+      console.log("auth check", this.$store.state.auth)
       return this.$store.state.auth;
 
     },
@@ -317,7 +317,7 @@ export default {
 
   mounted() {
     console.log(this.loggedIn)
-    console.log(this.user)
+    // console.log(this.user)
     // if (this.loggedIn) {
     //   this.$router.push("/profile");
     // }
@@ -400,7 +400,7 @@ export default {
                     //                this.submitProfileForm()
                     localStorage.setItem('login', true);
                     // window.location.reload();
-                    // this.$router.push("/profile");
+                    this.$router.push("/profile");
                   } else {
                     this.isModalOpenFail = true
                     this.errorMessage = data.error

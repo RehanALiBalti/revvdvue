@@ -5,6 +5,7 @@
 
       <div class="col-md-6 m-auto">
         <div class="form-content-home1">
+
           <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title"> {{ $t('signIn') }}</h2>
             <div class="signIn-div my-5">
@@ -23,6 +24,7 @@
               <!-- <button class="btn google-btn">
                 <i class="fa-brands fa-apple"></i>Apple
               </button> -->
+
             </div>
             <div class="row">
               <div class="col-md-12">
@@ -52,8 +54,12 @@
 
               <div class="col-md-12">
                 <p id="errormsg"></p>
+
               </div>
               <div class="col-md-12">
+                <div v-if="loading" class="d-flex justify-content-center ">
+                  <div class="box"></div>
+                </div>
                 <div class="list-item-btn position-relative submit-btn-div">
                   <span class="border-bottom-btn border-top-btn position-absolute">
                     <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
@@ -130,6 +136,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       isModalOpen: false,
       formData: {
         email: "",
@@ -182,6 +189,7 @@ export default {
     ...mapActions(['signup']),
     async submitProfileForm() {
       try {
+        this.loading = true
         // Make a POST request to the API endpoint
         const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', { email: this.formData.email });
 
@@ -193,13 +201,16 @@ export default {
         const role = response.data[0].role
         // this.$store.signup({ email, name, role });
         console.log("data", { email, name, role })
-        this.$store.dispatch('auth/signup', { email, name, role });
+        await this.$store.dispatch('auth/signup', { email, name, role });
 
+        this.loading = false
 
         // You can perform further actions here, such as redirecting the user or showing a success message
       } catch (error) {
         // Handle error
         console.error('Error submitting form data:', error);
+        this.loading = false
+
         // You can show an error message to the user or handle the error in any other appropriate way
       }
     },
@@ -309,5 +320,24 @@ export default {
   border: 1px solid #1a202c;
   border-radius: 5px;
   outline: 0;
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: #FF7A00 transparent;
+  animation: spin 1s infinite ease-out;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

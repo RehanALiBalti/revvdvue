@@ -165,7 +165,7 @@
                     </router-link>
                   </li>
                   <li data-code="signOut">
-                    <router class="userListATag" @click="logout">
+                    <router class="userListATag" @click="handlelogout">
                       {{ $t('signOut') }}
                     </router>
                   </li>
@@ -223,6 +223,8 @@ import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
+import { mapActions } from 'vuex';
+
 export default {
   setup() {
     const { state: profileImageState, setProfileImage } = useProfileImage();
@@ -441,12 +443,14 @@ export default {
         this.issOpen = false;
       }
     },
-    async logout() {
+    ...mapActions(['logout']),
+    async handlelogout() {
       try {
         this.isLogin = false;
         this.changeName("");
         //  this.changeProfileImage("");
         await Auth.signOut();
+        this.logout();
         localStorage.setItem('login', false);
         this.$router.push("/signin");
 

@@ -3,8 +3,8 @@ import { createStore } from "vuex";
 
 const store = createStore({
   state: {
-    email: "danish@gmail.com",
-    name: "danasd",
+    email: "",
+    name: "",
     role: null,
   },
   mutations: {
