@@ -11,6 +11,9 @@
             <small class="text-center text-white">Check our community threads to get answers for your car related
               questions. You
               can search by car make, model and also by thread category. </small>
+            <small class="text-center text-white">
+              If you can’t find the topic, just open a new thread!
+            </small>
           </div>
 
         </div>

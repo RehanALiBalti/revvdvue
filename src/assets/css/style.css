@@ -243,20 +243,20 @@ video::-webkit-media-controls {
 }
 
 .list-item-btn.position-relative.submit-btn-div {
-	width: 154px;
+	width: 130px;
 	margin: 2rem auto;
 }
 
 .signin-btnli {
 	text-decoration: none;
 	outline: none;
-	width: 154px;
-	height: 50px;
+	width: 130px;
+	height: 40px;
 	background-color: rgba(249, 95, 25, 0.3);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 14px;
+	font-size: 10px;
 	font-weight: 400;
 	color: #ffffff;
 	transition: all 0.3s ease-in-out;
@@ -661,7 +661,7 @@ video::-webkit-media-controls {
 
 .form-control.input-control {
 	width: 100%;
-	height: 45px;
+	height: 35px;
 	background-color: #031726;
 	border: 1px solid #1a202c;
 	transform: skew(-40deg, 0deg);
@@ -674,7 +674,7 @@ video::-webkit-media-controls {
 }
 
 .form-control.input-control::placeholder {
-	font-size: 20px;
+	font-size: 14px;
 	font-weight: 400;
 	color: #ffffff;
 	font-family: "Gruppo", sans-serif;
@@ -798,7 +798,7 @@ a {
 }
 
 .banner-para {
-	font-size: 25px;
+	font-size: 16px;
 	font-weight: 400;
 	color: #ffffff;
 	text-align: center;
@@ -929,7 +929,7 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 }
 
 .form-title {
-	font-size: 42px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #f95f19;
 }
@@ -940,7 +940,7 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 
 .form-label {
 	color: #ffffff;
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: 400;
 	padding-top: 0.9rem;
 }
@@ -958,7 +958,7 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 
 .form-select.form-control.form-input,
 .form-control {
-	height: 55px !important;
+	height: 35px !important;
 	border-radius: 5px !important;
 	background-color: #031726 !important;
 	border: 1px solid #1a202c !important;
@@ -982,7 +982,7 @@ textarea.form-control {
 .form-control::placeholder,
 .form-control:focus {
 	font-family: "Gruppo", sans-serif !important;
-	font-size: 18px !important;
+	font-size: 14px !important;
 	font-weight: 400 !important;
 	color: #c5c5c5 !important;
 }
@@ -1049,7 +1049,7 @@ textarea.form-control {
 
 .map-para {
 	width: 100%;
-	font-size: 18px;
+	font-size: 12px;
 	font-weight: 400;
 	color: #eeeeee;
 	font-family: "Lato", sans-serif;
@@ -1070,8 +1070,8 @@ textarea.form-control {
 }
 
 .icons-list .icons-list-item .icons-list-atag {
-	width: 100px;
-	height: 45px;
+	width: 60px;
+	height: 35px;
 	background-color: #031726;
 	display: flex;
 	justify-content: center;
@@ -1227,14 +1227,14 @@ a.footer-main-addresss:hover {
 }
 
 .card-title {
-	font-size: 26px;
+	font-size: 16px;
 	font-weight: bold;
 	color: #ffffff;
 	margin-bottom: 1.5rem;
 }
 
 .card-text {
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 400;
 	color: #ffffff;
 	margin-bottom: 1.5rem;
@@ -1299,7 +1299,7 @@ a.footer-main-addresss:hover {
 
 .card-title .choose {
 	color: #f95f19;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .modal-backdrop.show {
@@ -1359,7 +1359,7 @@ a.footer-main-addresss:hover {
 }
 
 .list-item-btn.position-relative.load-more-div.proceed-div {
-	max-width: 220px;
+	max-width: 150px;
 }
 
 .fas.fa-times {
@@ -1590,7 +1590,7 @@ select.form-select.form-control.form-input.sorting-select option {
 }
 
 .card-title-h2 {
-	font-size: 24px;
+	font-size: 16px;
 	font-weight: 400;
 	color: #ffffff;
 }
@@ -1705,7 +1705,7 @@ select.form-select.form-control.form-input.sorting-select option {
 }
 
 .map-desc.new-width .map-para {
-	font-size: 16px;
+	font-size: 12px;
 }
 
 /*--thank you pop starts here--*/
@@ -1856,8 +1856,8 @@ a.termsService {
 
 .pagination .page-item .page-link[aria-label="Previous"],
 .pagination .page-item .page-link[aria-label="Next"] {
-	width: 45px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	background-color: #f95f19;
 	border-radius: 5px;
 	display: flex;
@@ -1875,8 +1875,8 @@ a.termsService {
 }
 
 .pagination .page-item .page-link {
-	width: 45px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	border-radius: 5px;
 	display: flex;
 	justify-content: center;
@@ -1915,7 +1915,7 @@ a.termsService {
 /* video btn css end */
 
 .signin-btnli.Start.Engine.load-more-btn.proceed-btn.width-set {
-	max-width: 220px;
+	max-width: 150px;
 }
 
 .banner-title.termsOfService-title {
@@ -2154,7 +2154,7 @@ a:hover {
 	}
 
 	.banner-para {
-		font-size: 30px;
+		font-size: 16px;
 		width: 100%;
 		max-width: 1200px;
 	}
@@ -2169,7 +2169,7 @@ a:hover {
 	}
 
 	.form-title {
-		font-size: 60px;
+		font-size: 24px;
 	}
 }
 
@@ -2179,7 +2179,7 @@ a:hover {
 	}
 
 	.banner-para {
-		font-size: 20px;
+		font-size: 16px;
 	}
 
 	.logo-R-div {
@@ -2192,11 +2192,11 @@ a:hover {
 	}
 
 	.form-title {
-		font-size: 36px;
+		font-size: 24px;
 	}
 
 	.form-label {
-		font-size: 16px;
+		font-size: 14px;
 	}
 
 	.form-select.form-control.form-input,
@@ -2208,7 +2208,7 @@ a:hover {
 	.form-control.input-control::placeholder,
 	.form-control::placeholder,
 	.form-select.form-control.form-input::placeholder {
-		font-size: 16px;
+		font-size: 14px;
 	}
 }
 

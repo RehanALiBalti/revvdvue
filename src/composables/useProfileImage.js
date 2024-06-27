@@ -1,8 +1,7 @@
 import { reactive } from "vue";
 
 const state = reactive({
-  profileImage:
-    "https://clownfish-app-quehu.ondigitalocean.app/users/default.jpg", // Default image
+  profileImage: "/images/prof.png", // Default image
 });
 
 export const useProfileImage = () => {

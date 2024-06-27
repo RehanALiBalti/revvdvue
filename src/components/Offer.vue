@@ -99,7 +99,7 @@
 						<div class="card-body d-flex flex-column justify-content-center align-items-center">
 							<h5 class="card-title">{{ $t('community') }}</h5>
 							<p class="card-text ctext">
-								Lorem Ipsum is simply dummy text of the printing and
+								Ask, share and connect with fellow enthusiasts.
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
 								<div class="list-item-btn position-relative load-more-div">

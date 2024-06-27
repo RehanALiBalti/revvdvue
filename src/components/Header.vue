@@ -221,8 +221,16 @@ import axios from 'axios';
 import { useProfileImage } from '@/composables/useProfileImage';
 export default {
   setup() {
-    const { state } = useProfileImage();
-    return { state };
+    const { state, setProfileImage } = useProfileImage();
+
+    const changeProfileImage = (newSrc) => {
+      setProfileImage(newSrc);
+    };
+    return {
+      state,
+      changeProfileImage
+    };
+
   },
   name: "HeaderItem",
 
@@ -256,7 +264,9 @@ export default {
       return this.$route.path !== '/';
     }
   },
-  created() {
+  async created() {
+    await this.fetchProfileData()
+    await this.fetchproData()
     const storedIsLogin = localStorage.getItem('login');
     if (storedIsLogin !== null) {
       this.isLogin = JSON.parse(storedIsLogin);
@@ -273,8 +283,7 @@ export default {
       console.log("nooo", this.issOpen)
       this.closeDropdownm()
 
-      this.fetchProfileData()
-      this.fetchproData()
+
       next();
       this.issOpen = false;
     });
@@ -361,7 +370,7 @@ export default {
     async fetchproData() {
       const myid = this.sub
       const url = 'https://clownfish-app-quehu.ondigitalocean.app/api/users/sub?sub=' + myid;
-      console.log("jaloru", myid, url);
+      console.log("jaloru header", myid, url);
       try {
         // Make the GET request with query parameters
         const response = await axios.get(url);
@@ -369,7 +378,10 @@ export default {
         // Handle the response data
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.image = response.data.image
-        console.log("the image of user dloru", this.image)
+        let imageUrl = "https://clownfish-app-quehu.ondigitalocean.app/users/" + this.image;
+
+        this.changeProfileImage(imageUrl)
+        console.log("the image of user dloru header", this.image)
         //				this.image = response.data[0].image
       } catch (error) {
         // Handle any errors

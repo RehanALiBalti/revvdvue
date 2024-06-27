@@ -89,11 +89,11 @@ export default {
     this.formData.pageId = this.$route.params.id;
     this.formData.make = this.$route.params.make;
     this.formData.model = this.$route.params.modal
-    console.log("modal", this.formData.model)
+    // console.log("modal", this.formData.model)
     this.formData.production_years = this.$route.params.production_years
     this.formData.specifications = this.$route.params.specifications
-    console.log("pyaer", this.formData.production_years)
-    alert("pyear", this.formData.production_years)
+    // console.log("pyaer", this.formData.production_years)
+    // alert("pyear", this.formData.production_years)
 
   },
   methods: {
@@ -185,7 +185,7 @@ export default {
         // Handle the response data
 
         console.log(response.data);
-        alert("sdas")
+        // alert("sdas")
 
         // Construct the base URL with mandatory parameters
         let routeUrl = `/community/${postData.make}/${postData.model}`;

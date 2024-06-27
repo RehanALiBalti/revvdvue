@@ -1,6 +1,6 @@
 <template>
 
-  <section class="communityDetails-section my-5">
+  <section class="communityDetails-section m-2">
     <div class="container">
       <div class="">
         <div v-if="loading" class="d-flex justify-content-center">
@@ -18,17 +18,30 @@
 
 
               </div> -->
-              <div class="col-md-12">
-                <h1 class="card-title-h2 community-title" v-if="forumData">
-                  {{ forumData.make }}
-                  {{ forumData.model }}
-                </h1>
-                <h1 class="card-title-h2 community-title" v-if="forumData">
+              <div class="col-md-12 d-flex justify-content-betweeen align-items-center">
 
-                  {{ forumData.production_years }}
-                  {{ forumData.specifications }}
+                <div class="row mb-1 w-100">
 
-                </h1>
+                  <div class="col-md-4 align-self-end">
+                    <h1 class="card-title-h2 community-title fh2 m-0" v-if="forumData">
+                      {{ forumData.make }}
+                      {{ forumData.model }}
+                      {{ forumData.production_years }}
+                      {{ forumData.specifications }}
+                    </h1>
+                    <!-- <h1 class="card-title-h2 community-title fh2" v-if="forumData">
+
+                      {{ forumData.production_years }}
+                      {{ forumData.specifications }}
+
+                    </h1> -->
+                  </div>
+                  <div class="col-md-8 d-flex justify-content-start align-items-center">
+                    <input type="text" name="" id="" class="form-control formSearch" placeholder="search"
+                      v-model="search" @input="applyFilter">
+                  </div>
+
+                </div>
               </div>
               <div class=" col-md-12 my-2 ">
                 <div class=" card-title-div communityDetailsMain p-3">
@@ -37,56 +50,16 @@
                     <h1 class="card-title-h2 community-title" v-if="forumData && forumData.title">{{ forumData.title
                       }}
                     </h1>
-                    <!-- <div>
-                      <h2 class="card-title-h2 community-title text-start">
 
-
-                        {{ communityData.make }} <span> {{ communityData.model }}</span>
-                      </h2>
-                    </div> -->
 
                   </div>
-                  <!-- <div class=" d-flex card-title-h2 justify-content-start">
 
-                    <p class=" my-0 text-end">
-                      {{ communityData.production_years }}
-                    </p>
-                    <p class=" community-title card-title-h2 my-0 ms-2 text-end"> {{
-          communityData.generation }}</p>
-                  </div> -->
                   <div>
-                    <p class=" community-title my-0 ms-2 text-white" v-if="forumData && forumData.description"> {{
+                    <p class=" map-para my-0 ms-2 text-white" v-if="forumData && forumData.description"> {{
           forumData.description }}</p>
                   </div>
-                  <!-- <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
-                    <button v-if="isloadingLike" class="like-community likeBtn" id="like" @click="addLike" disabled>
-                      <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
-                      <small v-if="isLike">Liked</small>
-                      <small v-else>Like</small>
-                      <span class="total-likes">{{ communityData.likes
-                        }}</span>
-                    </button>
-                    <button v-else class="like-community likeBtn" id="like" @click="addLike">
-                      <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
-                      <small v-if="isLike">Liked</small>
-                      <small v-else>Like</small>
-                      <span class="total-likes">{{ communityData.likes
-                        }}</span>
-                    </button>
 
-                    <div class="like-community">
-                      <i class="fa-solid fa-comments"></i>
-                      <small>Comments</small>
-
-                      <span class="total-likes">{{ this.comments.length }}</span>
-                    </div>
-                    <div class="like-community">
-                      <i class="fa-solid fa-eye"></i>
-                      <small>Views</small>
-                      <span class="total-likes">{{ communityData.views }}</span>
-                    </div>
-                  </div> -->
-                  <div class="list-community-add d-flex justify-content-start  flex-wrap mt-5 ">
+                  <div class="list-community-add d-flex justify-content-start  flex-wrap mt-2 ">
 
                     <button v-if="isloadingLike" class="like-community likeBtn" id="like" @click="addLike" disabled>
                       <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
@@ -127,184 +100,20 @@
 
             </div>
           </div>
-          <div v-if="comments != ''" class="communityDetails-bg mt-3 communityDetailsMain">
+          <div v-if="comments != ''" class="communityDetails-bg mt-1 communityDetailsMain">
             <div class="img-communityDetails-div">
 
 
             </div>
-            <div class="communityDetails-content pt-4 pb-0 mb-0">
 
-            </div>
             <div class="communityDetails-chatContent" id="chat-messages" ref="commentsContainer">
 
-              <!-- <div v-for="comment in comments" :key="comment.comments">
 
-                <div v-if="comment.user_email == user_email" class="d-flex flex-column position-relative">
-                  <div class="d-flex justify-content-end align-items-center me-2">
-                    <small class="uName">{{ comment.user_name }}</small>
-                  </div>
-                  <div class="receiver-chats " v-if="comments.length">
-                    <p class="receiver-chats-para">
-                      {{ comment.comments }}
-                    </p>
-                  
-                    <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image" class="CommentImage"
-                      @click="openViewer2(comment.image)" />
-
-                  </div>
-                  <p v-else>No comments to display</p>
-                
-
-
-
-                </div>
-                <div v-else class="d-flex flex-column">
-                  <div class="d-flex justify-start align-items-center ms-2">
-                    <small class="uName">{{ comment.user_name }}</small>
-                  </div>
-                  <div class="sender-chats" v-if="comments.length">
-                    <div>
-                      <p class="sender-chats-para">
-                        {{ comment.comments }}
-                      </p>
-                      <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
-                        class="CommentImage" @click="openViewer(comment.image)" />
-                    </div>
-                  </div>
-                  <p v-else>No comments to display</p>
-             
-
-                </div>
-              </div> -->
-              <div v-for=" comment  in  comments " :key="comment.id">
+              <div v-for=" comment  in  filteredComments " :key="comment.id">
                 <div class="d-flex flex-column position-relative">
                   <div class="d-flex justify-content-end align-items-center me-2">
-                    <!-- <small class="uName">{{ comment.nickname }}</small> -->
-                  </div>
-                  <!-- <div class="receiver-chats" v-if="comments.length">
-
-
-                    <p class="receiver-chats-para">{{ comment.comments }}</p>
-                    <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image" class="CommentImage"
-                      @click="openViewer2(comment.image)" />
-                    <div class="d-flex justify-content-between align-items-center">
-                      <small class="text-white fonts1">{{ formatDate(comment.created_date) }}</small>
-                      <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
-                        <i class="fa-solid fa-reply"></i> Reply
-                      </p>
-                    </div>
-                    <div v-if="showReplyInput === comment.id">
-                      <div class="input-group">
-                        <input class="form-control" type="text" v-model="replyText" placeholder="Type your reply here">
-                        <span class=" input-group-text" @click="submitReply(comment.id)">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
-                            viewBox="0 0 31.5 27">
-                            <path id="Icon_material-send" data-name="Icon material-send"
-                              d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)"
-                              fill="#f95f19" />
-                          </svg>
-                        </span>
-                      </div>
-                      <p class="text-white mt-3 mb-0">All Replies</p>
-                      <hr class="mt-0 " style="opacity:1">
-                    
-                      <div class="p-2" v-for="reply in replies" :key="reply.id"
-                        v-show="comment.id == reply.comment_id && reply.comments != ''">
-                        <div class="  replyBox row" style="">
-                          <div class="col-md-2">
-                            <img :src="this.userImage" alt="" width="50px">
-                          </div>
-                          <div class="col-md-10">
-                            <p class="uName m-0" v-if="comment.id == reply.comment_id && reply.comments != ''">{{
-          reply.user_name }} </p>
-                            <p class="sender-chats-para m-0 p-0"
-                              v-if="comment.id == reply.comment_id && reply.comments != ''">
-                              {{
-          reply.comments }} </p>
-
-
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
-                  <!-- <div class="receiver-chats" v-if="comments.length">
-                    <div class="row">
-                      <div class="col-md-2">
-                        <img :src="this.userImage" alt="" width="50px">
-
-                      </div>
-                      <div class="col-md-8">
-                        <div>
-                          <small class="uName">{{ comment.user_name }}</small> <br>
-                          <small class="text-white fonts1 mb-2 ms-0">{{ formatDate(comment.created_date) }}</small>
-                          <p class="sender-chats-para">{{ comment.comments }}</p>
-                          <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
-                            class="CommentImage" @click="openViewer(comment.image)" />
-
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                          <button class="like-community likeBtn" id="like" @click="addLike" disabled>
-                            <i class="fa-solid fa-thumbs-up" v-bind:class="{ 'like': isLike }"></i>
-                            <small v-if="isLike">Liked</small>
-                            <small v-else>Like</small>
-                            <span class="total-likes" v-if="forumData">{{ forumData.likes
-                              }}</span>
-                          </button>
-                          <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
-                            <i class="fa-solid fa-reply"></i> Reply
-                          </p>
-                        </div>
-                        <div v-if="showReplyInput === comment.id">
-
-                          <p class="text-white mt-3 mb-0">All Replies</p>
-                          <hr class="mt-0 " style="opacity:1">
-                          <div class="p-2" v-for="reply in replies" :key="reply.id"
-                            v-show="comment.id == reply.comment_id">
-                            <div class="replyBox row">
-                              <div class="col-md-2">
-                                <img :src="this.userImage" class="UsrImage" alt="user_image" width="50px"
-                                  style="object-fit:cover">
-                              </div>
-                              <div class="col-md-10">
-                                <p class="uName m-0" v-if="reply.user_name">{{ reply.user_name }}</p>
-                                <p class="sender-chats-para m-0 p-0" v-if="reply.comments">{{ reply.comments }}</p>
-                                <img v-if="reply.image" :src="getImageUrl(reply.image)" alt="Comment Image"
-                                  class="CommentImage" @click="openViewer(reply.image)" />
-                              </div>
-                            </div>
-                          </div>
-
-
-
-                        </div>
-
-                      </div>
-                      <div class="input-group">
-                        <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
-                        <span class="input-group-text igt-left" @click="openFileInput2">
-                          <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
-                        </span>
-
-                        <input class="form-control formc1" type="text" v-model="replyText"
-                          placeholder="Type your reply here">
-                        <span class=" input-group-text igt-right" @click="submitReply(comment.id)">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
-                            viewBox="0 0 31.5 27">
-                            <path id="Icon_material-send" data-name="Icon material-send"
-                              d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)"
-                              fill="#f95f19" />
-                          </svg>
-                        </span>
-                      </div>
-                    </div>
-
-
-
 
                   </div>
-                  <p v-else class="text-white">No comments to display</p> -->
                 </div>
 
                 <div class="d-flex flex-column">
@@ -318,7 +127,7 @@
                           alt="" width="50px">
 
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-8 d-flex justify-content-between flex-column">
                         <div>
                           <small class="uName">{{ comment.nickname }}</small> <br>
 
@@ -329,13 +138,14 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
 
-                          <!-- <button class="like-community likeBtn" id="like" @click="addLike3(comment.id)">
+                          <!-- <button class="like-community likeBtn" id="like" @click="addLike2(comment.id)">
                             <i class="fa-solid fa-thumbs-up"></i>
 
                             <small v-if="isLike">Liked</small>
                             <small v-else>Like</small>
                             <span class="total-likes">{{ comment.likes
                               }} </span>
+                            <span class="total-likes">{{ likesCountComments[comment.id] }}</span>
                           </button> -->
                           <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
                             <i class="fa-solid fa-reply"></i> Reply
@@ -404,7 +214,7 @@
                       <div class="col-md-2">
 
                         <img
-                          :src="comment.userimage ? 'https://clownfish-app-quehu.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
+                          :src="reply.userimage ? 'https://clownfish-app-quehu.ondigitalocean.app/users/' + reply.userimage : '../assets/images/prof.png'"
                           alt="" width="50px">
 
                       </div>
@@ -427,13 +237,13 @@
                             <span class="total-likes">{{ comment.likes
                               }} </span>
                           </button> -->
-                          <!-- <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
+                          <!-- <p class="text-white text-end fonts1 m-0" @click="toggleReply2(reply.id)">
                             <i class="fa-solid fa-reply"></i> Reply
                           </p> -->
                           <small class="text-white fonts1  ms-0 mb-0 text-end">{{ formatDate(reply.created_date)
                             }}</small>
                         </div>
-                        <div v-if="showReplyInput === comment.id">
+                        <div v-if="showReplyInput === reply.id">
 
 
 
@@ -572,12 +382,14 @@ import Viewer from 'viewerjs';
 import 'viewerjs/dist/viewer.css';
 import moment from 'moment';
 import userImage from "../assets/images/userImg.png"
-
+import { reactive } from 'vue';
 export default {
   name: "CommunityDetail",
 
   data() {
     return {
+      likesCountComments: reactive({}),
+      search: "",
       likesCount: "",
       totalComments: "",
       sub: "",
@@ -608,6 +420,7 @@ export default {
       user_name: "",
       user_image: "",
       comments: [],
+      filteredComments: [],
       newComment: "",
       image: null,
       nspeakers: '',
@@ -656,6 +469,17 @@ export default {
   },
 
   methods: {
+    applyFilter() {
+      const searchLower = this.search.trim().toLowerCase();
+      if (searchLower === '') {
+        this.filteredComments = this.comments; // Reset to original comments when search is empty
+      } else {
+        const filtered = this.comments.filter(comment =>
+          comment.comments.toLowerCase().includes(searchLower) // Ensure you are searching within comment.comments
+        );
+        this.filteredComments = filtered;
+      }
+    },
     getNoOfComments() {
 
       const apiUrl = `https://clownfish-app-quehu.ondigitalocean.app/api/comments/count?community_id=${this.pageId}`;
@@ -768,12 +592,22 @@ export default {
         this.showReplyInput = commentId;
       }
     },
+    toggleReply2(replyid) {
+      if (this.showReplyInput === replyid) {
+        this.showReplyInput = null;
+      } else {
+        this.showReplyInput = replyid;
+      }
+    },
 
     // get reply 
     getreply(commentId) {
+
       console.log("reply function is calling on id", commentId)
+      this.replies = [];
       axios.get(`https://clownfish-app-quehu.ondigitalocean.app/api/replies/replyall/${commentId}`)
         .then(response => {
+
           this.replies.push(...response.data);
           console.log("all repllies", this.replies)
         })
@@ -781,6 +615,7 @@ export default {
           console.error('Error fetching replies:', error);
         });
     },
+
     submitReply(commentId) {
       const formData = new FormData()
       console.log(commentId);
@@ -809,7 +644,9 @@ export default {
           console.log('Post request successful of replies:', response.data);
           // Append the new comment to the comments array
           // this.replies.push(response.data);
-          this.getreply(commentId)
+          // this.getreplyOnSubmit(commentId)
+          this.getComments()
+
           console.log("rrr", this.replies)
           // Clear inputs
           this.replyText = '';
@@ -1029,9 +866,11 @@ export default {
       CommentDataService.getAllByCommunity(id)
         .then(response => {
           this.comments = response.data;
+          this.filteredComments = this.comments;
           console.log("com ", this.comments)
           this.comments.forEach(comment => {
             this.getreply(comment.id);
+            this.getLikesCountComments(comment.id)
           });
 
         })
@@ -1044,6 +883,7 @@ export default {
       CommentDataService.getAllByCommunity(id)
         .then(response => {
           this.comments = response.data;
+          this.filteredComments = this.comments;
           console.log("all commetns", response.data)
           this.$nextTick(() => {
             this.scrollToBottom();
@@ -1248,53 +1088,84 @@ export default {
     }
 
     ,
-    addLike2(cid) {
-      console.log("click comment with", cid)
-      // alert(cid)
-      this.isloadingLike = true
-      // Check if the like has already been added for this item in this session
-      if (!localStorage.getItem('cliked-' + this.id)) {
-        const requestData = {
-          id: cid
-        };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/likes', requestData)
-          .then(response => {
-            // Handle success
-            console.log('Post request successful:', response.data)
-            this.isloadingLike = false
+    // addLike2(cid) {
+    //   console.log("click comment with", cid)
+    //   // alert(cid)
+    //   this.isloadingLike = true
+    //   // Check if the like has already been added for this item in this session
+    //   if (!localStorage.getItem('cliked-' + this.id)) {
+    //     const requestData = {
+    //       id: cid
+    //     };
+    //     axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/likes', requestData)
+    //       .then(response => {
+    //         // Handle success
+    //         console.log('Post request successful:', response.data)
+    //         this.isloadingLike = false
 
-            // Set the flag in local storage with the respective ID
-            localStorage.setItem('cliked-' + this.id, true);
-            console.log(`cliked-${this.id}`)
-            this.isLike = localStorage.getItem(`cliked-${this.id}`);
-            this.fetchCommunityData();
-            this.getForumData()
-          })
-          .catch(error => {
-            // Handle error
-            console.error('Error making post request:', error);
-          });
-      } else {
-        // If the like has already been added, you may want to remove the like
-        const requestData = {
-          id: cid
-        };
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/dislikes', requestData)
-          .then(response => {
-            // Handle success
-            console.log('Dislike request successful:', response.data);
-            this.isloadingLike = false
+    //         // Set the flag in local storage with the respective ID
+    //         localStorage.setItem('cliked-' + this.id, true);
+    //         console.log(`cliked-${this.id}`)
+    //         this.isLike = localStorage.getItem(`cliked-${this.id}`);
+    //         this.fetchCommunityData();
+    //         this.getForumData()
+    //       })
+    //       .catch(error => {
+    //         // Handle error
+    //         console.error('Error making post request:', error);
+    //       });
+    //   } else {
+    //     // If the like has already been added, you may want to remove the like
+    //     const requestData = {
+    //       id: cid
+    //     };
+    //     axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/dislikes', requestData)
+    //       .then(response => {
+    //         // Handle success
+    //         console.log('Dislike request successful:', response.data);
+    //         this.isloadingLike = false
 
-            // Remove the flag from local storage
-            localStorage.removeItem('cliked-' + this.id);
-            console.log(`cDisliked-${this.id}`)
-            this.isLike = false;
-            this.fetchCommunityData();
-          })
-          .catch(error => {
-            // Handle error
-            console.error('Error making dislike request:', error);
-          });
+    //         // Remove the flag from local storage
+    //         localStorage.removeItem('cliked-' + this.id);
+    //         console.log(`cDisliked-${this.id}`)
+    //         this.isLike = false;
+    //         this.fetchCommunityData();
+    //       })
+    //       .catch(error => {
+    //         // Handle error
+    //         console.error('Error making dislike request:', error);
+    //       });
+    //   }
+    // }
+    async addLike2(cid) {
+
+      this.loading = true;
+      console.log("id:", cid, "type:", "comment", "sub:", this.sub);
+
+      // Create URLSearchParams instance
+      const params = new URLSearchParams();
+      params.append('id', cid);
+      params.append('type', "comment");
+      params.append('sub', this.sub);
+
+      try {
+        // Make the POST request with the URLSearchParams instance
+        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/likes/like', params, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+
+        // Handle the response data
+        console.log(response.data);
+        this.getLikesCountComments(cid)
+        // Additional logic after successful request
+        this.loading = false;
+        // Navigate or update the UI as needed
+      } catch (error) {
+        // Handle any errors
+        this.loading = false;
+        console.error('Error making POST request:', error);
       }
     }
 
@@ -1421,7 +1292,39 @@ export default {
         .catch(error => {
           console.error('Error fetching likes count:', error);
         });
-    }
+    },
+    // getLikesCountComments(cid) {
+
+    //   console.log("comment_id", cid)
+    //   // Replace this with the actual community ID if it's dynamic
+    //   const type = 'comment'; // Replace this with the actual type if it's dynamic
+    //   const url = `https://clownfish-app-quehu.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
+
+    //   axios.get(url)
+    //     .then(response => {
+    //       console.log('Likes count:', response.data);
+    //       // Update your component's state with the likes count
+    //       this.likesCount = response.data.count;
+
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching likes count:', error);
+    //     });
+    // }
+    getLikesCountComments(cid) {
+      const type = 'comment'; // Replace this with the actual type if it's dynamic
+      const url = `https://clownfish-app-quehu.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
+
+      axios.get(url)
+        .then(response => {
+          // Update likes count for the comment
+          console.log("commets likes", response.data.count, "of id", cid)
+          this.likesCountComments[cid] = response.data.count;
+        })
+        .catch(error => {
+          console.error('Error fetching likes count:', error);
+        });
+    },
 
   },
 
@@ -1430,6 +1333,11 @@ export default {
 </script>
 
 <style scoped>
+.fh2 {
+  color: #F95F19;
+  font-size: 18px;
+}
+
 .UsrImage {
   height: 50px;
   width: 50px;
@@ -1460,14 +1368,14 @@ export default {
 
 .image_icon {
   position: absolute;
-  top: 18px;
+  top: 8px;
   right: 55px;
   font-size: 28px;
   color: #F95F19;
 }
 
 .send-icon {
-  top: 22px;
+  top: 12px;
   right: 12px
 }
 
@@ -1704,5 +1612,16 @@ export default {
   /* For Safari */
   border: 1px solid rgba(255, 255, 255, 0.3);
   margin-bottom: 0.3rem;
+}
+
+.formSearch {
+  width: 400px;
+  /* margin: auto; */
+  padding: 0.5rem;
+}
+
+.input-group-text {
+  padding-block: 0 !important;
+  padding-inline: 0.3rem;
 }
 </style>
