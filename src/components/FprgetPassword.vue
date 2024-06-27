@@ -138,7 +138,7 @@
                         formData.email
                     }}</span></h5>
                         <p class="text-white">{{ $t('PleaseCheckYourEmailBox') }}</p>
-                        <p class="text-white">{{ $t('AndCloseTheModalToSetNewPassword') }}</p>
+                        <!-- <p class="text-white">{{ $t('AndCloseTheModalToSetNewPassword') }}</p> -->
                     </div>
 
 
