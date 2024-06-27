@@ -275,11 +275,11 @@ router.beforeEach((to, from, next) => {
   console.log("balti", to.name, isAuthenticated, isProtectedRoute);
   //
   if (to.name == "SignIn" && isAuthenticated) {
-    next("/ourcommunity");
+    next("/profile");
   } else if (to.name == "SignUp" && isAuthenticated) {
-    next("/ourcommunity");
+    next("/profile");
   } else if (to.name == "DealersLogin" && isAuthenticated) {
-    next("/ourcommunity");
+    next("/profile");
   } else if (isProtectedRoute && !isAuthenticated) {
     console.log("my check1");
     next("/signin"); // Redirect to signin if not authenticated

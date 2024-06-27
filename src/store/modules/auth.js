@@ -66,11 +66,12 @@ const actions = {
   },
   async handleProfile(
     context,
-    { fullname, name, email, age, phone, socialMedia, image }
+    { fullname, name, nickname, email, age, phone, socialMedia, image }
   ) {
     const data = {
       fullname,
       name,
+      nickname,
       email,
       age,
       phone,

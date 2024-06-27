@@ -1,13 +1,13 @@
 <template>
 
 
-  <section class="section-car-listing position-relative">
+  <!-- <section class="section-car-listing position-relative">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <div class="heading-car">
-            <!-- <h1 class="banner-title">{{ $t("ourCommunity") }}</h1> -->
-            <h1 class="banner-title">Car Community Threads </h1>
+     
+            <h1 class="banner-title fontColr">Car Community Threads </h1>
             <small class="text-center text-white">Check our community threads to get answers for your car related
               questions. You
               can search by car make, model and also by thread category. </small>
@@ -19,11 +19,22 @@
         </div>
       </div>
     </div>
-  </section>
-
+  </section> -->
+  <div class="container">
+    <div class="heading-car">
+      <!-- <h1 class="banner-title">{{ $t("ourCommunity") }}</h1> -->
+      <h1 class="banner-title fontColr">Car Community Threads </h1>
+      <small class="text-center text-white">Check our community threads to get answers for your car related
+        questions. You
+        can search by car make, model and also by thread category. </small>
+      <small class="text-center text-white">
+        If you can’t find the topic, just open a new thread!
+      </small>
+    </div>
+  </div>
   <!-- modal -->
   <div class="modal show d-block modalaa" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered mb-0" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
           <router-link to="/offer"> <span class="close-icon" aria-label="Close">
@@ -138,7 +149,7 @@
 
 
               <div class="col-md-12 m-auto z-0">
-                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-0 mx-auto mt-2">
                   <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                     <span class="border-bottom-btn border-top-btn position-absolute">
                       <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
@@ -933,18 +944,24 @@ export default {
   border-radius: 10px;
 }
 
+.fontColr {
+  color: #f95f19
+}
+
 /* new */
 
 .customSelect {
 
   width: 100%;
   padding: 1px;
+  min-height: 40px !important;
 }
 
 .customSelect input {
   width: 100% !important;
   max-width: 100% !important;
   border: 0px transparent !important;
+  height: 30px;
 }
 
 .selected-option {

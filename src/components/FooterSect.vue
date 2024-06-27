@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5">
+    <div class="container ">
         <div class="map-desc">
             <div class="map-para-div">
                 <!-- <p class="map-para">

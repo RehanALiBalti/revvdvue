@@ -39,6 +39,32 @@
           <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
         </span>
       </div>
+      <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
+        <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+          <img src="../../public/images/2.png">
+        </div>
+        <!-- Content -->
+        <h5 class="h5-title text-capitalize mb-4">{{ $t('weeklyStory') }}</h5>
+        <div class="car-content">
+          <div class="img-div-footer">
+            <img src="@/assets/images/94c8d99e3eceee3f64597db010958594.png" class="img-car" alt="car" />
+          </div>
+          <div class="car-content-desc">
+            <h6 class="car-content-title">Koenigsegg agera one:1</h6>
+            <!-- <p class="car-content-para">
+                  Lorem 9. Ipsum is simply, dummy text is that, Warrington, WA4
+                </p> -->
+          </div>
+        </div>
+
+        <div class="footer-allDetails">
+          <router-link class="viewall-content" to="">
+            {{ $t('viewAllStories') }}
+          </router-link>
+        </div>
+
+
+      </div>
     </div>
   </div>
 
@@ -253,8 +279,31 @@
 							</select> -->
             <!-- <input type="file" id="city" name="city" class="form-control form-input" accepct="jgp,png"
               v-bind="formData.storyImages" /> -->
-            <input type="file" id="storyImages" name="storyImages" class="form-control form-input" accept=".jpg,.png"
-              multiple v-on:change="validateFiles" />
+            <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+              accept=".jpg,.png" multiple v-on:change="validateFiles" />
+            <div class="list-item-btn position-relative submit-btn-div m-0">
+              <span class="border-bottom-btn border-top-btn position-absolute">
+                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span
+                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+              </span>
+              <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
+                Choose Images
+              </label>
+              <span class="border-bottom-btn border-left-btn position-absolute">
+                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+              </span>
+              <span class="border-bottom-btn position-absolute">
+                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+              </span>
+            </div>
             <!-- Error message for City -->
             <!-- <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p> -->
           </div>
@@ -315,14 +364,14 @@
     <!-- Section: Links  -->
     <section class="">
       <div class="container text-center text-md-start mt-5">
-        <!-- Grid row -->
+
         <div class="row mt-3">
-          <!-- Grid column -->
-          <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
+
+          <!-- <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
               <img src="../../public/images/2.png">
             </div>
-            <!-- Content -->
+        
             <h5 class="h5-title text-capitalize mb-4">{{ $t('weeklyStory') }}</h5>
             <div class="car-content">
               <div class="img-div-footer">
@@ -330,9 +379,7 @@
               </div>
               <div class="car-content-desc">
                 <h6 class="car-content-title">Koenigsegg agera one:1</h6>
-                <!-- <p class="car-content-para">
-                  Lorem 9. Ipsum is simply, dummy text is that, Warrington, WA4
-                </p> -->
+              
               </div>
             </div>
 
@@ -342,34 +389,8 @@
               </router-link>
             </div>
 
-            <!-- <ul class="icons-list footer-icons-list my-5">
-              <li class="icons-list-item">
-                <router-link class="icons-list-atag" to="https://www.facebook.com/revvdout?mibextid=LQQJ4d"
-                  target="_blank">
-                  <i class="fab fa-facebook-f"></i>
-                </router-link>
-              </li>
-
-              <li class="icons-list-item">
-                <router-link class="icons-list-atag" to="https://twitter.com/revvdout" target="_blank">
-                  <i class="fab fa-x-twitter"></i>
-                </router-link>
-              </li>
-
-              <li class="icons-list-item">
-                <router-link class="icons-list-atag" to="https://www.tiktok.com/@revvdout?_t=8mJOwpObgzW&_r=1"
-                  target='_blank'>
-                  <i class="fa-brands fa-tiktok"></i>
-                </router-link>
-              </li>
-              <li class="icons-list-item">
-                <router-link class="icons-list-atag"
-                  to="https://www.instagram.com/revvdout/?igshid=c2g3bzQ0bTZsdHlk&amp;utm_source=qr" target='_blank'>
-                  <i class="fab fa-instagram"></i>
-                </router-link>
-              </li>
-            </ul> -->
-          </div>
+           
+          </div> -->
           <!-- Grid column -->
 
           <!-- Grid column -->
@@ -423,13 +444,13 @@
           <!-- Grid column -->
           <div class="col-12 col-md-6 col-lg-4 col-xl-4 mx-auto mb-4">
             <!-- Links -->
-            <h5 class="h5-title text-capitalize mb-4">{{ $t('information') }}:</h5>
+            <h5 class="h5-title text-capitalize mb-4">{{ $t('aboutUs') }}</h5>
             <!-- <p>
               <router-link to="#!" class="footer-main-addresss">{{ $t('home') }}</router-link>
             </p> -->
-            <p>
+            <!-- <p>
               <router-link to="#!" class="footer-main-addresss">{{ $t('aboutUs') }}</router-link>
-            </p>
+            </p> -->
             <!-- <p>
               <router-link to="#!" class="footer-main-addresss">{{ $t('carListing') }}</router-link>
             </p> -->
@@ -1045,7 +1066,7 @@ export default {
   created() {
 
     // this.getprofile()
-    this.fetchProfileData()
+    //this.fetchProfileData()
     // this.checkIfGoogleOrFacebookUser()
 
 
@@ -1062,7 +1083,7 @@ export default {
     // this.showFilterModal();
     // Add event listener to the document body for clicks
     document.body.addEventListener("click", this.handleOutsideClick);
-    this.fetchProfileData();
+    // this.fetchProfileData();
 
 
   },

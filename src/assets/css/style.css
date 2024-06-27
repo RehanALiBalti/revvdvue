@@ -251,7 +251,7 @@ video::-webkit-media-controls {
 	text-decoration: none;
 	outline: none;
 	width: 130px;
-	height: 40px;
+	height: 45px;
 	background-color: rgba(249, 95, 25, 0.3);
 	display: flex;
 	justify-content: center;
@@ -1354,7 +1354,7 @@ a.footer-main-addresss:hover {
 .signin-btnli.Start.Engine.load-more-btn.proceed-btn {
 	max-width: 200px;
 	height: 50px;
-	font-size: 19px;
+	font-size: 12px;
 	font-weight: 400;
 }
 
@@ -2125,7 +2125,7 @@ a:hover {
 
 .eye {
 	position: absolute;
-	top: 67px;
+	top: 52px;
 	right: 6%;
 	color: #F95F19;
 	cursor: pointer;

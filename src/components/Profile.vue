@@ -6,8 +6,10 @@
 
 					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'delear'">
 						<div class="user-profile-page">
-							<img :src="state.profileImage" class="user-profile-page-img" alt="Profile Image"
-								v-if="this.image != ''" @click="openFileInput" />
+							<img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
+								alt="Profile Image"
+								v-if="this.image != '' && this.image != null && this.image != undefined"
+								@click="openFileInput" />
 							<!-- <img v-if="image != ''" src="https://clownfish-app-quehu.ondigitalocean.app/ +${image} " class="user-profile-page-img" alt="user"
 								@click="openFileInput"> -->
 							<!-- <img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
@@ -25,16 +27,23 @@
 							</h2>
 							<p class="map-para email-user-profile-page-para">
 								{{ email }}
+
 							</p>
+							<h2 class="form-title mt-2 mb-0">
+								{{ uname }}
+								<!-- {{ state.name }} -->
+
+							</h2>
+
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
 								<input v-model="fullname" id="name" type="text" name="name"
 									class="form-control form-input" :placeholder="$t('Enter here')" required>
-							</div>
+							</div> -->
 							<div class="col-md-6">
-								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
+								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
 								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
 									:placeholder="$t('Enter here')" required>
 							</div>
@@ -482,19 +491,27 @@
 import axios from 'axios';
 import { Auth } from 'aws-amplify';
 import { useProfileImage } from '@/composables/useProfileImage';
+import { useProfileName } from '@/composables/useProfileName';
 
 export default {
 	setup() {
-		const { state, setProfileImage } = useProfileImage();
+		const { state: profileImageState, setProfileImage } = useProfileImage();
+		const { state: nameState, setName } = useProfileName();
 
 		const changeProfileImage = (newSrc) => {
 			setProfileImage(newSrc);
 		};
-		return {
-			state,
-			changeProfileImage
+
+		const changeName = (newName) => {
+			setName(newName);
 		};
 
+		return {
+			profileImageState,
+			nameState,
+			changeProfileImage,
+			changeName
+		};
 	},
 	name: "UserProfile",
 	data() {
@@ -547,6 +564,12 @@ export default {
 		};
 	},
 	methods: {
+		getProfileImage(profileImage) {
+			if (!profileImage || profileImage.includes('null') || profileImage.includes('undefined')) {
+				return '/images/prof.png';
+			}
+			return profileImage;
+		},
 
 		// async checkIfGoogleOrFacebookUser() {
 		// 	try {
@@ -747,6 +770,7 @@ export default {
 
 				formData.append('image', this.$refs.fileInput.files[0]);
 				formData.append('name', this.name);
+				formData.append('nickname', this.name);
 				formData.append('age', this.age);
 				formData.append('email', this.email);
 				formData.append('phone', this.phone);
@@ -781,6 +805,7 @@ export default {
 			const updatedProfile = {
 				fullname: this.fullname, // Correct the key to fullName if needed
 				name: this.name,
+				nickname: this.name,
 				email: this.email,
 				age: this.age,
 				phone: this.phone,
@@ -933,6 +958,11 @@ export default {
 				// Handle the response data
 				console.log(this.formData.sub, "new porofile Data is", response.data);
 				this.image = response.data.image
+				this.name = response.data.nickname
+				this.fullname = response.data.nickname
+				console.log("before set the name", this.name);
+				this.changeName(this.name);
+				console.log("username is", this.uname);
 				let imageUrl = "https://clownfish-app-quehu.ondigitalocean.app/users/" + this.image;
 				this.changeProfileImage(imageUrl)
 				//				this.image = response.data[0].image
@@ -966,6 +996,7 @@ export default {
 	async mounted() {
 		await this.fetchProfileData();
 		await this.fetchproData()
+		// this.setName(this.name);
 		// this.getProfileImage()
 		// this.checkIfGoogleOrFacebookUser()
 	},

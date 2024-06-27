@@ -132,14 +132,17 @@
                   <div class="user-img-div d-none d-lg-block">
                     <!-- <img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
                       class="user-img" alt="" /> -->
-                    <img :src="state.profileImage" class="user-img" alt="User Image" />
+                    <!-- <img :src="state.profileImage ? state.profileImage : 'path/to/alternate/image.png'" class="user-img"
+                      alt="User Image" /> -->
+                    <img :src="getProfileImage(profileImageState.profileImage)" class="user-img" alt="User Image" />
                   </div>
                   <span class="user-name" :class="{ open: issOpen }">
                     <!-- {{ userAttributes && userAttributes.UserAttributes.find(attr => attr.Name === 'name') ?
             userAttributes.UserAttributes.find(attr => attr.Name === 'name').Value : '' }} -->
                     <!-- {{ userAttributes.name }} -->
                     <!-- {{ userAttributes.name ? userAttributes.name.split(' ')[0] : '' }} -->
-                    {{ userAttributes.name ? userAttributes.name.split('').slice(0, 5).join(' ') : '' }}
+                    {{ nameState.name ? nameState.name.split('').slice(0, 5).join(' ') : '' }}
+
 
                   </span>
 
@@ -219,18 +222,26 @@
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import { useProfileImage } from '@/composables/useProfileImage';
+import { useProfileName } from '@/composables/useProfileName';
 export default {
   setup() {
-    const { state, setProfileImage } = useProfileImage();
+    const { state: profileImageState, setProfileImage } = useProfileImage();
+    const { state: nameState, setName } = useProfileName();
 
     const changeProfileImage = (newSrc) => {
       setProfileImage(newSrc);
     };
-    return {
-      state,
-      changeProfileImage
+
+    const changeName = (newName) => {
+      setName(newName);
     };
 
+    return {
+      profileImageState,
+      nameState,
+      changeProfileImage,
+      changeName
+    };
   },
   name: "HeaderItem",
 
@@ -265,8 +276,11 @@ export default {
     }
   },
   async created() {
-    await this.fetchProfileData()
-    await this.fetchproData()
+    console.log("i am call", this.isLogin);
+    if (this.isLogin) {
+      await this.fetchProfileData()
+      await this.fetchproData()
+    }
     const storedIsLogin = localStorage.getItem('login');
     if (storedIsLogin !== null) {
       this.isLogin = JSON.parse(storedIsLogin);
@@ -292,6 +306,7 @@ export default {
 
   },
   beforeUnmount() {
+    console.log("i am call2");
     window.removeEventListener('storage', this.handleStorageChange.handleStorageChange);
     document.body.removeEventListener('click', this.closeDropdown);
     document.body.removeEventListener('click', this.closeDropdown2);
@@ -299,18 +314,30 @@ export default {
 
   },
   async mounted() {
-    await this.fetchProfileData()
-    await this.fetchproData()
+    console.log("i am call3");
+    if (this.isLogin) {
+      await this.fetchProfileData()
+      await this.fetchproData()
+    }
+
     document.body.addEventListener('click', this.closeDropdown);
     document.body.addEventListener('click', this.closeDropdown2);
     this.isLogin = localStorage.getItem('login')
   },
 
   methods: {
+    getProfileImage(profileImage) {
+      if (!profileImage || profileImage.includes('null') || profileImage.includes('undefined')) {
+        return '/images/prof.png';
+      }
+      return profileImage;
+    },
+
     nextRoute() {
       console.log('click')
       // this.$router.push("profile")
       this.$router.push({ name: "UserProfile" });
+
 
     },
     closeDropdownm() {
@@ -334,6 +361,9 @@ export default {
         console.log("Profile data in heder:", data.result.sub);
         this.sub = data.result.sub
         this.userAttributes = data.result
+
+
+
         console.log("userdataattribtes in header", this.userAttributes.picture)
         if (this.userAttributes.picture) {
           this.image = this.userAttributes.picture
@@ -374,10 +404,12 @@ export default {
       try {
         // Make the GET request with query parameters
         const response = await axios.get(url);
+        console.log("ja loru response", response, response.data.nickname)
 
         // Handle the response data
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.image = response.data.image
+
         let imageUrl = "https://clownfish-app-quehu.ondigitalocean.app/users/" + this.image;
 
         this.changeProfileImage(imageUrl)
@@ -412,6 +444,8 @@ export default {
     async logout() {
       try {
         this.isLogin = false;
+        this.changeName("");
+        //  this.changeProfileImage("");
         await Auth.signOut();
         localStorage.setItem('login', false);
         this.$router.push("/signin");

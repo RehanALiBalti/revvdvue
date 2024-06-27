@@ -160,7 +160,7 @@ export default {
 
         // Redirect to '/landing' route
         // this.$router.push('/ourcommunity');
-        this.$router.push({ name: 'HomeLanding' });
+        // this.$router.push({ name: 'UserProfile' });
       }
       /*
       switch (event) {
@@ -250,7 +250,7 @@ export default {
             localStorage.setItem('data', data.result);
 
             // Redirect to '/landing' route
-            this.$router.push('/');
+            this.$router.push('/profile');
 
           } else {
             this.isModalOpen = true

@@ -186,10 +186,31 @@
 <script>
 import axios from 'axios';
 import { mapActions } from 'vuex';
+import { useProfileImage } from '@/composables/useProfileImage';
+import { useProfileName } from '@/composables/useProfileName';
+
 
 export default {
   name: "SignUp",
+  setup() {
+    const { state: profileImageState, setProfileImage } = useProfileImage();
+    const { state: nameState, setName } = useProfileName();
 
+    const changeProfileImage = (newSrc) => {
+      setProfileImage(newSrc);
+    };
+
+    const changeName = (newName) => {
+      setName(newName);
+    };
+
+    return {
+      profileImageState,
+      nameState,
+      changeProfileImage,
+      changeName
+    };
+  },
   data() {
     return {
       password: "", // Add this line
@@ -314,8 +335,9 @@ export default {
 
         const { email, name, role } = this.formData;
         // this.$store.signup({ email, name, role });
-        this.$store.dispatch('auth/signup', { email, name, role });
-
+        await this.$store.dispatch('auth/signup', { email, name, role });
+        console.log("before name", name);
+        this.changeName(name);
         // You can perform further actions here, such as redirecting the user or showing a success message
       } catch (error) {
         // Handle error
@@ -378,7 +400,7 @@ export default {
                     //                this.submitProfileForm()
                     localStorage.setItem('login', true);
                     // window.location.reload();
-                    //     this.$router.push("/profile");
+                    // this.$router.push("/profile");
                   } else {
                     this.isModalOpenFail = true
                     this.errorMessage = data.error
