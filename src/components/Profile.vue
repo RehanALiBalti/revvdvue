@@ -679,7 +679,8 @@ export default {
 				console.log("socail service", user);
 				console.log("social user attribute", user.attributes)
 				let socialCheck = localStorage.getItem("social")
-				console.log("check social", socialCheck);
+				console.log("check social", socialCheck, typeof (socialCheck));
+
 				if (socialCheck == "true") {
 					console.log("in socila if state")
 					const mydata = {
