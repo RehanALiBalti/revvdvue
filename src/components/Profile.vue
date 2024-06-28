@@ -697,8 +697,9 @@ export default {
 
 					// Handle success response
 					console.log('Form data submitted successfully:', response.data);
+					localStorage.setItem("social", "false")
 					this.fetchproData()
-					localStorage.setItem("social", false)
+
 				}
 
 
