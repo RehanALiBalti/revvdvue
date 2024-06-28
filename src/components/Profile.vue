@@ -680,7 +680,8 @@ export default {
 				console.log("social user attribute", user.attributes)
 				let socialCheck = localStorage.getItem("social")
 				console.log("check social", socialCheck);
-				const mydata = {
+				if(socialCheck==true){
+					const mydata = {
 					"name": user.attributes.name,
 					"nickname": user.attributes.name,
 					"sub": user.attributes.sub,
@@ -695,6 +696,9 @@ export default {
 				// Handle success response
 				console.log('Form data submitted successfully:', response.data);
 				this.fetchproData()
+				localStorage.setItem("social",false)
+				}
+			
 
 
 				const identities = user.attributes.identities;
