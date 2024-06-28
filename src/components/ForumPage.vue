@@ -377,17 +377,30 @@ export default {
             }
         },
 
+        // applyFilter() {
+        //     const searchLower = this.search.trim().toLowerCase();
+        //     if (searchLower === '') {
+        //         this.filteredCommunities = this.communities.slice(...this.paginationRange);
+        //     } else {
+        //         const filtered = this.communities.filter(community =>
+        //             community.title.toLowerCase().includes(searchLower)
+        //         );
+        //         this.filteredCommunities = filtered.slice(...this.paginationRange);
+        //     }
+        // },
         applyFilter() {
             const searchLower = this.search.trim().toLowerCase();
             if (searchLower === '') {
                 this.filteredCommunities = this.communities.slice(...this.paginationRange);
             } else {
                 const filtered = this.communities.filter(community =>
-                    community.title.toLowerCase().includes(searchLower)
+                    community.title.toLowerCase().includes(searchLower) ||
+                    community.description.toLowerCase().includes(searchLower)
                 );
                 this.filteredCommunities = filtered.slice(...this.paginationRange);
             }
-        },
+        }
+        ,
         getNoOfComments(community) {
             const apiUrl = `https://squid-app-yq2ph.ondigitalocean.app/api/comments/count?community_id=${community.id}`;
 
