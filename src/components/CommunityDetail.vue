@@ -162,7 +162,7 @@
 
                           <div class="input-group">
                             <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
-                            <span class="input-group-text igt-left" @click="openFileInput2">
+                            <span class="input-group-text igt-left d-none" @click="openFileInput2">
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
 
@@ -252,7 +252,7 @@
 
                           <div class="input-group">
                             <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
-                            <span class="input-group-text igt-left" @click="openFileInput2">
+                            <span class="input-group-text igt-left d-none" @click="openFileInput2">
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
 
@@ -862,6 +862,7 @@ export default {
     },
 
     getComments() {
+      console.log("in get comments")
       const id = this.$route.params.id;
       CommentDataService.getAllByCommunity(id)
         .then(response => {
@@ -879,6 +880,7 @@ export default {
         });
     },
     getCommentsonSubmit() {
+      console.log("in get comments on submit")
       const id = this.$route.params.id;
       CommentDataService.getAllByCommunity(id)
         .then(response => {

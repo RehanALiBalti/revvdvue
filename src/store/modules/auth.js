@@ -3,8 +3,8 @@ const state = {
   user: null,
   loggedIn: false,
   msg: "",
-  email: "danish@gmail.com",
-  name: "danasd",
+  email: "",
+  name: "",
   role: null,
   id: "",
 };

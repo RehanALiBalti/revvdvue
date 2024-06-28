@@ -791,7 +791,7 @@ a {
 }
 
 .banner-title {
-	font-size: 48px;
+	font-size: 30px;
 	font-weight: bold;
 	color: #ffffff;
 	text-align: center;
@@ -829,8 +829,8 @@ a {
 }
 
 .logo-R {
-	width: 100%;
-	height: 100%;
+	width: 85%;
+	height: 85%;
 	transition: transform 1s;
 	animation: flip 4s infinite;
 	transform-style: preserve-3d;
@@ -2150,7 +2150,7 @@ a:hover {
 
 @media screen and (min-width: 1380px) {
 	.banner-title {
-		font-size: 58px;
+		font-size: 30px;
 	}
 
 	.banner-para {
@@ -2175,7 +2175,7 @@ a:hover {
 
 @media screen and (max-width: 1380px) {
 	.banner-title {
-		font-size: 42px;
+		font-size: 30px;
 	}
 
 	.banner-para {
@@ -2368,7 +2368,7 @@ a:hover {
 	}
 
 	.banner-title {
-		font-size: 32px;
+		font-size: 30px;
 	}
 
 	.banner-para {

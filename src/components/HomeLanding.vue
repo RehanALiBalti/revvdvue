@@ -1361,7 +1361,7 @@ export default {
 
 .cardOverlay img {
   position: absolute;
-  width: 100%;
+  width: 102%;
   top: 0;
   height: 100%
 }

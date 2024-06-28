@@ -942,12 +942,13 @@ export default {
 
 
 			} catch (error) {
-				console.error("Error fetching profile data:", error);
+				console.error("Error fetching profile data prof page:", error);
 			}
 		},
 
 
 		async fetchproData() {
+			console.log("calling fetchPRo Data1", this.formData.sub)
 			const myid = this.formData.sub
 			const url = 'https://clownfish-app-quehu.ondigitalocean.app/api/users/sub?sub=' + myid;
 			console.log("jaloru", myid, url);
@@ -983,10 +984,11 @@ export default {
 
 
 	},
-	created() {
+	async created() {
 
 		// this.getprofile()
-		this.fetchProfileData()
+		await this.fetchProfileData()
+		await this.fetchproData()
 		// this.checkIfGoogleOrFacebookUser()
 
 

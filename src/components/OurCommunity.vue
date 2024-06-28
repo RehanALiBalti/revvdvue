@@ -21,15 +21,19 @@
     </div>
   </section> -->
   <div class="container">
-    <div class="heading-car">
-      <!-- <h1 class="banner-title">{{ $t("ourCommunity") }}</h1> -->
-      <h1 class="banner-title fontColr">Car Community Threads </h1>
-      <small class="text-center text-white">Check our community threads to get answers for your car related
-        questions. You
-        can search by car make, model and also by thread category. </small>
-      <small class="text-center text-white">
-        If you can’t find the topic, just open a new thread!
-      </small>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="heading-car">
+          <!-- <h1 class="banner-title">{{ $t("ourCommunity") }}</h1> -->
+          <h1 class="banner-title fontColr">Car Community Threads </h1>
+          <small class="text-center text-white">Check our community threads to get answers for your car related
+            questions. You
+            can search by car make, model and also by thread category. </small>
+          <small class="text-center text-white">
+            If you can’t find the topic, just open a new thread!
+          </small>
+        </div>
+      </div>
     </div>
   </div>
   <!-- modal -->
