@@ -123,7 +123,7 @@
                       <div class="col-md-2">
 
                         <img
-                          :src="comment.userimage ? 'https://clownfish-app-quehu.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
+                          :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
                           alt="" width="50px">
 
                       </div>
@@ -191,7 +191,7 @@
                     <div class="replyBox row">
                       <div class="col-md-2">
                         <img
-                          :src="reply.userimage ? 'https://clownfish-app-quehu.ondigitalocean.app/users/' + reply.userimage : 'path/to/dummy/image.png'"
+                          :src="reply.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + reply.userimage : 'path/to/dummy/image.png'"
                           alt="" width="50px">
                       </div>
                       <div class="col-md-10">
@@ -214,7 +214,7 @@
                       <div class="col-md-2">
 
                         <img
-                          :src="reply.userimage ? 'https://clownfish-app-quehu.ondigitalocean.app/users/' + reply.userimage : '../assets/images/prof.png'"
+                          :src="reply.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + reply.userimage : '../assets/images/prof.png'"
                           alt="" width="50px">
 
                       </div>
@@ -482,7 +482,7 @@ export default {
     },
     getNoOfComments() {
 
-      const apiUrl = `https://clownfish-app-quehu.ondigitalocean.app/api/comments/count?community_id=${this.pageId}`;
+      const apiUrl = `https://squid-app-yq2ph.ondigitalocean.app/api/comments/count?community_id=${this.pageId}`;
 
       axios.get(apiUrl)
         .then(response => {
@@ -496,7 +496,7 @@ export default {
     async getForumData() {
       try {
         // Make the GET request with query parameters
-        const response = await axios.get(`https://clownfish-app-quehu.ondigitalocean.app/api/communities/${this.pageId}`,);
+        const response = await axios.get(`https://squid-app-yq2ph.ondigitalocean.app/api/communities/${this.pageId}`,);
 
         // Handle the response data
         console.log("new get response", response.data);
@@ -605,7 +605,7 @@ export default {
 
       console.log("reply function is calling on id", commentId)
       this.replies = [];
-      axios.get(`https://clownfish-app-quehu.ondigitalocean.app/api/replies/replyall/${commentId}`)
+      axios.get(`https://squid-app-yq2ph.ondigitalocean.app/api/replies/replyall/${commentId}`)
         .then(response => {
 
           this.replies.push(...response.data);
@@ -634,7 +634,7 @@ export default {
       // Log the form data
       console.log("formData", formData);
 
-      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/replies/reply', formData, {
+      axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/replies/reply', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -678,7 +678,7 @@ export default {
 
 
     //   // console.log("f_daata", formData)
-    //   axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/replies/reply', formData)
+    //   axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/replies/reply', formData)
     //     .then(response => {
     //       // Handle success
     //       console.log('Post request successful of repies:', response.data);
@@ -711,7 +711,7 @@ export default {
 
     // reply
     getImageUrl(imagePath) {
-      return `https://clownfish-app-quehu.ondigitalocean.app/${imagePath}`;
+      return `https://squid-app-yq2ph.ondigitalocean.app/${imagePath}`;
     },
 
     openViewer(imagePath) {
@@ -938,7 +938,7 @@ export default {
         this.isModal2Open = true;
         this.imgLoading = false;
       } else {
-        axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/comments', formData)
+        axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData)
           .then(response => {
             // Handle success
             console.log('Post request successful:', response.data);
@@ -980,7 +980,7 @@ export default {
     //         const requestData = {
     //           id: this.id
     //         };
-    //         axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/likes', requestData)
+    //         axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/likes', requestData)
     //           .then(response => {
     //             // Handle success
     //             console.log('Post request successful:', response.data)
@@ -1005,7 +1005,7 @@ export default {
     //         const requestData = {
     //           id: this.id
     //         };
-    //         axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/dislikes', requestData)
+    //         axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/dislikes', requestData)
     //           .then(response => {
     //             // Handle success
     //             console.log('Dislike request successful:', response.data);
@@ -1039,7 +1039,7 @@ export default {
 
     //   try {
     //     // Make the POST request with the FormData instance
-    //     const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/likes/like', formData, {
+    //     const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/likes/like', formData, {
     //       headers: {
     //         'Content-Type': 'multipart/form-data'
     //       }
@@ -1070,7 +1070,7 @@ export default {
 
       try {
         // Make the POST request with the URLSearchParams instance
-        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/likes/like', params, {
+        const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/likes/like', params, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
@@ -1099,7 +1099,7 @@ export default {
     //     const requestData = {
     //       id: cid
     //     };
-    //     axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/likes', requestData)
+    //     axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/likes', requestData)
     //       .then(response => {
     //         // Handle success
     //         console.log('Post request successful:', response.data)
@@ -1121,7 +1121,7 @@ export default {
     //     const requestData = {
     //       id: cid
     //     };
-    //     axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/dislikes', requestData)
+    //     axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/dislikes', requestData)
     //       .then(response => {
     //         // Handle success
     //         console.log('Dislike request successful:', response.data);
@@ -1152,7 +1152,7 @@ export default {
 
       try {
         // Make the POST request with the URLSearchParams instance
-        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/likes/like', params, {
+        const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/likes/like', params, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
@@ -1210,7 +1210,7 @@ export default {
       const requestData = {
         id: this.id
       };
-      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/views', requestData)
+      axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/views', requestData)
         .then(response => {
           // Handle success
           console.log('Post of views request successful:', response.data);
@@ -1263,7 +1263,7 @@ export default {
     async fetchproData(subId) {
       try {
         // Make the GET request with query parameters
-        const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/users/', {
+        const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/users/', {
           params: {
             sub: subId
           }
@@ -1282,7 +1282,7 @@ export default {
       console.log(communityId)
       // Replace this with the actual community ID if it's dynamic
       const type = 'community'; // Replace this with the actual type if it's dynamic
-      const url = `https://clownfish-app-quehu.ondigitalocean.app/api/likes/likescount?id=${communityId}&type=${type}`;
+      const url = `https://squid-app-yq2ph.ondigitalocean.app/api/likes/likescount?id=${communityId}&type=${type}`;
 
       axios.get(url)
         .then(response => {
@@ -1300,7 +1300,7 @@ export default {
     //   console.log("comment_id", cid)
     //   // Replace this with the actual community ID if it's dynamic
     //   const type = 'comment'; // Replace this with the actual type if it's dynamic
-    //   const url = `https://clownfish-app-quehu.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
+    //   const url = `https://squid-app-yq2ph.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
 
     //   axios.get(url)
     //     .then(response => {
@@ -1315,7 +1315,7 @@ export default {
     // }
     getLikesCountComments(cid) {
       const type = 'comment'; // Replace this with the actual type if it's dynamic
-      const url = `https://clownfish-app-quehu.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
+      const url = `https://squid-app-yq2ph.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
 
       axios.get(url)
         .then(response => {

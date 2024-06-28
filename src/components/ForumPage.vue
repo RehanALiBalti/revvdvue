@@ -294,7 +294,7 @@ export default {
     methods: {
         // getNoOfComments(id) {
 
-        //     const apiUrl = `https://clownfish-app-quehu.ondigitalocean.app/api/comments/count?community_id=${id}`;
+        //     const apiUrl = `https://squid-app-yq2ph.ondigitalocean.app/api/comments/count?community_id=${id}`;
 
         //     axios.get(apiUrl)
         //         .then(response => {
@@ -309,7 +309,7 @@ export default {
         // async getForumData() {
         //     try {
         //         // Make the GET request with query parameters
-        //         const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/communities/filter', {
+        //         const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/communities/filter', {
         //             params: {
         //                 make: this.make,
         //                 model: this.modal,
@@ -334,7 +334,7 @@ export default {
         // async getForumData() {
         //     try {
         //         // Make the GET request with query parameters
-        //         const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/communities/filter', {
+        //         const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/communities/filter', {
         //             params: {
         //                 make: this.make,
         //                 model: this.modal,
@@ -358,7 +358,7 @@ export default {
         // },
         async getForumData() {
             try {
-                const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/communities/filter', {
+                const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/communities/filter', {
                     params: {
                         make: this.make,
                         model: this.modal,
@@ -389,7 +389,7 @@ export default {
             }
         },
         getNoOfComments(community) {
-            const apiUrl = `https://clownfish-app-quehu.ondigitalocean.app/api/comments/count?community_id=${community.id}`;
+            const apiUrl = `https://squid-app-yq2ph.ondigitalocean.app/api/comments/count?community_id=${community.id}`;
 
             axios.get(apiUrl)
                 .then(response => {

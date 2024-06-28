@@ -197,7 +197,7 @@
                 </div> -->
 
                 <div class="col-md-12 px-4">
-                   
+
                     <div class="row">
                         <!-- template -->
                         <div class="card-sorting-content col-md-12" v-for="(car, index) in paginatedCars" :key="index">
@@ -586,7 +586,7 @@ export default {
 
 
         //     // Send POST request using Axios
-        //     axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/stories')
+        //     axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/stories')
         //         .then(response => {
         //             // Handle success
         //             console.log('get request successful:', response.data);
@@ -600,7 +600,7 @@ export default {
         // },
 
         // GetStories() {
-        //     axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/stories')
+        //     axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/stories')
         //         .then(response => {
         //             // Handle success
         //             console.log('get request successful:', response.data);
@@ -633,13 +633,13 @@ export default {
         //         });
         // },
         GetStories() {
-            axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/stories')
+            axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/stories')
                 .then(response => {
                     // Handle success
                     console.log('get request successful:', response.data.story_name);
 
                     // Base URL for images
-                    const baseImageUrl = 'https://clownfish-app-quehu.ondigitalocean.app/stories/';
+                    const baseImageUrl = 'https://squid-app-yq2ph.ondigitalocean.app/stories/';
 
                     // Map the response data to the car objects
                     this.cars = response.data.map(story => ({

@@ -275,9 +275,9 @@ function register(name, password, email) {
         // Add other optional attributes as needed
       },
       autoConfirm: true,
-      autoSignIn: {
-        enabled: true,
-      },
+      // autoSignIn: {
+      //   enabled: true,
+      // },
     })
       .then(({ user }) => {
         console.log("Auth Service test11", user);
@@ -369,9 +369,9 @@ function register2(
       },
 
       autoConfirm: true,
-      autoSignIn: {
-        enabled: true,
-      },
+      // autoSignIn: {
+      //   enabled: true,
+      // },
     })
       .then(({ user }) => {
         console.log("Auth Service test11", user);

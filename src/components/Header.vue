@@ -130,7 +130,7 @@
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
                   <div class="user-img-div d-none d-lg-block">
-                    <!-- <img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
+                    <!-- <img v-if="image" :src="'https://squid-app-yq2ph.ondigitalocean.app/users/' + image"
                       class="user-img" alt="" /> -->
                     <!-- <img :src="state.profileImage ? state.profileImage : 'path/to/alternate/image.png'" class="user-img"
                       alt="User Image" /> -->
@@ -385,7 +385,7 @@ export default {
     // async fetchproData() {
     //   try {
     //     // Make the GET request with query parameters
-    //     const response = await axios.get('https://clownfish-app-quehu.ondigitalocean.app/api/users/', {
+    //     const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/users/', {
     //       params: {
     //         sub: this.sub
     //       }
@@ -405,7 +405,7 @@ export default {
 
 
       const myid = this.sub
-      const url = 'https://clownfish-app-quehu.ondigitalocean.app/api/users/sub?sub=' + myid;
+      const url = 'https://squid-app-yq2ph.ondigitalocean.app/api/users/sub?sub=' + myid;
       console.log("jaloru header", myid, url);
       try {
         // Make the GET request with query parameters
@@ -416,7 +416,7 @@ export default {
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.image = response.data.image
 
-        let imageUrl = "https://clownfish-app-quehu.ondigitalocean.app/users/" + this.image;
+        let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
 
         this.changeProfileImage(imageUrl)
         console.log("the image of user dloru header", this.image)
@@ -452,6 +452,9 @@ export default {
       try {
         this.isLogin = false;
         localStorage.setItem('login', false);
+        localStorage.setItem('storgekey', "");
+        localStorage.setItem('signupstatus', "");
+
         this.changeName("");
         //  this.changeProfileImage("");
         await Auth.signOut();

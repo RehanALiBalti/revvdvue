@@ -10,9 +10,9 @@
 								alt="Profile Image"
 								v-if="this.image != '' && this.image != null && this.image != undefined"
 								@click="openFileInput" />
-							<!-- <img v-if="image != ''" src="https://clownfish-app-quehu.ondigitalocean.app/ +${image} " class="user-profile-page-img" alt="user"
+							<!-- <img v-if="image != ''" src="https://squid-app-yq2ph.ondigitalocean.app/ +${image} " class="user-profile-page-img" alt="user"
 								@click="openFileInput"> -->
-							<!-- <img v-if="image" :src="'https://clownfish-app-quehu.ondigitalocean.app/users/' + image"
+							<!-- <img v-if="image" :src="'https://squid-app-yq2ph.ondigitalocean.app/users/' + image"
 								class="user-profile-page-img" alt="user" @click="openFileInput"> -->
 
 							<div v-else>
@@ -693,7 +693,7 @@ export default {
 
 					}
 					console.log("mydata", mydata)
-					const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', mydata);
+					const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/users', mydata);
 
 					// Handle success response
 					console.log('Form data submitted successfully:', response.data);
@@ -749,7 +749,7 @@ export default {
 
 			formData.append('userImage', this.$refs.fileInput.files[0]);
 			console.log(this.$refs.fileInput.files[0]);
-			axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/comments/users', formData)
+			axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/users', formData)
 				.then(response => {
 					// Handle success
 					console.log('Post request successful:', response.data);
@@ -805,7 +805,7 @@ export default {
 				formData.append("socialMedia", this.socialMedia)
 				// Make a POST request to the API endpoint
 				console.log("fffdata", this.formData)
-				const response = await axios.put(`https://clownfish-app-quehu.ondigitalocean.app/api/users/${this.formData.sub}`, formData);
+				const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, formData);
 
 				// Handle success response
 				console.log('Form data submitted successfully:', response.data);
@@ -970,15 +970,21 @@ export default {
 
 
 			} catch (error) {
+				1
 				console.error("Error fetching profile data prof page:", error);
 			}
 		},
 
 
 		async fetchproData() {
+			if (localStorage.getItem('signupstatus') == "true") {
+				localStorage.setItem('signupstatus', "");
+
+				//await this.fetchProfileData()
+			}
 			console.log("calling fetchPRo Data1", this.formData.sub)
-			const myid = this.formData.sub
-			const url = 'https://clownfish-app-quehu.ondigitalocean.app/api/users/sub?sub=' + myid;
+			const myid = this.formData.sub || localStorage.getItem('storgekey');
+			const url = 'https://squid-app-yq2ph.ondigitalocean.app/api/users/sub?sub=' + myid;
 			console.log("jaloru", myid, url);
 			try {
 				// Make the GET request with query parameters
@@ -992,7 +998,7 @@ export default {
 				console.log("before set the name", this.name);
 				this.changeName(this.name);
 				console.log("username is", this.uname);
-				let imageUrl = "https://clownfish-app-quehu.ondigitalocean.app/users/" + this.image;
+				let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
 				this.changeProfileImage(imageUrl)
 				//				this.image = response.data[0].image
 			} catch (error) {

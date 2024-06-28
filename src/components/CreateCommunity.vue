@@ -152,7 +152,7 @@ export default {
 
     //   try {
     //     // Make the POST request with the specified data
-    //     const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/', postData);
+    //     const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/', postData);
 
     //     // Handle the response data
     //     console.log(response.data);
@@ -180,7 +180,7 @@ export default {
 
       try {
         // Make the POST request with the specified data
-        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/communities/', postData);
+        const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/', postData);
 
         // Handle the response data
 

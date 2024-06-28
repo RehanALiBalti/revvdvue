@@ -585,7 +585,7 @@ export default {
 
     // SubmitStory() {
     //   console.log("submit story", this.formData)
-    //   axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/stories', this.formData)
+    //   axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/stories', this.formData)
     //     .then(response => {
     //       // Handle success
     //       console.log('Post request successful:', response.data);
@@ -630,7 +630,7 @@ export default {
       });
 
       // Send POST request using Axios
-      axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/stories', data, {
+      axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/stories', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

@@ -139,8 +139,9 @@ const actions = {
   ) {
     console.log("yes", context);
     try {
-      const result = await AuthService.register(nickname, password, email);
-
+      const result1 = await AuthService.register(nickname, password, email);
+      console.log("usersignup", result1);
+      const result = await AuthService.login(email, password);
       // Commit mutations or perform other actions if needed
       context.commit("setUser", result);
       context.commit("loginSuccess", true, "User has been registered");
@@ -178,7 +179,7 @@ const actions = {
   ) {
     console.log("yes", context);
     try {
-      const result = await AuthService.register2(
+      const result1 = await AuthService.register2(
         name,
         street,
         streetNo,
@@ -198,7 +199,8 @@ const actions = {
         email,
         password
       );
-
+      console.log("singup delear object", result1);
+      const result = await AuthService.login(email, password);
       // Commit mutations or perform other actions if needed
       context.commit("setUser", result);
       context.commit("loginSuccess", true, "User has been registered");

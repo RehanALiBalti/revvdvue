@@ -173,6 +173,15 @@ export default {
         // this.$router.push('/ourcommunity');
         this.$router.push({ name: 'UserProfile' });
       }
+      if (event == 'signUp') {
+        localStorage.setItem('signupstatus', "true");
+        localStorage.setItem('login', true);
+        localStorage.setItem('storgekey', data.userSub);
+
+
+      }
+
+
       /*
       switch (event) {
         case "signIn":
@@ -195,7 +204,7 @@ export default {
       try {
         this.loading = true
         // Make a POST request to the API endpoint
-        const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', { email: this.formData.email });
+        const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/users', { email: this.formData.email });
 
         // Handle success response
         console.log('Form data submitted successfully:', response.data[0]);
