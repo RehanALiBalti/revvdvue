@@ -160,6 +160,9 @@ export default {
 
     Hub.listen("auth", ({ payload: { event, data } }) => {
       console.log(`Auth event: ${event}`, data);
+
+
+
       if (event == 'signIn') {
 
         localStorage.setItem('login', true);
@@ -167,7 +170,7 @@ export default {
 
         // Redirect to '/landing' route
         // this.$router.push('/ourcommunity');
-        this.$router.push({ name: 'UserProfile' });
+        //  this.$router.push({ name: 'UserProfile' });
       }
       /*
       switch (event) {
