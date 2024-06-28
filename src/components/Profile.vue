@@ -680,7 +680,19 @@ export default {
 				console.log("social user attribute", user.attributes)
 				let socialCheck = localStorage.getItem("social")
 				console.log("check social", socialCheck);
+				const mydata = {
+					"name": user.attributes.name,
+					"nickname": user.attributes.name,
+					"sub": user.attributes.sub,
+					"email": user.attributes.email,
+					"role": "user"
 
+				}
+				console.log("mydata", mydata)
+				const response = await axios.post('https://clownfish-app-quehu.ondigitalocean.app/api/users', mydata);
+
+				// Handle success response
+				console.log('Form data submitted successfully:', response.data);
 
 
 				const identities = user.attributes.identities;
