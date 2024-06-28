@@ -283,6 +283,8 @@ router.beforeEach((to, from, next) => {
   } else if (isProtectedRoute && !isAuthenticated) {
     console.log("my check1");
     next("/signin"); // Redirect to signin if not authenticated
+  } else if (!isAuthenticated) {
+    next("/signin");
   } else {
     console.log("my routes check2");
     console.log("balti", to.name, isAuthenticated, isProtectedRoute);

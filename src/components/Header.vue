@@ -448,11 +448,11 @@ export default {
     async handlelogout() {
       try {
         this.isLogin = false;
-
+        localStorage.setItem('login', false);
         this.changeName("");
         //  this.changeProfileImage("");
         await Auth.signOut();
-        localStorage.setItem('login', false);
+
         this.logout();
 
         this.$router.push("/signin");
