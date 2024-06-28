@@ -278,15 +278,16 @@ export default {
     }
   },
   async created() {
-    console.log("i am call", this.isLogin);
-    if (this.isLogin) {
-      await this.fetchProfileData()
-      await this.fetchproData()
-    }
     const storedIsLogin = localStorage.getItem('login');
     if (storedIsLogin !== null) {
       this.isLogin = JSON.parse(localStorage.getItem('login')) || false;
 
+    }
+
+    console.log("i am call", this.isLogin);
+    if (this.isLogin) {
+      await this.fetchProfileData()
+      await this.fetchproData()
     }
     window.addEventListener('storage', this.handleStorageChange.handleStorageChange);
     this.$router.beforeEach((to, from, next) => {
