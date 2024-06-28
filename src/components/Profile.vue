@@ -685,6 +685,7 @@ export default {
 					"nickname": user.attributes.name,
 					"sub": user.attributes.sub,
 					"email": user.attributes.email,
+					"cognitoId": user.attributes.sub,
 					"role": "user"
 
 				}
