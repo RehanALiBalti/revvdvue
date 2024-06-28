@@ -285,7 +285,7 @@ export default {
     }
     const storedIsLogin = localStorage.getItem('login');
     if (storedIsLogin !== null) {
-      this.isLogin = JSON.parse(storedIsLogin);
+      this.isLogin = JSON.parse(localStorage.getItem('login')) || false;
 
     }
     window.addEventListener('storage', this.handleStorageChange.handleStorageChange);

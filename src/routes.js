@@ -269,7 +269,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem("login") === "true";
+  const isAuthenticated = JSON.parse(localStorage.getItem("login")) || false;
 
   const isProtectedRoute = protectedRoutes.includes(to.name);
   console.log("balti", to.name, isAuthenticated, isProtectedRoute);
