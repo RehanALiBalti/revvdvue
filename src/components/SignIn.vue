@@ -166,11 +166,12 @@ export default {
       if (event == 'signIn') {
 
         localStorage.setItem('login', true);
+        localStorage.setItem('social', true);
 
 
         // Redirect to '/landing' route
         // this.$router.push('/ourcommunity');
-        //  this.$router.push({ name: 'UserProfile' });
+        this.$router.push({ name: 'UserProfile' });
       }
       /*
       switch (event) {
