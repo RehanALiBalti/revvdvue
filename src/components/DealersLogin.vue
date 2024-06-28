@@ -418,7 +418,7 @@ export default {
                             //this.isModalOpen = true;
 
                             localStorage.setItem('login', true);
-                            // this.$router.push("/ourcommunity");
+                            this.$router.push("/ourcommunity");
                         } else {
                             console.log("in else")
                             this.isModalOpenFail = true;
