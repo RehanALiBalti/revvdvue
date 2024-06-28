@@ -676,7 +676,11 @@ export default {
 		async checkIfGoogleOrFacebookUser() {
 			try {
 				const user = await Auth.currentAuthenticatedUser();
-				console.log("socail service",user);	
+				console.log("socail service", user);
+				console.log("social user attribute", user.attributes)
+				let socialCheck = localStorage.getItem("social")
+				console.log("check social", socialCheck);
+
 
 
 				const identities = user.attributes.identities;
