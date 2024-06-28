@@ -694,6 +694,7 @@ export default {
 
 				// Handle success response
 				console.log('Form data submitted successfully:', response.data);
+				this.fetchproData()
 
 
 				const identities = user.attributes.identities;
