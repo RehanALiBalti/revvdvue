@@ -676,6 +676,9 @@ export default {
 		async checkIfGoogleOrFacebookUser() {
 			try {
 				const user = await Auth.currentAuthenticatedUser();
+				console.log("socail service",user);	
+
+
 				const identities = user.attributes.identities;
 
 				// Check if the user has identities
@@ -989,7 +992,7 @@ export default {
 		// this.getprofile()
 		await this.fetchProfileData()
 		await this.fetchproData()
-		// this.checkIfGoogleOrFacebookUser()
+		await this.checkIfGoogleOrFacebookUser()
 
 
 
