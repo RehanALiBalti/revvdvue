@@ -271,6 +271,47 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isAuthenticated = JSON.parse(localStorage.getItem("login")) || false;
 
+  // Define public routes
+  const publicRoutes = ["SignIn", "SignUp", "DealersLogin"];
+
+  // Check if the route is public
+  const isPublicRoute = publicRoutes.includes(to.name);
+
+  // Check if the route is protected
+  const isProtectedRoute = protectedRoutes.includes(to.name);
+
+  console.log(
+    "balti",
+    to.name,
+    isAuthenticated,
+    isProtectedRoute,
+    isPublicRoute
+  );
+
+  if (isPublicRoute && isAuthenticated) {
+    // Redirect authenticated users trying to access public routes to profile
+    next("/profile");
+  } else if (isProtectedRoute && !isAuthenticated) {
+    // Redirect unauthenticated users trying to access protected routes to signin
+    console.log("my check1");
+    next("/signin");
+  } else {
+    console.log("my routes check2");
+    console.log(
+      "balti",
+      to.name,
+      isAuthenticated,
+      isProtectedRoute,
+      isPublicRoute
+    );
+    next(); // Proceed to the route
+  }
+});
+
+/*
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = JSON.parse(localStorage.getItem("login")) || false;
+
   const isProtectedRoute = protectedRoutes.includes(to.name);
   console.log("balti", to.name, isAuthenticated, isProtectedRoute);
   //
@@ -291,5 +332,5 @@ router.beforeEach((to, from, next) => {
     next(); // Proceed to the route
   }
 });
-
+*/
 export default router;

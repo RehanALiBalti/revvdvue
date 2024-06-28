@@ -401,6 +401,9 @@ export default {
     // },
 
     async fetchproData() {
+
+
+
       const myid = this.sub
       const url = 'https://clownfish-app-quehu.ondigitalocean.app/api/users/sub?sub=' + myid;
       console.log("jaloru header", myid, url);
