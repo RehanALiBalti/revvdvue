@@ -681,6 +681,7 @@ export default {
 				let socialCheck = localStorage.getItem("social")
 				console.log("check social", socialCheck);
 				if (socialCheck == "true") {
+					console.log("in socila if state")
 					const mydata = {
 						"name": user.attributes.name,
 						"nickname": user.attributes.name,
