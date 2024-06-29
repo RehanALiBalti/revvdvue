@@ -109,66 +109,44 @@
             <div class="communityDetails-chatContent" id="chat-messages" ref="commentsContainer">
 
 
-              <div v-for=" comment  in  filteredComments " :key="comment.id">
-                <div class="d-flex flex-column position-relative">
-                  <div class="d-flex justify-content-end align-items-center me-2">
 
-                  </div>
+
+              <div v-for="comment in filteredComments" :key="comment.id">
+                <div class="d-flex flex-column position-relative">
+                  <div class="d-flex justify-content-end align-items-center me-2"></div>
                 </div>
 
                 <div class="d-flex flex-column">
-
-                  <div class="sender-chats" v-if="comments.length">
+                  <div class="sender-chats" v-if="comment.type !== 'reply'">
                     <div class="row">
                       <div class="col-md-2">
-
                         <img
                           :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
                           alt="" width="50px">
-
                       </div>
                       <div class="col-md-8 d-flex justify-content-between flex-column">
                         <div>
                           <small class="uName">{{ comment.nickname }}</small> <br>
-
                           <p class="sender-chats-para">{{ comment.comments }}</p>
                           <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
                             class="CommentImage" @click="openViewer(comment.image)" />
-
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-
-                          <!-- <button class="like-community likeBtn" id="like" @click="addLike2(comment.id)">
-                            <i class="fa-solid fa-thumbs-up"></i>
-
-                            <small v-if="isLike">Liked</small>
-                            <small v-else>Like</small>
-                            <span class="total-likes">{{ comment.likes
-                              }} </span>
-                            <span class="total-likes">{{ likesCountComments[comment.id] }}</span>
-                          </button> -->
                           <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
                             <i class="fa-solid fa-reply"></i> Reply
                           </p>
-                          <small class="text-white fonts1  ms-0 mb-0 text-end">{{ formatDate(comment.created_date)
+                          <small class="text-white fonts1 ms-0 mb-0 text-end">{{ formatDate(comment.created_date)
                             }}</small>
                         </div>
                         <div v-if="showReplyInput === comment.id">
-
-
-
-
-
-
                           <div class="input-group">
                             <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
                             <span class="input-group-text igt-left d-none" @click="openFileInput2">
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
-
                             <input class="form-control formc1" type="text" v-model="replyText"
                               placeholder="Type your reply here">
-                            <span class=" input-group-text igt-right" @click="submitReply(comment.id)">
+                            <span class="input-group-text igt-right" @click="submitReply(comment.id)">
                               <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
                                 viewBox="0 0 31.5 27">
                                 <path id="Icon_material-send" data-name="Icon material-send"
@@ -178,87 +156,44 @@
                             </span>
                           </div>
                         </div>
-
                       </div>
-
                     </div>
-
-
-
-
                   </div>
-                  <!-- <div class="p-2" v-for=" reply  in  replies " :key="reply.id" v-show="comment.id == reply.comment_id">
-                    <div class="replyBox row">
-                      <div class="col-md-2">
-                        <img
-                          :src="reply.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + reply.userimage : 'path/to/dummy/image.png'"
-                          alt="" width="50px">
-                      </div>
-                      <div class="col-md-10">
-                        <p class="uName m-0 ms-2" v-if="reply.nickname">{{ reply.nickname }}</p>
-                        <p class="sender-chats-para m-0 p-0 ms-2" v-if="reply.comments">{{ reply.comments }}
-                        </p>
-                        <img v-if="reply.image" :src="getImageUrl(reply.image)" alt="Comment Image" class="CommentImage"
-                          @click="openViewer(reply.image)" />
 
-                      </div>
-                    </div>
-                  </div> -->
-                  <div class="sender-chats" v-for=" reply  in  replies " :key="reply.id"
-                    v-show="comment.id == reply.comment_id">
+                  <div class="sender-chats" v-else>
                     <div class="reply">
-                      <p class="m-0 text-white">Reply to <span class="text-danger">{{ reply.mainnickname }}</span></p>
-                      <p class="sender-chats-para m-0 ">{{ reply.maincomment }}</p>
+                      <p class="m-0 text-white">Reply to <span class="text-danger">{{ comment.mainnickname }}</span></p>
+                      <p class="sender-chats-para m-0">{{ comment.maincomment }}</p>
                     </div>
                     <div class="row">
                       <div class="col-md-2">
-
                         <img
-                          :src="reply.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + reply.userimage : '../assets/images/prof.png'"
+                          :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
                           alt="" width="50px">
-
                       </div>
                       <div class="col-md-8">
                         <div>
-                          <small class="uName">{{ reply.nickname }}</small> <br>
-
-                          <p class="sender-chats-para">{{ reply.comments }}</p>
-                          <img v-if="reply.image" :src="getImageUrl(reply.image)" alt="Comment Image"
-                            class="CommentImage" @click="openViewer(reply.image)" />
-
+                          <small class="uName">{{ comment.nickname }}</small> <br>
+                          <p class="sender-chats-para">{{ comment.comments }}</p>
+                          <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
+                            class="CommentImage" @click="openViewer(comment.image)" />
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-
-                          <!-- <button class="like-community likeBtn" id="like" @click="addLike3(comment.id)">
-                            <i class="fa-solid fa-thumbs-up"></i>
-
-                            <small v-if="isLike">Liked</small>
-                            <small v-else>Like</small>
-                            <span class="total-likes">{{ comment.likes
-                              }} </span>
-                          </button> -->
-                          <!-- <p class="text-white text-end fonts1 m-0" @click="toggleReply2(reply.id)">
+                          <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
                             <i class="fa-solid fa-reply"></i> Reply
-                          </p> -->
-                          <small class="text-white fonts1  ms-0 mb-0 text-end">{{ formatDate(reply.created_date)
+                          </p>
+                          <small class="text-white fonts1 ms-0 mb-0 text-end">{{ formatDate(comment.created_date)
                             }}</small>
                         </div>
-                        <div v-if="showReplyInput === reply.id">
-
-
-
-
-
-
+                        <div v-if="showReplyInput === comment.id">
                           <div class="input-group">
                             <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
                             <span class="input-group-text igt-left d-none" @click="openFileInput2">
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
-
                             <input class="form-control formc1" type="text" v-model="replyText"
                               placeholder="Type your reply here">
-                            <span class=" input-group-text igt-right" @click="submitReply(reply.id)">
+                            <span class="input-group-text igt-right" @click="submitReply(comment.id)">
                               <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
                                 viewBox="0 0 31.5 27">
                                 <path id="Icon_material-send" data-name="Icon material-send"
@@ -268,19 +203,12 @@
                             </span>
                           </div>
                         </div>
-
                       </div>
-
                     </div>
-
-
-
-
                   </div>
-
-
                 </div>
               </div>
+
 
             </div>
             <div ref="viewerContainer2">
@@ -616,25 +544,76 @@ export default {
         });
     },
 
+    // submitReply(commentId) {
+    //   const formData = new FormData()
+    //   console.log(commentId);
+    //   console.log(this.replyText);
+    //   console.log(this.user_email);
+    //   console.log(this.user_name);
+
+    //   formData.append('comment_id', commentId); // Assuming `this.id` contains the community ID
+    //   formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
+    //   formData.append('user_email', this.user_email);
+    //   formData.append('user_name', this.user_name);
+    //   formData.append('rimage', this.rImage);
+    //   console.log("r_imag", this.rImage)
+    //   formData.append('sub', this.sub);
+
+    //   // Log the form data
+    //   console.log("formData", formData);
+
+    //   axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/replies/reply', formData, {
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded'
+    //     }
+    //   })
+    //     .then(response => {
+    //       // Handle success
+    //       console.log('Post request successful of replies:', response.data);
+    //       // Append the new comment to the comments array
+    //       // this.replies.push(response.data);
+    //       // this.getreplyOnSubmit(commentId)
+    //       this.getComments()
+
+    //       console.log("rrr", this.replies)
+    //       // Clear inputs
+    //       this.replyText = '';
+    //       // this.showReplyInput = null;
+    //       // Set imgLoading back to false after successful response
+    //     })
+    //     .catch(error => {
+    //       // Handle error
+    //       console.error('Error making post request:', error);
+    //       // Set imgLoading back to false after error
+    //       this.replyText = '';
+    //       // this.showReplyInput = null;
+    //     });
+
+    //   // Clear the reply input
+    //   this.replyText = '';
+    //   this.showReplyInput = null;
+    // }
     submitReply(commentId) {
       const formData = new FormData()
       console.log(commentId);
       console.log(this.replyText);
       console.log(this.user_email);
       console.log(this.user_name);
+      formData.append('community_id', this.id);
 
-      formData.append('comment_id', commentId); // Assuming `this.id` contains the community ID
+      formData.append('parent_id', commentId); // Assuming `this.id` contains the community ID
       formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
       formData.append('user_name', this.user_name);
       formData.append('rimage', this.rImage);
+      formData.append('type', "reply");
       console.log("r_imag", this.rImage)
       formData.append('sub', this.sub);
 
       // Log the form data
       console.log("formData", formData);
 
-      axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/replies/reply', formData, {
+      axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -929,6 +908,7 @@ export default {
       // formData.append('user_name', this.user_name);
       console.log("sub in comments", this.sub)
       formData.append('sub', this.sub);
+      formData.append('type', "comment");
       // formData.append('image', this.user_name);
       // formData.append('User_imagimage', this.user_image)
 
