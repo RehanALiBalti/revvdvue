@@ -164,9 +164,9 @@
                     <div class="reply">
                       <p class="m-0 text-white">Reply to <span class="text-danger">{{ comment.mainnickname }}</span></p>
                       <p class="sender-chats-para m-0">{{ comment.maincomment }}</p>
-                      <div v-if="comment.image">
+                      <!-- <div v-if="comment.image">
                         <img :src="getImageUrl(comment.image)" alt="">
-                      </div>
+                      </div> -->
                     </div>
                     <div class="row">
                       <div class="col-md-2">
@@ -852,7 +852,7 @@ export default {
           this.filteredComments = this.comments;
           console.log("com ", this.comments)
           this.comments.forEach(comment => {
-            this.getreply(comment.id);
+            // this.getreply(comment.id);
             this.getLikesCountComments(comment.id)
           });
 
