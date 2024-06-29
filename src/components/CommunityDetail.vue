@@ -139,8 +139,16 @@
                             }}</small>
                         </div>
                         <div v-if="showReplyInput === comment.id">
+                          <div class=" position-relative " v-if="RimageUrl != ''">
+                            <div class="position-relative mainUp">
+                              <img class="upImage" :src="RimageUrl" alt="">
+                              <span class="cancel" @click="removeImageReply"><i class="fa-solid fa-xmark"></i></span>
+                            </div>
+                          </div>
                           <div class="input-group">
-                            <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
+
+                            <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange"
+                              ref="fileInputReply">
                             <span class="input-group-text igt-left " @click="openFileInput2">
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
@@ -189,8 +197,15 @@
                             }}</small>
                         </div>
                         <div v-if="showReplyInput === comment.id">
+                          <div class=" position-relative " v-if="RimageUrl != ''">
+                            <div class="position-relative mainUp">
+                              <img class="upImage" :src="RimageUrl" alt="">
+                              <span class="cancel" @click="removeImageReply"><i class="fa-solid fa-xmark"></i></span>
+                            </div>
+                          </div>
                           <div class="input-group">
-                            <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
+                            <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange"
+                              ref="fileInputReply">
                             <span class="input-group-text igt-left" @click="openFileInput2">
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
@@ -341,6 +356,7 @@ export default {
       isModal2Open: false,
       isModal3Open: false,
       imageUrl: '',
+      RimageUrl: "",
       communityData: [],
       loading: true, // Initially set to true to show loader image,
       imgLoading: false,
@@ -479,10 +495,22 @@ export default {
     },
 
     handleImageChange(event) {
+      console.log("in image cange")
       const file = event.target.files[0];
-
+      console.log(file.result)
       // Do something with the selected file, like saving it to data or uploading it
       this.rImage = file;
+      if (file) {
+
+        // Read the file as a data URL
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          // Update imageUrl with the data URL of the uploaded image
+          this.RimageUrl = e.target.result;
+          console.log(this.RimageUrl)
+        };
+        reader.readAsDataURL(file);
+      }
     },
     openFileInput2() {
       // Trigger click event of file input
@@ -615,37 +643,44 @@ export default {
 
       // Log the form data
       console.log("formData", formData);
-
-      axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      })
-        .then(response => {
-          // Handle success
-          console.log('Post request successful of replies:', response.data);
-          // Append the new comment to the comments array
-          // this.replies.push(response.data);
-          // this.getreplyOnSubmit(commentId)
-          this.getComments()
-
-          console.log("rrr", this.replies)
-          // Clear inputs
-          this.replyText = '';
-          // this.showReplyInput = null;
-          // Set imgLoading back to false after successful response
+      if (this.RimageUrl == "" && this.replyText == "") {
+        this.isModal2Open = true;
+        this.imgLoading = false;
+      }
+      else {
+        axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
         })
-        .catch(error => {
-          // Handle error
-          console.error('Error making post request:', error);
-          // Set imgLoading back to false after error
-          this.replyText = '';
-          // this.showReplyInput = null;
-        });
+          .then(response => {
+            // Handle success
+            console.log('Post request successful of replies:', response.data);
+            // Append the new comment to the comments array
+            // this.replies.push(response.data);
+            // this.getreplyOnSubmit(commentId)
+            this.getComments()
 
-      // Clear the reply input
-      this.replyText = '';
-      this.showReplyInput = null;
+            console.log("rrr", this.replies)
+            // Clear inputs
+            this.replyText = '';
+            // this.showReplyInput = null;
+            // Set imgLoading back to false after successful response
+          })
+          .catch(error => {
+            // Handle error
+            console.error('Error making post request:', error);
+            // Set imgLoading back to false after error
+            this.replyText = '';
+            // this.showReplyInput = null;
+          });
+
+        // Clear the reply input
+        this.replyText = '';
+        this.showReplyInput = null;
+      }
+
+
     }
     ,
     //   const formData = new FormData();
@@ -797,6 +832,15 @@ export default {
       // Reset the file input to clear the selected file
       if (this.$refs.fileInput) {
         this.$refs.fileInput.value = '';
+      }
+    },
+    removeImageReply() {
+      // Reset imageUrl to remove the image
+      this.RimageUrl = '';
+      this.rImage = ""
+      // Reset the file input to clear the selected file
+      if (this.$refs.fileInputReply) {
+        this.$refs.fileInputReply.value = '';
       }
     },
     openFileInput() {
