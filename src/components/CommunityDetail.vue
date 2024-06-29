@@ -141,7 +141,7 @@
                         <div v-if="showReplyInput === comment.id">
                           <div class="input-group">
                             <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
-                            <span class="input-group-text igt-left d-none" @click="openFileInput2">
+                            <span class="input-group-text igt-left " @click="openFileInput2">
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
                             <input class="form-control formc1" type="text" v-model="replyText"
@@ -164,6 +164,9 @@
                     <div class="reply">
                       <p class="m-0 text-white">Reply to <span class="text-danger">{{ comment.mainnickname }}</span></p>
                       <p class="sender-chats-para m-0">{{ comment.maincomment }}</p>
+                      <div v-if="comment.image">
+                        <img :src="getImageUrl(comment.image)" alt="">
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-2">
@@ -188,7 +191,7 @@
                         <div v-if="showReplyInput === comment.id">
                           <div class="input-group">
                             <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange">
-                            <span class="input-group-text igt-left d-none" @click="openFileInput2">
+                            <span class="input-group-text igt-left" @click="openFileInput2">
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
                             <input class="form-control formc1" type="text" v-model="replyText"
@@ -605,7 +608,7 @@ export default {
       formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
       formData.append('user_email', this.user_email);
       formData.append('user_name', this.user_name);
-      formData.append('rimage', this.rImage);
+      formData.append('image', this.rImage);
       formData.append('type', "reply");
       console.log("r_imag", this.rImage)
       formData.append('sub', this.sub);
