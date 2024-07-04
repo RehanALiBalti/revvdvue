@@ -175,6 +175,7 @@ const actions = {
       mobilePhone,
       email,
       password,
+      role,
     }
   ) {
     console.log("yes", context);
@@ -197,7 +198,8 @@ const actions = {
         prefix3,
         mobilePhone,
         email,
-        password
+        password,
+        role
       );
       console.log("singup delear object", result1);
       const result = await AuthService.login(email, password);

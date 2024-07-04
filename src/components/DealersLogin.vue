@@ -345,6 +345,7 @@ export default {
     },
     methods: {
         async submitProfileForm() {
+            console.log("in submit profile form")
             try {
                 // Make a POST request to the API endpoint
                 const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/users', this.formData);
@@ -402,35 +403,74 @@ export default {
         //     }
 
         // },
-        submitForm() {
+        async submitForm() {
             console.log("befor", this.formData)
             // Handle form submission here
             this.validateForm();
 
             if (this.isFormValid()) {
                 //this.submitProfileForm()
+                const mydata = {
 
-                this.$store.dispatch('auth/handleSignUp2', this.formData)
-                    .then(data => {
+                    nickname: this.formData.name.trim().toLowerCase(),
+                    // age: this.formData.age,
+                    email: this.formData.email,
+                    phone: this.formData.phone,
+                    password: this.formData.password,
 
-                        if (data.success === 1) {
-                            console.log("result", data.result)
-                            //this.isModalOpen = true;
+                    street: this.formData.street,
+                    streetNo: this.formData.streetNo,
 
-                            localStorage.setItem('login', true);
-                            this.$router.push("/profile");
-                        } else {
-                            console.log("in else")
-                            this.isModalOpenFail = true;
-                            this.errorMessage = data.error;
-                        }
+                    zipCode: this.formData.zipCode,
+                    city: this.formData.city,
+                    country: this.formData.country,
 
-                        console.log(data);
-                    })
-                    .catch(error => {
-                        console.error("Error during form submission:", error);
-                        // Handle error if needed
-                    });
+                    phone1: this.formData.phone,
+
+                    fax: this.formData.fax,
+
+                    mobilePhone: this.formData.phone,
+
+                    check1: this.formData.check1,
+                    check2: this.formData.check2,
+                    role: this.formData.role
+
+                    // socialMedia: this.formData.socialMedia,
+                };
+                console.log("before submittind dealer data", mydata);
+                try {
+                    const url = `https://squid-app-yq2ph.ondigitalocean.app/api/users/nickname?nickname=${mydata.nickname}`;
+                    const response = await axios.get(url);
+                    console.log("respi", response)
+                    if (response.data.count == 0) {
+                        this.$store.dispatch('auth/handleSignUp2', this.formData)
+                            .then(data => {
+
+                                if (data.success === 1) {
+                                    console.log("result", data.result)
+                                    //this.isModalOpen = true;
+
+                                    localStorage.setItem('login', true);
+                                    this.$router.push("/profile");
+                                } else {
+                                    console.log("in else")
+                                    this.isModalOpenFail = true;
+                                    this.errorMessage = data.error;
+                                }
+
+                                console.log(data);
+                            })
+                            .catch(error => {
+                                console.error("Error during form submission:", error);
+                                // Handle error if needed
+                            });
+                    }
+                }
+                catch (error) {
+                    console.log("error", error)
+                }
+
+
             } else {
                 console.log("Form is invalid");
             }

@@ -4,7 +4,7 @@
 			<div class="col-md-8 m-auto">
 				<div class="form-content-home1">
 
-					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'delear'">
+					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'dealer'">
 						<div class="user-profile-page">
 							<img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
 								alt="Profile Image"
@@ -906,6 +906,7 @@ export default {
 				console.log(data, typeof data);
 				if (data === "SUCCESS") {
 					this.isModalOpen = true;
+					this.changeName(this.formData.CompanyName)
 				}
 			} catch (error) {
 				console.error("Error updating user profile:", error);
@@ -924,11 +925,13 @@ export default {
 				console.log("user dataddfdd", this.UserData)
 				this.formData.sub = this.UserData.sub
 				this.formData.cognitoId = this.UserData.sub
+				this.role = this.UserData['custom:Role'];
 
 
 				console.log("userdata nick name", this.UserData.nickname)
-				this.role = this.UserData.nickname
-				if (this.role == "delear") {
+				// this.role = this.UserData.nickname
+				if (this.role == "dealer") {
+					this.changeName(this.UserData.name)
 					this.formData.CompanyName = this.UserData.name;
 					this.formData.email = this.UserData.email
 					this.formData.mobilePhone = this.UserData["custom:mobileCustomer"]

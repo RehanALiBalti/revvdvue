@@ -182,6 +182,27 @@
   </div>
 
   <!-- modal end -->
+  <!-- modal for show name already exits -->
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpenName === true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="close-icon" @click="isModalOpenName = false">
+            <i class="fas fa-times"></i>
+          </span>
+
+          <div class="mt-4 py-2">
+            <h5 class="card-title"><span class="choose">Full Name Alredy Existed </span></h5>
+
+            <p class="text-white">Please Try With Different Name</p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal ends -->
 </template>
 <script>
 import axios from 'axios';
@@ -217,6 +238,7 @@ export default {
       strength: "", // Add this line
       isModalOpen: false,
       isModalOpenFail: false,
+      isModalOpenName: false,
       errorMessage: "",
       formData: {
 
@@ -331,7 +353,7 @@ export default {
         const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/users', this.formData);
 
         // Handle success response
-        console.log('Form data submitted successfully:', response.data);
+        console.log('Form data submitted successfully user:', response.data);
 
         const { email, name, role } = this.formData;
         // this.$store.signup({ email, name, role });
@@ -397,11 +419,11 @@ export default {
                   if (data.success == 1) {
 
                     // this.isModalOpen = true
-                    //                this.submitProfileForm()
+                    //          this.submitProfileForm()
                     localStorage.setItem('login', true);
                     //  window.location.reload();
                     // this.$router.push("/signin");
-                    this.$router.push("/profile");
+                    // this.$router.push("/profile");
                     // window.location.reload()
                     // this.$router.push({ name: 'UserProfile' })
                   } else {
@@ -413,7 +435,7 @@ export default {
                 })
           }
           else {
-            alert("Nick Name Already Exists")
+            this.isModalOpenName = true
           }
         }
         catch (error) {

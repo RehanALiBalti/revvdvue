@@ -315,7 +315,8 @@ function register2(
   prefix3,
   mobilePhone,
   email,
-  password
+  password,
+  role
 ) {
   console.log(
     "before request",
@@ -336,7 +337,9 @@ function register2(
     prefix3,
     mobilePhone,
     email,
-    password
+    password,
+    "here is role",
+    role
   );
 
   return new Promise((resolve, reject) => {
@@ -348,7 +351,7 @@ function register2(
       attributes: {
         name: name,
         "custom:companyName": name,
-        nickname: "delear",
+        nickname: name,
         "custom:street1": street,
         "custom:number": mobilePhone,
         "custom:street2": street2,
@@ -366,6 +369,7 @@ function register2(
         "custom:mobileCustomer": mobilePhone,
         "custom:emailForCustomer": email,
         "custom:dealerPassword": password,
+        "custom:Role": role,
       },
 
       autoConfirm: true,
