@@ -331,7 +331,7 @@ export default {
   methods: {
     getProfileImage(profileImage) {
       if (!profileImage || profileImage.includes('null') || profileImage.includes('undefined')) {
-        return '/images/prof.png';
+        return '/images/Group888.png';
       }
       return profileImage;
     },

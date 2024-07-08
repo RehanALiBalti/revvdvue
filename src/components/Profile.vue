@@ -566,7 +566,7 @@ export default {
 	methods: {
 		getProfileImage(profileImage) {
 			if (!profileImage || profileImage.includes('null') || profileImage.includes('undefined')) {
-				return '/images/prof.png';
+				return '/images/uploadImage.png';
 			}
 			return profileImage;
 		},

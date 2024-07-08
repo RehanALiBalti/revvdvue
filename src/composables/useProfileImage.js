@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 
 const state = reactive({
-  profileImage: "/images/prof.png", // Default image
+  profileImage: "/images/Group888.png", // Default image
 });
 
 export const useProfileImage = () => {
