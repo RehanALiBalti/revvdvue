@@ -85,9 +85,9 @@
                     <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                   </span>
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
+                <!-- <div class="d-flex justify-content-center align-items-center">
                   <router-link to="/dealerlogin" class="termsService">{{ $t('GoToDealerLogin') }}</router-link>
-                </div>
+                </div> -->
                 <!-- <div class="d-flex justify-content-end align-items-center">
                   <router-link to="/forget" class="termsService">Forgot Password?</router-link>
                 </div> -->

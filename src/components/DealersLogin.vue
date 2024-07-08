@@ -103,10 +103,14 @@
                                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
                                     :placeholder="$t('Enter here')" value="dealer" />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 position-relative">
                                 <label for="password" class="form-label">{{ $t('password') }}</label>
-                                <input type="password" id="password" v-model="formData.password"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
+                                <input :type="formData.showPassword ? 'text' : 'password'" id="password"
+                                    v-model="formData.password" class="form-control form-input"
+                                    :placeholder="$t('Enter here')" />
+                                <span class="eye" @click="togglePasswordVisibility2">
+                                    <i class="fa-solid" :class="eyeIcon"></i>
+                                </span>
                                 <div class="strength-bars" v-if="formData.password !== ''">
                                     <div class="strength-bar"
                                         :class="{ 'weak': passwordStrength === 'Weak', 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
@@ -257,6 +261,7 @@ export default {
             isModalOpenFail: false,
             errorMessage: "",
             formData: {
+                showPassword: false,
                 name: '',
                 street: '',
                 streetNo: '',
@@ -289,6 +294,10 @@ export default {
         };
     },
     computed: {
+        eyeIcon() {
+            return this.formData.showPassword ? 'fa-eye-slash' : 'fa-eye';
+
+        },
         loggedIn() {
 
             return this.$store.state.auth;
@@ -344,6 +353,10 @@ export default {
 
     },
     methods: {
+
+        togglePasswordVisibility2() {
+            this.formData.showPassword = !this.formData.showPassword;
+        },
         async submitProfileForm() {
             console.log("in submit profile form")
             try {

@@ -6,7 +6,24 @@
         <div class="form-content-home1">
           <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title">{{ $t('signUp') }}</h2>
+            <div class="signIn-div my-5">
+              <button type="button" class="btn google-btn" @click="handleGoogleLogin">
+                <i class="fa-brands fa-google-plus-g"></i> Google
+              </button>
+              <!-- <div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout=""
+                data-auto-logout-link="false" data-use-continue-as="false"></div> -->
+              <!-- <button class="btn google-btn">
+                <i class="fa-brands fa-facebook"></i>Facebook
+              </button> -->
+              <button type="button" class="btn google-btn" @click="handleFacebookLogin">
+                <i class="fa-brands fa-facebook"></i> Facebook
+              </button>
 
+              <!-- <button class="btn google-btn">
+                <i class="fa-brands fa-apple"></i>Apple
+              </button> -->
+
+            </div>
             <div class="row">
               <div class="col-md-6">
                 <label for="name" class="form-label">Full Name</label>
@@ -131,6 +148,9 @@
                   </span>
                 </div>
               </div>
+              <div class="d-flex justify-content-center align-items-center">
+                <router-link to="/dealerlogin" class="termsService">{{ $t('GoToDealerLogin') }}</router-link>
+              </div>
             </div>
           </form>
         </div>
@@ -209,7 +229,8 @@ import axios from 'axios';
 import { mapActions } from 'vuex';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
-
+import { Auth, Hub } from 'aws-amplify';
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 
 export default {
   name: "SignUp",
@@ -339,6 +360,45 @@ export default {
 
   mounted() {
     console.log(this.loggedIn)
+    Hub.listen("auth", ({ payload: { event, data } }) => {
+      console.log(`Auth event: ${event}`, data);
+
+
+
+      if (event == 'signIn') {
+
+        localStorage.setItem('login', true);
+        localStorage.setItem('social', true);
+
+
+        // Redirect to '/landing' route
+        // this.$router.push('/ourcommunity');
+        this.$router.push({ name: 'UserProfile' });
+      }
+      if (event == 'signUp') {
+        localStorage.setItem('signupstatus', "true");
+        localStorage.setItem('login', true);
+        localStorage.setItem('storgekey', data.userSub);
+
+
+      }
+
+
+      /*
+      switch (event) {
+        case "signIn":
+          console.log("signIn data: " + JSON.stringify(data));
+          this.signedIn = true;
+          this.username = data.username;
+          alert(data.username)
+ 
+          break;
+        case "signOut":
+          this.signedIn = false;
+          this.username = null;
+          break;
+      }*/
+    });
     // console.log(this.user)
     // if (this.loggedIn) {
     //   this.$router.push("/profile");
@@ -346,6 +406,31 @@ export default {
   },
   methods: {
     ...mapActions(['signup']),
+    async handleFacebookLogin() {
+      try {
+        const response = await Auth.federatedSignIn({
+          provider: CognitoHostedUIIdentityProvider.Facebook
+
+        });
+
+        // Handle successful login
+        console.log('Facebook login response:', response);
+
+      } catch (error) {
+        // Handle login error
+        console.error('Facebook login error:', error);
+      }
+    },
+    async handleGoogleLogin() {
+      try {
+        const response = await Auth.federatedSignIn({ provider: 'Google' });
+        // Handle successful login
+        console.log('Google login response:', response);
+      } catch (error) {
+        // Handle login error
+        alert.error('Google login error:', error);
+      }
+    },
 
     async submitProfileForm() {
       try {
