@@ -1219,12 +1219,10 @@ export default {
 		display: block;
 		width: 100%;
 		max-width: 920px;
-		height: 50px;
+		height: 40px;
 		padding: 0.375rem 2.25rem 0.375rem 1.75rem;
 		-moz-padding-start: calc(0.75rem - 3px);
-		font-size: 20px;
-		font-weight: 400;
-		line-height: 1.5;
+
 		color: #c5c5c5;
 		background-color: #000b1c;
 		/* background-image: url("../images/Icon\ awesome-chevron-down.png"); */

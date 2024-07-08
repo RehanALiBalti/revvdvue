@@ -244,9 +244,10 @@
         </div>
         <form @submit.prevent="postComment" enctype="multipart/form-data" method="post" class="position-relative">
           <div class="form-group d-flex flex-column">
-            <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment" disabled
-              v-if="imgLoading">
-            <input type="text" class="form-control my-2" placeholder="Enter Comment" v-model="newComment" v-else>
+            <textarea type="text" class="form-control my-2 pe-9" placeholder="Enter Comment" v-model="newComment"
+              disabled v-if="imgLoading"></textarea>
+            <textarea type="text" class="form-control my-2 pe-9" placeholder="Enter Comment" v-model="newComment"
+              v-else></textarea>
             <div v-if="imgLoading" class="imgLoadingBox">
               <div class="box2"></div>
             </div>
@@ -1471,8 +1472,8 @@ export default {
 }
 
 .upImage {
-  width: 50px;
-  height: 40px;
+  width: 40px;
+  height: 35px;
 }
 
 .cancel {
@@ -1492,7 +1493,11 @@ export default {
 .upsection {
   position: absolute;
   right: 100px;
-  top: 20px
+  top: 12px
+}
+
+.pe-9 {
+  padding-right: 8.6rem;
 }
 
 

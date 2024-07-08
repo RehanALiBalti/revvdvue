@@ -357,6 +357,7 @@ export default {
         //     }
         // },
         async getForumData() {
+            console.log()
             try {
                 const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/communities/filter', {
                     params: {
@@ -366,7 +367,7 @@ export default {
                         specifications: this.specifications
                     }
                 });
-                console.log("new get response", response.data);
+                console.log("new get responseon forum pags", response.data);
                 this.communities = response.data;
 
                 for (const community of this.communities) {

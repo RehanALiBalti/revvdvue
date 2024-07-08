@@ -37,11 +37,11 @@
 
 						</div>
 						<div class="row">
-							<!-- <div class="col-md-6">
-								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
+							<div class="col-md-6">
+								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
 								<input v-model="fullname" id="name" type="text" name="name"
 									class="form-control form-input" :placeholder="$t('Enter here')" required>
-							</div> -->
+							</div>
 							<div class="col-md-6">
 								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
 								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
@@ -797,7 +797,7 @@ export default {
 				const formData = new FormData();
 
 				formData.append('image', this.$refs.fileInput.files[0]);
-				formData.append('name', this.name);
+				formData.append('name', this.fullname);
 				formData.append('nickname', this.name);
 				formData.append('age', this.age);
 				formData.append('email', this.email);
@@ -911,7 +911,15 @@ export default {
 			} catch (error) {
 				console.error("Error updating user profile:", error);
 				// Handle error gracefully, e.g., display an error message to the user
-				this.errorMessage = error
+				const customErrorRegex = /custom:[^\s]+ must not be null/;
+				const match = error.message.match(customErrorRegex);
+
+				// If the match is found, use it; otherwise, use the entire error message
+				const errorMessage = match ? match[0] : error.message;
+
+				// Handle error gracefully, e.g., display an error message to the user
+				this.errorMessage = errorMessage;
+				// this.errorMessage = error
 				this.isModalOpenFail = true
 			}
 		},
@@ -994,10 +1002,10 @@ export default {
 				const response = await axios.get(url);
 
 				// Handle the response data
-				console.log(this.formData.sub, "new porofile Data is", response.data);
+				console.log(this.formData.sub, "new porofile Data is dw", response.data);
 				this.image = response.data.image
 				this.name = response.data.nickname
-				this.fullname = response.data.nickname
+				this.fullname = response.data.name
 				console.log("before set the name", this.name);
 				this.changeName(this.name);
 				console.log("username is", this.uname);

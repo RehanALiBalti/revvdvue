@@ -205,7 +205,7 @@
                 </li>
               </ul>
               <ul v-else v-show="isOpenm" class="options-list">
-                <li>{{ modelfilteredOptions.length }}</li>
+
               </ul>
             </div>
           </div>
@@ -267,9 +267,9 @@
               placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
           </div>
           <div class="col-md-6">
-            <label for="message" class="form-label">Add your social media link(s) </label>
-            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              rows="4" v-model="formData.social_media"></textarea>
+            <label for="message" class="form-label">Add Instagram link </label>
+            <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')" rows="4"
+              v-model="formData.social_media" />
             <!-- Error message for Message -->
             <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
           </div>
@@ -280,8 +280,8 @@
             <!-- <input type="file" id="city" name="city" class="form-control form-input" accepct="jgp,png"
               v-bind="formData.storyImages" /> -->
             <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-              accept=".jpg,.png" multiple v-on:change="validateFiles" />
-            <div class="list-item-btn position-relative submit-btn-div m-0">
+              accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
+            <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
               <span class="border-bottom-btn border-top-btn position-absolute">
                 <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
               </span>
@@ -303,6 +303,13 @@
               <span class="border-bottom-btn position-absolute">
                 <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
               </span>
+            </div>
+            <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+              <div v-for="(image, index) in uploadedImages" :key="index"
+                class="upImageArea d-flex flex-column gap-1 position-relative my-1">
+                <img :src="image" alt="" />
+                <button class="btn  btnRemv" @click="removeImage(index)"><i class="fa-solid fa-xmark"></i></button>
+              </div>
             </div>
             <!-- Error message for City -->
             <!-- <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p> -->
@@ -490,6 +497,7 @@ export default {
       isOpenm: false,
       isOpeng: false,
       isModal3: false,
+      uploadedImages: [],
       error2: "",
       isModal2Open: false,
       makefilteredOptions: [],
@@ -537,6 +545,25 @@ export default {
     };
   },
   methods: {
+    handleFileUpload(event) {
+      const files = event.target.files;
+      if (files.length + this.uploadedImages.length > 8) {
+        alert("You can only upload a maximum of 8 images.");
+        return;
+      }
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.uploadedImages.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    removeImage(index) {
+      this.uploadedImages.splice(index, 1);
+    }
+    ,
     async fetchProfileData() {
       try {
         // console.log("Fetching profile data...");
@@ -668,7 +695,7 @@ export default {
       // this.selectedData = "";
       this.formData.year = ""
       this.smodel = ""
-      const query = this.filterData.make.toLowerCase();
+      const query = this.formData.make.toLowerCase();
       if (query === '') {
         this.makefilteredOptions = this.makes;
       } else {
@@ -680,7 +707,7 @@ export default {
       this.formData.year = ""
 
       console.log(this.smodel);
-      const query = this.smodel.toLowerCase();
+      const query = this.formData.model.toLowerCase();
 
       if (query === '') {
         this.modelfilteredOptions = this.models;
@@ -1103,6 +1130,35 @@ export default {
   background: transparent !important;
 }
 
+.btnRemv {
+  position: absolute;
+  top: 0px;
+  right: 0cm;
+  transition: 0.2s all ease-in-out;
+}
+
+.btnRemv:hover {
+  color: #f95f19;
+  transform: scale(1.02);
+
+}
+
+.upImageArea>img {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.topN35 {
+  top: -35px;
+  cursor: pointer
+}
+
+.topN35>label {
+
+  cursor: pointer
+}
 
 .modal-dialog {
   max-width: auto;
@@ -1128,11 +1184,10 @@ export default {
   display: block;
   width: 100%;
   max-width: 920px;
-  height: 50px;
+  height: 40px;
   padding: 0.375rem 2.25rem 0.375rem 1.75rem;
   -moz-padding-start: calc(0.75rem - 3px);
-  font-size: 20px;
-  font-weight: 400;
+
   line-height: 1.5;
   color: #c5c5c5;
   background-color: #000b1c;
