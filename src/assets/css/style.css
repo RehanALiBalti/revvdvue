@@ -2709,3 +2709,7 @@ a:hover {
 ::-webkit-scrollbar-thumb:window-inactive {
 	background-color: rgba(138, 134, 134, 0.5)
 }
+
+.min-h-80vh {
+	min-height: 80vh;
+}
