@@ -453,7 +453,8 @@ export default {
         this.isLogin = false;
         localStorage.setItem('login', false);
         localStorage.setItem('storgekey', "");
-        localStorage.setItem('signupstatus', "");
+        localStorage.setItem('signupstatus', ""); 
+        localStorage.setItem('firstTimeLogin', false);
 
         this.changeName("");
         //  this.changeProfileImage("");

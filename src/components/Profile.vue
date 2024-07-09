@@ -516,6 +516,7 @@ export default {
 	name: "UserProfile",
 	data() {
 		return {
+			IsphonExists: false,
 			fullname: "",
 			isModalOpen: false,
 			isModalOpenFail: false,
@@ -795,13 +796,14 @@ export default {
 				console.log("sub ID", this.formData.sub)
 				console.log("this is formData", this.formData)
 				const formData = new FormData();
+				let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
 
 				formData.append('image', this.$refs.fileInput.files[0]);
 				formData.append('name', this.fullname);
 				formData.append('nickname', this.name);
 				formData.append('age', this.age);
 				formData.append('email', this.email);
-				formData.append('phone', this.phone);
+				formData.append('phone', cleanedPhoneNumber);
 				formData.append("socialMedia", this.socialMedia)
 				// Make a POST request to the API endpoint
 				console.log("fffdata", this.formData)
@@ -809,6 +811,15 @@ export default {
 
 				// Handle success response
 				console.log('Form data submitted successfully:', response.data);
+				if (response.data.message.includes("Phone number already exists")) {
+					this.IsphonExists = true
+					this.errorMessage = response.data.message
+					this.isModalOpenFail = true;
+
+				} else {
+					this.IsphonExists = false
+				}
+
 				const profiledata = this.fetchproData();
 				return profiledata;
 
@@ -827,35 +838,41 @@ export default {
 			}
 		},
 		async updateUserAttributes() {
-			const profiledata = this.submitProfileForm();
+			const profiledata = await this.submitProfileForm();
+			console.log("cehck pro data", profiledata)
 			console.log(profiledata);
+			if (this.IsphonExists == false) {
+				const updatedProfile = {
+					fullname: this.fullname, // Correct the key to fullName if needed
+					name: this.name,
+					nickname: this.name,
+					email: this.email,
+					age: this.age,
+					phone: this.phone,
+					socialMedia: this.socialMedia,
+					image: this.image,
+				};
 
-			const updatedProfile = {
-				fullname: this.fullname, // Correct the key to fullName if needed
-				name: this.name,
-				nickname: this.name,
-				email: this.email,
-				age: this.age,
-				phone: this.phone,
-				socialMedia: this.socialMedia,
-				image: this.image,
-			};
+				console.log("The profile data", updatedProfile);
 
-			console.log("The profile data", updatedProfile);
+				try {
+					const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
+					console.log(data, typeof data);
+					if (data === "SUCCESS") {
+						this.isModalOpen = true;
 
-			try {
-				const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
-				console.log(data, typeof data);
-				if (data === "SUCCESS") {
-					this.isModalOpen = true;
-
+					}
+				} catch (error) {
+					console.error("Error updating user profile:", error);
+					// Handle error gracefully, e.g., display an error message to the user
+					this.errorMessage = error
+					this.isModalOpenFail = true
 				}
-			} catch (error) {
-				console.error("Error updating user profile:", error);
-				// Handle error gracefully, e.g., display an error message to the user
-				this.errorMessage = error
-				this.isModalOpenFail = true
+
+
 			}
+
+
 		}
 		,
 		async updateUserAttributesDealer() {

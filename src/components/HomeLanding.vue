@@ -485,14 +485,36 @@ import axios from 'axios';
 
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
+import { useProfileImage } from '@/composables/useProfileImage';
+import { useProfileName } from '@/composables/useProfileName';
 export default {
   name: "HomeLanding",
+  setup() {
+    const { state: profileImageState, setProfileImage } = useProfileImage();
+    const { state: nameState, setName } = useProfileName();
 
+    const changeProfileImage = (newSrc) => {
+      setProfileImage(newSrc);
+    };
+
+    const changeName = (newName) => {
+      setName(newName);
+    };
+
+    return {
+      profileImageState,
+      nameState,
+      changeProfileImage,
+      changeName
+    };
+  },
   data() {
     return {
       user: {
         email: ''
       },
+      image: "",
+      sub: "",
       isOpen: false,
       isOpenm: false,
       isOpeng: false,
@@ -566,38 +588,54 @@ export default {
     ,
     async fetchProfileData() {
       try {
-        // console.log("Fetching profile data...");
+        console.log("Fetching profile data...");
         const data = await this.$store.dispatch("auth/getprofiledata");
-        // console.log("Profile data:", data);
-        this.UserData = data.result
-        console.log("user data", this.UserData)
-
-
-        console.log("userdata nick name", this.UserData.nickname)
-        this.role = this.UserData.nickname
-        if (this.role == "delear") {
-          this.formData.user_name = this.UserData.name;
-          this.formData.user_email = this.UserData.email
-
-
-        } else {
-          let social = false;
-          if ('identities' in this.UserData) {
-            social = true;
-            this.socialSignIn = true
-          }
-          console.log("socialsttus", social)
-          this.formData.user_name = this.UserData.name
-          this.formData.user_email = this.UserData.email
+        console.log("Profile data in heder:", data.result.sub);
+        this.sub = data.result.sub
+        this.userAttributes = data.result
 
 
 
+
+        if (this.userAttributes.picture) {
+          this.image = this.userAttributes.picture
         }
 
 
 
       } catch (error) {
         console.error("Error fetching profile data:", error);
+        if (error.success == 0) {
+          localStorage.setItem('login', false);
+          //     this.$router.push("/signin");
+        }
+      }
+    },
+    async fetchproData() {
+
+
+
+      const myid = this.sub
+      const url = 'https://squid-app-yq2ph.ondigitalocean.app/api/users/sub?sub=' + myid;
+      console.log("jaloru header", myid, url);
+      try {
+        // Make the GET request with query parameters
+        const response = await axios.get(url);
+        console.log("ja loru response", response, response.data.nickname)
+
+        // Handle the response data
+        // console.log(this.formData.sub, "new porofile Data is", response.data);
+        this.image = response.data.image
+
+        let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
+
+        this.changeProfileImage(imageUrl)
+        this.changeName(response.data.nickname)
+        console.log("the image of user dloru header", this.image)
+        //				this.image = response.data[0].image
+      } catch (error) {
+        // Handle any errors
+        console.error('Error making GET request:', error);
       }
     },
     validateFiles(event) {
@@ -1101,7 +1139,7 @@ export default {
 
   },
 
-  mounted() {
+  async mounted() {
 
     window.addEventListener('storage', this.handleStorageChange);
     this.retrieveCars();
@@ -1110,7 +1148,8 @@ export default {
     // this.showFilterModal();
     // Add event listener to the document body for clicks
     document.body.addEventListener("click", this.handleOutsideClick);
-    // this.fetchProfileData();
+    await this.fetchProfileData()
+    await this.fetchproData()
 
 
   },

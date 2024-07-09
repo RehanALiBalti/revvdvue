@@ -506,6 +506,7 @@ export default {
                     // this.isModalOpen = true
                     //          this.submitProfileForm()
                     localStorage.setItem('login', true);
+                    localStorage.setItem('firstTimeLogin', true);
                     //  window.location.reload();
                     // this.$router.push("/signin");
                     // this.$router.push("/profile");

@@ -171,7 +171,13 @@ export default {
 
         // Redirect to '/landing' route
         // this.$router.push('/ourcommunity');
-        this.$router.push({ name: 'UserProfile' });
+        if (localStorage.getItem("firstTimeLogin") === "true") {
+          this.$router.push({ name: 'UserProfile' });
+        }
+        else {
+          this.$router.push({ name: 'HomeLanding' });
+        }
+
       }
       if (event == 'signUp') {
         localStorage.setItem('signupstatus', "true");
@@ -274,7 +280,13 @@ export default {
             localStorage.setItem('data', data.result);
 
             // Redirect to '/landing' route
-            this.$router.push('/profile');
+            // this.$router.push('/profile');
+            if (localStorage.getItem("firstTimeLogin") === "true") {
+              this.$router.push({ name: 'UserProfile' });
+            }
+            else {
+              this.$router.push({ name: 'HomeLanding' });
+            }
 
           } else {
             this.isModalOpen = true
