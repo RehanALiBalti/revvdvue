@@ -260,7 +260,9 @@
               </svg>
               <div class="upsection" v-if="imageUrl != ''">
                 <div class="position-relative mainUp">
-                  <img class="upImage" :src="imageUrl" alt="">
+                  <!-- <img class="upImage" :src="imageUrl" alt=""> -->
+
+                  <p class="text-white">{{ imageName }}</p>
                   <span class="cancel" @click="removeImage"><i class="fa-solid fa-xmark"></i></span>
                 </div>
               </div>
@@ -336,6 +338,7 @@ export default {
   data() {
     return {
       likesCountComments: reactive({}),
+      imageName: "",
       search: "",
       likesCount: "",
       totalComments: "",
@@ -851,6 +854,8 @@ export default {
       // Handle file change event and update this.image
       const file = event.target.files[0]; // Get the uploaded file
       // Check if a file is selected
+      this.imageName = file.name
+
       if (file) {
         this.image = this.$refs.fileInput.files[0];
         // Read the file as a data URL
@@ -1478,11 +1483,15 @@ export default {
 
 .cancel {
   position: absolute;
-  right: 0;
+  /* right: 0; */
+  left: -16px;
   color: #d24200;
   transition: 0.2s all;
   cursor: pointer;
+  /* top: -7px; */
+  top: 0;
 }
+
 
 .cancel:hover {
   transform: scale(1.2);
@@ -1497,7 +1506,7 @@ export default {
 }
 
 .pe-9 {
-  padding-right: 8.6rem;
+  padding-right: 17.6rem;
 }
 
 

@@ -4,7 +4,7 @@
   <div class="container my-5">
     <div class="banner-content">
       <h1 class="banner-title">{{ $t('changingTheCarWorld') }}</h1>
-      <p class="banner-para">
+      <p class="banner-para mb-0">
         {{ $t('ultimateHub') }} {{ $t('oneStopShop') }}
 
       </p>
@@ -235,21 +235,21 @@
           <div class="col-md-12">
             <label for="name" class="form-label"> Tell us your car story together </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              v-model="formData.story" rows="4"></textarea>
+              v-model="formData.story" rows="2"></textarea>
 
           </div>
           <div class="col-md-12">
             <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
               or any specific features ? </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              v-model="formData.modifications" rows="4"></textarea>
+              v-model="formData.modifications" rows="2"></textarea>
 
           </div>
           <div class="col-md-12">
             <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve had
               with your car that stands out the most? </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              v-model="formData.memorable" rows="4"></textarea>
+              v-model="formData.memorable" rows="2"></textarea>
             <!-- Error message for Email -->
             <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
@@ -258,7 +258,7 @@
             <label for="phone" class="form-label"> If you could give advice to someone just starting their journey to
               modify their car, what would it be and why?</label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              v-model="formData.advice" rows="4"></textarea>
+              v-model="formData.advice" rows="2"></textarea>
           </div>
           <div class="col-md-12">
             <label for="country" class="form-label"> What is the name of your story that you would like to choose?
@@ -268,7 +268,7 @@
           </div>
           <div class="col-md-6">
             <label for="message" class="form-label">Add Instagram link </label>
-            <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')" rows="4"
+            <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')" rows="2"
               v-model="formData.social_media" />
             <!-- Error message for Message -->
             <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->

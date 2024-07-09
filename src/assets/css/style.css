@@ -825,12 +825,12 @@ a {
 	perspective: 1000px;
 	width: 100%;
 	max-width: 350px;
-	height: 282px;
+	/* height: 282px; */
 }
 
 .logo-R {
-	width: 85%;
-	height: 85%;
+	width: 70%;
+	height: 70%;
 	transition: transform 1s;
 	animation: flip 4s infinite;
 	transform-style: preserve-3d;
@@ -2161,7 +2161,7 @@ a:hover {
 
 	.logo-R-div {
 		max-width: 350px;
-		height: 282px;
+		/* height: 282px; */
 	}
 
 	.launching-h2-title {
@@ -2184,7 +2184,7 @@ a:hover {
 
 	.logo-R-div {
 		max-width: 250px;
-		height: 200px;
+		/* height: 200px; */
 	}
 
 	.launching-h2-title {
@@ -2530,7 +2530,7 @@ a:hover {
 
 	.logo-R-div {
 		max-width: 150px;
-		height: 118px;
+		/* height: 118px; */
 	}
 
 	.main-content-home1 {

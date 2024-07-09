@@ -93,6 +93,29 @@
                 <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
               </span>
             </li>
+            <li class="list-item-btn position-relative" v-if="isLogin == false">
+              <span class="border-bottom-btn border-top-btn position-absolute">
+                <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span
+                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+              </span>
+              <router-link to="/dealerlogin" class="signin-btnli signup-btnli">
+                {{ $t('Dealer Signup') }}
+              </router-link>
+              <span class="border-bottom-btn border-left-btn position-absolute">
+                <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+              </span>
+              <span class="border-bottom-btn position-absolute">
+                <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+              </span>
+            </li>
 
 
             <li class="">
@@ -453,7 +476,7 @@ export default {
         this.isLogin = false;
         localStorage.setItem('login', false);
         localStorage.setItem('storgekey', "");
-        localStorage.setItem('signupstatus', ""); 
+        localStorage.setItem('signupstatus', "");
         localStorage.setItem('firstTimeLogin', false);
 
         this.changeName("");
