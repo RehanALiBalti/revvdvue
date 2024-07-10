@@ -243,30 +243,30 @@
 
         </div>
         <form @submit.prevent="postComment" enctype="multipart/form-data" method="post" class="position-relative">
-          <div class="form-group d-flex flex-column">
-            <textarea type="text" class="form-control my-2 pe-9" placeholder="Enter Comment" v-model="newComment"
-              disabled v-if="imgLoading"></textarea>
-            <textarea type="text" class="form-control my-2 pe-9" placeholder="Enter Comment" v-model="newComment"
+          <div class="form-group d-flex align-items-center mainPostArea">
+            <textarea type="text" class="form-control my-2 " placeholder="Enter Comment" v-model="newComment" disabled
+              v-if="imgLoading"></textarea>
+            <textarea type="text" class="form-control my-2 " placeholder="Enter Comment" v-model="newComment"
               v-else></textarea>
             <div v-if="imgLoading" class="imgLoadingBox">
               <div class="box2"></div>
             </div>
-            <div v-else>
-              <input type="file" class="form-control-file my-2 d-none" @change="handleFileChange" ref="fileInput">
-              <svg @click="postComment" xmlns="http://www.w3.org/2000/svg" class=" position-absolute send-icon"
-                width="31.5" height="27" viewBox="0 0 31.5 27">
-                <path id="Icon_material-send" data-name="Icon material-send"
-                  d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
-              </svg>
+            <div class="d-flex align-items-center gap-2 ms-2" v-else>
               <div class="upsection" v-if="imageUrl != ''">
                 <div class="position-relative mainUp">
                   <!-- <img class="upImage" :src="imageUrl" alt=""> -->
 
-                  <p class="text-white">{{ imageName }}</p>
+                  <p class="text-white mb-0 fonts2">{{ imageName }}</p>
                   <span class="cancel" @click="removeImage"><i class="fa-solid fa-xmark"></i></span>
                 </div>
-              </div>
-              <span class="image_icon" @click="openFileInput"><i class="fa-solid fa-image"></i></span>
+              </div><i class="fa-solid fa-image image_icon" @click="openFileInput"></i>
+              <input type="file" class="form-control-file my-2 d-none" @change="handleFileChange" ref="fileInput">
+              <svg @click="postComment" xmlns="http://www.w3.org/2000/svg" class=" send-icon" width="31.5" height="27"
+                viewBox="0 0 31.5 27">
+                <path id="Icon_material-send" data-name="Icon material-send"
+                  d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
+              </svg>
+
             </div>
             <!-- <input type="submit" value="Post" class="btn my-2 "> -->
 
@@ -1402,7 +1402,7 @@ export default {
 }
 
 .image_icon {
-  position: absolute;
+  /* position: absolute; */
   top: 8px;
   right: 55px;
   font-size: 28px;
@@ -1500,9 +1500,13 @@ export default {
 }
 
 .upsection {
-  position: absolute;
+  /* position: absolute; */
   right: 100px;
   top: 12px
+}
+
+.fonts2 {
+  font-size: 10px
 }
 
 .pe-9 {
@@ -1666,5 +1670,23 @@ export default {
 .input-group-text {
   padding-block: 0 !important;
   padding-inline: 0.3rem;
+}
+
+.mainPostArea {
+  min-height: 40px !important;
+  border-radius: 5px !important;
+  background-color: #031726 !important;
+  border: 1px solid #1a202c !important;
+  font-family: "Gruppo", sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: #c5c5c5 !important;
+  padding-inline: 0.8rem;
+}
+
+.mainPostArea textarea {
+  border: none !important;
+  background-color: transparent !important;
+
 }
 </style>

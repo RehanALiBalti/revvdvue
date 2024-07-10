@@ -13,7 +13,7 @@
 
   <div class="container my-5">
     <div class="main-content-home1">
-      <div class="logo-R-div">
+      <div class="logo-R-div d-flex justify-content-center align-items-center">
         <img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
       </div>
 

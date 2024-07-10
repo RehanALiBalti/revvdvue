@@ -1,5 +1,5 @@
 <template>
-	<section class="my-5" id="gallery">
+	<section class="my-5 min-h-80vh" id="gallery">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
@@ -1082,7 +1082,7 @@
 
 	<div class="container my-5">
 		<div class="main-content-home1">
-			<div class="logo-R-div">
+			<div class="logo-R-div d-flex justify-content-center align-items-center">
 
 				<img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
 

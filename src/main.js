@@ -23,6 +23,7 @@ import VueImageZoomer from "vue-image-zoomer";
 import "vue-image-zoomer/dist/style.css";
 import "viewerjs/dist/viewer.css";
 import VueViewer from "v-viewer";
+import VueParticles from "vue-particles";
 
 const i18n = createI18n({
   legacy: false, // Use Composition API
@@ -67,4 +68,5 @@ createApp(App)
   .use(i18n)
   .use(store)
   .use(VueViewer)
+  .use(VueParticles)
   .mount("#app");

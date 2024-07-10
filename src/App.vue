@@ -1,4 +1,9 @@
 <template>
+  <div id="particlees">
+    <vue-particles color="#dedede" particleOpacity="0.7" particlesNumber="80" shapeType="circle" particleSize="4"
+      linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
+      clickEffect="true" clickMode="push" />
+  </div>
   <div>
     <HeaderItem />
     <router-view />
@@ -54,4 +59,11 @@ export default {
 @import './assets/css/style.css';
 @import './assets/css/carShop.css';
 @import './assets/css/carListing7.css';
+
+#particlees {
+
+  width: 100%;
+  /* height: 100vh; */
+
+}
 </style>
