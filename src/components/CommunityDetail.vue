@@ -100,7 +100,7 @@
 
             </div>
           </div>
-          <div v-if="comments != ''" class="communityDetails-bg mt-1 communityDetailsMain">
+          <div v-if="comments != ''" class="communityDetails-bg mt-1 communityDetailsMain wcol">
             <div class="img-communityDetails-div">
 
 
@@ -1692,5 +1692,35 @@ export default {
   border: none !important;
   background-color: transparent !important;
 
+}
+
+.wcol {
+  width: 66.66%
+}
+
+@media(max-width:768px) {
+  .wcol {
+    width: 100%;
+  }
+}
+
+textarea::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: Just to make it visually disappear */
+}
+
+/* Hide scrollbar in Firefox */
+textarea {
+  scrollbar-width: none;
+  /* Hide scrollbar */
+  -ms-overflow-style: none;
+  /* Hide scrollbar for Internet Explorer and Edge */
+}
+
+textarea::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space for WebKit browsers */
 }
 </style>

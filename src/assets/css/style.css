@@ -1810,7 +1810,7 @@ a.signin-btnli:hover {
 .form-check-input {
 	box-shadow: 2px 3px 6px rgba(0, 0, 0, 1.1);
 	position: relative;
-	top: 12px;
+	/* top: 12px; */
 	width: 1.7em;
 	height: 1.2em;
 	cursor: pointer;

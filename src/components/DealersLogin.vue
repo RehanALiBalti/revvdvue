@@ -6,169 +6,116 @@
                 <div class="form-content-home1">
 
                     <form id="subscribe-form" @submit.prevent="submitForm">
-                        <h2 class="form-title">{{ $t('OnlineRegistrationForm') }}
-                        </h2>
-                        <!-- <small class="text-white">{{ $t('AlreadyRegisteredNote') }}</small> -->
+                        <h2 class="form-title">{{ $t('OnlineRegistrationForm') }}</h2>
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
                                 <label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
                                 <input v-model="formData.name" id="companyName" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" required />
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.name }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.name" class="text-danger">{{ formErrors.name }}</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="street" class="form-label">{{ $t('Street') }}</label>
-                                <input v-model="formData.street" id="street" type="text" class="form-control form-input"
-                                    :placeholder="$t('Enter here')" required />
+                                <input v-model="formData.street" id="street" type="text"
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.street }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.street" class="text-danger">{{ formErrors.street }}</div>
                             </div>
                             <div class="col-md-3">
-                                <label for="streetNo" class="form-label">No.</label>
+                                <label for="streetNo" class="form-label">{{ $t('StreetNo') }}</label>
                                 <input v-model="formData.streetNo" id="streetNo" type="number"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" required />
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.streetNo }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.streetNo" class="text-danger">{{ formErrors.streetNo }}</div>
                             </div>
-
                             <div class="col-md-3">
                                 <label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
                                 <input v-model="formData.zipCode" id="zipCode" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" required />
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.zipCode }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.zipCode" class="text-danger">{{ formErrors.zipCode }}</div>
                             </div>
-                            <!-- <div class="col-md-3">
-                                <label for="street2" class="form-label">{{ $t('Street2') }} </label>
-                                <input v-model="formData.street2" id="street2" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div> -->
                             <div class="col-md-3">
                                 <label for="city" class="form-label">{{ $t('City') }}</label>
-                                <input v-model="formData.city" id="city" type="text" class="form-control form-input"
-                                    :placeholder="$t('Enter here')" required />
+                                <input v-model="formData.city" id="city" type="text"
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.city }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.city" class="text-danger">{{ formErrors.city }}</div>
                             </div>
                             <div class="col-md-3">
                                 <label for="country" class="form-label">{{ $t('Country') }}</label>
                                 <input v-model="formData.country" id="country" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" required />
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.country }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.country" class="text-danger">{{ formErrors.country }}</div>
                             </div>
-                            <!-- <div class="col-md-4">
-                                <label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
-
-                                <input v-model="formData.intlPrefix1" id="fax" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div>
-                            <div class="col-md-3">
-
-                                <label for="prefix1" class="form-label">{{ $t('Prefix1') }}</label>
-                                <input v-model="formData.prefix1" id="prefix1" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div> -->
                             <div class="col-md-6">
                                 <label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
-                                <input v-model="formData.phone1" id="phone1" type="tel" class="form-control form-input"
-                                    inputmode="numeric" pattern="[0-9]*" :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
+                                <input v-model="formData.phone1" id="phone1" type="tel"
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.phone1 }]"
+                                    inputmode="numeric" pattern="[0-9]*" :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.phone1" class="text-danger">{{ formErrors.phone1 }}</div>
                             </div>
-                            <!-- <div class="col-md-4">
-                                <label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
-                               
-                                <input v-model="formData.intlPrefix2" id="intlPrefix2" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div>
-                            <div class="col-md-3">
-                                <label for="prefix2" class="form-label">{{ $t('Prefix1') }}</label>
-                                <input v-model="formData.prefix2" id="prefix2" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div> -->
                             <div class="col-md-6">
                                 <label for="fax" class="form-label">{{ $t('Fax') }}</label>
-                                <input v-model="formData.fax" id="fax" type="tel" class="form-control form-input"
-                                    :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
+                                <input v-model="formData.fax" id="fax" type="tel"
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.fax }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.fax" class="text-danger">{{ formErrors.fax }}</div>
                             </div>
-                            <!-- <div class="col-md-4">
-                                <label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
-                              
-                                <input v-model="formData.intlPrefix3" id="fax" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div>
-                            <div class="col-md-3">
-                                <label for="prefix3" class="form-label">{{ $t('Prefix1') }}</label>
-                                <input v-model="formData.prefix3" id="prefix3" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
-                            </div> -->
                             <div class="col-md-6">
                                 <label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
                                 <input v-model="formData.mobilePhone" id="mobilePhone" type="tel"
-                                    class="form-control form-input" :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.mobilePhone }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.mobilePhone" class="text-danger">{{ formErrors.mobilePhone }}
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">{{ $t('Email') }}</label>
-                                <input v-model="formData.email" id="email" type="email" class="form-control form-input"
-                                    :placeholder="$t('Enter here')" required>
-                                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
-                                    :placeholder="$t('Enter here')" value="dealer" />
+                                <input v-model="formData.email" id="email" type="email"
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.email }]"
+                                    :placeholder="$t('Enter here')" />
+                                <div v-if="formErrors.email" class="text-danger">{{ formErrors.email }}</div>
                             </div>
                             <div class="col-md-6 position-relative">
                                 <label for="password" class="form-label">{{ $t('password') }}</label>
                                 <input :type="formData.showPassword ? 'text' : 'password'" id="password"
-                                    v-model="formData.password" class="form-control form-input"
-                                    :placeholder="$t('Enter here')" required />
+                                    v-model="formData.password"
+                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.password }]"
+                                    :placeholder="$t('Enter here')" />
                                 <span class="eye" @click="togglePasswordVisibility2">
                                     <i class="fa-solid" :class="eyeIcon"></i>
                                 </span>
-                                <div class="strength-bars" v-if="formData.password !== ''">
-                                    <div class="strength-bar"
-                                        :class="{ 'weak': passwordStrength === 'Weak', 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
-                                    </div>
-                                    <div class="strength-bar"
-                                        :class="{ 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
-                                    </div>
-                                    <div class="strength-bar" :class="{ 'strong': passwordStrength === 'Strong' }">
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-end">
-                                    <p :class="passwordStrengthClass">{{ passwordStrength }}</p>
-                                </div>
-                                <div v-if="formErrors.password" class="text-danger">
-                                    {{ formErrors.password }}
-                                </div>
-                                <div class="col-md-12">
-                                    <ul class="text-white">
-                                        <li>Password must be at least 8 characters long.</li>
-                                        <li>Password must contain at least one uppercase letter.</li>
-                                        <li>Password must contain at least one number.</li>
-                                        <li>Password Must contain at least one symbol</li>
-                                    </ul>
-                                </div>
+                                <div v-if="formErrors.password" class="text-danger">{{ formErrors.password }}</div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check1" v-model="formData.check1"
-                                    class="form-check-input m-0" :placeholder="$t('Enter here')" required />
-                                <label for="check1" class="form-label mt-4 mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
+                                    :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check1 }]" />
+                                <label for="check1" class="form-label m-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                                     <router-link to="/termofservice" class="termsService" target="_blank">{{
                         $t('GeneralTermsAndConditions') }}</router-link>
                                 </label>
                                 <div v-if="formErrors.check1" class="text-danger">
-                                    {{ formErrors.check1 }}
+                                    <p class="m-0 p-0">{{ formErrors.check1 }}</p>
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check1" v-model="formData.check2"
-                                    class="form-check-input m-0" :placeholder="$t('Enter here')" required />
-                                <label for="check1" class="form-label mt-4 mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
+                                <input type="checkbox" id="check2" v-model="formData.check2"
+                                    :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check2 }]" />
+                                <label for="check2" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                                     <router-link to="/privacypolicy" class="termsService" target="_blank">{{
-                        $t('PrivacyPolicy')
-                    }}</router-link>
+                        $t('PrivacyPolicy') }}</router-link>
                                 </label>
                                 <div v-if="formErrors.check2" class="text-danger">
-                                    {{ formErrors.check2 }}
+                                    <p class="text-danger m-0 p-0">{{ formErrors.check2 }}</p>
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check3" class="form-check-input m-0"
-                                    :placeholder="$t('Enter here')" />
-                                <label for="check3" class="form-label mt-4 mb-0 p-0">{{ $t('NoEmails') }}
-
-                                </label>
+                                <input type="checkbox" id="check3" class="form-check-input" />
+                                <label for="check3" class="form-label m-0 p-0">{{ $t('NoEmails') }}</label>
                             </div>
                             <div class="col-md-12">
                                 <p id="errormsg"></p>
@@ -189,9 +136,8 @@
                                         <img src="@/assets/images/Path465.png" class="img-border position-absolute"
                                             alt="" />
                                     </span>
-                                    <button type="submit" class="signin-btnli submitNow" id="submit-button">
-                                        {{ $t('submit') }}
-                                    </button>
+                                    <button type="submit" class="signin-btnli submitNow" id="submit-button">{{
+                        $t('submit') }}</button>
                                     <span class="border-bottom-btn border-left-btn position-absolute">
                                         <img src="@/assets/images/Group11.png" class="img-border position-absolute"
                                             alt="" />
@@ -204,6 +150,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
 
             </div>
@@ -272,14 +219,12 @@ export default {
                 zipCode: '',
                 city: '',
                 country: '',
-                intlPrefix1: '',
-                prefix1: '',
+
+
                 phone1: '',
-                intlPrefix2: '',
-                prefix2: '',
+
                 fax: '',
-                intlPrefix3: '',
-                prefix3: '',
+
                 mobilePhone: '',
                 email: '',
                 password: "",
@@ -287,12 +232,7 @@ export default {
                 check2: "",
                 role: "dealer"
             },
-            formErrors: {
-
-                password: "",
-                check1: "",
-                check2: ""
-            },
+            formErrors: {}
 
         };
     },
@@ -419,97 +359,141 @@ export default {
         //     }
 
         // },
+        // async submitForm() {
+        //     console.log("befor", this.formData)
+
+        //     // Handle form submission here
+        //     this.validateForm();
+
+        //     if (this.isFormValid()) {
+        //         //this.submitProfileForm()
+        //         const mydata = {
+
+        //             nickname: this.formData.name.trim().toLowerCase(),
+        //             // age: this.formData.age,
+        //             email: this.formData.email,
+        //             phone: this.formData.phone,
+        //             password: this.formData.password,
+
+        //             street: this.formData.street,
+        //             streetNo: this.formData.streetNo,
+
+        //             zipCode: this.formData.zipCode,
+        //             city: this.formData.city,
+        //             country: this.formData.country,
+
+        //             phone1: this.formData.phone,
+
+        //             fax: this.formData.fax,
+
+        //             mobilePhone: this.formData.phone,
+
+        //             check1: this.formData.check1,
+        //             check2: this.formData.check2,
+        //             role: this.formData.role
+
+        //             // socialMedia: this.formData.socialMedia,
+        //         };
+        //         console.log("before submittind dealer data", mydata);
+        //         try {
+        //             const url = `https://squid-app-yq2ph.ondigitalocean.app/api/users/nickname?nickname=${mydata.nickname}`;
+        //             const response = await axios.get(url);
+        //             console.log("respi", response)
+        //             if (response.data.count == 0) {
+        //                 this.$store.dispatch('auth/handleSignUp2', this.formData)
+        //                     .then(data => {
+
+        //                         if (data.success === 1) {
+        //                             console.log("result", data.result)
+        //                             //this.isModalOpen = true;
+
+        //                             localStorage.setItem('login', true);
+        //                             this.$router.push("/profile");
+        //                         } else {
+        //                             console.log("in else")
+        //                             this.isModalOpenFail = true;
+        //                             this.errorMessage = data.error;
+        //                         }
+
+        //                         console.log(data);
+        //                     })
+        //                     .catch(error => {
+        //                         console.error("Error during form submission:", error);
+        //                         // Handle error if needed
+        //                     });
+        //             }
+        //         }
+        //         catch (error) {
+        //             console.log("error", error)
+        //         }
+
+
+        //     } else {
+        //         console.log("Form is invalid");
+        //     }
+        // },
         async submitForm() {
-            console.log("befor", this.formData)
-            // Handle form submission here
             this.validateForm();
-
             if (this.isFormValid()) {
-                //this.submitProfileForm()
-                const mydata = {
-
-                    nickname: this.formData.name.trim().toLowerCase(),
-                    // age: this.formData.age,
-                    email: this.formData.email,
-                    phone: this.formData.phone,
-                    password: this.formData.password,
-
-                    street: this.formData.street,
-                    streetNo: this.formData.streetNo,
-
-                    zipCode: this.formData.zipCode,
-                    city: this.formData.city,
-                    country: this.formData.country,
-
-                    phone1: this.formData.phone,
-
-                    fax: this.formData.fax,
-
-                    mobilePhone: this.formData.phone,
-
-                    check1: this.formData.check1,
-                    check2: this.formData.check2,
-                    role: this.formData.role
-
-                    // socialMedia: this.formData.socialMedia,
-                };
-                console.log("before submittind dealer data", mydata);
                 try {
-                    const url = `https://squid-app-yq2ph.ondigitalocean.app/api/users/nickname?nickname=${mydata.nickname}`;
+                    const url = `https://squid-app-yq2ph.ondigitalocean.app/api/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`;
                     const response = await axios.get(url);
-                    console.log("respi", response)
-                    if (response.data.count == 0) {
-                        this.$store.dispatch('auth/handleSignUp2', this.formData)
-                            .then(data => {
-
-                                if (data.success === 1) {
-                                    console.log("result", data.result)
-                                    //this.isModalOpen = true;
-
-                                    localStorage.setItem('login', true);
-                                    this.$router.push("/profile");
-                                } else {
-                                    console.log("in else")
-                                    this.isModalOpenFail = true;
-                                    this.errorMessage = data.error;
-                                }
-
-                                console.log(data);
-                            })
-                            .catch(error => {
-                                console.error("Error during form submission:", error);
-                                // Handle error if needed
-                            });
+                    if (response.data.count === 0) {
+                        this.$store.dispatch('auth/handleSignUp2', this.formData).then(data => {
+                            if (data.success === 1) {
+                                localStorage.setItem('login', true);
+                                this.$router.push("/profile");
+                            } else {
+                                this.errorMessage = data.error;
+                            }
+                        }).catch(error => {
+                            console.error("Error during form submission:", error);
+                        });
                     }
+                } catch (error) {
+                    console.error("Error:", error);
                 }
-                catch (error) {
-                    console.log("error", error)
-                }
-
-
             } else {
                 console.log("Form is invalid");
             }
         },
 
+        // isFormValid() {
+        //     return Object.values(this.formErrors).every(error => !error);
+        // },
         isFormValid() {
-            return Object.values(this.formErrors).every(error => !error);
+            return Object.keys(this.formErrors).length === 0;
         },
 
+        // validateForm() {
+        //     this.formErrors = {};
+
+        //     if (!this.formData.check1) {
+        //         this.formErrors.check1 = "   Please check the General Terms And Conditions";
+        //     }
+        //     if (!this.formData.check2) {
+        //         this.formErrors.check2 = "Please check the Privacy And Policy";
+        //     }
+        //     if (!this.formData.password) {
+        //         this.formErrors.password = "Password is ";
+        //     }
+        // },
         validateForm() {
             this.formErrors = {};
-
-            if (!this.formData.check1) {
-                this.formErrors.check1 = "   Please check the General Terms And Conditions";
-            }
-            if (!this.formData.check2) {
-                this.formErrors.check2 = "Please check the Privacy And Policy";
-            }
-            if (!this.formData.password) {
-                this.formErrors.password = "Password is required";
-            }
+            if (!this.formData.name) this.formErrors.name = 'Company name is required ';
+            if (!this.formData.street) this.formErrors.street = 'Street is required';
+            if (!this.formData.streetNo) this.formErrors.streetNo = 'Street number is required';
+            if (!this.formData.zipCode) this.formErrors.zipCode = 'Zip code is required';
+            if (!this.formData.city) this.formErrors.city = 'City is required';
+            if (!this.formData.country) this.formErrors.country = 'Country is required';
+            if (!this.formData.phone1) this.formErrors.phone1 = 'Phone number is required';
+            if (!this.formData.fax) this.formErrors.fax = 'Fax is required';
+            if (!this.formData.mobilePhone) this.formErrors.mobilePhone = 'Mobile phone is required';
+            if (!this.formData.email) this.formErrors.email = 'Email is required';
+            if (!this.formData.password) this.formErrors.password = 'Password is required';
+            if (!this.formData.check1) this.formErrors.check1 = 'Please accept the terms';
+            if (!this.formData.check2) this.formErrors.check2 = 'Please accept the privacy policy';
         },
-
 
     },
     watch: {
@@ -627,5 +611,13 @@ export default {
     cursor: pointer;
     background-color: #f95f19 !important;
     border: none !important;
+}
+
+.form-control.is-invalid {
+    border-color: #7E2838 !important;
+}
+
+.text-danger {
+    font-size: 14px !important;
 }
 </style>
