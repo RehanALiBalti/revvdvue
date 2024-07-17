@@ -859,7 +859,7 @@ a {
 
 div.start-engine-div {
 	width: 100%;
-	max-width: 180px;
+	max-width: 150px;
 	height: 60px;
 	/* margin-left: -2rem; */
 }
@@ -1354,13 +1354,13 @@ a.footer-main-addresss:hover {
 
 .signin-btnli.Start.Engine.load-more-btn.proceed-btn {
 	max-width: 200px;
-	height: 50px;
+	height: 45px;
 	font-size: 12px;
 	font-weight: 400;
 }
 
 .list-item-btn.position-relative.load-more-div.proceed-div {
-	max-width: 150px;
+	max-width: 133px;
 }
 
 .fas.fa-times {

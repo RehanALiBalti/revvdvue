@@ -4,7 +4,7 @@
       linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
       clickEffect="true" clickMode="push" />
   </div>
-  <div>
+  <div class="min-h-80vh">
     <HeaderItem />
     <router-view />
     <FooterSect v-if="showFooterSect" />

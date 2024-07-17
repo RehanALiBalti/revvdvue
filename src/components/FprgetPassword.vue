@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-5 min-h-80vh">
+    <div class="container my-5 ">
         <div class="row">
             <div class="col-md-6 m-auto">
                 <div class="form-content-home1">

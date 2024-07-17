@@ -1,5 +1,5 @@
 <template>
-	<section class="my-5 min-h-80vh" id="gallery">
+	<section class="my-5 " id="gallery">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
@@ -229,6 +229,51 @@
 					</div>
 				</div>
 
+			</div>
+		</div>
+		<div class="container my-5">
+			<div class="banner-content">
+				<!-- <h1 class="banner-title">Changing the Car World</h1> -->
+				<p class="banner-para">
+					Welcome to our ultimate platform for car enthusiasts! Explore our five core modules: a marketplace
+					for
+					buying and selling modified and super cars, vibrant community forum threads for engaging with fellow
+					enthusiasts, a car shops finder to locate the best maintenance and upgrade services, and a parts
+					marketplace for discovering a wide selection of vehicle components.
+				</p>
+			</div>
+		</div>
+
+		<div class="container my-5">
+			<div class="main-content-home1">
+				<div class="logo-R-div d-flex justify-content-center align-items-center">
+
+					<img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
+
+				</div>
+
+				<!-- <div class="list-item-btn position-relative start-engine-div">
+            <span class="border-bottom-btn border-top-btn position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Group12engine.png" class="img-border position-absolute" alt="">
+            </span>
+
+            <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Path467engine.png" class="img-border position-absolute" alt="">
+            </span>
+
+            <span class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Path465engine.png" class="img-border position-absolute" alt="">
+            </span>
+            <button type="button" class="signin-btnli Start Engine mx-auto">
+                Start Engine
+            </button>
+            <span class="border-bottom-btn border-left-btn position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Group11engine.png" class="img-border position-absolute" alt="">
+            </span>
+            <span class="border-bottom-btn position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Path473engine.png" class="img-border position-absolute" alt="">
+            </span>
+        </div> -->
 			</div>
 		</div>
 	</section>
@@ -1068,50 +1113,7 @@
 		</div>
 	</div>
 
-	<div class="container my-5">
-		<div class="banner-content">
-			<!-- <h1 class="banner-title">Changing the Car World</h1> -->
-			<p class="banner-para">
-				Welcome to our ultimate platform for car enthusiasts! Explore our five core modules: a marketplace for
-				buying and selling modified and super cars, vibrant community forum threads for engaging with fellow
-				enthusiasts, a car shops finder to locate the best maintenance and upgrade services, and a parts
-				marketplace for discovering a wide selection of vehicle components.
-			</p>
-		</div>
-	</div>
 
-	<div class="container my-5">
-		<div class="main-content-home1">
-			<div class="logo-R-div d-flex justify-content-center align-items-center">
-
-				<img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
-
-			</div>
-
-			<!-- <div class="list-item-btn position-relative start-engine-div">
-            <span class="border-bottom-btn border-top-btn position-absolute">
-                <img src="http://localhost/revvdout/assets/images/Group12engine.png" class="img-border position-absolute" alt="">
-            </span>
-
-            <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                <img src="http://localhost/revvdout/assets/images/Path467engine.png" class="img-border position-absolute" alt="">
-            </span>
-
-            <span class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                <img src="http://localhost/revvdout/assets/images/Path465engine.png" class="img-border position-absolute" alt="">
-            </span>
-            <button type="button" class="signin-btnli Start Engine mx-auto">
-                Start Engine
-            </button>
-            <span class="border-bottom-btn border-left-btn position-absolute">
-                <img src="http://localhost/revvdout/assets/images/Group11engine.png" class="img-border position-absolute" alt="">
-            </span>
-            <span class="border-bottom-btn position-absolute">
-                <img src="http://localhost/revvdout/assets/images/Path473engine.png" class="img-border position-absolute" alt="">
-            </span>
-        </div> -->
-		</div>
-	</div>
 
 </template>
 
