@@ -43,7 +43,7 @@
 
                 </div>
               </div>
-              <div class=" col-md-8 my-2 ">
+              <div class=" col-md-7 my-2 ">
                 <div class=" card-title-div communityDetailsMain p-3">
 
                   <div class="">
@@ -1695,7 +1695,7 @@ export default {
 }
 
 .wcol {
-  width: 66.66%
+  width: 57.5%
 }
 
 @media(max-width:768px) {
