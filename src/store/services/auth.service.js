@@ -105,6 +105,77 @@ function setprofile(data) {
     }
   });
 }
+// function setprofile2(data) {
+//   console.log("before request", data);
+
+//   return new Promise((resolve, reject) => {
+//     try {
+//       const updatedAttributes = {
+//         email: data.email,
+
+//         name: data.companyName,
+
+//         "custom:city": data.city,
+
+//         "custom:companyName": data.companyName,
+
+//         "custom:country": data.country,
+
+//         "custom:emailForCustomer": data.emailForCustomer,
+
+//         "custom:faxCustomer": data.faxCustomer,
+
+//         "custom:interanetPrefix1": data.interanetPrefix1,
+
+//         "custom:interanetPrefix2": data.interanetPrefix2,
+
+//         "custom:interanetPrefix3": data.interanetPrefix3,
+
+//         "custom:mobileCustomer": data.mobileCustomer,
+
+//         "custom:number": data.number,
+
+//         "custom:phoneCustomer": data.phoneCustomer,
+
+//         "custom:prefix1": data.prefix1,
+//         "custom:prefix2": data.prefix2,
+
+//         "custom:prefix3": data.prefix3,
+
+//         "custom:street1": data.street1,
+
+//         "custom:street2": data.street2,
+
+//         "custom:zipCode": data.zipCode,
+
+//         // Add other attributes you want to update
+//       };
+
+//       console.log("update", updatedAttributes);
+
+//       Auth.currentAuthenticatedUser()
+//         .then((user) => {
+//           console.log("authenuser", user);
+//           console.log(user.signInUserSession.accessToken.jwtToken);
+
+//           Auth.updateUserAttributes(user, updatedAttributes)
+//             .then((result) => {
+//               resolve(result);
+//             })
+//             .catch((error) => {
+//               reject(error);
+//             });
+//         })
+//         .catch((error) => {
+//           reject(error);
+//         });
+//     } catch (error) {
+//       console.error("Error updating user attributes:", error);
+//       reject(error);
+//     }
+//   });
+// }
+
 function setprofile2(data) {
   console.log("before request", data);
 
@@ -125,22 +196,11 @@ function setprofile2(data) {
 
         "custom:faxCustomer": data.faxCustomer,
 
-        "custom:interanetPrefix1": data.interanetPrefix1,
-
-        "custom:interanetPrefix2": data.interanetPrefix2,
-
-        "custom:interanetPrefix3": data.interanetPrefix3,
-
         "custom:mobileCustomer": data.mobileCustomer,
 
         "custom:number": data.number,
 
         "custom:phoneCustomer": data.phoneCustomer,
-
-        "custom:prefix1": data.prefix1,
-        "custom:prefix2": data.prefix2,
-
-        "custom:prefix3": data.prefix3,
 
         "custom:street1": data.street1,
 
@@ -175,7 +235,6 @@ function setprofile2(data) {
     }
   });
 }
-
 function login(username, password) {
   console.log("before request", password, username);
   return new Promise((resolve, reject) => {

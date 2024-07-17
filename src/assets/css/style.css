@@ -445,6 +445,7 @@ video::-webkit-media-controls {
 	display: block;
 	/* padding: 0 4px; */
 	white-space: nowrap;
+	letter-spacing: -1px !important;
 }
 
 .user-custom-box span.user-name::after {

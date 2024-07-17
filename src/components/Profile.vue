@@ -61,6 +61,41 @@
 								<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 								<input v-model="phone" id="phone" type="tel" name="phone"
 									class="form-control form-input" :placeholder="$t('Enter here')" required>
+								<div
+									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+										<span class="border-bottom-btn border-top-btn position-absolute">
+											<img src="@/assets/images/Group12engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+											<img src="@/assets/images/Path467engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+											<img src="@/assets/images/Path465engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<!-- data-bs-toggle="modal" -->
+										<button type="button"
+											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+											@click="openPhoneVerifyModel">
+											Verify Phone #
+										</button>
+										<span class="border-bottom-btn border-left-btn new-popup position-absolute">
+											<img src="@/assets/images/Group11engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<span class="border-bottom-btn position-absolute">
+											<img src="@/assets/images/Path473engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+									</div>
+								</div>
 							</div>
 							<div class="col-md-6">
 								<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional') }}</label>
@@ -180,90 +215,90 @@
 
 
 								<input v-model="formData.CompanyName" id="companyName mt-2" type="text"
-									class="form-control form-input" />
+									class="form-control form-input" required />
 							</div>
 							<div class="col-md-6">
 								<label for="street" class="form-label">{{ $t('Street') }}</label>
 								<input v-model="formData.street" id="street" type="text" class="form-control form-input"
-									:placeholder="$t('Enter here')" />
+									required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="streetNo" class="form-label">No.</label>
 								<input v-model="formData.streetNo" id="streetNo" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="street2" class="form-label">{{ $t('Street') }} 2</label>
 								<input v-model="formData.street2" id="street2" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
 								<input v-model="formData.zipCode" id="zipCode" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="city" class="form-label">{{ $t('City') }}</label>
 								<input v-model="formData.city" id="city" type="text" class="form-control form-input"
-									:placeholder="$t('Enter here')" />
+									required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-6">
 								<label for="country" class="form-label">{{ $t('Country') }}</label>
-								<input v-model="formData.country" type="text" class="form-control form-input"
+								<input v-model="formData.country" type="text" class="form-control form-input" required
 									:placeholder="$t('Enter here')" />
 							</div>
-							<div class="col-md-4">
+							<!-- <div class="col-md-4">
 								<label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
 
 								<input v-model="formData.intlPrefix1" id="fax" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
-							</div>
-							<div class="col-md-3">
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
+							</div> -->
+							<!-- <div class="col-md-3">
 								<label for="prefix1" class="form-label">{{ $t('Prefix1') }}</label>
 								<input v-model="formData.prefix1" id="prefix1" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
-							</div>
-							<div class="col-md-5">
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
+							</div> -->
+							<div class="col-md-6">
 								<label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
 								<input v-model="formData.phone1" id="phone1" type="text" class="form-control form-input"
-									:placeholder="$t('Enter here')" />
+									required :placeholder="$t('Enter here')" />
 							</div>
-							<div class="col-md-4">
+							<!-- <div class="col-md-4">
 								<label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
 
 								<input v-model="formData.intlPrefix2" id="intlPrefix2" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
-							</div>
-							<div class="col-md-3">
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
+							</div> -->
+							<!-- <div class="col-md-3">
 								<label for="prefix2" class="form-label">{{ $t('Prefix1') }}</label>
 								<input v-model="formData.prefix2" id="prefix2" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
-							</div>
-							<div class="col-md-5">
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
+							</div> -->
+							<div class="col-md-6">
 								<label for="fax" class="form-label">{{ $t('Fax') }}</label>
 								<input v-model="formData.fax" id="fax" type="text" class="form-control form-input"
-									:placeholder="$t('Enter here')" />
+									required :placeholder="$t('Enter here')" />
 							</div>
-							<div class="col-md-4">
+							<!-- <div class="col-md-4">
 								<label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
 
 								<input v-model="formData.intlPrefix3" id="fax" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
-							</div>
-							<div class="col-md-3">
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
+							</div> -->
+							<!-- <div class="col-md-3">
 								<label for="prefix3" class="form-label">{{ $t('Prefix1') }}</label>
 								<input v-model="formData.prefix3" id="prefix3" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
-							</div>
-							<div class="col-md-5">
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
+							</div> -->
+							<div class="col-md-6">
 								<label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
 								<input v-model="formData.mobilePhone" id="mobilePhone" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
+									class="form-control form-input" required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-6">
 								<label for="email" class="form-label">{{ $t('Email') }}</label>
 								<input v-model="formData.email" id="email" type="email" class="form-control form-input"
-									:placeholder="$t('Enter here')" />
+									required :placeholder="$t('Enter here')" />
 								<input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
 									:placeholder="$t('Enter here')" value="dealer" />
 							</div>
@@ -482,6 +517,76 @@
 		</div>
 	</div>
 
+	<!-- modal phone veiryf -->
+	<div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="phoneVeify === true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<span class="close-icon" @click="phoneVeify = false">
+						<i class="fas fa-times"></i>
+					</span>
+
+					<div class="mt-4 py-2">
+						<h5 class="card-title"><span class="choose">Verify Phone Number </span></h5>
+
+						<div class="row">
+
+							<div class="col-md-12">
+								<label for="socialMedia" class="form-label">Enter Phone Number</label>
+								<div class="d-flex gap-2">
+									<input v-model="countryCode" id="socialMedia" type="text" name="socialMedia"
+										class="form-control form-input w-25" placeholder="+92">
+									<input v-model="phoneVnum" id="socialMedia" type="tel" name="socialMedia"
+										class="form-control form-input" placeholder="3040348584">
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div
+									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+										<span class="border-bottom-btn border-top-btn position-absolute">
+											<img src="@/assets/images/Group12engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+											<img src="@/assets/images/Path467engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+
+										<span
+											class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+											<img src="@/assets/images/Path465engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<!-- data-bs-toggle="modal" -->
+										<button type="submit"
+											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+											id="submit-button" @click="verifyPhoneNum()">
+											Verify
+										</button>
+										<span class="border-bottom-btn border-left-btn new-popup position-absolute">
+											<img src="@/assets/images/Group11engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+										<span class="border-bottom-btn position-absolute">
+											<img src="@/assets/images/Path473engine.png"
+												class="img-border position-absolute" alt="" />
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- modal end -->
 </template>
@@ -516,6 +621,10 @@ export default {
 	name: "UserProfile",
 	data() {
 		return {
+			phoneNumToVerify: "",
+			countryCode: "",
+			phoneVnum: "",
+			phoneVeify: false,
 			IsphonExists: false,
 			fullname: "",
 			isModalOpen: false,
@@ -540,14 +649,14 @@ export default {
 				zipCode: '',
 				city: '',
 				country: '',
-				intlPrefix1: '',
-				prefix1: '',
+				// intlPrefix1: '',
+				// prefix1: '',
 				phone1: '',
-				intlPrefix2: '',
-				prefix2: '',
+				// intlPrefix2: '',
+				// prefix2: '',
 				fax: '',
-				intlPrefix3: '',
-				prefix3: '',
+				// intlPrefix3: '',
+				// prefix3: '',
 				mobilePhone: '',
 				email: '',
 				sub: "",
@@ -565,6 +674,20 @@ export default {
 		};
 	},
 	methods: {
+		verifyPhoneNum() {
+			// Remove spaces and dashes from phoneVnum
+			let cleanedNumber = this.phoneVnum.replace(/[\s-]+/g, '');
+
+			// Concatenate countryCode and cleanedNumber
+			this.phoneNumToVerify = this.countryCode + cleanedNumber;
+
+			// Optionally, you can log or use phoneNumToVerify here
+			console.log('Phone number to verify:', this.phoneNumToVerify);
+
+		},
+		openPhoneVerifyModel() {
+			this.phoneVeify = true
+		},
 		getProfileImage(profileImage) {
 			if (!profileImage || profileImage.includes('null') || profileImage.includes('undefined')) {
 				return '/images/uploadImage.png';
@@ -875,8 +998,73 @@ export default {
 
 		}
 		,
+		// async updateUserAttributesDealer() {
+
+		// 	const updatedProfile = {
+
+		// 		city: this.formData.city,
+
+		// 		companyName: this.formData.CompanyName,
+
+		// 		country: this.formData.country,
+
+
+		// 		emailForCustomer: this.formData.email,
+
+		// 		faxCustomer: this.formData.fax,
+
+		// 		interanetPrefix1: this.formData.intlPrefix1,
+
+		// 		interanetPrefix2: this.formData.intlPrefix2,
+
+		// 		interanetPrefix3: this.formData.intlPrefix3,
+
+		// 		mobileCustomer: this.formData.mobilePhone,
+
+		// 		number: this.formData.phone1,
+
+		// 		phoneCustomer: this.formData.phone1,
+
+		// 		prefix1: this.formData.prefix1,
+		// 		prefix2: this.formData.prefix2,
+
+		// 		prefix3: this.formData.prefix3,
+
+		// 		street1: this.formData.street,
+
+		// 		street2: this.formData.street2,
+
+		// 		zipCode: this.formData.zipCode,
+
+		// 		email: this.formData.email
+
+
+		// 	}
+		// 	console.log("The profile data", updatedProfile);
+		// 	try {
+		// 		const data = await this.$store.dispatch("auth/handleProfile2", updatedProfile);
+		// 		console.log(data, typeof data);
+		// 		if (data === "SUCCESS") {
+		// 			this.isModalOpen = true;
+		// 			this.changeName(this.formData.CompanyName)
+		// 		}
+		// 	} catch (error) {
+		// 		console.error("Error updating user profile:", error);
+		// 		// Handle error gracefully, e.g., display an error message to the user
+		// 		const customErrorRegex = /custom:[^\s]+ must not be null/;
+		// 		const match = error.message.match(customErrorRegex);
+
+		// 		// If the match is found, use it; otherwise, use the entire error message
+		// 		const errorMessage = match ? match[0] : error.message;
+
+		// 		// Handle error gracefully, e.g., display an error message to the user
+		// 		this.errorMessage = errorMessage;
+		// 		// this.errorMessage = error
+		// 		this.isModalOpenFail = true
+		// 	}
+		// },
 		async updateUserAttributesDealer() {
-			// console.log(this.formData)
+
 			const updatedProfile = {
 
 				city: this.formData.city,
@@ -890,11 +1078,11 @@ export default {
 
 				faxCustomer: this.formData.fax,
 
-				interanetPrefix1: this.formData.intlPrefix1,
+				// interanetPrefix1: this.formData.intlPrefix1,
 
-				interanetPrefix2: this.formData.intlPrefix2,
+				// interanetPrefix2: this.formData.intlPrefix2,
 
-				interanetPrefix3: this.formData.intlPrefix3,
+				// interanetPrefix3: this.formData.intlPrefix3,
 
 				mobileCustomer: this.formData.mobilePhone,
 
@@ -902,10 +1090,10 @@ export default {
 
 				phoneCustomer: this.formData.phone1,
 
-				prefix1: this.formData.prefix1,
-				prefix2: this.formData.prefix2,
+				// prefix1: this.formData.prefix1,
+				// prefix2: this.formData.prefix2,
 
-				prefix3: this.formData.prefix3,
+				// prefix3: this.formData.prefix3,
 
 				street1: this.formData.street,
 
@@ -941,6 +1129,7 @@ export default {
 			}
 		},
 
+
 		async fetchProfileData() {
 			try {
 				// console.log("Fetching profile data...");
@@ -960,14 +1149,14 @@ export default {
 					this.formData.CompanyName = this.UserData.name;
 					this.formData.email = this.UserData.email
 					this.formData.mobilePhone = this.UserData["custom:mobileCustomer"]
-					this.formData.prefix3 = this.UserData["custom:prefix3"]
-					this.formData.intlPrefix3 = this.UserData["custom:street1"]
+					// this.formData.prefix3 = this.UserData["custom:prefix3"]
+					// this.formData.intlPrefix3 = this.UserData["custom:street1"]
 					this.formData.fax = this.UserData["custom:faxCustomer"]
-					this.formData.prefix2 = this.UserData["custom:prefix2"]
-					this.formData.prefix1 = this.UserData["custom:prefix1"]
-					this.formData.intlPrefix1 = this.UserData["custom:interanetPrefix1"]
+					// this.formData.prefix2 = this.UserData["custom:prefix2"]
+					// this.formData.prefix1 = this.UserData["custom:prefix1"]
+					// this.formData.intlPrefix1 = this.UserData["custom:interanetPrefix1"]
 					this.formData.phone1 = this.UserData["custom:phoneCustomer"]
-					this.formData.intlPrefix2 = this.UserData["custom:interanetPrefix2"]
+					// this.formData.intlPrefix2 = this.UserData["custom:interanetPrefix2"]
 
 					this.formData.street = this.UserData["custom:street1"]
 					this.formData.streetNo = this.UserData["custom:number"]

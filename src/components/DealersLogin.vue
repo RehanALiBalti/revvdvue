@@ -14,23 +14,23 @@
                                 <h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
                                 <label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
                                 <input v-model="formData.name" id="companyName" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" required />
                             </div>
                             <div class="col-md-6">
                                 <label for="street" class="form-label">{{ $t('Street') }}</label>
                                 <input v-model="formData.street" id="street" type="text" class="form-control form-input"
-                                    :placeholder="$t('Enter here')" />
+                                    :placeholder="$t('Enter here')" required />
                             </div>
                             <div class="col-md-3">
                                 <label for="streetNo" class="form-label">No.</label>
                                 <input v-model="formData.streetNo" id="streetNo" type="number"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" required />
                             </div>
 
                             <div class="col-md-3">
                                 <label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
                                 <input v-model="formData.zipCode" id="zipCode" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" required />
                             </div>
                             <!-- <div class="col-md-3">
                                 <label for="street2" class="form-label">{{ $t('Street2') }} </label>
@@ -40,12 +40,12 @@
                             <div class="col-md-3">
                                 <label for="city" class="form-label">{{ $t('City') }}</label>
                                 <input v-model="formData.city" id="city" type="text" class="form-control form-input"
-                                    :placeholder="$t('Enter here')" />
+                                    :placeholder="$t('Enter here')" required />
                             </div>
                             <div class="col-md-3">
                                 <label for="country" class="form-label">{{ $t('Country') }}</label>
                                 <input v-model="formData.country" id="country" type="text"
-                                    class="form-control form-input" :placeholder="$t('Enter here')" />
+                                    class="form-control form-input" :placeholder="$t('Enter here')" required />
                             </div>
                             <!-- <div class="col-md-4">
                                 <label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
@@ -63,7 +63,7 @@
                                 <label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
                                 <input v-model="formData.phone1" id="phone1" type="tel" class="form-control form-input"
                                     inputmode="numeric" pattern="[0-9]*" :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
                             </div>
                             <!-- <div class="col-md-4">
                                 <label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
@@ -80,7 +80,7 @@
                                 <label for="fax" class="form-label">{{ $t('Fax') }}</label>
                                 <input v-model="formData.fax" id="fax" type="tel" class="form-control form-input"
                                     :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
                             </div>
                             <!-- <div class="col-md-4">
                                 <label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
@@ -97,12 +97,12 @@
                                 <label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
                                 <input v-model="formData.mobilePhone" id="mobilePhone" type="tel"
                                     class="form-control form-input" :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">{{ $t('Email') }}</label>
                                 <input v-model="formData.email" id="email" type="email" class="form-control form-input"
-                                    :placeholder="$t('Enter here')" />
+                                    :placeholder="$t('Enter here')" required>
                                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
                                     :placeholder="$t('Enter here')" value="dealer" />
                             </div>
@@ -110,7 +110,7 @@
                                 <label for="password" class="form-label">{{ $t('password') }}</label>
                                 <input :type="formData.showPassword ? 'text' : 'password'" id="password"
                                     v-model="formData.password" class="form-control form-input"
-                                    :placeholder="$t('Enter here')" />
+                                    :placeholder="$t('Enter here')" required />
                                 <span class="eye" @click="togglePasswordVisibility2">
                                     <i class="fa-solid" :class="eyeIcon"></i>
                                 </span>
@@ -142,7 +142,7 @@
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check1" v-model="formData.check1"
-                                    class="form-check-input m-0" :placeholder="$t('Enter here')" />
+                                    class="form-check-input m-0" :placeholder="$t('Enter here')" required />
                                 <label for="check1" class="form-label mt-4 mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                                     <router-link to="/termofservice" class="termsService" target="_blank">{{
                         $t('GeneralTermsAndConditions') }}</router-link>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                                 <input type="checkbox" id="check1" v-model="formData.check2"
-                                    class="form-check-input m-0" :placeholder="$t('Enter here')" />
+                                    class="form-check-input m-0" :placeholder="$t('Enter here')" required />
                                 <label for="check1" class="form-label mt-4 mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                                     <router-link to="/privacypolicy" class="termsService" target="_blank">{{
                         $t('PrivacyPolicy')

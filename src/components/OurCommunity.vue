@@ -26,12 +26,11 @@
         <div class="heading-car">
           <!-- <h1 class="banner-title">{{ $t("ourCommunity") }}</h1> -->
           <h1 class="banner-title fontColr">Car Community Threads </h1>
-          <small class="text-center text-white">Check our community threads to get answers for your car related
+          <p class="text-center text-white ps2">Check our community threads to get answers for your car related
             questions. You
-            can search by car make, model and also by thread category. </small>
-          <small class="text-center text-white">
-            If you can’t find the topic, just open a new thread!
-          </small>
+            can search by car make, model and also by thread category. If you can’t find the topic, just open a new
+            thread!</p>
+
         </div>
       </div>
     </div>
@@ -1004,5 +1003,9 @@ export default {
 
 .options-list li:hover {
   background-color: #083f68;
+}
+
+.ps2 {
+  font-size: 12px
 }
 </style>

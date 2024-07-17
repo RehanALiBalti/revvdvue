@@ -170,13 +170,14 @@
           <span class="form-span">{{ $t('Now') }} !</span>
         </h2>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
 
             <div class="customSelect" @blur="isOpen = false">
               <label for="country" class="form-label">Make
               </label>
-              <input type="text" class="form-select" v-model="formData.make" :placeholder="$t('Select a Make')"
-                @click="toggleDropdown" @input="filterMakeOptions" @change="getModels">
+              <input type="text" class="form-select form-control form-input" v-model="formData.make"
+                :placeholder="$t('Select a Make')" @click="toggleDropdown" @input="filterMakeOptions"
+                @change="getModels">
               <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
                 <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
                   {{ option }}
@@ -188,16 +189,16 @@
             </div>
 
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label for="country" class="form-label">Model
             </label>
             <div class="customSelect w-100" @blur="isOpenm = false">
-              <input type="text" class=" form-select" v-model="formData.model" :placeholder="$t('Select a Model')"
-                @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions" @change="getModels"
-                v-if="formData.make == ''" disabled>
-              <input type="text" class=" form-select" v-model="formData.model" :placeholder="$t('Select a Model')"
-                @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions" @change="getModels"
-                v-else>
+              <input type="text" class=" form-select form-control form-input" v-model="formData.model"
+                :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
+                @input="filterModelOptions" @change="getModels" v-if="formData.make == ''" disabled>
+              <input type="text" class=" form-select form-control form-input" v-model="formData.model"
+                :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
+                @input="filterModelOptions" @change="getModels" v-else>
               <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
                 <li v-for="(option, index) in modelfilteredOptions" :key="index"
                   @click="selectOptionModel(option.model)">
@@ -209,15 +210,16 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-4">
             <label for="country" class="form-label">Production Year Generation
             </label>
             <div class="customSelect w-100">
-              <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                @input="GenfilterOption" v-model="formData.year" @click="toggleOpeng" v-if="formData.model == ''"
-                disabled>
-              <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                @input="GenfilterOption" v-model="formData.year" @click="toggleOpeng" v-else>
+              <input type="text" class="form-select form-control form-input"
+                :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
+                @click="toggleOpeng" v-if="formData.model == ''" disabled>
+              <input type="text" class="form-select form-control form-input"
+                :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
+                @click="toggleOpeng" v-else>
               <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                 <li v-for="(value, index) in GenfilteredOptions" :key="index"
                   @click="updateModels(value), this.isOpeng = false">
@@ -232,20 +234,20 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-6">
             <label for="name" class="form-label"> Tell us your car story together </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
               v-model="formData.story" rows="2"></textarea>
 
           </div>
-          <div class="col-md-12">
+          <div class="col-md-6">
             <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
               or any specific features ? </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
               v-model="formData.modifications" rows="2"></textarea>
 
           </div>
-          <div class="col-md-12">
+          <div class="col-md-6">
             <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve had
               with your car that stands out the most? </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
@@ -254,13 +256,13 @@
             <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
           </div>
-          <div class="col-md-12">
+          <div class="col-md-6">
             <label for="phone" class="form-label"> If you could give advice to someone just starting their journey to
               modify their car, what would it be and why?</label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
               v-model="formData.advice" rows="2"></textarea>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-6">
             <label for="country" class="form-label"> What is the name of your story that you would like to choose?
             </label>
             <input type="tel" id="phone" name="phone" class="form-control form-input"
@@ -273,12 +275,9 @@
             <!-- Error message for Message -->
             <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
           </div>
-          <div class="col-md-6">
+          <!-- <div class="col-md-12">
             <label for="city" class="form-label">Upload Pictures Max 8</label>
-            <!-- <select class="form-select form-control form-input" id="city" onchange="fetchCities()">
-							</select> -->
-            <!-- <input type="file" id="city" name="city" class="form-control form-input" accepct="jgp,png"
-              v-bind="formData.storyImages" /> -->
+
             <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
               accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
             <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
@@ -308,12 +307,51 @@
               <div v-for="(image, index) in uploadedImages" :key="index"
                 class="upImageArea d-flex flex-column gap-1 position-relative my-1">
                 <img :src="image" alt="" />
+
                 <button class="btn  btnRemv" @click="removeImage(index)"><i class="fa-solid fa-xmark"></i></button>
               </div>
             </div>
-            <!-- Error message for City -->
-            <!-- <p class="text-danger" v-if="!formData.city">P{{ $t('enterCity') }}.</p> -->
+         
+          </div> -->
+          <div class="col-md-12">
+            <label for="city" class="form-label">Upload Pictures Max 8</label>
+
+            <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+              accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
+            <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+              <span class="border-bottom-btn border-top-btn position-absolute">
+                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span
+                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+              </span>
+              <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
+                Choose Images
+              </label>
+              <span class="border-bottom-btn border-left-btn position-absolute">
+                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+              </span>
+              <span class="border-bottom-btn position-absolute">
+                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+              </span>
+            </div>
+            <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+              <div v-for="(file, index) in uploadedFiles" :key="index"
+                class="upImageArea d-flex justify-content-between position-relative align-items-center">
+                <span>{{ file.name }}</span>
+                <button class="btn btnRemv" @click="removeImage(index)">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
           </div>
+
 
 
 
@@ -563,29 +601,44 @@ export default {
 
       },
       dataGy: [],
-      selectedData: ''
+      selectedData: '',
+      uploadedFiles: []
     };
   },
   methods: {
+    // handleFileUpload(event) {
+    //   const files = event.target.files;
+    //   if (files.length + this.uploadedImages.length > 8) {
+    //     alert("You can only upload a maximum of 8 images.");
+    //     return;
+    //   }
+    //   for (let i = 0; i < files.length; i++) {
+    //     const file = files[i];
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       this.uploadedImages.push(e.target.result);
+    //     };
+    //     reader.readAsDataURL(file);
+    //   }
+    // },
     handleFileUpload(event) {
       const files = event.target.files;
-      if (files.length + this.uploadedImages.length > 8) {
+      if (files.length + this.uploadedFiles.length > 8) {
         alert("You can only upload a maximum of 8 images.");
         return;
       }
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.uploadedImages.push(e.target.result);
-        };
-        reader.readAsDataURL(file);
+        this.uploadedFiles.push(file);
       }
     },
+    // removeImage(index) {
+    //   this.uploadedImages.splice(index, 1);
+    // }
+    // ,
     removeImage(index) {
-      this.uploadedImages.splice(index, 1);
-    }
-    ,
+      this.uploadedFiles.splice(index, 1);
+    },
     async fetchProfileData() {
       try {
         console.log("Fetching profile data...");
@@ -638,6 +691,15 @@ export default {
         console.error('Error making GET request:', error);
       }
     },
+    // validateFiles(event) {
+    //   const files = event.target.files;
+    //   if (files.length > 8) {
+    //     alert('You can upload a maximum of 8 pictures.');
+    //     event.target.value = ''; // Clear the input
+    //     return;
+    //   }
+    //   this.formData.storyImages = Array.from(files); // Store the selected files
+    // },
     validateFiles(event) {
       const files = event.target.files;
       if (files.length > 8) {
@@ -647,6 +709,7 @@ export default {
       }
       this.formData.storyImages = Array.from(files); // Store the selected files
     },
+
 
     // SubmitStory() {
     //   console.log("submit story", this.formData)
@@ -1170,16 +1233,26 @@ export default {
 }
 
 .btnRemv {
-  position: absolute;
+  /* position: absolute;
   top: 0px;
-  right: 0cm;
+  right: 0cm; */
   transition: 0.2s all ease-in-out;
+  color: #ffff
 }
 
 .btnRemv:hover {
   color: #f95f19;
   transform: scale(1.02);
 
+}
+
+.upImageArea {
+  border-radius: 50px;
+  background: #031726;
+  color: #fff;
+  font-size: 12px;
+  padding: 0.5rem;
+  border: 1px solid #1a202c
 }
 
 .upImageArea>img {

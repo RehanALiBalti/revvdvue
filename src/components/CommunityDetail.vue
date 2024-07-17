@@ -43,7 +43,7 @@
 
                 </div>
               </div>
-              <div class=" col-md-12 my-2 ">
+              <div class=" col-md-8 my-2 ">
                 <div class=" card-title-div communityDetailsMain p-3">
 
                   <div class="">
@@ -119,14 +119,16 @@
                 <div class="d-flex flex-column">
                   <div class="sender-chats" v-if="comment.type !== 'reply'">
                     <div class="row">
-                      <div class="col-md-2">
-                        <img
-                          :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
-                          alt="" width="50px">
-                      </div>
-                      <div class="col-md-8 d-flex justify-content-between flex-column">
+
+                      <div class="col-md-12 d-flex justify-content-between flex-column">
                         <div>
-                          <small class="uName">{{ comment.nickname }}</small> <br>
+                          <div class="d-flex gap-2 align-items-center">
+                            <img
+                              :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
+                              alt="" width="50px">
+                            <small class="uName">{{ comment.nickname }}</small>
+                          </div>
+                          <br>
                           <p class="sender-chats-para">{{ comment.comments }}</p>
                           <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
                             class="CommentImage" @click="openViewer(comment.image)" />
@@ -140,7 +142,7 @@
                         </div>
                         <div v-if="showReplyInput === comment.id">
                           <div class=" position-relative " v-if="RimageUrl != ''">
-                            <div class="position-relative mainUp">
+                            <div class="position-relative mainUp d-flex">
                               <img class="upImage" :src="RimageUrl" alt="">
                               <span class="cancel" @click="removeImageReply"><i class="fa-solid fa-xmark"></i></span>
                             </div>
@@ -177,17 +179,19 @@
                       </div> -->
                     </div>
                     <div class="row">
-                      <div class="col-md-2">
-                        <img
-                          :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
-                          alt="" width="50px">
-                      </div>
-                      <div class="col-md-8">
+
+                      <div class="col-md-12">
                         <div>
-                          <small class="uName">{{ comment.nickname }}</small> <br>
+                          <div class="d-flex align-items-center gap-2">
+                            <img
+                              :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
+                              alt="" width="50px">
+                            <small class="uName">{{ comment.nickname }}</small>
+                          </div>
+                          <br>
                           <p class="sender-chats-para">{{ comment.comments }}</p>
                           <img v-if="comment.image" :src="getImageUrl(comment.image)" alt="Comment Image"
-                            class="CommentImage" @click="openViewer(comment.image)" />
+                            class="CommentImage mt-2" @click="openViewer(comment.image)" />
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                           <p class="text-white text-end fonts1 m-0" @click="toggleReply(comment.id)">
@@ -198,7 +202,7 @@
                         </div>
                         <div v-if="showReplyInput === comment.id">
                           <div class=" position-relative " v-if="RimageUrl != ''">
-                            <div class="position-relative mainUp">
+                            <div class="position-relative mainUp d-flex">
                               <img class="upImage" :src="RimageUrl" alt="">
                               <span class="cancel" @click="removeImageReply"><i class="fa-solid fa-xmark"></i></span>
                             </div>
@@ -253,7 +257,7 @@
             </div>
             <div class="d-flex align-items-center gap-2 ms-2" v-else>
               <div class="upsection" v-if="imageUrl != ''">
-                <div class="position-relative mainUp">
+                <div class="position-relative mainUp d-flex">
                   <!-- <img class="upImage" :src="imageUrl" alt=""> -->
 
                   <p class="text-white mb-0 fonts2">{{ imageName }}</p>
@@ -1482,9 +1486,9 @@ export default {
 }
 
 .cancel {
-  position: absolute;
-  /* right: 0; */
-  left: -16px;
+  /* position: absolute; */
+  right: 0;
+  /* left: -16px; */
   color: #d24200;
   transition: 0.2s all;
   cursor: pointer;
