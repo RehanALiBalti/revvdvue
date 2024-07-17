@@ -7,9 +7,10 @@
   <div class="min-h-80vh">
     <HeaderItem />
     <router-view />
-    <FooterSect v-if="showFooterSect" />
-    <FooterSect2 v-if="showFooterSect2" />
+
   </div>
+  <FooterSect v-if="showFooterSect" />
+  <FooterSect2 v-if="showFooterSect2" />
 </template>
 
 <script>
