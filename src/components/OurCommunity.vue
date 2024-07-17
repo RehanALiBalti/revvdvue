@@ -20,9 +20,9 @@
       </div>
     </div>
   </section> -->
-  <div class="container">
+  <div class="container min-h-80vh ">
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col-md-6">
         <div class="heading-car">
           <!-- <h1 class="banner-title">{{ $t("ourCommunity") }}</h1> -->
           <h1 class="banner-title fontColr">Car Community Threads </h1>
@@ -32,103 +32,105 @@
             thread!</p>
 
         </div>
+
       </div>
-    </div>
-  </div>
-  <!-- modal -->
-  <div class="modal show d-block modalaa" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
-    <div class="modal-dialog modal-dialog-centered mb-0" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-          <router-link to="/offer"> <span class="close-icon" aria-label="Close">
-              <i class="fas fa-times"></i>
-            </span></router-link>
-          <form @submit.prevent="submitFilter">
-            <div class="mt-4 py-2">
-              <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
-            </div>
-            <div class="row">
+      <!-- modal -->
+      <div class="modal show d-block modalaa" tabindex="-1" role="dialog" id="carShopFilter"
+        v-if="isModalOpen === true">
+        <div class="modal-dialog modal-dialog-centered mb-0" role="document">
+          <div class="modal-content">
+            <div class="modal-body text-center">
+              <router-link to="/offer"> <span class="close-icon" aria-label="Close">
+                  <i class="fas fa-times"></i>
+                </span></router-link>
+              <form @submit.prevent="submitFilter">
+                <div class="mt-4 py-2">
+                  <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
+                </div>
+                <div class="row">
 
-              <div class="col-md-12 z-0 ">
-                <div class="mt-2   d-flex justify-content-center align-items-center borderBr">
-
+                  <div class="col-md-12 z-0 ">
+                    <div class="mt-2   d-flex justify-content-center align-items-center borderBr">
 
 
-                  <div class="customSelect" @blur="isOpen = false">
-                    <input type="text" class="form-select" v-model="make" :placeholder="$t('Select a Make')"
-                      @click="toggleDropdown" @input="filterMakeOptions" @change="getModels">
-                    <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
-                      <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
-                        {{ option }}
-                      </li>
-                    </ul>
-                    <ul v-else v-show="isOpen" class="options-list">
 
-                    </ul>
+                      <div class="customSelect" @blur="isOpen = false">
+                        <input type="text" class="form-select" v-model="make" :placeholder="$t('Select a Make')"
+                          @click="toggleDropdown" @input="filterMakeOptions" @change="getModels">
+                        <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
+                          <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
+                            {{ option }}
+                          </li>
+                        </ul>
+                        <ul v-else v-show="isOpen" class="options-list">
+
+                        </ul>
+                      </div>
+
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 z-0">
+                    <div class="mt-2  d-flex justify-content-center align-items-center borderBr ">
+
+                      <div class="customSelect w-100" @blur="isOpenm = false">
+                        <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
+                          @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
+                          @change="getModels" v-if="make == ''" disabled>
+                        <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
+                          @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
+                          @change="getModels" v-else>
+                        <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
+                          <li v-for="(option, index) in modelfilteredOptions" :key="index"
+                            @click="selectOptionModel(option.model)">
+                            {{ option.model }}
+                          </li>
+                        </ul>
+                        <ul v-else v-show="isOpenm" class="options-list">
+
+                        </ul>
+                      </div>
+
+                    </div>
                   </div>
 
 
-                </div>
-              </div>
 
-              <div class="col-md-12 z-0">
-                <div class="mt-2  d-flex justify-content-center align-items-center borderBr ">
-
-                  <div class="customSelect w-100" @blur="isOpenm = false">
-                    <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
-                      @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
-                      @change="getModels" v-if="make == ''" disabled>
-                    <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
-                      @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
-                      @change="getModels" v-else>
-                    <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
-                      <li v-for="(option, index) in modelfilteredOptions" :key="index"
-                        @click="selectOptionModel(option.model)">
-                        {{ option.model }}
-                      </li>
-                    </ul>
-                    <ul v-else v-show="isOpenm" class="options-list">
-
-                    </ul>
-                  </div>
-
-                </div>
-              </div>
+                  <div class="col-md-12 z-0">
 
 
 
-              <div class="col-md-12 z-0">
+                    <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
+                      <div class="customSelect w-100">
+                        <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
+                          @input="GenfilterOption" v-model="selectedData" @change="changeGen" @click="toggleOpeng"
+                          v-if="smodel == ''" disabled>
+                        <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
+                          @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" @change="changeGen"
+                          v-else>
+                        <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
+                          <li v-for="(value, index) in GenfilteredOptions" :key="index"
+                            @click="updateModels(value), this.isOpeng = false">
+                            <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+                            {{ value.production_years.split(' ')[0] }}
+                            <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
+                              }})</span>
+                          </li>
+                        </ul>
+                        <ul v-else v-show="isOpeng" class="options-list">
 
-
-
-                <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
-                  <div class="customSelect w-100">
-                    <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                      @input="GenfilterOption" v-model="selectedData" @change="changeGen" @click="toggleOpeng"
-                      v-if="smodel == ''" disabled>
-                    <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
-                      @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" @change="changeGen" v-else>
-                    <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
-                      <li v-for="(value, index) in GenfilteredOptions" :key="index"
-                        @click="updateModels(value), this.isOpeng = false">
-                        <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
-                        {{ value.production_years.split(' ')[0] }}
-                        <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
-                          }})</span>
-                      </li>
-                    </ul>
-                    <ul v-else v-show="isOpeng" class="options-list">
-
-                    </ul>
-                  </div>
-                </div>
-                <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
-                  <div class="customSelect w-100">
-                    <input type="text" class="form-select" :placeholder="$t('Thread Category')" v-model="specfications"
-                      @click="toggleOpengs" v-if="smodel == ''" disabled @input="filterSpecificationOptions">
-                    <input type="text" class="form-select" :placeholder="$t('Thread Category')" v-model="specfications"
-                      @click="toggleOpengs" @input="filterSpecificationOptions" v-else>
-                    <!-- <ul v-show="isOpengs" class="options-list" v-if="specifctionOptions.length > 0">
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
+                      <div class="customSelect w-100">
+                        <input type="text" class="form-select" :placeholder="$t('Thread Category')"
+                          v-model="specfications" @click="toggleOpengs" v-if="smodel == ''" disabled
+                          @input="filterSpecificationOptions">
+                        <input type="text" class="form-select" :placeholder="$t('Thread Category')"
+                          v-model="specfications" @click="toggleOpengs" @input="filterSpecificationOptions" v-else>
+                        <!-- <ul v-show="isOpengs" class="options-list" v-if="specifctionOptions.length > 0">
                       <li v-for="(value, index) in specifctionOptions" :key="index"
                         @click="updatesepecification(value), this.isOpengs = false">
                       
@@ -136,60 +138,64 @@
                           }}</span>
                       </li>
                     </ul> -->
-                    <ul v-show="isOpengs" class="options-list" v-if="filteredSpecificationOptions.length > 0">
-                      <li v-for="(value, index) in filteredSpecificationOptions" :key="index"
-                        @click="updatesepecification(value)">
-                        {{ value.specification }}
-                      </li>
-                    </ul>
-                    <ul v-else v-show="isOpeng" class="options-list">
+                        <ul v-show="isOpengs" class="options-list" v-if="filteredSpecificationOptions.length > 0">
+                          <li v-for="(value, index) in filteredSpecificationOptions" :key="index"
+                            @click="updatesepecification(value)">
+                            {{ value.specification }}
+                          </li>
+                        </ul>
+                        <ul v-else v-show="isOpeng" class="options-list">
 
-                    </ul>
+                        </ul>
+                      </div>
+                    </div>
+
                   </div>
-                </div>
-
-              </div>
 
 
-              <div class="col-md-12 m-auto z-0">
-                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-0 mx-auto mt-2">
-                  <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-                    <span class="border-bottom-btn border-top-btn position-absolute">
-                      <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
-                    </span>
+                  <div class="col-md-12 m-auto z-0">
+                    <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-0 mx-auto mt-2">
+                      <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+                        <span class="border-bottom-btn border-top-btn position-absolute">
+                          <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
+                        </span>
 
-                    <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-                      <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
-                    </span>
+                        <span
+                          class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+                          <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
+                        </span>
 
-                    <span
-                      class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-                      <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
-                    </span>
-                    <!-- data-bs-toggle="modal" -->
-                    <!-- <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                        <span
+                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+                          <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <!-- data-bs-toggle="modal" -->
+                        <!-- <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
                       data-bs-target="#mailModal" @click="retrieveCommunities">
                       {{ $t('proceed') }}
                     </button> -->
-                    <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-                      data-bs-target="#mailModal" @click="sendForumData">
-                      {{ $t('proceed') }}
-                    </button>
-                    <span class="border-bottom-btn border-left-btn new-popup position-absolute">
-                      <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
-                    </span>
-                    <span class="border-bottom-btn position-absolute">
-                      <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
-                    </span>
+                        <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                          data-bs-target="#mailModal" @click="sendForumData">
+                          {{ $t('proceed') }}
+                        </button>
+                        <span class="border-bottom-btn border-left-btn new-popup position-absolute">
+                          <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <span class="border-bottom-btn position-absolute">
+                          <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- modal 2 -->
   <!-- modal -->

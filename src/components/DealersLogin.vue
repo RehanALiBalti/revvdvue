@@ -55,21 +55,24 @@
                                 <label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
                                 <input v-model="formData.phone1" id="phone1" type="tel"
                                     :class="['form-control', 'form-input', { 'is-invalid': formErrors.phone1 }]"
-                                    inputmode="numeric" pattern="[0-9]*" :placeholder="$t('Enter here')" />
+                                    inputmode="numeric" pattern="[0-9]*" :placeholder="$t('Enter here')"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                                 <div v-if="formErrors.phone1" class="text-danger">{{ formErrors.phone1 }}</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="fax" class="form-label">{{ $t('Fax') }}</label>
                                 <input v-model="formData.fax" id="fax" type="tel"
                                     :class="['form-control', 'form-input', { 'is-invalid': formErrors.fax }]"
-                                    :placeholder="$t('Enter here')" />
+                                    :placeholder="$t('Enter here')"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                                 <div v-if="formErrors.fax" class="text-danger">{{ formErrors.fax }}</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
                                 <input v-model="formData.mobilePhone" id="mobilePhone" type="tel"
                                     :class="['form-control', 'form-input', { 'is-invalid': formErrors.mobilePhone }]"
-                                    :placeholder="$t('Enter here')" />
+                                    :placeholder="$t('Enter here')"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                                 <div v-if="formErrors.mobilePhone" class="text-danger">{{ formErrors.mobilePhone }}
                                 </div>
                             </div>

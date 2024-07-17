@@ -224,7 +224,7 @@
 							</div>
 							<div class="col-md-3">
 								<label for="streetNo" class="form-label">No.</label>
-								<input v-model="formData.streetNo" id="streetNo" type="text"
+								<input v-model="formData.streetNo" id="streetNo" type="number"
 									class="form-control form-input" required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
@@ -260,8 +260,9 @@
 							</div> -->
 							<div class="col-md-6">
 								<label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
-								<input v-model="formData.phone1" id="phone1" type="text" class="form-control form-input"
-									required :placeholder="$t('Enter here')" />
+								<input v-model="formData.phone1" id="phone1" type="tel" class="form-control form-input"
+									required :placeholder="$t('Enter here')"
+									oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
 							</div>
 							<!-- <div class="col-md-4">
 								<label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
@@ -276,8 +277,9 @@
 							</div> -->
 							<div class="col-md-6">
 								<label for="fax" class="form-label">{{ $t('Fax') }}</label>
-								<input v-model="formData.fax" id="fax" type="text" class="form-control form-input"
-									required :placeholder="$t('Enter here')" />
+								<input v-model="formData.fax" id="fax" type="tel" class="form-control form-input"
+									required :placeholder="$t('Enter here')"
+									oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
 							</div>
 							<!-- <div class="col-md-4">
 								<label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
@@ -292,8 +294,9 @@
 							</div> -->
 							<div class="col-md-6">
 								<label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
-								<input v-model="formData.mobilePhone" id="mobilePhone" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+								<input v-model="formData.mobilePhone" id="mobilePhone" type="tel"
+									class="form-control form-input" required :placeholder="$t('Enter here')"
+									oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
 							</div>
 							<div class="col-md-6">
 								<label for="email" class="form-label">{{ $t('Email') }}</label>
