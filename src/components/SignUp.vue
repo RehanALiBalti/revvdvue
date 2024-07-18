@@ -92,7 +92,7 @@
                   <li>Password Must contain at least one symbol</li>
                 </ul>
               </div>
-              <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+              <div class="col-md-12 d-flex align-items-center gap-2 mt-3 textnowrap flexwrap">
                 <input type="checkbox" id="check1" class="form-check-input m-0" v-model="formData.check1" />
                 <label for="check1" class="form-label  mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                   <router-link to="/termofservice" class="termsService" target="_blank"> {{
@@ -104,7 +104,7 @@
                 </div>
               </div>
 
-              <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+              <div class="col-md-12 d-flex align-items-center gap-2 mt-3 textnowrap flexwrap">
                 <input type="checkbox" id="check2" class="form-check-input m-0" v-model="formData.check2" />
                 <label for="check2" class="form-label  mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                   <router-link to="/privacypolicy" class="termsService" target="_blank">{{ $t('PrivacyPolicy')
@@ -115,7 +115,7 @@
                 </div>
               </div>
 
-              <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+              <div class="col-md-12 d-flex align-items-center gap-2 mt-3 textnowrap flexwrap">
                 <input type="checkbox" id="check2" class="form-check-input m-0" :placeholder="$t('Enter here')" />
                 <label for="check2" class="form-label  mb-0 p-0">{{ $t('NoEmails') }}
 
@@ -682,5 +682,19 @@ export default {
   border: none !important;
   height: 20px !important;
   width: 20px !important;
+}
+
+.textnowrap {
+  text-wrap: nowrap
+}
+
+@media(max-width:992px) {
+  .textnowrap {
+    text-wrap: wrap
+  }
+
+  .flexwrap {
+    flex-wrap: wrap
+  }
 }
 </style>

@@ -170,9 +170,9 @@
           <span class="form-span">{{ $t('Now') }} !</span>
         </h2>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 ">
 
-            <div class="customSelect" @blur="isOpen = false">
+            <div class="customSelect position-relative" @blur="isOpen = false">
               <label for="country" class="form-label">Make
               </label>
               <input type="text" class="form-select form-control form-input" v-model="formData.make"
@@ -189,10 +189,10 @@
             </div>
 
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 z1o2 ">
             <label for="country" class="form-label">Model
             </label>
-            <div class="customSelect w-100" @blur="isOpenm = false">
+            <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
               <input type="text" class=" form-select form-control form-input" v-model="formData.model"
                 :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
                 @input="filterModelOptions" @change="getModels" v-if="formData.make == ''" disabled>
@@ -210,10 +210,10 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 z1o2">
             <label for="country" class="form-label">Production Year Generation
             </label>
-            <div class="customSelect w-100">
+            <div class="customSelect w-100 position-relative">
               <input type="text" class="form-select form-control form-input"
                 :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
                 @click="toggleOpeng" v-if="formData.model == ''" disabled>
@@ -234,20 +234,20 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 z1o">
             <label for="name" class="form-label"> Tell us your car story together </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
               v-model="formData.story" rows="2"></textarea>
 
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 z1o">
             <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
               or any specific features ? </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
               v-model="formData.modifications" rows="2"></textarea>
 
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 z1o">
             <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve had
               with your car that stands out the most? </label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
@@ -256,19 +256,19 @@
             <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
             <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 z1o">
             <label for="phone" class="form-label"> If you could give advice to someone just starting their journey to
               modify their car, what would it be and why?</label>
             <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
               v-model="formData.advice" rows="2"></textarea>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 z1o">
             <label for="country" class="form-label"> What is the name of your story that you would like to choose?
             </label>
             <input type="tel" id="phone" name="phone" class="form-control form-input"
               placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 z1o">
             <label for="message" class="form-label">Add Instagram link </label>
             <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')" rows="2"
               v-model="formData.social_media" />
@@ -412,7 +412,7 @@
 
         <div class="row mt-3">
 
-          <!-- <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
+          <!-- <div class="col-12 col-md-6 z1o col-lg-4 col-xl-4 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
               <img src="../../public/images/2.png">
             </div>
@@ -1381,7 +1381,7 @@ export default {
 }
 
 .options-list {
-  position: static;
+  position: absolute;
   /* top: 100%;
   left: 0; */
   width: 100%;
@@ -1397,7 +1397,8 @@ export default {
   max-height: 300px;
   overflow-y: scroll;
   color: #fff;
-  transition: height 0.5s ease-in-out
+  transition: height 0.5s ease-in-out;
+  z-index: 9999
 }
 
 .options-list li {
@@ -1533,6 +1534,10 @@ export default {
   height: 100%
 }
 
+.z1o {
+  z-index: 0
+}
+
 @media screen and (max-width: 991px) {
 
   div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius .img-border {
@@ -1545,6 +1550,15 @@ export default {
 @media(max-width:768px) {
   .cardOverlay img {
     height: 100%;
+  }
+
+  .z1o2 {
+
+    z-index: 0
+  }
+
+  .options-list {
+    position: static;
   }
 }
 
