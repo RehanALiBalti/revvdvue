@@ -94,28 +94,30 @@
               </div>
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                 <input type="checkbox" id="check1" class="form-check-input m-0" v-model="formData.check1" />
-                <label for="check1" class="form-label mt-4 mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
+                <label for="check1" class="form-label  mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                   <router-link to="/termofservice" class="termsService" target="_blank"> {{
             $t('GeneralTermsAndConditions')
           }}</router-link>
                 </label>
+                <div v-if="formErrors.check1" class="text-danger">
+                  {{ formErrors.check1 }}
+                </div>
               </div>
-              <div v-if="formErrors.check1" class="text-danger">
-                {{ formErrors.check1 }}
-              </div>
+
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                 <input type="checkbox" id="check2" class="form-check-input m-0" v-model="formData.check2" />
-                <label for="check2" class="form-label mt-4 mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
+                <label for="check2" class="form-label  mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                   <router-link to="/privacypolicy" class="termsService" target="_blank">{{ $t('PrivacyPolicy')
                     }}</router-link>
                 </label>
+                <div v-if="formErrors.check2" class="text-danger">
+                  {{ formErrors.check2 }}
+                </div>
               </div>
-              <div v-if="formErrors.check2" class="text-danger">
-                {{ formErrors.check2 }}
-              </div>
+
               <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
                 <input type="checkbox" id="check2" class="form-check-input m-0" :placeholder="$t('Enter here')" />
-                <label for="check2" class="form-label mt-4 mb-0 p-0">{{ $t('NoEmails') }}
+                <label for="check2" class="form-label  mb-0 p-0">{{ $t('NoEmails') }}
 
                 </label>
               </div>
@@ -540,7 +542,7 @@ export default {
       this.formErrors = {};
       // console.log("check1", this.formData.check1)
       if (!this.formData.check2) {
-        this.formErrors.check1 = "Please Check the Privacy And Policy"
+        this.formErrors.check2 = "Please Check the Privacy And Policy"
       }
       if (!this.formData.check1) {
         this.formErrors.check1 = "Please Check the General Terms ANd Conditions"

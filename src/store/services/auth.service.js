@@ -63,7 +63,7 @@ function setprofile(data) {
         name: data.name,
         nickname: data.name,
 
-        "custom:fullname": data.name, // Correctly access fullName property
+        "custom:fullname": data.fullname, // Correctly access fullName property
         "custom:age": data.age,
         // Add other attributes you want to update
       };

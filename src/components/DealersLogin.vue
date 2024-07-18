@@ -56,23 +56,21 @@
                                 <input v-model="formData.phone1" id="phone1" type="tel"
                                     :class="['form-control', 'form-input', { 'is-invalid': formErrors.phone1 }]"
                                     inputmode="numeric" pattern="[0-9]*" :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                                    @input="validatePhone1" />
                                 <div v-if="formErrors.phone1" class="text-danger">{{ formErrors.phone1 }}</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="fax" class="form-label">{{ $t('Fax') }}</label>
                                 <input v-model="formData.fax" id="fax" type="tel"
                                     :class="['form-control', 'form-input', { 'is-invalid': formErrors.fax }]"
-                                    :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                                    :placeholder="$t('Enter here')" @input="validateFax" />
                                 <div v-if="formErrors.fax" class="text-danger">{{ formErrors.fax }}</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
                                 <input v-model="formData.mobilePhone" id="mobilePhone" type="tel"
                                     :class="['form-control', 'form-input', { 'is-invalid': formErrors.mobilePhone }]"
-                                    :placeholder="$t('Enter here')"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                                    :placeholder="$t('Enter here')" @input="validateMobilePhone" />
                                 <div v-if="formErrors.mobilePhone" class="text-danger">{{ formErrors.mobilePhone }}
                                 </div>
                             </div>
@@ -299,6 +297,33 @@ export default {
 
     },
     methods: {
+        validatePhone1(event) {
+            const value = event.target.value;
+            if (/[^0-9]/.test(value)) {
+                this.formErrors.phone1 = 'Please write in numeric Form';
+                this.formData.phone1 = value.replace(/[^0-9]/g, '');
+            } else {
+                this.formErrors.phone1 = '';
+            }
+        },
+        validateFax(event) {
+            const value = event.target.value;
+            if (/[^0-9]/.test(value)) {
+                this.formErrors.fax = 'Please write in numeric Form';
+                this.formData.fax = value.replace(/[^0-9]/g, '');
+            } else {
+                this.formErrors.fax = '';
+            }
+        },
+        validateMobilePhone(event) {
+            const value = event.target.value;
+            if (/[^0-9]/.test(value)) {
+                this.formErrors.mobilePhone = 'Please write in numeric Form';
+                this.formData.mobilePhone = value.replace(/[^0-9]/g, '');
+            } else {
+                this.formErrors.mobilePhone = '';
+            }
+        },
 
         togglePasswordVisibility2() {
             this.formData.showPassword = !this.formData.showPassword;
@@ -503,6 +528,15 @@ export default {
         formData: {
             handler() {
                 this.validatePassword();
+            },
+            'formData.phone1': function (newVal) {
+                alert(newVal)
+                if (/[^0-9]/.test(newVal)) {
+                    this.formErrors.phone1 = 'Please write numbers';
+                    this.formData.phone1 = newVal.replace(/[^0-9]/g, '');
+                } else {
+                    this.formErrors.phone1 = '';
+                }
             },
             deep: true
         }

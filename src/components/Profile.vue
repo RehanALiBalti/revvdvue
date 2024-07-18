@@ -61,7 +61,7 @@
 								<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 								<input v-model="phone" id="phone" type="tel" name="phone"
 									class="form-control form-input" :placeholder="$t('Enter here')" required>
-								<div
+								<!-- <div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
 										<span class="border-bottom-btn border-top-btn position-absolute">
@@ -80,7 +80,7 @@
 											<img src="@/assets/images/Path465engine.png"
 												class="img-border position-absolute" alt="" />
 										</span>
-										<!-- data-bs-toggle="modal" -->
+									
 										<button type="button"
 											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
 											@click="openPhoneVerifyModel">
@@ -95,7 +95,7 @@
 												class="img-border position-absolute" alt="" />
 										</span>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div class="col-md-6">
 								<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional') }}</label>
@@ -986,7 +986,7 @@ export default {
 					console.log(data, typeof data);
 					if (data === "SUCCESS") {
 						this.isModalOpen = true;
-
+						this.$router.push({ name: 'HomeLanding' });
 					}
 				} catch (error) {
 					console.error("Error updating user profile:", error);
@@ -1115,6 +1115,7 @@ export default {
 				if (data === "SUCCESS") {
 					this.isModalOpen = true;
 					this.changeName(this.formData.CompanyName)
+					this.$router.push({ name: 'HomeLanding' });
 				}
 			} catch (error) {
 				console.error("Error updating user profile:", error);
@@ -1145,7 +1146,8 @@ export default {
 				this.role = this.UserData['custom:Role'];
 
 
-				console.log("userdata nick name", this.UserData.nickname)
+				console.log("userdata nick name", this.UserData)
+				this.formData.fullname = this.UserData['custom:fullname']
 				// this.role = this.UserData.nickname
 				if (this.role == "dealer") {
 					this.changeName(this.UserData.name)
@@ -1214,7 +1216,7 @@ export default {
 				console.log(this.formData.sub, "new porofile Data is dw", response.data);
 				this.image = response.data.image
 				this.name = response.data.nickname
-				this.fullname = response.data.name
+				// this.fullname = response.data.name
 				console.log("before set the name", this.name);
 				this.changeName(this.name);
 				console.log("username is", this.uname);
