@@ -111,7 +111,7 @@
 
 
 
-              <div v-for="comment in filteredComments" :key="comment.id">
+              <div v-for="comment in  filteredComments " :key="comment.id">
                 <div class="d-flex flex-column position-relative">
                   <div class="d-flex justify-content-end align-items-center me-2"></div>
                 </div>
@@ -123,9 +123,14 @@
                       <div class="col-md-12 d-flex justify-content-between flex-column">
                         <div>
                           <div class="d-flex gap-2 align-items-center">
+
+                            <!-- <img
+                              :src="comment.userimage != 'undefined' || comment.userimage != 'null' ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
+                              alt="" width="50px"> -->
                             <img
-                              :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
-                              alt="" width="50px">
+                              :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
+                              alt="" width="50px" />
+
                             <small class="uName">{{ comment.nickname }}</small>
                           </div>
                           <br>
@@ -183,9 +188,13 @@
                       <div class="col-md-12">
                         <div>
                           <div class="d-flex align-items-center gap-2">
+
+                            <!-- <img
+                              :src="comment.userimage != 'undefined' || 'null' ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
+                              alt="" width="50px"> -->
                             <img
-                              :src="comment.userimage ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : 'path/to/dummy/image.png'"
-                              alt="" width="50px">
+                              :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
+                              alt="" width="50px" />
                             <small class="uName">{{ comment.nickname }}</small>
                           </div>
                           <br>
@@ -335,6 +344,7 @@ import Viewer from 'viewerjs';
 import 'viewerjs/dist/viewer.css';
 import moment from 'moment';
 import userImage from "../assets/images/userImg.png"
+import dummyuseImage from "../assets/images/Group888.png"
 import { reactive } from 'vue';
 export default {
   name: "CommunityDetail",
@@ -346,6 +356,7 @@ export default {
       search: "",
       likesCount: "",
       totalComments: "",
+      dummyuserImage: dummyuseImage,
       sub: "",
       pageId: "",
       forumId: "",

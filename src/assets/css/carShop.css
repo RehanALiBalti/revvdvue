@@ -628,7 +628,8 @@
 
 	.sender-chats,
 	.receiver-chats {
-		max-width: 195px;
+		max-width: 95%;
+		min-width: 60%
 	}
 
 	.view-more-cars.position-absolute {

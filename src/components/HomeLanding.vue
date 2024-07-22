@@ -32,7 +32,7 @@
         <router-link to="/offer" class="signin-btnli Start Engine mx-auto">
           {{ $t('startEngine') }}
         </router-link>
-        <span class="border-bottom-btn border-left-btn position-absolute">
+        <span class="border-bottom-btn border-left-btn position-absolute d-none">
           <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
         </span>
         <span class="border-bottom-btn position-absolute">
@@ -1541,9 +1541,17 @@ export default {
 @media screen and (max-width: 991px) {
 
   div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius .img-border {
-    left: 91px;
+    left: 63px;
   }
 
+  div.start-engine-div .border-bottom-btn.border-top-btn,
+  div.start-engine-div .border-bottom-btn {
+    left: 78px;
+  }
+
+  .border-bottom-btn .img-border {
+    width: 80%;
+  }
 
 }
 

@@ -585,5 +585,9 @@ export default {
     font-weight: 700;
 
   }
+
+  .custom-options {
+    width: 100% !important;
+  }
 }
 </style>
