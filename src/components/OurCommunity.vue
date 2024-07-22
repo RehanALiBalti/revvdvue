@@ -122,10 +122,10 @@
                     </div>
                     <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
                       <div class="customSelect w-100">
-                        <input type="text" class="form-select" :placeholder="$t('Thread Category')"
+                        <input type="text" class="form-select" :placeholder="$t('ThreadCategory')"
                           v-model="specfications" @click="toggleOpengs" v-if="smodel == ''" disabled
                           @input="filterSpecificationOptions">
-                        <input type="text" class="form-select" :placeholder="$t('Thread Category')"
+                        <input type="text" class="form-select" :placeholder="$t('ThreadCategory')"
                           v-model="specfications" @click="toggleOpengs" @input="filterSpecificationOptions" v-else>
                         <!-- <ul v-show="isOpengs" class="options-list" v-if="specifctionOptions.length > 0">
                       <li v-for="(value, index) in specifctionOptions" :key="index"
