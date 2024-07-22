@@ -92,7 +92,7 @@
                                 </span>
                                 <div v-if="formErrors.password" class="text-danger">{{ formErrors.password }}</div>
                             </div>
-                            <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+                            <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
                                 <input type="checkbox" id="check1" v-model="formData.check1"
                                     :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check1 }]" />
                                 <label for="check1" class="form-label m-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
@@ -103,7 +103,7 @@
                                     <p class="m-0 p-0">{{ formErrors.check1 }}</p>
                                 </div>
                             </div>
-                            <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
+                            <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
                                 <input type="checkbox" id="check2" v-model="formData.check2"
                                     :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check2 }]" />
                                 <label for="check2" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}

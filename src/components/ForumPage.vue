@@ -31,7 +31,7 @@
                                 @input="applyFilter">
                         </div>
                         <div class="col-md-2 ">
-                            <div class="list-item-btn position-relative submit-btn-div ms-auto">
+                            <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0">
                                 <span class="border-bottom-btn border-top-btn position-absolute">
                                     <img src="@/assets/images/Group12.png" class="img-border position-absolute"
                                         alt="" />

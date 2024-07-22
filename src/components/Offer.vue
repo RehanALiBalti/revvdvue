@@ -1267,7 +1267,8 @@ export default {
 		position: absolute;
 		width: 75%;
 		top: 10px;
-		object-fit: contain;
+		/* object-fit: cover; */
+		background-position: center;
 		height: 102%;
 	}
 }
