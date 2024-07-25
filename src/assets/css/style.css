@@ -2127,10 +2127,16 @@ a:hover {
 .eye {
 	position: absolute;
 	top: 52px;
-	right: 6%;
+	right: 8%;
 	color: #F95F19;
 	cursor: pointer;
 
+}
+
+@media(max-width:992px) {
+	.eye {
+		right: 15%
+	}
 }
 
 /* Responsive Styles */
@@ -2311,7 +2317,7 @@ a:hover {
 	}
 
 	.border-bottom-btn .img-border {
-		left: 0px;
+		left: 3px;
 	}
 
 	.border-bottom-btn.border-left-btn .img-border {

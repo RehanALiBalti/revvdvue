@@ -1,8 +1,53 @@
 <template>
 	<section class="my-5 " id="gallery">
+		<div class="container my-5 d-block d-md-none">
+			<div class="banner-content">
+				<!-- <h1 class="banner-title">Changing the Car World</h1> -->
+				<p class="banner-para">
+					Welcome to our ultimate platform for car enthusiasts! Explore our five core modules: a marketplace
+					for
+					buying and selling modified and super cars, vibrant community forum threads for engaging with fellow
+					enthusiasts, a car shops finder to locate the best maintenance and upgrade services, and a parts
+					marketplace for discovering a wide selection of vehicle components.
+				</p>
+			</div>
+		</div>
+
+		<div class="container my-5 d-block d-md-none">
+			<div class="main-content-home1">
+				<div class="logo-R-div d-flex justify-content-center align-items-center">
+
+					<img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
+
+				</div>
+
+				<!-- <div class="list-item-btn position-relative start-engine-div">
+            <span class="border-bottom-btn border-top-btn position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Group12engine.png" class="img-border position-absolute" alt="">
+            </span>
+
+            <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Path467engine.png" class="img-border position-absolute" alt="">
+            </span>
+
+            <span class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Path465engine.png" class="img-border position-absolute" alt="">
+            </span>
+            <button type="button" class="signin-btnli Start Engine mx-auto">
+                Start Engine
+            </button>
+            <span class="border-bottom-btn border-left-btn position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Group11engine.png" class="img-border position-absolute" alt="">
+            </span>
+            <span class="border-bottom-btn position-absolute">
+                <img src="http://localhost/revvdout/assets/images/Path473engine.png" class="img-border position-absolute" alt="">
+            </span>
+        </div> -->
+			</div>
+		</div>
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
@@ -49,7 +94,7 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
@@ -94,7 +139,7 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4">
+				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4">
 					<div class="card">
 						<div class="card-body d-flex flex-column justify-content-center align-items-center">
 							<h5 class="card-title">{{ $t('community') }}</h5>
@@ -138,7 +183,7 @@
 					</div>
 				</div>
 
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
@@ -183,7 +228,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
@@ -231,7 +276,7 @@
 
 			</div>
 		</div>
-		<div class="container my-5">
+		<div class="container my-5 d-none d-md-block">
 			<div class="banner-content">
 				<!-- <h1 class="banner-title">Changing the Car World</h1> -->
 				<p class="banner-para">
@@ -244,7 +289,7 @@
 			</div>
 		</div>
 
-		<div class="container my-5">
+		<div class="container my-5 d-none d-md-block">
 			<div class="main-content-home1">
 				<div class="logo-R-div d-flex justify-content-center align-items-center">
 
@@ -1265,8 +1310,8 @@ export default {
 
 	.cardOverlay img {
 		position: absolute;
-		width: 75%;
-		top: 10px;
+		width: 100%;
+		top: 8px;
 		/* object-fit: cover; */
 		background-position: center;
 		height: 102%;

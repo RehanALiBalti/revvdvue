@@ -25,9 +25,9 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="streetNo" class="form-label">{{ $t('StreetNo') }}</label>
-                                <input v-model="formData.streetNo" id="streetNo" type="number"
+                                <input v-model="formData.streetNo" id="streetNo" type="text"
                                     :class="['form-control', 'form-input', { 'is-invalid': formErrors.streetNo }]"
-                                    :placeholder="$t('Enter here')" />
+                                    :placeholder="$t('Enter here')" @input="validatestreeet1" />
                                 <div v-if="formErrors.streetNo" class="text-danger">{{ formErrors.streetNo }}</div>
                             </div>
                             <div class="col-md-3">
@@ -304,6 +304,15 @@ export default {
                 this.formData.phone1 = value.replace(/[^0-9]/g, '');
             } else {
                 this.formErrors.phone1 = '';
+            }
+        },
+        validatestreeet1(event) {
+            const value = event.target.value;
+            if (/[^0-9]/.test(value)) {
+                this.formErrors.streetNo = 'Please write in numeric Form';
+                this.formData.streetNo = value.replace(/[^0-9]/g, '');
+            } else {
+                this.formErrors.streetNo = '';
             }
         },
         validateFax(event) {

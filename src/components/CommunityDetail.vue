@@ -8,7 +8,7 @@
         </div>
         <div v-else>
           <div class="communityDetails-bg ">
-            <div class="row">
+            <div class="row justify-content-center">
               <!-- <div class="col-md-4 my-2 ">
                 <div class="communityDetailsMain">
                   <img class=" d-block mx-auto w-100 object-fit-contain" src="../assets/images/icons/audilogo.png"
@@ -20,9 +20,9 @@
               </div> -->
               <div class="col-md-12 d-flex justify-content-betweeen align-items-center">
 
-                <div class="row mb-1 w-100">
+                <div class="row mb-1 w-100 justify-content-center">
 
-                  <div class="col-md-4 align-self-end">
+                  <div class="col-md-8 align-self-end d-flex justify-content-center">
                     <h1 class="card-title-h2 community-title fh2 m-0" v-if="forumData">
                       {{ forumData.make }}
                       {{ forumData.model }}
@@ -36,14 +36,14 @@
 
                     </h1> -->
                   </div>
-                  <div class="col-md-8 d-flex justify-content-start align-items-center">
+                  <div class="col-md-8 d-flex justify-content-center align-items-center">
                     <input type="text" name="" id="" class="form-control formSearch" placeholder="search"
                       v-model="search" @input="applyFilter">
                   </div>
 
                 </div>
               </div>
-              <div class=" col-md-7 my-2 ">
+              <div class=" col-md-8 my-2 ">
                 <div class=" card-title-div communityDetailsMain p-3">
 
                   <div class="">
@@ -100,7 +100,7 @@
 
             </div>
           </div>
-          <div v-if="comments != ''" class="communityDetails-bg mt-1 communityDetailsMain wcol">
+          <div v-if="comments != ''" class="communityDetails-bg mt-1 communityDetailsMain wcol d-block mx-auto">
             <div class="img-communityDetails-div">
 
 
@@ -255,36 +255,42 @@
 
 
         </div>
-        <form @submit.prevent="postComment" enctype="multipart/form-data" method="post" class="position-relative">
-          <div class="form-group d-flex align-items-center mainPostArea">
-            <textarea type="text" class="form-control my-2 " placeholder="Enter Comment" v-model="newComment" disabled
-              v-if="imgLoading"></textarea>
-            <textarea type="text" class="form-control my-2 " placeholder="Enter Comment" v-model="newComment"
-              v-else></textarea>
-            <div v-if="imgLoading" class="imgLoadingBox">
-              <div class="box2"></div>
-            </div>
-            <div class="d-flex align-items-center gap-2 ms-2" v-else>
-              <div class="upsection" v-if="imageUrl != ''">
-                <div class="position-relative mainUp d-flex">
-                  <!-- <img class="upImage" :src="imageUrl" alt=""> -->
-
-                  <p class="text-white mb-0 fonts2">{{ imageName }}</p>
-                  <span class="cancel" @click="removeImage"><i class="fa-solid fa-xmark"></i></span>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <form @submit.prevent="postComment" enctype="multipart/form-data" method="post"
+              class="position-relative mt-2">
+              <div class="form-group d-flex align-items-center mainPostArea">
+                <textarea type="text" class="form-control my-2 " placeholder="Enter Comment" v-model="newComment"
+                  disabled v-if="imgLoading"></textarea>
+                <textarea type="text" class="form-control my-2 " placeholder="Enter Comment" v-model="newComment"
+                  v-else></textarea>
+                <div v-if="imgLoading" class="imgLoadingBox">
+                  <div class="box2"></div>
                 </div>
-              </div><i class="fa-solid fa-image image_icon" @click="openFileInput"></i>
-              <input type="file" class="form-control-file my-2 d-none" @change="handleFileChange" ref="fileInput">
-              <svg @click="postComment" xmlns="http://www.w3.org/2000/svg" class=" send-icon" width="31.5" height="27"
-                viewBox="0 0 31.5 27">
-                <path id="Icon_material-send" data-name="Icon material-send"
-                  d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)" fill="#f95f19" />
-              </svg>
+                <div class="d-flex align-items-center gap-2 ms-2" v-else>
+                  <div class="upsection" v-if="imageUrl != ''">
+                    <div class="position-relative mainUp d-flex">
+                      <!-- <img class="upImage" :src="imageUrl" alt=""> -->
 
-            </div>
-            <!-- <input type="submit" value="Post" class="btn my-2 "> -->
+                      <p class="text-white mb-0 fonts2">{{ imageName }}</p>
+                      <span class="cancel" @click="removeImage"><i class="fa-solid fa-xmark"></i></span>
+                    </div>
+                  </div><i class="fa-solid fa-image image_icon" @click="openFileInput"></i>
+                  <input type="file" class="form-control-file my-2 d-none" @change="handleFileChange" ref="fileInput">
+                  <svg @click="postComment" xmlns="http://www.w3.org/2000/svg" class=" send-icon" width="31.5"
+                    height="27" viewBox="0 0 31.5 27">
+                    <path id="Icon_material-send" data-name="Icon material-send"
+                      d="M3.015,31.5,34.5,18,3.015,4.5,3,15l22.5,3L3,21Z" transform="translate(-3 -4.5)"
+                      fill="#f95f19" />
+                  </svg>
 
+                </div>
+                <!-- <input type="submit" value="Post" class="btn my-2 "> -->
+
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
 
@@ -1706,7 +1712,7 @@ export default {
 }
 
 .wcol {
-  width: 57.5%
+  width: 65.5%
 }
 
 @media(max-width:768px) {
