@@ -2265,7 +2265,7 @@ a:hover {
 
 	.form-check-input {
 		position: relative;
-		top: 15px;
+		/* top: 15px; */
 		width: 1.7em;
 		height: 1.2em;
 	}
