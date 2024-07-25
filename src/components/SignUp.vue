@@ -48,12 +48,14 @@
               <div class="col-md-6 position-relative">
                 <label for="password" class="form-label">Password</label>
 
-                <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
-                  class="form-control form-input" :placeholder="$t('Enter here')" @input="checkStrength" />
-                <span class="eye" @click="togglePasswordVisibility">
-                  <i class="fa-solid" :class="eyeIcon"></i>
-                </span>
+                <div class="input-group">
+                  <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
+                    class="form-control form-input formP" :placeholder="$t('Enter here')" @input="checkStrength" />
+                  <span class="input-group-text igt" @click="togglePasswordVisibility">
+                    <i class="fa-solid" :class="eyeIcon"></i>
+                  </span>
 
+                </div>
                 <div class="strength-bars" v-if="formData.password !== ''">
                   <div class="strength-bar"
                     :class="{ 'weak': passwordStrength === 'Weak', 'medium': passwordStrength === 'Medium', 'strong': passwordStrength === 'Strong' }">
@@ -74,11 +76,14 @@
 
               <div class="col-md-6 position-relative">
                 <label for="confirmPassword" class="form-label">{{ $t('ConfirmPassword') }}</label>
-                <input :type="formData.showPassword2 ? 'text' : 'password'" id="confirmPassword"
-                  v-model="formData.confirmPassword" class="form-control form-input" :placeholder="$t('Enter here')" />
-                <span class="eye" @click="togglePasswordVisibility2">
-                  <i class="fa-solid" :class="eyeIcon2"></i>
-                </span>
+                <div class="input-group">
+                  <input :type="formData.showPassword2 ? 'text' : 'password'" id="confirmPassword"
+                    v-model="formData.confirmPassword" class="form-control form-input formP"
+                    :placeholder="$t('Enter here')" />
+                  <span class="input-group-text igt" @click="togglePasswordVisibility2">
+                    <i class="fa-solid" :class="eyeIcon2"></i>
+                  </span>
+                </div>
                 <div v-if="formErrors.confirmPassword" class="text-danger">
                   {{ formErrors.confirmPassword }}
                 </div>
@@ -686,6 +691,21 @@ export default {
 
 .textnowrap {
   text-wrap: nowrap
+}
+
+.igt {
+  background: #031726;
+  color: #FF7A00;
+  border-color: #1a202c;
+  border-left: transparent;
+
+}
+
+.formP {
+  border-right: transparent !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+
 }
 
 @media(max-width:992px) {

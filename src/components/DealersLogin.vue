@@ -83,13 +83,15 @@
                             </div>
                             <div class="col-md-6 position-relative">
                                 <label for="password" class="form-label">{{ $t('password') }}</label>
-                                <input :type="formData.showPassword ? 'text' : 'password'" id="password"
-                                    v-model="formData.password"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.password }]"
-                                    :placeholder="$t('Enter here')" />
-                                <span class="eye" @click="togglePasswordVisibility2">
-                                    <i class="fa-solid" :class="eyeIcon"></i>
-                                </span>
+                                <div class="input-group">
+                                    <input :type="formData.showPassword ? 'text' : 'password'" id="password"
+                                        v-model="formData.password"
+                                        :class="['form-control', 'form-input', 'formP', { 'is-invalid': formErrors.password }]"
+                                        :placeholder="$t('Enter here')" />
+                                    <span class="input-group-text igt " @click="togglePasswordVisibility2">
+                                        <i class="fa-solid" :class="eyeIcon"></i>
+                                    </span>
+                                </div>
                                 <div v-if="formErrors.password" class="text-danger">{{ formErrors.password }}</div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
@@ -665,5 +667,20 @@ export default {
 
 .text-danger {
     font-size: 14px !important;
+}
+
+.igt {
+    background: #031726;
+    color: #FF7A00;
+    border-color: #1a202c;
+    border-left: transparent;
+
+}
+
+.formP {
+    border-right: transparent !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+
 }
 </style>

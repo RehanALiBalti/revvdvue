@@ -39,11 +39,13 @@
                 <label for="password" class="form-label"> {{ $t('password') }}</label>
                 <!-- <input type="password" id="password" v-model="formData.password" class="form-control form-input"
                    :placeholder="$t('Enter here')"/> -->
-                <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
-                  class="form-control form-input" :placeholder="$t('Enter here')" />
-                <span class="eye" @click="togglePasswordVisibility">
-                  <i class="fa-solid" :class="eyeIcon"></i>
-                </span>
+                <div class="input-group">
+                  <input :type="formData.showPassword ? 'text' : 'password'" id="password" v-model="formData.password"
+                    class="form-control form-input formP" :placeholder="$t('Enter here')" />
+                  <span class="input-group-text igt" @click="togglePasswordVisibility">
+                    <i class="fa-solid" :class="eyeIcon"></i>
+                  </span>
+                </div>
                 <div v-if="formErrors.password" class="text-danger">
                   {{ formErrors.password }}
                 </div>
@@ -354,6 +356,21 @@ export default {
   border: 6px solid;
   border-color: #FF7A00 transparent;
   animation: spin 1s infinite ease-out;
+}
+
+.igt {
+  background: #031726;
+  color: #FF7A00;
+  border-color: #1a202c;
+  border-left: transparent;
+
+}
+
+.formP {
+  border-right: transparent !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+
 }
 
 @keyframes spin {

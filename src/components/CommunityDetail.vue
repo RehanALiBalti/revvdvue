@@ -22,7 +22,7 @@
 
                 <div class="row mb-1 w-100 justify-content-center">
 
-                  <div class="col-md-8 align-self-end d-flex justify-content-center">
+                  <div class="col-md-10 align-self-end d-flex justify-content-center">
                     <h1 class="card-title-h2 community-title fh2 m-0" v-if="forumData">
                       {{ forumData.make }}
                       {{ forumData.model }}
@@ -36,14 +36,14 @@
 
                     </h1> -->
                   </div>
-                  <div class="col-md-8 d-flex justify-content-center align-items-center">
+                  <div class="col-md-10 d-flex justify-content-center align-items-center">
                     <input type="text" name="" id="" class="form-control formSearch" placeholder="search"
                       v-model="search" @input="applyFilter">
                   </div>
 
                 </div>
               </div>
-              <div class=" col-md-8 my-2 ">
+              <div class=" col-md-10 my-2 ">
                 <div class=" card-title-div communityDetailsMain p-3">
 
                   <div class="">
@@ -256,7 +256,7 @@
 
         </div>
         <div class="row justify-content-center">
-          <div class="col-md-8">
+          <div class="col-md-10">
             <form @submit.prevent="postComment" enctype="multipart/form-data" method="post"
               class="position-relative mt-2">
               <div class="form-group d-flex align-items-center mainPostArea">
@@ -1683,7 +1683,7 @@ export default {
 }
 
 .formSearch {
-  width: 400px;
+  /* width: 400px; */
   /* margin: auto; */
   padding: 0.5rem;
 }
@@ -1712,7 +1712,7 @@ export default {
 }
 
 .wcol {
-  width: 65.5%
+  width: 83.5%
 }
 
 @media(max-width:768px) {
