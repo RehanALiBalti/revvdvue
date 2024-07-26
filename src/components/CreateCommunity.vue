@@ -166,16 +166,60 @@ export default {
     //     console.error('Error making POST request:', error);
     //   }
     // }
+    // async formSubmit() {
+    //   // Data to be sent in the POST request
+    //   this.loading = true;
+    //   const postData = {
+    //     title: this.formData.title,
+    //     description: this.formData.description,
+    //     make: this.formData.make,
+    //     model: this.formData.model,
+    //     production_years: this.formData.production_years,
+    //     specifications: this.formData.specifications
+    //   };
+
+    //   try {
+    //     // Make the POST request with the specified data
+    //     const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/', postData);
+
+    //     // Handle the response data
+
+    //     console.log(response.data);
+    //     // alert("sdas")
+
+    //     // Construct the base URL with mandatory parameters
+    //     let routeUrl = `/community/${postData.make}/${postData.model}`;
+
+    //     // Include production_years if it is not empty
+    //     if (postData.production_years) {
+    //       routeUrl += `/${postData.production_years}`;
+    //     }
+
+    //     // Add specifications to the URL
+    //     routeUrl += `/${postData.specifications}`;
+
+    //     // Navigate to the constructed URL
+    //     this.loading = false;
+    //     this.$router.push({ path: routeUrl });
+    //   } catch (error) {
+    //     // Handle any errors
+    //     this.loading = false;
+    //     console.error('Error making POST request:', error);
+    //   }
+    // }
+
     async formSubmit() {
-      // Data to be sent in the POST request
+      // Indicate that loading is in progress
       this.loading = true;
+
+      // Data to be sent in the POST request
       const postData = {
         title: this.formData.title,
         description: this.formData.description,
-        make: this.formData.make,
-        model: this.formData.model,
-        production_years: this.formData.production_years,
-        specifications: this.formData.specifications
+        make: encodeURIComponent(this.formData.make),
+        model: encodeURIComponent(this.formData.model),
+        production_years: encodeURIComponent(this.formData.production_years),
+        specifications: encodeURIComponent(this.formData.specifications)
       };
 
       try {
@@ -183,24 +227,29 @@ export default {
         const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/', postData);
 
         // Handle the response data
-
         console.log(response.data);
-        // alert("sdas")
+
+        // Encode the URL parameters to handle special characters
+        const encodedMake = postData.make;
+        const encodedModel = postData.model;
+        const encodedSpecifications = postData.specifications;
 
         // Construct the base URL with mandatory parameters
-        let routeUrl = `/community/${postData.make}/${postData.model}`;
+        let routeUrl = `/community/${encodedMake}/${encodedModel}`;
 
         // Include production_years if it is not empty
         if (postData.production_years) {
-          routeUrl += `/${postData.production_years}`;
+          const encodedProductionYears = encodeURIComponent(postData.production_years);
+          routeUrl += `/${encodedProductionYears}`;
         }
 
         // Add specifications to the URL
-        routeUrl += `/${postData.specifications}`;
-
+        routeUrl += `/${encodedSpecifications}`;
+        console.log(routeUrl)
         // Navigate to the constructed URL
         this.loading = false;
-        this.$router.push({ path: routeUrl });
+        // this.$router.push({ path: routeUrl });
+        this.$router.back();
       } catch (error) {
         // Handle any errors
         this.loading = false;

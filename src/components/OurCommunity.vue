@@ -652,12 +652,69 @@ export default {
     //     this.$router.push({ path: routeUrl });
     //   }
     // }
+    // sendForumData() {
+    //   // Get the dynamic parameters
+    //   const make = this.make;
+    //   const model = this.smodel;
+    //   const production_years = this.selectedData;
+    //   const specifications = this.specfications;
+
+    //   // Check if any mandatory fields are empty
+    //   if (!make || !model || !specifications) {
+    //     // Hide the current modal and open the second modal if any of the fields are empty
+    //     this.hideFilterModal();
+    //     this.isModal2Open = true;
+    //     return;
+    //   }
+
+    //   // Construct the URL with or without production_years
+    //   let routeUrl = `/community/${make}/${model}`;
+    //   if (production_years) {
+    //     routeUrl += `/${production_years}`;
+    //   }
+    //   routeUrl += `/${specifications}`;
+
+    //   // Navigate to the constructed URL
+    //   this.$router.push({ path: routeUrl });
+    // }
+    //     sendForumData() {
+    //   // Get the dynamic parameters
+    //   const make = this.make;
+    //   const model = this.smodel;
+    //   const production_years = this.selectedData;
+    //   const specifications = this.specfications;
+
+    //   // Check if any mandatory fields are empty
+    //   if (!make || !model || !specifications) {
+    //     // Hide the current modal and open the second modal if any of the fields are empty
+    //     this.hideFilterModal();
+    //     this.isModal2Open = true;
+    //     return;
+    //   }
+
+    //   // Encode the URL parameters to handle special characters
+    //   const encodedMake = encodeURIComponent(make);
+    //   const encodedModel = encodeURIComponent(model);
+    //   const encodedSpecifications = encodeURIComponent(specifications);
+    //   let routeUrl = `/community/${encodedMake}/${encodedModel}`;
+
+    //   if (production_years) {
+    //     const encodedProductionYears = encodeURIComponent(production_years);
+    //     routeUrl += `/${encodedProductionYears}`;
+    //   }
+
+    //   routeUrl += `/${encodedSpecifications}`;
+
+    //   // Navigate to the constructed URL
+    //   this.$router.push({ path: routeUrl });
+    // }
+
     sendForumData() {
       // Get the dynamic parameters
       const make = this.make;
       const model = this.smodel;
-      const production_years = this.selectedData;
-      const specifications = this.specfications;
+      let production_years = this.selectedData;
+      let specifications = this.specfications;
 
       // Check if any mandatory fields are empty
       if (!make || !model || !specifications) {
@@ -667,15 +724,28 @@ export default {
         return;
       }
 
-      // Construct the URL with or without production_years
-      let routeUrl = `/community/${make}/${model}`;
+      // Remove '%', '/', and ',' from production_years and specifications
+      const sanitizeString = (str) => str.replace(/[%/,\s]/g, '');
+
+      production_years = sanitizeString(production_years);
+      specifications = sanitizeString(specifications);
+
+      // Encode the URL parameters to handle special characters
+      const encodedMake = encodeURIComponent(make);
+      const encodedModel = encodeURIComponent(model);
+      const encodedSpecifications = encodeURIComponent(specifications);
+      let routeUrl = `/community/${encodedMake}/${encodedModel}`;
+
       if (production_years) {
-        routeUrl += `/${production_years}`;
+        const encodedProductionYears = encodeURIComponent(production_years);
+        routeUrl += `/${encodedProductionYears}`;
       }
-      routeUrl += `/${specifications}`;
+
+      routeUrl += `/${encodedSpecifications}`;
 
       // Navigate to the constructed URL
       this.$router.push({ path: routeUrl });
+      // console.log(routeUrl)
     }
 
 
