@@ -16,13 +16,13 @@
                             <nav aria-label="breadcrumb" class="nav-breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item fh2">
-                                        {{ make }}
+                                        {{ decode(make) }}
                                     </li>
                                     <li class="breadcrumb-item fh2">
-                                        {{ modal }}
+                                        {{ decode(modal) }}
                                     </li>
-                                    <li class="breadcrumb-item fh2">{{ production_years }}</li>
-                                    <li class="breadcrumb-item fh2">{{ specifications }}</li>
+                                    <li class="breadcrumb-item fh2">{{ decode(production_years) }}</li>
+                                    <li class="breadcrumb-item fh2">{{ decode(specifications) }}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -292,6 +292,9 @@ export default {
 
     },
     methods: {
+        decode(str) {
+            return decodeURIComponent(str);
+        },
         // getNoOfComments(id) {
 
         //     const apiUrl = `https://squid-app-yq2ph.ondigitalocean.app/api/comments/count?community_id=${id}`;
@@ -494,10 +497,10 @@ export default {
     },
     mounted() {
         // this.pageId = this.$route.params.id;
-        this.make =  encodeURIComponent(this.$route.params.make)
-        this.modal = encodeURIComponent( this.$route.params.model)
-        this.production_years = encodeURIComponent( this.$route.params.production_years)
-        this.specifications =  encodeURIComponent(this.$route.params.specifications)
+        this.make = encodeURIComponent(this.$route.params.make)
+        this.modal = encodeURIComponent(this.$route.params.model)
+        this.production_years = encodeURIComponent(this.$route.params.production_years)
+        this.specifications = encodeURIComponent(this.$route.params.specifications)
         console.log("params data is", this.make, this.modal, this.production_years, this.specifications)
         this.getForumData()
         // this.formSubmit();

@@ -24,10 +24,10 @@
 
                   <div class="col-md-10 align-self-end d-flex justify-content-center">
                     <h1 class="card-title-h2 community-title fh2 m-0" v-if="forumData">
-                      {{ forumData.make }}
-                      {{ forumData.model }}
-                      {{ forumData.production_years }}
-                      {{ forumData.specifications }}
+                      {{ decode(forumData.make) }}
+                      {{ decode(forumData.model) }}
+                      {{ decode(forumData.production_years) }}
+                      {{ decode(forumData.specifications) }}
                     </h1>
                     <!-- <h1 class="card-title-h2 community-title fh2" v-if="forumData">
 
@@ -441,6 +441,9 @@ export default {
   },
 
   methods: {
+    decode(str) {
+      return decodeURIComponent(str);
+    },
     applyFilter() {
       const searchLower = this.search.trim().toLowerCase();
       if (searchLower === '') {
