@@ -959,7 +959,7 @@ export default {
 				// You can perform further actions here, such as redirecting the user or showing a success message
 			} catch (error) {
 				// Handle error
-				console.error('Error submitting form data:', error);
+				console.error('Error submitting form :', error);
 				// You can show an error message to the user or handle the error in any other appropriate way
 			}
 		},
