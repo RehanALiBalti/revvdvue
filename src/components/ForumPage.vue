@@ -29,10 +29,12 @@
                         <div class="col-md-5">
                             <input type="text" name="" id="" class="form-control " placeholder="search" v-model="search"
                                 @input="applyFilter">
+
                         </div>
+
                         <div class="col-md-2 ">
                             <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0"
-                                v-if="IsLogin == true">
+                                v-if="isLogin == true">
                                 <span class="border-bottom-btn border-top-btn position-absolute">
                                     <img src="@/assets/images/Group12.png" class="img-border position-absolute"
                                         alt="" />
@@ -286,7 +288,7 @@ export default {
     data() {
         return {
 
-            isLogin: "",
+            isLogin: JSON.parse(localStorage.getItem('login')) || false,
             loginModal: false,
             search: "",
             make: "",
@@ -558,12 +560,13 @@ export default {
         console.log("params data is", this.make, this.modal, this.production_years, this.specifications)
         this.getForumData()
         this.isLogin = JSON.parse(localStorage.getItem('login')) || false,
-            // this.formSubmit();
-            // this.fetchCommunityData()
-            // Initially paginate communities
+            console.log("is login", typeof (this.isLogin), this.isLogin)
+        // this.formSubmit();
+        // this.fetchCommunityData()
+        // Initially paginate communities
 
-            // console.log("page id is", this.pageId)
-            this.paginateCommunities();
+        // console.log("page id is", this.pageId)
+        this.paginateCommunities();
     },
     watch: {
         communities() {
