@@ -31,7 +31,8 @@
                                 @input="applyFilter">
                         </div>
                         <div class="col-md-2 ">
-                            <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0">
+                            <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0"
+                                v-if="IsLogin == true">
                                 <span class="border-bottom-btn border-top-btn position-absolute">
                                     <img src="@/assets/images/Group12.png" class="img-border position-absolute"
                                         alt="" />
@@ -64,6 +65,35 @@
                                         alt="" />
                                 </span>
                             </div>
+                            <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0" v-else>
+                                <span class="border-bottom-btn border-top-btn position-absolute">
+                                    <img src="@/assets/images/Group12.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+                                <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                                    <img src="@/assets/images/Path467.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+                                <span
+                                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                                    <img src="@/assets/images/Path465.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+
+
+                                <button class="signin-btnli submitNow" @click="openLoginModal">
+                                    Create New Thread
+                                </button>
+                                <span class="border-bottom-btn border-left-btn position-absolute">
+                                    <img src="@/assets/images/Group11.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+                                <span class="border-bottom-btn position-absolute">
+                                    <img src="@/assets/images/Path473.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+                            </div>
+
                         </div>
                         <!-- <div class="btns-community  d-block position-static " style="width:fit-content">
                             <div class="btn-div-create-forum position-relative">
@@ -232,6 +262,20 @@
             </div>
         </div>
     </div>
+    <!-- login modal -->
+    <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" ref="modalRef"
+        v-if="loginModal == true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <span class="close-icon" @click="closeModelLogin" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <h5 class="card-title"><span class="choose"> Please Login Fisrt To Access This </span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -241,6 +285,9 @@ import axios from "axios";
 export default {
     data() {
         return {
+
+            isLogin: "",
+            loginModal: false,
             search: "",
             make: "",
             modal: "",
@@ -292,6 +339,13 @@ export default {
 
     },
     methods: {
+        openLoginModal() {
+            console.log("sdsd")
+            this.loginModal = true
+        },
+        closeModelLogin() {
+            this.loginModal = false
+        },
         decode(str) {
             return decodeURIComponent(str);
         },
@@ -503,12 +557,13 @@ export default {
         this.specifications = encodeURIComponent(this.$route.params.specifications)
         console.log("params data is", this.make, this.modal, this.production_years, this.specifications)
         this.getForumData()
-        // this.formSubmit();
-        // this.fetchCommunityData()
-        // Initially paginate communities
+        this.isLogin = JSON.parse(localStorage.getItem('login')) || false,
+            // this.formSubmit();
+            // this.fetchCommunityData()
+            // Initially paginate communities
 
-        // console.log("page id is", this.pageId)
-        this.paginateCommunities();
+            // console.log("page id is", this.pageId)
+            this.paginateCommunities();
     },
     watch: {
         communities() {
@@ -542,5 +597,24 @@ export default {
 .list-item-btn.position-relative.submit-btn-div {
     width: fit-content;
     margin: 0;
+}
+
+.modal-dialog {
+    max-width: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #031726;
+    background-clip: padding-box;
+    border: 1px solid #1a202c;
+    border-radius: 5px;
+    outline: 0;
 }
 </style>

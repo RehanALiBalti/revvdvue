@@ -32,7 +32,19 @@
           <ul class="navbar-nav ul-list ms-auto">
             <li class="list-item-btn position-relative">
 
-              <router-link class="nav-link d-none d-lg-block" to="/" v-if="shouldShowLink && isLogin">
+              <!-- <router-link class="nav-link d-none d-lg-block" to="/" v-if="shouldShowLink && isLogin">
+                <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
+                  viewBox="0 0 29 32">
+                  <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
+                    <path id="Path_1085" data-name="Path 1085"
+                      d="M4.5,13.5,18,3,31.5,13.5V30a3,3,0,0,1-3,3H7.5a3,3,0,0,1-3-3Z" fill="none" stroke="#fff"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                    <path id="Path_1086" data-name="Path 1086" d="M13.5,33V18h9V33" fill="none" stroke="#fff"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                  </g>
+                </svg>
+              </router-link> -->
+              <router-link class="nav-link d-none d-lg-block" to="/">
                 <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
                   viewBox="0 0 29 32">
                   <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
@@ -44,6 +56,7 @@
                   </g>
                 </svg>
               </router-link>
+
             </li>
 
             <li class="list-item-btn position-relative" v-if="isLogin == false">

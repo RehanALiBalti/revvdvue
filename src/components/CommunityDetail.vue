@@ -326,7 +326,7 @@
           <span class="close-icon" @click="isModal3Open = false" data-bs-dismiss="modal" aria-label="Close">
             <i class="fas fa-times"></i>
           </span>
-          <form @submit.prevent="submitFilter ">
+          <form @submit.prevent="submitFilter">
             <div class="mt-4 py-2">
               <h5 class="card-title"><span class="choose"> OOPS! </span></h5>
               <p class="text-white">The selected image exceeds the maximum allowed size of 3 MB.</p>
@@ -334,6 +334,20 @@
             </div>
 
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- login modal -->
+  <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" ref="modalRef"
+    v-if="loginModal == true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="close-icon" @click="closeModelLogin" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </span>
+          <h5 class="card-title"><span class="choose"> Please Login Fisrt To Access This </span></h5>
         </div>
       </div>
     </div>
@@ -357,6 +371,8 @@ export default {
 
   data() {
     return {
+      isLogin: "",
+      loginModal: false,
       likesCountComments: reactive({}),
       imageName: "",
       search: "",
@@ -418,6 +434,7 @@ export default {
     this.formSubmit()
     this.getNoOfComments()
     this.getLikesCount()
+    this.isLogin = JSON.parse(localStorage.getItem('login')) || false
 
 
 
@@ -441,6 +458,13 @@ export default {
   },
 
   methods: {
+    openLoginModal() {
+      console.log("sdsd")
+      this.loginModal = true
+    },
+    closeModelLogin() {
+      this.loginModal = false
+    },
     decode(str) {
       return decodeURIComponent(str);
     },
@@ -653,61 +677,66 @@ export default {
     //   this.showReplyInput = null;
     // }
     submitReply(commentId) {
-      const formData = new FormData()
-      console.log(commentId);
-      console.log(this.replyText);
-      console.log(this.user_email);
-      console.log(this.user_name);
-      formData.append('community_id', this.id);
-
-      formData.append('parent_id', commentId); // Assuming `this.id` contains the community ID
-      formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
-      formData.append('user_email', this.user_email);
-      formData.append('user_name', this.user_name);
-      formData.append('image', this.rImage);
-      formData.append('type', "reply");
-      console.log("r_imag", this.rImage)
-      formData.append('sub', this.sub);
-
-      // Log the form data
-      console.log("formData", formData);
-      if (this.RimageUrl == "" && this.replyText == "") {
-        this.isModal2Open = true;
-        this.imgLoading = false;
+      if (this.isLogin == false) {
+        this.loginModal = true
       }
       else {
-        axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        })
-          .then(response => {
-            // Handle success
-            console.log('Post request successful of replies:', response.data);
-            // Append the new comment to the comments array
-            // this.replies.push(response.data);
-            // this.getreplyOnSubmit(commentId)
-            this.getComments()
+        const formData = new FormData()
+        console.log(commentId);
+        console.log(this.replyText);
+        console.log(this.user_email);
+        console.log(this.user_name);
+        formData.append('community_id', this.id);
 
-            console.log("rrr", this.replies)
-            // Clear inputs
-            this.replyText = '';
-            // this.showReplyInput = null;
-            // Set imgLoading back to false after successful response
+        formData.append('parent_id', commentId); // Assuming `this.id` contains the community ID
+        formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
+        formData.append('user_email', this.user_email);
+        formData.append('user_name', this.user_name);
+        formData.append('image', this.rImage);
+        formData.append('type', "reply");
+        console.log("r_imag", this.rImage)
+        formData.append('sub', this.sub);
+
+        // Log the form data
+        console.log("formData", formData);
+        if (this.RimageUrl == "" && this.replyText == "") {
+          this.isModal2Open = true;
+          this.imgLoading = false;
+        }
+        else {
+          axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData, {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
           })
-          .catch(error => {
-            // Handle error
-            console.error('Error making post request:', error);
-            // Set imgLoading back to false after error
-            this.replyText = '';
-            // this.showReplyInput = null;
-          });
+            .then(response => {
+              // Handle success
+              console.log('Post request successful of replies:', response.data);
+              // Append the new comment to the comments array
+              // this.replies.push(response.data);
+              // this.getreplyOnSubmit(commentId)
+              this.getComments()
 
-        // Clear the reply input
-        this.replyText = '';
-        this.showReplyInput = null;
+              console.log("rrr", this.replies)
+              // Clear inputs
+              this.replyText = '';
+              // this.showReplyInput = null;
+              // Set imgLoading back to false after successful response
+            })
+            .catch(error => {
+              // Handle error
+              console.error('Error making post request:', error);
+              // Set imgLoading back to false after error
+              this.replyText = '';
+              // this.showReplyInput = null;
+            });
+
+          // Clear the reply input
+          this.replyText = '';
+          this.showReplyInput = null;
+        }
+
       }
-
 
     }
     ,
@@ -962,67 +991,72 @@ export default {
 
 
     postComment() {
-      // Set imgLoading to true before making the request
-      console.log(this.user_image)
-      this.imgLoading = true;
-
-      const file = this.$refs.fileInput.files[0];
-      console.log("post comment image ifle", file)
-      const maxSizeInBytes = 3 * 1024 * 1024; // 3 MB
-
-      if (file && file.size > maxSizeInBytes) {
-        // Provide feedback to the user that the image size exceeds the limit
-        this.isModal3Open = true;
-        this.imgLoading = false; // Reset imgLoading
-        return;
+      if (this.isLogin == false) {
+        this.loginModal = true
       }
+      else {
+        // Set imgLoading to true before making the request
+        // console.log(this.user_image)
+        this.imgLoading = true;
 
-      const formData = new FormData();
-      formData.append('image', file); // Append the selected file
-      formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
-      formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
-      // formData.append('user_email', this.user_email);
-      // formData.append('user_name', this.user_name);
-      console.log("sub in comments", this.sub)
-      formData.append('sub', this.sub);
-      formData.append('type', "comment");
-      // formData.append('image', this.user_name);
-      // formData.append('User_imagimage', this.user_image)
+        const file = this.$refs.fileInput.files[0];
+        console.log("post comment image ifle", file)
+        const maxSizeInBytes = 3 * 1024 * 1024; // 3 MB
+
+        if (file && file.size > maxSizeInBytes) {
+          // Provide feedback to the user that the image size exceeds the limit
+          this.isModal3Open = true;
+          this.imgLoading = false; // Reset imgLoading
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', file); // Append the selected file
+        formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
+        formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
+        // formData.append('user_email', this.user_email);
+        // formData.append('user_name', this.user_name);
+        console.log("sub in comments", this.sub)
+        formData.append('sub', this.sub);
+        formData.append('type', "comment");
+        // formData.append('image', this.user_name);
+        // formData.append('User_imagimage', this.user_image)
 
 
-      // Check if formData is empty
-      if (this.imageUrl == "" && this.newComment == "") {
-        this.isModal2Open = true;
-        this.imgLoading = false;
-      } else {
-        axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData)
-          .then(response => {
-            // Handle success
-            console.log('Post request successful:', response.data);
-            // Append the new comment to the comments array
-            this.comments.push(response.data);
-            // Clear inputs
-            this.newComment = "";
-            this.imageUrl = "";
-            this.getComments()
-            this.getNoOfComments()
-            // Check if this.$refs.fileInput exists before accessing its properties
-            if (this.$refs.fileInput) {
-              this.$refs.fileInput.value = '';
-            }
+        // Check if formData is empty
+        if (this.imageUrl == "" && this.newComment == "") {
+          this.isModal2Open = true;
+          this.imgLoading = false;
+        } else {
+          axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData)
+            .then(response => {
+              // Handle success
+              console.log('Post request successful:', response.data);
+              // Append the new comment to the comments array
+              this.comments.push(response.data);
+              // Clear inputs
+              this.newComment = "";
+              this.imageUrl = "";
+              this.getComments()
+              this.getNoOfComments()
+              // Check if this.$refs.fileInput exists before accessing its properties
+              if (this.$refs.fileInput) {
+                this.$refs.fileInput.value = '';
+              }
 
-            this.$nextTick(() => {
-              this.scrollToBottom();
+              this.$nextTick(() => {
+                this.scrollToBottom();
+              });
+              // Set imgLoading back to false after successful response
+              this.imgLoading = false;
+            })
+            .catch(error => {
+              // Handle error
+              console.error('Error making post request:', error);
+              // Set imgLoading back to false after error
+              this.imgLoading = false;
             });
-            // Set imgLoading back to false after successful response
-            this.imgLoading = false;
-          })
-          .catch(error => {
-            // Handle error
-            console.error('Error making post request:', error);
-            // Set imgLoading back to false after error
-            this.imgLoading = false;
-          });
+        }
       }
     }
 
