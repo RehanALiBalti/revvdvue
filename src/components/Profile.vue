@@ -1087,7 +1087,7 @@ export default {
 
 				if (response.data && response.data.message && response.data.message.includes("Phone number already exists")) {
 					this.IsphonExists = true;
-					this.errorMessage = response.data;
+					this.errorMessage = response.data.message;
 					this.isModalOpenFail = true;
 				} else {
 					this.IsphonExists = false;
