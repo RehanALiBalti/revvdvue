@@ -111,6 +111,9 @@
 
 							</div>
 							<div class="col-md-12">
+								<div v-if="loading" class="d-flex justify-content-center loader">
+									<div class="box"></div>
+								</div>
 								<div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
@@ -133,7 +136,7 @@
 										<!-- data-bs-toggle="modal" -->
 										<button type="submit"
 											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-											id="submit-button">
+											id="submit-button" :disabled="loading">
 											{{
 						$t("updateProfile") }}
 										</button>
@@ -312,6 +315,9 @@
 								<p id="errormsg"></p>
 							</div>
 							<div class="col-md-12">
+								<div v-if="loading" class="d-flex justify-content-center loader">
+									<div class="box"></div>
+								</div>
 								<div class="list-item-btn position-relative submit-btn-div">
 									<span class="border-bottom-btn border-top-btn position-absolute">
 										<img src="@/assets/images/Group12.png" class="img-border position-absolute"
@@ -327,7 +333,8 @@
 										<img src="@/assets/images/Path465.png" class="img-border position-absolute"
 											alt="" />
 									</span>
-									<button type="submit" class="signin-btnli submitNow" id="submit-button">
+									<button type="submit" class="signin-btnli submitNow" id="submit-button"
+										:disabled="loading">
 										{{ $t('submit') }}
 									</button>
 									<span class="border-bottom-btn border-left-btn position-absolute">
@@ -624,6 +631,7 @@ export default {
 	name: "UserProfile",
 	data() {
 		return {
+			loading: false,
 			phoneNumToVerify: "",
 			countryCode: "",
 			phoneVnum: "",
@@ -1006,29 +1014,32 @@ export default {
 		// async submitProfileForm() {
 		// 	try {
 		// 		console.log("sub ID", this.formData.sub);
-		// 		console.log("this is formData", this.formData);
-
-		// 		const formdata = new FormData();
 		// 		let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
+		// 		console.log("this is formData", this.formData, this.fullname,
+		// 			this.name, this.age, this.email, cleanedPhoneNumber, this.socialMedia);
 
-		// 		formdata.append('image', this.$refs.fileInput.files[0]);
-		// 		formdata.append('name', this.fullname);
-		// 		formdata.append('nickname', this.name);
-		// 		formdata.append('age', this.age);
-		// 		formdata.append('email', this.email);
-		// 		formdata.append('phone', cleanedPhoneNumber);
-		// 		formdata.append("socialMedia", this.socialMedia);
+
+
+		// 		const formdataa = new FormData();
+		// 		formdataa.append('image', this.$refs.fileInput.files[0]);
+		// 		formdataa.append('name', this.fullname);
+		// 		formdataa.append('nickname', this.name);
+		// 		formdataa.append('age', this.age);
+		// 		formdataa.append('email', this.email);
+		// 		formdataa.append('phone', cleanedPhoneNumber);
+		// 		formdataa.append("socialMedia", this.socialMedia);
 
 		// 		const requestOptions = {
 		// 			method: "PUT",
-		// 			body: formdata,
+		// 			body: formdataa,
 		// 			redirect: "follow"
 		// 		};
+
 
 		// 		const response = await fetch(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, requestOptions);
 		// 		const result = await response.text();
 
-		// 		console.log('Form data submitted successfully:', result);
+		// 		console.log('Fom data submitted successfully:', result);
 
 		// 		if (result.includes("Phone number already exists")) {
 		// 			this.IsphonExists = true;
@@ -1042,18 +1053,19 @@ export default {
 		// 		return profiledata;
 
 		// 	} catch (error) {
-		// 		console.error('Error submitting form:', error);
+		// 		console.error('Error submitting :', error);
 		// 	}
 		// }
 		async submitProfileForm() {
+			this.loading = true
 			try {
 				console.log("sub ID", this.formData.sub);
-				console.log("this is formData", this.formData);
+				let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
+				console.log("this is formData", this.formData, this.fullname, this.name, this.age, this.email, cleanedPhoneNumber, this.socialMedia);
 
 				const formdata = new FormData();
-				let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
-
 				formdata.append('image', this.$refs.fileInput.files[0]);
+				formdata.append('sub', this.formData.sub);
 				formdata.append('name', this.fullname);
 				formdata.append('nickname', this.name);
 				formdata.append('age', this.age);
@@ -1061,15 +1073,19 @@ export default {
 				formdata.append('phone', cleanedPhoneNumber);
 				formdata.append("socialMedia", this.socialMedia);
 
-				const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, formdata, {
-					headers: {
-						'Content-Type': 'multipart/form-data'
+				const response = await axios.post(
+					`https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser`,
+					formdata,
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data',
+						}
 					}
-				});
-
+				);
+				this.loading = false
 				console.log('Form data submitted successfully:', response.data);
 
-				if (response.data.includes("Phone number already exists")) {
+				if (response.data && response.data.message && response.data.message.includes("Phone number already exists")) {
 					this.IsphonExists = true;
 					this.errorMessage = response.data;
 					this.isModalOpenFail = true;
@@ -1081,9 +1097,49 @@ export default {
 				return profiledata;
 
 			} catch (error) {
+				this.loading = false
 				console.error('Error submitting form:', error);
 			}
 		}
+		// async submitProfileForm() {
+		// 	try {
+		// 		console.log("sub ID", this.formData.sub);
+		// 		console.log("this is formData", this.formData);
+
+		// 		const formdata = new FormData();
+		// 		let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
+
+		// 		formdata.append('image', this.$refs.fileInput.files[0]);
+		// 		formdata.append('name', this.fullname);
+		// 		formdata.append('nickname', this.name);
+		// 		formdata.append('age', this.age);
+		// 		formdata.append('email', this.email);
+		// 		formdata.append('phone', cleanedPhoneNumber);
+		// 		formdata.append("socialMedia", this.socialMedia);
+
+		// 		const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, formdata, {
+		// 			headers: {
+		// 				'Content-Type': 'multipart/form-data'
+		// 			}
+		// 		});
+
+		// 		console.log('Form data submitted successfully:', response.data);
+
+		// 		if (response.data.includes("Phone number already exists")) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = response.data;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
+
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+
+		// 	} catch (error) {
+		// 		console.error('Error submitting form:', error);
+		// 	}
+		// }
 
 		,
 		async updateUserAttributes() {
@@ -1091,6 +1147,7 @@ export default {
 			console.log("cehck pro data", profiledata)
 			console.log(profiledata);
 			if (this.IsphonExists == false) {
+				this.loading = true
 				const updatedProfile = {
 					fullname: this.fullname, // Correct the key to fullName if needed
 					name: this.name,
@@ -1108,10 +1165,12 @@ export default {
 					const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
 					console.log(data, typeof data);
 					if (data === "SUCCESS") {
+						this.loading = false
 						this.isModalOpen = true;
-						// this.$router.push({ name: 'HomeLanding' });
+						this.$router.push({ name: 'HomeLanding' });
 					}
 				} catch (error) {
+					this.loading = false
 					console.error("Error updating user profile:", error);
 					// Handle error gracefully, e.g., display an error message to the user
 					this.errorMessage = error
@@ -1190,7 +1249,7 @@ export default {
 		// 	}
 		// },
 		async updateUserAttributesDealer() {
-
+			this.loading = true
 			const updatedProfile = {
 
 				city: this.formData.city,
@@ -1236,11 +1295,13 @@ export default {
 				const data = await this.$store.dispatch("auth/handleProfile2", updatedProfile);
 				console.log(data, typeof data);
 				if (data === "SUCCESS") {
+					this.loading = false
 					this.isModalOpen = true;
 					this.changeName(this.formData.CompanyName)
 					this.$router.push({ name: 'HomeLanding' });
 				}
 			} catch (error) {
+				this.loading = false
 				console.error("Error updating user profile:", error);
 				// Handle error gracefully, e.g., display an error message to the user
 				const customErrorRegex = /custom:[^\s]+ must not be null/;
@@ -1408,5 +1469,34 @@ export default {
 
 .user-profile-page {
 	cursor: pointer;
+}
+
+.loader {
+	position: absolute;
+	top: 50%;
+	left: 45%;
+	z-index: 9;
+	background: transparent;
+	height: fit-content;
+	width: fit-content;
+}
+
+.box {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	border: 6px solid;
+	border-color: #FF7A00 transparent;
+	animation: spin 1s infinite ease-out;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }
 </style>
