@@ -1003,6 +1003,48 @@ export default {
 		// 		// You can show an error message to the user or handle the error in any other appropriate way
 		// 	}
 		// }
+		// async submitProfileForm() {
+		// 	try {
+		// 		console.log("sub ID", this.formData.sub);
+		// 		console.log("this is formData", this.formData);
+
+		// 		const formdata = new FormData();
+		// 		let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
+
+		// 		formdata.append('image', this.$refs.fileInput.files[0]);
+		// 		formdata.append('name', this.fullname);
+		// 		formdata.append('nickname', this.name);
+		// 		formdata.append('age', this.age);
+		// 		formdata.append('email', this.email);
+		// 		formdata.append('phone', cleanedPhoneNumber);
+		// 		formdata.append("socialMedia", this.socialMedia);
+
+		// 		const requestOptions = {
+		// 			method: "PUT",
+		// 			body: formdata,
+		// 			redirect: "follow"
+		// 		};
+
+		// 		const response = await fetch(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, requestOptions);
+		// 		const result = await response.text();
+
+		// 		console.log('Form data submitted successfully:', result);
+
+		// 		if (result.includes("Phone number already exists")) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = result;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
+
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+
+		// 	} catch (error) {
+		// 		console.error('Error submitting form:', error);
+		// 	}
+		// }
 		async submitProfileForm() {
 			try {
 				console.log("sub ID", this.formData.sub);
@@ -1019,20 +1061,17 @@ export default {
 				formdata.append('phone', cleanedPhoneNumber);
 				formdata.append("socialMedia", this.socialMedia);
 
-				const requestOptions = {
-					method: "PUT",
-					body: formdata,
-					redirect: "follow"
-				};
+				const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, formdata, {
+					headers: {
+						'Content-Type': 'multipart/form-data'
+					}
+				});
 
-				const response = await fetch(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, requestOptions);
-				const result = await response.text();
+				console.log('Form data submitted successfully:', response.data);
 
-				console.log('Form data submitted successfully:', result);
-
-				if (result.includes("Phone number already exists")) {
+				if (response.data.includes("Phone number already exists")) {
 					this.IsphonExists = true;
-					this.errorMessage = result;
+					this.errorMessage = response.data;
 					this.isModalOpenFail = true;
 				} else {
 					this.IsphonExists = false;
