@@ -917,52 +917,136 @@ export default {
 
 		// },
 
+		// async submitProfileForm() {
+		// 	try {
+		// 		console.log("sub ID", this.formData.sub)
+		// 		console.log("this is formData", this.formData)
+		// 		const FormDataa = new FormData();
+		// 		let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
+
+		// 		FormDataa.append('image', this.$refs.fileInput.files[0]);
+		// 		FormDataa.append('name', this.fullname);
+		// 		FormDataa.append('nickname', this.name);
+		// 		FormDataa.append('age', this.age);
+		// 		FormDataa.append('email', this.email);
+		// 		FormDataa.append('phone', cleanedPhoneNumber);
+		// 		FormDataa.append("socialMedia", this.socialMedia)
+		// 		// Make a POST request to the API endpoint
+		// 		console.log("fffdata", this.FormDataa)
+		// 		const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, FormDataa);
+
+		// 		// Handle success response
+		// 		console.log('Form data submitted successfully:', response.data);
+		// 		if (response.data.message.includes("Phone number already exists")) {
+		// 			this.IsphonExists = true
+		// 			this.errorMessage = response.data.message
+		// 			this.isModalOpenFail = true;
+
+		// 		} else {
+		// 			this.IsphonExists = false
+		// 		}
+
+		// 		const profiledata = this.fetchproData();
+		// 		return profiledata;
+
+
+
+
+		// 		// const { email, name, role, sub, cognitoId } = this.formData;
+		// 		// // this.$store.signup({ email, name, role });
+		// 		// this.$store.dispatch('auth/signup', { email, name, role, sub, cognitoId });
+
+		// 		// You can perform further actions here, such as redirecting the user or showing a success message
+		// 	} catch (error) {
+		// 		// Handle error
+		// 		console.error('Error submitting form :', error);
+		// 		// You can show an error message to the user or handle the error in any other appropriate way
+		// 	}
+		// },
+		// async submitProfileForm() {
+		// 	try {
+		// 		console.log("sub ID", this.formData.sub);
+		// 		console.log("this is formData", this.formData);
+
+		// 		const FormDataa = new FormData();
+		// 		let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
+
+		// 		FormDataa.append('image', this.$refs.fileInput.files[0]);
+		// 		FormDataa.append('name', this.fullname);
+		// 		FormDataa.append('nickname', this.name);
+		// 		FormDataa.append('age', this.age);
+		// 		FormDataa.append('email', this.email);
+		// 		FormDataa.append('phone', cleanedPhoneNumber);
+		// 		FormDataa.append("socialMedia", this.socialMedia);
+
+		// 		// Make a PUT request to the API endpoint
+		// 		console.log("FormDataa", FormDataa);
+
+		// 		const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, FormDataa);
+
+		// 		// Handle success response
+		// 		console.log('Form data submitted successfully:', response.data);
+		// 		if (response.data.message && response.data.message.includes("Phone number already exists")) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = response.data.message;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
+
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+
+		// 	} catch (error) {
+		// 		// Handle error
+		// 		console.error('Error submitting form:', error);
+		// 		// You can show an error message to the user or handle the error in any other appropriate way
+		// 	}
+		// }
 		async submitProfileForm() {
 			try {
-				console.log("sub ID", this.formData.sub)
-				console.log("this is formData", this.formData)
-				const formData = new FormData();
+				console.log("sub ID", this.formData.sub);
+				console.log("this is formData", this.formData);
+
+				const formdata = new FormData();
 				let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
 
-				formData.append('image', this.$refs.fileInput.files[0]);
-				formData.append('name', this.fullname);
-				formData.append('nickname', this.name);
-				formData.append('age', this.age);
-				formData.append('email', this.email);
-				formData.append('phone', cleanedPhoneNumber);
-				formData.append("socialMedia", this.socialMedia)
-				// Make a POST request to the API endpoint
-				console.log("fffdata", this.formData)
-				const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, formData);
+				formdata.append('image', this.$refs.fileInput.files[0]);
+				formdata.append('name', this.fullname);
+				formdata.append('nickname', this.name);
+				formdata.append('age', this.age);
+				formdata.append('email', this.email);
+				formdata.append('phone', cleanedPhoneNumber);
+				formdata.append("socialMedia", this.socialMedia);
 
-				// Handle success response
-				console.log('Form data submitted successfully:', response.data);
-				if (response.data.message.includes("Phone number already exists")) {
-					this.IsphonExists = true
-					this.errorMessage = response.data.message
+				const requestOptions = {
+					method: "PUT",
+					body: formdata,
+					redirect: "follow"
+				};
+
+				const response = await fetch(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, requestOptions);
+				const result = await response.text();
+
+				console.log('Form data submitted successfully:', result);
+
+				if (result.includes("Phone number already exists")) {
+					this.IsphonExists = true;
+					this.errorMessage = result;
 					this.isModalOpenFail = true;
-
 				} else {
-					this.IsphonExists = false
+					this.IsphonExists = false;
 				}
 
-				const profiledata = this.fetchproData();
+				const profiledata = await this.fetchproData();
 				return profiledata;
 
-
-
-
-				// const { email, name, role, sub, cognitoId } = this.formData;
-				// // this.$store.signup({ email, name, role });
-				// this.$store.dispatch('auth/signup', { email, name, role, sub, cognitoId });
-
-				// You can perform further actions here, such as redirecting the user or showing a success message
 			} catch (error) {
-				// Handle error
-				console.error('Error submitting form :', error);
-				// You can show an error message to the user or handle the error in any other appropriate way
+				console.error('Error submitting form:', error);
 			}
-		},
+		}
+
+		,
 		async updateUserAttributes() {
 			const profiledata = await this.submitProfileForm();
 			console.log("cehck pro data", profiledata)
@@ -986,7 +1070,7 @@ export default {
 					console.log(data, typeof data);
 					if (data === "SUCCESS") {
 						this.isModalOpen = true;
-						this.$router.push({ name: 'HomeLanding' });
+						// this.$router.push({ name: 'HomeLanding' });
 					}
 				} catch (error) {
 					console.error("Error updating user profile:", error);
