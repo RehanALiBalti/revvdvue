@@ -88,7 +88,8 @@
                                         v-model="formData.password"
                                         :class="['form-control', 'form-input', 'formP', { 'is-invalid': formErrors.password }]"
                                         :placeholder="$t('Enter here')" />
-                                    <span class="input-group-text igt " @click="togglePasswordVisibility2">
+                                    <span @click="togglePasswordVisibility2"
+                                        :class="['input-group-text igt', , { 'isInvalid': formErrors.password }]">
                                         <i class="fa-solid" :class="eyeIcon"></i>
                                     </span>
                                 </div>
@@ -682,5 +683,9 @@ export default {
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 
+}
+
+.isInvalid {
+    border-color: #7E2838 !important;
 }
 </style>

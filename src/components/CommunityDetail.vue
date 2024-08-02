@@ -127,7 +127,7 @@
                             <!-- <img
                               :src="comment.userimage != 'undefined' || comment.userimage != 'null' ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
-                            <img
+                            <img class="UsrImage"
                               :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px" />
 
@@ -192,7 +192,7 @@
                             <!-- <img
                               :src="comment.userimage != 'undefined' || 'null' ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
-                            <img
+                            <img class="UsrImage"
                               :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px" />
                             <small class="uName">{{ comment.nickname }}</small>
