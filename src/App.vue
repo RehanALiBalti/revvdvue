@@ -1,6 +1,6 @@
 <template>
   <div id="particlees">
-    <vue-particles color="#dedede" particleOpacity="0.7" particlesNumber="250" shapeType="circle" particleSize="4"
+    <vue-particles color="#dedede" particleOpacity="0.7" particlesNumber="140" shapeType="circle" particleSize="4"
       linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
       clickEffect="true" clickMode="push" />
   </div>
