@@ -38,12 +38,12 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
+								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
 								<input v-model="fullname" id="name" type="text" name="name"
 									class="form-control form-input" :placeholder="$t('Enter here')" required>
 							</div>
 							<div class="col-md-6">
-								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
+								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
 								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
 									:placeholder="$t('Enter here')" required>
 							</div>
