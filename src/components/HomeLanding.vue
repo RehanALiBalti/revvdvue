@@ -1,6 +1,6 @@
 <template>
 
-
+  <h1 class="text-white">login State: {{ isLogin }} {{ typeof (isLogin) }}</h1>
   <div class="container my-5">
     <div class="banner-content">
       <h1 class="banner-title">{{ $t('changingTheCarWorld') }}</h1>
@@ -543,17 +543,22 @@
 </template>
 
 <script>
+
 import axios from 'axios';
 
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
+import { useIslogin } from "@/composables/uselogin"
+import { computed } from "vue";
 export default {
   name: "HomeLanding",
   setup() {
     const { state: profileImageState, setProfileImage } = useProfileImage();
     const { state: nameState, setName } = useProfileName();
+    // const { state: loginState, setIslogin } = useIslogin();
+    const { state, setIslogin } = useIslogin();
 
     const changeProfileImage = (newSrc) => {
       setProfileImage(newSrc);
@@ -563,11 +568,20 @@ export default {
       setName(newName);
     };
 
+    const setLogin = (logvalue) => {
+      setIslogin(logvalue)
+    };
+
+    // Computed property to access the reactive state
+    const isLogin = computed(() => state.isLogin);
     return {
       profileImageState,
       nameState,
+
       changeProfileImage,
-      changeName
+      changeName,
+      setLogin,
+      isLogin
     };
   },
   data() {
@@ -1227,6 +1241,7 @@ export default {
   },
 
   async mounted() {
+    console.log("hahahahhahahahahha", this.isLogin);
 
     window.addEventListener('storage', this.handleStorageChange);
     this.retrieveCars();
@@ -1237,6 +1252,8 @@ export default {
     document.body.addEventListener("click", this.handleOutsideClick);
     await this.fetchProfileData()
     await this.fetchproData()
+    this.setLogin(localStorage.getItem('login'))
+
 
 
   },

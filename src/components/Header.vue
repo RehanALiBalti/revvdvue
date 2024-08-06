@@ -8,7 +8,7 @@
 
         </router-link>
         <div class="d-flex gap-2">
-          <router-link class="nav-link navLinkmd d-block d-lg-none" to="/" v-if="shouldShowLink && isLogin">
+          <router-link class="nav-link navLinkmd d-block d-lg-none" to="/" v-if="shouldShowLink && isLogin2">
             <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32" viewBox="0 0 29 32">
               <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
                 <path id="Path_1085" data-name="Path 1085"
@@ -32,7 +32,7 @@
           <ul class="navbar-nav ul-list ms-auto">
             <li class="list-item-btn position-relative">
 
-              <!-- <router-link class="nav-link d-none d-lg-block" to="/" v-if="shouldShowLink && isLogin">
+              <!-- <router-link class="nav-link d-none d-lg-block" to="/" v-if="shouldShowLink && isLogin2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
                   viewBox="0 0 29 32">
                   <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
@@ -59,7 +59,7 @@
 
             </li>
 
-            <li class="list-item-btn position-relative" v-if="isLogin == false">
+            <li class="list-item-btn position-relative" v-if="isLogin2 == 'false'">
               <span class="border-bottom-btn border-top-btn position-absolute">
                 <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
               </span>
@@ -83,7 +83,7 @@
               </span>
             </li>
 
-            <li class="list-item-btn position-relative" v-if="isLogin == false">
+            <li class="list-item-btn position-relative" v-if="isLogin2 == 'false'">
               <span class="border-bottom-btn border-top-btn position-absolute">
                 <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
               </span>
@@ -106,7 +106,7 @@
                 <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
               </span>
             </li>
-            <li class="list-item-btn position-relative" v-if="isLogin == false">
+            <li class="list-item-btn position-relative" v-if="isLogin2 == 'false'">
               <span class="border-bottom-btn border-top-btn position-absolute">
                 <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
               </span>
@@ -161,7 +161,7 @@
               </div> -->
             </li>
 
-            <li class=" position-relative " style="min-width:150px" v-if="isLogin != false">
+            <li class=" position-relative " style="min-width:150px" v-if="isLogin2 != 'false'">
               <buttton type="button" class="dropdown user-custom-box w-100" data-bs-toggle="dropdown"
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
@@ -259,12 +259,17 @@ import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
-import { mapActions } from 'vuex';
+import { useIslogin } from "@/composables/uselogin"
+import { computed } from "vue";
+const { state, setIslogin } = useIslogin();
+
+// import { mapActions } from 'vuex';
 
 export default {
   setup() {
     const { state: profileImageState, setProfileImage } = useProfileImage();
     const { state: nameState, setName } = useProfileName();
+
 
     const changeProfileImage = (newSrc) => {
       setProfileImage(newSrc);
@@ -273,12 +278,18 @@ export default {
     const changeName = (newName) => {
       setName(newName);
     };
+    const setLogin = (logvalue) => {
+      setIslogin(logvalue)
+    };
+    const isLogin2 = computed(() => state.isLogin);
 
     return {
       profileImageState,
       nameState,
       changeProfileImage,
-      changeName
+      changeName,
+      setLogin,
+      isLogin2
     };
   },
   name: "HeaderItem",
@@ -305,7 +316,7 @@ export default {
     handleStorageChange() {
       return {
         handleStorageChange() {
-          this.isLogin = JSON.parse(localStorage.getItem('login'));
+          this.isLogin2 = JSON.parse(localStorage.getItem('login'));
         }
       }
     },
@@ -316,19 +327,19 @@ export default {
   async created() {
     const storedIsLogin = localStorage.getItem('login');
     if (storedIsLogin !== null) {
-      this.isLogin = JSON.parse(localStorage.getItem('login')) || false;
+      this.isLogin2 = JSON.parse(localStorage.getItem('login')) || false;
 
     }
 
-    console.log("i am call", this.isLogin);
-    if (this.isLogin) {
+    console.log("i am call", this.isLogin2);
+    if (this.isLogin2) {
       await this.fetchProfileData()
       await this.fetchproData()
     }
     window.addEventListener('storage', this.handleStorageChange.handleStorageChange);
     this.$router.beforeEach((to, from, next) => {
       // Set isOpen to false when the route changes
-      this.isLogin = localStorage.getItem('login')
+      this.isLogin2 = JSON.parse(localStorage.getItem("login"))
       console.log("yessss", this.issOpen)
       this.issOpen = false;
       this.isOpen = false;
@@ -349,22 +360,22 @@ export default {
     window.removeEventListener('storage', this.handleStorageChange.handleStorageChange);
     document.body.removeEventListener('click', this.closeDropdown);
     document.body.removeEventListener('click', this.closeDropdown2);
-    this.isLogin = localStorage.getItem('login')
+    this.isLogin2 = JSON.parse(localStorage.getItem("login"))
 
   },
   async mounted() {
 
 
 
-    console.log("i am call3", this.isLogin, typeof (this.isLogin), localStorage);
-    if (this.isLogin) {
+    console.log("i am call3", this.isLogin2, typeof (this.isLogin2), localStorage);
+    if (this.isLogin2) {
       await this.fetchProfileData()
       await this.fetchproData()
     }
 
     document.body.addEventListener('click', this.closeDropdown);
     document.body.addEventListener('click', this.closeDropdown2);
-    this.isLogin = localStorage.getItem('login')
+    this.isLogin2 = JSON.parse(localStorage.getItem("login"))
   },
 
   methods: {
@@ -486,10 +497,10 @@ export default {
         this.issOpen = false;
       }
     },
-    ...mapActions(['logout']),
+    // ...mapActions(['logout']),
     async handlelogout() {
       try {
-        this.isLogin = false;
+        this.isLogin2 = false;
         localStorage.setItem('login', false);
         localStorage.setItem('storgekey', "");
         localStorage.setItem('signupstatus', "");
@@ -499,7 +510,7 @@ export default {
         //  this.changeProfileImage("");
         await Auth.signOut();
 
-        this.logout();
+        // this.logout();
 
         this.$router.push("/signin");
 
@@ -526,7 +537,7 @@ export default {
     // },
     checkLoginStatus() {
       const storedIsLogin = localStorage.getItem('login');
-      this.isLogin = storedIsLogin ? JSON.parse(storedIsLogin) : false;
+      this.isLogin2 = storedIsLogin ? JSON.parse(storedIsLogin) : false;
       // const userAttributes = JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData'));
       // Do something with userAttributes, such as updating state
       // For example:
