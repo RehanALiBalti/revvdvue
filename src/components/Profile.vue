@@ -836,26 +836,75 @@ export default {
 				this.imageModal = false;
 			}
 		},
+		// working with image
+		// async submitProfileForm() {
+		// 	this.loading = true;
+		// 	try {
+		// 		if (!this.croppedBlob) {
+		// 			console.error("Cropped image not available.");
+		// 			this.loading = false;
+
+		// 		}
+
+		// 		const file = this.$refs.fileInput.files[0];
+		// 		if (!file) {
+		// 			console.error("No file selected.");
+		// 			this.loading = false;
+
+		// 		}
+
+		// 		const originalFilename = file.name;
+
+		// 		const formData = new FormData();
+		// 		formData.append('image', this.croppedBlob, originalFilename);
+		// 		formData.append('sub', this.formData.sub);
+		// 		formData.append('name', this.fullname);
+		// 		formData.append('nickname', this.name);
+		// 		formData.append('age', this.age);
+		// 		formData.append('email', this.email);
+		// 		formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+		// 		formData.append('socialMedia', this.socialMedia);
+
+		// 		console.log("Submitting form data:", formData);
+
+		// 		// Send the form data to the API
+		// 		const response = await axios.post(
+		// 			'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+		// 			formData,
+		// 			{
+		// 				headers: {
+		// 					'Content-Type': 'multipart/form-data',
+		// 				}
+		// 			}
+		// 		);
+		// 		this.loading = false;
+		// 		console.log('Form data submitted successfully:', response.data);
+
+		// 		if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = response.data.message;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
+
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+		// 	} catch (error) {
+		// 		this.loading = false;
+		// 		console.error('Error submitting form:', error);
+		// 	}
+		// },
 		async submitProfileForm() {
 			this.loading = true;
 			try {
-				if (!this.croppedBlob) {
-					console.error("Cropped image not available.");
-					this.loading = false;
-
-				}
-
 				const file = this.$refs.fileInput.files[0];
-				if (!file) {
-					console.error("No file selected.");
-					this.loading = false;
-
-				}
-
-				const originalFilename = file.name;
+				const originalFilename = file ? file.name : null;
 
 				const formData = new FormData();
-				formData.append('image', this.croppedBlob, originalFilename);
+				if (this.croppedBlob) {
+					formData.append('image', this.croppedBlob, originalFilename);
+				}
 				formData.append('sub', this.formData.sub);
 				formData.append('name', this.fullname);
 				formData.append('nickname', this.name);
@@ -893,8 +942,8 @@ export default {
 				this.loading = false;
 				console.error('Error submitting form:', error);
 			}
-		},
-
+		}
+		,
 		// end test
 
 		// wprking
