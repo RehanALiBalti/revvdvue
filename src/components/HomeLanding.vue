@@ -1,6 +1,6 @@
 <template>
 
-  <h1 class="text-white">login State: {{ isLogin }} {{ typeof (isLogin) }}</h1>
+  <!-- <h1 class="text-white">login State: {{ isLogin }} {{ typeof (isLogin) }}</h1> -->
   <div class="container my-5">
     <div class="banner-content">
       <h1 class="banner-title">{{ $t('changingTheCarWorld') }}</h1>
