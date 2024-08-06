@@ -10,6 +10,7 @@ function getcurrentprofile() {
         const attributes = user.signInUserSession.idToken.payload;
         console.log("attri", attributes);
         const response = { success: 1, result: attributes };
+
         localStorage.setItem("login", true);
         localStorage.setItem("data", attributes);
 

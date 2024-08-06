@@ -367,7 +367,7 @@ export default {
 
 
 
-    console.log("i am call3", this.isLogin2, typeof (this.isLogin2), localStorage);
+    console.log("i am call3", this.isLogin2, typeof (this.isLogin2), localStorage, localStorage.getItem("login"), localStorage.getItem("liked-6"));
     if (this.isLogin2) {
       await this.fetchProfileData()
       await this.fetchproData()
