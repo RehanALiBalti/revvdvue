@@ -685,6 +685,9 @@ import axios from 'axios';
 import { Auth } from 'aws-amplify';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
+import { useIslogin } from "@/composables/uselogin"
+import { computed } from "vue";
+const { state, setIslogin } = useIslogin();
 // import VueDraggableResizable from 'vue-draggable-resizable';
 import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import Cropper from 'cropperjs';
@@ -702,12 +705,18 @@ export default {
 		const changeName = (newName) => {
 			setName(newName);
 		};
+		const setLogin = (logvalue) => {
+			setIslogin(logvalue)
+		};
+		const isLogin2 = computed(() => state.isLogin);
 
 		return {
 			profileImageState,
 			nameState,
 			changeProfileImage,
-			changeName
+			changeName,
+			setLogin,
+			isLogin2
 		};
 	},
 	name: "UserProfile",
@@ -1915,6 +1924,8 @@ export default {
 	async mounted() {
 		await this.fetchProfileData();
 		await this.fetchproData()
+		this.setLogin("true");
+		localStorage.setItem("login", "true")
 		// this.setName(this.name);
 		// this.getProfileImage()
 		// this.checkIfGoogleOrFacebookUser()
