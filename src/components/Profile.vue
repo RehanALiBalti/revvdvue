@@ -842,14 +842,14 @@ export default {
 				if (!this.croppedBlob) {
 					console.error("Cropped image not available.");
 					this.loading = false;
-					return;
+
 				}
 
 				const file = this.$refs.fileInput.files[0];
 				if (!file) {
 					console.error("No file selected.");
 					this.loading = false;
-					return;
+
 				}
 
 				const originalFilename = file.name;
