@@ -1873,11 +1873,12 @@ export default {
 				// Handle the response data
 				console.log(this.formData.sub, "new porofile Data is dw", response.data);
 				this.image = response.data.image
-				this.name = response.data.nickname
+				// this.name = response.data.nickname
+				// this.name = response.data.nickname
 				// this.fullname = response.data.name
-				console.log("before set the name", this.name);
-				this.changeName(this.name);
-				console.log("username is", this.uname);
+				// console.log("before set the name", this.name);
+				// this.changeName(this.name);
+				// console.log("username is", this.uname);
 				let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
 				this.changeProfileImage(imageUrl)
 				//				this.image = response.data[0].image
