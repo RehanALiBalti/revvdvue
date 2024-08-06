@@ -6,14 +6,15 @@
 
 					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'dealer'">
 						<div class="user-profile-page">
+
+
+
+
 							<img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
 								alt="Profile Image"
 								v-if="this.image != '' && this.image != null && this.image != undefined"
 								@click="openFileInput" />
-							<!-- <img v-if="image != ''" src="https://squid-app-yq2ph.ondigitalocean.app/ +${image} " class="user-profile-page-img" alt="user"
-								@click="openFileInput"> -->
-							<!-- <img v-if="image" :src="'https://squid-app-yq2ph.ondigitalocean.app/users/' + image"
-								class="user-profile-page-img" alt="user" @click="openFileInput"> -->
+
 
 							<div v-else>
 								<img src="../assets/img/uploadImage.png" height="150px" width="150px"
@@ -32,6 +33,7 @@
 							<h2 class="form-title mt-2 mb-0">
 								{{ uname }}
 								<!-- {{ state.name }} -->
+
 
 							</h2>
 
@@ -105,7 +107,8 @@
 							<div class="col-md-6 d-none">
 
 								<label class="form-label" for="image">Select Image</label>
-								<input type="file" class="form-control-file my-2" ref="fileInput">
+								<input type="file" class="form-control-file my-2" ref="fileInput"
+									@change="openImageModal">
 							</div>
 							<div class="col-md-12">
 
@@ -599,6 +602,85 @@
 	</div>
 
 	<!-- modal end -->
+
+	<!-- modal setting profile image -->
+	<!-- <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="imageModal">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<span class="close-icon" @click="imageModal = false">
+						<i class="fas fa-times"></i>
+					</span>
+					<div class="mt-4 py-2 d-flex flex-column align-items-center justify-content-center">
+						<div v-if="imageUrl" class="frame">
+							<vue-draggable-resizable ref="draggable" :parent="true" :resizable="false" :draggable="true"
+								:x="draggableStyle.left" :y="draggableStyle.top">
+								<img :src="imageUrl" :style="imageStyle" />
+							</vue-draggable-resizable>
+						</div>
+						<div v-if="imageUrl" class="zoom-controls">
+							<label for="zoom">Zoom:</label>
+							<input type="range" id="zoom" min="1" max="3" step="0.1" v-model="zoomLevel"
+								@input="onZoom" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- working modal -->
+	<!-- <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="imageModal">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<span class="close-icon" @click="imageModal = false">
+						<i class="fas fa-times"></i>
+					</span>
+					<div class="mt-4 py-2 d-flex flex-column align-items-center justify-content-center">
+						<div v-if="imageUrl" class="frame">
+							<img ref="image" :src="imageUrl" alt="Source Image" />
+						</div>
+						<div v-if="imageUrl" class="zoom-controls">
+							<label for="zoom">Zoom:</label>
+							<input type="range" id="zoom" min="1" max="3" step="0.1" v-model="zoomLevel"
+								@input="onZoom" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- modal setting profile image -->
+	<div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="imageModal">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<span class="close-icon" @click="closeModal(false)">
+						<i class="fas fa-times"></i>
+					</span>
+					<div class="mt-4 py-2 d-flex flex-column align-items-center justify-content-center">
+						<div v-if="imageUrl" class="frame">
+							<img ref="image" :src="imageUrl" alt="Source Image" />
+						</div>
+						<div v-if="imageUrl" class="zoom-controls">
+							<label for="zoom">Zoom:</label>
+							<input type="range" id="zoom" min="1" max="3" step="0.1" v-model="zoomLevel"
+								@input="onZoom" />
+						</div>
+						<button class="btn btn-primary mt-3" @click="closeModal(true)">Done</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal end -->
+	<!-- Display cropped image -->
+
+	<div v-if="croppedImageUrl">
+{{croppedImageUrl}}
+		<!-- <h3>Cropped Image:</h3>
+		<img :src="croppedImageUrl" alt="Cropped Image" /> -->
+	</div>
 </template>
 
 <script>
@@ -607,7 +689,11 @@ import axios from 'axios';
 import { Auth } from 'aws-amplify';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
-
+// import VueDraggableResizable from 'vue-draggable-resizable';
+import '../../node_modules/vue-draggable-resizable/dist/style.css';
+import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.css';
+// import VueAvatarCropper from 'vue-avatar-cropper';
 export default {
 	setup() {
 		const { state: profileImageState, setProfileImage } = useProfileImage();
@@ -629,8 +715,28 @@ export default {
 		};
 	},
 	name: "UserProfile",
+	components: {
+		// VueDraggableResizable,
+
+	},
 	data() {
 		return {
+			croppedBlob: null, // Added to store the cropped image blob
+			croppedImageUrl: null, // Added to store the URL of the cropped image
+			imageSrc: null,
+			croppedImage: null,
+			zoomLevel: 1,
+			imageUrl: "",
+			cropper: null,
+
+			draggableStyle: {
+				top: 0,
+				left: 0,
+			},
+			imageStyle: {
+				transform: 'scale(1)'
+			},
+			imageModal: false,
 			loading: false,
 			phoneNumToVerify: "",
 			countryCode: "",
@@ -685,6 +791,222 @@ export default {
 		};
 	},
 	methods: {
+
+		// test 
+		openImageModal(event) {
+			const file = event.target.files[0];
+			if (file) {
+				const reader = new FileReader();
+				reader.onload = (e) => {
+					this.imageUrl = e.target.result;
+					this.$nextTick(() => {
+						this.initCropper();
+					});
+				};
+				reader.readAsDataURL(file);
+			}
+			this.imageModal = true;
+		},
+		initCropper() {
+			const image = this.$refs.image;
+			if (this.cropper) {
+				this.cropper.destroy();
+			}
+			this.cropper = new Cropper(image, {
+				aspectRatio: 1,
+				viewMode: 1,
+				autoCropArea: 1,
+				scalable: true,
+				zoomable: true,
+				ready: () => {
+					this.cropper.zoomTo(this.zoomLevel);
+				}
+			});
+		},
+		onZoom() {
+			if (this.cropper) {
+				this.cropper.zoomTo(this.zoomLevel);
+			}
+		},
+		closeModal(done) {
+			if (done && this.cropper) {
+				const canvas = this.cropper.getCroppedCanvas();
+				canvas.toBlob((blob) => {
+					this.croppedBlob = blob; // Store the cropped image blob
+					this.croppedImageUrl = URL.createObjectURL(blob); // Create a URL for the cropped image
+					this.imageModal = false;
+				}, 'image/png');
+			} else {
+				this.imageModal = false;
+			}
+		},
+		async submitProfileForm() {
+			this.loading = true;
+			try {
+				if (!this.croppedBlob) {
+					console.error("Cropped image not available.");
+					this.loading = false;
+					return;
+				}
+
+				const file = this.$refs.fileInput.files[0];
+				if (!file) {
+					console.error("No file selected.");
+					this.loading = false;
+					return;
+				}
+
+				const originalFilename = file.name;
+
+				const formData = new FormData();
+				formData.append('image', this.croppedBlob, originalFilename);
+				formData.append('sub', this.formData.sub);
+				formData.append('name', this.fullname);
+				formData.append('nickname', this.name);
+				formData.append('age', this.age);
+				formData.append('email', this.email);
+				formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+				formData.append('socialMedia', this.socialMedia);
+
+				console.log("Submitting form data:", formData);
+
+				// Send the form data to the API
+				const response = await axios.post(
+					'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+					formData,
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data',
+						}
+					}
+				);
+				this.loading = false;
+				console.log('Form data submitted successfully:', response.data);
+
+				if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+					this.IsphonExists = true;
+					this.errorMessage = response.data.message;
+					this.isModalOpenFail = true;
+				} else {
+					this.IsphonExists = false;
+				}
+
+				const profiledata = await this.fetchproData();
+				return profiledata;
+			} catch (error) {
+				this.loading = false;
+				console.error('Error submitting form:', error);
+			}
+		},
+
+		// end test
+
+		// wprking
+
+		// openImageModal(event) {
+		// 	const file = event.target.files[0];
+		// 	if (file) {
+		// 		const reader = new FileReader();
+		// 		reader.onload = (e) => {
+		// 			this.imageUrl = e.target.result;
+		// 			this.$nextTick(() => {
+		// 				this.initCropper();
+		// 			});
+		// 		};
+		// 		reader.readAsDataURL(file);
+		// 	}
+		// 	this.imageModal = true;
+		// },
+		// initCropper() {
+		// 	const image = this.$refs.image;
+		// 	if (this.cropper) {
+		// 		this.cropper.destroy();
+		// 	}
+		// 	this.cropper = new Cropper(image, {
+		// 		aspectRatio: 1,
+		// 		viewMode: 1,
+		// 		autoCropArea: 1,
+		// 		scalable: true,
+		// 		zoomable: true,
+		// 		ready: () => {
+		// 			this.cropper.zoomTo(this.zoomLevel);
+		// 		}
+		// 	});
+		// },
+		// onZoom() {
+		// 	if (this.cropper) {
+		// 		this.cropper.zoomTo(this.zoomLevel);
+		// 	}
+		// },
+		// async submitProfileForm() {
+		// 	this.loading = true;
+		// 	try {
+		// 		if (!this.cropper) {
+		// 			console.error("Cropper not initialized.");
+		// 			this.loading = false;
+		// 			return;
+		// 		}
+
+		// 		const canvas = this.cropper.getCroppedCanvas();
+		// 		canvas.toBlob(async (blob) => {
+		// 			if (!blob) {
+		// 				console.error("Failed to create blob from canvas.");
+		// 				this.loading = false;
+		// 				return;
+		// 			}
+
+		// 			const file = this.$refs.fileInput.files[0];
+		// 			if (!file) {
+		// 				console.error("No file selected.");
+		// 				this.loading = false;
+		// 				return;
+		// 			}
+
+		// 			const originalFilename = file.name;
+		// 			console.log("blob", blob)
+		// 			const formData = new FormData();
+		// 			formData.append('image', blob, originalFilename);
+		// 			formData.append('sub', this.formData.sub);
+		// 			formData.append('name', this.fullname);
+		// 			formData.append('nickname', this.name);
+		// 			formData.append('age', this.age);
+		// 			formData.append('email', this.email);
+		// 			formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+		// 			formData.append('socialMedia', this.socialMedia);
+
+		// 			console.log("Submitting form data:", formData);
+
+		// 			// Send the form data to the API
+		// 			const response = await axios.post(
+		// 				'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+		// 				formData,
+		// 				{
+		// 					headers: {
+		// 						'Content-Type': 'multipart/form-data',
+		// 					}
+		// 				}
+		// 			);
+		// 			this.loading = false;
+		// 			console.log('Form data submitted successfully:', response.data);
+
+		// 			if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+		// 				this.IsphonExists = true;
+		// 				this.errorMessage = response.data.message;
+		// 				this.isModalOpenFail = true;
+		// 			} else {
+		// 				this.IsphonExists = false;
+		// 			}
+
+		// 			const profiledata = await this.fetchproData();
+		// 			return profiledata;
+		// 		}, 'image/png');
+		// 	} catch (error) {
+		// 		this.loading = false;
+		// 		console.error('Error submitting form:', error);
+		// 	}
+		// }
+		// end working
+
 		verifyPhoneNum() {
 			// Remove spaces and dashes from phoneVnum
 			let cleanedNumber = this.phoneVnum.replace(/[\s-]+/g, '');
@@ -1056,51 +1378,151 @@ export default {
 		// 		console.error('Error submitting :', error);
 		// 	}
 		// }
-		async submitProfileForm() {
-			this.loading = true
-			try {
-				console.log("sub ID", this.formData.sub);
-				let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
-				console.log("this is formData", this.formData, this.fullname, this.name, this.age, this.email, cleanedPhoneNumber, this.socialMedia);
 
-				const formdata = new FormData();
-				formdata.append('image', this.$refs.fileInput.files[0]);
-				formdata.append('sub', this.formData.sub);
-				formdata.append('name', this.fullname);
-				formdata.append('nickname', this.name);
-				formdata.append('age', this.age);
-				formdata.append('email', this.email);
-				formdata.append('phone', cleanedPhoneNumber);
-				formdata.append("socialMedia", this.socialMedia);
+		// this is the current
+		// async submitProfileForm() {
+		// 	this.loading = true
+		// 	try {
+		// 		console.log("sub ID", this.formData.sub);
+		// 		let cleanedPhoneNumber = this.phone.replace(/[+\-()]/g, '');
+		// 		console.log("this is formData", this.formData, this.fullname, this.name, this.age, this.email, cleanedPhoneNumber, this.socialMedia);
 
-				const response = await axios.post(
-					`https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser`,
-					formdata,
-					{
-						headers: {
-							'Content-Type': 'multipart/form-data',
-						}
-					}
-				);
-				this.loading = false
-				console.log('Form data submitted successfully:', response.data);
+		// 		const formdata = new FormData();
+		// 		formdata.append('image', this.$refs.fileInput.files[0]);
+		// 		formdata.append('sub', this.formData.sub);
+		// 		formdata.append('name', this.fullname);
+		// 		formdata.append('nickname', this.name);
+		// 		formdata.append('age', this.age);
+		// 		formdata.append('email', this.email);
+		// 		formdata.append('phone', cleanedPhoneNumber);
+		// 		formdata.append("socialMedia", this.socialMedia);
 
-				if (response.data && response.data.message && response.data.message.includes("Phone number already exists")) {
-					this.IsphonExists = true;
-					this.errorMessage = response.data.message;
-					this.isModalOpenFail = true;
-				} else {
-					this.IsphonExists = false;
-				}
+		// 		const response = await axios.post(
+		// 			`https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser`,
+		// 			formdata,
+		// 			{
+		// 				headers: {
+		// 					'Content-Type': 'multipart/form-data',
+		// 				}
+		// 			}
+		// 		);
+		// 		this.loading = false
+		// 		console.log('Form data submitted successfully:', response.data);
 
-				const profiledata = await this.fetchproData();
-				return profiledata;
+		// 		if (response.data && response.data.message && response.data.message.includes("Phone number already exists")) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = response.data.message;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
 
-			} catch (error) {
-				this.loading = false
-				console.error('Error submitting form:', error);
-			}
-		}
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+
+		// 	} catch (error) {
+		// 		this.loading = false
+		// 		console.error('Error submitting form:', error);
+		// 	}
+		// }
+		// async submitProfileForm() {
+		// 	this.loading = true;
+		// 	try {
+		// 		await this.$nextTick();
+		// 		// Check if draggable and file input refs are available
+		// 		console.log("dragable", this.$refs.draggable)
+		// 		console.log("file ino", this.$refs.fileInput)
+		// 		if (!this.$refs.draggable || !this.$refs.fileInput) {
+		// 			console.error("Draggable component or file input not found.");
+		// 			this.loading = false;
+		// 			return;
+		// 		}
+
+		// 		const imgElement = this.$refs.draggable.$el.querySelector('img');
+		// 		const frameElement = this.$el.querySelector('.frame');
+
+		// 		// Check if imgElement and frameElement are available
+		// 		if (!imgElement || !frameElement) {
+		// 			console.error("Image or frame element not found.");
+		// 			this.loading = false;
+		// 			return;
+		// 		}
+
+		// 		// Create a canvas to capture the adjusted image
+		// 		const canvas = document.createElement('canvas');
+		// 		canvas.width = frameElement.offsetWidth;
+		// 		canvas.height = frameElement.offsetHeight;
+
+		// 		const ctx = canvas.getContext('2d');
+		// 		ctx.drawImage(
+		// 			imgElement,
+		// 			-this.draggableStyle.left,
+		// 			-this.draggableStyle.top,
+		// 			imgElement.width * this.zoomLevel,
+		// 			imgElement.height * this.zoomLevel
+		// 		);
+
+		// 		// Convert canvas to Blob
+		// 		canvas.toBlob(async (blob) => {
+		// 			if (!blob) {
+		// 				console.error("Failed to create blob from canvas.");
+		// 				this.loading = false;
+		// 				return;
+		// 			}
+
+		// 			const file = this.$refs.fileInput.files[0];
+		// 			if (!file) {
+		// 				console.error("No file selected.");
+		// 				this.loading = false;
+		// 				return;
+		// 			}
+
+		// 			const originalFilename = file.name;
+
+		// 			const formData = new FormData();
+		// 			formData.append('image', blob, originalFilename);
+		// 			formData.append('sub', this.formData.sub);
+		// 			formData.append('name', this.fullname);
+		// 			formData.append('nickname', this.name);
+		// 			formData.append('age', this.age);
+		// 			formData.append('email', this.email);
+		// 			formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+		// 			formData.append('socialMedia', this.socialMedia);
+
+		// 			console.log("Submitting form data:", formData);
+
+		// 			// Send the form data to the API
+		// 			const response = await axios.post(
+		// 				'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+		// 				formData,
+		// 				{
+		// 					headers: {
+		// 						'Content-Type': 'multipart/form-data',
+		// 					}
+		// 				}
+		// 			);
+		// 			this.loading = false;
+		// 			console.log('Form data submitted successfully:', response.data);
+
+		// 			if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+		// 				this.IsphonExists = true;
+		// 				this.errorMessage = response.data.message;
+		// 				this.isModalOpenFail = true;
+		// 			} else {
+		// 				this.IsphonExists = false;
+		// 			}
+
+		// 			const profiledata = await this.fetchproData();
+		// 			return profiledata;
+		// 		}, 'image/png');
+		// 	} catch (error) {
+		// 		this.loading = false;
+		// 		console.error('Error submitting form:', error);
+		// 	}
+		// }
+
+
+
 		// async submitProfileForm() {
 		// 	try {
 		// 		console.log("sub ID", this.formData.sub);
@@ -1141,7 +1563,7 @@ export default {
 		// 	}
 		// }
 
-		,
+
 		async updateUserAttributes() {
 			const profiledata = await this.submitProfileForm();
 			console.log("cehck pro data", profiledata)
@@ -1489,6 +1911,28 @@ export default {
 	border-color: #FF7A00 transparent;
 	animation: spin 1s infinite ease-out;
 }
+
+
+
+.frame {
+	width: 300px;
+	/* Adjust the frame size as needed */
+	height: 300px;
+	/* border-radius: 50%; */
+	overflow: hidden;
+	position: relative;
+	background-color: #f3f3f3;
+}
+
+
+.draggable {
+	/* position: absolute;
+	top: 0;
+	left: 0; */
+	cursor: move;
+}
+
+
 
 @keyframes spin {
 	0% {

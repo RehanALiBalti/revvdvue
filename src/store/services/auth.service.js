@@ -314,8 +314,8 @@ function logout() {
 //       });
 //   });
 // }
-function register(name, password, email) {
-  console.log("before request", name, password, email);
+function register(fullname, name, password, email) {
+  console.log("before request", fullname, name, password, email);
 
   return new Promise((resolve, reject) => {
     // Call Auth.signUp
@@ -328,7 +328,7 @@ function register(name, password, email) {
 
         nickname: name,
 
-        //   'custom:fullname':name,
+        "custom:fullname": fullname,
         //   'custom:age':age,
         //   'custom:socialMedia':socialMedia,
         // Add other optional attributes as needed

@@ -30,12 +30,18 @@ import ContactUs from "./components/ContactUs.vue";
 import FeaturedStory from "./components/FeaturedStory.vue";
 import ForumPage from "./components/ForumPage.vue";
 import FeaturedStories from "./components/FeaturedStories.vue";
+import CoverPhoto from "./components/CoverPhoto.vue";
 
 const routes = [
   {
     name: "HomeLanding",
     component: HomeLanding,
     path: "/",
+  },
+  {
+    name: "CoverPhoto",
+    component: CoverPhoto,
+    path: "/cover",
   },
   {
     name: "HomeItem",

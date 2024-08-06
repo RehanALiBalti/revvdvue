@@ -24,6 +24,7 @@ import "vue-image-zoomer/dist/style.css";
 import "viewerjs/dist/viewer.css";
 import VueViewer from "v-viewer";
 import VueParticles from "vue-particles";
+import AvatarCropper from "vue-avatar-cropper";
 
 const i18n = createI18n({
   legacy: false, // Use Composition API
@@ -69,4 +70,5 @@ createApp(App)
   .use(store)
   .use(VueViewer)
   .use(VueParticles)
+  .use(AvatarCropper)
   .mount("#app");

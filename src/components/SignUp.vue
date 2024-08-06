@@ -26,6 +26,16 @@
             </div>
             <div class="row">
               <div class="col-md-6">
+                <label for="name" class="form-label">Full Name</label>
+                <input id="name" type="text" v-model="formData.fullname" class="form-control form-input"
+                  :placeholder="$t('Enter here')" />
+                <div v-if="formErrors.fullname" class="text-danger">
+                  {{ formErrors.fullname }}
+                </div>
+                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
+                  :placeholder="$t('Enter here')" value="user" />
+              </div>
+              <div class="col-md-6">
                 <label for="name" class="form-label">Nick Name</label>
                 <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
@@ -271,6 +281,7 @@ export default {
       formData: {
 
         nickname: "",
+        fullname: "",
         age: "",
         email: "",
         phone: "",
@@ -287,6 +298,7 @@ export default {
       formErrors: {
         name: "",
         age: "",
+        full: "name",
         email: "",
         phone: "",
         socialMedia: "",
@@ -494,6 +506,7 @@ export default {
           email: this.formData.email,
           phone: this.formData.phone,
           password: this.formData.password,
+          fullname: this.formData.fullname
           // socialMedia: this.formData.socialMedia,
         };
 

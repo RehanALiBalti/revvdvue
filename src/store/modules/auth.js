@@ -180,11 +180,11 @@ const actions = {
   async handleSignUp(
     context,
     // { name, age, password, email, phone, socialMedia }
-    { nickname, password, email }
+    { fullname,nickname, password, email }
   ) {
     console.log("yes", context);
     try {
-      const result1 = await AuthService.register(nickname, password, email);
+      const result1 = await AuthService.register(fullname,nickname, password, email);
       console.log("usersignup", result1);
       const result = await AuthService.login(email, password);
       // Commit mutations or perform other actions if needed
