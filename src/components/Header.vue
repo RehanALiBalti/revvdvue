@@ -353,7 +353,8 @@ export default {
 
   },
   async mounted() {
-    this.isLogin = localStorage.getItem('login')
+
+
     console.log("i am call3", this.isLogin, typeof (this.isLogin));
     if (this.isLogin) {
       await this.fetchProfileData()
