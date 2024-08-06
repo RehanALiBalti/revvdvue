@@ -1187,8 +1187,11 @@ export default {
 				if (socialCheck == "true") {
 					console.log("in socila if state")
 					const mydata = {
-						"name": user.attributes.name,
-						"nickname": user.attributes.name,
+						// "name": user.attributes.name,
+						// "nickname": user.attributes.name,
+						"fullname": user.attributes.name,
+						"nickname": user.attributes.given_name
+						,
 						"sub": user.attributes.sub,
 						"email": user.attributes.email,
 						"cognitoId": user.attributes.sub,
