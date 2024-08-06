@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-    <h1 class="text-white">{{ this.isLogin }}</h1>
+    <h1 class="text-white">{{ isLogin2 }} {{ typeof (isLogin2) }}</h1>
     <nav class="navbar navbar-expand-lg sticky-top p-1 p-md-3">
       <div class="container px-0 px-md-1">
         <router-link class="navbar-brand" to="/">
@@ -500,8 +500,10 @@ export default {
     // ...mapActions(['logout']),
     async handlelogout() {
       try {
-        this.isLogin2 = false;
-        localStorage.setItem('login', false);
+        this.isLogin2 = "false";
+        console.log("dsd", this.isLogin2)
+        localStorage.setItem('login', "false");
+        console.log("dsd", this.isLogin2)
         localStorage.setItem('storgekey', "");
         localStorage.setItem('signupstatus', "");
         localStorage.setItem('firstTimeLogin', false);

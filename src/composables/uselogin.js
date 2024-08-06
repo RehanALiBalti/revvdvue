@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 
 const state = reactive({
-  isLogin: JSON.parse(localStorage.getItem("login")) || false,
+  isLogin: JSON.parse(localStorage.getItem("login")) || "false",
 });
 
 export const useIslogin = () => {
