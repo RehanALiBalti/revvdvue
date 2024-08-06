@@ -494,6 +494,8 @@ export default {
     async handlelogout() {
       try {
         this.isLogin2 = "false";
+        this.setLogin("false");
+        localStorage.setItem("login", "false");
         console.log("dsd", this.isLogin2)
         localStorage.setItem('login', "false");
         console.log("dsd", this.isLogin2)
