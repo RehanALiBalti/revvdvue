@@ -353,7 +353,7 @@ export default {
 
   },
   async mounted() {
-    console.log("i am call3");
+    console.log("i am call3",this.isLogin);
     if (this.isLogin) {
       await this.fetchProfileData()
       await this.fetchproData()
