@@ -1241,6 +1241,7 @@ export default {
   },
 
   async mounted() {
+    this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
 
     window.addEventListener('storage', this.handleStorageChange);
@@ -1252,7 +1253,7 @@ export default {
     document.body.addEventListener("click", this.handleOutsideClick);
     await this.fetchProfileData()
     await this.fetchproData()
-    this.setLogin(localStorage.getItem('login'))
+
 
 
 

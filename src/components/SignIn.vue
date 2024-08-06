@@ -278,7 +278,7 @@ export default {
         };
         this.$store.dispatch("auth/handleSignIn", mydata).then((data) => {
           if (data.success == 1) {
-            localStorage.setItem('login', true);
+            localStorage.setItem('login', "true");
             localStorage.setItem('data', data.result);
 
             // Redirect to '/landing' route
