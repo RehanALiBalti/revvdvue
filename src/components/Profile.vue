@@ -897,6 +897,7 @@ export default {
 		// 	}
 		// },
 		async submitProfileForm() {
+			console.log("blob image ",this.croppedBlob)
 			this.loading = true;
 			console.log("nick namee in submit", 'nickname', this.name)
 			try {
