@@ -366,6 +366,10 @@ export default {
   async mounted() {
 
     const mgdatra = await this.fetchProfileDatas();
+    if (mgdatra.success == 1) {
+      localStorage.setItem("login", "true");
+      this.setLogin("true");
+    }
 
     console.log("i am call3", mgdatra, this.isLogin2, typeof (this.isLogin2), localStorage, localStorage.getItem("login"), localStorage.getItem("liked-6"));
     console.log("call local", localStorage.getItem("login"))
