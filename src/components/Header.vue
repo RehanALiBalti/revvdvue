@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-    <h1 class="text-white">{{ isLogin2 }} {{ typeof (isLogin2) }}</h1>
+    <!-- <h1 class="text-white">{{ isLogin2 }} {{ typeof (isLogin2) }}</h1> -->
     <nav class="navbar navbar-expand-lg sticky-top p-1 p-md-3">
       <div class="container px-0 px-md-1">
         <router-link class="navbar-brand" to="/">
@@ -442,6 +442,31 @@ export default {
     //     console.error('Error making GET request:', error);
     //   }
     // },
+    async fetchProfileData() {
+      try {
+        console.log("Fetching profile data...");
+        const data = await this.$store.dispatch("auth/getprofiledata");
+        console.log("Profile data in heder:", data.result.sub);
+        this.sub = data.result.sub
+        this.userAttributes = data.result
+
+
+
+
+        if (this.userAttributes.picture) {
+          this.image = this.userAttributes.picture
+        }
+
+
+
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+        if (error.success == 0) {
+          localStorage.setItem('login', false);
+          //     this.$router.push("/signin");
+        }
+      }
+    },
 
     async fetchproData() {
 
@@ -457,6 +482,7 @@ export default {
 
         // Handle the response data
         // console.log(this.formData.sub, "new porofile Data is", response.data);
+        this.changeName(response.data.nickname);
         this.image = response.data.image
 
         let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;

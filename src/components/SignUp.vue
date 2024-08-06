@@ -35,16 +35,7 @@
                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
                   :placeholder="$t('Enter here')" value="user" />
               </div>
-              <div class="col-md-6">
-                <label for="name" class="form-label">Nick Name</label>
-                <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
-                  :placeholder="$t('Enter here')" />
-                <div v-if="formErrors.name" class="text-danger">
-                  {{ formErrors.name }}
-                </div>
-                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
-                  :placeholder="$t('Enter here')" value="user" />
-              </div>
+
 
               <div class="col-md-6">
                 <label for="email" class="form-label">Email (verification)</label>
@@ -99,13 +90,24 @@
                 </div>
 
               </div>
-              <div class="col-md-12">
+
+              <div class="col-md-6">
                 <ul class="text-white">
                   <li>Password must be at least 8 characters long.</li>
                   <li>Password must contain at least one uppercase letter.</li>
                   <li>Password must contain at least one number.</li>
                   <li>Password Must contain at least one symbol</li>
                 </ul>
+              </div>
+              <div class="col-md-6">
+                <label for="name" class="form-label pt-0">Nick Name</label>
+                <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
+                  :placeholder="$t('Enter here')" />
+                <div v-if="formErrors.name" class="text-danger">
+                  {{ formErrors.name }}
+                </div>
+                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
+                  :placeholder="$t('Enter here')" value="user" />
               </div>
               <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
                 <input type="checkbox" id="check1" class="form-check-input m-0" v-model="formData.check1" />
