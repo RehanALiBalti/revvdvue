@@ -1619,6 +1619,7 @@ export default {
 			console.log(profiledata);
 			if (this.IsphonExists == false) {
 				this.loading = true
+				console.log("full name",  this.fullname , "nick name", this.name)
 				const updatedProfile = {
 					fullname: this.fullname, // Correct the key to fullName if needed
 					name: this.name,
