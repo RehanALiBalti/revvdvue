@@ -1627,7 +1627,7 @@ export default {
 					image: this.image,
 				};
 
-				console.log("The profile data", updatedProfile);
+				console.log("The profile data update", updatedProfile);
 
 				try {
 					const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
