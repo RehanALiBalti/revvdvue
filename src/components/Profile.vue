@@ -898,6 +898,7 @@ export default {
 		// },
 		async submitProfileForm() {
 			this.loading = true;
+			console.log("nick namee in submit", 'nickname', this.name)
 			try {
 				const file = this.$refs.fileInput.files[0];
 				const originalFilename = file ? file.name : null;
@@ -906,6 +907,7 @@ export default {
 				if (this.croppedBlob) {
 					formData.append('image', this.croppedBlob, originalFilename);
 				}
+
 				formData.append('sub', this.formData.sub);
 				formData.append('name', this.fullname);
 				formData.append('nickname', this.name);
@@ -1619,7 +1621,7 @@ export default {
 			console.log(profiledata);
 			if (this.IsphonExists == false) {
 				this.loading = true
-				console.log("full name",  this.fullname , "nick name", this.name)
+				console.log("full name", this.fullname, "nick name", this.name)
 				const updatedProfile = {
 					fullname: this.fullname, // Correct the key to fullName if needed
 					name: this.name,
