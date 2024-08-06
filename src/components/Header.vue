@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-
+    <h1 class="text-white">{{ this.isLogin }}</h1>
     <nav class="navbar navbar-expand-lg sticky-top p-1 p-md-3">
       <div class="container px-0 px-md-1">
         <router-link class="navbar-brand" to="/">
