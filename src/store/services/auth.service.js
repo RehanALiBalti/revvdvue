@@ -1,29 +1,27 @@
 const { Auth } = require("aws-amplify");
 
-function getcurrentprofile() {
-  return new Promise((resolve, reject) => {
-    Auth.currentAuthenticatedUser()
-      .then((user) => {
-        console.log("mmma", user);
-        console.log(user.signInUserSession.idToken.payload);
-        //console.log(user);
-        const attributes = user.signInUserSession.idToken.payload;
-        console.log("attri", attributes);
-        const response = { success: 1, result: attributes };
+async function getcurrentprofile() {
+  try {
+    const user = await Auth.currentAuthenticatedUser();
+    console.log("mmma", user);
+    console.log(user.signInUserSession.idToken.payload);
 
-        localStorage.setItem("login", true);
-        localStorage.setItem("data", attributes);
+    const attributes = user.signInUserSession.idToken.payload;
+    console.log("attri", attributes);
+    const response = { success: 1, result: attributes };
 
-        console.log(response, "response");
-        resolve(response);
-      })
-      .catch((error) => {
-        const response = { success: 0, error: error.message };
-        console.log("Auth Service test22", error.message);
-        reject(response);
-      });
-  });
+    localStorage.setItem("login", JSON.stringify(true));
+    localStorage.setItem("data", JSON.stringify(attributes));
+
+    console.log(response, "response");
+    return response;
+  } catch (error) {
+    const response = { success: 0, error: error.message };
+    console.log("Auth Service test22", error.message);
+    throw response;
+  }
 }
+
 // function setprofile(data) {
 //   console.log("before request", data);
 //   return new Promise((resolve, reject) => {
