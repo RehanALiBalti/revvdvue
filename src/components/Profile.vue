@@ -897,7 +897,7 @@ export default {
 		// 	}
 		// },
 		async submitProfileForm() {
-			console.log("blob image ",this.croppedBlob)
+			console.log("blob image ", this.croppedBlob)
 			this.loading = true;
 			console.log("nick namee in submit", 'nickname', this.name)
 			try {
@@ -1881,6 +1881,7 @@ export default {
 				// this.changeName(this.name);
 				// console.log("username is", this.uname);
 				let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
+				console.log("image url", imageUrl);
 				this.changeProfileImage(imageUrl)
 				//				this.image = response.data[0].image
 			} catch (error) {
