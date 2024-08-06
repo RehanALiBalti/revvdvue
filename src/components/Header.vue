@@ -368,6 +368,8 @@ export default {
     const mgdatra = await this.fetchProfileDatas();
 
     console.log("i am call3", mgdatra, this.isLogin2, typeof (this.isLogin2), localStorage, localStorage.getItem("login"), localStorage.getItem("liked-6"));
+    this.setLogin(localStorage.getItem("login"))
+
     if (this.isLogin2) {
       //await this.fetchProfileData()
       await this.fetchproData()
