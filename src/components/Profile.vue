@@ -676,11 +676,7 @@
 	<!-- modal end -->
 	<!-- Display cropped image -->
 
-	<div v-if="croppedImageUrl">
-{{croppedImageUrl}}
-		<!-- <h3>Cropped Image:</h3>
-		<img :src="croppedImageUrl" alt="Cropped Image" /> -->
-	</div>
+
 </template>
 
 <script>
