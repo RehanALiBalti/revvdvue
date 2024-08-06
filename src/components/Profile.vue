@@ -834,6 +834,7 @@ export default {
 				}, 'image/png');
 			} else {
 				this.imageModal = false;
+				console.log("sdss")
 			}
 		},
 		// working with image

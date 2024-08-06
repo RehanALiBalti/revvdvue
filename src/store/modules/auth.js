@@ -78,7 +78,8 @@ const actions = {
       socialMedia,
       image,
     };
-    console.log("handle profile");
+    console.log("handle profile s", data);
+
     const result = await AuthService.setprofile(data);
 
     return result;
@@ -180,11 +181,16 @@ const actions = {
   async handleSignUp(
     context,
     // { name, age, password, email, phone, socialMedia }
-    { fullname,nickname, password, email }
+    { fullname, nickname, password, email }
   ) {
     console.log("yes", context);
     try {
-      const result1 = await AuthService.register(fullname,nickname, password, email);
+      const result1 = await AuthService.register(
+        fullname,
+        nickname,
+        password,
+        email
+      );
       console.log("usersignup", result1);
       const result = await AuthService.login(email, password);
       // Commit mutations or perform other actions if needed
