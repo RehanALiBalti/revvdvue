@@ -365,9 +365,9 @@ export default {
   },
   async mounted() {
 
-    await this.fetchProfileData();
+    const mgdatra = await this.fetchProfileDatas();
 
-    console.log("i am call3", this.isLogin2, typeof (this.isLogin2), localStorage, localStorage.getItem("login"), localStorage.getItem("liked-6"));
+    console.log("i am call3", mgdatra, this.isLogin2, typeof (this.isLogin2), localStorage, localStorage.getItem("login"), localStorage.getItem("liked-6"));
     if (this.isLogin2) {
       //await this.fetchProfileData()
       await this.fetchproData()
@@ -407,29 +407,15 @@ export default {
         this.issOpen = false;
       }
     },
-    async fetchProfileData() {
+    async fetchProfileDatas() {
       try {
         console.log("Fetching profile data...");
         const data = await this.$store.dispatch("auth/getprofiledata");
-        console.log("Profile data in heder:", data.result.sub);
-        this.sub = data.result.sub
-        this.userAttributes = data.result
-
-
-
-        console.log("userdataattribtes in header", this.userAttributes.picture)
-        if (this.userAttributes.picture) {
-          this.image = this.userAttributes.picture
-        }
-
-
+        return data;
 
       } catch (error) {
         console.error("Error fetching profile data:", error);
-        if (error.success == 0) {
-          localStorage.setItem('login', false);
-          //     this.$router.push("/signin");
-        }
+        return error;
       }
     },
     // async fetchproData() {
