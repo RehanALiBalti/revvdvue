@@ -1619,6 +1619,10 @@ export default {
   .options-list {
     position: static;
   }
+
+  .signin-btnli {
+    width: 130px !important;
+  }
 }
 
 @media(max-width:375px) {
