@@ -586,6 +586,7 @@ export default {
   },
   data() {
     return {
+      role: "",
       user: {
         email: ''
       },
@@ -682,8 +683,14 @@ export default {
         console.log("Fetching profile data...");
         const data = await this.$store.dispatch("auth/getprofiledata");
         console.log("Profile data in heder:", data.result.sub);
+        console.log("Profile data in heder:", data.result);
         this.sub = data.result.sub
         this.userAttributes = data.result
+        console.log("role d",);
+        if (this.userAttributes['custom:Role'] == "dealer") {
+          this.changeName(this.userAttributes['custom:companyName'])
+          this.role = this.userAttributes['custom:Role']
+        }
 
 
 
@@ -721,7 +728,9 @@ export default {
         let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
 
         this.changeProfileImage(imageUrl)
-        this.changeName(response.data.nickname)
+        if (this.role != 'dealer') {
+          this.changeName(response.data.nickname)
+        }
         console.log("the image of user dloru header", this.image)
         //				this.image = response.data[0].image
       } catch (error) {

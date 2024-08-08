@@ -1,6 +1,6 @@
 <template>
   <div id="particlees">
-    <vue-particles color="#dedede" particleOpacity="0.7" particlesNumber="140" shapeType="circle" particleSize="4"
+    <vue-particles color="#dedede" particleOpacity="0.7" :particlesNumber="pNum" shapeType="circle" particleSize="4"
       linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
       clickEffect="true" clickMode="push" />
   </div>
@@ -28,12 +28,19 @@ export default {
   },
   data() {
     return {
-      selectedLanguage: 'en' // Default language
+      selectedLanguage: 'en', // Default language
+      pNum: 140
     };
   },
   methods: {
     changeLanguage() {
       this.$i18n.locale = this.selectedLanguage;
+    },
+    isMobile() {
+      return window.innerWidth <= 768; // Adjust the breakpoint as needed
+    },
+    updatePNumOnResize() {
+      this.pNum = this.isMobile() ? 50 : 120;
     }
   },
   setup() {
@@ -41,6 +48,14 @@ export default {
 
     return { t };
   },
+  mounted() {
+    // Update pNum if needed on mounted
+    this.pNum = this.isMobile() ? 100 : 120;
+
+    // Add resize event listener to update pNum dynamically on screen resize
+    window.addEventListener('resize', this.updatePNumOnResize);
+  },
+
   computed: {
     showFooterSect2() {
       // Check if the current route includes 'landing'
@@ -51,7 +66,11 @@ export default {
       // or if it includes 'landing' and the path is not exactly 'landing'
       return !this.$route.path.includes('landing') ||
         (this.$route.path.includes('landing') && this.$route.path !== '/landing');
+    },
+    computedPNum() {
+      return this.isMobile() ? 100 : this.pNum;
     }
+
   }
 }
 </script>

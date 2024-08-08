@@ -7,18 +7,24 @@
 					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'dealer'">
 						<div class="user-profile-page">
 
-
-
+							<img :src="this.croppedImageUrl" height="150px" width="150px" @click="openFileInput"
+								v-if="this.croppedImageUrl">
 
 							<img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
 								alt="Profile Image"
-								v-if="this.image != '' && this.image != null && this.image != undefined"
+								v-else-if="this.image != '' && this.image != null && this.image != undefined"
 								@click="openFileInput" />
 
 
 							<div v-else>
-								<img src="../assets/img/uploadImage.png" height="150px" width="150px"
-									@click="openFileInput">
+								<div v-if="this.croppedImageUrl">
+									<img :src="this.croppedImageUrl" height="150px" width="150px"
+										@click="openFileInput">
+								</div>
+								<div v-else>
+									<img src="../assets/img/uploadImage.png" height="150px" width="150px"
+										@click="openFileInput">
+								</div>
 								<p class="text-white text-center">Upload Image</p>
 							</div>
 
@@ -203,6 +209,26 @@
 					</form>
 					<form id="subscribe-form" @submit.prevent="updateUserAttributesDealer" v-else>
 
+						<img :src="this.croppedImageUrl" height="150px" width="150px" @click="openFileInput"
+							v-if="this.croppedImageUrl">
+
+						<img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
+							alt="Profile Image"
+							v-else-if="this.image != '' && this.image != null && this.image != undefined"
+							@click="openFileInput" />
+
+
+						<div v-else>
+							<div v-if="this.croppedImageUrl">
+								<img :src="this.croppedImageUrl" height="150px" width="150px" @click="openFileInput">
+							</div>
+							<div v-else>
+								<img src="../assets/img/uploadImage.png" height="150px" width="150px"
+									@click="openFileInput">
+							</div>
+							<p class="text-white text-center">Upload Image</p>
+						</div>
+
 						<div class="user-profile-page">
 							<h2 class="form-title mt-2 mb-0">
 
@@ -349,6 +375,12 @@
 											alt="" />
 									</span>
 								</div>
+							</div>
+							<div class="col-md-6 d-none">
+
+								<label class="form-label" for="image">Select Image</label>
+								<input type="file" class="form-control-file my-2" ref="fileInput"
+									@change="openImageModal">
 							</div>
 							<div class="col-md-12" v-if="socialSignIn == false">
 								<div
@@ -957,6 +989,70 @@ export default {
 			}
 		}
 		,
+		async submitProfileFormDeler() {
+			console.log("blob image ", this.croppedBlob)
+			this.loading = true;
+			console.log("nick namee in submit", 'nickname', this.name)
+			try {
+				const file = this.$refs.fileInput.files[0];
+				const originalFilename = file ? file.name : null;
+
+				const formData = new FormData();
+				if (this.croppedBlob) {
+					formData.append('image', this.croppedBlob, originalFilename);
+
+					console.log("Submitting form data:", formData);
+				}
+
+				formData.append('sub', this.formData.sub);
+				formData.append('street1', this.formData.street);
+				formData.append('street2', this.formData.street2);
+				formData.append('zipCode', this.formData.zipCode);
+				formData.append('mobileCustomer', this.formData.mobilePhone);
+				formData.append('number', this.formData.phone1);
+				formData.append('phoneCustomer', this.formData.phone1);
+
+
+				formData.append('name', this.formData.CompanyName);
+				formData.append('companyName', this.formData.CompanyName);
+				formData.append('nickname', this.formData.CompanyName);
+				formData.append('country', this.formData.country);
+
+				formData.append('city', this.formData.city);
+				formData.append('email', this.formData.email);
+				formData.append('emailForCustomer', this.formData.email);
+				formData.append('faxCustomer', this.formData.fax);
+				formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+
+
+				// Send the form data to the API
+				const response = await axios.post(
+					'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+					formData,
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data',
+						}
+					}
+				);
+				this.loading = false;
+				console.log('Form data submitted successfully dealer1:', response.data);
+
+				if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+					this.IsphonExists = true;
+					this.errorMessage = response.data.message;
+					this.isModalOpenFail = true;
+				} else {
+					this.IsphonExists = false;
+				}
+
+				const profiledata = await this.fetchproData();
+				return profiledata;
+			} catch (error) {
+				this.loading = false;
+				console.error('Error submitting form:', error);
+			}
+		},
 		// end test
 
 		// wprking
@@ -1667,73 +1763,11 @@ export default {
 
 		}
 		,
-		// async updateUserAttributesDealer() {
 
-		// 	const updatedProfile = {
-
-		// 		city: this.formData.city,
-
-		// 		companyName: this.formData.CompanyName,
-
-		// 		country: this.formData.country,
-
-
-		// 		emailForCustomer: this.formData.email,
-
-		// 		faxCustomer: this.formData.fax,
-
-		// 		interanetPrefix1: this.formData.intlPrefix1,
-
-		// 		interanetPrefix2: this.formData.intlPrefix2,
-
-		// 		interanetPrefix3: this.formData.intlPrefix3,
-
-		// 		mobileCustomer: this.formData.mobilePhone,
-
-		// 		number: this.formData.phone1,
-
-		// 		phoneCustomer: this.formData.phone1,
-
-		// 		prefix1: this.formData.prefix1,
-		// 		prefix2: this.formData.prefix2,
-
-		// 		prefix3: this.formData.prefix3,
-
-		// 		street1: this.formData.street,
-
-		// 		street2: this.formData.street2,
-
-		// 		zipCode: this.formData.zipCode,
-
-		// 		email: this.formData.email
-
-
-		// 	}
-		// 	console.log("The profile data", updatedProfile);
-		// 	try {
-		// 		const data = await this.$store.dispatch("auth/handleProfile2", updatedProfile);
-		// 		console.log(data, typeof data);
-		// 		if (data === "SUCCESS") {
-		// 			this.isModalOpen = true;
-		// 			this.changeName(this.formData.CompanyName)
-		// 		}
-		// 	} catch (error) {
-		// 		console.error("Error updating user profile:", error);
-		// 		// Handle error gracefully, e.g., display an error message to the user
-		// 		const customErrorRegex = /custom:[^\s]+ must not be null/;
-		// 		const match = error.message.match(customErrorRegex);
-
-		// 		// If the match is found, use it; otherwise, use the entire error message
-		// 		const errorMessage = match ? match[0] : error.message;
-
-		// 		// Handle error gracefully, e.g., display an error message to the user
-		// 		this.errorMessage = errorMessage;
-		// 		// this.errorMessage = error
-		// 		this.isModalOpenFail = true
-		// 	}
-		// },
 		async updateUserAttributesDealer() {
 			this.loading = true
+			const profiledata = await this.submitProfileFormDeler();
+			console.log(profiledata);
 			const updatedProfile = {
 
 				city: this.formData.city,
