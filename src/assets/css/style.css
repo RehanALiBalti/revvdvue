@@ -2315,7 +2315,7 @@ a:hover {
 	.navbar-collapse {
 		background-color: #000814;
 		padding: 20px;
-		margin-top: 2rem;
+		/* margin-top: 2rem; */
 	}
 
 	.border-bottom-btn.border-top-btn {
@@ -2606,7 +2606,7 @@ a:hover {
 	.navbar-collapse {
 		background-color: #000814;
 		padding: 20px !important;
-		margin-top: 2rem !important;
+		/* margin-top: 2rem !important; */
 	}
 }
 

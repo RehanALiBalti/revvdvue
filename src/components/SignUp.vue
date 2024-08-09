@@ -1,6 +1,6 @@
 <template>
 
-  <div class="container my-5 ">
+  <div class="container mb-5 ">
     <div class="row">
       <div class="col-md-8 m-auto">
         <div class="form-content-home1">
@@ -35,7 +35,16 @@
                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
                   :placeholder="$t('Enter here')" value="user" />
               </div>
-
+              <div class="col-md-6 d-block d-md-none">
+                <label for="name" class="form-label pt-0">Nick Name</label>
+                <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
+                  :placeholder="$t('Enter here')" />
+                <div v-if="formErrors.name" class="text-danger">
+                  {{ formErrors.name }}
+                </div>
+                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
+                  :placeholder="$t('Enter here')" value="user" />
+              </div>
 
               <div class="col-md-6">
                 <label for="email" class="form-label">Email (verification)</label>
@@ -99,7 +108,7 @@
                   <li>Password Must contain at least one symbol</li>
                 </ul>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 d-none d-md-block">
                 <label for="name" class="form-label pt-0">Nick Name</label>
                 <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
