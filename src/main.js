@@ -47,15 +47,15 @@ const i18n = createI18n({
 // });
 Amplify.configure({
   Auth: {
-    region: "eu-north-1",
-    userPoolId: "eu-north-1_udYkkIEkt",
-    userPoolWebClientId: "3gdn1a64vc584t64t7e0up87el",
+    region: "eu-central-1",
+    userPoolId: "eu-central-1_CcqX3oNN7",
+    userPoolWebClientId: "83qurrrrh1r49cch9hl2hii2e",
     authenticationFlowType: "USER_SRP_AUTH",
     oauth: {
-      domain: "revdot.auth.eu-north-1.amazoncognito.com",
-      redirectSignIn: "https://master.d3fzkz9eceedzm.amplifyapp.com/",
+      domain: "revdot.auth.eu-central-1.amazoncognito.com",
+      redirectSignIn: "https://master.d26xar06lf8hqo.amplifyapp.com/",
       // redirectSignIn: "http://localhost:8081/",
-      redirectSignOut: "https://master.d3fzkz9eceedzm.amplifyapp.com/signin",
+      redirectSignOut: "https://master.d26xar06lf8hqo.amplifyapp.com/signin",
       // redirectSignOut: "http://localhost:8081/",
       scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
       responseType: "code",

@@ -3,9 +3,9 @@ const awsmobile = {
   Auth: {
     Cognito: {
       //  Amazon Cognito User Pool ID
-      userPoolId: "eu-north-1_udYkkIEkt",
+      userPoolId: "eu-central-1_CcqX3oNN7",
       // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-      userPoolClientId: "	3gdn1a64vc584t64t7e0up87el",
+      userPoolClientId: "83qurrrrh1r49cch9hl2hii2e",
       // REQUIRED only for Federated Authentication - Amazon Cognito Identity Pool ID
       //  identityPoolId: 'XX-XXXX-X:XXXXXXXX-XXXX-1234-abcd-1234567890ab',
       // OPTIONAL - This is used when autoSignIn is enabled for Auth.signUp
