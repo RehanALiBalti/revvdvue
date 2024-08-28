@@ -194,184 +194,201 @@
           <span class="form-span">{{ $t('Now') }} !</span>
         </h2>
         <div class="row">
-          <div class="col-md-4 ">
+          <div class="col-md-12">
 
-            <div class="customSelect position-relative" @blur="isOpen = false">
-              <label for="country" class="form-label">Make
-              </label>
-              <input type="text" class="form-select form-control form-input" v-model="formData.make"
-                :placeholder="$t('Select a Make')" @click="toggleDropdown" @input="filterMakeOptions"
-                @change="getModels">
-              <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
-                <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
-                  {{ option }}
-                </li>
-              </ul>
-              <ul v-else v-show="isOpen" class="options-list">
-
-              </ul>
-            </div>
+            <label for="storyType" class="form-label">Story Type</label>
+            <select id="storyType" class="form-control" v-model="selectedStoryType" required>
+              <option value="">Select Story Type</option>
+              <option value="carEnthusiast">Car Enthusiast</option>
+              <option value="carGarage">Car Garage</option>
+              <option value="carModificationShop">Car Modification/Tuning Shop</option>
+              <option value="carClub">Car Club</option>
+            </select>
 
           </div>
-          <div class="col-md-4 z1o2 ">
-            <label for="country" class="form-label">Model
-            </label>
-            <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
-              <input type="text" class=" form-select form-control form-input" v-model="formData.model"
-                :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
-                @input="filterModelOptions" @change="getModels" v-if="formData.make == ''" disabled>
-              <input type="text" class=" form-select form-control form-input" v-model="formData.model"
-                :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
-                @input="filterModelOptions" @change="getModels" v-else>
-              <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
-                <li v-for="(option, index) in modelfilteredOptions" :key="index"
-                  @click="selectOptionModel(option.model)">
-                  {{ option.model }}
-                </li>
-              </ul>
-              <ul v-else v-show="isOpenm" class="options-list">
+          <div class="col-md-12 p-0" id="first" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+            <div class="row">
+              <div class="col-md-4">
 
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4 z1o2">
-            <label for="country" class="form-label">Production Year Generation
-            </label>
-            <div class="customSelect w-100 position-relative">
-              <input type="text" class="form-select form-control form-input"
-                :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
-                @click="toggleOpeng" v-if="formData.model == ''" disabled>
-              <input type="text" class="form-select form-control form-input"
-                :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
-                @click="toggleOpeng" v-else>
-              <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
-                <li v-for="(value, index) in GenfilteredOptions" :key="index"
-                  @click="updateModels(value), this.isOpeng = false">
-                  <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
-                  {{ value.production_years.split(' ')[0] }}
-                  <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
-                    }})</span>
-                </li>
-              </ul>
-              <ul v-else v-show="isOpeng" class="options-list">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" id="country" class="form-control" placeholder="Enter Country">
+              </div>
+              <div class="col-md-4">
 
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6 z1o">
-            <label for="name" class="form-label"> Tell us your car story together </label>
-            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              v-model="formData.story" rows="2"></textarea>
-
-          </div>
-          <div class="col-md-6 z1o">
-            <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
-              or any specific features ? </label>
-            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              v-model="formData.modifications" rows="2"></textarea>
-
-          </div>
-          <div class="col-md-6 z1o">
-            <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve had
-              with your car that stands out the most? </label>
-            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              v-model="formData.memorable" rows="2"></textarea>
-            <!-- Error message for Email -->
-            <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
-            <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
-          </div>
-          <div class="col-md-6 z1o">
-            <label for="phone" class="form-label"> If you could give advice to someone just starting their journey to
-              modify their car, what would it be and why?</label>
-            <textarea id="message" class="form-control form-input h-auto" name="message" :placeholder="$t('Enter here')"
-              v-model="formData.advice" rows="2"></textarea>
-          </div>
-          <div class="col-md-6 z1o">
-            <label for="country" class="form-label"> What is the name of your story that you would like to choose?
-            </label>
-            <input type="tel" id="phone" name="phone" class="form-control form-input"
-              placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
-          </div>
-          <div class="col-md-6 z1o">
-            <label for="message" class="form-label">Add Instagram link </label>
-            <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')" rows="2"
-              v-model="formData.social_media" />
-            <!-- Error message for Message -->
-            <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
-          </div>
-          <!-- <div class="col-md-12">
-            <label for="city" class="form-label">Upload Pictures Max 8</label>
-
-            <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-              accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
-            <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
-              <span class="border-bottom-btn border-top-btn position-absolute">
-                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-              </span>
-
-              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-              </span>
-
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-              </span>
-              <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
-                Choose Images
-              </label>
-              <span class="border-bottom-btn border-left-btn position-absolute">
-                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-              </span>
-              <span class="border-bottom-btn position-absolute">
-                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-              </span>
-            </div>
-            <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
-              <div v-for="(image, index) in uploadedImages" :key="index"
-                class="upImageArea d-flex flex-column gap-1 position-relative my-1">
-                <img :src="image" alt="" />
-
-                <button class="btn  btnRemv" @click="removeImage(index)"><i class="fa-solid fa-xmark"></i></button>
+                <label for="country" class="form-label">City</label>
+                <input type="text" id="country" class="form-control" placeholder="Enter City">
+              </div>
+              <div class="col-md-6">
+                <label for="storyHistory" class="form-label">Tell us your “Garage”, “Shop”, “Club” Story and
+                  history</label>
+                <textarea id="storyHistory" class="form-control" rows="4"
+                  placeholder="Describe your story and history"></textarea>
+              </div>
+              <div class="   col-md-6">
+                <label for="memorableStories" class="form-label">Can you tell us any memorable stories or adventures
+                  you’ve
+                  had that stands out
+                  the most?</label>
+                <textarea id="memorableStories" class="form-control" rows="4"
+                  placeholder="Share your memorable stories"></textarea>
+              </div>
+              <div class="col-md-6">
+                <label for="storyName" class="form-label">What is the name of your story that you would like to
+                  choose?</label>
+                <input type="text" id="storyName" class="form-control" placeholder="Enter Story Name">
+              </div>
+              <div class="col-md-6">
+                <label for="link" class="form-label">Add Instagram or Website Link</label>
+                <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link">
               </div>
             </div>
-         
-          </div> -->
-          <div class="col-md-12">
-            <label for="city" class="form-label">Upload Pictures Max 8</label>
+          </div>
+          <div class="col-md-12 p-0" id="second" v-show="selectedStoryType === 'carEnthusiast'">
+            <div class="row">
+              <div class="col-md-4 ">
 
-            <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-              accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
-            <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
-              <span class="border-bottom-btn border-top-btn position-absolute">
-                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-              </span>
+                <div class="customSelect position-relative" @blur="isOpen = false">
+                  <label for="country" class="form-label">Make
+                  </label>
+                  <input type="text" class="form-select form-control form-input" v-model="formData.make"
+                    :placeholder="$t('Select a Make')" @click="toggleDropdown" @input="filterMakeOptions"
+                    @change="getModels">
+                  <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
+                    <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
+                      {{ option }}
+                    </li>
+                  </ul>
+                  <ul v-else v-show="isOpen" class="options-list">
 
-              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-              </span>
+                  </ul>
+                </div>
 
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-              </span>
-              <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
-                Choose Images
-              </label>
-              <span class="border-bottom-btn border-left-btn position-absolute">
-                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-              </span>
-              <span class="border-bottom-btn position-absolute">
-                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-              </span>
-            </div>
-            <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
-              <div v-for="(file, index) in uploadedFiles" :key="index"
-                class="upImageArea d-flex justify-content-between position-relative align-items-center">
-                <span>{{ file.name }}</span>
-                <button class="btn btnRemv" @click="removeImage(index)">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
+              </div>
+              <div class="col-md-4 z1o2 ">
+                <label for="country" class="form-label">Model
+                </label>
+                <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
+                  <input type="text" class=" form-select form-control form-input" v-model="formData.model"
+                    :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
+                    @input="filterModelOptions" @change="getModels" v-if="formData.make == ''" disabled>
+                  <input type="text" class=" form-select form-control form-input" v-model="formData.model"
+                    :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
+                    @input="filterModelOptions" @change="getModels" v-else>
+                  <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
+                    <li v-for="(option, index) in modelfilteredOptions" :key="index"
+                      @click="selectOptionModel(option.model)">
+                      {{ option.model }}
+                    </li>
+                  </ul>
+                  <ul v-else v-show="isOpenm" class="options-list">
+
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-4 z1o2">
+                <label for="country" class="form-label">Production Year Generation
+                </label>
+                <div class="customSelect w-100 position-relative">
+                  <input type="text" class="form-select form-control form-input"
+                    :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
+                    @click="toggleOpeng" v-if="formData.model == ''" disabled>
+                  <input type="text" class="form-select form-control form-input"
+                    :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
+                    @click="toggleOpeng" v-else>
+                  <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
+                    <li v-for="(value, index) in GenfilteredOptions" :key="index"
+                      @click="updateModels(value), this.isOpeng = false">
+                      <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+                      {{ value.production_years.split(' ')[0] }}
+                      <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
+                        }})</span>
+                    </li>
+                  </ul>
+                  <ul v-else v-show="isOpeng" class="options-list">
+
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6 z1o">
+                <label for="name" class="form-label"> Tell us your car story together </label>
+                <textarea id="message" class="form-control form-input h-auto" name="message"
+                  :placeholder="$t('Enter here')" v-model="formData.story" rows="2"></textarea>
+
+              </div>
+              <div class="col-md-6 z1o">
+                <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
+                  or any specific features ? </label>
+                <textarea id="message" class="form-control form-input h-auto" name="message"
+                  :placeholder="$t('Enter here')" v-model="formData.modifications" rows="2"></textarea>
+
+              </div>
+              <div class="col-md-6 z1o">
+                <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve
+                  had
+                  with your car that stands out the most? </label>
+                <textarea id="message" class="form-control form-input h-auto" name="message"
+                  :placeholder="$t('Enter here')" v-model="formData.memorable" rows="2"></textarea>
+                <!-- Error message for Email -->
+                <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
+                <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
+              </div>
+              <div class="col-md-6 z1o">
+                <label for="phone" class="form-label"> If you could give advice to someone just starting their journey
+                  to
+                  modify their car, what would it be and why?</label>
+                <textarea id="message" class="form-control form-input h-auto" name="message"
+                  :placeholder="$t('Enter here')" v-model="formData.advice" rows="2"></textarea>
+              </div>
+              <div class="col-md-6 z1o">
+                <label for="country" class="form-label"> What is the name of your story that you would like to choose?
+                </label>
+                <input type="tel" id="phone" name="phone" class="form-control form-input"
+                  placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
+              </div>
+              <div class="col-md-6 z1o">
+                <label for="message" class="form-label">Add Instagram link </label>
+                <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
+                  rows="2" v-model="formData.social_media" />
+                <!-- Error message for Message -->
+                <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
+              </div>
+              <div class="col-md-12">
+                <label for="city" class="form-label">Upload Pictures Max 8</label>
+
+                <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                  accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
+                <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+                  <span class="border-bottom-btn border-top-btn position-absolute">
+                    <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                  </span>
+
+                  <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                    <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                  </span>
+
+                  <span
+                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                    <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                  </span>
+                  <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
+                    Choose Images
+                  </label>
+                  <span class="border-bottom-btn border-left-btn position-absolute">
+                    <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                  </span>
+                  <span class="border-bottom-btn position-absolute">
+                    <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                  </span>
+                </div>
+                <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+                  <div v-for="(file, index) in uploadedFiles" :key="index"
+                    class="upImageArea d-flex justify-content-between position-relative align-items-center">
+                    <span>{{ file.name }}</span>
+                    <button class="btn btnRemv" @click="removeImage(index)">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -586,6 +603,7 @@ export default {
   },
   data() {
     return {
+      selectedStoryType: "",
       role: "",
       user: {
         email: ''
