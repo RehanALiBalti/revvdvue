@@ -194,7 +194,7 @@
           <span class="form-span">{{ $t('Now') }} !</span>
         </h2>
         <div class="row">
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
 
             <label for="storyType" class="form-label">Story Type</label>
             <select id="storyType" class="form-control" v-model="selectedStoryType" required>
@@ -205,8 +205,8 @@
               <option value="carClub">Car Club</option>
             </select>
 
-          </div>
-          <div class="col-md-12 p-0" id="first" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+          </div> -->
+          <!-- <div class="col-md-12 p-0" id="first" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
             <div class="row">
               <div class="col-md-4">
 
@@ -242,8 +242,8 @@
                 <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link">
               </div>
             </div>
-          </div>
-          <div class="col-md-12 p-0" id="second" v-show="selectedStoryType === 'carEnthusiast'">
+          </div> -->
+          <div class="col-md-12 p-0" id="second">
             <div class="row">
               <div class="col-md-4 ">
 
