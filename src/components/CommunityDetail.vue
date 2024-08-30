@@ -125,10 +125,10 @@
                           <div class="d-flex gap-2 align-items-center">
 
                             <!-- <img
-                              :src="comment.userimage != 'undefined' || comment.userimage != 'null' ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
+                              :src="comment.userimage != 'undefined' || comment.userimage != 'null' ? 'http://52.59.240.119/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
                             <img class="UsrImage"
-                              :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
+                              :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'http://52.59.240.119/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px" />
 
                             <small class="uName">{{ comment.nickname }}</small>
@@ -190,10 +190,10 @@
                           <div class="d-flex align-items-center gap-2">
 
                             <!-- <img
-                              :src="comment.userimage != 'undefined' || 'null' ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
+                              :src="comment.userimage != 'undefined' || 'null' ? 'http://52.59.240.119/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
                             <img class="UsrImage"
-                              :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'https://squid-app-yq2ph.ondigitalocean.app/users/' + comment.userimage : dummyuserImage"
+                              :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'http://52.59.240.119/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px" />
                             <small class="uName">{{ comment.nickname }}</small>
                           </div>
@@ -481,7 +481,7 @@ export default {
     },
     getNoOfComments() {
 
-      const apiUrl = `https://squid-app-yq2ph.ondigitalocean.app/api/comments/count?community_id=${this.pageId}`;
+      const apiUrl = `http://52.59.240.119/apicomments/count?community_id=${this.pageId}`;
 
       axios.get(apiUrl)
         .then(response => {
@@ -495,7 +495,7 @@ export default {
     async getForumData() {
       try {
         // Make the GET request with query parameters
-        const response = await axios.get(`https://squid-app-yq2ph.ondigitalocean.app/api/communities/${this.pageId}`,);
+        const response = await axios.get(`http://52.59.240.119/apicommunities/${this.pageId}`,);
 
         // Handle the response data
         console.log("new get response", response.data);
@@ -616,7 +616,7 @@ export default {
 
       console.log("reply function is calling on id", commentId)
       this.replies = [];
-      axios.get(`https://squid-app-yq2ph.ondigitalocean.app/api/replies/replyall/${commentId}`)
+      axios.get(`http://52.59.240.119/apireplies/replyall/${commentId}`)
         .then(response => {
 
           this.replies.push(...response.data);
@@ -645,7 +645,7 @@ export default {
     //   // Log the form data
     //   console.log("formData", formData);
 
-    //   axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/replies/reply', formData, {
+    //   axios.post('http://52.59.240.119/apireplies/reply', formData, {
     //     headers: {
     //       'Content-Type': 'application/x-www-form-urlencoded'
     //     }
@@ -704,7 +704,7 @@ export default {
           this.imgLoading = false;
         }
         else {
-          axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData, {
+          axios.post('http://52.59.240.119/apicomments/comments', formData, {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -752,7 +752,7 @@ export default {
 
 
     //   // console.log("f_daata", formData)
-    //   axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/replies/reply', formData)
+    //   axios.post('http://52.59.240.119/apireplies/reply', formData)
     //     .then(response => {
     //       // Handle success
     //       console.log('Post request successful of repies:', response.data);
@@ -785,7 +785,7 @@ export default {
 
     // reply
     getImageUrl(imagePath) {
-      return `https://squid-app-yq2ph.ondigitalocean.app/${imagePath}`;
+      return `http://52.59.240.119/api${imagePath}`;
     },
 
     openViewer(imagePath) {
@@ -1028,7 +1028,7 @@ export default {
           this.isModal2Open = true;
           this.imgLoading = false;
         } else {
-          axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/comments', formData)
+          axios.post('http://52.59.240.119/apicomments/comments', formData)
             .then(response => {
               // Handle success
               console.log('Post request successful:', response.data);
@@ -1071,7 +1071,7 @@ export default {
     //         const requestData = {
     //           id: this.id
     //         };
-    //         axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/likes', requestData)
+    //         axios.post('http://52.59.240.119/apicommunities/likes', requestData)
     //           .then(response => {
     //             // Handle success
     //             console.log('Post request successful:', response.data)
@@ -1096,7 +1096,7 @@ export default {
     //         const requestData = {
     //           id: this.id
     //         };
-    //         axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/dislikes', requestData)
+    //         axios.post('http://52.59.240.119/apicommunities/dislikes', requestData)
     //           .then(response => {
     //             // Handle success
     //             console.log('Dislike request successful:', response.data);
@@ -1130,7 +1130,7 @@ export default {
 
     //   try {
     //     // Make the POST request with the FormData instance
-    //     const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/likes/like', formData, {
+    //     const response = await axios.post('http://52.59.240.119/apilikes/like', formData, {
     //       headers: {
     //         'Content-Type': 'multipart/form-data'
     //       }
@@ -1161,7 +1161,7 @@ export default {
 
       try {
         // Make the POST request with the URLSearchParams instance
-        const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/likes/like', params, {
+        const response = await axios.post('http://52.59.240.119/apilikes/like', params, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
@@ -1190,7 +1190,7 @@ export default {
     //     const requestData = {
     //       id: cid
     //     };
-    //     axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/likes', requestData)
+    //     axios.post('http://52.59.240.119/apicomments/likes', requestData)
     //       .then(response => {
     //         // Handle success
     //         console.log('Post request successful:', response.data)
@@ -1212,7 +1212,7 @@ export default {
     //     const requestData = {
     //       id: cid
     //     };
-    //     axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/dislikes', requestData)
+    //     axios.post('http://52.59.240.119/apicomments/dislikes', requestData)
     //       .then(response => {
     //         // Handle success
     //         console.log('Dislike request successful:', response.data);
@@ -1243,7 +1243,7 @@ export default {
 
       try {
         // Make the POST request with the URLSearchParams instance
-        const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/likes/like', params, {
+        const response = await axios.post('http://52.59.240.119/apilikes/like', params, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
@@ -1301,7 +1301,7 @@ export default {
       const requestData = {
         id: this.id
       };
-      axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/communities/views', requestData)
+      axios.post('http://52.59.240.119/apicommunities/views', requestData)
         .then(response => {
           // Handle success
           console.log('Post of views request successful:', response.data);
@@ -1354,7 +1354,7 @@ export default {
     async fetchproData(subId) {
       try {
         // Make the GET request with query parameters
-        const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/users/', {
+        const response = await axios.get('http://52.59.240.119/api/users/', {
           params: {
             sub: subId
           }
@@ -1373,7 +1373,7 @@ export default {
       console.log(communityId)
       // Replace this with the actual community ID if it's dynamic
       const type = 'community'; // Replace this with the actual type if it's dynamic
-      const url = `https://squid-app-yq2ph.ondigitalocean.app/api/likes/likescount?id=${communityId}&type=${type}`;
+      const url = `http://52.59.240.119/apilikes/likescount?id=${communityId}&type=${type}`;
 
       axios.get(url)
         .then(response => {
@@ -1391,7 +1391,7 @@ export default {
     //   console.log("comment_id", cid)
     //   // Replace this with the actual community ID if it's dynamic
     //   const type = 'comment'; // Replace this with the actual type if it's dynamic
-    //   const url = `https://squid-app-yq2ph.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
+    //   const url = `http://52.59.240.119/apilikes/likescount?id=${cid}&type=${type}`;
 
     //   axios.get(url)
     //     .then(response => {
@@ -1406,7 +1406,7 @@ export default {
     // }
     getLikesCountComments(cid) {
       const type = 'comment'; // Replace this with the actual type if it's dynamic
-      const url = `https://squid-app-yq2ph.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
+      const url = `http://52.59.240.119/apilikes/likescount?id=${cid}&type=${type}`;
 
       axios.get(url)
         .then(response => {

@@ -732,7 +732,7 @@ export default {
 
 
       const myid = this.sub
-      const url = 'https://squid-app-yq2ph.ondigitalocean.app/api/users/sub?sub=' + myid;
+      const url = 'http://52.59.240.119/api/users/sub?sub=' + myid;
       console.log("jaloru header", myid, url);
       try {
         // Make the GET request with query parameters
@@ -743,7 +743,7 @@ export default {
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.image = response.data.image
 
-        let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
+        let imageUrl = "http://52.59.240.119/api/users/" + this.image;
 
         this.changeProfileImage(imageUrl)
         if (this.role != 'dealer') {
@@ -778,7 +778,7 @@ export default {
 
     // SubmitStory() {
     //   console.log("submit story", this.formData)
-    //   axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/stories', this.formData)
+    //   axios.post('http://52.59.240.119/api/stories', this.formData)
     //     .then(response => {
     //       // Handle success
     //       console.log('Post request successful:', response.data);
@@ -823,7 +823,7 @@ export default {
       });
 
       // Send POST request using Axios
-      axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/stories', data, {
+      axios.post('http://52.59.240.119/api/stories', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

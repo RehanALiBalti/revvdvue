@@ -166,7 +166,7 @@
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
                   <div class="user-img-div d-none d-lg-block">
-                    <!-- <img v-if="image" :src="'https://squid-app-yq2ph.ondigitalocean.app/users/' + image"
+                    <!-- <img v-if="image" :src="'http://52.59.240.119/api/users/' + image"
                       class="user-img" alt="" /> -->
                     <!-- <img :src="state.profileImage ? state.profileImage : 'path/to/alternate/image.png'" class="user-img"
                       alt="User Image" /> -->
@@ -428,7 +428,7 @@ export default {
     // async fetchproData() {
     //   try {
     //     // Make the GET request with query parameters
-    //     const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/users/', {
+    //     const response = await axios.get('http://52.59.240.119/api/users/', {
     //       params: {
     //         sub: this.sub
     //       }
@@ -473,7 +473,7 @@ export default {
 
 
       const myid = this.sub
-      const url = 'https://squid-app-yq2ph.ondigitalocean.app/api/users/sub?sub=' + myid;
+      const url = 'http://52.59.240.119/api/users/sub?sub=' + myid;
       console.log("jaloru header", myid, url);
       try {
         // Make the GET request with query parameters
@@ -485,7 +485,7 @@ export default {
         this.changeName(response.data.nickname);
         this.image = response.data.image
 
-        let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
+        let imageUrl = "http://52.59.240.119/api/users/" + this.image;
 
         this.changeProfileImage(imageUrl)
         console.log("the image of user dloru header", this.image)

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://squid-app-yq2ph.ondigitalocean.app/api",
+  baseURL: "http://52.59.240.119/api",
   headers: {
     "Content-type": "application/json",
   },

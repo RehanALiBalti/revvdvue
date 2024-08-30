@@ -568,7 +568,7 @@ export default {
     // async sendForumData() {
     //   try {
     //     // Make the GET request with query parameters
-    //     const response = await axios.get('https://squid-app-yq2ph.ondigitalocean.app/api/communities/filter', {
+    //     const response = await axios.get('http://52.59.240.119/apicommunities/filter', {
     //       params: {
     //         make: this.make,
     //         model: this.smodel,

@@ -911,7 +911,7 @@ export default {
 
 		// 		// Send the form data to the API
 		// 		const response = await axios.post(
-		// 			'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+		// 			'http://52.59.240.119/api/users/updateuser',
 		// 			formData,
 		// 			{
 		// 				headers: {
@@ -962,7 +962,7 @@ export default {
 
 				// Send the form data to the API
 				const response = await axios.post(
-					'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+					'http://52.59.240.119/api/users/updateuser',
 					formData,
 					{
 						headers: {
@@ -1027,7 +1027,7 @@ export default {
 
 				// Send the form data to the API
 				const response = await axios.post(
-					'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+					'http://52.59.240.119/api/users/updateuser',
 					formData,
 					{
 						headers: {
@@ -1132,7 +1132,7 @@ export default {
 
 		// 			// Send the form data to the API
 		// 			const response = await axios.post(
-		// 				'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+		// 				'http://52.59.240.119/api/users/updateuser',
 		// 				formData,
 		// 				{
 		// 					headers: {
@@ -1307,7 +1307,7 @@ export default {
 
 					}
 					console.log("mydata", mydata)
-					const response = await axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/users', mydata);
+					const response = await axios.post('http://52.59.240.119/api/users', mydata);
 
 					// Handle success response
 					console.log('Form data submitted successfully:', response.data);
@@ -1363,7 +1363,7 @@ export default {
 
 			formData.append('userImage', this.$refs.fileInput.files[0]);
 			console.log(this.$refs.fileInput.files[0]);
-			axios.post('https://squid-app-yq2ph.ondigitalocean.app/api/comments/users', formData)
+			axios.post('http://52.59.240.119/apicomments/users', formData)
 				.then(response => {
 					// Handle success
 					console.log('Post request successful:', response.data);
@@ -1420,7 +1420,7 @@ export default {
 		// 		FormDataa.append("socialMedia", this.socialMedia)
 		// 		// Make a POST request to the API endpoint
 		// 		console.log("fffdata", this.FormDataa)
-		// 		const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, FormDataa);
+		// 		const response = await axios.put(`http://52.59.240.119/api/users/${this.formData.sub}`, FormDataa);
 
 		// 		// Handle success response
 		// 		console.log('Form data submitted successfully:', response.data);
@@ -1469,7 +1469,7 @@ export default {
 		// 		// Make a PUT request to the API endpoint
 		// 		console.log("FormDataa", FormDataa);
 
-		// 		const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, FormDataa);
+		// 		const response = await axios.put(`http://52.59.240.119/api/users/${this.formData.sub}`, FormDataa);
 
 		// 		// Handle success response
 		// 		console.log('Form data submitted successfully:', response.data);
@@ -1515,7 +1515,7 @@ export default {
 		// 		};
 
 
-		// 		const response = await fetch(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, requestOptions);
+		// 		const response = await fetch(`http://52.59.240.119/api/users/${this.formData.sub}`, requestOptions);
 		// 		const result = await response.text();
 
 		// 		console.log('Fom data submitted successfully:', result);
@@ -1555,7 +1555,7 @@ export default {
 		// 		formdata.append("socialMedia", this.socialMedia);
 
 		// 		const response = await axios.post(
-		// 			`https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser`,
+		// 			`http://52.59.240.119/api/users/updateuser`,
 		// 			formdata,
 		// 			{
 		// 				headers: {
@@ -1650,7 +1650,7 @@ export default {
 
 		// 			// Send the form data to the API
 		// 			const response = await axios.post(
-		// 				'https://squid-app-yq2ph.ondigitalocean.app/api/users/updateuser',
+		// 				'http://52.59.240.119/api/users/updateuser',
 		// 				formData,
 		// 				{
 		// 					headers: {
@@ -1696,7 +1696,7 @@ export default {
 		// 		formdata.append('phone', cleanedPhoneNumber);
 		// 		formdata.append("socialMedia", this.socialMedia);
 
-		// 		const response = await axios.put(`https://squid-app-yq2ph.ondigitalocean.app/api/users/${this.formData.sub}`, formdata, {
+		// 		const response = await axios.put(`http://52.59.240.119/api/users/${this.formData.sub}`, formdata, {
 		// 			headers: {
 		// 				'Content-Type': 'multipart/form-data'
 		// 			}
@@ -1908,7 +1908,7 @@ export default {
 			}
 			console.log("calling fetchPRo Data1", this.formData.sub)
 			const myid = this.formData.sub || localStorage.getItem('storgekey');
-			const url = 'https://squid-app-yq2ph.ondigitalocean.app/api/users/sub?sub=' + myid;
+			const url = 'http://52.59.240.119/api/users/sub?sub=' + myid;
 			console.log("jaloru", myid, url);
 			try {
 				// Make the GET request with query parameters
@@ -1923,7 +1923,7 @@ export default {
 				// console.log("before set the name", this.name);
 				// this.changeName(this.name);
 				// console.log("username is", this.uname);
-				let imageUrl = "https://squid-app-yq2ph.ondigitalocean.app/users/" + this.image;
+				let imageUrl = "http://52.59.240.119/api/users/" + this.image;
 				console.log("image url", imageUrl);
 				this.changeProfileImage(imageUrl)
 				//				this.image = response.data[0].image
