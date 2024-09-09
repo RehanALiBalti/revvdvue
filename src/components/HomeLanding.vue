@@ -743,7 +743,7 @@ export default {
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.image = response.data.image
 
-        let imageUrl = "http://52.59.240.119/api/users/" + this.image;
+        let imageUrl = "http://52.59.240.119/users/" + this.image;
 
         this.changeProfileImage(imageUrl)
         if (this.role != 'dealer') {

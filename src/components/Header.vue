@@ -485,7 +485,7 @@ export default {
         this.changeName(response.data.nickname);
         this.image = response.data.image
 
-        let imageUrl = "http://52.59.240.119/api/users/" + this.image;
+        let imageUrl = "http://52.59.240.119/users/" + this.image;
 
         this.changeProfileImage(imageUrl)
         console.log("the image of user dloru header", this.image)

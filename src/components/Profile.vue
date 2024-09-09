@@ -147,7 +147,7 @@
 											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
 											id="submit-button" :disabled="loading">
 											{{
-						$t("updateProfile") }}
+												$t("updateProfile") }}
 										</button>
 										<span class="border-bottom-btn border-left-btn new-popup position-absolute">
 											<img src="@/assets/images/Group11engine.png"
@@ -1363,7 +1363,7 @@ export default {
 
 			formData.append('userImage', this.$refs.fileInput.files[0]);
 			console.log(this.$refs.fileInput.files[0]);
-			axios.post('http://52.59.240.119/apicomments/users', formData)
+			axios.post('http://52.59.240.119/api/comments/users', formData)
 				.then(response => {
 					// Handle success
 					console.log('Post request successful:', response.data);
@@ -1923,7 +1923,7 @@ export default {
 				// console.log("before set the name", this.name);
 				// this.changeName(this.name);
 				// console.log("username is", this.uname);
-				let imageUrl = "http://52.59.240.119/api/users/" + this.image;
+				let imageUrl = "http://52.59.240.119/users/" + this.image;
 				console.log("image url", imageUrl);
 				this.changeProfileImage(imageUrl)
 				//				this.image = response.data[0].image

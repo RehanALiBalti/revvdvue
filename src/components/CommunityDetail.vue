@@ -24,6 +24,7 @@
 
                   <div class="col-md-10 align-self-end d-flex justify-content-center">
                     <h1 class="card-title-h2 community-title fh2 m-0" v-if="forumData">
+                      {{ forumData.make }}
                       {{ decode(forumData.make) }}
                       {{ decode(forumData.model) }}
                       {{ decode(forumData.production_years) }}
@@ -56,7 +57,7 @@
 
                   <div>
                     <p class=" map-para my-0 ms-2 text-white" v-if="forumData && forumData.description"> {{
-          forumData.description }}</p>
+                      forumData.description }}</p>
                   </div>
 
                   <div class="list-community-add d-flex justify-content-start  flex-wrap mt-2 ">
@@ -111,7 +112,7 @@
 
 
 
-              <div v-for="comment in  filteredComments " :key="comment.id">
+              <div v-for="comment in filteredComments " :key="comment.id">
                 <div class="d-flex flex-column position-relative">
                   <div class="d-flex justify-content-end align-items-center me-2"></div>
                 </div>
@@ -421,17 +422,17 @@ export default {
     // Fetch community data when three component is created
     this.fetchCommunityData();
   },
-  mounted() {
+  async mounted() {
     this.fetchProfileData()
     this.id = this.$route.params.id
     this.forumId = this.$route.params.fid
     this.getComments()
     this.isLiked()
-    this.fetchCommunityData();
+    await this.fetchCommunityData();
     this.addView()
     this.pageId = this.$route.params.id;
     this.getForumData()
-    this.formSubmit()
+    // await this.formSubmit()
     this.getNoOfComments()
     this.getLikesCount()
     this.isLogin = JSON.parse(localStorage.getItem('login')) || false
@@ -466,6 +467,9 @@ export default {
       this.loginModal = false
     },
     decode(str) {
+      console.log("str", str)
+      console.log("decodestr", str)
+
       return decodeURIComponent(str);
     },
     applyFilter() {
@@ -481,7 +485,7 @@ export default {
     },
     getNoOfComments() {
 
-      const apiUrl = `http://52.59.240.119/apicomments/count?community_id=${this.pageId}`;
+      const apiUrl = `http://52.59.240.119/api/comments/count?community_id=${this.pageId}`;
 
       axios.get(apiUrl)
         .then(response => {
@@ -495,7 +499,7 @@ export default {
     async getForumData() {
       try {
         // Make the GET request with query parameters
-        const response = await axios.get(`http://52.59.240.119/apicommunities/${this.pageId}`,);
+        const response = await axios.get(`http://52.59.240.119/api/communities/${this.pageId}`,);
 
         // Handle the response data
         console.log("new get response", response.data);
@@ -616,7 +620,7 @@ export default {
 
       console.log("reply function is calling on id", commentId)
       this.replies = [];
-      axios.get(`http://52.59.240.119/apireplies/replyall/${commentId}`)
+      axios.get(`http://52.59.240.119/api/replies/replyall/${commentId}`)
         .then(response => {
 
           this.replies.push(...response.data);
@@ -704,7 +708,7 @@ export default {
           this.imgLoading = false;
         }
         else {
-          axios.post('http://52.59.240.119/apicomments/comments', formData, {
+          axios.post('http://52.59.240.119/api/comments/comments', formData, {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -785,7 +789,7 @@ export default {
 
     // reply
     getImageUrl(imagePath) {
-      return `http://52.59.240.119/api${imagePath}`;
+      return `http://52.59.240.119/${imagePath}`;
     },
 
     openViewer(imagePath) {
@@ -1028,7 +1032,7 @@ export default {
           this.isModal2Open = true;
           this.imgLoading = false;
         } else {
-          axios.post('http://52.59.240.119/apicomments/comments', formData)
+          axios.post('http://52.59.240.119/api/comments/comments', formData)
             .then(response => {
               // Handle success
               console.log('Post request successful:', response.data);
@@ -1071,7 +1075,7 @@ export default {
     //         const requestData = {
     //           id: this.id
     //         };
-    //         axios.post('http://52.59.240.119/apicommunities/likes', requestData)
+    //         axios.post('http://52.59.240.119/api/communities/likes', requestData)
     //           .then(response => {
     //             // Handle success
     //             console.log('Post request successful:', response.data)
@@ -1096,7 +1100,7 @@ export default {
     //         const requestData = {
     //           id: this.id
     //         };
-    //         axios.post('http://52.59.240.119/apicommunities/dislikes', requestData)
+    //         axios.post('http://52.59.240.119/api/communities/dislikes', requestData)
     //           .then(response => {
     //             // Handle success
     //             console.log('Dislike request successful:', response.data);
@@ -1161,7 +1165,7 @@ export default {
 
       try {
         // Make the POST request with the URLSearchParams instance
-        const response = await axios.post('http://52.59.240.119/apilikes/like', params, {
+        const response = await axios.post('http://52.59.240.119/api/likes/like', params, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
@@ -1190,7 +1194,7 @@ export default {
     //     const requestData = {
     //       id: cid
     //     };
-    //     axios.post('http://52.59.240.119/apicomments/likes', requestData)
+    //     axios.post('http://52.59.240.119/api/comments/likes', requestData)
     //       .then(response => {
     //         // Handle success
     //         console.log('Post request successful:', response.data)
@@ -1212,7 +1216,7 @@ export default {
     //     const requestData = {
     //       id: cid
     //     };
-    //     axios.post('http://52.59.240.119/apicomments/dislikes', requestData)
+    //     axios.post('http://52.59.240.119/api/comments/dislikes', requestData)
     //       .then(response => {
     //         // Handle success
     //         console.log('Dislike request successful:', response.data);
@@ -1243,7 +1247,7 @@ export default {
 
       try {
         // Make the POST request with the URLSearchParams instance
-        const response = await axios.post('http://52.59.240.119/apilikes/like', params, {
+        const response = await axios.post('http://52.59.240.119/api/likes/like', params, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
@@ -1301,7 +1305,7 @@ export default {
       const requestData = {
         id: this.id
       };
-      axios.post('http://52.59.240.119/apicommunities/views', requestData)
+      axios.post('http://52.59.240.119/api/communities/views', requestData)
         .then(response => {
           // Handle success
           console.log('Post of views request successful:', response.data);
@@ -1373,7 +1377,7 @@ export default {
       console.log(communityId)
       // Replace this with the actual community ID if it's dynamic
       const type = 'community'; // Replace this with the actual type if it's dynamic
-      const url = `http://52.59.240.119/apilikes/likescount?id=${communityId}&type=${type}`;
+      const url = `http://52.59.240.119/api/likes/likescount?id=${communityId}&type=${type}`;
 
       axios.get(url)
         .then(response => {
@@ -1406,7 +1410,7 @@ export default {
     // }
     getLikesCountComments(cid) {
       const type = 'comment'; // Replace this with the actual type if it's dynamic
-      const url = `http://52.59.240.119/apilikes/likescount?id=${cid}&type=${type}`;
+      const url = `http://52.59.240.119/api/likes/likescount?id=${cid}&type=${type}`;
 
       axios.get(url)
         .then(response => {
