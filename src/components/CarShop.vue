@@ -4,7 +4,7 @@
   <div class="container my-5">
     <div class="form-content-home1">
       <form id="subscribe-form" @submit.prevent="validateForm">
-        <h2 class="form-title">{{ $t('sell') }}<span class="form-span"> Cars </span></h2>
+        <h2 class="form-title">{{ $t('sell') }}<span class="form-span"> Cars shop </span></h2>
         <div class="row">
           <div class="col-md-4">
             <label for="title" class="form-label">{{ $t('add') }} {{ $t('title') }}</label>

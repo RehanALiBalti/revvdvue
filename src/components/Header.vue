@@ -539,9 +539,11 @@ export default {
 
         // Execute this code after sign-out is successful
 
+        // console.log("User signed out successfully", Auth.signOut());
         console.log("User signed out successfully", Auth.signOut());
       } catch (error) {
         // Handle sign-out errors
+        // console.error("Error signing out:", error);
         console.error("Error signing out:", error);
       }
     },
@@ -561,11 +563,7 @@ export default {
     checkLoginStatus() {
       const storedIsLogin = localStorage.getItem('login');
       this.isLogin2 = storedIsLogin ? JSON.parse(storedIsLogin) : false;
-      // const userAttributes = JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.3gdn1a64vc584t64t7e0up87el.50fc691c-30a1-70c7-4318-d2aa16c0de0b.userData'));
-      // Do something with userAttributes, such as updating state
-      // For example:
-      // this.userAttributes = userAttributes
-      // 
+
     }
 
   },
