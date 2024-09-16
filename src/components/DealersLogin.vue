@@ -100,7 +100,7 @@
                                     :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check1 }]" />
                                 <label for="check1" class="form-label m-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                                     <router-link to="/termofservice" class="termsService" target="_blank">{{
-                        $t('GeneralTermsAndConditions') }}</router-link>
+                                        $t('GeneralTermsAndConditions') }}</router-link>
                                 </label>
                                 <div v-if="formErrors.check1" class="text-danger">
                                     <p class="m-0 p-0">{{ formErrors.check1 }}</p>
@@ -111,7 +111,7 @@
                                     :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check2 }]" />
                                 <label for="check2" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                                     <router-link to="/privacypolicy" class="termsService" target="_blank">{{
-                        $t('PrivacyPolicy') }}</router-link>
+                                        $t('PrivacyPolicy') }}</router-link>
                                 </label>
                                 <div v-if="formErrors.check2" class="text-danger">
                                     <p class="text-danger m-0 p-0">{{ formErrors.check2 }}</p>
@@ -141,7 +141,7 @@
                                             alt="" />
                                     </span>
                                     <button type="submit" class="signin-btnli submitNow" id="submit-button">{{
-                        $t('submit') }}</button>
+                                        $t('submit') }}</button>
                                     <span class="border-bottom-btn border-left-btn position-absolute">
                                         <img src="@/assets/images/Group11.png" class="img-border position-absolute"
                                             alt="" />
@@ -344,7 +344,7 @@ export default {
             console.log("in submit profile form")
             try {
                 // Make a POST request to the API endpoint
-                const response = await axios.post('http://52.59.240.119/api/users', this.formData);
+                const response = await axios.post('https://52.59.240.119/api/users', this.formData);
 
                 // Handle success response
                 console.log('Form data submitted successfully:', response.data);
@@ -436,7 +436,7 @@ export default {
         //         };
         //         console.log("before submittind dealer data", mydata);
         //         try {
-        //             const url = `http://52.59.240.119/api/users/nickname?nickname=${mydata.nickname}`;
+        //             const url = `https://52.59.240.119/api/users/nickname?nickname=${mydata.nickname}`;
         //             const response = await axios.get(url);
         //             console.log("respi", response)
         //             if (response.data.count == 0) {
@@ -476,7 +476,7 @@ export default {
             this.validateForm();
             if (this.isFormValid()) {
                 try {
-                    const url = `http://52.59.240.119/api/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`;
+                    const url = `https://52.59.240.119/api/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`;
                     const response = await axios.get(url);
                     if (response.data.count === 0) {
                         this.$store.dispatch('auth/handleSignUp2', this.formData).then(data => {

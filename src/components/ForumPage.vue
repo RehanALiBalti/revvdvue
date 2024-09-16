@@ -353,7 +353,7 @@ export default {
         },
         // getNoOfComments(id) {
 
-        //     const apiUrl = `http://52.59.240.119/api/comments/count?community_id=${id}`;
+        //     const apiUrl = `https://52.59.240.119/api/comments/count?community_id=${id}`;
 
         //     axios.get(apiUrl)
         //         .then(response => {
@@ -368,7 +368,7 @@ export default {
         // async getForumData() {
         //     try {
         //         // Make the GET request with query parameters
-        //         const response = await axios.get('http://52.59.240.119/api/communities/filter', {
+        //         const response = await axios.get('https://52.59.240.119/api/communities/filter', {
         //             params: {
         //                 make: this.make,
         //                 model: this.modal,
@@ -393,7 +393,7 @@ export default {
         // async getForumData() {
         //     try {
         //         // Make the GET request with query parameters
-        //         const response = await axios.get('http://52.59.240.119/api/communities/filter', {
+        //         const response = await axios.get('https://52.59.240.119/api/communities/filter', {
         //             params: {
         //                 make: this.make,
         //                 model: this.modal,
@@ -418,7 +418,7 @@ export default {
         async getForumData() {
             console.log()
             try {
-                const response = await axios.get('http://52.59.240.119/api/communities/filter', {
+                const response = await axios.get('https://52.59.240.119/api/communities/filter', {
                     params: {
                         make: this.make,
                         model: this.modal,
@@ -462,7 +462,7 @@ export default {
         }
         ,
         getNoOfComments(community) {
-            const apiUrl = `http://52.59.240.119/api/comments/count?community_id=${community.id}`;
+            const apiUrl = `https://52.59.240.119/api/comments/count?community_id=${community.id}`;
 
             axios.get(apiUrl)
                 .then(response => {

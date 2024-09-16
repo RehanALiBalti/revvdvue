@@ -152,7 +152,7 @@ export default {
 
     //   try {
     //     // Make the POST request with the specified data
-    //     const response = await axios.post('http://52.59.240.119/api/communities/', postData);
+    //     const response = await axios.post('https://52.59.240.119/api/communities/', postData);
 
     //     // Handle the response data
     //     console.log(response.data);
@@ -180,7 +180,7 @@ export default {
 
     //   try {
     //     // Make the POST request with the specified data
-    //     const response = await axios.post('http://52.59.240.119/api/communities/', postData);
+    //     const response = await axios.post('https://52.59.240.119/api/communities/', postData);
 
     //     // Handle the response data
 
@@ -224,7 +224,7 @@ export default {
 
       try {
         // Make the POST request with the specified data
-        const response = await axios.post('http://52.59.240.119/api/communities/', postData);
+        const response = await axios.post('https://52.59.240.119/api/communities/', postData);
 
         // Handle the response data
         console.log(response.data);

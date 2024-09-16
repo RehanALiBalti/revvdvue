@@ -568,7 +568,7 @@ export default {
     // async sendForumData() {
     //   try {
     //     // Make the GET request with query parameters
-    //     const response = await axios.get('http://52.59.240.119/api/communities/filter', {
+    //     const response = await axios.get('https://52.59.240.119/api/communities/filter', {
     //       params: {
     //         make: this.make,
     //         model: this.smodel,
