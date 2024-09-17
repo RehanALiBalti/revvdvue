@@ -212,7 +212,16 @@ export default {
       try {
         this.loading = true
         // Make a POST request to the API endpoint
-        const response = await axios.post('https://52.59.240.119/api/users', { email: this.formData.email });
+        // const response = await axios.post('https://52.59.240.119/api/users', { email: this.formData.email });
+        const response = await axios.post('https://52.59.240.119/api/users',
+          { email: this.formData.email },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: "*/*",
+            }
+          }
+        );
 
         // Handle success response
         console.log('Form data submitted successfully:', response.data[0]);

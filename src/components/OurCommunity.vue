@@ -24,6 +24,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="heading-car">
+          <!-- <button class="btn btn-info" @click="apiTest"> sample api test btn</button> -->
           <!-- <h1 class="banner-title">{{ $t("ourCommunity") }}</h1> -->
           <h1 class="banner-title fontColr">{{ $t("CarCommunityThreads") }} </h1>
           <p class="text-center text-white ps2 mb-0">{{ $t("Checkourcommunitythreads") }}</p>
@@ -344,6 +345,25 @@ export default {
     this.showFilterModal();
   },
   methods: {
+    // apiTest() {
+    //   console.log("click");
+    //   const axios = require('axios');
+    //   // const https = require('node:https');
+
+
+
+    //   // const agent = new https.Agent({ rejectUnauthorized: false });
+    //   axios
+    //     .get('https://52.59.240.119/api/users', {
+    //       // httpsAgent: agent,
+    //     })
+    //     .then((response) => {
+    //       console.log(response.data)
+    //     })
+    //     .catch((error) => {
+    //       console.error(error)
+    //     })
+    // },
     toggleOpeng() {
       console.log('opneg')
       this.isOpeng = !this.isOpeng

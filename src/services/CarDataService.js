@@ -1,40 +1,40 @@
-import http from "../http-common";
+import https from "../http-common";
 
 class CarDataService {
   getAll() {
-    return http.get("/cars");
+    return https.get("/cars");
   }
 
   getMakes() {
-    return http.get("/cars");
+    return https.get("/cars");
   }
 
   get(id) {
-    return http.get(`/cars/${id}`);
+    return https.get(`/cars/${id}`);
   }
 
   create(data) {
-    return http.post("/cars", data);
+    return https.post("/cars", data);
   }
 
   update(id, data) {
-    return http.put(`/cars/${id}`, data);
+    return https.put(`/cars/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/cars/${id}`);
+    return https.delete(`/cars/${id}`);
   }
 
   deleteAll() {
-    return http.delete(`/cars`);
+    return https.delete(`/cars`);
   }
 
   getModels(make) {
-    return http.get(`/cars/models?make=${make}`);
+    return https.get(`/cars/models?make=${make}`);
   }
 
   getGenerations(make, model) {
-    return http.get(`/cars/generations?make=${make}&model=${model}`);
+    return https.get(`/cars/generations?make=${make}&model=${model}`);
   }
 }
 
