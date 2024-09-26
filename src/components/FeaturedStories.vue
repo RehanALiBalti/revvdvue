@@ -1,15 +1,17 @@
 <template>
-
-
-
     <section class="community-section my-5 pt-3">
         <div class="container">
             <!-- Tabs -->
             <div class="row mb-2">
                 <div v-for="(tab, index) in tabs" :key="index"
                     :class="['col-md-2', { 'active-tab': activeTab === index }]" @click="activeTab = index">
-                    <div class="btn-div-create-forum position-relative"
-                        :class="['w-100', { 'btn-active': activeTab === index, 'btn-inactive': activeTab !== index }]">
+                    <div class="btn-div-create-forum position-relative" :class="[
+                        'w-100',
+                        {
+                            'btn-active': activeTab === index,
+                            'btn-inactive': activeTab !== index,
+                        },
+                    ]">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                             <img :src="getImage(tab.img1, index)" class="img-border position-absolute" alt="" />
                         </span>
@@ -36,42 +38,43 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="filter-box">
-                            <h4 class="filter-title">{{ $t('filters') }}</h4>
+                            <h4 class="filter-title">{{ $t("filters") }}</h4>
                             <div class="row">
-                                <div class="col-md-12 ">
-
+                                <div class="col-md-12">
                                     <div class="customSelect position-relative" @blur="isOpen = false">
-                                        <label for="country" class="form-label">Make
-                                        </label>
+                                        <label for="country" class="form-label">Make </label>
                                         <input type="text" class="form-select form-control form-input"
                                             v-model="formData.make" :placeholder="$t('Select a Make')"
-                                            @click="toggleDropdown" @input="filterMakeOptions"
-                                            @change="getModels; applyFilterCar">
+                                            @click="toggleDropdown" @input="filterMakeOptions" @change="
+                                                getModels;
+                                            applyFilterCar;
+                                            " />
                                         <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
                                             <li v-for="(option, index) in makefilteredOptions" :key="index"
                                                 @click="selectOption(option)">
                                                 {{ option }}
                                             </li>
                                         </ul>
-                                        <ul v-else v-show="isOpen" class="options-list">
-
-                                        </ul>
+                                        <ul v-else v-show="isOpen" class="options-list"></ul>
                                     </div>
-
                                 </div>
-                                <div class="col-md-12 z1o2 ">
-                                    <label for="country" class="form-label">Model
-                                    </label>
+                                <div class="col-md-12 z1o2">
+                                    <label for="country" class="form-label">Model </label>
                                     <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
-                                        <input type="text" class=" form-select form-control form-input"
+                                        <input type="text" class="form-select form-control form-input"
                                             v-model="formData.model" :placeholder="$t('Select a Model')"
                                             @click.stop="toggleDropdownm" @focus="isOpen = false"
-                                            @input="filterModelOptions" @change="getModels; applyFilterCar"
-                                            v-if="formData.make == ''" disabled>
-                                        <input type="text" class=" form-select form-control form-input"
+                                            @input="filterModelOptions" @change="
+                                                getModels;
+                                            applyFilterCar;
+                                            " v-if="formData.make == ''" disabled />
+                                        <input type="text" class="form-select form-control form-input"
                                             v-model="formData.model" :placeholder="$t('Select a Model')"
                                             @click.stop="toggleDropdownm" @focus="isOpen = false"
-                                            @input="filterModelOptions" @change="getModels; applyFilterCar" v-else>
+                                            @input="filterModelOptions" @change="
+                                                getModels;
+                                            applyFilterCar;
+                                            " v-else />
                                         <ul v-show="isOpenm" class="options-list"
                                             v-if="modelfilteredOptions.length > 0">
                                             <li v-for="(option, index) in modelfilteredOptions" :key="index"
@@ -79,9 +82,7 @@
                                                 {{ option.model }}
                                             </li>
                                         </ul>
-                                        <ul v-else v-show="isOpenm" class="options-list">
-
-                                        </ul>
+                                        <ul v-else v-show="isOpenm" class="options-list"></ul>
                                     </div>
                                 </div>
                                 <div class="col-md-12 z1o2">
@@ -91,27 +92,23 @@
                                         <input type="text" class="form-select form-control form-input"
                                             :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption"
                                             v-model="formData.year" @click="toggleOpeng" v-if="formData.model == ''"
-                                            @change="applyFilterCar" disabled>
+                                            @change="applyFilterCar" disabled />
                                         <input type="text" class="form-select form-control form-input"
                                             :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption"
                                             @change="applyFilterCar" v-model="formData.year" @click="toggleOpeng"
-                                            v-else>
+                                            v-else />
                                         <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                                             <li v-for="(value, index) in GenfilteredOptions" :key="index"
-                                                @click="updateModels(value), this.isOpeng = false">
+                                                @click="updateModels(value), (this.isOpeng = false)">
                                                 <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
-                                                {{ value.production_years.split(' ')[0] }}
+                                                {{ value.production_years.split(" ")[0] }}
                                                 <span v-if="value.production_years.split(' ')[1]">({{
-                                                    value.production_years.split(' ')[1]
-                                                    }})</span>
+                                                    value.production_years.split(" ")[1] }})</span>
                                             </li>
                                         </ul>
-                                        <ul v-else v-show="isOpeng" class="options-list">
-
-                                        </ul>
+                                        <ul v-else v-show="isOpeng" class="options-list"></ul>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="filter-image-div my-4">
@@ -120,7 +117,6 @@
                     </div>
                     <div class="col-md-9 px-4">
                         <div class="row">
-
                             <div class="card-sorting-content col-md-12"
                                 v-for="(car, index) in this.filteredStories.CarEnthusiast" :key="index">
                                 <div class="main-slider weekly-slider">
@@ -128,10 +124,11 @@
                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                             <swiper-slide class="swiper-no-shadow"
-                                                v-for="(image, idx)  in parsedImages(car.images)" :key="idx">
+                                                v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                 <router-link class="d-block" :to="`/carListing${index + 1}`">
                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                        image
+                                                        " class="slider-img myCarListingCard-img" alt="car" />
                                                 </router-link>
                                             </swiper-slide>
                                         </swiper>
@@ -141,14 +138,13 @@
                                     <div class="card-content-car">
                                         <div class="card-title-div flex">
                                             <h2 class="card-title-h2">
-                                                {{ car.story_name }}: <span> {{ car.story_type }} </span>
+                                                {{ car.story_name }}:
+                                                <span> {{ car.story_type }} </span>
                                             </h2>
                                         </div>
                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                             <li class="list-item-user">
-                                                <div class="icon-user">
-
-                                                </div>
+                                                <div class="icon-user"></div>
                                                 <router-link class="a-tag-name-user" to="javascript:void(0);">
                                                     {{ car.social_media }}
                                                 </router-link>
@@ -166,15 +162,56 @@
 
                                         <div class="view-more-cars">
                                             <p class="card-text weekly-story-para-card">
-                                                <span class="view-more-a-tag" style="cursor:pointer"
+                                                <span class="view-more-a-tag" style="cursor: pointer"
                                                     @click="openModal(index)">
-                                                    {{ $t('viewMoresddsd') }}
+                                                    {{ $t("viewMoresddsd") }}
                                                 </span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
+                                <!-- Modal -->
+                                <!-- <div class="modal show d-block" tabindex="-1" role="dialog"
+                                    v-if="isModalOpen && activeCarIndex === index">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                <span class="close-icon" @click="modalClose">
+                                                    <i class="fas fa-times"></i>
+                                                </span>
+
+                                                <div class="mt-4 py-2">
+                                                    <div class="swiper-container myCarListingCard-swiper-container">
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                            <swiper-slide class="swiper-no-shadow"
+                                                                v-for="(image, idx) in car.images" :key="idx">
+                                                                <router-link class="d-block"
+                                                                    :to="`/carListing${index + 1}`">
+                                                                    <h1 class="text-white">{{ image }}</h1>
+                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image
+                                                                        " class="slider-img myCarListingCard-img"
+                                                                        alt="car" />
+                                                                </router-link>
+                                                            </swiper-slide>
+                                                        </swiper>
+                                                        <span class="swiper-notification" aria-live="assertive"
+                                                            aria-atomic="true"></span>
+                                                    </div>
+                                                    <p class="card-title text-white">
+                                                        {{ car.story_name }} <span></span>
+                                                        {{ car.story_type }}
+                                                    </p>
+                                                    <p class="text-white">{{ car.advice }}</p>
+                                                    <p class="text-white">{{ car.modifications }}</p>
+                                                    <p class="text-white">{{ car.memorable }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
                                 <!-- Modal -->
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
                                     v-if="isModalOpen && activeCarIndex === index">
@@ -189,12 +226,14 @@
                                                     <div class="swiper-container myCarListingCard-swiper-container">
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
+
                                                             <swiper-slide class="swiper-no-shadow"
-                                                                v-for="(image, idx) in car.images" :key="idx">
+                                                                v-for="(image, idx) in parsedImages(car.images)"
+                                                                :key="idx">
                                                                 <router-link class="d-block"
                                                                     :to="`/carListing${index + 1}`">
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                                        image" class="slider-img myCarListingCard-img"
+                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                                        class="slider-img myCarListingCard-img"
                                                                         alt="car" />
                                                                 </router-link>
                                                             </swiper-slide>
@@ -202,8 +241,10 @@
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
-                                                    <p class="card-title text-white">{{ car.story_name }} <span></span>
-                                                        {{ car.story_type }} </p>
+                                                    <p class="card-title text-white">
+                                                        {{ car.story_name }} <span></span>
+                                                        {{ car.story_type }}
+                                                    </p>
                                                     <p class="text-white">{{ car.advice }}</p>
                                                     <p class="text-white">{{ car.modifications }}</p>
                                                     <p class="text-white">{{ car.memorable }}</p>
@@ -212,25 +253,24 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <!-- end template -->
-
                         </div>
-
-
 
                         <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
                             <ul class="pagination">
                                 <li class="page-item" :class="{ disabled: currentPage === 1 }">
                                     <a class="page-link" href="#" aria-label="Previous"
                                         @click.prevent="goToPage(currentPage - 1)">
-                                        city <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                        city
+                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
                                     </a>
                                 </li>
                                 <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
                                     <a class="page-link" href="#" @click.prevent="goToPage(pageNumber)"
-                                        :class="{ 'active': pageNumber === currentPage }">{{ pageNumber }}</a>
+                                        :class="{ active: pageNumber === currentPage }">{{ pageNumber }}</a>
                                 </li>
                                 <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                                     <a class="page-link" href="#" aria-label="Next"
@@ -247,10 +287,12 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="filter-box">
-                            <h4 class="filter-title">{{ $t('filters') }}</h4>
+                            <h4 class="filter-title">{{ $t("filters") }}</h4>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="country" class="form-label filter-label">{{ $t('Country') }}</label>
+                                    <label for="country" class="form-label filter-label">{{
+                                        $t("Country")
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -459,7 +501,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -475,7 +519,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -486,7 +532,9 @@
                                         <option value="Cambodia">Cambodia</option>
                                         <option value="Cameroon">Cameroon</option>
                                         <option value="Canada">Canada</option>
-                                        <option value="Central African Republic">Central African Republic</option>
+                                        <option value="Central African Republic">
+                                            Central African Republic
+                                        </option>
                                         <option value="Chad">Chad</option>
                                         <option value="Chile">Chile</option>
                                         <option value="China">China</option>
@@ -501,7 +549,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -597,13 +647,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
-                                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the
-                                            Grenadines</option>
+                                        <option value="Saint Vincent and the Grenadines">
+                                            Saint Vincent and the Grenadines
+                                        </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -630,14 +685,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -650,11 +709,12 @@
                                         <option value="Zambia">Zambia</option>
                                         <option value="Zimbabwe">Zimbabwe</option>
                                     </select>
-
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="city" class="form-label filter-label">{{ $t('City') }}</label>
+                                    <label for="city" class="form-label filter-label">{{
+                                        $t("City")
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -677,10 +737,8 @@
                         </div>
                     </div>
 
-
                     <div class="col-md-9 px-4">
                         <div class="row">
-
                             <div class="card-sorting-content col-md-12"
                                 v-for="(car, index) in this.filteredStories.CarGarage" :key="index">
                                 <div class="main-slider weekly-slider">
@@ -688,10 +746,11 @@
                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                             <swiper-slide class="swiper-no-shadow"
-                                                v-for="(image, idx)  in parsedImages(car.images)" :key="idx">
+                                                v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                 <router-link class="d-block" :to="`/carListing${index + 1}`">
                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                        image
+                                                        " class="slider-img myCarListingCard-img" alt="car" />
                                                 </router-link>
                                             </swiper-slide>
                                         </swiper>
@@ -701,14 +760,13 @@
                                     <div class="card-content-car">
                                         <div class="card-title-div flex">
                                             <h2 class="card-title-h2">
-                                                {{ car.story_name }}: <span> {{ car.story_type }} </span>
+                                                {{ car.story_name }}:
+                                                <span> {{ car.story_type }} </span>
                                             </h2>
                                         </div>
                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                             <li class="list-item-user">
-                                                <div class="icon-user">
-
-                                                </div>
+                                                <div class="icon-user"></div>
                                                 <router-link class="a-tag-name-user" to="javascript:void(0);">
                                                     {{ car.social_media }}
                                                 </router-link>
@@ -723,9 +781,399 @@
                                         </div>
                                         <div class="view-more-cars">
                                             <p class="card-text weekly-story-para-card">
-                                                <span class="view-more-a-tag" style="cursor:pointer"
+                                                <span class="view-more-a-tag" style="cursor: pointer"
                                                     @click="openModal(index)">
-                                                    {{ $t('viewMore') }}
+                                                    {{ $t("viewMore") }}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal -->
+                                <div class="modal show d-block" tabindex="-1" role="dialog"
+                                    v-if="isModalOpen && activeCarIndex === index">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                <span class="close-icon" @click="modalClose">
+                                                    <i class="fas fa-times"></i>
+                                                </span>
+
+                                                <div class="mt-4 py-2">
+                                                    <div class="swiper-container myCarListingCard-swiper-container">
+                                                        <swiper-slide class="swiper-no-shadow"
+                                                            v-for="(image, idx) in parsedImages(car.images)" :key="idx">
+                                                            <router-link class="d-block"
+                                                                :to="`/carListing${index + 1}`">
+                                                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                                    class="slider-img myCarListingCard-img" alt="car" />
+                                                            </router-link>
+                                                        </swiper-slide>
+                                                        <span class="swiper-notification" aria-live="assertive"
+                                                            aria-atomic="true"></span>
+                                                    </div>
+                                                    <div class="card-content-car">
+                                                        <div class="card-title-div flex">
+                                                            <h2 class="card-title-h2">
+                                                                {{ car.story_name }}:
+                                                                <span> {{ car.story_type }} </span>
+                                                            </h2>
+                                                        </div>
+                                                        <ul class="user-details-car myCarListingCard-user-details-car">
+                                                            <li class="list-item-user">
+                                                                <div class="icon-user"></div>
+                                                                <router-link class="a-tag-name-user"
+                                                                    to="javascript:void(0);">
+                                                                    {{ car.social_media }}
+                                                                </router-link>
+                                                            </li>
+                                                        </ul>
+                                                        <p class="text-white">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+                                                        <div class="d-flex justify-content-between text-white w-100">
+                                                            <p>Country:{{ car.country }}</p>
+                                                            <p>city:{{ car.city }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- end template -->
+                        </div>
+
+                        <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                                    <a class="page-link" href="#" aria-label="Previous"
+                                        @click.prevent="goToPage(currentPage - 1)">
+                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                    </a>
+                                </li>
+                                <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
+                                    <a class="page-link" href="#" @click.prevent="goToPage(pageNumber)"
+                                        :class="{ active: pageNumber === currentPage }">{{ pageNumber }}</a>
+                                </li>
+                                <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                                    <a class="page-link" href="#" aria-label="Next"
+                                        @click.prevent="goToPage(currentPage + 1)">
+                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="activeTab === 2">
+                <!-- Add content here Car Modification/Tuning Shop Content -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="filter-box">
+                            <h4 class="filter-title">{{ $t("filters") }}</h4>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="country" class="form-label filter-label">{{
+                                        $t("Country")
+                                        }}</label>
+                                    <select v-model="selectedCountry" id="country"
+                                        class="form-select form-control form-input filter-select"
+                                        @change="applyFilterShop(selectedCountry, selectedCity)">
+                                        <option selected value="">Country</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Albania">Albania</option>
+                                        <option value="Algeria">Algeria</option>
+                                        <option value="Andorra">Andorra</option>
+                                        <option value="Angola">Angola</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
+                                        <option value="Argentina">Argentina</option>
+                                        <option value="Armenia">Armenia</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Austria">Austria</option>
+                                        <option value="Azerbaijan">Azerbaijan</option>
+                                        <option value="Bahamas">Bahamas</option>
+                                        <option value="Bahrain">Bahrain</option>
+                                        <option value="Bangladesh">Bangladesh</option>
+                                        <option value="Barbados">Barbados</option>
+                                        <option value="Belarus">Belarus</option>
+                                        <option value="Belgium">Belgium</option>
+                                        <option value="Belize">Belize</option>
+                                        <option value="Benin">Benin</option>
+                                        <option value="Bhutan">Bhutan</option>
+                                        <option value="Bolivia">Bolivia</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
+                                        <option value="Botswana">Botswana</option>
+                                        <option value="Brazil">Brazil</option>
+                                        <option value="Brunei">Brunei</option>
+                                        <option value="Bulgaria">Bulgaria</option>
+                                        <option value="Burkina Faso">Burkina Faso</option>
+                                        <option value="Burundi">Burundi</option>
+                                        <option value="Cabo Verde">Cabo Verde</option>
+                                        <option value="Cambodia">Cambodia</option>
+                                        <option value="Cameroon">Cameroon</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Central African Republic">
+                                            Central African Republic
+                                        </option>
+                                        <option value="Chad">Chad</option>
+                                        <option value="Chile">Chile</option>
+                                        <option value="China">China</option>
+                                        <option value="Colombia">Colombia</option>
+                                        <option value="Comoros">Comoros</option>
+                                        <option value="Congo">Congo</option>
+                                        <option value="Costa Rica">Costa Rica</option>
+                                        <option value="Croatia">Croatia</option>
+                                        <option value="Cuba">Cuba</option>
+                                        <option value="Cyprus">Cyprus</option>
+                                        <option value="Czech Republic">Czech Republic</option>
+                                        <option value="Denmark">Denmark</option>
+                                        <option value="Djibouti">Djibouti</option>
+                                        <option value="Dominica">Dominica</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
+                                        <option value="Ecuador">Ecuador</option>
+                                        <option value="Egypt">Egypt</option>
+                                        <option value="El Salvador">El Salvador</option>
+                                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                        <option value="Eritrea">Eritrea</option>
+                                        <option value="Estonia">Estonia</option>
+                                        <option value="Eswatini">Eswatini</option>
+                                        <option value="Ethiopia">Ethiopia</option>
+                                        <option value="Fiji">Fiji</option>
+                                        <option value="Finland">Finland</option>
+                                        <option value="France">France</option>
+                                        <option value="Gabon">Gabon</option>
+                                        <option value="Gambia">Gambia</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="Ghana">Ghana</option>
+                                        <option value="Greece">Greece</option>
+                                        <option value="Grenada">Grenada</option>
+                                        <option value="Guatemala">Guatemala</option>
+                                        <option value="Guinea">Guinea</option>
+                                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                        <option value="Guyana">Guyana</option>
+                                        <option value="Haiti">Haiti</option>
+                                        <option value="Honduras">Honduras</option>
+                                        <option value="Hungary">Hungary</option>
+                                        <option value="Iceland">Iceland</option>
+                                        <option value="India">India</option>
+                                        <option value="Indonesia">Indonesia</option>
+                                        <option value="Iran">Iran</option>
+                                        <option value="Iraq">Iraq</option>
+                                        <option value="Ireland">Ireland</option>
+                                        <option value="Israel">Israel</option>
+                                        <option value="Italy">Italy</option>
+                                        <option value="Jamaica">Jamaica</option>
+                                        <option value="Japan">Japan</option>
+                                        <option value="Jordan">Jordan</option>
+                                        <option value="Kazakhstan">Kazakhstan</option>
+                                        <option value="Kenya">Kenya</option>
+                                        <option value="Kiribati">Kiribati</option>
+                                        <option value="Korea, North">Korea, North</option>
+                                        <option value="Korea, South">Korea, South</option>
+                                        <option value="Kosovo">Kosovo</option>
+                                        <option value="Kuwait">Kuwait</option>
+                                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                        <option value="Laos">Laos</option>
+                                        <option value="Latvia">Latvia</option>
+                                        <option value="Lebanon">Lebanon</option>
+                                        <option value="Lesotho">Lesotho</option>
+                                        <option value="Liberia">Liberia</option>
+                                        <option value="Libya">Libya</option>
+                                        <option value="Liechtenstein">Liechtenstein</option>
+                                        <option value="Lithuania">Lithuania</option>
+                                        <option value="Luxembourg">Luxembourg</option>
+                                        <option value="Madagascar">Madagascar</option>
+                                        <option value="Malawi">Malawi</option>
+                                        <option value="Malaysia">Malaysia</option>
+                                        <option value="Maldives">Maldives</option>
+                                        <option value="Mali">Mali</option>
+                                        <option value="Malta">Malta</option>
+                                        <option value="Marshall Islands">Marshall Islands</option>
+                                        <option value="Mauritania">Mauritania</option>
+                                        <option value="Mauritius">Mauritius</option>
+                                        <option value="Mexico">Mexico</option>
+                                        <option value="Micronesia">Micronesia</option>
+                                        <option value="Moldova">Moldova</option>
+                                        <option value="Monaco">Monaco</option>
+                                        <option value="Mongolia">Mongolia</option>
+                                        <option value="Montenegro">Montenegro</option>
+                                        <option value="Morocco">Morocco</option>
+                                        <option value="Mozambique">Mozambique</option>
+                                        <option value="Myanmar">Myanmar</option>
+                                        <option value="Namibia">Namibia</option>
+                                        <option value="Nauru">Nauru</option>
+                                        <option value="Nepal">Nepal</option>
+                                        <option value="Netherlands">Netherlands</option>
+                                        <option value="New Zealand">New Zealand</option>
+                                        <option value="Nicaragua">Nicaragua</option>
+                                        <option value="Niger">Niger</option>
+                                        <option value="Nigeria">Nigeria</option>
+                                        <option value="North Macedonia">North Macedonia</option>
+                                        <option value="Norway">Norway</option>
+                                        <option value="Oman">Oman</option>
+                                        <option value="Pakistan">Pakistan</option>
+                                        <option value="Palau">Palau</option>
+                                        <option value="Panama">Panama</option>
+                                        <option value="Papua New Guinea">Papua New Guinea</option>
+                                        <option value="Paraguay">Paraguay</option>
+                                        <option value="Peru">Peru</option>
+                                        <option value="Philippines">Philippines</option>
+                                        <option value="Poland">Poland</option>
+                                        <option value="Portugal">Portugal</option>
+                                        <option value="Qatar">Qatar</option>
+                                        <option value="Romania">Romania</option>
+                                        <option value="Russia">Russia</option>
+                                        <option value="Rwanda">Rwanda</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
+                                        <option value="Saint Lucia">Saint Lucia</option>
+                                        <option value="Saint Vincent and the Grenadines">
+                                            Saint Vincent and the Grenadines
+                                        </option>
+                                        <option value="Samoa">Samoa</option>
+                                        <option value="San Marino">San Marino</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
+                                        <option value="Saudi Arabia">Saudi Arabia</option>
+                                        <option value="Senegal">Senegal</option>
+                                        <option value="Serbia">Serbia</option>
+                                        <option value="Seychelles">Seychelles</option>
+                                        <option value="Sierra Leone">Sierra Leone</option>
+                                        <option value="Singapore">Singapore</option>
+                                        <option value="Slovakia">Slovakia</option>
+                                        <option value="Slovenia">Slovenia</option>
+                                        <option value="Solomon Islands">Solomon Islands</option>
+                                        <option value="Somalia">Somalia</option>
+                                        <option value="South Africa">South Africa</option>
+                                        <option value="South Sudan">South Sudan</option>
+                                        <option value="Spain">Spain</option>
+                                        <option value="Sri Lanka">Sri Lanka</option>
+                                        <option value="Sudan">Sudan</option>
+                                        <option value="Suriname">Suriname</option>
+                                        <option value="Sweden">Sweden</option>
+                                        <option value="Switzerland">Switzerland</option>
+                                        <option value="Syria">Syria</option>
+                                        <option value="Taiwan">Taiwan</option>
+                                        <option value="Tajikistan">Tajikistan</option>
+                                        <option value="Tanzania">Tanzania</option>
+                                        <option value="Thailand">Thailand</option>
+                                        <option value="Timor-Leste">Timor-Leste</option>
+                                        <option value="Togo">Togo</option>
+                                        <option value="Tonga">Tonga</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
+                                        <option value="Tunisia">Tunisia</option>
+                                        <option value="Turkey">Turkey</option>
+                                        <option value="Turkmenistan">Turkmenistan</option>
+                                        <option value="Tuvalu">Tuvalu</option>
+                                        <option value="Uganda">Uganda</option>
+                                        <option value="Ukraine">Ukraine</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="United States">United States</option>
+                                        <option value="Uruguay">Uruguay</option>
+                                        <option value="Uzbekistan">Uzbekistan</option>
+                                        <option value="Vanuatu">Vanuatu</option>
+                                        <option value="Vatican City">Vatican City</option>
+                                        <option value="Venezuela">Venezuela</option>
+                                        <option value="Vietnam">Vietnam</option>
+                                        <option value="Yemen">Yemen</option>
+                                        <option value="Zambia">Zambia</option>
+                                        <option value="Zimbabwe">Zimbabwe</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="city" class="form-label filter-label">{{
+                                        $t("City")
+                                        }}</label>
+                                    <select v-model="selectedCity" id="city"
+                                        class="form-select form-control form-input filter-select"
+                                        @change="applyFilterShop(selectedCountry, selectedCity)">
+                                        <option value="">Any</option>
+                                        <option value="Petite">Petite</option>
+                                        <option value="2-Litre">2-Litre</option>
+                                        <option value="Greyhound">Greyhound</option>
+                                        <option value="Ace">Ace</option>
+                                        <option value="Cobra">Cobra</option>
+                                        <option value="3000ME">3000ME</option>
+                                        <option value="Aceca">Aceca</option>
+                                        <option value="Frua">Frua</option>
+                                        <option value="Brooklands Ace">Brooklands Ace</option>
+                                        <option value="Ace V8">Ace V8</option>
+                                        <option value="Aceca">Aceca</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-image-div my-4">
+                            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 px-4">
+                        <div class="row">
+                            <div class="card-sorting-content col-md-12" v-for="(car, index) in this.filteredStories
+                                .CarModificationTunningShop" :key="index">
+                                <div class="main-slider weekly-slider">
+                                    <div class="swiper-container myCarListingCard-swiper-container">
+                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
+                                            <swiper-slide class="swiper-no-shadow"
+                                                v-for="(image, idx) in parsedImages(car.images)" :key="idx">
+                                                <router-link class="d-block" :to="`/carListing${index + 1}`">
+                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                                                        image
+                                                        " class="slider-img myCarListingCard-img" alt="car" />
+                                                </router-link>
+                                            </swiper-slide>
+                                        </swiper>
+                                        <span class="swiper-notification" aria-live="assertive"
+                                            aria-atomic="true"></span>
+                                    </div>
+                                    <div class="card-content-car">
+                                        <div class="card-title-div flex">
+                                            <h2 class="card-title-h2">
+                                                {{ car.story_name }}:
+                                                <span> {{ car.story_type }} </span>
+                                            </h2>
+                                        </div>
+                                        <ul class="user-details-car myCarListingCard-user-details-car">
+                                            <li class="list-item-user">
+                                                <div class="icon-user"></div>
+                                                <router-link class="a-tag-name-user" to="javascript:void(0);">
+                                                    {{ car.social_media }}
+                                                </router-link>
+                                            </li>
+                                        </ul>
+                                        <p class="text-white wordWrap">
+                                            {{ car.adventure_story }}
+                                        </p>
+                                        <div class="d-flex justify-content-between text-white w-100">
+                                            <p>Country:{{ car.country }}</p>
+                                            <p>city:{{ car.city }}</p>
+                                        </div>
+                                        <div class="view-more-cars">
+                                            <p class="card-text weekly-story-para-card">
+                                                <span class="view-more-a-tag" style="cursor: pointer"
+                                                    @click="openModal(index)">
+                                                    {{ $t("viewMoresddsd") }}
                                                 </span>
                                             </p>
                                         </div>
@@ -747,29 +1195,29 @@
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                             <swiper-slide class="swiper-no-shadow"
-                                                                v-for="(image, idx) in car.images" :key="idx">
+                                                                v-for="(image, idx) in parsedImages(car.images)"
+                                                                :key="idx">
                                                                 <router-link class="d-block"
                                                                     :to="`/carListing${index + 1}`">
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                                        class="slider-img myCarListingCard-img"
+                                                                        alt="car" />
                                                                 </router-link>
                                                             </swiper-slide>
                                                         </swiper>
                                                         <span class="swiper-notification" aria-live="assertive"
-                                                            aria-atomic="true"></span>
+                                                             aria-atomic="true"></span>
                                                     </div>
                                                     <div class="card-content-car">
                                                         <div class="card-title-div flex">
                                                             <h2 class="card-title-h2">
-                                                                {{ car.story_name }}: <span> {{ car.story_type }}
-                                                                </span>
+                                                                {{ car.story_name }}:
+                                                                <span> {{ car.story_type }} </span>
                                                             </h2>
                                                         </div>
                                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                                             <li class="list-item-user">
-                                                                <div class="icon-user">
-
-                                                                </div>
+                                                                <div class="icon-user"></div>
                                                                 <router-link class="a-tag-name-user"
                                                                     to="javascript:void(0);">
                                                                     {{ car.social_media }}
@@ -783,7 +1231,6 @@
                                                             <p>Country:{{ car.country }}</p>
                                                             <p>city:{{ car.city }}</p>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -793,10 +1240,7 @@
                             </div>
 
                             <!-- end template -->
-
                         </div>
-
-
 
                         <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
                             <ul class="pagination">
@@ -808,418 +1252,7 @@
                                 </li>
                                 <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
                                     <a class="page-link" href="#" @click.prevent="goToPage(pageNumber)"
-                                        :class="{ 'active': pageNumber === currentPage }">{{ pageNumber }}</a>
-                                </li>
-                                <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                                    <a class="page-link" href="#" aria-label="Next"
-                                        @click.prevent="goToPage(currentPage + 1)">
-                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-
-
-
-
-            </div>
-            <div v-else-if="activeTab === 2">
-
-                <!-- Add content here Car Modification/Tuning Shop Content -->
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="filter-box">
-                            <h4 class="filter-title">{{ $t('filters') }}</h4>
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="country" class="form-label filter-label">{{ $t('Country') }}</label>
-                                    <select v-model="selectedCountry" id="country"
-                                        class="form-select form-control form-input filter-select"
-                                        @change="applyFilterShop(selectedCountry, selectedCity)">
-                                        <option selected value="">Country</option>
-                                        <option value="Afghanistan">Afghanistan</option>
-                                        <option value="Albania">Albania</option>
-                                        <option value="Algeria">Algeria</option>
-                                        <option value="Andorra">Andorra</option>
-                                        <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                                        <option value="Argentina">Argentina</option>
-                                        <option value="Armenia">Armenia</option>
-                                        <option value="Australia">Australia</option>
-                                        <option value="Austria">Austria</option>
-                                        <option value="Azerbaijan">Azerbaijan</option>
-                                        <option value="Bahamas">Bahamas</option>
-                                        <option value="Bahrain">Bahrain</option>
-                                        <option value="Bangladesh">Bangladesh</option>
-                                        <option value="Barbados">Barbados</option>
-                                        <option value="Belarus">Belarus</option>
-                                        <option value="Belgium">Belgium</option>
-                                        <option value="Belize">Belize</option>
-                                        <option value="Benin">Benin</option>
-                                        <option value="Bhutan">Bhutan</option>
-                                        <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                                        <option value="Botswana">Botswana</option>
-                                        <option value="Brazil">Brazil</option>
-                                        <option value="Brunei">Brunei</option>
-                                        <option value="Bulgaria">Bulgaria</option>
-                                        <option value="Burkina Faso">Burkina Faso</option>
-                                        <option value="Burundi">Burundi</option>
-                                        <option value="Cabo Verde">Cabo Verde</option>
-                                        <option value="Cambodia">Cambodia</option>
-                                        <option value="Cameroon">Cameroon</option>
-                                        <option value="Canada">Canada</option>
-                                        <option value="Central African Republic">Central African Republic</option>
-                                        <option value="Chad">Chad</option>
-                                        <option value="Chile">Chile</option>
-                                        <option value="China">China</option>
-                                        <option value="Colombia">Colombia</option>
-                                        <option value="Comoros">Comoros</option>
-                                        <option value="Congo">Congo</option>
-                                        <option value="Costa Rica">Costa Rica</option>
-                                        <option value="Croatia">Croatia</option>
-                                        <option value="Cuba">Cuba</option>
-                                        <option value="Cyprus">Cyprus</option>
-                                        <option value="Czech Republic">Czech Republic</option>
-                                        <option value="Denmark">Denmark</option>
-                                        <option value="Djibouti">Djibouti</option>
-                                        <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
-                                        <option value="Ecuador">Ecuador</option>
-                                        <option value="Egypt">Egypt</option>
-                                        <option value="El Salvador">El Salvador</option>
-                                        <option value="Equatorial Guinea">Equatorial Guinea</option>
-                                        <option value="Eritrea">Eritrea</option>
-                                        <option value="Estonia">Estonia</option>
-                                        <option value="Eswatini">Eswatini</option>
-                                        <option value="Ethiopia">Ethiopia</option>
-                                        <option value="Fiji">Fiji</option>
-                                        <option value="Finland">Finland</option>
-                                        <option value="France">France</option>
-                                        <option value="Gabon">Gabon</option>
-                                        <option value="Gambia">Gambia</option>
-                                        <option value="Georgia">Georgia</option>
-                                        <option value="Germany">Germany</option>
-                                        <option value="Ghana">Ghana</option>
-                                        <option value="Greece">Greece</option>
-                                        <option value="Grenada">Grenada</option>
-                                        <option value="Guatemala">Guatemala</option>
-                                        <option value="Guinea">Guinea</option>
-                                        <option value="Guinea-Bissau">Guinea-Bissau</option>
-                                        <option value="Guyana">Guyana</option>
-                                        <option value="Haiti">Haiti</option>
-                                        <option value="Honduras">Honduras</option>
-                                        <option value="Hungary">Hungary</option>
-                                        <option value="Iceland">Iceland</option>
-                                        <option value="India">India</option>
-                                        <option value="Indonesia">Indonesia</option>
-                                        <option value="Iran">Iran</option>
-                                        <option value="Iraq">Iraq</option>
-                                        <option value="Ireland">Ireland</option>
-                                        <option value="Israel">Israel</option>
-                                        <option value="Italy">Italy</option>
-                                        <option value="Jamaica">Jamaica</option>
-                                        <option value="Japan">Japan</option>
-                                        <option value="Jordan">Jordan</option>
-                                        <option value="Kazakhstan">Kazakhstan</option>
-                                        <option value="Kenya">Kenya</option>
-                                        <option value="Kiribati">Kiribati</option>
-                                        <option value="Korea, North">Korea, North</option>
-                                        <option value="Korea, South">Korea, South</option>
-                                        <option value="Kosovo">Kosovo</option>
-                                        <option value="Kuwait">Kuwait</option>
-                                        <option value="Kyrgyzstan">Kyrgyzstan</option>
-                                        <option value="Laos">Laos</option>
-                                        <option value="Latvia">Latvia</option>
-                                        <option value="Lebanon">Lebanon</option>
-                                        <option value="Lesotho">Lesotho</option>
-                                        <option value="Liberia">Liberia</option>
-                                        <option value="Libya">Libya</option>
-                                        <option value="Liechtenstein">Liechtenstein</option>
-                                        <option value="Lithuania">Lithuania</option>
-                                        <option value="Luxembourg">Luxembourg</option>
-                                        <option value="Madagascar">Madagascar</option>
-                                        <option value="Malawi">Malawi</option>
-                                        <option value="Malaysia">Malaysia</option>
-                                        <option value="Maldives">Maldives</option>
-                                        <option value="Mali">Mali</option>
-                                        <option value="Malta">Malta</option>
-                                        <option value="Marshall Islands">Marshall Islands</option>
-                                        <option value="Mauritania">Mauritania</option>
-                                        <option value="Mauritius">Mauritius</option>
-                                        <option value="Mexico">Mexico</option>
-                                        <option value="Micronesia">Micronesia</option>
-                                        <option value="Moldova">Moldova</option>
-                                        <option value="Monaco">Monaco</option>
-                                        <option value="Mongolia">Mongolia</option>
-                                        <option value="Montenegro">Montenegro</option>
-                                        <option value="Morocco">Morocco</option>
-                                        <option value="Mozambique">Mozambique</option>
-                                        <option value="Myanmar">Myanmar</option>
-                                        <option value="Namibia">Namibia</option>
-                                        <option value="Nauru">Nauru</option>
-                                        <option value="Nepal">Nepal</option>
-                                        <option value="Netherlands">Netherlands</option>
-                                        <option value="New Zealand">New Zealand</option>
-                                        <option value="Nicaragua">Nicaragua</option>
-                                        <option value="Niger">Niger</option>
-                                        <option value="Nigeria">Nigeria</option>
-                                        <option value="North Macedonia">North Macedonia</option>
-                                        <option value="Norway">Norway</option>
-                                        <option value="Oman">Oman</option>
-                                        <option value="Pakistan">Pakistan</option>
-                                        <option value="Palau">Palau</option>
-                                        <option value="Panama">Panama</option>
-                                        <option value="Papua New Guinea">Papua New Guinea</option>
-                                        <option value="Paraguay">Paraguay</option>
-                                        <option value="Peru">Peru</option>
-                                        <option value="Philippines">Philippines</option>
-                                        <option value="Poland">Poland</option>
-                                        <option value="Portugal">Portugal</option>
-                                        <option value="Qatar">Qatar</option>
-                                        <option value="Romania">Romania</option>
-                                        <option value="Russia">Russia</option>
-                                        <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-                                        <option value="Saint Lucia">Saint Lucia</option>
-                                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the
-                                            Grenadines</option>
-                                        <option value="Samoa">Samoa</option>
-                                        <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                                        <option value="Saudi Arabia">Saudi Arabia</option>
-                                        <option value="Senegal">Senegal</option>
-                                        <option value="Serbia">Serbia</option>
-                                        <option value="Seychelles">Seychelles</option>
-                                        <option value="Sierra Leone">Sierra Leone</option>
-                                        <option value="Singapore">Singapore</option>
-                                        <option value="Slovakia">Slovakia</option>
-                                        <option value="Slovenia">Slovenia</option>
-                                        <option value="Solomon Islands">Solomon Islands</option>
-                                        <option value="Somalia">Somalia</option>
-                                        <option value="South Africa">South Africa</option>
-                                        <option value="South Sudan">South Sudan</option>
-                                        <option value="Spain">Spain</option>
-                                        <option value="Sri Lanka">Sri Lanka</option>
-                                        <option value="Sudan">Sudan</option>
-                                        <option value="Suriname">Suriname</option>
-                                        <option value="Sweden">Sweden</option>
-                                        <option value="Switzerland">Switzerland</option>
-                                        <option value="Syria">Syria</option>
-                                        <option value="Taiwan">Taiwan</option>
-                                        <option value="Tajikistan">Tajikistan</option>
-                                        <option value="Tanzania">Tanzania</option>
-                                        <option value="Thailand">Thailand</option>
-                                        <option value="Timor-Leste">Timor-Leste</option>
-                                        <option value="Togo">Togo</option>
-                                        <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-                                        <option value="Tunisia">Tunisia</option>
-                                        <option value="Turkey">Turkey</option>
-                                        <option value="Turkmenistan">Turkmenistan</option>
-                                        <option value="Tuvalu">Tuvalu</option>
-                                        <option value="Uganda">Uganda</option>
-                                        <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
-                                        <option value="United Kingdom">United Kingdom</option>
-                                        <option value="United States">United States</option>
-                                        <option value="Uruguay">Uruguay</option>
-                                        <option value="Uzbekistan">Uzbekistan</option>
-                                        <option value="Vanuatu">Vanuatu</option>
-                                        <option value="Vatican City">Vatican City</option>
-                                        <option value="Venezuela">Venezuela</option>
-                                        <option value="Vietnam">Vietnam</option>
-                                        <option value="Yemen">Yemen</option>
-                                        <option value="Zambia">Zambia</option>
-                                        <option value="Zimbabwe">Zimbabwe</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label for="city" class="form-label filter-label">{{ $t('City') }}</label>
-                                    <select v-model="selectedCity" id="city"
-                                        class="form-select form-control form-input filter-select"
-                                        @change="applyFilterShop(selectedCountry, selectedCity)">
-                                        <option value="">Any</option>
-                                        <option value="Petite">Petite</option>
-                                        <option value="2-Litre">2-Litre</option>
-                                        <option value="Greyhound">Greyhound</option>
-                                        <option value="Ace">Ace</option>
-                                        <option value="Cobra">Cobra</option>
-                                        <option value="3000ME">3000ME</option>
-                                        <option value="Aceca">Aceca</option>
-                                        <option value="Frua">Frua</option>
-                                        <option value="Brooklands Ace">Brooklands Ace</option>
-                                        <option value="Ace V8">Ace V8</option>
-                                        <option value="Aceca">Aceca</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter-image-div my-4">
-                            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-9 px-4">
-                        <div class="row">
-
-                            <div class="card-sorting-content col-md-12"
-                                v-for="(car, index) in this.filteredStories.CarModificationTunningShop" :key="index">
-                                <div class="main-slider weekly-slider">
-                                    <div class="swiper-container myCarListingCard-swiper-container">
-                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                            <swiper-slide class="swiper-no-shadow"
-                                                v-for="(image, idx)  in parsedImages(car.images)" :key="idx">
-                                                <router-link class="d-block" :to="`/carListing${index + 1}`">
-                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                        image" class="slider-img myCarListingCard-img" alt="car" />
-                                                </router-link>
-                                            </swiper-slide>
-                                        </swiper>
-                                        <span class="swiper-notification" aria-live="assertive"
-                                            aria-atomic="true"></span>
-                                    </div>
-                                    <div class="card-content-car">
-                                        <div class="card-title-div flex">
-                                            <h2 class="card-title-h2">
-                                                {{ car.story_name }}: <span> {{ car.story_type }} </span>
-                                            </h2>
-                                        </div>
-                                        <ul class="user-details-car myCarListingCard-user-details-car">
-                                            <li class="list-item-user">
-                                                <div class="icon-user">
-
-                                                </div>
-                                                <router-link class="a-tag-name-user" to="javascript:void(0);">
-                                                    {{ car.social_media }}
-                                                </router-link>
-                                            </li>
-                                        </ul>
-                                        <p class="text-white wordWrap">
-                                            {{ car.adventure_story }}
-                                        </p>
-                                        <div class="d-flex justify-content-between text-white w-100">
-                                            <p>Country:{{ car.country }}</p>
-                                            <p>city:{{ car.city }}</p>
-                                        </div>
-                                        <div class="view-more-cars">
-                                            <p class="card-text weekly-story-para-card">
-                                                <span class="view-more-a-tag" style="cursor:pointer"
-                                                    @click="openModal(index)">
-                                                    {{ $t('viewMoresddsd') }}
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Modal -->
-                                <div class="modal show d-block" tabindex="-1" role="dialog"
-                                    v-if="isModalOpen && activeCarIndex === index">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body text-center">
-                                                <span class="close-icon" @click="modalClose">
-                                                    <i class="fas fa-times"></i>
-                                                </span>
-
-                                                <div class="mt-4 py-2">
-                                                    <div class="swiper-container myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                            <swiper-slide class="swiper-no-shadow">
-                                                                <div class="d-block">
-                                                                    <img :src="Image1"
-                                                                        class="slider-img myCarListingCard-img"
-                                                                        alt="car" />
-
-                                                                </div>
-                                                            </swiper-slide>
-                                                            <swiper-slide class="swiper-no-shadow">
-                                                                <div class="d-block">
-                                                                    <img :src="Image2"
-                                                                        class="slider-img myCarListingCard-img"
-                                                                        alt="car" />
-
-                                                                </div>
-                                                            </swiper-slide>
-                                                            <swiper-slide class="swiper-no-shadow">
-                                                                <div class="d-block">
-                                                                    <img :src="Image3"
-                                                                        class="slider-img myCarListingCard-img"
-                                                                        alt="car" />
-
-                                                                </div>
-                                                            </swiper-slide>
-
-                                                            <!-- <swiper-slide class="swiper-no-shadow"
-                                                                v-for="(image, idx) in car.images" :key="idx">
-                                                                <router-link class="d-block"
-                                                                    :to="`/carListing${index + 1}`">
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                        image" 
-                                                                        class="slider-img myCarListingCard-img"
-                                                                        alt="car" />
-                                                                </router-link>
-                                                            </swiper-slide> -->
-                                                        </swiper>
-                                                        <span class="swiper-notification" aria-live="assertive"
-                                                            aria-atomic="true"></span>
-                                                    </div>
-                                                    <div class="card-content-car">
-                                                        <div class="card-title-div flex">
-                                                            <h2 class="card-title-h2">
-                                                                {{ car.story_name }}: <span> {{ car.story_type }}
-                                                                </span>
-                                                            </h2>
-                                                        </div>
-                                                        <ul class="user-details-car myCarListingCard-user-details-car">
-                                                            <li class="list-item-user">
-                                                                <div class="icon-user">
-
-                                                                </div>
-                                                                <router-link class="a-tag-name-user"
-                                                                    to="javascript:void(0);">
-                                                                    {{ car.social_media }}
-                                                                </router-link>
-                                                            </li>
-                                                        </ul>
-                                                        <p class="text-white">
-                                                            {{ car.adventure_story }}
-                                                        </p>
-                                                        <div class="d-flex justify-content-between text-white w-100">
-                                                            <p>Country:{{ car.country }}</p>
-                                                            <p>city:{{ car.city }}</p>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- end template -->
-
-                        </div>
-
-
-
-                        <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                                    <a class="page-link" href="#" aria-label="Previous"
-                                        @click.prevent="goToPage(currentPage - 1)">
-                                        <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
-                                    </a>
-                                </li>
-                                <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
-                                    <a class="page-link" href="#" @click.prevent="goToPage(pageNumber)"
-                                        :class="{ 'active': pageNumber === currentPage }">{{ pageNumber }}</a>
+                                        :class="{ active: pageNumber === currentPage }">{{ pageNumber }}</a>
                                 </li>
                                 <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                                     <a class="page-link" href="#" aria-label="Next"
@@ -1233,15 +1266,16 @@
                 </div>
             </div>
             <div v-else-if="activeTab === 3">
-
                 <!-- Add content here -->
                 <div class="row">
                     <div class="col-md-3">
                         <div class="filter-box">
-                            <h4 class="filter-title">{{ $t('filters') }}</h4>
+                            <h4 class="filter-title">{{ $t("filters") }}</h4>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="country" class="form-label filter-label">{{ $t('Country') }}</label>
+                                    <label for="country" class="form-label filter-label">{{
+                                        $t("Country")
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1251,7 +1285,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -1267,7 +1303,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -1278,7 +1316,9 @@
                                         <option value="Cambodia">Cambodia</option>
                                         <option value="Cameroon">Cameroon</option>
                                         <option value="Canada">Canada</option>
-                                        <option value="Central African Republic">Central African Republic</option>
+                                        <option value="Central African Republic">
+                                            Central African Republic
+                                        </option>
                                         <option value="Chad">Chad</option>
                                         <option value="Chile">Chile</option>
                                         <option value="China">China</option>
@@ -1293,7 +1333,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -1389,13 +1431,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
-                                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the
-                                            Grenadines</option>
+                                        <option value="Saint Vincent and the Grenadines">
+                                            Saint Vincent and the Grenadines
+                                        </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -1422,14 +1469,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -1444,7 +1495,9 @@
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="city" class="form-label filter-label">{{ $t('City') }}</label>
+                                    <label for="city" class="form-label filter-label">{{
+                                        $t("City")
+                                        }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1471,7 +1524,6 @@
 
                     <div class="col-md-9 px-4">
                         <div class="row">
-
                             <div class="card-sorting-content col-md-12"
                                 v-for="(car, index) in this.filteredStories.CarClub" :key="index">
                                 <div class="main-slider weekly-slider">
@@ -1479,10 +1531,11 @@
                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                             <swiper-slide class="swiper-no-shadow"
-                                                v-for="(image, idx)  in parsedImages(car.images)" :key="idx">
+                                                v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                 <router-link class="d-block" :to="`/carListing${index + 1}`">
                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                        image
+                                                        " class="slider-img myCarListingCard-img" alt="car" />
                                                 </router-link>
                                             </swiper-slide>
                                         </swiper>
@@ -1492,14 +1545,13 @@
                                     <div class="card-content-car">
                                         <div class="card-title-div flex">
                                             <h2 class="card-title-h2">
-                                                {{ car.story_name }}: <span> {{ car.story_type }} </span>
+                                                {{ car.story_name }}:
+                                                <span> {{ car.story_type }} </span>
                                             </h2>
                                         </div>
                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                             <li class="list-item-user">
-                                                <div class="icon-user">
-
-                                                </div>
+                                                <div class="icon-user"></div>
                                                 <router-link class="a-tag-name-user" to="javascript:void(0);">
                                                     {{ car.social_media }}
                                                 </router-link>
@@ -1514,9 +1566,9 @@
                                         </div>
                                         <div class="view-more-cars">
                                             <p class="card-text weekly-story-para-card">
-                                                <span class="view-more-a-tag" style="cursor:pointer"
+                                                <span class="view-more-a-tag" style="cursor: pointer"
                                                     @click="openModal(index)">
-                                                    {{ $t('viewMoresddsd') }}
+                                                    {{ $t("viewMoresddsd") }}
                                                 </span>
                                             </p>
                                         </div>
@@ -1538,11 +1590,13 @@
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                             <swiper-slide class="swiper-no-shadow"
-                                                                v-for="(image, idx) in car.images" :key="idx">
+                                                                v-for="(image, idx) in parsedImages(car.images)"
+                                                                :key="idx">
                                                                 <router-link class="d-block"
                                                                     :to="`/carListing${index + 1}`">
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                                        class="slider-img myCarListingCard-img"
+                                                                        alt="car" />
                                                                 </router-link>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1552,15 +1606,13 @@
                                                     <div class="card-content-car">
                                                         <div class="card-title-div flex">
                                                             <h2 class="card-title-h2">
-                                                                {{ car.story_name }}: <span> {{ car.story_type }}
-                                                                </span>
+                                                                {{ car.story_name }}:
+                                                                <span> {{ car.story_type }} </span>
                                                             </h2>
                                                         </div>
                                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                                             <li class="list-item-user">
-                                                                <div class="icon-user">
-
-                                                                </div>
+                                                                <div class="icon-user"></div>
                                                                 <router-link class="a-tag-name-user"
                                                                     to="javascript:void(0);">
                                                                     {{ car.social_media }}
@@ -1574,7 +1626,6 @@
                                                             <p>Country:{{ car.country }}</p>
                                                             <p>city:{{ car.city }}</p>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -1584,10 +1635,7 @@
                             </div>
 
                             <!-- end template -->
-
                         </div>
-
-
 
                         <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
                             <ul class="pagination">
@@ -1599,7 +1647,7 @@
                                 </li>
                                 <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
                                     <a class="page-link" href="#" @click.prevent="goToPage(pageNumber)"
-                                        :class="{ 'active': pageNumber === currentPage }">{{ pageNumber }}</a>
+                                        :class="{ active: pageNumber === currentPage }">{{ pageNumber }}</a>
                                 </li>
                                 <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                                     <a class="page-link" href="#" aria-label="Next"
@@ -1613,15 +1661,16 @@
                 </div>
             </div>
             <div v-else-if="activeTab === 4">
-
                 <!-- Add content here Motorbike Enthusiast Content -->
                 <div class="row">
                     <div class="col-md-3">
                         <div class="filter-box">
-                            <h4 class="filter-title">{{ $t('filters') }}</h4>
+                            <h4 class="filter-title">{{ $t("filters") }}</h4>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="country" class="form-label filter-label">{{ $t('Country') }}</label>
+                                    <label for="country" class="form-label filter-label">{{
+                                        $t("Country")
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -1631,7 +1680,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -1647,7 +1698,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -1658,7 +1711,9 @@
                                         <option value="Cambodia">Cambodia</option>
                                         <option value="Cameroon">Cameroon</option>
                                         <option value="Canada">Canada</option>
-                                        <option value="Central African Republic">Central African Republic</option>
+                                        <option value="Central African Republic">
+                                            Central African Republic
+                                        </option>
                                         <option value="Chad">Chad</option>
                                         <option value="Chile">Chile</option>
                                         <option value="China">China</option>
@@ -1673,7 +1728,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -1769,13 +1826,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
-                                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the
-                                            Grenadines</option>
+                                        <option value="Saint Vincent and the Grenadines">
+                                            Saint Vincent and the Grenadines
+                                        </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -1802,14 +1864,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -1824,7 +1890,9 @@
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="city" class="form-label filter-label">{{ $t('City') }}</label>
+                                    <label for="city" class="form-label filter-label">{{
+                                        $t("City")
+                                        }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select">
                                         <option value="">Any</option>
@@ -1850,7 +1918,6 @@
 
                     <div class="col-md-9 px-4">
                         <div class="row">
-
                             <div class="card-sorting-content col-md-12"
                                 v-for="(car, index) in this.filteredStories.MotorbikeEnthusiast" :key="index">
                                 <div class="main-slider weekly-slider">
@@ -1858,10 +1925,11 @@
                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                             <swiper-slide class="swiper-no-shadow"
-                                                v-for="(image, idx)  in parsedImages(car.images)" :key="idx">
+                                                v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                 <router-link class="d-block" :to="`/carListing${index + 1}`">
                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                        image
+                                                        " class="slider-img myCarListingCard-img" alt="car" />
                                                 </router-link>
                                             </swiper-slide>
                                         </swiper>
@@ -1871,14 +1939,13 @@
                                     <div class="card-content-car">
                                         <div class="card-title-div flex">
                                             <h2 class="card-title-h2">
-                                                {{ car.story_name }}: <span> {{ car.story_type }} </span>
+                                                {{ car.story_name }}:
+                                                <span> {{ car.story_type }} </span>
                                             </h2>
                                         </div>
                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                             <li class="list-item-user">
-                                                <div class="icon-user">
-
-                                                </div>
+                                                <div class="icon-user"></div>
                                                 <router-link class="a-tag-name-user" to="javascript:void(0);">
                                                     {{ car.social_media }}
                                                 </router-link>
@@ -1893,9 +1960,9 @@
                                         </div>
                                         <div class="view-more-cars">
                                             <p class="card-text weekly-story-para-card">
-                                                <span class="view-more-a-tag" style="cursor:pointer"
+                                                <span class="view-more-a-tag" style="cursor: pointer"
                                                     @click="openModal(index)">
-                                                    {{ $t('viewMoresddsd') }}
+                                                    {{ $t("viewMoresddsd") }}
                                                 </span>
                                             </p>
                                         </div>
@@ -1917,11 +1984,13 @@
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                             <swiper-slide class="swiper-no-shadow"
-                                                                v-for="(image, idx) in car.images" :key="idx">
+                                                                v-for="(image, idx) in parsedImages(car.images)"
+                                                                :key="idx">
                                                                 <router-link class="d-block"
                                                                     :to="`/carListing${index + 1}`">
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                                        class="slider-img myCarListingCard-img"
+                                                                        alt="car" />
                                                                 </router-link>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1931,15 +2000,13 @@
                                                     <div class="card-content-car">
                                                         <div class="card-title-div flex">
                                                             <h2 class="card-title-h2">
-                                                                {{ car.story_name }}: <span> {{ car.story_type }}
-                                                                </span>
+                                                                {{ car.story_name }}:
+                                                                <span> {{ car.story_type }} </span>
                                                             </h2>
                                                         </div>
                                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                                             <li class="list-item-user">
-                                                                <div class="icon-user">
-
-                                                                </div>
+                                                                <div class="icon-user"></div>
                                                                 <router-link class="a-tag-name-user"
                                                                     to="javascript:void(0);">
                                                                     {{ car.social_media }}
@@ -1953,7 +2020,6 @@
                                                             <p>Country:{{ car.country }}</p>
                                                             <p>city:{{ car.city }}</p>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -1963,10 +2029,7 @@
                             </div>
 
                             <!-- end template -->
-
                         </div>
-
-
 
                         <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
                             <ul class="pagination">
@@ -1978,7 +2041,7 @@
                                 </li>
                                 <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
                                     <a class="page-link" href="#" @click.prevent="goToPage(pageNumber)"
-                                        :class="{ 'active': pageNumber === currentPage }">{{ pageNumber }}</a>
+                                        :class="{ active: pageNumber === currentPage }">{{ pageNumber }}</a>
                                 </li>
                                 <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                                     <a class="page-link" href="#" aria-label="Next"
@@ -1992,15 +2055,16 @@
                 </div>
             </div>
             <div v-else-if="activeTab === 5">
-
                 <!-- Add content here -->
                 <div class="row">
                     <div class="col-md-3">
                         <div class="filter-box">
-                            <h4 class="filter-title">{{ $t('filters') }}</h4>
+                            <h4 class="filter-title">{{ $t("filters") }}</h4>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="country" class="form-label filter-label">{{ $t('Country') }}</label>
+                                    <label for="country" class="form-label filter-label">{{
+                                        $t("Country")
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -2010,7 +2074,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -2026,7 +2092,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -2037,7 +2105,9 @@
                                         <option value="Cambodia">Cambodia</option>
                                         <option value="Cameroon">Cameroon</option>
                                         <option value="Canada">Canada</option>
-                                        <option value="Central African Republic">Central African Republic</option>
+                                        <option value="Central African Republic">
+                                            Central African Republic
+                                        </option>
                                         <option value="Chad">Chad</option>
                                         <option value="Chile">Chile</option>
                                         <option value="China">China</option>
@@ -2052,7 +2122,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -2148,13 +2220,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
-                                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the
-                                            Grenadines</option>
+                                        <option value="Saint Vincent and the Grenadines">
+                                            Saint Vincent and the Grenadines
+                                        </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -2181,14 +2258,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -2203,7 +2284,9 @@
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="city" class="form-label filter-label">{{ $t('City') }}</label>
+                                    <label for="city" class="form-label filter-label">{{
+                                        $t("City")
+                                        }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -2230,18 +2313,18 @@
 
                     <div class="col-md-9 px-4">
                         <div class="row">
-
-                            <div class="card-sorting-content col-md-12"
-                                v-for="(car, index) in this.filteredStories.AutomotivePhotographer" :key="index">
+                            <div class="card-sorting-content col-md-12" v-for="(car, index) in this.filteredStories
+                                .AutomotivePhotographer" :key="index">
                                 <div class="main-slider weekly-slider">
                                     <div class="swiper-container myCarListingCard-swiper-container">
                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                             <swiper-slide class="swiper-no-shadow"
-                                                v-for="(image, idx)  in parsedImages(car.images)" :key="idx">
+                                                v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                 <router-link class="d-block" :to="`/carListing${index + 1}`">
                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                        image
+                                                        " class="slider-img myCarListingCard-img" alt="car" />
                                                 </router-link>
                                             </swiper-slide>
                                         </swiper>
@@ -2251,14 +2334,13 @@
                                     <div class="card-content-car">
                                         <div class="card-title-div flex">
                                             <h2 class="card-title-h2">
-                                                {{ car.story_name }}: <span> {{ car.story_type }} </span>
+                                                {{ car.story_name }}:
+                                                <span> {{ car.story_type }} </span>
                                             </h2>
                                         </div>
                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                             <li class="list-item-user">
-                                                <div class="icon-user">
-
-                                                </div>
+                                                <div class="icon-user"></div>
                                                 <router-link class="a-tag-name-user" to="javascript:void(0);">
                                                     {{ car.social_media }}
                                                 </router-link>
@@ -2273,9 +2355,9 @@
                                         </div>
                                         <div class="view-more-cars">
                                             <p class="card-text weekly-story-para-card">
-                                                <span class="view-more-a-tag" style="cursor:pointer"
+                                                <span class="view-more-a-tag" style="cursor: pointer"
                                                     @click="openModal(index)">
-                                                    {{ $t('viewMoresddsd') }}
+                                                    {{ $t("viewMoresddsd") }}
                                                 </span>
                                             </p>
                                         </div>
@@ -2297,11 +2379,13 @@
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                             <swiper-slide class="swiper-no-shadow"
-                                                                v-for="(image, idx) in car.images" :key="idx">
+                                                                v-for="(image, idx) in parsedImages(car.images)"
+                                                                :key="idx">
                                                                 <router-link class="d-block"
                                                                     :to="`/carListing${index + 1}`">
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                                        image" class="slider-img myCarListingCard-img" alt="car" />
+                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                                        class="slider-img myCarListingCard-img"
+                                                                        alt="car" />
                                                                 </router-link>
                                                             </swiper-slide>
                                                         </swiper>
@@ -2311,15 +2395,13 @@
                                                     <div class="card-content-car">
                                                         <div class="card-title-div flex">
                                                             <h2 class="card-title-h2">
-                                                                {{ car.story_name }}: <span> {{ car.story_type }}
-                                                                </span>
+                                                                {{ car.story_name }}:
+                                                                <span> {{ car.story_type }} </span>
                                                             </h2>
                                                         </div>
                                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                                             <li class="list-item-user">
-                                                                <div class="icon-user">
-
-                                                                </div>
+                                                                <div class="icon-user"></div>
                                                                 <router-link class="a-tag-name-user"
                                                                     to="javascript:void(0);">
                                                                     {{ car.social_media }}
@@ -2333,7 +2415,6 @@
                                                             <p>Country:{{ car.country }}</p>
                                                             <p>city:{{ car.city }}</p>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -2343,10 +2424,7 @@
                             </div>
 
                             <!-- end template -->
-
                         </div>
-
-
 
                         <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
                             <ul class="pagination">
@@ -2358,7 +2436,7 @@
                                 </li>
                                 <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
                                     <a class="page-link" href="#" @click.prevent="goToPage(pageNumber)"
-                                        :class="{ 'active': pageNumber === currentPage }">{{ pageNumber }}</a>
+                                        :class="{ active: pageNumber === currentPage }">{{ pageNumber }}</a>
                                 </li>
                                 <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                                     <a class="page-link" href="#" aria-label="Next"
@@ -2371,29 +2449,11 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
     </section>
-
-
 </template>
 
 <script>
-
 import Image1 from "@/assets/images/4image.png";
 import Image2 from "@/assets/images/d722fc518c6127ea183d184e5dc715e3.png";
 import Image3 from "@/assets/images/20210412111611_Ford_Territory_front.png";
@@ -2403,22 +2463,22 @@ import icon1 from "@/assets/images/IconAwesome-user-alt.png";
 import icon2 from "@/assets/images/engine.png";
 import icon3 from "@/assets/images/Iconmaterial-email.png";
 // import 'swiper/css/effect-cards';
-import { EffectCards } from 'swiper/modules';
+import { EffectCards } from "swiper/modules";
 //Import swiper js
-import img1 from "@/assets/images/Group12white.png"
-import img2 from "@/assets/images/Path467white.png"
-import img3 from "@/assets/images/Path465white.png"
-import img4 from "@/assets/images/Group11white.png"
-import img5 from "@/assets/images/Path473white.png"
+import img1 from "@/assets/images/Group12white.png";
+import img2 from "@/assets/images/Path467white.png";
+import img3 from "@/assets/images/Path465white.png";
+import img4 from "@/assets/images/Group11white.png";
+import img5 from "@/assets/images/Path473white.png";
 
-import actimg1 from "@/assets/images/Group12.png"
-import actimg2 from "@/assets/images/Path467.png"
-import actimg3 from "@/assets/images/Path465.png"
-import actimg4 from "@/assets/images/Group11.png"
-import actimg5 from "@/assets/images/Path473.png"
+import actimg1 from "@/assets/images/Group12.png";
+import actimg2 from "@/assets/images/Path467.png";
+import actimg3 from "@/assets/images/Path465.png";
+import actimg4 from "@/assets/images/Group11.png";
+import actimg5 from "@/assets/images/Path473.png";
 //Import Swiper styles
 // import "swiper/swiper-bundle.css";
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
 import axios from "axios";
 import CarDataService from "@/services/CarDataService";
 import CommunityDataService from "@/services/CommunityDataService";
@@ -2448,7 +2508,7 @@ export default {
             isOpenm: false,
             isOpeng: false,
             dataGy: [],
-            selectedData: '',
+            selectedData: "",
             makes: [],
             make: "",
             smodel: "",
@@ -2481,12 +2541,10 @@ export default {
                 country: "",
 
                 storyImages: [],
-
-
             },
             // new
-            selectedCountry: '',
-            selectedCity: '',
+            selectedCountry: "",
+            selectedCity: "",
             isModalOpen: false,
             activeCarIndex: null, // Track which car's modal is open
             activeTab: 0,
@@ -2497,7 +2555,7 @@ export default {
                     img2: img2,
                     img3: img3,
                     img4: img4,
-                    img5: img5
+                    img5: img5,
                 },
                 {
                     name: "Car Garage",
@@ -2505,7 +2563,7 @@ export default {
                     img2: actimg2,
                     img3: actimg3,
                     img4: actimg4,
-                    img5: actimg5
+                    img5: actimg5,
                 },
                 {
                     name: "Car Modification/Tunning Shop",
@@ -2513,7 +2571,7 @@ export default {
                     img2: actimg2,
                     img3: actimg3,
                     img4: actimg4,
-                    img5: actimg5
+                    img5: actimg5,
                 },
                 {
                     name: "Car Club",
@@ -2521,7 +2579,7 @@ export default {
                     img2: actimg2,
                     img3: actimg3,
                     img4: actimg4,
-                    img5: actimg5
+                    img5: actimg5,
                 },
                 {
                     name: "Motorbike Enthusiast",
@@ -2529,7 +2587,7 @@ export default {
                     img2: actimg2,
                     img3: actimg3,
                     img4: actimg4,
-                    img5: actimg5
+                    img5: actimg5,
                 },
                 {
                     name: "Automotive Photographer",
@@ -2537,7 +2595,7 @@ export default {
                     img2: actimg2,
                     img3: actimg3,
                     img4: actimg4,
-                    img5: actimg5
+                    img5: actimg5,
                 },
                 // Add more tabs as needed
             ],
@@ -2764,7 +2822,7 @@ export default {
                 CarModificationTunningShop: [],
                 CarClub: [],
                 MotorbikeEnthusiast: [],
-                AutomotivePhotographer: []
+                AutomotivePhotographer: [],
             },
             originalCars: {
                 CarEnthusiast: [],
@@ -2772,8 +2830,8 @@ export default {
                 CarModificationTunningShop: [],
                 CarClub: [],
                 MotorbikeEnthusiast: [],
-                AutomotivePhotographer: []
-            }
+                AutomotivePhotographer: [],
+            },
         };
     },
     computed: {
@@ -2784,7 +2842,7 @@ export default {
             const startIndex = (this.currentPage - 1) * this.pageSize;
             const endIndex = startIndex + this.pageSize;
             return this.cars.slice(startIndex, endIndex);
-        }
+        },
     },
     mounted() {
         this.retrieveCars();
@@ -2808,56 +2866,54 @@ export default {
         //     },
         // });
         this.fetchStories();
-
-
     },
     methods: {
-
         toggleOpeng() {
-            console.log('opneg')
-            this.isOpeng = !this.isOpeng
+            console.log("opneg");
+            this.isOpeng = !this.isOpeng;
         },
         GenfilterOption() {
             const query = this.formData.year.toLowerCase();
-            if (query === '') {
+            if (query === "") {
                 this.GenfilteredOptions = this.dataGy;
             } else {
-                this.GenfilteredOptions = this.dataGy.filter(option =>
+                this.GenfilteredOptions = this.dataGy.filter((option) =>
                     option.production_years.toLowerCase().includes(query)
                 );
-                console.log(this.GenfilteredOptions)
+                console.log(this.GenfilteredOptions);
             }
         },
 
         filterMakeOptions() {
             this.modelfilteredOptions = [];
             // this.selectedData = "";
-            this.formData.year = ""
-            this.smodel = ""
+            this.formData.year = "";
+            this.smodel = "";
             const query = this.formData.make.toLowerCase();
-            if (query === '') {
+            if (query === "") {
                 this.makefilteredOptions = this.makes;
             } else {
-                this.makefilteredOptions = this.makes.filter(option => option.toLowerCase().includes(query));
+                this.makefilteredOptions = this.makes.filter((option) =>
+                    option.toLowerCase().includes(query)
+                );
             }
         },
         filterModelOptions() {
             // this.selectedData = ""
-            this.formData.year = ""
+            this.formData.year = "";
 
             console.log(this.smodel);
             const query = this.formData.model.toLowerCase();
 
-            if (query === '') {
+            if (query === "") {
                 this.modelfilteredOptions = this.models;
             } else {
-
-                this.modelfilteredOptions = this.models.filter(option => option && option.model && option.model.toLowerCase().includes(query));
+                this.modelfilteredOptions = this.models.filter(
+                    (option) =>
+                        option && option.model && option.model.toLowerCase().includes(query)
+                );
             }
         },
-
-
-
 
         toggleDropdown() {
             this.isOpen = !this.isOpen;
@@ -2869,41 +2925,35 @@ export default {
             this.isOpenm = !this.isOpenm;
         },
         selectOption(option) {
-
             this.formData.make = option;
             this.isOpen = false;
-            this.getModels()
-            this.applyFilterCar()
-
+            this.getModels();
+            this.applyFilterCar();
         },
         selectOptionModel(option) {
-
             this.formData.model = option;
             this.isOpenm = false;
-            this.getGenerations()
-            this.applyFilterCar()
-
-
+            this.getGenerations();
+            this.applyFilterCar();
         },
         updateModels(value) {
             if (value) {
-
                 this.productionYear = value.production_years;
                 // this.selectedData = value.production_years
-                this.formData.year = value.production_years
+                this.formData.year = value.production_years;
             } else {
-
                 this.productionYear = null;
             }
         },
         getData() {
-
-            this.filterGenerations()
-            this.getYears()
+            this.filterGenerations();
+            this.getYears();
         },
         filterGenerations() {
             // Filter the generations based on input
-            this.filteredGenerations = this.generations.filter(gen => gen.toLowerCase().includes(this.generation.toLowerCase()));
+            this.filteredGenerations = this.generations.filter((gen) =>
+                gen.toLowerCase().includes(this.generation.toLowerCase())
+            );
         },
         selectGeneration(option) {
             // Set the selected option
@@ -2917,51 +2967,49 @@ export default {
             this.productionYears = [];
             CarDataService.getAll()
                 .then((response) => {
-                    this.makes = response.data.map(item => item.make);
-                    this.makefilteredOptions = response.data.map(item => item.make);
-                    console.log("make are :", response.data.map(item => item.make))
-
+                    this.makes = response.data.map((item) => item.make);
+                    this.makefilteredOptions = response.data.map((item) => item.make);
+                    console.log(
+                        "make are :",
+                        response.data.map((item) => item.make)
+                    );
                 })
                 .catch((e) => {
                     console.log(e);
                 });
         },
         getModels() {
-            console.log("get modals")
-            this.formData.year = ""
-            this.smodel = ""
+            console.log("get modals");
+            this.formData.year = "";
+            this.smodel = "";
             this.generations = [];
-            this.GenfilteredOptions = []
+            this.GenfilteredOptions = [];
             this.productionYears = [];
             if (this.formData.make == "") {
-                this.modelfilteredOptions = ""
-            }
-            else {
+                this.modelfilteredOptions = "";
+            } else {
                 CarDataService.getModels(this.formData.make)
                     .then((response) => {
                         this.models = response.data;
                         this.modelfilteredOptions = response.data;
-                        console.log("modal filter options ", this.modelfilteredOptions)
-
+                        console.log("modal filter options ", this.modelfilteredOptions);
                     })
                     .catch((e) => {
                         console.log(e);
                     });
             }
-
         },
-
 
         getGenerations() {
             // console.log('in generation', "make", this.make, "modal", this.smodel);
-            this.formData.year = ""
+            this.formData.year = "";
             CarDataService.getGenerations(this.formData.make, this.formData.model)
                 .then((response) => {
                     const data = response.data;
                     console.log("data is", data);
                     this.dataGy = data;
 
-                    this.GenfilteredOptions = data.filter(item => {
+                    this.GenfilteredOptions = data.filter((item) => {
                         return (
                             item.generation !== "" &&
                             item.generation !== "-" &&
@@ -2970,8 +3018,14 @@ export default {
                         );
                     });
 
-                    this.generations = [...new Set(this.GenfilteredOptions.map(item => item.generation))];
-                    this.productionYears = [...new Set(this.GenfilteredOptions.map(item => item.production_years))];
+                    this.generations = [
+                        ...new Set(this.GenfilteredOptions.map((item) => item.generation)),
+                    ];
+                    this.productionYears = [
+                        ...new Set(
+                            this.GenfilteredOptions.map((item) => item.production_years)
+                        ),
+                    ];
                 })
                 .catch((e) => {
                     console.log(e);
@@ -2979,14 +3033,16 @@ export default {
         },
 
         getYears() {
-
-
-            this.productionYears = []
-            CommunityDataService.getFiltered(this.make, this.model, this.generation, this.productionYear)
+            this.productionYears = [];
+            CommunityDataService.getFiltered(
+                this.make,
+                this.model,
+                this.generation,
+                this.productionYear
+            )
 
                 .then((response) => {
                     const data = response.data;
-
 
                     data.forEach((item) => {
                         if (
@@ -2995,7 +3051,6 @@ export default {
                             item.generation != "??" &&
                             item.generation != "?"
                         ) {
-
                             this.generations.push(item.generation);
 
                             this.productionYears.push(item.production_years);
@@ -3008,10 +3063,6 @@ export default {
                     console.log(e);
                 });
         },
-
-
-
-
 
         closeModel() {
             // Hide the modal
@@ -3026,7 +3077,7 @@ export default {
             // }
 
             // this.isModalOpen = false
-            this.isModalOpen = true
+            this.isModalOpen = true;
         },
 
         handleOutsideClick(event) {
@@ -3037,19 +3088,13 @@ export default {
             }
         },
         submitFilter() {
-            if (this.make == '' && this.model == '') {
+            if (this.make == "" && this.model == "") {
                 this.hideFilterModal();
-                this.isModal2Open = true
-            }
-            else
-                this.hideFilterModal();
+                this.isModal2Open = true;
+            } else this.hideFilterModal();
         },
         showFilterModal() {
-
-
-            this.isModalOpen = true
-
-
+            this.isModalOpen = true;
         },
 
         // applyFilter(selectedCountry, selectedCity, filterobj) {
@@ -3070,41 +3115,47 @@ export default {
         //     console.log("after filter", filterobj)
         // },
         applyFilterCar() {
-
-            console.log("in apply filter car")
+            console.log("in apply filter car");
             // Logic to filter carGarage based on formData.make, formData.model, formData.year
             if (!this.formData.make && !this.formData.model && !this.formData.year) {
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
-                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast
-                const filteredCars = this.filteredStories.CarEnthusiast.filter(car => {
-                    const matchesMake = this.formData.make ? car.make === this.formData.make : true;
-                    const matchesModel = this.formData.model ? car.model === this.formData.model : true;
-                    const matchesYear = this.formData.year ? car.year === this.formData.year : true;
+                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
+                const filteredCars = this.filteredStories.CarEnthusiast.filter(
+                    (car) => {
+                        const matchesMake = this.formData.make
+                            ? car.make === this.formData.make
+                            : true;
+                        const matchesModel = this.formData.model
+                            ? car.model === this.formData.model
+                            : true;
+                        const matchesYear = this.formData.year
+                            ? car.year === this.formData.year
+                            : true;
 
-                    return matchesMake && matchesModel && matchesYear;
-                });
+                        return matchesMake && matchesModel && matchesYear;
+                    }
+                );
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.CarEnthusiast = filteredCars;
 
+                console.log("Filtered Cars:", this.filteredStories.CarEnthusiast);
 
-                console.log('Filtered Cars:', this.filteredStories.CarEnthusiast);
-
-                console.log('origional Cars:', this.originalCars.CarEnthusiast);
+                console.log("origional Cars:", this.originalCars.CarEnthusiast);
             }
-        }
-        ,
+        },
         applyFilter(selectedCountry, selectedCity) {
-            console.log(selectedCountry, selectedCity)
+            console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
-            }
-            else {
-                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast
-                const filteredCars = this.filteredStories.CarGarage.filter(car => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
+            } else {
+                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
+                const filteredCars = this.filteredStories.CarGarage.filter((car) => {
+                    const matchesCountry = selectedCountry
+                        ? car.country === selectedCountry
+                        : true;
                     const matchesCity = selectedCity ? car.city === selectedCity : true;
                     return matchesCountry && matchesCity;
                 });
@@ -3112,127 +3163,160 @@ export default {
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.CarGarage = filteredCars;
 
-                console.log('Filtered Cars:', this.filteredStories.CarGarage);
+                console.log("Filtered Cars:", this.filteredStories.CarGarage);
 
-                console.log('origional Cars:', this.originalCars.CarGarage);
+                console.log("origional Cars:", this.originalCars.CarGarage);
             }
         },
         applyFilterShop(selectedCountry, selectedCity) {
-            this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast
-            console.log(selectedCountry, selectedCity)
+            this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
+            console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
-            }
-            else {
-                const filteredCars = this.filteredStories.CarModificationTunningShop.filter(car => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
-                    const matchesCity = selectedCity ? car.city === selectedCity : true;
-                    return matchesCountry && matchesCity;
-                });
+            } else {
+                const filteredCars =
+                    this.filteredStories.CarModificationTunningShop.filter((car) => {
+                        const matchesCountry = selectedCountry
+                            ? car.country === selectedCountry
+                            : true;
+                        const matchesCity = selectedCity ? car.city === selectedCity : true;
+                        return matchesCountry && matchesCity;
+                    });
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.CarModificationTunningShop = filteredCars;
 
-                console.log('Filtered Cars:', this.filteredStories.CarModificationTunningShop);
+                console.log(
+                    "Filtered Cars:",
+                    this.filteredStories.CarModificationTunningShop
+                );
 
-                console.log('origional Cars:', this.originalCars.CarModificationTunningShop);
+                console.log(
+                    "origional Cars:",
+                    this.originalCars.CarModificationTunningShop
+                );
             }
         },
         applyFilterClub(selectedCountry, selectedCity) {
-            console.log(selectedCountry, selectedCity)
+            console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
-            }
-            else {
-                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast
-                const filteredCars = this.filteredStories.CarClub.filter(car => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
+            } else {
+                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
+                const filteredCars = this.filteredStories.CarClub.filter((car) => {
+                    const matchesCountry = selectedCountry
+                        ? car.country === selectedCountry
+                        : true;
                     const matchesCity = selectedCity ? car.city === selectedCity : true;
                     return matchesCountry && matchesCity;
                 });
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.CarClub = filteredCars;
-
-
             }
         },
         applyFilterBike(selectedCountry, selectedCity) {
-
-            console.log(selectedCountry, selectedCity)
+            console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
-            }
-            else {
-                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast
-                const filteredCars = this.filteredStories.MotorbikeEnthusiast.filter(car => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
-                    const matchesCity = selectedCity ? car.city === selectedCity : true;
-                    return matchesCountry && matchesCity;
-                });
+            } else {
+                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
+                const filteredCars = this.filteredStories.MotorbikeEnthusiast.filter(
+                    (car) => {
+                        const matchesCountry = selectedCountry
+                            ? car.country === selectedCountry
+                            : true;
+                        const matchesCity = selectedCity ? car.city === selectedCity : true;
+                        return matchesCountry && matchesCity;
+                    }
+                );
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.MotorbikeEnthusiast = filteredCars;
-
-
             }
         },
         applyFilterAuto(selectedCountry, selectedCity) {
-            console.log(selectedCountry, selectedCity)
+            console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
-            }
-            else {
-                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast
-                const filteredCars = this.filteredStories.AutomotivePhotographer.filter(car => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
-                    const matchesCity = selectedCity ? car.city === selectedCity : true;
-                    return matchesCountry && matchesCity;
-                });
+            } else {
+                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
+                const filteredCars = this.filteredStories.AutomotivePhotographer.filter(
+                    (car) => {
+                        const matchesCountry = selectedCountry
+                            ? car.country === selectedCountry
+                            : true;
+                        const matchesCity = selectedCity ? car.city === selectedCity : true;
+                        return matchesCountry && matchesCity;
+                    }
+                );
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.AutomotivePhotographer = filteredCars;
-
-
             }
         },
         parsedImages(images) {
             try {
-                return typeof images === 'string' ? JSON.parse(images) : images;
+                return typeof images === "string" ? JSON.parse(images) : images;
             } catch (e) {
                 console.error("Error parsing images", e);
                 return [];
             }
         },
         fetchStories() {
-            axios.get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories')
-                .then(response => {
-                    console.log("stories", response.data)
+            axios
+                .get("https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories")
+                .then((response) => {
+                    console.log("stories", response.data);
                     const stories = response.data;
 
                     // Filter stories by their type and assign them to respective objects
-                    this.filteredStories.CarEnthusiast = stories.filter(story => story.story_type === 'carEnthusiast');
-                    this.filteredStories.CarGarage = stories.filter(story => story.story_type === 'carGarage');
-                    this.filteredStories.CarModificationTunningShop = stories.filter(story => story.story_type === 'carModificationShop');
-                    this.filteredStories.CarClub = stories.filter(story => story.story_type === 'carClub');
-                    this.filteredStories.MotorbikeEnthusiast = stories.filter(story => story.story_type === 'motorbikeEnthusiast');
-                    this.filteredStories.AutomotivePhotographer = stories.filter(story => story.story_type === 'automotivePhotographerast');
+                    this.filteredStories.CarEnthusiast = stories.filter(
+                        (story) => story.story_type === "carEnthusiast"
+                    );
+                    this.filteredStories.CarGarage = stories.filter(
+                        (story) => story.story_type === "carGarage"
+                    );
+                    this.filteredStories.CarModificationTunningShop = stories.filter(
+                        (story) => story.story_type === "carModificationShop"
+                    );
+                    this.filteredStories.CarClub = stories.filter(
+                        (story) => story.story_type === "carClub"
+                    );
+                    this.filteredStories.MotorbikeEnthusiast = stories.filter(
+                        (story) => story.story_type === "motorbikeEnthusiast"
+                    );
+                    this.filteredStories.AutomotivePhotographer = stories.filter(
+                        (story) => story.story_type === "automotivePhotographerast"
+                    );
 
-                    console.log('Filtered stories:', this.filteredStories);
+                    console.log("Filtered stories:", this.filteredStories);
                     // this.originalCars = this.filteredStories
-                    this.originalCars.CarEnthusiast = stories.filter(story => story.story_type === 'carEnthusiast');
-                    this.originalCars.CarGarage = stories.filter(story => story.story_type === 'carGarage');
-                    this.originalCars.CarModificationTunningShop = stories.filter(story => story.story_type === 'carModificationShop');
-                    this.originalCars.CarClub = stories.filter(story => story.story_type === 'carClub');
-                    this.originalCars.MotorbikeEnthusiast = stories.filter(story => story.story_type === 'motorbikeEnthusiast');
-                    this.originalCars.AutomotivePhotographer = stories.filter(story => story.story_type === 'automotivePhotographerast');
+                    this.originalCars.CarEnthusiast = stories.filter(
+                        (story) => story.story_type === "carEnthusiast"
+                    );
+                    this.originalCars.CarGarage = stories.filter(
+                        (story) => story.story_type === "carGarage"
+                    );
+                    this.originalCars.CarModificationTunningShop = stories.filter(
+                        (story) => story.story_type === "carModificationShop"
+                    );
+                    this.originalCars.CarClub = stories.filter(
+                        (story) => story.story_type === "carClub"
+                    );
+                    this.originalCars.MotorbikeEnthusiast = stories.filter(
+                        (story) => story.story_type === "motorbikeEnthusiast"
+                    );
+                    this.originalCars.AutomotivePhotographer = stories.filter(
+                        (story) => story.story_type === "automotivePhotographerast"
+                    );
                 })
-                .catch(error => {
-                    console.error('Error fetching stories:', error);
+                .catch((error) => {
+                    console.error("Error fetching stories:", error);
                 });
         },
         openModal(index) {
@@ -3244,7 +3328,9 @@ export default {
             this.activeCarIndex = null; // Reset the active car index
         },
         getImage(imagePath, index) {
-            return this.activeTab === index ? imagePath.replace('white', '') : imagePath;
+            return this.activeTab === index
+                ? imagePath.replace("white", "")
+                : imagePath;
         },
         goToPage(pageNumber) {
             if (pageNumber >= 1 && pageNumber <= this.totalPages) {
@@ -3256,21 +3342,17 @@ export default {
                 this.currentPage++;
             }
         },
-
-
-    }
-    ,
-
+    },
 };
 </script>
 
 <style scoped>
 .main-slider {
-    align-items: start
+    align-items: start;
 }
 
 .carCard {
-    background: #1A202C !important;
+    background: #1a202c !important;
 }
 
 .swiper {
@@ -3418,9 +3500,8 @@ export default {
 }
 
 .signin-btnli {
-    cursor: pointer
+    cursor: pointer;
 }
-
 
 form-select {
     display: block;
@@ -3461,15 +3542,14 @@ form-select {
     box-shadow: none;
 }
 
-
 .alertbg {
-    background: #FF7A00;
+    background: #ff7a00;
     color: #fff;
 }
 
 .getAll {
-    background: #5D3327 !important;
-    color: #fff
+    background: #5d3327 !important;
+    color: #fff;
 }
 
 .genCard .singleGen {
@@ -3480,7 +3560,7 @@ form-select {
 
 .genCard .singleGen:hover {
     background: #f95f19;
-    color: #fff
+    color: #fff;
 }
 
 .borderBr {
@@ -3492,7 +3572,6 @@ form-select {
 /* new */
 
 .customSelect {
-
     width: 100%;
     padding: 1px;
 }
@@ -3528,7 +3607,7 @@ form-select {
     overflow-y: scroll;
     color: #fff;
     transition: height 0.5s ease-in-out;
-    z-index: 9999
+    z-index: 9999;
 }
 
 .options-list li {
@@ -3543,19 +3622,16 @@ form-select {
 }
 
 .z1o {
-    z-index: 0
+    z-index: 0;
 }
 
 .z1o2 {
-    z-index: 0
+    z-index: 0;
 }
 
-@media(max-width:768px) {
-
-
+@media (max-width: 768px) {
     .z1o2 {
-
-        z-index: 0
+        z-index: 0;
     }
 
     .options-list {
