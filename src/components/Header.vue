@@ -166,7 +166,7 @@
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
                   <div class="user-img-div d-none d-lg-block">
-                    <!-- <img v-if="image" :src="'https://52.59.240.119/api/users/' + image"
+                    <!-- <img v-if="image" :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + image"
                       class="user-img" alt="" /> -->
                     <!-- <img :src="state.profileImage ? state.profileImage : 'path/to/alternate/image.png'" class="user-img"
                       alt="User Image" /> -->
@@ -428,7 +428,7 @@ export default {
     // async fetchproData() {
     //   try {
     //     // Make the GET request with query parameters
-    //     const response = await axios.get('https://52.59.240.119/api/users/', {
+    //     const response = await axios.get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/', {
     //       params: {
     //         sub: this.sub
     //       }
@@ -473,7 +473,7 @@ export default {
 
 
       const myid = this.sub
-      const url = 'https://52.59.240.119/api/users/sub?sub=' + myid;
+      const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
       console.log("jaloru header", myid, url);
       try {
         // Make the GET request with query parameters
@@ -484,9 +484,9 @@ export default {
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.changeName(response.data.nickname);
         this.image = response.data.image
-
-        let imageUrl = "https://52.59.240.119/users/" + this.image;
-
+        // use this origional
+        // let imageUrl = "https://52.59.240.119/users/" + this.image;
+        let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
         this.changeProfileImage(imageUrl)
         console.log("the image of user dloru header", this.image)
         //				this.image = response.data[0].image

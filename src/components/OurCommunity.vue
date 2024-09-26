@@ -248,7 +248,8 @@ import CommunityDataService from "../services/CommunityDataService";
 // import { defineComponent } from 'vue';
 
 
-
+// import axios from 'axios'
+// import https from 'https'
 
 export default {
   name: "OurCommunity",
@@ -347,15 +348,22 @@ export default {
   methods: {
     // apiTest() {
     //   console.log("click");
-    //   const axios = require('axios');
+    //   // const axios = require('axios');
     //   // const https = require('node:https');
 
 
 
     //   // const agent = new https.Agent({ rejectUnauthorized: false });
     //   axios
-    //     .get('https://52.59.240.119/api/users', {
+    //     .get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', {
     //       // httpsAgent: agent,
+    //       headers: {
+    //         'Access-Control-Allow-Origin': '*',
+    //         'Content-Type': 'application/json;charset=UTF-8'
+    //       },
+    //       httpsAgent: new https.Agent({
+    //         rejectUnauthorized: false
+    //       })
     //     })
     //     .then((response) => {
     //       console.log(response.data)
@@ -588,7 +596,7 @@ export default {
     // async sendForumData() {
     //   try {
     //     // Make the GET request with query parameters
-    //     const response = await axios.get('https://52.59.240.119/api/communities/filter', {
+    //     const response = await axios.get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/filter', {
     //       params: {
     //         make: this.make,
     //         model: this.smodel,

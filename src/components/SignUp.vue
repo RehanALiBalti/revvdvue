@@ -123,7 +123,7 @@
                 <label for="check1" class="form-label  mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                   <router-link to="/termofservice" class="termsService" target="_blank"> {{
                     $t('GeneralTermsAndConditions')
-                    }}</router-link>
+                  }}</router-link>
                 </label>
                 <div v-if="formErrors.check1" class="text-danger">
                   {{ formErrors.check1 }}
@@ -465,7 +465,7 @@ export default {
     async submitProfileForm() {
       try {
         // Make a POST request to the API endpoint
-        const response = await axios.post('https://52.59.240.119/api/users', this.formData);
+        const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', this.formData);
 
         // Handle success response
         console.log('Form data submitted successfully user:', response.data);
@@ -523,7 +523,7 @@ export default {
 
         console.log("Form submitted successfully", mydata);
         try {
-          const url = `https://52.59.240.119/api/users/nickname?nickname=${mydata.nickname}`;
+          const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${mydata.nickname}`;
           const response = await axios.get(url);
           console.log("respi", response)
           if (response.data.count == 0) {

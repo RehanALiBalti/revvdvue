@@ -64,7 +64,7 @@
         </span>
       </div>
       <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
-        <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+        <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4 d-none">
           <img src="../../public/images/2.png">
         </div>
         <!-- Content -->
@@ -82,7 +82,7 @@
         </div>
 
         <div class="footer-allDetails">
-          <router-link class="viewall-content" to="">
+          <router-link class="viewall-content" to="/stories">
             {{ $t('viewAllStories') }}
           </router-link>
         </div>
@@ -194,7 +194,7 @@
           <span class="form-span">{{ $t('Now') }} !</span>
         </h2>
         <div class="row">
-          <!-- <div class="col-md-12">
+          <div class="col-md-12">
 
             <label for="storyType" class="form-label">Story Type</label>
             <select id="storyType" class="form-control" v-model="selectedStoryType" required>
@@ -203,47 +203,92 @@
               <option value="carGarage">Car Garage</option>
               <option value="carModificationShop">Car Modification/Tuning Shop</option>
               <option value="carClub">Car Club</option>
+              <option value="motorbikeEnthusiast">Motorbike Enthusiast</option>
+              <option value="automotivePhotographerast">Automotive Photographer</option>
+
             </select>
 
-          </div> -->
-          <!-- <div class="col-md-12 p-0" id="first" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+          </div>
+          <div class="col-md-12 p-0" id="first" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
             <div class="row">
               <div class="col-md-4">
 
                 <label for="country" class="form-label">Country</label>
-                <input type="text" id="country" class="form-control" placeholder="Enter Country">
+                <input type="text" id="country" class="form-control" placeholder="Enter Country"
+                  v-model="formData.country">
               </div>
               <div class="col-md-4">
 
                 <label for="country" class="form-label">City</label>
-                <input type="text" id="country" class="form-control" placeholder="Enter City">
+                <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city">
               </div>
               <div class="col-md-6">
                 <label for="storyHistory" class="form-label">Tell us your “Garage”, “Shop”, “Club” Story and
                   history</label>
-                <textarea id="storyHistory" class="form-control" rows="4"
-                  placeholder="Describe your story and history"></textarea>
+                <textarea id="storyHistory" class="form-control" rows="4" placeholder="Describe your story and history"
+                  v-model="formData.storyHistory"></textarea>
               </div>
               <div class="   col-md-6">
                 <label for="memorableStories" class="form-label">Can you tell us any memorable stories or adventures
                   you’ve
                   had that stands out
                   the most?</label>
-                <textarea id="memorableStories" class="form-control" rows="4"
-                  placeholder="Share your memorable stories"></textarea>
+                <textarea id="memorableStories" class="form-control" rows="4" placeholder="Share your memorable stories"
+                  v-model="formData.adventureStory"></textarea>
               </div>
               <div class="col-md-6">
                 <label for="storyName" class="form-label">What is the name of your story that you would like to
                   choose?</label>
-                <input type="text" id="storyName" class="form-control" placeholder="Enter Story Name">
+                <input type="text" id="storyName" class="form-control" placeholder="Enter Story Name"
+                  v-model="formData.storyName">
               </div>
               <div class="col-md-6">
                 <label for="link" class="form-label">Add Instagram or Website Link</label>
-                <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link">
+                <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
+                  v-model="formData.url">
+              </div>
+              <div class="col-md-12">
+                <label for="city" class="form-label">Upload Pictures Max 8</label>
+
+                <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                  accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
+                <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+                  <span class="border-bottom-btn border-top-btn position-absolute">
+                    <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                  </span>
+
+                  <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                    <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                  </span>
+
+                  <span
+                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                    <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                  </span>
+                  <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
+                    Choose Images
+                  </label>
+                  <span class="border-bottom-btn border-left-btn position-absolute">
+                    <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                  </span>
+                  <span class="border-bottom-btn position-absolute">
+                    <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                  </span>
+                </div>
+                <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+                  <div v-for="(file, index) in uploadedFiles" :key="index"
+                    class="upImageArea d-flex justify-content-between position-relative align-items-center">
+                    <span>{{ file.name }}</span>
+                    <button class="btn btnRemv" @click="removeImage(index)">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div> -->
-          <div class="col-md-12 p-0" id="second">
+          </div>
+
+          <div class="col-md-12 p-0" id="second" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
             <div class="row">
               <div class="col-md-4 ">
 
@@ -445,6 +490,24 @@
     </div>
   </div>
 
+  <div class="modal fade show d-block" id="ignismyModal" tabindex="-1" role="dialog" v-if="ModalStorySucces == true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            @click="hideModalStorySucces"></button>
+        </div>
+        <div class="modal-body">
+          <div class="thank-you-pop">
+            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
+            <h1>Succss!</h1>
+            <p>Your submitted successfylly</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <!-- Section: Links  -->
@@ -603,6 +666,7 @@ export default {
   },
   data() {
     return {
+      ModalStorySucces: false,
       selectedStoryType: "",
       role: "",
       user: {
@@ -653,6 +717,13 @@ export default {
         advice: "",
         story_name: "",
         social_media: "",
+        url: "",
+        storyName: "",
+        adventureStory: "",
+        storyHistory: "",
+        city: "",
+        country: "",
+
         storyImages: [],
 
 
@@ -732,7 +803,7 @@ export default {
 
 
       const myid = this.sub
-      const url = 'https://52.59.240.119/api/users/sub?sub=' + myid;
+      const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
       console.log("jaloru header", myid, url);
       try {
         // Make the GET request with query parameters
@@ -778,7 +849,7 @@ export default {
 
     // SubmitStory() {
     //   console.log("submit story", this.formData)
-    //   axios.post('https://52.59.240.119/api/stories', this.formData)
+    //   axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', this.formData)
     //     .then(response => {
     //       // Handle success
     //       console.log('Post request successful:', response.data);
@@ -798,32 +869,102 @@ export default {
 
     //     });
     // },
+    // SubmitStory() {
+    //   console.log("submit story", this.formData);
+
+    //   // Create a new FormData object
+    //   let data = new FormData();
+
+    //   // Append text fields to FormData
+    //   data.append('StoryType', this.selectedStoryType);
+    //   data.append('user_name', this.formData.user_name);
+    //   data.append('user_email', this.formData.user_email);
+
+    //   data.append('story', this.formData.story);
+    //   data.append('make', this.formData.make);
+    //   data.append('model', this.formData.model);
+    //   data.append('year', this.formData.year);
+    //   data.append('modifications', this.formData.modifications);
+    //   data.append('memorable', this.formData.memorable);
+    //   data.append('advice', this.formData.advice);
+    //   data.append('story_name', this.formData.story_name);
+    //   data.append('social_media', this.formData.social_media);
+
+    //   // Append files to FormData
+    //   this.formData.storyImages.forEach((file) => {
+    //     data.append('storyImages', file);
+    //   });
+
+    //   // Send POST request using Axios
+    //   axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data'
+    //     }
+    //   })
+    //     .then(response => {
+    //       // Handle success
+    //       console.log('Post request successful:', response.data);
+    //       // Handle success actions here
+    //     })
+    //     .catch(error => {
+    //       // Handle error
+    //       console.error('Error making post request:', error);
+    //       // Handle error actions here
+    //     });
+    // }
     SubmitStory() {
       console.log("submit story", this.formData);
 
       // Create a new FormData object
       let data = new FormData();
 
-      // Append text fields to FormData
+      // Always append common data
+      data.append('story_type', this.selectedStoryType);
       data.append('user_name', this.formData.user_name);
+      // data.append('user_name', "danish");
       data.append('user_email', this.formData.user_email);
-      data.append('story', this.formData.story);
-      data.append('make', this.formData.make);
-      data.append('model', this.formData.model);
-      data.append('year', this.formData.year);
-      data.append('modifications', this.formData.modifications);
-      data.append('memorable', this.formData.memorable);
-      data.append('advice', this.formData.advice);
-      data.append('story_name', this.formData.story_name);
-      data.append('social_media', this.formData.social_media);
 
-      // Append files to FormData
+
+      // data.append('user_email', "danish250ahmad@gmail.com");
+
+      // Conditionally append based on StoryType
+      if (this.selectedStoryType === 'carEnthusiast') {
+        // Append carEnthusiast related data
+        data.append('make', this.formData.make);
+        // data.append('make', "Audi");
+        data.append('model', this.formData.model);
+        // data.append('model', "100");
+        data.append('year', this.formData.year);
+        // data.append('year', "2007");
+        data.append('modifications', this.formData.modifications);
+        data.append('memorable', this.formData.memorable);
+        data.append('advice', this.formData.advice);
+        data.append('story', this.formData.story);
+        data.append('story_name', this.formData.story_name);
+        data.append('social_media', this.formData.social_media);
+      } else {
+        // Append non-carEnthusiast related data
+        data.append('country', this.formData.country);
+        data.append('city', this.formData.city);
+        data.append('story_history', this.formData.storyHistory);
+        data.append('adventure_story', this.formData.adventureStory);
+        data.append('story_name', this.formData.storyName);
+        data.append('social_media', this.formData.url);
+      }
+
+      // Append images (if any)
       this.formData.storyImages.forEach((file) => {
         data.append('storyImages', file);
       });
 
+
+
+
+
+
+
       // Send POST request using Axios
-      axios.post('https://52.59.240.119/api/stories', data, {
+      axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -831,6 +972,7 @@ export default {
         .then(response => {
           // Handle success
           console.log('Post request successful:', response.data);
+          this.ModalStorySucces = true
           // Handle success actions here
         })
         .catch(error => {
@@ -839,6 +981,7 @@ export default {
           // Handle error actions here
         });
     }
+
     ,
     toggleOpeng() {
       console.log('opneg')
@@ -1135,6 +1278,9 @@ export default {
     closeModel() {
       // Hide the modal
       this.hideFilterModal();
+    },
+    hideModalStorySucces() {
+      this.ModalStorySucces = false
     },
     hideFilterModal() {
       // Hide the modal using the ref

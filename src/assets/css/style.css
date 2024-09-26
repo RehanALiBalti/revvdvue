@@ -2726,3 +2726,7 @@ a:hover {
 .min-h-80vh {
 	min-height: 93vh !important;
 }
+
+.wordWrap {
+	word-break: break-all;
+}

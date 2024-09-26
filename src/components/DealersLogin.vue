@@ -344,7 +344,7 @@ export default {
             console.log("in submit profile form")
             try {
                 // Make a POST request to the API endpoint
-                const response = await axios.post('https://52.59.240.119/api/users', this.formData);
+                const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', this.formData);
 
                 // Handle success response
                 console.log('Form data submitted successfully:', response.data);
@@ -436,7 +436,7 @@ export default {
         //         };
         //         console.log("before submittind dealer data", mydata);
         //         try {
-        //             const url = `https://52.59.240.119/api/users/nickname?nickname=${mydata.nickname}`;
+        //             const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${mydata.nickname}`;
         //             const response = await axios.get(url);
         //             console.log("respi", response)
         //             if (response.data.count == 0) {
@@ -476,7 +476,7 @@ export default {
             this.validateForm();
             if (this.isFormValid()) {
                 try {
-                    const url = `https://52.59.240.119/api/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`;
+                    const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`;
                     const response = await axios.get(url);
                     if (response.data.count === 0) {
                         this.$store.dispatch('auth/handleSignUp2', this.formData).then(data => {

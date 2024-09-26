@@ -212,8 +212,8 @@ export default {
       try {
         this.loading = true
         // Make a POST request to the API endpoint
-        // const response = await axios.post('https://52.59.240.119/api/users', { email: this.formData.email });
-        const response = await axios.post('https://52.59.240.119/api/users',
+        // const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', { email: this.formData.email });
+        const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users',
           { email: this.formData.email },
           {
             headers: {
