@@ -292,7 +292,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -714,7 +714,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -804,11 +804,10 @@
                                                     <div class="swiper-container myCarListingCard-swiper-container">
                                                         <swiper-slide class="swiper-no-shadow"
                                                             v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                            <router-link class="d-block"
-                                                                :to="`/carListing${index + 1}`">
+                                                            <div class="d-block">
                                                                 <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
                                                                     class="slider-img myCarListingCard-img" alt="car" />
-                                                            </router-link>
+                                                            </div>
                                                         </swiper-slide>
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -880,7 +879,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1102,7 +1101,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1197,16 +1196,15 @@
                                                             <swiper-slide class="swiper-no-shadow"
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
-                                                                <router-link class="d-block"
-                                                                    :to="`/carListing${index + 1}`">
+                                                                <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
                                                                         class="slider-img myCarListingCard-img"
                                                                         alt="car" />
-                                                                </router-link>
+                                                                </div>
                                                             </swiper-slide>
                                                         </swiper>
                                                         <span class="swiper-notification" aria-live="assertive"
-                                                             aria-atomic="true"></span>
+                                                            aria-atomic="true"></span>
                                                     </div>
                                                     <div class="card-content-car">
                                                         <div class="card-title-div flex">
@@ -1275,7 +1273,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1497,7 +1495,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1592,12 +1590,11 @@
                                                             <swiper-slide class="swiper-no-shadow"
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
-                                                                <router-link class="d-block"
-                                                                    :to="`/carListing${index + 1}`">
+                                                                <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
                                                                         class="slider-img myCarListingCard-img"
                                                                         alt="car" />
-                                                                </router-link>
+                                                                </div>
                                                             </swiper-slide>
                                                         </swiper>
                                                         <span class="swiper-notification" aria-live="assertive"
@@ -1670,7 +1667,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -1892,7 +1889,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select">
                                         <option value="">Any</option>
@@ -1986,12 +1983,11 @@
                                                             <swiper-slide class="swiper-no-shadow"
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
-                                                                <router-link class="d-block"
-                                                                    :to="`/carListing${index + 1}`">
+                                                                <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
                                                                         class="slider-img myCarListingCard-img"
                                                                         alt="car" />
-                                                                </router-link>
+                                                                </div>
                                                             </swiper-slide>
                                                         </swiper>
                                                         <span class="swiper-notification" aria-live="assertive"
@@ -2064,7 +2060,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -2286,7 +2282,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -2381,12 +2377,11 @@
                                                             <swiper-slide class="swiper-no-shadow"
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
-                                                                <router-link class="d-block"
-                                                                    :to="`/carListing${index + 1}`">
+                                                                <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
                                                                         class="slider-img myCarListingCard-img"
                                                                         alt="car" />
-                                                                </router-link>
+                                                                </div>
                                                             </swiper-slide>
                                                         </swiper>
                                                         <span class="swiper-notification" aria-live="assertive"
