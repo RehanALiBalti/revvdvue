@@ -76,9 +76,13 @@
           </div>
           <div class="car-content-desc">
             <h6 class="car-content-title">{{ bannerStories[0]?.story_type }}</h6>
-            <p class="car-content-para tranc">
+            <p class="car-content-para tranc" v-if="bannerStories[0]?.story != ''">
               {{ bannerStories[0]?.story }}
             </p>
+            <p class="car-content-para tranc" v-if="bannerStories[0]?.story == ''">
+              {{ bannerStories[0]?.story_history }}
+            </p>
+
           </div>
         </div>
 
