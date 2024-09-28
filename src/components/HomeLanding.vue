@@ -699,7 +699,7 @@
     </div>
   </div>
 
-  <div class="modal fade shoe d-block" id="ignismyModal" tabindex="-1" role="dialog">
+  <div class="modal fade " id="ignismyModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
