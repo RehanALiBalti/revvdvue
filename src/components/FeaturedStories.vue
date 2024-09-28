@@ -155,122 +155,7 @@
             <!-- Tab Content -->
             <div v-if="activeTab === 0">
                 <div class="row">
-                    <div class="col-md-12 ">
-                        <div class="col-md-12 px-4 ">
-                            <div class="row">
-                                <div class="card-sorting-content px-1 py-2 col-md-12 p-1"
-                                    v-for="(car, index) in featuredStories" :key="index">
-                                    <div class="main-slider weekly-slider align-items-center">
-                                        <div class="swiper-container myCarListingCard-swiper-container">
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
-                                                            class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper>
-                                            <span class="swiper-notification" aria-live="assertive"
-                                                aria-atomic="true"></span>
-                                        </div>
-                                        <img :src="iconford" alt="">
-                                    </div>
-                                    <div class="card-content-car">
-                                        <h4 class="text-white mb-1"> {{ car.make }}:{{ car.model }}</h4>
-                                        <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
-                                            <li class="list-item-user mb-0 justify-content-start">
-                                                <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
-                                                </div>
-                                                <router-link class="a-tag-name-user mb-0 truncate"
-                                                    :to="car.social_media" style="font-size:10px">
-                                                    {{ car.social_media }}
-                                                </router-link>
-                                            </li>
-                                        </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap" style="font-size:12px">
-                                            <span class="">{{ car.advice }}</span>
-                                            <span class="view-more-a-tag" style="cursor: pointer"
-                                                @click="openModal(index)">
-                                                {{ $t('viewMore') }}
-                                            </span>
-                                        </p>
-                                    </div>
 
-                                    <!-- Modal -->
-                                    <div class="modal show d-block" tabindex="-1" role="dialog"
-                                        v-if="isModalOpen && activeCarIndex === index">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-body text-center">
-                                                    <span class="close-icon" @click="modalClose">
-                                                        <i class="fas fa-times"></i>
-                                                    </span>
-
-                                                    <div class="mt-4 py-2">
-                                                        <div class="myCarListingCard-swiper-container">
-                                                            <swiper :effect="'cards'" :grabCursor="true"
-                                                                :modules="modules" :initialSlide="2"
-                                                                :pagination="{ clickable: true }"
-                                                                :navigation="{ nextEl: '.custom-next', prevEl: '.custom-prev' }"
-                                                                class="mySwiper swiper-no-shadow modalswipper">
-
-                                                                <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                    v-for="(image, idx) in parsedImages(car.images)"
-                                                                    :key="idx">
-                                                                    <div class="d-block">
-                                                                        <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
-                                                                            class="slider-img myCarListingCard-img modalswipperImage"
-                                                                            alt="car" @click="toggleOverlayOpacity" />
-                                                                    </div>
-                                                                </swiper-slide>
-                                                            </swiper>
-                                                            <span class="swiper-notification" aria-live="assertive"
-                                                                aria-atomic="true"></span>
-                                                        </div>
-                                                        <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                            :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
-                                                            <button class="custom-prev btn">
-                                                                <img :src="prevIcon" alt="">
-                                                            </button>
-                                                            <button class="custom-next btn">
-                                                                <img :src="nextIcon" alt="">
-                                                            </button>
-                                                        </div>
-
-                                                        <div class="overlay"
-                                                            :class="{ 'opacity-05': isOverlayTransparent }">
-                                                            <div
-                                                                class="mt-2 d-flex justify-content-between align-items-center mb-2">
-                                                                <div class="d-flex align-items-center gap-2">
-                                                                    <img :src="iconford" alt="">
-                                                                    <h3 class="m-0 text-white">{{ car.story_name }}</h3>
-                                                                </div>
-                                                                <p class="text-white">{{ car.story_type }}</p>
-                                                            </div>
-                                                            <div class="d-flex align-items-center text-white mt-2">
-                                                                <div class="icon-user">
-                                                                    <i class="fa-brands fa-instagram text-white"></i>
-                                                                </div>
-                                                                <router-link class="a-tag-name-user mb-0 truncate"
-                                                                    :to="car.social_media" style="font-size:12px">
-                                                                    {{ car.social_media }}
-                                                                </router-link>
-                                                            </div>
-                                                            <p class="text-white" style="font-size:13px">{{ car.advice
-                                                                }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
 
                     <div class="col-md-3 z-0">
                         <div class="filter-box">
@@ -551,7 +436,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -973,7 +858,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1135,7 +1020,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1357,7 +1242,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1521,7 +1406,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1743,7 +1628,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1907,7 +1792,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -2129,7 +2014,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select">
                                         <option value="">Any</option>
@@ -2428,7 +2313,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -2650,7 +2535,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCity" id="city"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
