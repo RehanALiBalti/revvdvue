@@ -216,24 +216,24 @@
           </div>
           <div class="col-md-12 p-0" id="first" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-6">
 
                 <label for="country" class="form-label">Country</label>
                 <input type="text" id="country" class="form-control" placeholder="Enter Country"
                   v-model="formData.country">
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
 
                 <label for="country" class="form-label">City</label>
                 <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city">
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="storyHistory" class="form-label">Tell us your “Garage”, “Shop”, “Club” Story and
                   history</label>
                 <textarea id="storyHistory" class="form-control" rows="4" placeholder="Describe your story and history"
                   v-model="formData.storyHistory"></textarea>
               </div>
-              <div class="   col-md-6">
+              <div class="   col-md-12">
                 <label for="memorableStories" class="form-label">Can you tell us any memorable stories or adventures
                   you’ve
                   had that stands out
@@ -241,13 +241,13 @@
                 <textarea id="memorableStories" class="form-control" rows="4" placeholder="Share your memorable stories"
                   v-model="formData.adventureStory"></textarea>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="storyName" class="form-label">What is the name of your story that you would like to
                   choose?</label>
-                <input type="text" id="storyName" class="form-control" placeholder="Enter Story Name"
-                  v-model="formData.storyName">
+                <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
+                  v-model="formData.storyName"></textarea>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="link" class="form-label">Add Instagram or Website Link</label>
                 <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
                   v-model="formData.url">
@@ -1463,6 +1463,11 @@ export default {
 
 <style scoped>
 @import "vue-select/dist/vue-select.css";
+
+
+textarea.form-control {
+  min-height: calc(1.5em +(1.75rem + 2px)) !important;
+}
 
 .modalaa {
   position: static !important;
