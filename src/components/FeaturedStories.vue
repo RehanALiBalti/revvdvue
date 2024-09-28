@@ -638,7 +638,7 @@
 							<option value="Zimbabwe">Zimbabwe</option>
                                     </select> -->
                                     <select id="country" class="form-select form-control form-input filter-select"
-                                        v-model="selectedCountry" @change="applyFilter(selectedCountry, selectedCity)">
+                                        v-model="selectedCountry" @change="applyFilter(selectedCountry, selectedCity);">
                                         <option selected value="">Country</option>
                                         <option value="Afghanistan">Afghanistan</option>
                                         <option value="Albania">Albania</option>
@@ -869,8 +869,8 @@
                                     </select> -->
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilter(selectedCountry, selectedCity)">
-                                        <option value="">Any</option>
-                                        <option value="Petite">Petite</option>
+                                        <option selected value="">City</option>
+                                        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                                         <!-- Other cities... -->
                                     </select>
                                 </div>
@@ -1243,21 +1243,10 @@
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
                                         }}</label>
-                                    <select v-model="selectedCity" id="city"
-                                        class="form-select form-control form-input filter-select"
-                                        @change="applyFilterShop(selectedCountry, selectedCity)">
-                                        <option value="">Any</option>
-                                        <option value="Petite">Petite</option>
-                                        <option value="2-Litre">2-Litre</option>
-                                        <option value="Greyhound">Greyhound</option>
-                                        <option value="Ace">Ace</option>
-                                        <option value="Cobra">Cobra</option>
-                                        <option value="3000ME">3000ME</option>
-                                        <option value="Aceca">Aceca</option>
-                                        <option value="Frua">Frua</option>
-                                        <option value="Brooklands Ace">Brooklands Ace</option>
-                                        <option value="Ace V8">Ace V8</option>
-                                        <option value="Aceca">Aceca</option>
+                                    <select id="city" class="form-select form-control form-input filter-select"
+                                        v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
+                                        <option selected value="">City</option>
+                                        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -1629,21 +1618,10 @@
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
                                         }}</label>
-                                    <select v-model="selectedCity" id="city"
-                                        class="form-select form-control form-input filter-select"
-                                        @change="applyFilterClub(selectedCountry, selectedCity)">
-                                        <option value="">Any</option>
-                                        <option value="Petite">Petite</option>
-                                        <option value="2-Litre">2-Litre</option>
-                                        <option value="Greyhound">Greyhound</option>
-                                        <option value="Ace">Ace</option>
-                                        <option value="Cobra">Cobra</option>
-                                        <option value="3000ME">3000ME</option>
-                                        <option value="Aceca">Aceca</option>
-                                        <option value="Frua">Frua</option>
-                                        <option value="Brooklands Ace">Brooklands Ace</option>
-                                        <option value="Ace V8">Ace V8</option>
-                                        <option value="Aceca">Aceca</option>
+                                    <select id="city" class="form-select form-control form-input filter-select"
+                                        v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
+                                        <option selected value="">City</option>
+                                        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -2015,20 +1993,10 @@
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
                                         }}</label>
-                                    <select v-model="selectedCity" id="city"
-                                        class="form-select form-control form-input filter-select">
-                                        <option value="">Any</option>
-                                        <option value="Petite">Petite</option>
-                                        <option value="2-Litre">2-Litre</option>
-                                        <option value="Greyhound">Greyhound</option>
-                                        <option value="Ace">Ace</option>
-                                        <option value="Cobra">Cobra</option>
-                                        <option value="3000ME">3000ME</option>
-                                        <option value="Aceca">Aceca</option>
-                                        <option value="Frua">Frua</option>
-                                        <option value="Brooklands Ace">Brooklands Ace</option>
-                                        <option value="Ace V8">Ace V8</option>
-                                        <option value="Aceca">Aceca</option>
+                                    <select id="city" class="form-select form-control form-input filter-select"
+                                        v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
+                                        <option selected value="">City</option>
+                                        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -2536,21 +2504,10 @@
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
                                         }}</label>
-                                    <select v-model="selectedCity" id="city"
-                                        class="form-select form-control form-input filter-select"
-                                        @change="applyFilterAuto(selectedCountry, selectedCity)">
-                                        <option value="">Any</option>
-                                        <option value="Petite">Petite</option>
-                                        <option value="2-Litre">2-Litre</option>
-                                        <option value="Greyhound">Greyhound</option>
-                                        <option value="Ace">Ace</option>
-                                        <option value="Cobra">Cobra</option>
-                                        <option value="3000ME">3000ME</option>
-                                        <option value="Aceca">Aceca</option>
-                                        <option value="Frua">Frua</option>
-                                        <option value="Brooklands Ace">Brooklands Ace</option>
-                                        <option value="Ace V8">Ace V8</option>
-                                        <option value="Aceca">Aceca</option>
+                                    <select id="city" class="form-select form-control form-input filter-select"
+                                        v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
+                                        <option selected value="">City</option>
+                                        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -2565,7 +2522,7 @@
                             <div class="card-sorting-content px-1 py-2 col-md-12 p-1"
                                 v-for="(car, index) in this.filteredStories.AutomotivePhotographer" :key="index">
                                 <div class="main-slider weekly-slider align-items-center">
-                                    <div class="swiper-container myCarListingCard-swiper-container">
+                                    <div class="swiper-container myCarListingCard-swiper-container" v-if="car.images">
                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
                                             <swiper-slide class="swiper-no-shadow"
@@ -2745,6 +2702,7 @@ export default {
     },
     data() {
         return {
+            cities: [],
             featuredStories: [],
             prevIcon,
             nextIcon,
@@ -3125,6 +3083,40 @@ export default {
         this.fetchCarEnthusiastStories()
     },
     methods: {
+        getcities(country) {
+            console.log("in  citeis")
+            if (!country) return;  // Exit if no country is selected
+
+            // Set up the headers and request body
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+            const urlencoded = new URLSearchParams();
+            urlencoded.append("country", country);
+
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: urlencoded,
+                redirect: 'follow'
+            };
+
+            // Fetch cities based on the selected country
+            fetch("https://countriesnow.space/api/v0.1/countries/cities", requestOptions)
+                .then(response => response.json())  // Convert response to JSON
+                .then(result => {
+                    if (result.data && result.data.length > 0) {
+                        this.cities = result.data;  // Update cities array with the result
+                        console.log(this.cities)
+                    } else {
+                        this.cities = [];  // Clear cities if no data is found
+                    }
+                })
+                .catch(error => {
+                    console.log('error', error);
+                    this.cities = [];  // Clear cities if an error occurs
+                });
+        },
         async handleTabClick(index, tabName) {
             this.activeTab = index; // Set the active tab
             switch (tabName) {
@@ -3441,6 +3433,7 @@ export default {
         applyFilterCar() {
             console.log("in apply filter car");
             // Logic to filter carGarage based on formData.make, formData.model, formData.year
+
             if (!this.formData.make && !this.formData.model && !this.formData.year) {
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
@@ -3472,6 +3465,8 @@ export default {
         applyFilter(selectedCountry, selectedCity) {
             console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
+            this.getcities(selectedCountry)
+
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
             } else {
@@ -3493,6 +3488,7 @@ export default {
             }
         },
         applyFilterShop(selectedCountry, selectedCity) {
+            this.getcities(selectedCountry)
             this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
             console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
@@ -3524,6 +3520,7 @@ export default {
         },
         applyFilterClub(selectedCountry, selectedCity) {
             console.log(selectedCountry, selectedCity);
+            this.getcities(selectedCountry)
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
@@ -3543,6 +3540,7 @@ export default {
         },
         applyFilterBike(selectedCountry, selectedCity) {
             console.log(selectedCountry, selectedCity);
+            this.getcities(selectedCountry)
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
@@ -3564,6 +3562,7 @@ export default {
         },
         applyFilterAuto(selectedCountry, selectedCity) {
             console.log(selectedCountry, selectedCity);
+            this.getcities(selectedCountry)
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
