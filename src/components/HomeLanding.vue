@@ -1000,7 +1000,7 @@ export default {
       try {
         const response = await fetch('https://buzzwaretech.com/adminrev/api/bannerstores');
         const data = await response.json();
-
+        console.log("banner_response data", data)
         if (data.success) {
           // Parse the images field from JSON string to an array
           const banner = data.banner;
