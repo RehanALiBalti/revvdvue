@@ -69,7 +69,7 @@
 .swiper-pagination-fraction {
 	bottom: var(--swiper-pagination-bottom, 8px);
 	top: var(--swiper-pagination-top, auto);
-	left: 0;
+	left: 0 !important;
 	width: 100%;
 	bottom: 100px;
 }
@@ -80,7 +80,7 @@
 .swiper-pagination-fraction {
 	/* top: var(--swiper-pagination-top, auto); */
 	top: 103% !important;
-	left: 7%;
+
 	width: 100%;
 	bottom: 104px;
 	/* transform: translateX(-50%); */

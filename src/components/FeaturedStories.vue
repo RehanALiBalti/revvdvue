@@ -4,7 +4,7 @@
             <!-- Tabs -->
             <div class="row mb-2">
                 <div v-for="(tab, index) in tabs" :key="index"
-                    :class="['col-md-2', { 'active-tab': activeTab === index }]"
+                    :class="['col-6 col-md-2 my-2 my-md-1', { 'active-tab': activeTab === index }]"
                     @click="handleTabClick(index, tab.name)">
                     <div class="btn-div-create-forum position-relative" :class="[
                         'w-100',
@@ -71,7 +71,7 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap" style="font-size:12px">
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px">
                                         <span v-if="car.advice">{{ car.advice }}</span>
                                         <span v-else>{{ car.adventure_story }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
@@ -4078,7 +4078,7 @@ form-select {
 /* new */
 
 .gap-8 {
-    gap: 8rem !important;
+    gap: 16rem !important;
 }
 
 .customSelect {
@@ -4228,5 +4228,16 @@ form-select {
 
 .cp {
     cursor: pointer !important;
+}
+@media(max-width:786px){
+    .cp{
+        width:25% !important;
+    }
+    .truncate{
+        width:15% !important
+    }
+    .filter-image-div{
+        display:none
+    }
 }
 </style>
