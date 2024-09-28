@@ -1,5 +1,5 @@
 <template>
-    <section class="community-section my-5 pt-3">
+    <section class="community-section  ">
         <div class="container">
             <!-- Tabs -->
             <div class="row mb-2">
@@ -33,6 +33,7 @@
                     </div>
                 </div>
             </div>
+            <h3 class="text-white">Feature Story</h3>
             <div class="row">
                 <div class="col-md-12 ">
                     <div class="col-md-12 px-4 ">
@@ -151,13 +152,19 @@
                     </div>
 
                 </div>
+              
+
             </div>
+
             <!-- Tab Content -->
             <div v-if="activeTab === 0">
                 <div class="row">
+                    <div class="col-md-12 mb-2 ">
+                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                @input="applyFiltercarSearch" />
+              </div>
 
-
-                    <div class="col-md-3 z-0">
+                    <div class="col-md-3 ">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
                             <div class="row">
@@ -259,7 +266,8 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 "> {{ car.make }}:{{ car.model }}</h4>
+                                    <h4 class="text-white mb-1 cp" @click="openModal(index)"> {{ car.make }}:{{
+                                        car.model }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
@@ -270,7 +278,8 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size:12px">
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp " style="font-size:12px"
+                                        @click="openModal(index)">
                                         <span class="">{{ car.advice }}</span> <span class="view-more-a-tag"
                                             style="cursor: pointer" @click="openModal(index)">
                                             {{ $t("viewMore") }}
@@ -429,6 +438,10 @@
 
             <div v-else-if="activeTab === 1">
                 <div class="row">
+                    <div class="col-md-12 mb-2 ">
+                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                @input="applyFilterCarGarageSearch" />
+              </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -904,7 +917,7 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 "> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp" @click="openModal(index)"> {{ car.story_type }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
@@ -915,10 +928,11 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size:12px">
-                                        <span class="">{{ car.adventure_story }}</span> <span class="view-more-a-tag"
-                                            style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t("viewMore") }}
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+                                        v-if="car.adventure_story" @click="openModal(index)">
+                                        <span>{{ car.adventure_story }}</span>
+                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
+                                            {{ $t('viewMore') }}
                                         </span>
                                     </p>
 
@@ -1013,6 +1027,10 @@
             <div v-else-if="activeTab === 2">
                 <!-- Add content here Car Modification/Tuning Shop Content -->
                 <div class="row">
+                    <div class="col-md-12 mb-2 ">
+                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                @input="applyFilterCarModificationTunningShopSearch" />
+              </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -1279,7 +1297,7 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 "> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_type }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
@@ -1290,10 +1308,11 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size:12px">
-                                        <span class="">{{ car.adventure_story }}</span> <span class="view-more-a-tag"
-                                            style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t("viewMore") }}
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+                                        v-if="car.adventure_story" @click="openModal(index)">
+                                        <span>{{ car.adventure_story }}</span>
+                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
+                                            {{ $t('viewMore') }}
                                         </span>
                                     </p>
 
@@ -1387,7 +1406,12 @@
             </div>
             <div v-else-if="activeTab === 3">
                 <!-- Add content here -->
+                
                 <div class="row">
+                    <div class="col-md-12 mb-2 ">
+                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                @input="applyFilterCarClubSearch" />
+              </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -1654,7 +1678,7 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 "> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp" @click="openModal(index)"> {{ car.story_type }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
@@ -1665,12 +1689,14 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size:12px">
-                                        <span class="">{{ car.adventure_story }}</span> <span class="view-more-a-tag"
-                                            style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t("viewMore") }}
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+                                        v-if="car.adventure_story" @click="openModal(index)">
+                                        <span>{{ car.adventure_story }}</span>
+                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
+                                            {{ $t('viewMore') }}
                                         </span>
                                     </p>
+
 
 
 
@@ -1763,6 +1789,10 @@
             <div v-else-if="activeTab === 4">
                 <!-- Add content here Motorbike Enthusiast Content -->
                 <div class="row">
+                    <div class="col-md-12 mb-2 ">
+                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                @input="applyFilterMotorbikeEnthusiastSearch" />
+              </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -2164,7 +2194,7 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 "> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_type }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
@@ -2175,12 +2205,14 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size:12px">
-                                        <span class="">{{ car.adventure_story }}</span> <span class="view-more-a-tag"
-                                            style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t("viewMore") }}
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+                                        v-if="car.adventure_story" @click="openModal(index)">
+                                        <span>{{ car.adventure_story }}</span>
+                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
+                                            {{ $t('viewMore') }}
                                         </span>
                                     </p>
+
 
 
 
@@ -2274,6 +2306,10 @@
             <div v-else-if="activeTab === 5">
                 <!-- Add content here -->
                 <div class="row">
+                    <div class="col-md-12 mb-2 ">
+                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                @input="applyFilterAutomotivePhotographerSearch" />
+              </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -2540,7 +2576,7 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 "> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_type }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
@@ -2551,12 +2587,14 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size:12px">
-                                        <span class="">{{ car.adventure_story }}</span> <span class="view-more-a-tag"
-                                            style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t("viewMore") }}
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+                                        v-if="car.adventure_story" @click="openModal(index)">
+                                        <span>{{ car.adventure_story }}</span>
+                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
+                                            {{ $t('viewMore') }}
                                         </span>
                                     </p>
+
 
 
 
@@ -3028,6 +3066,7 @@ export default {
                     ],
                 },
             ],
+            search: "",
             filteredStories: {
                 CarEnthusiast: [],
                 CarGarage: [],
@@ -3055,6 +3094,7 @@ export default {
             const endIndex = startIndex + this.pageSize;
             return this.cars.slice(startIndex, endIndex);
         },
+
     },
     mounted() {
         this.retrieveCars();
@@ -3430,6 +3470,136 @@ export default {
         //     filterobj = filteredCars;
         //     console.log("after filter", filterobj)
         // },
+
+
+
+        applyFilterCarGarageSearch() {
+            console.log("in apply filter story");
+
+            // Logic to filter stories based on the search input
+            if (!this.search) {
+                this.fetchStories(); // Fetch original data if no filters are applied
+            } else {
+                // Make a copy of the original stories before filtering
+                const filteredStories = this.filteredStories.CarGarage.filter((story) => {
+                    // Filter based on story name (case-insensitive search)
+                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                });
+
+                // Update the filteredStories list, triggering reactivity
+                this.filteredStories.CarGarage = filteredStories;
+
+                console.log("Filtered Stories:", this.filteredStories);
+                console.log("Original Stories:", this.originalStories);
+            }
+        },
+        applyFilterCarModificationTunningShopSearch() {
+            console.log("in apply filter story");
+
+            // Logic to filter stories based on the search input
+            if (!this.search) {
+                this.fetchStories(); // Fetch original data if no filters are applied
+            } else {
+                // Make a copy of the original stories before filtering
+                const filteredStories = this.filteredStories.CarModificationTunningShop.filter((story) => {
+                    // Filter based on story name (case-insensitive search)
+                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                });
+
+                // Update the filteredStories list, triggering reactivity
+                this.filteredStories.CarModificationTunningShop = filteredStories;
+
+                console.log("Filtered Stories:", this.filteredStories);
+                console.log("Original Stories:", this.originalStories);
+            }
+        },
+
+        applyFilterCarClubSearch() {
+            console.log("in apply filter story");
+
+            // Logic to filter stories based on the search input
+            if (!this.search) {
+                this.fetchStories(); // Fetch original data if no filters are applied
+            } else {
+                // Make a copy of the original stories before filtering
+                const filteredStories = this.filteredStories.CarClub.filter((story) => {
+                    // Filter based on story name (case-insensitive search)
+                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                });
+
+                // Update the filteredStories list, triggering reactivity
+                this.filteredStories.CarClub = filteredStories;
+
+                console.log("Filtered Stories:", this.filteredStories);
+                console.log("Original Stories:", this.originalStories);
+            }
+        },
+        applyFilterMotorbikeEnthusiastSearch() {
+            console.log("in apply filter story");
+
+            // Logic to filter stories based on the search input
+            if (!this.search) {
+                this.fetchStories(); // Fetch original data if no filters are applied
+            } else {
+                // Make a copy of the original stories before filtering
+                const filteredStories = this.filteredStories.MotorbikeEnthusiast.filter((story) => {
+                    // Filter based on story name (case-insensitive search)
+                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                });
+
+                // Update the filteredStories list, triggering reactivity
+                this.filteredStories.MotorbikeEnthusiast = filteredStories;
+
+                console.log("Filtered Stories:", this.filteredStories);
+                console.log("Original Stories:", this.originalStories);
+            }
+        },
+
+        applyFilterAutomotivePhotographerSearch() {
+            console.log("in apply filter story");
+
+            // Logic to filter stories based on the search input
+            if (!this.search) {
+                this.fetchStories(); // Fetch original data if no filters are applied
+            } else {
+                // Make a copy of the original stories before filtering
+                const filteredStories = this.filteredStories.AutomotivePhotographer.filter((story) => {
+                    // Filter based on story name (case-insensitive search)
+                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                });
+
+                // Update the filteredStories list, triggering reactivity
+                this.filteredStories.AutomotivePhotographer = filteredStories;
+
+                console.log("Filtered Stories:", this.filteredStories);
+                console.log("Original Stories:", this.originalStories);
+            }
+        },
+
+
+
+
+
+        applyFiltercarSearch() {
+            console.log("in apply filter story");
+
+            // Logic to filter stories based on the search input
+            if (!this.search) {
+                this.fetchStories(); // Fetch original data if no filters are applied
+            } else {
+                // Make a copy of the original stories before filtering
+                const filteredStories = this.filteredStories.CarEnthusiast.filter((story) => {
+                    // Filter based on story name (case-insensitive search)
+                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                });
+
+                // Update the filteredStories list, triggering reactivity
+                this.filteredStories.CarEnthusiast = filteredStories;
+
+                console.log("Filtered Stories:", this.filteredStories);
+                console.log("Original Stories:", this.originalStories);
+            }
+        },
         applyFilterCar() {
             console.log("in apply filter car");
             // Logic to filter carGarage based on formData.make, formData.model, formData.year
@@ -3645,9 +3815,13 @@ export default {
         openModal(index) {
             console.log("Modal opened for car index:", index);
             this.activeCarIndex = index; // Set the active index to the clicked car
+
+
             this.isModalOpen = true;
+
         },
         modalClose() {
+            console.log("outmodal")
             this.isModalOpen = false;
             this.activeCarIndex = null; // Reset the active car index
         },
@@ -4048,7 +4222,11 @@ form-select {
 }
 
 .signin-btnli {
-    background: rgba(77, 85, 97, 0.3) !important;
+    background: rgba(77, 85, 97, 0.7) !important;
 
+}
+
+.cp {
+    cursor: pointer !important;
 }
 </style>
