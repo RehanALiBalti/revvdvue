@@ -71,13 +71,14 @@
         <h5 class="h5-title text-capitalize mb-4">{{ $t('weeklyStory') }}</h5>
         <div class="car-content">
           <div class="img-div-footer">
-            <img src="@/assets/images/94c8d99e3eceee3f64597db010958594.png" class="img-car" alt="car" />
+            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
+              class="img-car" alt="car" v-if="bannerStories[0]?.images.length > 0" />
           </div>
           <div class="car-content-desc">
-            <h6 class="car-content-title">Koenigsegg agera one:1</h6>
-            <!-- <p class="car-content-para">
-                  Lorem 9. Ipsum is simply, dummy text is that, Warrington, WA4
-                </p> -->
+            <h6 class="car-content-title">{{ bannerStories[0]?.story_type }}</h6>
+            <p class="car-content-para tranc">
+              {{ bannerStories[0]?.story }}
+            </p>
           </div>
         </div>
 
@@ -730,10 +731,27 @@ export default {
       },
       dataGy: [],
       selectedData: '',
-      uploadedFiles: []
+      uploadedFiles: [],
+      bannerStories: []
     };
   },
   methods: {
+    async fetchBannerStories() {
+      try {
+        const response = await fetch('https://buzzwaretech.com/adminrev/api/bannerstores');
+        const data = await response.json();
+
+        if (data.success) {
+          // Parse the images field from JSON string to an array
+          const banner = data.banner;
+          console.log("banner data", banner)
+          banner.images = JSON.parse(banner.images); // Parse the images
+          this.bannerStories = [banner]; // Store it in the featuredCars array
+        }
+      } catch (error) {
+        console.error('Error fetching featured stories:', error);
+      }
+    },
     // handleFileUpload(event) {
     //   const files = event.target.files;
     //   if (files.length + this.uploadedImages.length > 8) {
@@ -814,7 +832,7 @@ export default {
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.image = response.data.image
 
-        let imageUrl = "https://52.59.240.119/users/" + this.image;
+        let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
 
         this.changeProfileImage(imageUrl)
         if (this.role != 'dealer') {
@@ -1428,7 +1446,7 @@ export default {
     await this.fetchproData()
 
 
-
+    this.fetchBannerStories()
 
   },
   beforeUnmount() {
@@ -1797,5 +1815,27 @@ export default {
 
 .libtn {
   width: fit-content !important;
+}
+
+.img-div-footer {
+  min-width: 105px !important;
+  border-radius: 10px !important
+}
+
+.tranc {
+  display: -webkit-box;
+  /* Use WebKit for browser compatibility */
+  -webkit-box-orient: vertical;
+  /* Aligns the box in vertical orientation */
+  -webkit-line-clamp: 2;
+  /* Limits the number of lines to 2 */
+  overflow: hidden;
+  /* Hides the overflow text */
+  text-overflow: ellipsis;
+  /* Adds ellipsis (...) at the end */
+  max-height: 3em;
+  /* Ensures only two lines are shown (line-height * 2) */
+  line-height: 1.5em;
+  /* Set the desired line height */
 }
 </style>

@@ -789,7 +789,8 @@ export default {
 
     // reply
     getImageUrl(imagePath) {
-      return `https://52.59.240.119/${imagePath}`;
+      // return `https://52.59.240.119/${imagePath}`;
+      return `https://king-prawn-app-3rw3o.ondigitalocean.app/${imagePath}`;
     },
 
     openViewer(imagePath) {
