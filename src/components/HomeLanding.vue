@@ -911,7 +911,7 @@ export default {
 
       shopName: "",
       ModalStorySucces: false,
-      ModalStoryFail:false,
+      ModalStoryFail: false,
       selectedStoryType: "carEnthusiast",
       role: "",
       user: {
@@ -981,8 +981,8 @@ export default {
     };
   },
   methods: {
-    hideModalStoryFail(){
-       this.ModalStoryFail=false
+    hideModalStoryFail() {
+      this.ModalStoryFail = false
     },
     handleName() {
       if (this.selectedStoryType == "carGarage") {
@@ -1278,30 +1278,30 @@ export default {
 
 
 
-       if(this.isLogin){
-              // Send POST request using Axios
-      axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-        .then(response => {
-          // Handle success
-          console.log('Post request successful:', response.data);
-          this.ModalStorySucces = true
-          // Handle success actions here
+      if (this.isLogin == true) {
+        // Send POST request using Axios
+        axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         })
-        .catch(error => {
-          // Handle error
-          console.error('Error making post request:', error);
-          // Handle error actions here
-        });
-       }
-       else{
-        this.ModalStoryFail=true
-       }
+          .then(response => {
+            // Handle success
+            console.log('Post request successful:', response.data);
+            this.ModalStorySucces = true
+            // Handle success actions here
+          })
+          .catch(error => {
+            // Handle error
+            console.error('Error making post request:', error);
+            // Handle error actions here
+          });
+      }
+      else {
+        this.ModalStoryFail = true
+      }
 
-    
+
     }
 
     ,
@@ -1416,7 +1416,7 @@ export default {
           console.log(e);
         });
     },
-  
+
 
     retrieveCommunities() {
       if (this.GenfilteredOptions == '') {
@@ -1738,7 +1738,7 @@ export default {
   async mounted() {
     this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
-    
+
 
     window.addEventListener('storage', this.handleStorageChange);
     this.retrieveCars();

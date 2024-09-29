@@ -3112,7 +3112,7 @@ export default {
 
     },
     mounted() {
-        this.checkLoginStatus(),
+    
             this.retrieveCars();
 
         // Initialize Swiper
