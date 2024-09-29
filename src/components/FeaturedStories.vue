@@ -35,7 +35,7 @@
             </div>
             <h3 class="text-white">Feature Story</h3>
             <div class="row">
-                <div class="col-md-12 ">
+                <div class="col-md-12  px-0">
                     <div class="col-md-12 px-4 ">
                         <div class="row">
                             <div class="card-sorting-content px-1 py-2 col-md-12 p-1"
@@ -65,7 +65,7 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mb-0 truncate" :to="car.social_media"
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
                                                 style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
@@ -120,13 +120,13 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="overlay"
+                                                    <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white">{{ car.story_name }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.story_name }}</h3>
                                                             </div>
                                                             <p class="text-white">{{ car.story_type }}</p>
                                                         </div>
@@ -134,7 +134,7 @@
                                                             <div class="icon-user">
                                                                 <i class="fa-brands fa-instagram text-white"></i>
                                                             </div>
-                                                            <router-link class="a-tag-name-user mb-0 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
                                                                 :to="car.social_media" style="font-size:12px">
                                                                 {{ car.social_media }}
                                                             </router-link>
@@ -160,7 +160,7 @@
             <div v-if="activeTab === 0">
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search" v-model="search"
                 @input="applyFiltercarSearch" />
               </div>
 
@@ -272,7 +272,7 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mb-0 truncate" :to="car.social_media"
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
                                                 style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
@@ -330,7 +330,7 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="overlay"
+                                                    <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }">
 
 
@@ -338,16 +338,16 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white">{{ car.story_name }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.story_name }}</h3>
 
                                                             </div>
-                                                            <p class="text-white">{{ car.story_type }}</p>
+                                                          
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
                                                                     class="fa-brands fa-instagram text-white"></i>
                                                             </div>
-                                                            <router-link class="a-tag-name-user mb-0 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
                                                                 :to="car.social_media" style="font-size:12px">
                                                                 {{ car.social_media }}
                                                             </router-link>
@@ -438,8 +438,8 @@
 
             <div v-else-if="activeTab === 1">
                 <div class="row">
-                    <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                    <div class="col-md-12 mb-2 m-0 ">
+                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                 @input="applyFilterCarGarageSearch" />
               </div>
                     <div class="col-md-3">
@@ -922,7 +922,7 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mb-0 truncate" :to="car.social_media"
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
                                                 style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
@@ -980,7 +980,7 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="overlay"
+                                                    <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }">
 
 
@@ -988,16 +988,16 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
 
                                                             </div>
-                                                            <p class="text-white">{{ car.story_type }}</p>
+
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
                                                                     class="fa-brands fa-instagram text-white"></i>
                                                             </div>
-                                                            <router-link class="a-tag-name-user mb-0 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
                                                                 :to="car.social_media" style="font-size:12px">
                                                                 {{ car.social_media }}
                                                             </router-link>
@@ -1028,7 +1028,7 @@
                 <!-- Add content here Car Modification/Tuning Shop Content -->
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                 @input="applyFilterCarModificationTunningShopSearch" />
               </div>
                     <div class="col-md-3">
@@ -1297,12 +1297,12 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_name }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mb-0 truncate" :to="car.social_media"
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
                                                 style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
@@ -1360,7 +1360,7 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="overlay"
+                                                    <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }">
 
 
@@ -1368,16 +1368,16 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
 
                                                             </div>
-                                                            <p class="text-white">{{ car.story_type }}</p>
+
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
                                                                     class="fa-brands fa-instagram text-white"></i>
                                                             </div>
-                                                            <router-link class="a-tag-name-user mb-0 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
                                                                 :to="car.social_media" style="font-size:12px">
                                                                 {{ car.social_media }}
                                                             </router-link>
@@ -1409,7 +1409,7 @@
                 
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                 @input="applyFilterCarClubSearch" />
               </div>
                     <div class="col-md-3">
@@ -1678,12 +1678,12 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 cp" @click="openModal(index)"> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp" @click="openModal(index)"> {{ car.story_name }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mb-0 truncate" :to="car.social_media"
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
                                                 style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
@@ -1742,7 +1742,7 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="overlay"
+                                                    <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }">
 
 
@@ -1750,16 +1750,16 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
 
                                                             </div>
-                                                            <p class="text-white">{{ car.story_type }}</p>
+                                                          
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
                                                                     class="fa-brands fa-instagram text-white"></i>
                                                             </div>
-                                                            <router-link class="a-tag-name-user mb-0 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
                                                                 :to="car.social_media" style="font-size:12px">
                                                                 {{ car.social_media }}
                                                             </router-link>
@@ -1790,7 +1790,7 @@
                 <!-- Add content here Motorbike Enthusiast Content -->
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                 @input="applyFilterMotorbikeEnthusiastSearch" />
               </div>
                     <div class="col-md-3">
@@ -2066,7 +2066,7 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                             <li class="list-item-user">
                                                 <div class="icon-user"></div>
-                                                <router-link class="a-tag-name-user" to="javascript:void(0);">
+                                                <router-link class="a-tag-name-user mt-2" to="javascript:void(0);">
                                                     {{ car.social_media }}
                                                 </router-link>
                                             </li>
@@ -2126,7 +2126,7 @@
                                                         <ul class="user-details-car myCarListingCard-user-details-car">
                                                             <li class="list-item-user">
                                                                 <div class="icon-user"></div>
-                                                                <router-link class="a-tag-name-user"
+                                                                <router-link class="a-tag-name-user mt-2"
                                                                     to="javascript:void(0);">
                                                                     {{ car.social_media }}
                                                                 </router-link>
@@ -2194,12 +2194,12 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_name }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mb-0 truncate" :to="car.social_media"
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
                                                 style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
@@ -2258,7 +2258,7 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="overlay"
+                                                    <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }">
 
 
@@ -2266,16 +2266,16 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
 
                                                             </div>
-                                                            <p class="text-white">{{ car.story_type }}</p>
+                                                          
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
                                                                     class="fa-brands fa-instagram text-white"></i>
                                                             </div>
-                                                            <router-link class="a-tag-name-user mb-0 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
                                                                 :to="car.social_media" style="font-size:12px">
                                                                 {{ car.social_media }}
                                                             </router-link>
@@ -2307,7 +2307,7 @@
                 <!-- Add content here -->
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch" placeholder="search" v-model="search"
+                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                 @input="applyFilterAutomotivePhotographerSearch" />
               </div>
                     <div class="col-md-3">
@@ -2576,12 +2576,12 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp " @click="openModal(index)"> {{ car.story_name }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mb-0 truncate" :to="car.social_media"
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
                                                 style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
@@ -2640,7 +2640,7 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="overlay"
+                                                    <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }">
 
 
@@ -2648,16 +2648,16 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
 
                                                             </div>
-                                                            <p class="text-white">{{ car.story_type }}</p>
+                                                       
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
                                                                     class="fa-brands fa-instagram text-white"></i>
                                                             </div>
-                                                            <router-link class="a-tag-name-user mb-0 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
                                                                 :to="car.social_media" style="font-size:12px">
                                                                 {{ car.social_media }}
                                                             </router-link>
@@ -3591,7 +3591,7 @@ export default {
                 // Make a copy of the original stories before filtering
                 const filteredStories = this.filteredStories.CarEnthusiast.filter((story) => {
                     // Filter based on story name (case-insensitive search)
-                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                    return story.make.toLowerCase().includes(this.search.toLowerCase());
                 });
 
                 // Update the filteredStories list, triggering reactivity
@@ -4240,5 +4240,9 @@ form-select {
     .filter-image-div{
         display:none
     }
+}
+.fontsiz{
+    font-size:20px !important;
+    
 }
 </style>
