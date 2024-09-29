@@ -1278,7 +1278,8 @@ export default {
 
 
 
-      if (this.isLogin == true) {
+      if (this.isLogin == 'true' || this.isLogin == true) {
+        console.log("the condition is true and form submit")
         // Send POST request using Axios
         axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
           headers: {
@@ -1298,6 +1299,7 @@ export default {
           });
       }
       else {
+        console.log("false please login ")
         this.ModalStoryFail = true
       }
 
