@@ -73,7 +73,7 @@
                                     </ul>
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px">
                                         <span v-if="car.advice">{{ car.advice }}</span>
-                                        <span v-else>{{ car.adventure_story }}</span>
+                                        <span v-else>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
                                             {{ $t('viewMore') }}
                                         </span>
@@ -280,7 +280,7 @@
                                     </ul>
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp " style="font-size:12px"
                                         @click="openModal(index)">
-                                        <span class="">{{ car.advice }}</span> <span class="view-more-a-tag"
+                                        <span class="">{{ car.story }}</span> <span class="view-more-a-tag"
                                             style="cursor: pointer" @click="openModal(index)">
                                             {{ $t("viewMore") }}
                                         </span>
@@ -353,7 +353,7 @@
                                                             </router-link>
                                                         </div>
 
-                                                        <p class="text-white" style="font-size:13px">{{ car.advice }}
+                                                        <p class="text-white" style="font-size:13px">{{ car.story }}
                                                         </p>
                                                     </div>
 
@@ -917,7 +917,7 @@
                                     <img :src="iconford" alt="">
                                 </div>
                                 <div class="card-content-car">
-                                    <h4 class="text-white mb-1 cp" @click="openModal(index)"> {{ car.story_type }}</h4>
+                                    <h4 class="text-white mb-1 cp" @click="openModal(index)"> {{ car.story_name }}</h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
@@ -929,8 +929,8 @@
                                         </li>
                                     </ul>
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.adventure_story" @click="openModal(index)">
-                                        <span>{{ car.adventure_story }}</span>
+                                        v-if="car.story_history" @click="openModal(index)">
+                                        <span>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
                                             {{ $t('viewMore') }}
                                         </span>
@@ -1309,8 +1309,8 @@
                                         </li>
                                     </ul>
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.adventure_story" @click="openModal(index)">
-                                        <span>{{ car.adventure_story }}</span>
+                                        v-if="car.story_history" @click="openModal(index)">
+                                        <span>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
                                             {{ $t('viewMore') }}
                                         </span>
@@ -1690,8 +1690,8 @@
                                         </li>
                                     </ul>
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.adventure_story" @click="openModal(index)">
-                                        <span>{{ car.adventure_story }}</span>
+                                        v-if="car.story_history" @click="openModal(index)">
+                                        <span>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
                                             {{ $t('viewMore') }}
                                         </span>
@@ -2072,7 +2072,7 @@
                                             </li>
                                         </ul>
                                         <p class="text-white wordWrap">
-                                            {{ car.adventure_story }}
+                                            {{ car.story_history }}
                                         </p>
                                         <div class="d-flex justify-content-between text-white w-100">
                                             <p>Country:{{ car.country }}</p>
@@ -2133,7 +2133,7 @@
                                                             </li>
                                                         </ul>
                                                         <p class="text-white">
-                                                            {{ car.adventure_story }}
+                                                            {{ car.story_history }}
                                                         </p>
                                                         <div class="d-flex justify-content-between text-white w-100">
                                                             <p>Country:{{ car.country }}</p>
@@ -2206,8 +2206,8 @@
                                         </li>
                                     </ul>
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.adventure_story" @click="openModal(index)">
-                                        <span>{{ car.adventure_story }}</span>
+                                        v-if="car.story_history" @click="openModal(index)">
+                                        <span>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
                                             {{ $t('viewMore') }}
                                         </span>
@@ -2588,8 +2588,8 @@
                                         </li>
                                     </ul>
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.adventure_story" @click="openModal(index)">
-                                        <span>{{ car.adventure_story }}</span>
+                                        v-if="car.story_history" @click="openModal(index)">
+                                        <span>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
                                             {{ $t('viewMore') }}
                                         </span>
@@ -2740,6 +2740,7 @@ export default {
     },
     data() {
         return {
+      
             cities: [],
             featuredStories: [],
             prevIcon,

@@ -202,7 +202,7 @@
           <div class="col-md-12 p-0">
 
             <label for="storyType" class="form-label">Story Type</label>
-            <select id="storyType" class="form-control" v-model="selectedStoryType" required>
+            <select id="storyType" class="form-control" v-model="selectedStoryType" required @change="handleName">
               <option value="">Select Story Type</option>
               <option value="carEnthusiast">Car Enthusiast</option>
               <option value="carGarage">Car Garage</option>
@@ -450,8 +450,7 @@
                 </select>
               </div>
               <div class="col-md-12">
-                <label for="storyHistory" class="form-label">Tell us your “Garage”, “Shop”, “Club” Story and
-                  history</label>
+                <label for="storyHistory" class="form-label">Tell us about your {{ shopName }}</label>
                 <textarea id="storyHistory" class="form-control" rows="4" placeholder="Describe your story and history"
                   v-model="formData.storyHistory"></textarea>
               </div>
@@ -893,6 +892,7 @@ export default {
   },
   data() {
     return {
+      shopName: "",
       ModalStorySucces: false,
       selectedStoryType: "carEnthusiast",
       role: "",
@@ -963,6 +963,25 @@ export default {
     };
   },
   methods: {
+    handleName(){
+       if(this.selectedStoryType =="carGarage"){
+           this.shopName="Garage"
+       }
+
+      else if(this.selectedStoryType =="carModificationShop"){
+          this.shopName="shop"
+      }
+    else  if(this.selectedStoryType =="carClub"){
+          this.shopName="club"
+      }
+    else  if(this.selectedStoryType =="motorbikeEnthusiast"){
+          this.shopName="Garage"
+      }
+    else  if(this.selectedStoryType =="automotivePhotographerast"){
+          this.shopName="Garage"
+      }
+     
+    },
     getcities() {
       if (!this.formData.country) return;  // Exit if no country is selected
 
