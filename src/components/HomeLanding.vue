@@ -203,7 +203,7 @@
 
             <label for="storyType" class="form-label">Story Type</label>
             <select id="storyType" class="form-control" v-model="selectedStoryType" required @change="handleName">
-              <option value="">Select Story Type</option>
+            
               <option value="carEnthusiast">Car Enthusiast</option>
               <option value="carGarage">Car Garage</option>
               <option value="carModificationShop">Car Modification/Tuning Shop</option>
