@@ -743,8 +743,8 @@
         <div class="modal-body">
           <div class="thank-you-pop">
             <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
-            <h1 class="coloror">Something went wrong!</h1>
-            <p>Please Login To Upload Story</p>
+            <h1 class="coloror">{{modalTitle}}</h1>
+            <p>{{modaldescription}}</p>
           </div>
         </div>
       </div>
@@ -908,7 +908,8 @@ export default {
   },
   data() {
     return {
-
+      modalTitle:"",
+      modaldescription:"",
       shopName: "",
       ModalStorySucces: false,
       ModalStoryFail: false,
@@ -1296,10 +1297,16 @@ export default {
             // Handle error
             console.error('Error making post request:', error);
             // Handle error actions here
+           
+            this.modalTitle="Something went wrong"
+            this.modaldescription="Plese try after sometime"
+            this.ModalStoryFail = true;
           });
       }
       else {
         console.log("false please login ")
+         this.modalTitle="Something went wrong"
+            this.modaldescription="Plese login first to submit story"
         this.ModalStoryFail = true
       }
 
