@@ -203,7 +203,7 @@
 
             <label for="storyType" class="form-label">Story Type</label>
             <select id="storyType" class="form-control" v-model="selectedStoryType" required @change="handleName">
-            
+
               <option value="carEnthusiast">Car Enthusiast</option>
               <option value="carGarage">Car Garage</option>
               <option value="carModificationShop">Car Modification/Tuning Shop</option>
@@ -733,7 +733,23 @@
       </div>
     </div>
   </div>
-
+  <div class="modal fade show d-block" id="ignismyModal" tabindex="-1" role="dialog" v-if="ModalStoryFail == true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            @click="hideModalStoryFail"></button>
+        </div>
+        <div class="modal-body">
+          <div class="thank-you-pop">
+            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
+            <h1 class="coloror">Something went wrong!</h1>
+            <p>Please Login To Upload Story</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Footer -->
   <footer class="footer">
     <!-- Section: Links  -->
@@ -892,8 +908,10 @@ export default {
   },
   data() {
     return {
+
       shopName: "",
       ModalStorySucces: false,
+      ModalStoryFail:false,
       selectedStoryType: "carEnthusiast",
       role: "",
       user: {
@@ -963,24 +981,27 @@ export default {
     };
   },
   methods: {
-    handleName(){
-       if(this.selectedStoryType =="carGarage"){
-           this.shopName="Garage"
-       }
+    hideModalStoryFail(){
+       this.ModalStoryFail=false
+    },
+    handleName() {
+      if (this.selectedStoryType == "carGarage") {
+        this.shopName = "Garage"
+      }
 
-      else if(this.selectedStoryType =="carModificationShop"){
-          this.shopName="shop"
+      else if (this.selectedStoryType == "carModificationShop") {
+        this.shopName = "shop"
       }
-    else  if(this.selectedStoryType =="carClub"){
-          this.shopName="club"
+      else if (this.selectedStoryType == "carClub") {
+        this.shopName = "club"
       }
-    else  if(this.selectedStoryType =="motorbikeEnthusiast"){
-          this.shopName="Garage"
+      else if (this.selectedStoryType == "motorbikeEnthusiast") {
+        this.shopName = "Garage"
       }
-    else  if(this.selectedStoryType =="automotivePhotographerast"){
-          this.shopName="Garage"
+      else if (this.selectedStoryType == "automotivePhotographerast") {
+        this.shopName = "Garage"
       }
-     
+
     },
     getcities() {
       if (!this.formData.country) return;  // Exit if no country is selected
@@ -998,7 +1019,6 @@ export default {
         body: urlencoded,
         redirect: 'follow'
       };
-
       // Fetch cities based on the selected country
       fetch("https://countriesnow.space/api/v0.1/countries/cities", requestOptions)
         .then(response => response.json())  // Convert response to JSON
@@ -1258,9 +1278,8 @@ export default {
 
 
 
-
-
-      // Send POST request using Axios
+       if(this.isLogin){
+              // Send POST request using Axios
       axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -1277,6 +1296,12 @@ export default {
           console.error('Error making post request:', error);
           // Handle error actions here
         });
+       }
+       else{
+        this.ModalStoryFail=true
+       }
+
+    
     }
 
     ,
@@ -1391,7 +1416,7 @@ export default {
           console.log(e);
         });
     },
-
+  
 
     retrieveCommunities() {
       if (this.GenfilteredOptions == '') {
@@ -1713,6 +1738,7 @@ export default {
   async mounted() {
     this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
+    
 
     window.addEventListener('storage', this.handleStorageChange);
     this.retrieveCars();

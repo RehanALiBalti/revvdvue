@@ -65,8 +65,8 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
-                                                style="font-size:10px">
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                :to="car.social_media" style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
                                         </li>
@@ -126,7 +126,8 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.story_name }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.story_name }}
+                                                                </h3>
                                                             </div>
                                                             <p class="text-white">{{ car.story_type }}</p>
                                                         </div>
@@ -139,7 +140,8 @@
                                                                 {{ car.social_media }}
                                                             </router-link>
                                                         </div>
-                                                        <p class="text-white" style="font-size:13px">{{ car.advice
+                                                        <p class="text-white" style="font-size:13px; text-align:start">
+                                                            {{ car.advice
                                                             }}</p>
                                                     </div>
                                                 </div>
@@ -152,7 +154,7 @@
                     </div>
 
                 </div>
-              
+
 
             </div>
 
@@ -160,9 +162,9 @@
             <div v-if="activeTab === 0">
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search" v-model="search"
-                @input="applyFiltercarSearch" />
-              </div>
+                        <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search"
+                            v-model="search" @input="applyFiltercarSearch" />
+                    </div>
 
                     <div class="col-md-3 ">
                         <div class="filter-box">
@@ -272,8 +274,8 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
-                                                style="font-size:10px">
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                :to="car.social_media" style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
                                         </li>
@@ -338,10 +340,11 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.story_name }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.story_name }}
+                                                                </h3>
 
                                                             </div>
-                                                          
+
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
@@ -353,7 +356,8 @@
                                                             </router-link>
                                                         </div>
 
-                                                        <p class="text-white" style="font-size:13px">{{ car.story }}
+                                                        <p class="text-white" style="font-size:13px; text-align:start">
+                                                            {{ car.story }}
                                                         </p>
                                                     </div>
 
@@ -439,9 +443,9 @@
             <div v-else-if="activeTab === 1">
                 <div class="row">
                     <div class="col-md-12 mb-2 m-0 ">
-                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
-                @input="applyFilterCarGarageSearch" />
-              </div>
+                        <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
+                            @input="applyFilterCarGarageSearch" />
+                    </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -449,7 +453,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -871,7 +875,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -922,8 +926,8 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
-                                                style="font-size:10px">
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                :to="car.social_media" style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
                                         </li>
@@ -988,7 +992,8 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                </h3>
 
                                                             </div>
 
@@ -1003,7 +1008,8 @@
                                                             </router-link>
                                                         </div>
 
-                                                        <p class="text-white" style="font-size:13px">{{ car.advice }}
+                                                        <p class="text-white" style="font-size:13px; text-align:start">
+                                                            {{ car.advice }}
                                                         </p>
                                                     </div>
 
@@ -1028,9 +1034,9 @@
                 <!-- Add content here Car Modification/Tuning Shop Content -->
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
-                @input="applyFilterCarModificationTunningShopSearch" />
-              </div>
+                        <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
+                            @input="applyFilterCarModificationTunningShopSearch" />
+                    </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -1038,7 +1044,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1260,7 +1266,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -1302,8 +1308,8 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
-                                                style="font-size:10px">
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                :to="car.social_media" style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
                                         </li>
@@ -1368,7 +1374,8 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                </h3>
 
                                                             </div>
 
@@ -1383,7 +1390,8 @@
                                                             </router-link>
                                                         </div>
 
-                                                        <p class="text-white" style="font-size:13px">{{ car.advice }}
+                                                        <p class="text-white" style="font-size:13px; text-align:start">
+                                                            {{ car.advice }}
                                                         </p>
                                                     </div>
 
@@ -1406,12 +1414,12 @@
             </div>
             <div v-else-if="activeTab === 3">
                 <!-- Add content here -->
-                
+
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
-                @input="applyFilterCarClubSearch" />
-              </div>
+                        <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
+                            @input="applyFilterCarClubSearch" />
+                    </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -1419,7 +1427,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1641,7 +1649,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -1683,8 +1691,8 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
-                                                style="font-size:10px">
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                :to="car.social_media" style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
                                         </li>
@@ -1750,10 +1758,11 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                </h3>
 
                                                             </div>
-                                                          
+
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
@@ -1765,7 +1774,8 @@
                                                             </router-link>
                                                         </div>
 
-                                                        <p class="text-white" style="font-size:13px">{{ car.advice }}
+                                                        <p class="text-white" style="font-size:13px; text-align:start">
+                                                            {{ car.advice }}
                                                         </p>
                                                     </div>
 
@@ -1790,9 +1800,9 @@
                 <!-- Add content here Motorbike Enthusiast Content -->
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
-                @input="applyFilterMotorbikeEnthusiastSearch" />
-              </div>
+                        <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
+                            @input="applyFilterMotorbikeEnthusiastSearch" />
+                    </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -1800,7 +1810,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -2022,7 +2032,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2199,8 +2209,8 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
-                                                style="font-size:10px">
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                :to="car.social_media" style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
                                         </li>
@@ -2266,10 +2276,11 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                </h3>
 
                                                             </div>
-                                                          
+
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
@@ -2281,7 +2292,8 @@
                                                             </router-link>
                                                         </div>
 
-                                                        <p class="text-white" style="font-size:13px">{{ car.advice }}
+                                                        <p class="text-white" style="font-size:13px; text-align:start">
+                                                            {{ car.advice }}
                                                         </p>
                                                     </div>
 
@@ -2307,9 +2319,9 @@
                 <!-- Add content here -->
                 <div class="row">
                     <div class="col-md-12 mb-2 ">
-                <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
-                @input="applyFilterAutomotivePhotographerSearch" />
-              </div>
+                        <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
+                            @input="applyFilterAutomotivePhotographerSearch" />
+                    </div>
                     <div class="col-md-3">
                         <div class="filter-box">
                             <h4 class="filter-title">{{ $t("filters") }}</h4>
@@ -2317,7 +2329,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -2539,7 +2551,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2581,8 +2593,8 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <div class="icon-user"><i class="fa-brands fa-instagram text-white"></i>
                                             </div>
-                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
-                                                style="font-size:10px">
+                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                :to="car.social_media" style="font-size:10px">
                                                 {{ car.social_media }}
                                             </router-link>
                                         </li>
@@ -2648,10 +2660,11 @@
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="">
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}</h3>
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                </h3>
 
                                                             </div>
-                                                       
+
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <div class="icon-user"><i
@@ -2663,7 +2676,8 @@
                                                             </router-link>
                                                         </div>
 
-                                                        <p class="text-white" style="font-size:13px">{{ car.advice }}
+                                                        <p class="text-white" style="font-size:13px; text-align:start">
+                                                            {{ car.advice }}
                                                         </p>
                                                     </div>
 
@@ -2740,7 +2754,7 @@ export default {
     },
     data() {
         return {
-      
+
             cities: [],
             featuredStories: [],
             prevIcon,
@@ -3098,7 +3112,8 @@ export default {
 
     },
     mounted() {
-        this.retrieveCars();
+        this.checkLoginStatus(),
+            this.retrieveCars();
 
         // Initialize Swiper
         // this.swiper = new Swiper(".myCarListingCard-swiper-container", {
@@ -3841,6 +3856,7 @@ export default {
                 this.currentPage++;
             }
         },
+
     },
 };
 </script>
@@ -4230,19 +4246,23 @@ form-select {
 .cp {
     cursor: pointer !important;
 }
-@media(max-width:786px){
-    .cp{
-        width:25% !important;
+
+@media(max-width:786px) {
+    .cp {
+        width: 25% !important;
     }
-    .truncate{
-        width:15% !important
+
+    .truncate {
+        width: 15% !important
     }
-    .filter-image-div{
-        display:none
+
+    .filter-image-div {
+        display: none
     }
 }
-.fontsiz{
-    font-size:20px !important;
-    
+
+.fontsiz {
+    font-size: 20px !important;
+
 }
 </style>
