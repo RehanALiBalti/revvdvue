@@ -280,13 +280,18 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp " style="font-size:12px"
-                                        @click="openModal(index)">
-                                        <span class="">{{ car.story }}</span> <span class="view-more-a-tag"
-                                            style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t("viewMore") }}
-                                        </span>
-                                    </p>
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+   @click="openModal(index)">
+   
+   <span>{{ car.story }}</span>
+   
+   <!-- Conditionally show "view more" if car.story has 10 or more words -->
+   <span class="view-more-a-tag" style="cursor: pointer" 
+         v-if="car.story.split(' ').length >= 10" 
+         @click="openModal(index)">
+       {{ $t('viewMore') }}
+   </span>
+</p>
 
 
 
@@ -932,13 +937,18 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.story_history" @click="openModal(index)">
-                                        <span>{{ car.story_history }}</span>
-                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t('viewMore') }}
-                                        </span>
-                                    </p>
+                                   <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+   v-if="car.story_history" @click="openModal(index)">
+   <span>{{ car.story_history }}</span>
+   
+   <!-- Conditionally show "view more" if there are 10 or more words -->
+   <span class="view-more-a-tag" style="cursor: pointer" 
+         v-if="car.story_history.split(' ').length >= 10" 
+         @click="openModal(index)">
+       {{ $t('viewMore') }}
+   </span>
+</p>
+
 
 
 
@@ -1314,13 +1324,18 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.story_history" @click="openModal(index)">
-                                        <span>{{ car.story_history }}</span>
-                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t('viewMore') }}
-                                        </span>
-                                    </p>
+                                   <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+   v-if="car.story_history" @click="openModal(index)">
+   <span>{{ car.story_history }}</span>
+   
+   <!-- Conditionally show "view more" if there are 10 or more words -->
+   <span class="view-more-a-tag" style="cursor: pointer" 
+         v-if="car.story_history.split(' ').length >= 10" 
+         @click="openModal(index)">
+       {{ $t('viewMore') }}
+   </span>
+</p>
+
 
 
 
@@ -1697,13 +1712,18 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.story_history" @click="openModal(index)">
-                                        <span>{{ car.story_history }}</span>
-                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t('viewMore') }}
-                                        </span>
-                                    </p>
+                                   <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+   v-if="car.story_history" @click="openModal(index)">
+   <span>{{ car.story_history }}</span>
+   
+   <!-- Conditionally show "view more" if there are 10 or more words -->
+   <span class="view-more-a-tag" style="cursor: pointer" 
+         v-if="car.story_history.split(' ').length >= 10" 
+         @click="openModal(index)">
+       {{ $t('viewMore') }}
+   </span>
+</p>
+
 
 
 
@@ -2215,13 +2235,18 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.story_history" @click="openModal(index)">
-                                        <span>{{ car.story_history }}</span>
-                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t('viewMore') }}
-                                        </span>
-                                    </p>
+                                   <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+   v-if="car.story_history" @click="openModal(index)">
+   <span>{{ car.story_history }}</span>
+   
+   <!-- Conditionally show "view more" if there are 10 or more words -->
+   <span class="view-more-a-tag" style="cursor: pointer" 
+         v-if="car.story_history.split(' ').length >= 10" 
+         @click="openModal(index)">
+       {{ $t('viewMore') }}
+   </span>
+</p>
+
 
 
 
@@ -2599,13 +2624,18 @@
                                             </router-link>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
-                                        v-if="car.story_history" @click="openModal(index)">
-                                        <span>{{ car.story_history }}</span>
-                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
-                                            {{ $t('viewMore') }}
-                                        </span>
-                                    </p>
+                                   <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size:12px"
+   v-if="car.story_history" @click="openModal(index)">
+   <span>{{ car.story_history }}</span>
+   
+   <!-- Conditionally show "view more" if there are 10 or more words -->
+   <span class="view-more-a-tag" style="cursor: pointer" 
+         v-if="car.story_history.split(' ').length >= 10" 
+         @click="openModal(index)">
+       {{ $t('viewMore') }}
+   </span>
+</p>
+
 
 
 
