@@ -965,7 +965,7 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 
 .form-select.form-control.form-input,
 .form-control {
-	height: 35px !important;
+	height: 40px !important;
 	border-radius: 5px !important;
 	background-color: #031726 !important;
 	border: 1px solid #1a202c !important;
@@ -1517,7 +1517,7 @@ a {
 }
 
 select.form-select.form-control.form-input.sorting-select {
-	height: 37px;
+	height: 40px;
 	background-color: #1a202c;
 	padding: 0 15px;
 	background-position: right 0.75rem center;
