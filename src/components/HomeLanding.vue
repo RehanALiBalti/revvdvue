@@ -68,9 +68,9 @@
           <img src="../../public/images/2.png">
         </div>
         <!-- Content -->
-        <h5 class="h5-title text-capitalize mb-4">{{ $t('weeklyStory') }}</h5>
-        <div class="car-content">
-          <div class="img-div-footer">
+        <h5 class="h5-title text-capitalize mb-4">{{ $t('Featured Story') }}</h5>
+        <router-link class="car-content" to="/stories" style="cursor:pointer">
+          <div class="">
             <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
               class="img-car" alt="car" v-if="bannerStories[0]?.images.length > 0" />
           </div>
@@ -84,7 +84,7 @@
             </p>
 
           </div>
-        </div>
+        </router-link>
 
         <div class="footer-allDetails">
           <router-link class="viewall-content" to="/stories">
@@ -743,8 +743,8 @@
         <div class="modal-body">
           <div class="thank-you-pop">
             <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
-            <h1 class="coloror">{{modalTitle}}</h1>
-            <p>{{modaldescription}}</p>
+            <h1 class="coloror">{{ modalTitle }}</h1>
+            <p>{{ modaldescription }}</p>
           </div>
         </div>
       </div>
@@ -908,8 +908,8 @@ export default {
   },
   data() {
     return {
-      modalTitle:"",
-      modaldescription:"",
+      modalTitle: "",
+      modaldescription: "",
       shopName: "",
       ModalStorySucces: false,
       ModalStoryFail: false,
@@ -1297,16 +1297,16 @@ export default {
             // Handle error
             console.error('Error making post request:', error);
             // Handle error actions here
-           
-            this.modalTitle="Something went wrong"
-            this.modaldescription="Plese try after sometime"
+
+            this.modalTitle = "Something went wrong"
+            this.modaldescription = "Plese try after sometime"
             this.ModalStoryFail = true;
           });
       }
       else {
         console.log("false please login ")
-         this.modalTitle="Something went wrong"
-            this.modaldescription="Plese login first to submit story"
+        this.modalTitle = "Something went wrong"
+        this.modaldescription = "Plese login first to submit story"
         this.ModalStoryFail = true
       }
 
@@ -2146,6 +2146,7 @@ textarea.form-control {
 }
 
 .tranc {
+  width: 250px !important;
   display: -webkit-box;
   /* Use WebKit for browser compatibility */
   -webkit-box-orient: vertical;
@@ -2156,7 +2157,7 @@ textarea.form-control {
   /* Hides the overflow text */
   text-overflow: ellipsis;
   /* Adds ellipsis (...) at the end */
-  max-height: 3em;
+  max-height: 9em;
   /* Ensures only two lines are shown (line-height * 2) */
   line-height: 1.5em;
   /* Set the desired line height */
