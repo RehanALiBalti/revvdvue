@@ -477,7 +477,7 @@
                 <label for="city" class="form-label">Upload Pictures Max 8</label>
 
                 <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                  accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
+                  accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="handleFileUpload" />
                 <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
                   <span class="border-bottom-btn border-top-btn position-absolute">
                     <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />

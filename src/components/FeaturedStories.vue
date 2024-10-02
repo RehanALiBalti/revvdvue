@@ -138,7 +138,7 @@
                                 <span class=""><i class="fa-solid fa-xmark"></i></span>
                             </button>
                         </div>
-                        <div class="overlay mt-5" :class="{ 'opacity-05': isOverlayTransparent }">
+                        <div class="overlay mt-5" :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
                             <div class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                 <div class="d-flex align-items-center gap-2">
                                     <img :src="iconford" alt="" />
@@ -349,12 +349,12 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
-                                                </span></button>
+                                                </span></button> -->
                                                         </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }">
+                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -997,12 +997,12 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
-                                                </span></button>
+                                                </span></button> -->
                                                         </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }">
+                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -1373,12 +1373,12 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
-                                                </span></button>
+                                                </span></button> -->
                                                         </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }">
+                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -1749,12 +1749,12 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
-                                                </span></button>
+                                                </span></button> -->
                                                         </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }">
+                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -2124,12 +2124,12 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
-                                                </span></button>
+                                                </span></button> -->
                                                         </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }">
+                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -2499,12 +2499,12 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
-                                                </span></button>
+                                                </span></button> -->
                                                         </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }">
+                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
