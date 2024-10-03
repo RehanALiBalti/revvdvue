@@ -2162,4 +2162,8 @@ textarea.form-control {
   line-height: 1.5em;
   /* Set the desired line height */
 }
+.img-car{
+  width:220px !important;
+  border-radius:10px !important;
+}
 </style>
