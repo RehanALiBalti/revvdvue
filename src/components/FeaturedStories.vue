@@ -103,7 +103,7 @@
 
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px">
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px">
                                         <span v-if="car.advice">{{ car.advice }}</span>
                                         <span v-else>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
@@ -308,7 +308,7 @@
                                         <img :src="iconford" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
                                             {{ car.make }}:{{ car.model }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
@@ -321,7 +321,7 @@
 
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
                                             @click="openModal(index)">
                                             <span>{{ car.story }}</span>
 
@@ -965,7 +965,7 @@
                                         <img :src="iconford" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
@@ -978,7 +978,7 @@
 
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -1348,7 +1348,7 @@
                                         <img :src="iconford" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
@@ -1361,7 +1361,7 @@
 
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -1733,7 +1733,7 @@
                                         <img :src="iconford" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
@@ -1746,7 +1746,7 @@
 
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -2116,7 +2116,7 @@
                                         <img :src="iconford" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
@@ -2129,7 +2129,7 @@
 
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -2499,7 +2499,7 @@
                                         <img :src="iconford" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
@@ -2512,7 +2512,7 @@
 
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -4213,12 +4213,12 @@ form-select {
     background: rgba(77, 85, 97, 0.7) !important;
 }
 
-.cp {
+.cp  {
     cursor: pointer !important;
 }
 
 @media (max-width: 786px) {
-    .cp {
+    .cp  {
         width: 25% !important;
     }
 
@@ -4237,5 +4237,22 @@ form-select {
 
 .instaIcon {
     width: 60px
+}
+.tranc {
+  width: 300px !important;
+  display: -webkit-box;
+  /* Use WebKit for browser compatibility */
+  -webkit-box-orient: vertical;
+  /* Aligns the box in vertical orientation */
+  -webkit-line-clampvm: 2;
+  /* Limits the number of lines to 2 */
+  overflow: hidden;
+  /* Hides the overflow text */
+  text-overflow: ellipsis;
+  /* Adds ellipsis (...) at the end */
+  max-height: 2.5em;
+  /* Ensures only two lines are shown (line-height * 2) */
+  line-height: 1.5em;
+  /* Set the desired line height */
 }
 </style>
