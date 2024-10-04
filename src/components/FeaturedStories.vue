@@ -377,7 +377,12 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.story }}
                                                         </p>
-                                                    </div>
+                                                      
+
+                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
+    {{ $t("viewMore") }}
+</router-link>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1023,6 +1028,10 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
+                                                    
+                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
+    {{ $t("viewMore") }}
+</router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1399,6 +1408,10 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
+                                                        
+                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
+    {{ $t("viewMore") }}
+</router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1775,6 +1788,10 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
+                                                        
+                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
+    {{ $t("viewMore") }}
+</router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2150,6 +2167,10 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
+                                                        
+                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
+    {{ $t("viewMore") }}
+</router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2525,6 +2546,10 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
+                                                        
+                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
+    {{ $t("viewMore") }}
+</router-link>
                                                     </div>
                                                 </div>
                                             </div>

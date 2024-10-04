@@ -171,6 +171,10 @@
 export default {
     name: 'CarListingView',
 
+  
+
+   
+
 };
 </script>
 

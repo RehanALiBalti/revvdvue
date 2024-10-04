@@ -31,6 +31,7 @@ import FeaturedStory from "./components/FeaturedStory.vue";
 import ForumPage from "./components/ForumPage.vue";
 import FeaturedStories from "./components/FeaturedStories.vue";
 import CoverPhoto from "./components/CoverPhoto.vue";
+import SingleStory from "./components/SingleStory.vue";
 
 const routes = [
   {
@@ -89,6 +90,11 @@ const routes = [
     name: "CommunityDetail",
     component: CommunityDetail,
     path: "/communitydetails/:id",
+  },
+  {
+    name: "SingleStory",
+    component: SingleStory,
+    path: "/singlestory/:id",
   },
   {
     name: "UserProfile",
