@@ -68,99 +68,125 @@
                     <div class="col-md-12 px-4">
                         <div class="row">
                             <div class="card-sorting-content px-1 py-2 col-md-12 p-1"
-    v-for="(car, index) in featuredStories" :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'" @click="openModal(index)">
-    <div class="main-slider weekly-slider align-items-center">
-        <div class="swiper-container myCarListingCard-swiper-container">
-            <swiper :effect="'cards'" :grabCursor="true" :modules="modules" :initialSlide="1" class="mySwiper swiper-no-shadow">
-                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                    <div class="d-block">
-                        <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image" class="slider-img myCarListingCard-img" alt="car" />
-                    </div>
-                </swiper-slide>
-            </swiper>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-        </div>
-        <img :src="iconford" alt="" />
-    </div>
-    <div class="card-content-car">
-        <h4 class="text-white mb-1" v-if="car.make && car.model">
+                                v-for="(car, index) in featuredStories" :key="index"
+                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'"
+                                @click="openModal(index)">
+                                <div class="main-slider weekly-slider align-items-center">
+                                    <div class="swiper-container myCarListingCard-swiper-container">
+                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
+                                            <swiper-slide class="swiper-no-shadow"
+                                                v-for="(image, idx) in parsedImages(car.images)" :key="idx">
+                                                <div class="d-block">
+                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                        class="slider-img myCarListingCard-img" alt="car" />
+                                                </div>
+                                            </swiper-slide>
+                                        </swiper>
+                                        <span class="swiper-notification" aria-live="assertive"
+                                            aria-atomic="true"></span>
+                                    </div>
+                                    <img :src="iconford" alt="" />
+                                </div>
+                                <div class="card-content-car">
+                                    <h4 class="text-white mb-1" v-if="car.make && car.model">
                                         {{ car.make }}:{{ car.model }}
                                     </h4>
                                     <h4 class="text-white mb-1" v-else>{{ car.country }}:{{ car.city }}</h4>
-        <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
-            <li class="list-item-user mb-0 justify-content-start">
-                <img :src="instaIcon" class="instaIcon" />
-                <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media" style="font-size: 10px">
-                    {{ car.social_media }}
-                </router-link>
-            </li>
-        </ul>
-        <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px">
+                                    <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
+                                        <li class="list-item-user mb-0 justify-content-start">
+                                            <img :src="instaIcon" class="instaIcon" />
+                                            <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
+                                                style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                {{ car.social_media }}
+                                            </a>
+
+                                        </li>
+                                    </ul>
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px">
                                         <span v-if="car.advice">{{ car.advice }}</span>
                                         <span v-else>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
                                             {{ $t("viewMore") }}
                                         </span>
                                     </p>
-    </div>
+                                </div>
 
-    <!-- Modal -->
-    <div class="modal show d-block" tabindex="-1" role="dialog" v-if="isModalOpen && activeCarIndex === index">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <span class="close-icon" @click="modalClose">
-                        <i class="fas fa-times"></i>
-                    </span>
+                                <!-- Modal -->
+                                <div class="modal show d-block" tabindex="-1" role="dialog"
+                                    v-if="isModalOpen && activeCarIndex === index">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                <span class="close-icon" @click="modalClose">
+                                                    <i class="fas fa-times"></i>
+                                                </span>
 
-                    <div class="mt-4 py-2">
-                        <div class="myCarListingCard-swiper-container">
-                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules" :initialSlide="2" :pagination="{ clickable: true }"
-                                :navigation="{ nextEl: '.custom-next', prevEl: '.custom-prev' }" class="mySwiper swiper-no-shadow modalswipper">
-                                <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                    <div class="d-block">
-                                        <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image" class="slider-img myCarListingCard-img modalswipperImage" alt="car" @click="openViewer(image)" />
+                                                <div class="mt-4 py-2">
+                                                    <div class="myCarListingCard-swiper-container">
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="2" :pagination="{ clickable: true }"
+                                                            :navigation="{ nextEl: '.custom-next', prevEl: '.custom-prev' }"
+                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in parsedImages(car.images)"
+                                                                :key="idx">
+                                                                <div class="d-block">
+                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car" @click="openViewer(image)" />
+                                                                </div>
+                                                            </swiper-slide>
+                                                        </swiper>
+                                                        <span class="swiper-notification" aria-live="assertive"
+                                                            aria-atomic="true"></span>
+                                                    </div>
+                                                    <div class="custom-swiper-navigation gap-8 justify-content-center"
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        <button class="custom-prev btn">
+                                                            <img :src="prevIcon" alt="" />
+                                                        </button>
+                                                        <button class="custom-next btn">
+                                                            <img :src="nextIcon" alt="" />
+                                                        </button>
+                                                    </div>
+                                                    <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
+                                                        <button class="btn btn-danger" @click='toggleOverlayOpacity'>
+                                                            <span class=""><i class="fa-solid fa-xmark"></i></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="overlay mt-5"
+                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                        @click='toggleOverlayOpacity'>
+                                                        <div
+                                                            class="mt-2 d-flex justify-content-between align-items-center mb-2">
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <img :src="iconford" alt="" />
+                                                                <h3 class="m-0 text-white fontsiz">{{ car.story_name }}
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center text-white mt-2">
+                                                            <img :src="instaIcon" class="instaIcon" />
+                                                            <a :href="car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2 truncate"
+                                                                style="font-size: 12px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                {{ car.social_media }}
+                                                            </a>
+
+                                                        </div>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start">
+                                                            {{ car.advice || car.story }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </swiper-slide>
-                            </swiper>
-                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                        </div>
-                        <div class="custom-swiper-navigation gap-8 justify-content-center" :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
-                            <button class="custom-prev btn">
-                                <img :src="prevIcon" alt="" />
-                            </button>
-                            <button class="custom-next btn">
-                                <img :src="nextIcon" alt="" />
-                            </button>
-                        </div>
-                        <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                            <button class="btn btn-danger" @click='toggleOverlayOpacity'>
-                                <span class=""><i class="fa-solid fa-xmark"></i></span>
-                            </button>
-                        </div>
-                        <div class="overlay mt-5" :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
-                            <div class="mt-2 d-flex justify-content-between align-items-center mb-2">
-                                <div class="d-flex align-items-center gap-2">
-                                    <img :src="iconford" alt="" />
-                                    <h3 class="m-0 text-white fontsiz">{{ car.story_name }}</h3>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center text-white mt-2">
-                                <img :src="instaIcon" class="instaIcon" />
-                                <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media" style="font-size: 12px">
-                                    {{ car.social_media }}
-                                </router-link>
-                            </div>
-                            <p class="text-white" style="font-size: 13px; text-align: start">
-                                {{ car.advice || car.story }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
                         </div>
                     </div>
@@ -288,10 +314,11 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    :to="car.social_media" style="font-size: 10px">
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
+                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
-                                                </router-link>
+                                                </a>
+
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
@@ -331,8 +358,10 @@
                                                                 <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
                                                                         image
-                                                                        " class="slider-img myCarListingCard-img modalswipperImage" alt="car" @click="openViewer(
-                                        image)" />
+                                                                        "
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car" @click="openViewer(
+                                                                            image)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -349,12 +378,13 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
-                                                        </div>
+                                                    </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
+                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                        @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -364,9 +394,9 @@
                                                                 </h3>
                                                             </div>
                                                         </div>
-                                                       
+
                                                         <div class="d-flex align-items-center text-white mt-2">
-                                                           <img :src="instaIcon" class="instaIcon" />
+                                                            <img :src="instaIcon" class="instaIcon" />
                                                             <router-link class="a-tag-name-user mt-2 mb-2 truncate"
                                                                 :to="car.social_media" style="font-size: 12px">
                                                                 {{ car.social_media }}
@@ -377,12 +407,13 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.story }}
                                                         </p>
-                                                      
 
-                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
-    {{ $t("viewMore") }}
-</router-link>
-                                                        </div>
+
+                                                        <router-link :to="'/singlestory/' + car.id"
+                                                            class="view-more-a-tag" style="cursor: pointer">
+                                                            {{ $t("viewMore") }}
+                                                        </router-link>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -473,7 +504,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -881,7 +912,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -908,8 +939,8 @@
 
                     <div class="col-md-9 px-4">
                         <div class="row">
-                             <!-- Container for the Viewer.js to manage image viewing -->
-                             <div class="imageBig" ref="viewerContainer" style="display:none">
+                            <!-- Container for the Viewer.js to manage image viewing -->
+                            <div class="imageBig" ref="viewerContainer" style="display:none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarGarage" :key="index"
@@ -940,10 +971,11 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    :to="car.social_media" style="font-size: 10px">
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
+                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
-                                                </router-link>
+                                                </a>
+
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
@@ -983,9 +1015,10 @@
                                                                 <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
                                                                         image
-                                                                        " class="slider-img myCarListingCard-img modalswipperImage" alt="car"
-                                                                        @click="openViewer(
-                                        image)" />
+                                                                        "
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car" @click="openViewer(
+                                                                            image)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1002,12 +1035,13 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
-                                                        </div>
+                                                    </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
+                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                        @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -1028,10 +1062,11 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
-                                                    
-                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
-    {{ $t("viewMore") }}
-</router-link>
+
+                                                        <router-link :to="'/singlestory/' + car.id"
+                                                            class="view-more-a-tag" style="cursor: pointer">
+                                                            {{ $t("viewMore") }}
+                                                        </router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1061,7 +1096,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1269,7 +1304,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -1287,8 +1322,8 @@
 
                     <div class="col-md-9 px-4">
                         <div class="row">
-                             <!-- Container for the Viewer.js to manage image viewing -->
-                             <div class="imageBig" ref="viewerContainer" style="display:none">
+                            <!-- Container for the Viewer.js to manage image viewing -->
+                            <div class="imageBig" ref="viewerContainer" style="display:none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarModificationTunningShop"
@@ -1319,10 +1354,11 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    :to="car.social_media" style="font-size: 10px">
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
+                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
-                                                </router-link>
+                                                </a>
+
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
@@ -1362,16 +1398,17 @@
                                                                 <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
                                                                         image
-                                                                        " class="slider-img myCarListingCard-img modalswipperImage" alt="car"
-                                                                        @click="openViewer(
-                                        image)" />
+                                                                        "
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car" @click="openViewer(
+                                                                            image)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
-                                                   
+
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
                                                         :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
                                                         <button class="custom-prev btn">
@@ -1382,12 +1419,13 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
-                                                        </div>
+                                                    </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
+                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                        @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -1408,10 +1446,11 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
-                                                        
-                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
-    {{ $t("viewMore") }}
-</router-link>
+
+                                                        <router-link :to="'/singlestory/' + car.id"
+                                                            class="view-more-a-tag" style="cursor: pointer">
+                                                            {{ $t("viewMore") }}
+                                                        </router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1442,7 +1481,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1650,7 +1689,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -1668,8 +1707,8 @@
 
                     <div class="col-md-9 px-4">
                         <div class="row">
-                             <!-- Container for the Viewer.js to manage image viewing -->
-                             <div class="imageBig" ref="viewerContainer" style="display:none">
+                            <!-- Container for the Viewer.js to manage image viewing -->
+                            <div class="imageBig" ref="viewerContainer" style="display:none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarClub" :key="index"
@@ -1700,10 +1739,11 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    :to="car.social_media" style="font-size: 10px">
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
+                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
-                                                </router-link>
+                                                </a>
+
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
@@ -1743,9 +1783,10 @@
                                                                 <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
                                                                         image
-                                                                        " class="slider-img myCarListingCard-img modalswipperImage" alt="car"
-                                                                        @click="openViewer(
-                                        image)" />
+                                                                        "
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car" @click="openViewer(
+                                                                            image)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1762,12 +1803,13 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
-                                                        </div>
+                                                    </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
+                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                        @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -1788,10 +1830,11 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
-                                                        
-                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
-    {{ $t("viewMore") }}
-</router-link>
+
+                                                        <router-link :to="'/singlestory/' + car.id"
+                                                            class="view-more-a-tag" style="cursor: pointer">
+                                                            {{ $t("viewMore") }}
+                                                        </router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1821,7 +1864,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -2029,7 +2072,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2046,10 +2089,10 @@
                     </div>
 
                     <div class="col-md-9 px-4">
-                         <!-- Container for the Viewer.js to manage image viewing -->
-                         <div class="imageBig" ref="viewerContainer" style="display:none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                            </div>
+                        <!-- Container for the Viewer.js to manage image viewing -->
+                        <div class="imageBig" ref="viewerContainer" style="display:none">
+                            <img :src="currentImage" alt="Current Image for Viewing" />
+                        </div>
                         <div class="row">
                             <div class="" v-for="(car, index) in this.filteredStories.MotorbikeEnthusiast" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
@@ -2079,10 +2122,11 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    :to="car.social_media" style="font-size: 10px">
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
+                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
-                                                </router-link>
+                                                </a>
+
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
@@ -2122,9 +2166,10 @@
                                                                 <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
                                                                         image
-                                                                        " class="slider-img myCarListingCard-img modalswipperImage" alt="car"
-                                                                        @click="openViewer(
-                                        image)" />
+                                                                        "
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car" @click="openViewer(
+                                                                            image)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -2141,12 +2186,13 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
-                                                        </div>
+                                                    </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
+                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                        @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -2167,10 +2213,11 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
-                                                        
-                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
-    {{ $t("viewMore") }}
-</router-link>
+
+                                                        <router-link :to="'/singlestory/' + car.id"
+                                                            class="view-more-a-tag" style="cursor: pointer">
+                                                            {{ $t("viewMore") }}
+                                                        </router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2200,7 +2247,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -2408,7 +2455,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2425,10 +2472,10 @@
                     </div>
 
                     <div class="col-md-9 px-4">
-                         <!-- Container for the Viewer.js to manage image viewing -->
-                         <div class="imageBig" ref="viewerContainer" style="display:none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                            </div>
+                        <!-- Container for the Viewer.js to manage image viewing -->
+                        <div class="imageBig" ref="viewerContainer" style="display:none">
+                            <img :src="currentImage" alt="Current Image for Viewing" />
+                        </div>
                         <div class="row">
                             <div class="" v-for="(car, index) in this.filteredStories.AutomotivePhotographer"
                                 :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
@@ -2458,10 +2505,11 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    :to="car.social_media" style="font-size: 10px">
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
+                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
-                                                </router-link>
+                                                </a>
+
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp" style="font-size: 12px"
@@ -2501,9 +2549,10 @@
                                                                 <div class="d-block">
                                                                     <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
                                                                         image
-                                                                        " class="slider-img myCarListingCard-img modalswipperImage" alt="car"
-                                                                        @click="openViewer(
-                                        image)" />
+                                                                        "
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car" @click="openViewer(
+                                                                            image)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -2520,12 +2569,13 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                            <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
+                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
-                                                        </div>
+                                                    </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }" @click='toggleOverlayOpacity'>
+                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                        @click='toggleOverlayOpacity'>
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -2546,10 +2596,11 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
-                                                        
-                                                        <router-link :to="'/singlestory/' + car.id" class="view-more-a-tag" style="cursor: pointer">
-    {{ $t("viewMore") }}
-</router-link>
+
+                                                        <router-link :to="'/singlestory/' + car.id"
+                                                            class="view-more-a-tag" style="cursor: pointer">
+                                                            {{ $t("viewMore") }}
+                                                        </router-link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3038,7 +3089,7 @@ export default {
             return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
         },
         openViewer(image) {
-            console.log("in open viewer",image)
+            console.log("in open viewer", image)
             this.isOverlayTransparent = true
             this.currentImage = this.getImageUrl(image); // Set current image URL
 
@@ -3939,8 +3990,9 @@ export default {
 .card-sorting-content px-1 py-2 {
     z-index: 0;
 }
-.card-sorting-content{
-    cursor:pointer;
+
+.card-sorting-content {
+    cursor: pointer;
 }
 
 .signin-btnli {
@@ -4182,7 +4234,8 @@ form-select {
 .fontsiz {
     font-size: 20px !important;
 }
-.instaIcon{
-    width:60px
+
+.instaIcon {
+    width: 60px
 }
 </style>

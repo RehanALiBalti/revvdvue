@@ -44,10 +44,10 @@
                     </div>
                     <div class="d-flex align-items-center text-white mt-2">
                         <img :src="instaIcon" class="instaIcon" />
-                        <router-link class="a-tag-name-user mt-2 mb-2 truncate" :to="car.social_media"
-                            style="font-size: 12px">
-                            {{ car.social_media }}
-                        </router-link>
+                        <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate" style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+    {{ car.social_media }}
+</a>
+
                     </div>
                     <div class="d-flex gap-2 align-items-center text-white">
                         <p>{{ car.make }}</p>
