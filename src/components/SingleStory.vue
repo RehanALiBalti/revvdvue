@@ -3,6 +3,7 @@
         <div class="container ">
 
             <div class="mt-4 py-2" v-if="car"> <!-- Ensure car is defined before rendering -->
+            
                 <div class="imageBig" ref="viewerContainer" style="display:none">
                     <img :src="currentImage" alt="Current Image for Viewing" />
                 </div>
@@ -30,10 +31,13 @@
                         <img :src="nextIcon" alt="" />
                     </button>
                 </div>
-                <div class="d-flex justify-content-end">
-
+                <div class="d-flex justify-content-start">
+                    <router-link class="a-tag-name-user mt-2 mb-2 truncate" to="/stories" style="font-size: 16px;cursor:pointer;color:#f95f19;z-index:99999">
+                    Back
+                </router-link>
                 </div>
                 <div class="overlay mt-5">
+                  
                     <div class="mt-2 d-flex justify-content-between align-items-center mb-2">
                         <div class="d-flex align-items-center gap-2">
                             <img :src="iconford" alt="" />
@@ -44,9 +48,10 @@
                     </div>
                     <div class="d-flex align-items-center text-white mt-2">
                         <img :src="instaIcon" class="instaIcon" />
-                        <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate" style="font-size: 12px" target="_blank" rel="noopener noreferrer">
-    {{ car.social_media }}
-</a>
+                        <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate" style="font-size: 12px"
+                            target="_blank" rel="noopener noreferrer">
+                            {{ car.social_media }}
+                        </a>
 
                     </div>
                     <div class="d-flex gap-2 align-items-center text-white">
@@ -243,11 +248,12 @@ export default {
     border: 0px;
     border-radius: 10px;
 }
-.modalswipper{
+
+.modalswipper {
     overflow: visible !important;
 }
+
 .gap-8 {
     gap: 16rem !important;
 }
-
 </style>
