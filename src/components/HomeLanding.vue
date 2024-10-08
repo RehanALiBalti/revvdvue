@@ -69,7 +69,7 @@
         </div>
         <!-- Content -->
         <h5 class="h5-title text-capitalize mb-4">{{ $t('Featured Story') }}</h5>
-        <router-link class="car-content" to="/stories" style="cursor:pointer">
+        <router-link class="car-content" to="/banner" style="cursor:pointer">
           <div class="">
             <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
               class="img-car" alt="car" v-if="bannerStories[0]?.images.length > 0" />

@@ -32,12 +32,17 @@ import ForumPage from "./components/ForumPage.vue";
 import FeaturedStories from "./components/FeaturedStories.vue";
 import CoverPhoto from "./components/CoverPhoto.vue";
 import SingleStory from "./components/SingleStory.vue";
-
+import BannerStory from "./components/BannerStory.vue";
 const routes = [
   {
     name: "HomeLanding",
     component: HomeLanding,
     path: "/",
+  },
+  {
+    name: "BannerStory",
+    component: BannerStory,
+    path: "/banner",
   },
   {
     name: "CoverPhoto",

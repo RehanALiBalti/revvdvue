@@ -32,9 +32,10 @@
                         </span>
                     </div>
                 </div> -->
-                <div v-for="(tab, index) in tabs" :key="index"
-                    :class="['col-6 col-md-2 my-2 my-md-1', { 'active-tab': activeTab === index }]"
-                    @click="handleTabClick(index, tab.name)">
+                <div v-for="(tab, index) in tabs" :key="index" :class="[
+                    'col-6 col-md-2 my-2 my-md-1',
+                    { 'active-tab': activeTab === index },
+                ]" @click="handleTabClick(index, tab.name)">
                     <div class="btn-div-create-forum position-relative" :class="[
                         'w-100',
                         {
@@ -78,8 +79,9 @@
                                             <swiper-slide class="swiper-no-shadow"
                                                 v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                 <div class="d-block">
-                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
-                                                        class="slider-img myCarListingCard-img" alt="car" />
+                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                                                        image
+                                                        " class="slider-img myCarListingCard-img" alt="car" />
                                                 </div>
                                             </swiper-slide>
                                         </swiper>
@@ -92,7 +94,9 @@
                                     <h4 class="text-white mb-1" v-if="car.make && car.model">
                                         {{ car.make }}:{{ car.model }}
                                     </h4>
-                                    <h4 class="text-white mb-1" v-else>{{ car.country }}:{{ car.city }}</h4>
+                                    <h4 class="text-white mb-1" v-else>
+                                        {{ car.country }}:{{ car.city }}
+                                    </h4>
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <img :src="instaIcon" class="instaIcon" />
@@ -100,7 +104,6 @@
                                                 style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                 {{ car.social_media }}
                                             </a>
-
                                         </li>
                                     </ul>
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px">
@@ -126,15 +129,19 @@
                                                     <div class="myCarListingCard-swiper-container">
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="2" :pagination="{ clickable: true }"
-                                                            :navigation="{ nextEl: '.custom-next', prevEl: '.custom-prev' }"
-                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                                                                        image
+                                                                        "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(image)" />
+                                                                        alt="car" @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -150,19 +157,20 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                        <button class="btn btn-danger" @click='toggleOverlayOpacity'>
+                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
+                                                        <button class="btn btn-danger" @click="toggleOverlayOpacity">
                                                             <span class=""><i class="fa-solid fa-xmark"></i></span>
                                                         </button>
                                                     </div>
                                                     <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }"
-                                                        @click='toggleOverlayOpacity'>
+                                                        @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="" />
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.story_name }}
+                                                                <h3 class="m-0 text-white fontsiz">
+                                                                    {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -174,7 +182,6 @@
                                                                 rel="noopener noreferrer">
                                                                 {{ car.social_media }}
                                                             </a>
-
                                                         </div>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
@@ -187,7 +194,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -283,9 +289,13 @@
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
-                            <div class="imageBig" ref="viewerContainer" style="display:none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                            </div>
+                           <div class="imageBig" ref="viewerContainer" style="display: none">
+                            <img :src="currentImage" alt="Current Image for Viewing" />
+                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
+                            :key="idx"/>
+
+                        </div>
                             <div v-for="(car, index) in this.filteredStories.CarEnthusiast" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div class="card-sorting-content px-1 py-2 col-md-12 p-1" @click="openModal(index)">
@@ -318,7 +328,6 @@
                                                     style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
-
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
@@ -360,8 +369,7 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(
-                                                                            image)" />
+                                                                        alt="car" @click="openViewer(image,car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -377,14 +385,12 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
-                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                </span></button> -->
+                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
+                                                        
                                                     </div>
                                                     <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }"
-                                                        @click='toggleOverlayOpacity'>
+                                                        @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -407,13 +413,24 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.story }}
                                                         </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.advice }}
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore">
+                                                            {{ car.memorable }}
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.modifications }}
+                                                        </p>
 
-
-                                                        <router-link :to="'/singlestory/' + car.id"
-                                                            class="view-more-a-tag" style="cursor: pointer">
-                                                            {{ $t("viewMore") }}
-                                                        </router-link>
+                                                     
                                                     </div>
+                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
+                </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -713,7 +730,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -729,7 +748,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -757,7 +778,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -853,14 +876,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
                                         <option value="Saint Vincent and the Grenadines">
                                             Saint Vincent and the Grenadines
                                         </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -887,14 +914,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -940,9 +971,13 @@
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
-                            <div class="imageBig" ref="viewerContainer" style="display:none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                            </div>
+                           <div class="imageBig" ref="viewerContainer" style="display: none">
+                            <img :src="currentImage" alt="Current Image for Viewing" />
+                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
+                            :key="idx"/>
+
+                        </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarGarage" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)" class="card-sorting-content px-1 py-2 col-md-12 p-1">
@@ -975,7 +1010,6 @@
                                                     style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
-
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
@@ -1017,8 +1051,7 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(
-                                                                            image)" />
+                                                                        alt="car" @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1034,19 +1067,20 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
+                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
                                                         <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
                                                     <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }"
-                                                        @click='toggleOverlayOpacity'>
+                                                        @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="" />
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                <h3 class="m-0 text-white fontsiz">
+                                                                    {{ car.country }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -1062,12 +1096,19 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
-
-                                                        <router-link :to="'/singlestory/' + car.id"
-                                                            class="view-more-a-tag" style="cursor: pointer">
-                                                            {{ $t("viewMore") }}
-                                                        </router-link>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.story_history }}
+                                                        </p>
+                                                      
                                                     </div>
+                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
+                </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1106,7 +1147,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -1122,7 +1165,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -1150,7 +1195,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -1246,14 +1293,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
                                         <option value="Saint Vincent and the Grenadines">
                                             Saint Vincent and the Grenadines
                                         </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -1280,14 +1331,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -1323,11 +1378,16 @@
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
-                            <div class="imageBig" ref="viewerContainer" style="display:none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                            </div>
-                            <div class="" v-for="(car, index) in this.filteredStories.CarModificationTunningShop"
-                                :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
+                           <div class="imageBig" ref="viewerContainer" style="display: none">
+                            <img :src="currentImage" alt="Current Image for Viewing" />
+                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
+                            :key="idx"/>
+
+                        </div>
+                            <div class="" v-for="(car, index) in this.filteredStories
+                                .CarModificationTunningShop" :key="index"
+                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)" class="card-sorting-content px-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
@@ -1358,7 +1418,6 @@
                                                     style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
-
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
@@ -1400,8 +1459,7 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(
-                                                                            image)" />
+                                                                        alt="car" @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1418,19 +1476,20 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
+                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
                                                         <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
                                                     <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }"
-                                                        @click='toggleOverlayOpacity'>
+                                                        @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="" />
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                <h3 class="m-0 text-white fontsiz">
+                                                                    {{ car.country }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -1447,11 +1506,14 @@
                                                             {{ car.advice }}
                                                         </p>
 
-                                                        <router-link :to="'/singlestory/' + car.id"
-                                                            class="view-more-a-tag" style="cursor: pointer">
-                                                            {{ $t("viewMore") }}
-                                                        </router-link>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.modifications }}
+                                                        </p>
                                                     </div>
+                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
+                </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1491,7 +1553,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -1507,7 +1571,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -1535,7 +1601,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -1631,14 +1699,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
                                         <option value="Saint Vincent and the Grenadines">
                                             Saint Vincent and the Grenadines
                                         </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -1665,14 +1737,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -1708,9 +1784,13 @@
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
-                            <div class="imageBig" ref="viewerContainer" style="display:none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                            </div>
+                           <div class="imageBig" ref="viewerContainer" style="display: none">
+                            <img :src="currentImage" alt="Current Image for Viewing" />
+                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
+                            :key="idx"/>
+
+                        </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarClub" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)" class="card-sorting-content px-1 py-2 col-md-12 p-1">
@@ -1743,7 +1823,6 @@
                                                     style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
-
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
@@ -1785,8 +1864,7 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(
-                                                                            image)" />
+                                                                        alt="car" @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1802,19 +1880,20 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
+                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
                                                         <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
                                                     <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }"
-                                                        @click='toggleOverlayOpacity'>
+                                                        @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="" />
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                <h3 class="m-0 text-white fontsiz">
+                                                                    {{ car.country }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -1830,12 +1909,19 @@
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
-
-                                                        <router-link :to="'/singlestory/' + car.id"
-                                                            class="view-more-a-tag" style="cursor: pointer">
-                                                            {{ $t("viewMore") }}
-                                                        </router-link>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.story_history }}
+                                                        </p>
+                                                     
                                                     </div>
+                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
+                </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1874,7 +1960,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -1890,7 +1978,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -1918,7 +2008,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -2014,14 +2106,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
                                         <option value="Saint Vincent and the Grenadines">
                                             Saint Vincent and the Grenadines
                                         </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -2048,14 +2144,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -2090,8 +2190,12 @@
 
                     <div class="col-md-9 px-4">
                         <!-- Container for the Viewer.js to manage image viewing -->
-                        <div class="imageBig" ref="viewerContainer" style="display:none">
+                        <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
+                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
+                            :key="idx"/>
+
                         </div>
                         <div class="row">
                             <div class="" v-for="(car, index) in this.filteredStories.MotorbikeEnthusiast" :key="index"
@@ -2126,7 +2230,6 @@
                                                     style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
-
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
@@ -2168,8 +2271,7 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(
-                                                                            image)" />
+                                                                        alt="car" @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -2185,19 +2287,20 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
+                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
                                                         <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
                                                     <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }"
-                                                        @click='toggleOverlayOpacity'>
+                                                        @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="" />
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                <h3 class="m-0 text-white fontsiz">
+                                                                    {{ car.country }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -2214,11 +2317,18 @@
                                                             {{ car.advice }}
                                                         </p>
 
-                                                        <router-link :to="'/singlestory/' + car.id"
-                                                            class="view-more-a-tag" style="cursor: pointer">
-                                                            {{ $t("viewMore") }}
-                                                        </router-link>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.story_history }}
+                                                        </p>
                                                     </div>
+                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
+                </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2257,7 +2367,9 @@
                                         <option value="Algeria">Algeria</option>
                                         <option value="Andorra">Andorra</option>
                                         <option value="Angola">Angola</option>
-                                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                        <option value="Antigua and Barbuda">
+                                            Antigua and Barbuda
+                                        </option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Armenia">Armenia</option>
                                         <option value="Australia">Australia</option>
@@ -2273,7 +2385,9 @@
                                         <option value="Benin">Benin</option>
                                         <option value="Bhutan">Bhutan</option>
                                         <option value="Bolivia">Bolivia</option>
-                                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                        <option value="Bosnia and Herzegovina">
+                                            Bosnia and Herzegovina
+                                        </option>
                                         <option value="Botswana">Botswana</option>
                                         <option value="Brazil">Brazil</option>
                                         <option value="Brunei">Brunei</option>
@@ -2301,7 +2415,9 @@
                                         <option value="Denmark">Denmark</option>
                                         <option value="Djibouti">Djibouti</option>
                                         <option value="Dominica">Dominica</option>
-                                        <option value="Dominican Republic">Dominican Republic</option>
+                                        <option value="Dominican Republic">
+                                            Dominican Republic
+                                        </option>
                                         <option value="Ecuador">Ecuador</option>
                                         <option value="Egypt">Egypt</option>
                                         <option value="El Salvador">El Salvador</option>
@@ -2397,14 +2513,18 @@
                                         <option value="Romania">Romania</option>
                                         <option value="Russia">Russia</option>
                                         <option value="Rwanda">Rwanda</option>
-                                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                        <option value="Saint Kitts and Nevis">
+                                            Saint Kitts and Nevis
+                                        </option>
                                         <option value="Saint Lucia">Saint Lucia</option>
                                         <option value="Saint Vincent and the Grenadines">
                                             Saint Vincent and the Grenadines
                                         </option>
                                         <option value="Samoa">Samoa</option>
                                         <option value="San Marino">San Marino</option>
-                                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                        <option value="Sao Tome and Principe">
+                                            Sao Tome and Principe
+                                        </option>
                                         <option value="Saudi Arabia">Saudi Arabia</option>
                                         <option value="Senegal">Senegal</option>
                                         <option value="Serbia">Serbia</option>
@@ -2431,14 +2551,18 @@
                                         <option value="Timor-Leste">Timor-Leste</option>
                                         <option value="Togo">Togo</option>
                                         <option value="Tonga">Tonga</option>
-                                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                        <option value="Trinidad and Tobago">
+                                            Trinidad and Tobago
+                                        </option>
                                         <option value="Tunisia">Tunisia</option>
                                         <option value="Turkey">Turkey</option>
                                         <option value="Turkmenistan">Turkmenistan</option>
                                         <option value="Tuvalu">Tuvalu</option>
                                         <option value="Uganda">Uganda</option>
                                         <option value="Ukraine">Ukraine</option>
-                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Arab Emirates">
+                                            United Arab Emirates
+                                        </option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="United States">United States</option>
                                         <option value="Uruguay">Uruguay</option>
@@ -2473,12 +2597,17 @@
 
                     <div class="col-md-9 px-4">
                         <!-- Container for the Viewer.js to manage image viewing -->
-                        <div class="imageBig" ref="viewerContainer" style="display:none">
+                        <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
+                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
+                            :key="idx"/>
+
                         </div>
                         <div class="row">
-                            <div class="" v-for="(car, index) in this.filteredStories.AutomotivePhotographer"
-                                :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
+                            <div class="" v-for="(car, index) in this.filteredStories
+                                .AutomotivePhotographer" :key="index"
+                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)" class="card-sorting-content px-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
@@ -2509,7 +2638,6 @@
                                                     style="font-size: 12px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
-
                                             </li>
                                         </ul>
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
@@ -2551,8 +2679,8 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(
-                                                                            image)" />
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -2568,19 +2696,20 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if='isOverlayTransparent'>
+                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
                                                         <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
                                                     <div class="overlay mt-5"
                                                         :class="{ 'opacity-05': isOverlayTransparent }"
-                                                        @click='toggleOverlayOpacity'>
+                                                        @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" alt="" />
-                                                                <h3 class="m-0 text-white fontsiz">{{ car.country }}
+                                                                <h3 class="m-0 text-white fontsiz">
+                                                                    {{ car.country }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -2597,11 +2726,18 @@
                                                             {{ car.advice }}
                                                         </p>
 
-                                                        <router-link :to="'/singlestory/' + car.id"
-                                                            class="view-more-a-tag" style="cursor: pointer">
-                                                            {{ $t("viewMore") }}
-                                                        </router-link>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            {{ car.story_history }}
+                                                        </p>
                                                     </div>
+                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
+                </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2658,8 +2794,8 @@ import { Pagination, Navigation } from "swiper/modules";
 // import { Pagination, Navigation } from 'swiper';
 // Install Swiper modules
 // Swiper.use([Pagination, Navigation])
-import Viewer from 'viewerjs';
-import 'viewerjs/dist/viewer.css'; // Import the Viewer.js CSS
+import Viewer from "viewerjs";
+import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 export default {
     name: "FeaturedStories",
     components: {
@@ -2673,8 +2809,9 @@ export default {
     },
     data() {
         return {
+            showMore: {},
             instaIcon,
-            currentImage: '', // Currently selected image for viewing
+            currentImage: "", // Currently selected image for viewing
             viewerInstance: null, // Reference to the Viewer.js instance
             cities: [],
             featuredStories: [],
@@ -2702,6 +2839,7 @@ export default {
             filteredGenerations: [],
             productionYear: "",
             productionYears: [],
+            viewerImages:[],
             formData: {
                 make: "",
                 model: "",
@@ -3084,51 +3222,224 @@ export default {
         this.fetchCarEnthusiastStories();
     },
     methods: {
-
         getImageUrl(image) {
             return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
         },
-        openViewer(image) {
-            console.log("in open viewer", image)
-            this.isOverlayTransparent = true
-            this.currentImage = this.getImageUrl(image); // Set current image URL
+        // openViewer(image) {
+        //   console.log("in open viewer", image);
+        //   this.isOverlayTransparent = true;
+        //   this.currentImage = this.getImageUrl(image); // Set current image URL
 
-            const viewerElement = this.$refs.viewerContainer; // Reference the container
-            if (viewerElement) {
-                // Destroy any previous instance if it exists to prevent duplication
-                if (this.viewerInstance) {
-                    this.viewerInstance.destroy();
-                }
+        //   const viewerElement = this.$refs.viewerContainer; // Reference the container
+        //   if (viewerElement) {
+        //     // Destroy any previous instance if it exists to prevent duplication
+        //     if (this.viewerInstance) {
+        //       this.viewerInstance.destroy();
+        //     }
 
-                // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-                this.$nextTick(() => {
-                    this.viewerInstance = new Viewer(viewerElement, {
-                        inline: false, // Set to false for popup mode
-                        zoomable: true, // Enable zooming functionality
-                        movable: true, // Enable panning (dragging the image)
-                        minScale: 1, // Prevent zooming out below 100%
-                        maxScale: 3, // Limit zoom to 3x
-                        viewed() {
-                            // Optional: You can perform actions when the image is viewed
-                            console.log("Image viewed");
-                        },
-                        toolbar: false, // Disable the default toolbar
-                        zoomOnWheel: true, // Allow zooming with mouse wheel
-                        fullscreen: false, // Disable fullscreen mode
-                        title: false, // Disable image title display
-                        navbar: false, // Disable the navigation bar
-                        tooltip: false, // Disable tooltips for image actions
-                        minX: 100, // Minimum X coordinate for panning
-                        maxX: 200, // Maximum X coordinate
-                        minY: 0, // Minimum Y coordinate
-                        maxY: 300, // Maximum Y coordinate
-                    });
+        //     // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
+        //     this.$nextTick(() => {
+        //       this.viewerInstance = new Viewer(viewerElement, {
+        //         inline: false, // Set to false for popup mode
+        //         zoomable: true, // Enable zooming functionality
+        //         movable: true, // Enable panning (dragging the image)
+        //         minScale: 1, // Prevent zooming out below 100%
+        //         maxScale: 3, // Limit zoom to 3x
+        //         viewed() {
+        //           // Optional: You can perform actions when the image is viewed
+        //           console.log("Image viewed");
+        //         },
+        //         toolbar: true, // Disable the default toolbar
+        //         zoomOnWheel: true, // Allow zooming with mouse wheel
+        //         fullscreen: false, // Disable fullscreen mode
+        //         title: false, // Disable image title display
+        //         navbar: false, // Disable the navigation bar
+        //         tooltip: false, // Disable tooltips for image actions
+        //         minX: 100, // Minimum X coordinate for panning
+        //         maxX: 200, // Maximum X coordinate
+        //         minY: 0, // Minimum Y coordinate
+        //         maxY: 300, // Maximum Y coordinate
+        //       });
 
-                    // Show the viewer for the current image
-                    this.viewerInstance.show();
-                });
-            }
-        },
+        //       // Show the viewer for the current image
+        //       this.viewerInstance.show();
+        //     });
+        //   }
+        // },
+        // openViewer(image, carimages) {
+        //     console.log("in open viewer", image);
+        //     console.log("car  images", carimages);
+        //     this.isOverlayTransparent = true;
+        //     this.currentImage = this.getImageUrl(image); // Set current image URL
+
+        //     const viewerElement = this.$refs.viewerContainer; // Reference the container
+        //     if (viewerElement) {
+        //         // Destroy any previous instance if it exists to prevent duplication
+        //         if (this.viewerInstance) {
+        //             this.viewerInstance.destroy();
+        //         }
+
+        //         // Create a new array of images, placing the clicked image first
+        //         const images = this.parsedImages(carimages);
+        //         const currentImageUrl = this.getImageUrl(image);
+
+        //         // Create a new array with the clicked image first
+        //         const imageOrder = [currentImageUrl, ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl)];
+
+        //         // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
+        //         this.$nextTick(() => {
+        //             this.viewerInstance = new Viewer(viewerElement, {
+        //                 inline: false, // Set to false for popup mode
+        //                 zoomable: true, // Enable zooming functionality
+        //                 movable: true, // Enable panning (dragging the image)
+        //                 minScale: 1, // Prevent zooming out below 100%
+        //                 maxScale: 3, // Limit zoom to 3x
+        //                 viewed() {
+        //                     // Optional: You can perform actions when the image is viewed
+        //                     console.log("Image viewed");
+        //                 },
+        //                 toolbar: true, // Disable the default toolbar
+        //                 zoomOnWheel: true, // Allow zooming with mouse wheel
+        //                 fullscreen: false, // Disable fullscreen mode
+        //                 title: false, // Disable image title display
+        //                 navbar: false, // Disable the navigation bar
+        //                 tooltip: false, // Disable tooltips for image actions
+        //                 minX: 100, // Minimum X coordinate for panning
+        //                 maxX: 200, // Maximum X coordinate
+        //                 minY: 0, // Minimum Y coordinate
+        //                 maxY: 300, // Maximum Y coordinate
+        //             });
+
+        //             // Show the viewer for the current image
+        //             this.viewerInstance.show();
+
+        //             // Add images to the viewer
+        //             this.viewerInstance.addImage(imageOrder);
+        //         });
+        //     }
+        // }
+        // openViewer(image, carimages) {
+        //     console.log("in open viewer", image);
+        //     this.isOverlayTransparent = true;
+        //     this.currentImage = this.getImageUrl(image); // Set current image URL
+
+        //     const viewerElement = this.$refs.viewerContainer; // Reference the container
+        //     if (viewerElement) {
+        //         // Destroy any previous instance if it exists to prevent duplication
+        //         if (this.viewerInstance) {
+        //             this.viewerInstance.destroy();
+        //         }
+
+        //         // Create a new array of images, placing the clicked image first
+        //         const images = this.parsedImages(carimages);
+        //         const currentImageUrl = this.getImageUrl(image);
+
+        //         // Create a new array with the clicked image first
+        //         const imageOrder = [currentImageUrl, ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl)];
+
+        //         // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
+        //         this.$nextTick(() => {
+        //             this.viewerInstance = new Viewer(viewerElement, {
+        //                 inline: false, // Set to false for popup mode
+        //                 zoomable: true, // Enable zooming functionality
+        //                 movable: true, // Enable panning (dragging the image)
+        //                 minScale: 1, // Prevent zooming out below 100%
+        //                 maxScale: 3, // Limit zoom to 3x
+        //                 viewed() {
+        //                     // Optional: You can perform actions when the image is viewed
+        //                     console.log("Image viewed");
+        //                 },
+        //                 toolbar: true, // Show the default toolbar
+        //                 zoomOnWheel: true, // Allow zooming with mouse wheel
+        //                 fullscreen: false, // Disable fullscreen mode
+        //                 title: false, // Disable image title display
+        //                 navbar: false, // Disable the navigation bar
+        //                 tooltip: false, // Disable tooltips for image actions
+        //             });
+
+        //             // Now manually add images to the viewer by modifying its data
+        //             this.viewerInstance._images = imageOrder.map(url => {
+        //                 return {
+        //                     src: url,
+        //                     thumb: url // You can change this to a thumbnail if you have one
+        //                 };
+        //             });
+
+        //             // Show the viewer for the current image
+        //             this.viewerInstance.show();
+        //         });
+        //     }
+        // }
+        openViewer(image, carImages) {
+            this.viewerImages=carImages
+    console.log("in open viewer", image);
+    this.isOverlayTransparent = true;
+    this.currentImage = this.getImageUrl(image); // Set current image URL
+
+    const viewerElement = this.$refs.viewerContainer; // Reference the container
+    if (viewerElement) {
+        // Destroy any previous instance if it exists to prevent duplication
+        if (this.viewerInstance) {
+            this.viewerInstance.destroy();
+        }
+
+        // Create a new array of images, placing the clicked image first
+        const images = this.parsedImages(carImages);
+        const currentImageUrl = this.getImageUrl(image);
+
+        // Create a new array with the clicked image first
+        const imageOrder = [
+            currentImageUrl,
+            ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl),
+        ];
+
+        // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
+        this.$nextTick(() => {
+            this.viewerInstance = new Viewer(viewerElement, {
+                inline: false, // Set to false for popup mode
+                zoomable: true, // Enable zooming functionality
+                movable: true, // Enable panning (dragging the image)
+                minScale: 1, // Prevent zooming out below 100%
+                maxScale: 3, // Limit zoom to 3x
+                viewed() {
+                    console.log("Image viewed");
+                },
+                // toolbar: true, // Show the default toolbar
+                toolbar: {
+                    prev: true,
+                    play: false,
+                    next: true,
+                    zoomIn: false,
+                    zoomOut: false,
+                    rotateLeft: false,
+                    rotateRight: false,
+                    flipHorizontal: false,
+                    flipVertical: false,
+                    reset: false,
+                    close: false, // Add close button
+                },
+                zoomOnWheel: true, // Allow zooming with mouse wheel
+                fullscreen: false, // Disable fullscreen mode
+                title: false, // Disable image title display
+                navbar: false, // Disable the navigation bar
+                tooltip: false, // Disable tooltips for image actions
+            });
+
+            // Now manually add images to the viewer by modifying its data
+            this.viewerInstance._images = imageOrder.map(url => {
+                return {
+                    src: url,
+                    thumb: url // You can change this to a thumbnail if you have one
+                };
+            });
+
+            // Show the viewer for the current image
+            this.viewerInstance.show();
+        });
+    }
+}
+
+        ,
         getImage(tab, index, imgType) {
             if (this.activeTab === index) {
                 // If the tab is active, return the active image
@@ -3157,7 +3468,10 @@ export default {
             };
 
             // Fetch cities based on the selected country
-            fetch("https://countriesnow.space/api/v0.1/countries/cities", requestOptions)
+            fetch(
+                "https://countriesnow.space/api/v0.1/countries/cities",
+                requestOptions
+            )
                 .then((response) => response.json()) // Convert response to JSON
                 .then((result) => {
                     if (result.data && result.data.length > 0) {
@@ -3226,7 +3540,10 @@ export default {
                     this.featuredStories = [featured]; // Store it in the featuredStories array
                 }
             } catch (error) {
-                console.error(`Error fetching featured stories for ${storyType}:`, error);
+                console.error(
+                    `Error fetching featured stories for ${storyType}:`,
+                    error
+                );
             }
         },
 
@@ -3279,7 +3596,8 @@ export default {
                 this.modelfilteredOptions = this.models;
             } else {
                 this.modelfilteredOptions = this.models.filter(
-                    (option) => option && option.model && option.model.toLowerCase().includes(query)
+                    (option) =>
+                        option && option.model && option.model.toLowerCase().includes(query)
                 );
             }
         },
@@ -3391,7 +3709,9 @@ export default {
                         ...new Set(this.GenfilteredOptions.map((item) => item.generation)),
                     ];
                     this.productionYears = [
-                        ...new Set(this.GenfilteredOptions.map((item) => item.production_years)),
+                        ...new Set(
+                            this.GenfilteredOptions.map((item) => item.production_years)
+                        ),
                     ];
                 })
                 .catch((e) => {
@@ -3490,10 +3810,14 @@ export default {
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarGarage.filter((story) => {
-                    // Filter based on story name (case-insensitive search)
-                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
-                });
+                const filteredStories = this.filteredStories.CarGarage.filter(
+                    (story) => {
+                        // Filter based on story name (case-insensitive search)
+                        return story.story_name
+                            .toLowerCase()
+                            .includes(this.search.toLowerCase());
+                    }
+                );
 
                 // Update the filteredStories list, triggering reactivity
                 this.filteredStories.CarGarage = filteredStories;
@@ -3510,12 +3834,13 @@ export default {
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarModificationTunningShop.filter(
-                    (story) => {
+                const filteredStories =
+                    this.filteredStories.CarModificationTunningShop.filter((story) => {
                         // Filter based on story name (case-insensitive search)
-                        return story.story_name.toLowerCase().includes(this.search.toLowerCase());
-                    }
-                );
+                        return story.story_name
+                            .toLowerCase()
+                            .includes(this.search.toLowerCase());
+                    });
 
                 // Update the filteredStories list, triggering reactivity
                 this.filteredStories.CarModificationTunningShop = filteredStories;
@@ -3535,7 +3860,9 @@ export default {
                 // Make a copy of the original stories before filtering
                 const filteredStories = this.filteredStories.CarClub.filter((story) => {
                     // Filter based on story name (case-insensitive search)
-                    return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                    return story.story_name
+                        .toLowerCase()
+                        .includes(this.search.toLowerCase());
                 });
 
                 // Update the filteredStories list, triggering reactivity
@@ -3556,7 +3883,9 @@ export default {
                 const filteredStories = this.filteredStories.MotorbikeEnthusiast.filter(
                     (story) => {
                         // Filter based on story name (case-insensitive search)
-                        return story.story_name.toLowerCase().includes(this.search.toLowerCase());
+                        return story.story_name
+                            .toLowerCase()
+                            .includes(this.search.toLowerCase());
                     }
                 );
 
@@ -3576,12 +3905,13 @@ export default {
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.AutomotivePhotographer.filter(
-                    (story) => {
+                const filteredStories =
+                    this.filteredStories.AutomotivePhotographer.filter((story) => {
                         // Filter based on story name (case-insensitive search)
-                        return story.story_name.toLowerCase().includes(this.search.toLowerCase());
-                    }
-                );
+                        return story.story_name
+                            .toLowerCase()
+                            .includes(this.search.toLowerCase());
+                    });
 
                 // Update the filteredStories list, triggering reactivity
                 this.filteredStories.AutomotivePhotographer = filteredStories;
@@ -3599,10 +3929,12 @@ export default {
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarEnthusiast.filter((story) => {
-                    // Filter based on story name (case-insensitive search)
-                    return story.make.toLowerCase().includes(this.search.toLowerCase());
-                });
+                const filteredStories = this.filteredStories.CarEnthusiast.filter(
+                    (story) => {
+                        // Filter based on story name (case-insensitive search)
+                        return story.make.toLowerCase().includes(this.search.toLowerCase());
+                    }
+                );
 
                 // Update the filteredStories list, triggering reactivity
                 this.filteredStories.CarEnthusiast = filteredStories;
@@ -3619,15 +3951,21 @@ export default {
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.CarEnthusiast.filter((car) => {
-                    const matchesMake = this.formData.make ? car.make === this.formData.make : true;
-                    const matchesModel = this.formData.model
-                        ? car.model === this.formData.model
-                        : true;
-                    const matchesYear = this.formData.year ? car.year === this.formData.year : true;
+                const filteredCars = this.filteredStories.CarEnthusiast.filter(
+                    (car) => {
+                        const matchesMake = this.formData.make
+                            ? car.make === this.formData.make
+                            : true;
+                        const matchesModel = this.formData.model
+                            ? car.model === this.formData.model
+                            : true;
+                        const matchesYear = this.formData.year
+                            ? car.year === this.formData.year
+                            : true;
 
-                    return matchesMake && matchesModel && matchesYear;
-                });
+                        return matchesMake && matchesModel && matchesYear;
+                    }
+                );
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.CarEnthusiast = filteredCars;
@@ -3647,7 +3985,9 @@ export default {
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
                 const filteredCars = this.filteredStories.CarGarage.filter((car) => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
+                    const matchesCountry = selectedCountry
+                        ? car.country === selectedCountry
+                        : true;
                     const matchesCity = selectedCity ? car.city === selectedCity : true;
                     return matchesCountry && matchesCity;
                 });
@@ -3668,22 +4008,27 @@ export default {
             if (selectedCity == "" && selectedCountry == "") {
                 this.fetchStories();
             } else {
-                const filteredCars = this.filteredStories.CarModificationTunningShop.filter(
-                    (car) => {
+                const filteredCars =
+                    this.filteredStories.CarModificationTunningShop.filter((car) => {
                         const matchesCountry = selectedCountry
                             ? car.country === selectedCountry
                             : true;
                         const matchesCity = selectedCity ? car.city === selectedCity : true;
                         return matchesCountry && matchesCity;
-                    }
-                );
+                    });
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.CarModificationTunningShop = filteredCars;
 
-                console.log("Filtered Cars:", this.filteredStories.CarModificationTunningShop);
+                console.log(
+                    "Filtered Cars:",
+                    this.filteredStories.CarModificationTunningShop
+                );
 
-                console.log("origional Cars:", this.originalCars.CarModificationTunningShop);
+                console.log(
+                    "origional Cars:",
+                    this.originalCars.CarModificationTunningShop
+                );
             }
         },
         applyFilterClub(selectedCountry, selectedCity) {
@@ -3695,7 +4040,9 @@ export default {
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
                 const filteredCars = this.filteredStories.CarClub.filter((car) => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
+                    const matchesCountry = selectedCountry
+                        ? car.country === selectedCountry
+                        : true;
                     const matchesCity = selectedCity ? car.city === selectedCity : true;
                     return matchesCountry && matchesCity;
                 });
@@ -3712,11 +4059,15 @@ export default {
                 this.fetchStories();
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.MotorbikeEnthusiast.filter((car) => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
-                    const matchesCity = selectedCity ? car.city === selectedCity : true;
-                    return matchesCountry && matchesCity;
-                });
+                const filteredCars = this.filteredStories.MotorbikeEnthusiast.filter(
+                    (car) => {
+                        const matchesCountry = selectedCountry
+                            ? car.country === selectedCountry
+                            : true;
+                        const matchesCity = selectedCity ? car.city === selectedCity : true;
+                        return matchesCountry && matchesCity;
+                    }
+                );
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.MotorbikeEnthusiast = filteredCars;
@@ -3730,11 +4081,15 @@ export default {
                 this.fetchStories();
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.AutomotivePhotographer.filter((car) => {
-                    const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
-                    const matchesCity = selectedCity ? car.city === selectedCity : true;
-                    return matchesCountry && matchesCity;
-                });
+                const filteredCars = this.filteredStories.AutomotivePhotographer.filter(
+                    (car) => {
+                        const matchesCountry = selectedCountry
+                            ? car.country === selectedCountry
+                            : true;
+                        const matchesCity = selectedCity ? car.city === selectedCity : true;
+                        return matchesCountry && matchesCity;
+                    }
+                );
 
                 // Update the filteredCars list, triggering reactivity
                 this.filteredStories.AutomotivePhotographer = filteredCars;
@@ -3937,8 +4292,12 @@ export default {
         border: 1px solid #1a202c;
         border-radius: 5px;
         outline: 0;
+        margin-top:4rem !important;
+   
     }
-
+.modal-dialog{
+    padding-top:5rem !important;
+}
     .form-select {
         display: block;
         width: 100%;
@@ -4183,6 +4542,8 @@ form-select {
 
 .overlay {
     transition: opacity 0.3s ease-in-out;
+    height:150px;
+    overflow-y:auto;
 }
 
 .opacity-05 {
@@ -4213,12 +4574,12 @@ form-select {
     background: rgba(77, 85, 97, 0.7) !important;
 }
 
-.cp  {
+.cp {
     cursor: pointer !important;
 }
 
 @media (max-width: 786px) {
-    .cp  {
+    .cp {
         width: 25% !important;
     }
 
@@ -4236,23 +4597,24 @@ form-select {
 }
 
 .instaIcon {
-    width: 60px
+    width: 60px;
 }
+
 .tranc {
-  width: 300px !important;
-  display: -webkit-box;
-  /* Use WebKit for browser compatibility */
-  -webkit-box-orient: vertical;
-  /* Aligns the box in vertical orientation */
-  -webkit-line-clampvm: 2;
-  /* Limits the number of lines to 2 */
-  overflow: hidden;
-  /* Hides the overflow text */
-  text-overflow: ellipsis;
-  /* Adds ellipsis (...) at the end */
-  max-height: 2.5em;
-  /* Ensures only two lines are shown (line-height * 2) */
-  line-height: 1.5em;
-  /* Set the desired line height */
+    width: 300px !important;
+    display: -webkit-box;
+    /* Use WebKit for browser compatibility */
+    -webkit-box-orient: vertical;
+    /* Aligns the box in vertical orientation */
+    -webkit-line-clampvm: 2;
+    /* Limits the number of lines to 2 */
+    overflow: hidden;
+    /* Hides the overflow text */
+    text-overflow: ellipsis;
+    /* Adds ellipsis (...) at the end */
+    max-height: 2.5em;
+    /* Ensures only two lines are shown (line-height * 2) */
+    line-height: 1.5em;
+    /* Set the desired line height */
 }
 </style>
