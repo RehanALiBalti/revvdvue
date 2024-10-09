@@ -70,8 +70,7 @@
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
                             <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
-                            :key="idx"/>
+                                image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                         </div>
                         <div class="row">
@@ -95,7 +94,7 @@
                                         <span class="swiper-notification" aria-live="assertive"
                                             aria-atomic="true"></span>
                                     </div>
-                                    <img :src="iconford" alt="" />
+                                    <img :src="iconford" lass="d-none" alt="" />
                                 </div>
                                 <div class="card-content-car">
                                     <h4 class="text-white mb-1" v-if="car.make && car.model">
@@ -123,16 +122,15 @@
                                 </div>
 
                                 <!-- Modal -->
-                                <div class="modal show d-block" tabindex="-1" role="dialog"
-                                    v-if="isModalBannerOpen">
+                                <div class="modal show d-block" tabindex="-1" role="dialog" v-if="isModalBannerOpen">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body text-center">
-                                              <router-link to="/stories">
-                                                <span class="close-icon" >
-                                                    <i class="fas fa-times"></i>
-                                                </span>
-                                              </router-link>
+                                                <router-link to="/stories">
+                                                    <span class="close-icon">
+                                                        <i class="fas fa-times"></i>
+                                                    </span>
+                                                </router-link>
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
@@ -150,7 +148,8 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(image, car.images)" />
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -158,7 +157,7 @@
                                                             aria-atomic="true"></span>
                                                     </div>
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
                                                             <img :src="prevIcon" alt="" />
                                                         </button>
@@ -166,18 +165,18 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
+                                                    <div class="d-flex justify-content-end" >
                                                         <!-- <button class="btn btn-danger" @click="toggleOverlayOpacity">
                                                             <span class=""><i class="fa-solid fa-xmark"></i></span>
                                                         </button> -->
                                                     </div>
                                                     <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                        :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" alt="" />
+                                                                <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
@@ -192,27 +191,47 @@
                                                                 {{ car.social_media }}
                                                             </a>
                                                         </div>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Tell us your car
+                                                            story together</p>
+
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
-                                                            {{ car.advice || car.story }}
+                                                            {{ car.story }}
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">If you could give
+                                                            advice to someone just starting their journey to modify
+                                                            their car, what would it be and why?
+
                                                         </p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">
+                                                            Can you share with us any memorable stories or adventures
+                                                            you’ve had with your car that stands out the most?
+                                                        </p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.memorable }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start"
+                                                            v-ifc="car.modifications">If you could give advice to
+                                                            someone just starting their journey to modify their car,
+                                                            what would it be and why?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.modifications }}
                                                         </p>
-                                                     
+
                                                     </div>
-                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p>
+                </p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -224,7 +243,7 @@
                 </div>
             </div>
 
-           
+
         </div>
     </section>
 </template>
@@ -282,7 +301,7 @@ export default {
     },
     data() {
         return {
-            isModalBannerOpen:true,
+            isModalBannerOpen: true,
             showMore: {},
             instaIcon,
             currentImage: "", // Currently selected image for viewing
@@ -313,7 +332,7 @@ export default {
             filteredGenerations: [],
             productionYear: "",
             productionYears: [],
-            viewerImages:[],
+            viewerImages: [],
             formData: {
                 make: "",
                 model: "",
@@ -657,7 +676,7 @@ export default {
                 MotorbikeEnthusiast: [],
                 AutomotivePhotographer: [],
             },
-            bannerStories:[]
+            bannerStories: []
         };
     },
     computed: {
@@ -699,38 +718,38 @@ export default {
     },
     methods: {
 
-    //     async fetchBannerStories() {
-    //   try {
-    //     const response = await fetch('https://buzzwaretech.com/adminrev/api/bannerstores');
-    //     const data = await response.json();
-    //     console.log("banner_response data", data)
-    //     if (data.success) {
-    //       // Parse the images field from JSON string to an array
-    //       const banner = data.banner;
-    //       console.log("banner data", banner)
-    //       banner.images = JSON.parse(banner.images); // Parse the images
-    //       this.bannerStories = [banner]; // Store it in the featuredCars array
-    //     }
-    //   } catch (error) {
-    //     console.error('Error fetching featured stories:', error);
-    //   }
-    // },
-    async fetchBannerStories() {
-  try {
-    const response = await fetch('https://buzzwaretech.com/adminrev/api/bannerstores');
-    const data = await response.json();
-    console.log("banner_response data", data);
-    if (data.success) {
-      const banner = data.banner;
-      console.log("banner data", banner);
-      // Parse the images field from JSON string to an array
-      banner.images = JSON.parse(banner.images);
-      this.bannerStories = [banner]; // Store the story in the bannerStories array
-    }
-  } catch (error) {
-    console.error('Error fetching banner stories:', error);
-  }
-},
+        //     async fetchBannerStories() {
+        //   try {
+        //     const response = await fetch('https://buzzwaretech.com/adminrev/api/bannerstores');
+        //     const data = await response.json();
+        //     console.log("banner_response data", data)
+        //     if (data.success) {
+        //       // Parse the images field from JSON string to an array
+        //       const banner = data.banner;
+        //       console.log("banner data", banner)
+        //       banner.images = JSON.parse(banner.images); // Parse the images
+        //       this.bannerStories = [banner]; // Store it in the featuredCars array
+        //     }
+        //   } catch (error) {
+        //     console.error('Error fetching featured stories:', error);
+        //   }
+        // },
+        async fetchBannerStories() {
+            try {
+                const response = await fetch('https://buzzwaretech.com/adminrev/api/bannerstores');
+                const data = await response.json();
+                console.log("banner_response data", data);
+                if (data.success) {
+                    const banner = data.banner;
+                    console.log("banner data", banner);
+                    // Parse the images field from JSON string to an array
+                    banner.images = JSON.parse(banner.images);
+                    this.bannerStories = [banner]; // Store the story in the bannerStories array
+                }
+            } catch (error) {
+                console.error('Error fetching banner stories:', error);
+            }
+        },
 
         getImageUrl(image) {
             return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
@@ -881,73 +900,73 @@ export default {
         //     }
         // }
         openViewer(image, carImages) {
-            this.viewerImages=carImages
-    console.log("in open viewer", image);
-    this.isOverlayTransparent = true;
-    this.currentImage = this.getImageUrl(image); // Set current image URL
+            this.viewerImages = carImages
+            console.log("in open viewer", image);
+            this.isOverlayTransparent = true;
+            this.currentImage = this.getImageUrl(image); // Set current image URL
 
-    const viewerElement = this.$refs.viewerContainer; // Reference the container
-    if (viewerElement) {
-        // Destroy any previous instance if it exists to prevent duplication
-        if (this.viewerInstance) {
-            this.viewerInstance.destroy();
+            const viewerElement = this.$refs.viewerContainer; // Reference the container
+            if (viewerElement) {
+                // Destroy any previous instance if it exists to prevent duplication
+                if (this.viewerInstance) {
+                    this.viewerInstance.destroy();
+                }
+
+                // Create a new array of images, placing the clicked image first
+                const images = this.parsedImages(carImages);
+                const currentImageUrl = this.getImageUrl(image);
+
+                // Create a new array with the clicked image first
+                const imageOrder = [
+                    currentImageUrl,
+                    ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl),
+                ];
+
+                // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
+                this.$nextTick(() => {
+                    this.viewerInstance = new Viewer(viewerElement, {
+                        inline: false, // Set to false for popup mode
+                        zoomable: true, // Enable zooming functionality
+                        movable: true, // Enable panning (dragging the image)
+                        minScale: 1, // Prevent zooming out below 100%
+                        maxScale: 3, // Limit zoom to 3x
+                        viewed() {
+                            console.log("Image viewed");
+                        },
+                        // toolbar: true, // Show the default toolbar
+                        toolbar: {
+                            prev: true,
+                            play: false,
+                            next: true,
+                            zoomIn: false,
+                            zoomOut: false,
+                            rotateLeft: false,
+                            rotateRight: false,
+                            flipHorizontal: false,
+                            flipVertical: false,
+                            reset: false,
+                            close: false, // Add close button
+                        },
+                        zoomOnWheel: true, // Allow zooming with mouse wheel
+                        fullscreen: false, // Disable fullscreen mode
+                        title: false, // Disable image title display
+                        navbar: false, // Disable the navigation bar
+                        tooltip: false, // Disable tooltips for image actions
+                    });
+
+                    // Now manually add images to the viewer by modifying its data
+                    this.viewerInstance._images = imageOrder.map(url => {
+                        return {
+                            src: url,
+                            thumb: url // You can change this to a thumbnail if you have one
+                        };
+                    });
+
+                    // Show the viewer for the current image
+                    this.viewerInstance.show();
+                });
+            }
         }
-
-        // Create a new array of images, placing the clicked image first
-        const images = this.parsedImages(carImages);
-        const currentImageUrl = this.getImageUrl(image);
-
-        // Create a new array with the clicked image first
-        const imageOrder = [
-            currentImageUrl,
-            ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl),
-        ];
-
-        // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-        this.$nextTick(() => {
-            this.viewerInstance = new Viewer(viewerElement, {
-                inline: false, // Set to false for popup mode
-                zoomable: true, // Enable zooming functionality
-                movable: true, // Enable panning (dragging the image)
-                minScale: 1, // Prevent zooming out below 100%
-                maxScale: 3, // Limit zoom to 3x
-                viewed() {
-                    console.log("Image viewed");
-                },
-                // toolbar: true, // Show the default toolbar
-                toolbar: {
-                    prev: true,
-                    play: false,
-                    next: true,
-                    zoomIn: false,
-                    zoomOut: false,
-                    rotateLeft: false,
-                    rotateRight: false,
-                    flipHorizontal: false,
-                    flipVertical: false,
-                    reset: false,
-                    close: false, // Add close button
-                },
-                zoomOnWheel: true, // Allow zooming with mouse wheel
-                fullscreen: false, // Disable fullscreen mode
-                title: false, // Disable image title display
-                navbar: false, // Disable the navigation bar
-                tooltip: false, // Disable tooltips for image actions
-            });
-
-            // Now manually add images to the viewer by modifying its data
-            this.viewerInstance._images = imageOrder.map(url => {
-                return {
-                    src: url,
-                    thumb: url // You can change this to a thumbnail if you have one
-                };
-            });
-
-            // Show the viewer for the current image
-            this.viewerInstance.show();
-        });
-    }
-}
 
         ,
         getImage(tab, index, imgType) {
@@ -1802,12 +1821,14 @@ export default {
         border: 1px solid #1a202c;
         border-radius: 5px;
         outline: 0;
-        margin-top:4rem !important;
-   
+        margin-top: 4rem !important;
+
     }
-.modal-dialog{
-    padding-top:5rem !important;
-}
+
+    .modal-dialog {
+        padding-top: 5rem !important;
+    }
+
     .form-select {
         display: block;
         width: 100%;
@@ -2052,8 +2073,8 @@ form-select {
 
 .overlay {
     transition: opacity 0.3s ease-in-out;
-    height:150px;
-    overflow-y:auto;
+    height: 150px;
+    overflow-y: auto;
 }
 
 .opacity-05 {
@@ -2126,5 +2147,9 @@ form-select {
     /* Ensures only two lines are shown (line-height * 2) */
     line-height: 1.5em;
     /* Set the desired line height */
+}
+
+.text-orange {
+    color: #f95f19 !important;
 }
 </style>

@@ -68,10 +68,10 @@
                 <div class="col-md-12 px-0">
                     <div class="col-md-12 px-4">
                         <div class="row">
+                            <div   v-for="(car, index) in featuredStories" :key="index"
+                            :class="isModalOpenFe  ? 'z-2' : 'z-0'" >
                             <div class="card-sorting-content px-1 py-2 col-md-12 p-1"
-                                v-for="(car, index) in featuredStories" :key="index"
-                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'"
-                                @click="openModal(index)">
+                            @click="openModalFe" >
                                 <div class="main-slider weekly-slider align-items-center">
                                     <div class="swiper-container myCarListingCard-swiper-container">
                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
@@ -88,7 +88,7 @@
                                         <span class="swiper-notification" aria-live="assertive"
                                             aria-atomic="true"></span>
                                     </div>
-                                    <img :src="iconford" alt="" />
+                                    <img :src="iconford" class="d-none" alt="" />
                                 </div>
                                 <div class="card-content-car">
                                     <h4 class="text-white mb-1" v-if="car.make && car.model">
@@ -109,19 +109,20 @@
                                     <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px">
                                         <span v-if="car.advice">{{ car.advice }}</span>
                                         <span v-else>{{ car.story_history }}</span>
-                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
+                                        <span class="view-more-a-tag" style="cursor: pointer" @click="openModalFe">
                                             {{ $t("viewMore") }}
                                         </span>
                                     </p>
                                 </div>
 
-                                <!-- Modal -->
-                                <div class="modal show d-block" tabindex="-1" role="dialog"
-                                    v-if="isModalOpen && activeCarIndex === index">
+                             
+                            </div>
+                               <!-- Modal -->
+                               <div class="modal show d-block" tabindex="-1" role="dialog" v-if="isModalOpenFe">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body text-center">
-                                                <span class="close-icon" @click="modalClose">
+                                                <span class="close-icon" @click="modalCloseFe">
                                                     <i class="fas fa-times"></i>
                                                 </span>
 
@@ -141,7 +142,8 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(image, car.images)" />
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -149,7 +151,7 @@
                                                             aria-atomic="true"></span>
                                                     </div>
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
                                                             <img :src="prevIcon" alt="" />
                                                         </button>
@@ -157,18 +159,17 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
+                                                    <!-- <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
                                                         <button class="btn btn-danger" @click="toggleOverlayOpacity">
                                                             <span class=""><i class="fa-solid fa-xmark"></i></span>
                                                         </button>
-                                                    </div>
-                                                    <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                    </div> -->
+                                                    <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" alt="" />
+                                                                <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
@@ -183,9 +184,46 @@
                                                                 {{ car.social_media }}
                                                             </a>
                                                         </div>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start" v-if="car.story">
+                                                            Tell us your car story together
+                                                        </p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start">
-                                                            {{ car.advice || car.story }}
+                                                            style="font-size: 13px; text-align: start"  v-if="car.story">
+                                                            {{  car.story }}
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start" v-if="car.advice">
+                                                            If you could give advice to someone just starting their journey to modify their car, what would it be and why?
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start"  v-if="car.advice">
+                                                            {{  car.advice }}
+                                                        </p>
+
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start" v-if="car.memorable">
+                                                            Can you share with us any memorable stories or adventures you’ve had with your car that stands out the most?
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start"  v-if="car.memorable">
+                                                            {{  car.memorable }}
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start" v-if="car.modifications">
+                                                            Can you tell us about any modifications you made to your car or any specific features ?
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start"  v-if="car.memorable">
+                                                            {{  car.modifications }}
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start" v-if="car.adventure_story">
+                                                            Can you tell us about any modifications you made to your car or any specific features ?
+                                                        </p>
+                                                        <p class="text-white"
+                                                            style="font-size: 13px; text-align: start"  v-if="car.adventure_story">
+                                                            {{  car.adventure_story }}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -200,7 +238,7 @@
             </div>
 
             <!-- Tab Content -->
-            <div v-if="activeTab === 0">
+            <div v-if="activeTab === 0" :class="isModalOpenFe  ? 'z-0 position-relative ' : ''">
                 <div class="row">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search"
@@ -289,13 +327,12 @@
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
-                           <div class="imageBig" ref="viewerContainer" style="display: none">
-                            <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
-                            :key="idx"/>
+                            <div class="imageBig" ref="viewerContainer" style="display: none">
+                                <img :src="currentImage" alt="Current Image for Viewing" />
+                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                                    image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
-                        </div>
+                            </div>
                             <div v-for="(car, index) in this.filteredStories.CarEnthusiast" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div class="card-sorting-content px-1 py-2 col-md-12 p-1" @click="openModal(index)">
@@ -315,7 +352,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" />
+                                        <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
@@ -369,7 +406,8 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(image,car.images)" />
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -377,7 +415,7 @@
                                                             aria-atomic="true"></span>
                                                     </div>
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
                                                             <img :src="prevIcon" alt="" />
                                                         </button>
@@ -386,15 +424,14 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
-                                                        
+
                                                     </div>
-                                                    <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                    <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" alt="" />
+                                                                <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
@@ -408,29 +445,43 @@
                                                                 {{ car.social_media }}
                                                             </router-link>
                                                         </div>
-
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Tell us your car
+                                                            story together</p>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.story }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">If you could give
+                                                            advice to someone just starting their journey to modify
+                                                            their car, what would it be and why?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Can you share
+                                                            with us any memorable stories or adventures you’ve had with
+                                                            your car that stands out the most?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.memorable }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Can you tell us
+                                                            about any modifications you made to your car or any specific
+                                                            features ?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.modifications }}
                                                         </p>
 
-                                                     
+
                                                     </div>
-                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p>
+                </p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -508,7 +559,7 @@
                 </div>
             </div>
 
-            <div v-else-if="activeTab === 1">
+            <div v-else-if="activeTab === 1" :class="isModalOpenFe  ? 'z-0 position-relative ' : ''">
                 <div class="row">
                     <div class="col-md-12 mb-2 m-0">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
@@ -971,13 +1022,12 @@
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
-                           <div class="imageBig" ref="viewerContainer" style="display: none">
-                            <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
-                            :key="idx"/>
+                            <div class="imageBig" ref="viewerContainer" style="display: none">
+                                <img :src="currentImage" alt="Current Image for Viewing" />
+                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                                    image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
-                        </div>
+                            </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarGarage" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)" class="card-sorting-content px-1 py-2 col-md-12 p-1">
@@ -997,7 +1047,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" />
+                                        <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
@@ -1012,6 +1062,7 @@
                                                 </a>
                                             </li>
                                         </ul>
+
                                         <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
@@ -1051,7 +1102,8 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(image, car.images)" />
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1059,7 +1111,7 @@
                                                             aria-atomic="true"></span>
                                                     </div>
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
                                                             <img :src="prevIcon" alt="" />
                                                         </button>
@@ -1072,13 +1124,12 @@
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
-                                                    <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                    <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" alt="" />
+                                                                <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.country }}
                                                                 </h3>
@@ -1092,23 +1143,27 @@
                                                             </router-link>
                                                         </div>
 
+
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Can you tell us
+                                                            any memorable stories or adventures you’ve had that stands
+                                                            out the most?</p>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
-                                                            {{ car.advice }}
-                                                        </p>
-                                                        <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
                                                             {{ car.adventure_story }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Tell us about
+                                                            your Garage</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
-                                                      
+
                                                     </div>
-                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p>
+                </p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -1123,7 +1178,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="activeTab === 2">
+            <div v-else-if="activeTab === 2" :class="isModalOpenFe  ? 'z-0 position-relative ' : ''">
                 <!-- Add content here Car Modification/Tuning Shop Content -->
                 <div class="row">
                     <div class="col-md-12 mb-2">
@@ -1378,13 +1433,12 @@
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
-                           <div class="imageBig" ref="viewerContainer" style="display: none">
-                            <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
-                            :key="idx"/>
+                            <div class="imageBig" ref="viewerContainer" style="display: none">
+                                <img :src="currentImage" alt="Current Image for Viewing" />
+                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                                    image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
-                        </div>
+                            </div>
                             <div class="" v-for="(car, index) in this.filteredStories
                                 .CarModificationTunningShop" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
@@ -1405,7 +1459,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" />
+                                        <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
@@ -1432,6 +1486,7 @@
                                             </span>
                                         </p>
                                     </div>
+                                    class="d-none"
                                 </div>
 
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
@@ -1459,7 +1514,8 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(image, car.images)" />
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1468,7 +1524,7 @@
                                                     </div>
 
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
                                                             <img :src="prevIcon" alt="" />
                                                         </button>
@@ -1481,13 +1537,12 @@
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
-                                                    <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                    <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" alt="" />
+                                                                <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.country }}
                                                                 </h3>
@@ -1501,19 +1556,25 @@
                                                             </router-link>
                                                         </div>
 
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Can you tell us
+                                                            any memorable stories or adventures you’ve had that stands
+                                                            out the most?</p>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
-                                                            {{ car.advice }}
+                                                            {{ car.adventure_story }}
                                                         </p>
-
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Tell us about
+                                                            your shop</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
-                                                            {{ car.modifications }}
+                                                            style="font-size: 13px; text-align: start">
+                                                            {{ car.story_history }}
                                                         </p>
                                                     </div>
-                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p>
+                </p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -1528,7 +1589,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="activeTab === 3">
+            <div v-else-if="activeTab === 3" :class="isModalOpenFe  ? 'z-0 position-relative ' : ''">
                 <!-- Add content here -->
 
                 <div class="row">
@@ -1784,13 +1845,12 @@
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
-                           <div class="imageBig" ref="viewerContainer" style="display: none">
-                            <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
-                            :key="idx"/>
+                            <div class="imageBig" ref="viewerContainer" style="display: none">
+                                <img :src="currentImage" alt="Current Image for Viewing" />
+                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                                    image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
-                        </div>
+                            </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarClub" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)" class="card-sorting-content px-1 py-2 col-md-12 p-1">
@@ -1810,7 +1870,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" />
+                                        <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
@@ -1837,6 +1897,7 @@
                                             </span>
                                         </p>
                                     </div>
+                                    class="d-none"
                                 </div>
 
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
@@ -1864,7 +1925,8 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(image, car.images)" />
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -1872,7 +1934,7 @@
                                                             aria-atomic="true"></span>
                                                     </div>
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
                                                             <img :src="prevIcon" alt="" />
                                                         </button>
@@ -1885,13 +1947,12 @@
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
-                                                    <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                    <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" alt="" />
+                                                                <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.country }}
                                                                 </h3>
@@ -1905,23 +1966,26 @@
                                                             </router-link>
                                                         </div>
 
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Can you tell us
+                                                            any memorable stories or adventures you’ve had that stands
+                                                            out the most?</p>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
-                                                            {{ car.advice }}
-                                                        </p>
-                                                        <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
                                                             {{ car.adventure_story }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Tell us about
+                                                            your club</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
-                                                     
+
                                                     </div>
-                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p>
+                </p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -1936,7 +2000,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="activeTab === 4">
+            <div v-else-if="activeTab === 4" :class="isModalOpenFe  ? 'z-0 position-relative ' : ''">
                 <!-- Add content here Motorbike Enthusiast Content -->
                 <div class="row">
                     <div class="col-md-12 mb-2">
@@ -2193,8 +2257,7 @@
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
                             <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
-                            :key="idx"/>
+                                image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                         </div>
                         <div class="row">
@@ -2217,7 +2280,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" />
+                                        <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
@@ -2244,6 +2307,7 @@
                                             </span>
                                         </p>
                                     </div>
+                                    class="d-none"
                                 </div>
 
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
@@ -2271,7 +2335,8 @@
                                                                         image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car" @click="openViewer(image, car.images)" />
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper>
@@ -2279,7 +2344,7 @@
                                                             aria-atomic="true"></span>
                                                     </div>
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
                                                             <img :src="prevIcon" alt="" />
                                                         </button>
@@ -2292,13 +2357,12 @@
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
-                                                    <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                    <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" alt="" />
+                                                                <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.country }}
                                                                 </h3>
@@ -2312,23 +2376,25 @@
                                                             </router-link>
                                                         </div>
 
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Can you tell us
+                                                            any memorable stories or adventures you’ve had that stands
+                                                            out the most?</p>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
-                                                            {{ car.advice }}
-                                                        </p>
-
-                                                        <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
                                                             {{ car.adventure_story }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Tell us about
+                                                            your Garage</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                     </div>
-                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p>
+                </p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -2343,7 +2409,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="activeTab === 5">
+            <div v-else-if="activeTab === 5" :class="isModalOpenFe  ? 'z-0 position-relative ' : ''">
                 <!-- Add content here -->
                 <div class="row">
                     <div class="col-md-12 mb-2">
@@ -2600,8 +2666,7 @@
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
                             <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                            image"  v-for="(image, idx) in parsedImages(viewerImages)"
-                            :key="idx"/>
+                                image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                         </div>
                         <div class="row">
@@ -2625,7 +2690,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" />
+                                        <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
@@ -2688,7 +2753,7 @@
                                                             aria-atomic="true"></span>
                                                     </div>
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-none'">
+                                                        :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
                                                             <img :src="prevIcon" alt="" />
                                                         </button>
@@ -2701,13 +2766,12 @@
                                                                 <i class="fa-solid fa-xmark"></i>
                                                 </span></button> -->
                                                     </div>
-                                                    <div class="overlay mt-5"
-                                                        :class="{ 'opacity-05': isOverlayTransparent }"
+                                                    <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" alt="" />
+                                                                <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.country }}
                                                                 </h3>
@@ -2721,23 +2785,25 @@
                                                             </router-link>
                                                         </div>
 
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Can you tell us
+                                                            any memorable stories or adventures you’ve had that stands
+                                                            out the most?</p>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
-                                                            {{ car.advice }}
-                                                        </p>
-
-                                                        <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
                                                             {{ car.adventure_story }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 13px; text-align: start">Tell us about
+                                                            your Garage</p>
                                                         <p class="text-white"
-                                                            style="font-size: 13px; text-align: start" v-if="showMore[index]">
+                                                            style="font-size: 13px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                     </div>
-                                                    <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p>
+                </p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -2809,6 +2875,7 @@ export default {
     },
     data() {
         return {
+            isModalOpenFe: false,
             showMore: {},
             instaIcon,
             currentImage: "", // Currently selected image for viewing
@@ -2839,7 +2906,7 @@ export default {
             filteredGenerations: [],
             productionYear: "",
             productionYears: [],
-            viewerImages:[],
+            viewerImages: [],
             formData: {
                 make: "",
                 model: "",
@@ -3371,73 +3438,73 @@ export default {
         //     }
         // }
         openViewer(image, carImages) {
-            this.viewerImages=carImages
-    console.log("in open viewer", image);
-    this.isOverlayTransparent = true;
-    this.currentImage = this.getImageUrl(image); // Set current image URL
+            this.viewerImages = carImages
+            console.log("in open viewer", image);
+            this.isOverlayTransparent = true;
+            this.currentImage = this.getImageUrl(image); // Set current image URL
 
-    const viewerElement = this.$refs.viewerContainer; // Reference the container
-    if (viewerElement) {
-        // Destroy any previous instance if it exists to prevent duplication
-        if (this.viewerInstance) {
-            this.viewerInstance.destroy();
+            const viewerElement = this.$refs.viewerContainer; // Reference the container
+            if (viewerElement) {
+                // Destroy any previous instance if it exists to prevent duplication
+                if (this.viewerInstance) {
+                    this.viewerInstance.destroy();
+                }
+
+                // Create a new array of images, placing the clicked image first
+                const images = this.parsedImages(carImages);
+                const currentImageUrl = this.getImageUrl(image);
+
+                // Create a new array with the clicked image first
+                const imageOrder = [
+                    currentImageUrl,
+                    ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl),
+                ];
+
+                // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
+                this.$nextTick(() => {
+                    this.viewerInstance = new Viewer(viewerElement, {
+                        inline: false, // Set to false for popup mode
+                        zoomable: true, // Enable zooming functionality
+                        movable: true, // Enable panning (dragging the image)
+                        minScale: 1, // Prevent zooming out below 100%
+                        maxScale: 3, // Limit zoom to 3x
+                        viewed() {
+                            console.log("Image viewed");
+                        },
+                        // toolbar: true, // Show the default toolbar
+                        toolbar: {
+                            prev: true,
+                            play: false,
+                            next: true,
+                            zoomIn: false,
+                            zoomOut: false,
+                            rotateLeft: false,
+                            rotateRight: false,
+                            flipHorizontal: false,
+                            flipVertical: false,
+                            reset: false,
+                            close: false, // Add close button
+                        },
+                        zoomOnWheel: true, // Allow zooming with mouse wheel
+                        fullscreen: false, // Disable fullscreen mode
+                        title: false, // Disable image title display
+                        navbar: false, // Disable the navigation bar
+                        tooltip: false, // Disable tooltips for image actions
+                    });
+
+                    // Now manually add images to the viewer by modifying its data
+                    this.viewerInstance._images = imageOrder.map(url => {
+                        return {
+                            src: url,
+                            thumb: url // You can change this to a thumbnail if you have one
+                        };
+                    });
+
+                    // Show the viewer for the current image
+                    this.viewerInstance.show();
+                });
+            }
         }
-
-        // Create a new array of images, placing the clicked image first
-        const images = this.parsedImages(carImages);
-        const currentImageUrl = this.getImageUrl(image);
-
-        // Create a new array with the clicked image first
-        const imageOrder = [
-            currentImageUrl,
-            ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl),
-        ];
-
-        // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-        this.$nextTick(() => {
-            this.viewerInstance = new Viewer(viewerElement, {
-                inline: false, // Set to false for popup mode
-                zoomable: true, // Enable zooming functionality
-                movable: true, // Enable panning (dragging the image)
-                minScale: 1, // Prevent zooming out below 100%
-                maxScale: 3, // Limit zoom to 3x
-                viewed() {
-                    console.log("Image viewed");
-                },
-                // toolbar: true, // Show the default toolbar
-                toolbar: {
-                    prev: true,
-                    play: false,
-                    next: true,
-                    zoomIn: false,
-                    zoomOut: false,
-                    rotateLeft: false,
-                    rotateRight: false,
-                    flipHorizontal: false,
-                    flipVertical: false,
-                    reset: false,
-                    close: false, // Add close button
-                },
-                zoomOnWheel: true, // Allow zooming with mouse wheel
-                fullscreen: false, // Disable fullscreen mode
-                title: false, // Disable image title display
-                navbar: false, // Disable the navigation bar
-                tooltip: false, // Disable tooltips for image actions
-            });
-
-            // Now manually add images to the viewer by modifying its data
-            this.viewerInstance._images = imageOrder.map(url => {
-                return {
-                    src: url,
-                    thumb: url // You can change this to a thumbnail if you have one
-                };
-            });
-
-            // Show the viewer for the current image
-            this.viewerInstance.show();
-        });
-    }
-}
 
         ,
         getImage(tab, index, imgType) {
@@ -4162,6 +4229,12 @@ export default {
             this.activeCarIndex = index;
             this.isModalOpen = true;
         },
+        openModalFe() {
+            this.isModalOpenFe = true
+        },
+        modalCloseFe() {
+            this.isModalOpenFe = false
+        },
         modalClose() {
             console.log("outmodal");
             this.isModalOpen = false;
@@ -4292,12 +4365,14 @@ export default {
         border: 1px solid #1a202c;
         border-radius: 5px;
         outline: 0;
-        margin-top:4rem !important;
-   
+        margin-top: 4rem !important;
+
     }
-.modal-dialog{
-    padding-top:5rem !important;
-}
+
+    .modal-dialog {
+        padding-top: 5rem !important;
+    }
+
     .form-select {
         display: block;
         width: 100%;
@@ -4542,8 +4617,8 @@ form-select {
 
 .overlay {
     transition: opacity 0.3s ease-in-out;
-    height:150px;
-    overflow-y:auto;
+    height: 150px;
+    overflow-y: auto;
 }
 
 .opacity-05 {
@@ -4616,5 +4691,19 @@ form-select {
     /* Ensures only two lines are shown (line-height * 2) */
     line-height: 1.5em;
     /* Set the desired line height */
+}
+
+.viewer-toolbar>ul>li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f95f19 !important;
+    height: 32px !important;
+    width: 32px !important;
+
+}
+
+.text-orange {
+    color: #f95f19 !important;
 }
 </style>
