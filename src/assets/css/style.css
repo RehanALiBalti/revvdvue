@@ -2744,3 +2744,8 @@ a:hover {
 .wordWrap {
 	word-break: break-all;
 }
+
+.cropper-container {
+	width: 100% !important;
+	/* height: 400px !important; */
+}

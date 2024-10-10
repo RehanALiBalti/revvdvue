@@ -476,8 +476,10 @@
               <div class="col-md-12">
                 <label for="city" class="form-label">Upload Pictures Max 8</label>
 
+                <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                  accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
                 <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                  accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="handleFileUpload" />
+                  accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
                 <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
                   <span class="border-bottom-btn border-top-btn position-absolute">
                     <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
@@ -501,7 +503,7 @@
                     <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                   </span>
                 </div>
-                <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+                <!-- <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
                   <div v-for="(file, index) in uploadedFiles" :key="index"
                     class="upImageArea d-flex justify-content-between position-relative align-items-center">
                     <span>{{ file.name }}</span>
@@ -509,7 +511,7 @@
                       <i class="fa-solid fa-xmark"></i>
                     </button>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -626,8 +628,10 @@
               <div class="col-md-12">
                 <label for="city" class="form-label">Upload Pictures Max 8</label>
 
+                <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                  accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
                 <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                  accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" />
+                  accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
                 <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
                   <span class="border-bottom-btn border-top-btn position-absolute">
                     <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
@@ -651,23 +655,42 @@
                     <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                   </span>
                 </div>
-                <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
-                  <div v-for="(file, index) in uploadedFiles" :key="index"
-                    class="upImageArea d-flex justify-content-between position-relative align-items-center">
-                    <span>{{ file.name }}</span>
-                    <button class="btn btnRemv" @click="removeImage(index)">
-                      <i class="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
+
+              </div>
+            </div>
+
+
+
+
+
+
+          </div>
+          <div class="col-md-12 my-1">
+            <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+
+              <div v-for="(file, index) in croppedImages" :key="index"
+                class="upImageArea d-flex justify-content-between position-relative align-items-center">
+                <span>{{ file }}</span>
+                <button type="button" class="btn btnRemv" @click="removeImage(index)">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+            <!-- Cropped Images Preview -->
+            <div v-if="croppedImages.length" class="cropped-preview row">
+              <h4 class="text-white"> Cropped Images Preview:</h4>
+              <div v-for="(croppedImage, index) in croppedImages" :key="index" class="image-item col-md-6 my-2">
+
+
+
+                <div>
+                  <img class="img-fluid" :src="croppedImage.url" alt="Cropped Image Preview" />
                 </div>
+
+
               </div>
             </div>
           </div>
-
-
-
-
-
           <div class="col-md-12">
             <div class="list-item-btn position-relative submit-btn-div">
               <span class="border-bottom-btn border-top-btn position-absolute">
@@ -710,6 +733,55 @@
             <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
             <h1>Thank You!</h1>
             <p>Your submission is received, and we will contact you soon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade show d-block" id="ignismyModal" tabindex="-1" role="dialog" v-if="imageModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            @click="closeModal(false)"></button>
+        </div>
+        <div class="modal-body">
+          <img ref="imageCrop" :src="imageUrlCrop" alt="Image for cropping" />
+          <label class="d-none" for="zoom">Zoom: </label>
+          <input class="d-none" type="range" id="zoom" min="0.1" max="3" step="0.1" v-model="zoomLevel" @input="onZoom">
+          <div class="d-flex gap-3">
+            <div class="col-md-12">
+              <div class="list-item-btn position-relative submit-btn-div">
+                <span class="border-bottom-btn border-top-btn position-absolute">
+                  <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                </span>
+
+                <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                  <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                </span>
+
+                <span
+                  class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                  <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                </span>
+                <button type="button" class="signin-btnli submitNow" id="submit-button" @click="closeModal(true)">
+                  {{ $t('Crop & Save') }}
+                </button>
+                <span class="border-bottom-btn border-left-btn position-absolute">
+                  <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                </span>
+                <span class="border-bottom-btn position-absolute">
+                  <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                </span>
+              </div>
+            </div>
+            <!-- <button class="btn btn-primary" @click="closeModal(true)">Crop & Save</button> -->
+            <!-- <button class="btn btn-danger" @click="closeModal(false)">Cancel</button> -->
+          </div>
+          <div>
+
           </div>
         </div>
       </div>
@@ -874,6 +946,9 @@ import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
 import { useIslogin } from "@/composables/uselogin"
 import { computed } from "vue";
+import '../../node_modules/vue-draggable-resizable/dist/style.css';
+import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.css';
 export default {
   name: "HomeLanding",
   setup() {
@@ -903,11 +978,20 @@ export default {
       changeProfileImage,
       changeName,
       setLogin,
-      isLogin
+      isLogin,
+      imageUrl: null, // Current image being cropped
+
     };
   },
   data() {
     return {
+      imageUrlCrop: "",
+      croppedImages: [], // Array to store cropped images
+      imageModal: false,
+      cropper: null,
+      zoomLevel: 1, // Default zoom level
+      currentFile: null, // Store the file being processed
+      filesQueue: [], // Queue for multiple image files
       modalTitle: "",
       modaldescription: "",
       shopName: "",
@@ -982,6 +1066,147 @@ export default {
     };
   },
   methods: {
+    openImageModal(event) {
+      const file = event.target.files[0];
+      console.log("new file", file)
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          console.log("target", e.target.result)
+          this.imageUrlCrop = e.target.result; // Set the image URL
+          console.log("image url", this.imageUrlCrop)
+          this.imageModal = true;
+          console.log("image modal", this.imageModal)
+          this.$nextTick(() => {
+            // Show modal only after image is set
+            this.initCropper(); // Initialize cropper after modal is displayed
+          });
+        };
+        reader.readAsDataURL(file); // Load the image as a Data URL
+      }
+    }
+    ,
+    // Initializes the cropper for the image
+    // initCropper() {
+    //   this.$nextTick(() => {
+    //     const image = this.$refs.imageCrop;
+    //     if (image) {
+    //       if (this.cropper) {
+    //         this.cropper.destroy(); // Destroy the previous cropper instance
+    //       }
+    //       this.cropper = new Cropper(image, {
+    //         aspectRatio: 1, // Example: Square crop
+    //         viewMode: 1,
+    //         autoCropArea: 1,
+    //         scalable: true,
+    //         zoomable: true,
+    //         ready: () => {
+    //           this.cropper.zoomTo(this.zoomLevel); // Set the initial zoom level
+    //         },
+    //       });
+    //     } else {
+    //       console.error("Image element not found for cropping.");
+    //     }
+    //   });
+    // },
+    initCropper() {
+      this.$nextTick(() => {
+        const image = this.$refs.imageCrop; // Get the image element reference
+        if (image) {
+          if (this.cropper) {
+            this.cropper.destroy(); // Destroy the previous instance if it exists
+          }
+          this.cropper = new Cropper(image, {
+            // aspectRatio: 1, // Example: Square crop (you can adjust aspect ratio if needed)
+            aspectRatio: 1280 / 720, // Set aspect ratio to match 1280x720
+            viewMode: 1,
+            autoCropArea: 1,
+            scalable: true,
+            zoomable: true,
+            cropBoxResizable: false, // Disable resizing of the crop box
+            cropBoxMovable: true, // Enable moving the crop box
+            minCropBoxWidth: '500px', // Set a fixed width
+            minCropBoxHeight: '200px', // Set a fixed height
+            ready: () => {
+
+              this.cropper.setCropBoxData({ width: 1280, height: 720 });
+
+
+            },
+          });
+        } else {
+          console.error("Image element not found for cropping.");
+        }
+      });
+    },
+
+    onZoom() {
+      if (this.cropper) {
+        this.cropper.zoomTo(this.zoomLevel);
+      }
+    },
+    // closeModal(done) {
+    //   if (done && this.cropper) {
+    //     const canvas = this.cropper.getCroppedCanvas();
+    //     canvas.toBlob((blob) => {
+    //       this.uploadedFiles.push(blob); // Add the cropped image blob to uploaded files
+    //       this.imageModal = false; // Close the modal
+    //       this.cropper.destroy(); // Destroy the cropper instance
+    //       this.cropper = null; // Reset the cropper
+    //       this.imageUrlCrop = null; // Clear the image URL
+    //       this.processNextImage(); // Process the next image in the queue
+    //     }, 'image/png');
+    //   } else {
+    //     this.imageModal = false; // Close modal without saving
+    //     this.cropper.destroy(); // Destroy the cropper instance
+    //     this.cropper = null;
+    //     this.imageUrlCrop = null; // Clear the image URL
+    //     this.processNextImage(); // Process the next image in the queue
+    //   }
+    // },
+    processNextImage() {
+      if (this.filesQueue.length === 0) return; // Exit if no more images in the queue
+
+      const file = this.filesQueue.shift(); // Get the next file from the queue
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageUrlCrop = e.target.result; // Set the image URL for cropping
+        this.$nextTick(() => {
+          this.imageModal = true; // Open the modal for cropping
+          this.initCropper(); // Initialize the cropper
+        });
+      };
+      reader.readAsDataURL(file); // Read the image file
+    },
+
+    // Closes the modal and processes the cropped image
+    closeModal(done) {
+      if (done && this.cropper) {
+        const canvas = this.cropper.getCroppedCanvas();
+        canvas.toBlob((blob) => {
+          const imageUrl = URL.createObjectURL(blob); // Create URL for preview
+
+          // Add the cropped image to both uploaded files and croppedImages array
+          this.uploadedFiles.push(blob);
+          this.croppedImages.push({ url: imageUrl });
+          const croppedImageFile = new File([blob], `cropped-image-${Date.now()}.png`, { type: 'image/png' });
+          this.formData.storyImages.push(croppedImageFile);
+
+          this.imageModal = false; // Close the modal
+          this.cropper.destroy(); // Destroy the cropper instance
+          this.cropper = null; // Reset the cropper
+          this.imageUrlCrop = null; // Clear the image URL
+          this.processNextImage(); // Process the next image in the queue
+        }, 'image/png');
+      } else {
+        this.imageModal = false; // Close modal without saving
+        this.cropper.destroy(); // Destroy the cropper instance
+        this.cropper = null;
+        this.imageUrlCrop = null; // Clear the image URL
+        this.processNextImage(); // Process the next image in the queue
+      }
+    },
+
     hideModalStoryFail() {
       this.ModalStoryFail = false
     },
@@ -1067,23 +1292,49 @@ export default {
     //     reader.readAsDataURL(file);
     //   }
     // },
+    // handleFileUpload(event) {
+    //   const files = event.target.files;
+    //   if (files.length + this.uploadedFiles.length > 8) {
+    //     alert("You can only upload a maximum of 8 images.");
+    //     return;
+    //   }
+    //   for (let i = 0; i < files.length; i++) {
+    //     const file = files[i];
+    //     this.uploadedFiles.push(file);
+    //   }
+    // },
     handleFileUpload(event) {
       const files = event.target.files;
       if (files.length + this.uploadedFiles.length > 8) {
         alert("You can only upload a maximum of 8 images.");
         return;
       }
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        this.uploadedFiles.push(file);
-      }
+      this.filesQueue = Array.from(files); // Convert FileList to array and queue it
+      this.processNextImage(); // Start processing the first image
     },
+    // Processes the next image in the queue
+    //   processNextImage() {
+    //   if (this.filesQueue.length === 0) return; // Exit if no more images in the queue
+
+    //   const file = this.filesQueue.shift(); // Get the next file from the queue
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     this.imageUrlCrop = e.target.result; // Set the image URL for cropping
+    //     this.$nextTick(() => {
+    //       this.imageModal = true; // Open the modal for cropping
+    //       this.initCropper(); // Initialize the cropper
+    //     });
+    //   };
+    //   reader.readAsDataURL(file); // Read the image file
+    // },
+
     // removeImage(index) {
     //   this.uploadedImages.splice(index, 1);
     // }
     // ,
     removeImage(index) {
       this.uploadedFiles.splice(index, 1);
+      this.croppedImages.splice(index, 1);
     },
     async fetchProfileData() {
       try {
@@ -1161,7 +1412,7 @@ export default {
         event.target.value = ''; // Clear the input
         return;
       }
-      this.formData.storyImages = Array.from(files); // Store the selected files
+      // this.formData.storyImages = Array.from(files); // Store the selected files
     },
 
 
@@ -1280,6 +1531,7 @@ export default {
 
 
       if (this.isLogin == 'true' || this.isLogin == true) {
+
         console.log("the condition is true and form submit")
         // Send POST request using Axios
         axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
@@ -2162,8 +2414,9 @@ textarea.form-control {
   line-height: 1.5em;
   /* Set the desired line height */
 }
-.img-car{
-  width:220px !important;
-  border-radius:10px !important;
+
+.img-car {
+  width: 220px !important;
+  border-radius: 10px !important;
 }
 </style>
