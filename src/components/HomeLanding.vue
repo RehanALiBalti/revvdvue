@@ -748,7 +748,7 @@
             @click="closeModal(false)"></button>
         </div>
         <div class="modal-body">
-          <img ref="imageCrop" :src="imageUrlCrop" alt="Image for cropping" />
+          <img ref="imageCrop" :src="imageUrlCrop" alt="Image for cropping" class="imgcrop" />
           <label class="d-none" for="zoom">Zoom: </label>
           <input class="d-none" type="range" id="zoom" min="0.1" max="3" step="0.1" v-model="zoomLevel" @input="onZoom">
           <div class="d-flex gap-3">
@@ -1118,7 +1118,7 @@ export default {
           }
           this.cropper = new Cropper(image, {
             // aspectRatio: 1, // Example: Square crop (you can adjust aspect ratio if needed)
-            aspectRatio: 1280 / 720, // Set aspect ratio to match 1280x720
+            aspectRatio: 16 / 9, // Set aspect ratio to match 1280x720
             viewMode: 1,
             autoCropArea: 1,
             scalable: true,
@@ -2418,5 +2418,13 @@ textarea.form-control {
 .img-car {
   width: 220px !important;
   border-radius: 10px !important;
+}
+.imgcrop{
+  width:100%;
+  height:300px
+}
+.cropper-canvas img{
+  width:100% !important;
+  height:300px !important;
 }
 </style>
