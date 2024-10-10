@@ -1123,6 +1123,7 @@ export default {
             autoCropArea: 1,
             scalable: true,
             zoomable: true,
+            moveable: true,
             cropBoxResizable: false, // Disable resizing of the crop box
             cropBoxMovable: true, // Enable moving the crop box
             minCropBoxWidth: '500px', // Set a fixed width
@@ -2419,12 +2420,14 @@ textarea.form-control {
   width: 220px !important;
   border-radius: 10px !important;
 }
-.imgcrop{
-  width:100%;
-  height:300px
+
+.imgcrop {
+  width: 100%;
+  height: 300px
 }
-.cropper-canvas img{
-  width:100% !important;
-  height:300px !important;
+
+.cropper-canvas img {
+  width: 100% !important;
+  height: 300px !important;
 }
 </style>
