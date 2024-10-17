@@ -677,7 +677,7 @@
               </div>
             </div>
             <!-- Cropped Images Preview -->
-            <div v-if="croppedImages.length" class="cropped-preview row">
+            <!-- <div v-if="croppedImages.length" class="cropped-preview row">
               <h4 class="text-white"> Cropped Images Preview:</h4>
               <div v-for="(croppedImage, index) in croppedImages" :key="index" class="image-item col-md-6 my-2">
 
@@ -689,7 +689,27 @@
 
 
               </div>
+            </div> -->
+            <!-- Draggable List of Images -->
+            <!-- <div class="draggable-area" v-if="croppedImages.length > 0">
+
+              <div v-for="(image, index) in croppedImages" :key="index" class="image-item" draggable="true"
+                @dragstart="onDragStart(index)" @dragover.prevent @drop="onDrop(index)">
+                <span class="image-number">{{ index + 1 }}</span>
+                <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
+              </div>
+            </div> -->
+            <div class="draggable-area" v-if="croppedImages.length > 0">
+              <p class="Note"><strong>Note:</strong>Please drag the image at the <strong>second(2) </strong> index to
+                set it as the main image for your story.</p>
+              <div v-for="(image, index) in croppedImages" :key="index"
+                :class="['image-item', { 'mainImage': index === 1 }]" draggable="true" @dragstart="onDragStart(index)"
+                @dragover.prevent @drop="onDrop(index)">
+                <span class="image-number">{{ index + 1 }}</span>
+                <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
+              </div>
             </div>
+
           </div>
           <div class="col-md-12">
             <div class="list-item-btn position-relative submit-btn-div">
@@ -949,8 +969,14 @@ import { computed } from "vue";
 import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
+// import draggable from 'vuedraggable';
+
+
 export default {
   name: "HomeLanding",
+  components: {
+    // draggable,
+  },
   setup() {
     const { state: profileImageState, setProfileImage } = useProfileImage();
     const { state: nameState, setName } = useProfileName();
@@ -985,6 +1011,7 @@ export default {
   },
   data() {
     return {
+      draggedIndex: null,
       imageUrlCrop: "",
       croppedImages: [], // Array to store cropped images
       imageModal: false,
@@ -1066,6 +1093,35 @@ export default {
     };
   },
   methods: {
+    onDragStart(index) {
+      this.draggedIndex = index;
+      // Store the index of the dragged image
+      console.log("start,", this.croppedImages)
+    },
+    // onDrop(targetIndex) {
+    //   const draggedImage = this.croppedImages[this.draggedIndex]; // Get the dragged image
+    //   this.croppedImages.splice(this.draggedIndex, 1); // Remove it from its original position
+    //   this.croppedImages.splice(targetIndex, 0, draggedImage); // Insert it at the new position
+    //   this.draggedIndex = null; // Reset the dragged index
+    //   console.log("onDrop,",this.croppedImages)
+    // },
+    onDrop(targetIndex) {
+      if (this.draggedIndex === targetIndex) return; // Prevent moving to the same index
+      const draggedImage = this.croppedImages[this.draggedIndex]; // Get the dragged image
+      // Remove it from its original position
+      this.croppedImages.splice(this.draggedIndex, 1);
+      // Insert it at the new position
+      this.croppedImages.splice(targetIndex, 0, draggedImage);
+      this.draggedIndex = null; // Reset the dragged index
+
+      // Log the updated croppedImages array
+      console.log("Updated croppedImages:", this.croppedImages);
+    },
+    // daraable
+
+
+
+    // end dragable
     openImageModal(event) {
       const file = event.target.files[0];
       console.log("new file", file)
@@ -1278,32 +1334,8 @@ export default {
         console.error('Error fetching featured stories:', error);
       }
     },
-    // handleFileUpload(event) {
-    //   const files = event.target.files;
-    //   if (files.length + this.uploadedImages.length > 8) {
-    //     alert("You can only upload a maximum of 8 images.");
-    //     return;
-    //   }
-    //   for (let i = 0; i < files.length; i++) {
-    //     const file = files[i];
-    //     const reader = new FileReader();
-    //     reader.onload = (e) => {
-    //       this.uploadedImages.push(e.target.result);
-    //     };
-    //     reader.readAsDataURL(file);
-    //   }
-    // },
-    // handleFileUpload(event) {
-    //   const files = event.target.files;
-    //   if (files.length + this.uploadedFiles.length > 8) {
-    //     alert("You can only upload a maximum of 8 images.");
-    //     return;
-    //   }
-    //   for (let i = 0; i < files.length; i++) {
-    //     const file = files[i];
-    //     this.uploadedFiles.push(file);
-    //   }
-    // },
+
+    // origional
     handleFileUpload(event) {
       const files = event.target.files;
       if (files.length + this.uploadedFiles.length > 8) {
@@ -1482,11 +1514,28 @@ export default {
     //       // Handle error actions here
     //     });
     // }
-    SubmitStory() {
+    async convertBlobToFile(blob, index) {
+      // Use fetch to convert blob to File object
+      const response = await fetch(blob.url); // Assuming blob.url contains the Blob URL
+      const fileBlob = await response.blob(); // Get the Blob from the response
+      return new File([fileBlob], `image-${index}.png`, { type: fileBlob.type }); // Create File object
+    }
+    ,
+    async convertAndAppendImages() {
+      const storyImages = await Promise.all(
+        this.croppedImages.map((blob, index) => this.convertBlobToFile(blob, index))
+      );
+
+      // Now replace the original array with File objects
+      this.formData.storyImages = storyImages;
+    },
+    async SubmitStory() {
       console.log("submit story", this.formData);
 
       // Create a new FormData object
       let data = new FormData();
+      await this.convertAndAppendImages();
+
 
       // Always append common data
       data.append('story_type', this.selectedStoryType);
@@ -1521,6 +1570,8 @@ export default {
         data.append('story_name', this.formData.storyName);
         data.append('social_media', this.formData.url);
       }
+
+
 
       // Append images (if any)
       this.formData.storyImages.forEach((file) => {
@@ -1998,6 +2049,7 @@ export default {
   },
 
   async mounted() {
+
     this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
 
@@ -2019,6 +2071,7 @@ export default {
   beforeUnmount() {
     document.body.removeEventListener("click", this.handleOutsideClick);
     window.removeEventListener('storage', this.handleStorageChange); // Remove the event listener
+
   },
 };
 
@@ -2429,5 +2482,72 @@ textarea.form-control {
 .cropper-canvas img {
   width: 100% !important;
   height: 300px !important;
+}
+
+
+
+
+
+.draggable-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  border: 2px dashed #fff;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.image-item {
+
+  position: relative;
+
+
+  cursor: move;
+  /* Indicate that the item is draggable */
+  width: 32%;
+  height: 200px;
+  color: #fff;
+}
+
+.image-number {
+  font-weight: bold;
+  font-weight: bold;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: #363F4C;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainImage {
+  /* Styles specific to the second image */
+  border: 2px dotted #f95f19;
+  /* Example: red border */
+
+  /* Example: slightly larger */
+}
+
+.mainImage>.image-number {
+  font-weight: bold;
+  font-weight: bold;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: #f95f19 !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Note {
+  color: #fff;
+}
+
+.Note strong {
+  color: #f95f19
 }
 </style>
