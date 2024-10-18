@@ -15,8 +15,9 @@
     <div class="main-content-home1">
 
 
-      <div class="logo-R-div d-flex justify-content-center align-items-center">
+      <div class="logo-R-div flex-column d-flex justify-content-center align-items-center">
         <img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
+        <h3 class="text-white mb-0 mt-3">Launching Soon</h3>
       </div>
 
       <!-- <div class="list-item-btn position-relative start-engine-div">
