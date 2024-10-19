@@ -266,6 +266,10 @@
                                             applyFilterCar;
                                             " />
                                         <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
+                                            <li
+                                                @click="selectOption()">
+                                              None
+                                            </li>
                                             <li v-for="(option, index) in makefilteredOptions" :key="index"
                                                 @click="selectOption(option)">
                                                 {{ option }}
@@ -274,9 +278,9 @@
                                         <ul v-else v-show="isOpen" class="options-list"></ul>
                                     </div>
                                 </div>
-                                <div class="col-md-12 z1o2">
+                                <div class="col-md-12 "  :class="{ z1o2: !isOpenm }">
                                     <label for="country" class="form-label">Model </label>
-                                    <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
+                                    <div class="customSelect w-100 position-relative" @blur=" isOpenm = false">
                                         <input type="text" class="form-select form-control form-input"
                                             v-model="formData.model" :placeholder="$t('Select a Model')"
                                             @click.stop="toggleDropdownm" @focus="isOpen = false"
@@ -293,6 +297,7 @@
                                             " v-else />
                                         <ul v-show="isOpenm" class="options-list"
                                             v-if="modelfilteredOptions.length > 0">
+
                                             <li v-for="(option, index) in modelfilteredOptions" :key="index"
                                                 @click="selectOptionModel(option.model)">
                                                 {{ option.model }}
@@ -2838,7 +2843,7 @@ import Image5 from "@/assets/images/36346b90e9ed41209ec6b093b61c21ef.png";
 import icon1 from "@/assets/images/IconAwesome-user-alt.png";
 import icon2 from "@/assets/images/engine.png";
 import icon3 from "@/assets/images/Iconmaterial-email.png";
-import instaIcon from "@/assets/images/instaicond.png";
+import instaIcon from "@/assets/images/ins.png";
 // import 'swiper/css/effect-cards';
 import { EffectCards } from "swiper/modules";
 //Import swiper js
@@ -3690,6 +3695,8 @@ export default {
             this.isOpen = false;
             this.getModels();
             this.applyFilterCar();
+          
+          
         },
         selectOptionModel(option) {
             this.formData.model = option;
@@ -3729,7 +3736,10 @@ export default {
             CarDataService.getAll()
                 .then((response) => {
                     this.makes = response.data.map((item) => item.make);
-                    this.makefilteredOptions = response.data.map((item) => item.make);
+                    // this.makefilteredOptions = response.data.map((item) => item.make);
+                    this.makefilteredOptions = response.data
+  .map(item => item.make)
+  .filter(make => make && make.trim() !== "");
                     console.log(
                         "make are :",
                         response.data.map((item) => item.make)
@@ -3747,6 +3757,7 @@ export default {
             this.GenfilteredOptions = [];
             this.productionYears = [];
             if (this.formData.make == "") {
+                this.formData.model=""
                 this.modelfilteredOptions = "";
             } else {
                 CarDataService.getModels(this.formData.make)
@@ -4019,8 +4030,14 @@ export default {
         },
         applyFilterCar() {
             console.log("in apply filter car");
+              console.log("make", this.formData.make)
             // Logic to filter carGarage based on formData.make, formData.model, formData.year
+  if (!this.formData.make) {
 
+                this.formData.model=""
+                    this.formData.year=""
+              console.log("in if make")
+            }
             if (!this.formData.make && !this.formData.model && !this.formData.year) {
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
@@ -4378,7 +4395,7 @@ export default {
         border: 1px solid #1a202c;
         border-radius: 5px;
         outline: 0;
-        margin-top: 4rem !important;
+        /* margin-top: 4rem !important; */
 
     }
 
@@ -4549,8 +4566,8 @@ form-select {
     padding: 0;
     margin: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    min-height: fit-content;
-    max-height: 300px;
+    /* min-height: fit-content; */
+    max-height: 300px !important;
     overflow-y: scroll;
     color: #fff;
     transition: height 0.5s ease-in-out;
