@@ -568,7 +568,7 @@
                     @click="toggleOpeng" v-if="formData.model == ''" disabled>
                   <input type="text" class="form-select form-control form-input"
                     :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
-                    @click="toggleOpeng"  v-else>
+                    @click="toggleOpeng" v-else>
                   <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                     <li v-for="(value, index) in GenfilteredOptions" :key="index"
                       @click="updateModels(value), this.isOpeng = false">
@@ -700,8 +700,9 @@
                 <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
               </div>
             </div> -->
+            <!-- workiing -->
             <div class="draggable-area" v-if="croppedImages.length > 0">
-              <p class="Note"><strong>Note:</strong>Please drag the image at the <strong>second(2) </strong> index to
+              <p class="Note"><strong>Note:</strong>Please place the image at the <strong>second(2) </strong> index to
                 set it as the main image for your story.</p>
               <div v-for="(image, index) in croppedImages" :key="index"
                 :class="['image-item', { 'mainImage': index === 1 }]" draggable="true" @dragstart="onDragStart(index)"
@@ -710,6 +711,8 @@
                 <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
               </div>
             </div>
+
+
 
           </div>
           <div class="col-md-12">
@@ -1015,6 +1018,7 @@ export default {
       isDropDYear: false,
       isDropDModel: false,
       draggedIndex: null,
+
       imageUrlCrop: "",
       croppedImages: [], // Array to store cropped images
       imageModal: false,
@@ -1104,18 +1108,7 @@ export default {
       console.log("click")
       this.isDropDYear = !this.isDropDYear
     },
-    onDragStart(index) {
-      this.draggedIndex = index;
-      // Store the index of the dragged image
-      console.log("start,", this.croppedImages)
-    },
-    // onDrop(targetIndex) {
-    //   const draggedImage = this.croppedImages[this.draggedIndex]; // Get the dragged image
-    //   this.croppedImages.splice(this.draggedIndex, 1); // Remove it from its original position
-    //   this.croppedImages.splice(targetIndex, 0, draggedImage); // Insert it at the new position
-    //   this.draggedIndex = null; // Reset the dragged index
-    //   console.log("onDrop,",this.croppedImages)
-    // },
+
     onDrop(targetIndex) {
       if (this.draggedIndex === targetIndex) return; // Prevent moving to the same index
       const draggedImage = this.croppedImages[this.draggedIndex]; // Get the dragged image
@@ -1129,6 +1122,14 @@ export default {
       console.log("Updated croppedImages:", this.croppedImages);
     },
     // daraable
+    // Desktop Drag Start
+    onDragStart(index) {
+      this.draggedIndex = index;
+    },
+
+    // Desktop Drop
+
+
 
 
 

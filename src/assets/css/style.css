@@ -2759,4 +2759,12 @@ a:hover {
 	.modal-content {
 		background-color: #031726 !important;
 	}
+
+	.filter-box {
+		margin-block: 1rem
+	}
+
+	.myCarListingCard-user-details-car {
+		width: 100%;
+	}
 }

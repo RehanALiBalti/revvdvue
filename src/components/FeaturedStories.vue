@@ -4688,11 +4688,14 @@ form-select {
     }
 
     .truncate {
-        width: 15% !important;
+        width: 50% !important;
     }
 
     .filter-image-div {
         display: none;
+    }
+    .list-item-user{
+        width:100% !important;
     }
 }
 
