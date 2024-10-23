@@ -266,9 +266,8 @@
                                             applyFilterCar;
                                             " />
                                         <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
-                                            <li
-                                                @click="selectOption()">
-                                              None
+                                            <li @click="selectOption()">
+                                                None
                                             </li>
                                             <li v-for="(option, index) in makefilteredOptions" :key="index"
                                                 @click="selectOption(option)">
@@ -278,7 +277,7 @@
                                         <ul v-else v-show="isOpen" class="options-list"></ul>
                                     </div>
                                 </div>
-                                <div class="col-md-12 "  :class="{ z1o2: !isOpenm }">
+                                <div class="col-md-12 " :class="{ z1o2: !isOpenm }">
                                     <label for="country" class="form-label">Model </label>
                                     <div class="customSelect w-100 position-relative" @blur=" isOpenm = false">
                                         <input type="text" class="form-select form-control form-input"
@@ -584,7 +583,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1006,7 +1005,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1204,7 +1203,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1426,7 +1425,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -1616,7 +1615,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -1838,7 +1837,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2026,7 +2025,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -2248,7 +2247,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2435,7 +2434,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -2657,7 +2656,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3695,8 +3694,8 @@ export default {
             this.isOpen = false;
             this.getModels();
             this.applyFilterCar();
-          
-          
+
+
         },
         selectOptionModel(option) {
             this.formData.model = option;
@@ -3738,8 +3737,8 @@ export default {
                     this.makes = response.data.map((item) => item.make);
                     // this.makefilteredOptions = response.data.map((item) => item.make);
                     this.makefilteredOptions = response.data
-  .map(item => item.make)
-  .filter(make => make && make.trim() !== "");
+                        .map(item => item.make)
+                        .filter(make => make && make.trim() !== "");
                     console.log(
                         "make are :",
                         response.data.map((item) => item.make)
@@ -3757,7 +3756,7 @@ export default {
             this.GenfilteredOptions = [];
             this.productionYears = [];
             if (this.formData.make == "") {
-                this.formData.model=""
+                this.formData.model = ""
                 this.modelfilteredOptions = "";
             } else {
                 CarDataService.getModels(this.formData.make)
@@ -4030,13 +4029,13 @@ export default {
         },
         applyFilterCar() {
             console.log("in apply filter car");
-              console.log("make", this.formData.make)
+            console.log("make", this.formData.make)
             // Logic to filter carGarage based on formData.make, formData.model, formData.year
-  if (!this.formData.make) {
+            if (!this.formData.make) {
 
-                this.formData.model=""
-                    this.formData.year=""
-              console.log("in if make")
+                this.formData.model = ""
+                this.formData.year = ""
+                console.log("in if make")
             }
             if (!this.formData.make && !this.formData.model && !this.formData.year) {
                 this.fetchStories(); // Fetch original data if no filters are applied
@@ -4735,5 +4734,17 @@ form-select {
 
 .text-orange {
     color: #f95f19 !important;
+}
+
+@media(max-width:992px) {
+    .card-sorting-content {
+        flex-wrap: wrap !important;
+        justify-content: center
+    }
+
+    .card-content-car {
+        width: 100%
+    }
+
 }
 </style>

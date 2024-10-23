@@ -2749,7 +2749,14 @@ a:hover {
 	width: 100% !important;
 	/* height: 400px !important; */
 }
-.cropper-canvas img{
-	width:100% !important;
-	height:300px !important;
-  }
+
+.cropper-canvas img {
+	width: 100% !important;
+	height: 300px !important;
+}
+
+@media(max-width:992px) {
+	.modal-content {
+		background-color: #031726 !important;
+	}
+}

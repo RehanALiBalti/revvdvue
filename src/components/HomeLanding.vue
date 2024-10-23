@@ -538,7 +538,7 @@
                 </div>
 
               </div>
-              <div class="col-md-4 z1o2 ">
+              <div class="col-md-4  " :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }">
                 <label for="country" class="form-label">Model
                 </label>
                 <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
@@ -546,7 +546,7 @@
                     :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
                     @input="filterModelOptions" @change="getModels" v-if="formData.make == ''" disabled>
                   <input type="text" class=" form-select form-control form-input" v-model="formData.model"
-                    :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
+                    :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="DropDModel"
                     @input="filterModelOptions" @change="getModels" v-else>
                   <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
                     <li v-for="(option, index) in modelfilteredOptions" :key="index"
@@ -559,7 +559,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="col-md-4 z1o2">
+              <div class="col-md-4 " :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }">
                 <label for="country" class="form-label">Production Year Generation
                 </label>
                 <div class="customSelect w-100 position-relative">
@@ -568,7 +568,7 @@
                     @click="toggleOpeng" v-if="formData.model == ''" disabled>
                   <input type="text" class="form-select form-control form-input"
                     :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
-                    @click="toggleOpeng" v-else>
+                    @click="toggleOpeng"  v-else>
                   <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                     <li v-for="(value, index) in GenfilteredOptions" :key="index"
                       @click="updateModels(value), this.isOpeng = false">
@@ -1012,6 +1012,8 @@ export default {
   },
   data() {
     return {
+      isDropDYear: false,
+      isDropDModel: false,
       draggedIndex: null,
       imageUrlCrop: "",
       croppedImages: [], // Array to store cropped images
@@ -1094,6 +1096,14 @@ export default {
     };
   },
   methods: {
+    DropDModel() {
+      console.log("click")
+      this.isDropDModel = !this.isDropDModel
+    },
+    DropDYear() {
+      console.log("click")
+      this.isDropDYear = !this.isDropDYear
+    },
     onDragStart(index) {
       this.draggedIndex = index;
       // Store the index of the dragged image
@@ -1622,6 +1632,8 @@ export default {
     toggleOpeng() {
       console.log('opneg')
       this.isOpeng = !this.isOpeng
+      this.isDropDYear = !this.isDropDYear
+
     },
     GenfilterOption() {
       const query = this.formData.year.toLowerCase();
@@ -1673,6 +1685,7 @@ export default {
     },
     toggleDropdownmo() {
       this.isOpenm = !this.isOpenm;
+
     },
     selectOption(option) {
 
@@ -1680,16 +1693,20 @@ export default {
       this.isOpen = false;
       this.getModels()
 
+
     },
     selectOptionModel(option) {
 
       this.formData.model = option;
       this.isOpenm = false;
+      this.isDropDModel = false;
       this.getGenerations()
+
 
 
     },
     updateModels(value) {
+      this.isDropDYear = false
       if (value) {
 
         this.productionYear = value.production_years;
@@ -2252,7 +2269,7 @@ textarea.form-control {
   padding: 0;
   margin: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  min-height: fit-content;
+  /* min-height: fit-content; */
   max-height: 300px;
   overflow-y: scroll;
   color: #fff;
@@ -2550,5 +2567,25 @@ textarea.form-control {
 
 .Note strong {
   color: #f95f19
+}
+
+@media(max-width:768px) {
+  .car-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .row {
+    width: 100% !important;
+  }
+
+  .h5-title {
+    text-align: center;
+  }
+
+  .footer-allDetails {
+    text-align: center;
+  }
 }
 </style>
