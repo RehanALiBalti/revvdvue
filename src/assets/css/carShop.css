@@ -279,7 +279,7 @@
 }
 
 .sender-chats-para {
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 400;
 	color: #eeeeee;
 	text-align: left;
@@ -287,7 +287,7 @@
 	word-wrap: break-word;
 	flex-wrap: wrap;
 	word-break: break-all;
-	font-family: "Lato", sans-serif;
+	/* font-family: "Lato", sans-serif; */
 	margin-bottom: 0;
 	width: 100%;
 }

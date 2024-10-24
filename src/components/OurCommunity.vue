@@ -1107,6 +1107,6 @@ export default {
 }
 
 .ps2 {
-  font-size: 12px
+  font-size: 14px
 }
 </style>
