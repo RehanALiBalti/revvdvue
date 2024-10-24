@@ -66,7 +66,7 @@
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filters</h5>
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Categories</h5>
                         <button type="button" class="close-icon" data-bs-dismiss="offcanvas" aria-label="Close">
                             <i class="fas fa-times"></i>
                         </button>
