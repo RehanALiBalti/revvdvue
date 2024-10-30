@@ -118,6 +118,15 @@
                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
                   :placeholder="$t('Enter here')" value="user" />
               </div>
+
+              <div class="col-md-6">
+                <select class="form-control form-input formP form-select">
+                  <option selected>Select Preffered Cars </option>
+                  <option value="JDM">JDM </option>
+                  <option value="European">European </option>
+                  <option value="American">American </option>
+                </select>
+              </div>
               <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
                 <input type="checkbox" id="check1" class="form-check-input m-0" v-model="formData.check1" />
                 <label for="check1" class="form-label  mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}

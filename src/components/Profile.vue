@@ -68,7 +68,7 @@
 							<div class="col-md-6">
 								<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 								<input v-model="phone" id="phone" type="tel" name="phone"
-									class="form-control form-input" :placeholder="$t('Enter here')" required>
+									class="form-control form-input" :placeholder="$t('+920000000000')" required>
 								<!-- <div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
