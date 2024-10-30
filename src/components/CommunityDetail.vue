@@ -129,7 +129,7 @@
                               :src="comment.userimage != 'undefined' || comment.userimage != 'null' ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
                             <img class="UsrImage"
-                              :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + comment.userimage : dummyuserImage"
+                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/users/' + comment.userImage : dummyuserImage"
                               alt="" width="50px" />
 
                             <small class="uName">{{ comment.nickname }}</small>
@@ -194,9 +194,9 @@
                               :src="comment.userimage != 'undefined' || 'null' ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
                             <img class="UsrImage"
-                              :src="comment.userimage && comment.userimage !== 'undefined' && comment.userimage !== null ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + comment.userimage : dummyuserImage"
+                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/users/' + comment.userImage : dummyuserImage"
                               alt="" width="50px" />
-                            <small class="uName">{{ comment.nickname }}</small>
+                            <small class="uName">{{ comment.nickname }} </small>
                           </div>
                           <br>
                           <p class="sender-chats-para">{{ comment.comments }}</p>
