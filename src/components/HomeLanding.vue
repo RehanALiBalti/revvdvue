@@ -846,6 +846,76 @@
       </div>
     </div>
   </div>
+  <!-- Confirmation Modal to ask if the user wants to crop the image -->
+  <div class="modal fade show d-block" id="cropConfirmModal" tabindex="-1" role="dialog" v-if="confirmModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title text-white">Crop Image?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            @click="closeConfirmModal"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-white text-center">Do you want to crop the image before uploading?</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-2">
+            <div class="list-item-btn position-relative submit-btn-div">
+              <span class="border-bottom-btn border-top-btn position-absolute">
+                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span
+                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+              </span>
+              <button type="button" class="signin-btnli submitNow" id="submit-button" @click="handleYes">
+                {{ $t('Yes') }}
+              </button>
+              <span class="border-bottom-btn border-left-btn position-absolute">
+                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+              </span>
+              <span class="border-bottom-btn position-absolute">
+                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+              </span>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="list-item-btn position-relative submit-btn-div">
+              <span class="border-bottom-btn border-top-btn position-absolute">
+                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span
+                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+              </span>
+              <button type="button" class="signin-btnli submitNow" id="submit-button" @click="handleNo">
+                {{ $t('No') }}
+              </button>
+              <span class="border-bottom-btn border-left-btn position-absolute">
+                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+              </span>
+              <span class="border-bottom-btn position-absolute">
+                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+              </span>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <!-- Section: Links  -->
@@ -1015,10 +1085,12 @@ export default {
   },
   data() {
     return {
+      fileEvent: null,
+      isCrop: null,
       isDropDYear: false,
       isDropDModel: false,
       draggedIndex: null,
-
+      confirmModal: false,
       imageUrlCrop: "",
       croppedImages: [], // Array to store cropped images
       imageModal: false,
@@ -1100,6 +1172,36 @@ export default {
     };
   },
   methods: {
+    handleYes() {
+      console.log("Click Yes");
+      this.isCrop = true;
+      if (this.isCrop) {
+        this.confirmModal = false; // Close the confirmation modal
+        const file = this.fileEvent.target.files[0]; // Use the stored event
+        console.log("New file:", file);
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            console.log("Target:", e.target.result);
+            this.imageUrlCrop = e.target.result; // Set the image URL
+            console.log("Image URL:", this.imageUrlCrop);
+            this.imageModal = true;
+            console.log("Image modal:", this.imageModal);
+            this.$nextTick(() => {
+              // Show modal only after image is set
+              this.initCropper(); // Initialize cropper after modal is displayed
+            });
+          };
+          reader.readAsDataURL(file); // Load the image as a Data URL
+        }
+      }
+    },
+    handleNo() {
+      this.isCrop = false;
+      this.confirmModal = false; // Close the confirmation modal
+      this.uploadWithoutCrop(); // Correctly call uploadWithoutCrop method
+    },
+
     DropDModel() {
       console.log("click")
       this.isDropDModel = !this.isDropDModel
@@ -1135,23 +1237,10 @@ export default {
 
     // end dragable
     openImageModal(event) {
-      const file = event.target.files[0];
-      console.log("new file", file)
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          console.log("target", e.target.result)
-          this.imageUrlCrop = e.target.result; // Set the image URL
-          console.log("image url", this.imageUrlCrop)
-          this.imageModal = true;
-          console.log("image modal", this.imageModal)
-          this.$nextTick(() => {
-            // Show modal only after image is set
-            this.initCropper(); // Initialize cropper after modal is displayed
-          });
-        };
-        reader.readAsDataURL(file); // Load the image as a Data URL
-      }
+      this.fileEvent = event;
+      this.confirmModal = true
+
+
     }
     ,
     // Initializes the cropper for the image
@@ -1186,19 +1275,19 @@ export default {
           }
           this.cropper = new Cropper(image, {
             // aspectRatio: 1, // Example: Square crop (you can adjust aspect ratio if needed)
-            aspectRatio: 16 / 9, // Set aspect ratio to match 1280x720
+            // aspectRatio: 16 / 9, // Set aspect ratio to match 1280x720
             viewMode: 1,
             autoCropArea: 1,
             scalable: true,
             zoomable: true,
             moveable: true,
-            cropBoxResizable: false, // Disable resizing of the crop box
+            cropBoxResizable: true, // Disable resizing of the crop box
             cropBoxMovable: true, // Enable moving the crop box
-            minCropBoxWidth: '500px', // Set a fixed width
-            minCropBoxHeight: '200px', // Set a fixed height
+            // minCropBoxWidth: '500px', // Set a fixed width
+            // minCropBoxHeight: '200px', // Set a fixed height
             ready: () => {
 
-              this.cropper.setCropBoxData({ width: 1280, height: 720 });
+              // this.cropper.setCropBoxData({ width: 1280, height: 720 });
 
 
             },
@@ -1275,6 +1364,30 @@ export default {
         this.processNextImage(); // Process the next image in the queue
       }
     },
+    uploadWithoutCrop() {
+      const file = this.fileEvent.target.files[0]; // Access the selected file
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.imageUrlCrop = e.target.result; // Set the image URL from the file
+
+          // Push the image file and URL directly to the uploadedFiles and croppedImages arrays
+          this.uploadedFiles.push(file); // Store the file directly
+          this.croppedImages.push({ url: this.imageUrlCrop });
+
+          console.log("Uploading without crop:", this.imageUrlCrop);
+
+          const imageFile = new File([file], `image-${Date.now()}.png`, { type: file.type });
+          this.formData.storyImages.push(imageFile); // Add the image to formData.storyImages
+
+          this.processNextImage(); // Proceed to the next image if any
+        };
+        reader.readAsDataURL(file); // Load the file as a Data URL
+      } else {
+        console.error("No file selected for uploading without cropping.");
+      }
+    }
+    ,
 
     hideModalStoryFail() {
       this.ModalStoryFail = false
@@ -1291,10 +1404,10 @@ export default {
         this.shopName = "club"
       }
       else if (this.selectedStoryType == "motorbikeEnthusiast") {
-        this.shopName = "Garage"
+        this.shopName = "Motor Bike"
       }
       else if (this.selectedStoryType == "automotivePhotographerast") {
-        this.shopName = "Garage"
+        this.shopName = "Automotive Photographer"
       }
 
     },
@@ -2129,7 +2242,15 @@ textarea.form-control {
   color: #fff;
   font-size: 12px;
   padding: 0.5rem;
-  border: 1px solid #1a202c
+  border: 1px solid #1a202c;
+
+}
+
+.upImageArea>span {
+  max-width: 260px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .upImageArea>img {
@@ -2524,7 +2645,7 @@ textarea.form-control {
   cursor: move;
   /* Indicate that the item is draggable */
   width: 32%;
-  height: 200px;
+  min-height: 200px;
   color: #fff;
 }
 
