@@ -206,6 +206,28 @@
 								</div> -->
 							</div>
 						</div>
+						<!-- nickname modal -->
+						<div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter"
+							v-if="isModalOpenName === true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-body text-center">
+										<span class="close-icon" @click="isModalOpenName = false">
+											<i class="fas fa-times"></i>
+										</span>
+
+										<div class="mt-4 py-2">
+											<h5 class="card-title"><span class="choose">Nick Name Alredy Existed </span>
+											</h5>
+
+											<p class="text-white">Please Try With Different Name</p>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
 					</form>
 					<form id="subscribe-form" @submit.prevent="updateUserAttributesDealer" v-else>
 
@@ -758,6 +780,7 @@ export default {
 	},
 	data() {
 		return {
+			isModalOpenName: false,
 			croppedBlob: null, // Added to store the cropped image blob
 			croppedImageUrl: null, // Added to store the URL of the cropped image
 			imageSrc: null,
@@ -937,57 +960,127 @@ export default {
 		// 		console.error('Error submitting form:', error);
 		// 	}
 		// },
+		// current working 
+		// async submitProfileForm() {
+		// 	console.log("blob image ", this.croppedBlob)
+		// 	this.loading = true;
+		// 	console.log("nick namee in submit", 'nickname', this.name)
+		// 	try {
+		// 		const file = this.$refs.fileInput.files[0];
+		// 		const originalFilename = file ? file.name : null;
+
+		// 		const formData = new FormData();
+		// 		if (this.croppedBlob) {
+		// 			formData.append('image', this.croppedBlob, originalFilename);
+		// 		}
+
+		// 		formData.append('sub', this.formData.sub);
+		// 		formData.append('name', this.fullname);
+		// 		formData.append('nickname', this.name);
+		// 		formData.append('age', this.age);
+		// 		formData.append('email', this.email);
+		// 		formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+		// 		formData.append('socialMedia', this.socialMedia);
+
+		// 		console.log("Submitting form data:", formData);
+
+		// 		// Send the form data to the API
+		// 		const response = await axios.post(
+		// 			'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/updateuser',
+		// 			formData,
+		// 			{
+		// 				headers: {
+		// 					'Content-Type': 'multipart/form-data',
+		// 				}
+		// 			}
+		// 		);
+		// 		this.loading = false;
+		// 		console.log('Form data submitted successfully:', response.data);
+
+		// 		if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = response.data.message;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
+
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+		// 	} catch (error) {
+		// 		this.loading = false;
+		// 		console.error('Error submitting form:', error);
+		// 	}
+		// }
 		async submitProfileForm() {
-			console.log("blob image ", this.croppedBlob)
+			console.log("Checking nickname availability for:", this.name);
 			this.loading = true;
-			console.log("nick namee in submit", 'nickname', this.name)
+
 			try {
-				const file = this.$refs.fileInput.files[0];
-				const originalFilename = file ? file.name : null;
+				// First, check if the nickname is unique
+				const nicknameUrl = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${this.name}`;
+				const nicknameResponse = await axios.get(nicknameUrl);
+				console.log("Nickname check response:", nicknameResponse);
 
-				const formData = new FormData();
-				if (this.croppedBlob) {
-					formData.append('image', this.croppedBlob, originalFilename);
-				}
+				if (nicknameResponse.data && nicknameResponse.data.count === 0) {
+					console.log("Nickname is unique, proceeding with form submission");
 
-				formData.append('sub', this.formData.sub);
-				formData.append('name', this.fullname);
-				formData.append('nickname', this.name);
-				formData.append('age', this.age);
-				formData.append('email', this.email);
-				formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
-				formData.append('socialMedia', this.socialMedia);
+					// Proceed with form submission
+					const file = this.$refs.fileInput.files[0];
+					const originalFilename = file ? file.name : null;
 
-				console.log("Submitting form data:", formData);
-
-				// Send the form data to the API
-				const response = await axios.post(
-					'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/updateuser',
-					formData,
-					{
-						headers: {
-							'Content-Type': 'multipart/form-data',
-						}
+					const formData = new FormData();
+					if (this.croppedBlob) {
+						formData.append('image', this.croppedBlob, originalFilename);
 					}
-				);
-				this.loading = false;
-				console.log('Form data submitted successfully:', response.data);
 
-				if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
-					this.IsphonExists = true;
-					this.errorMessage = response.data.message;
-					this.isModalOpenFail = true;
+					formData.append('sub', this.formData.sub);
+					formData.append('name', this.fullname);
+					formData.append('nickname', this.name);
+					formData.append('age', this.age);
+					formData.append('email', this.email);
+					formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+					formData.append('socialMedia', this.socialMedia);
+
+					console.log("Submitting form data:", formData);
+
+					// Send the form data to the API
+					const response = await axios.post(
+						'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/updateuser',
+						formData,
+						{
+							headers: {
+								'Content-Type': 'multipart/form-data',
+							}
+						}
+					);
+					this.loading = false;
+					console.log('Form data submitted successfully:', response.data);
+
+					if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+						this.IsphonExists = true;
+						this.errorMessage = response.data.message;
+						this.isModalOpenFail = true;
+					} else {
+						this.IsphonExists = false;
+					}
+
+					// Fetch profile data after successful submission
+					const profiledata = await this.fetchproData();
+					return profiledata;
 				} else {
-					this.IsphonExists = false;
-				}
 
-				const profiledata = await this.fetchproData();
-				return profiledata;
+					console.log("Nickname already exists");
+					this.isModalOpenName = true
+					// alert("Nickname already exists. Please choose a different nickname.");
+					this.loading = false;
+				}
 			} catch (error) {
 				this.loading = false;
-				console.error('Error submitting form:', error);
+				console.error('Error during nickname check or form submission:', error);
 			}
 		}
+
 		,
 		async submitProfileFormDeler() {
 			console.log("blob image ", this.croppedBlob)
@@ -1725,7 +1818,7 @@ export default {
 			const profiledata = await this.submitProfileForm();
 			console.log("cehck pro data", profiledata)
 			console.log(profiledata);
-			if (this.IsphonExists == false) {
+			if (this.IsphonExists == false && this.isModalOpenName == false) {
 				this.loading = true
 				console.log("full name", this.fullname, "nick name", this.name)
 				const updatedProfile = {

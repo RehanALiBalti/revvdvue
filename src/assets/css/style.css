@@ -836,12 +836,16 @@ a {
 }
 
 .logo-R {
-	width: 70%;
-	height: 70%;
+	width: 50%;
+	height: 50%;
 	transition: transform 1s;
 	animation: flip 4s infinite;
 	transform-style: preserve-3d;
 	transform-origin: center;
+}
+
+.fp-overflow {
+	width: 75% !important
 }
 
 @keyframes flip {
@@ -860,7 +864,7 @@ a {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: 4rem;
+	gap: 1rem;
 }
 
 div.start-engine-div {

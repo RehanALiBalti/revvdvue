@@ -2,721 +2,27 @@
 
   <!-- <h1 class="text-white">login State: {{ isLogin }} {{ typeof (isLogin) }}</h1> -->
   <div class="container my-5">
-    <div class="banner-content">
-      <h1 class="banner-title">{{ $t('changingTheCarWorld') }}</h1>
-      <p class="banner-para mb-0">
-        {{ $t('ultimateHub') }} {{ $t('oneStopShop') }}
+    <full-page id="fullpage" ref="fullpage" :options="fullpageOptions">
+      <div class="section" ref="section" data-section-id="home">
+        <div class="banner-content">
+          <h1 class="banner-title">{{ $t('changingTheCarWorld') }}</h1>
+          <p class="banner-para mb-0">
+            {{ $t('ultimateHub') }} {{ $t('oneStopShop') }}
 
-      </p>
-    </div>
-  </div>
-
-  <div class="container my-5">
-    <div class="main-content-home1">
-
-
-      <div class="logo-R-div flex-column d-flex justify-content-center align-items-center">
-        <img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
-        <h3 class="text-white mb-0 mt-3">Launching Soon</h3>
-      </div>
-
-      <!-- <div class="list-item-btn position-relative start-engine-div">
-        <span class="border-bottom-btn border-top-btn position-absolute">
-          <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
-        </span>
-
-        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-          <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
-        </span>
-
-        <span class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-          <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
-        </span>
-        <router-link to="/offer" class="signin-btnli Start Engine mx-auto">
-          {{ $t('startEngine') }}
-        </router-link>
-        <span class="border-bottom-btn border-left-btn position-absolute d-none">
-          <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
-        </span>
-        <span class="border-bottom-btn position-absolute">
-          <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
-        </span>
-      </div> -->
-      <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important">
-        <span class="border-bottom-btn border-top-btn position-absolute">
-          <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-        </span>
-
-        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-          <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-        </span>
-
-        <span class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-          <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-        </span>
-        <router-link to="/offer" class="signin-btnli">
-          {{ $t('startEngine') }}
-        </router-link>
-        <span class="border-bottom-btn border-left-btn position-absolute">
-          <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-        </span>
-        <span class="border-bottom-btn position-absolute">
-          <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-        </span>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-4 position-relative">
-        <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4 d-none">
-          <img src="../../public/images/2.png">
-        </div>
-        <!-- Content -->
-        <h5 class="h5-title text-capitalize mb-4">{{ $t('Featured Story') }}</h5>
-        <router-link class="car-content" to="/banner" style="cursor:pointer">
-          <div class="">
-            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
-              class="img-car" alt="car" v-if="bannerStories[0]?.images.length > 0" />
-          </div>
-          <div class="car-content-desc">
-            <h6 class="car-content-title">{{ bannerStories[0]?.story_type }}</h6>
-            <p class="car-content-para tranc" v-if="bannerStories[0]?.story != ''">
-              {{ bannerStories[0]?.story }}
-            </p>
-            <p class="car-content-para tranc" v-if="bannerStories[0]?.story == ''">
-              {{ bannerStories[0]?.story_history }}
-            </p>
-
-          </div>
-        </router-link>
-
-        <div class="footer-allDetails">
-          <router-link class="viewall-content" to="/stories">
-            {{ $t('viewAllStories') }}
-          </router-link>
+          </p>
         </div>
 
-
-      </div>
-    </div>
-  </div>
-
-  <div class="container my-5">
-
-    <!-- <div class="modal show d-block modalaa" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpen === true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-body text-center">
-           <router-link to="/offer"> <span class="close-icon" aria-label="Close">
-                <i class="fas fa-times"></i>
-              </span></router-link>
-      <form>
-              <div class="mt-4 py-2">
-                <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
-              </div>
-              <div class="row">
-
-                <div class="col-md-6 z-0 ">
-                  <div class="mt-2   d-flex justify-content-center align-items-center ">
+        <div class="container my-5">
+          <div class="main-content-home1">
 
 
-
-                    <select v-model="filters.make" class="form-select" @change="filterStories">
-                      <option value="">Select Make</option>
-                      <option v-for="make in makes" :key="make" :value="make">{{ make }}</option>
-                    </select>
-
-
-                  </div>
-                </div>
-
-                <div class="col-md-6 z-0">
-                  <div class="mt-2  d-flex justify-content-center align-items-center  ">
-
-                    <select v-model="filters.make" class="form-select" @change="filterStories">
-                      <option value="">Select Modal</option>
-                      <option v-for="make in makes" :key="make" :value="make">{{ make }}</option>
-                    </select>
-                  </div>
-                </div>
-
-
-
-                <div class="col-md-6 z-0">
-
-
-
-                  <div class="mt-2 d-flex justify-content-center align-items-center   ">
-
-
-                    <select v-model="filters.make" class="form-select" @change="filterStories">
-                      <option value="">Select Year</option>
-                      <option v-for="make in makes" :key="make" :value="make">{{ make }}</option>
-                    </select>
-
-                  </div>
-
-                </div>
-
-
-                <div class="col-md-6 m-auto z-0">
-                  <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto mt-2">
-                    <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-                      <span class="border-bottom-btn border-top-btn position-absolute">
-                        <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
-                      </span>
-
-                      <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-                        <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
-                      </span>
-
-                      <span
-                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-                        <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
-                      </span>
-                     
-                      <button class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-                        data-bs-target="#mailModal">
-                        {{ $t('proceed') }}
-                      </button>
-                      <span class="border-bottom-btn border-left-btn new-popup position-absolute">
-                        <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
-                      </span>
-                      <span class="border-bottom-btn position-absolute">
-                        <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <div class="form-content-home1">
-      <!-- action="#" method="POST" data-bs-toggle="modal" -->
-      <!-- @submit.prevent="retrieveCommunities" -->
-      <form id="subscribe-form" @submit.prevent="SubmitStory">
-        <h2 class="form-title">
-          {{ $t('Share your story ') }}
-          <span class="form-span">{{ $t('Now') }} !</span>
-        </h2>
-        <div class="row">
-          <div class="col-md-12 p-0">
-
-            <label for="storyType" class="form-label">Story Type</label>
-            <select id="storyType" class="form-control" v-model="selectedStoryType" required @change="handleName">
-
-              <option value="carEnthusiast">Car Enthusiast</option>
-              <option value="carGarage">Car Garage</option>
-              <option value="carModificationShop">Car Modification/Tuning Shop</option>
-              <option value="carClub">Car Club</option>
-              <option value="motorbikeEnthusiast">Motorbike Enthusiast</option>
-              <option value="automotivePhotographerast">Automotive Photographer</option>
-
-            </select>
-
-          </div>
-          <div class="col-md-12 p-0" id="first" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
-            <div class="row">
-              <div class="col-md-6">
-
-                <label for="country" class="form-label">Country</label>
-                <!-- <input type="text" id="country" class="form-control" placeholder="Enter Country"
-                  v-model="formData.country"> -->
-                <select id="country" class="form-select form-control form-input filter-select"
-                  v-model="formData.country" @change="getcities(formData.country)">
-                  <option selected value="">Country</option>
-                  <option value="Afghanistan">Afghanistan</option>
-                  <option value="Albania">Albania</option>
-                  <option value="Algeria">Algeria</option>
-                  <option value="Andorra">Andorra</option>
-                  <option value="Angola">Angola</option>
-                  <option value="Antigua and Barbuda">
-                    Antigua and Barbuda
-                  </option>
-                  <option value="Argentina">Argentina</option>
-                  <option value="Armenia">Armenia</option>
-                  <option value="Australia">Australia</option>
-                  <option value="Austria">Austria</option>
-                  <option value="Azerbaijan">Azerbaijan</option>
-                  <option value="Bahamas">Bahamas</option>
-                  <option value="Bahrain">Bahrain</option>
-                  <option value="Bangladesh">Bangladesh</option>
-                  <option value="Barbados">Barbados</option>
-                  <option value="Belarus">Belarus</option>
-                  <option value="Belgium">Belgium</option>
-                  <option value="Belize">Belize</option>
-                  <option value="Benin">Benin</option>
-                  <option value="Bhutan">Bhutan</option>
-                  <option value="Bolivia">Bolivia</option>
-                  <option value="Bosnia and Herzegovina">
-                    Bosnia and Herzegovina
-                  </option>
-                  <option value="Botswana">Botswana</option>
-                  <option value="Brazil">Brazil</option>
-                  <option value="Brunei">Brunei</option>
-                  <option value="Bulgaria">Bulgaria</option>
-                  <option value="Burkina Faso">Burkina Faso</option>
-                  <option value="Burundi">Burundi</option>
-                  <option value="Cabo Verde">Cabo Verde</option>
-                  <option value="Cambodia">Cambodia</option>
-                  <option value="Cameroon">Cameroon</option>
-                  <option value="Canada">Canada</option>
-                  <option value="Central African Republic">
-                    Central African Republic
-                  </option>
-                  <option value="Chad">Chad</option>
-                  <option value="Chile">Chile</option>
-                  <option value="China">China</option>
-                  <option value="Colombia">Colombia</option>
-                  <option value="Comoros">Comoros</option>
-                  <option value="Congo">Congo</option>
-                  <option value="Costa Rica">Costa Rica</option>
-                  <option value="Croatia">Croatia</option>
-                  <option value="Cuba">Cuba</option>
-                  <option value="Cyprus">Cyprus</option>
-                  <option value="Czech Republic">Czech Republic</option>
-                  <option value="Denmark">Denmark</option>
-                  <option value="Djibouti">Djibouti</option>
-                  <option value="Dominica">Dominica</option>
-                  <option value="Dominican Republic">
-                    Dominican Republic
-                  </option>
-                  <option value="Ecuador">Ecuador</option>
-                  <option value="Egypt">Egypt</option>
-                  <option value="El Salvador">El Salvador</option>
-                  <option value="Equatorial Guinea">Equatorial Guinea</option>
-                  <option value="Eritrea">Eritrea</option>
-                  <option value="Estonia">Estonia</option>
-                  <option value="Eswatini">Eswatini</option>
-                  <option value="Ethiopia">Ethiopia</option>
-                  <option value="Fiji">Fiji</option>
-                  <option value="Finland">Finland</option>
-                  <option value="France">France</option>
-                  <option value="Gabon">Gabon</option>
-                  <option value="Gambia">Gambia</option>
-                  <option value="Georgia">Georgia</option>
-                  <option value="Germany">Germany</option>
-                  <option value="Ghana">Ghana</option>
-                  <option value="Greece">Greece</option>
-                  <option value="Grenada">Grenada</option>
-                  <option value="Guatemala">Guatemala</option>
-                  <option value="Guinea">Guinea</option>
-                  <option value="Guinea-Bissau">Guinea-Bissau</option>
-                  <option value="Guyana">Guyana</option>
-                  <option value="Haiti">Haiti</option>
-                  <option value="Honduras">Honduras</option>
-                  <option value="Hungary">Hungary</option>
-                  <option value="Iceland">Iceland</option>
-                  <option value="India">India</option>
-                  <option value="Indonesia">Indonesia</option>
-                  <option value="Iran">Iran</option>
-                  <option value="Iraq">Iraq</option>
-                  <option value="Ireland">Ireland</option>
-                  <option value="Israel">Israel</option>
-                  <option value="Italy">Italy</option>
-                  <option value="Jamaica">Jamaica</option>
-                  <option value="Japan">Japan</option>
-                  <option value="Jordan">Jordan</option>
-                  <option value="Kazakhstan">Kazakhstan</option>
-                  <option value="Kenya">Kenya</option>
-                  <option value="Kiribati">Kiribati</option>
-                  <option value="Korea, North">Korea, North</option>
-                  <option value="Korea, South">Korea, South</option>
-                  <option value="Kosovo">Kosovo</option>
-                  <option value="Kuwait">Kuwait</option>
-                  <option value="Kyrgyzstan">Kyrgyzstan</option>
-                  <option value="Laos">Laos</option>
-                  <option value="Latvia">Latvia</option>
-                  <option value="Lebanon">Lebanon</option>
-                  <option value="Lesotho">Lesotho</option>
-                  <option value="Liberia">Liberia</option>
-                  <option value="Libya">Libya</option>
-                  <option value="Liechtenstein">Liechtenstein</option>
-                  <option value="Lithuania">Lithuania</option>
-                  <option value="Luxembourg">Luxembourg</option>
-                  <option value="Madagascar">Madagascar</option>
-                  <option value="Malawi">Malawi</option>
-                  <option value="Malaysia">Malaysia</option>
-                  <option value="Maldives">Maldives</option>
-                  <option value="Mali">Mali</option>
-                  <option value="Malta">Malta</option>
-                  <option value="Marshall Islands">Marshall Islands</option>
-                  <option value="Mauritania">Mauritania</option>
-                  <option value="Mauritius">Mauritius</option>
-                  <option value="Mexico">Mexico</option>
-                  <option value="Micronesia">Micronesia</option>
-                  <option value="Moldova">Moldova</option>
-                  <option value="Monaco">Monaco</option>
-                  <option value="Mongolia">Mongolia</option>
-                  <option value="Montenegro">Montenegro</option>
-                  <option value="Morocco">Morocco</option>
-                  <option value="Mozambique">Mozambique</option>
-                  <option value="Myanmar">Myanmar</option>
-                  <option value="Namibia">Namibia</option>
-                  <option value="Nauru">Nauru</option>
-                  <option value="Nepal">Nepal</option>
-                  <option value="Netherlands">Netherlands</option>
-                  <option value="New Zealand">New Zealand</option>
-                  <option value="Nicaragua">Nicaragua</option>
-                  <option value="Niger">Niger</option>
-                  <option value="Nigeria">Nigeria</option>
-                  <option value="North Macedonia">North Macedonia</option>
-                  <option value="Norway">Norway</option>
-                  <option value="Oman">Oman</option>
-                  <option value="Pakistan">Pakistan</option>
-                  <option value="Palau">Palau</option>
-                  <option value="Panama">Panama</option>
-                  <option value="Papua New Guinea">Papua New Guinea</option>
-                  <option value="Paraguay">Paraguay</option>
-                  <option value="Peru">Peru</option>
-                  <option value="Philippines">Philippines</option>
-                  <option value="Poland">Poland</option>
-                  <option value="Portugal">Portugal</option>
-                  <option value="Qatar">Qatar</option>
-                  <option value="Romania">Romania</option>
-                  <option value="Russia">Russia</option>
-                  <option value="Rwanda">Rwanda</option>
-                  <option value="Saint Kitts and Nevis">
-                    Saint Kitts and Nevis
-                  </option>
-                  <option value="Saint Lucia">Saint Lucia</option>
-                  <option value="Saint Vincent and the Grenadines">
-                    Saint Vincent and the Grenadines
-                  </option>
-                  <option value="Samoa">Samoa</option>
-                  <option value="San Marino">San Marino</option>
-                  <option value="Sao Tome and Principe">
-                    Sao Tome and Principe
-                  </option>
-                  <option value="Saudi Arabia">Saudi Arabia</option>
-                  <option value="Senegal">Senegal</option>
-                  <option value="Serbia">Serbia</option>
-                  <option value="Seychelles">Seychelles</option>
-                  <option value="Sierra Leone">Sierra Leone</option>
-                  <option value="Singapore">Singapore</option>
-                  <option value="Slovakia">Slovakia</option>
-                  <option value="Slovenia">Slovenia</option>
-                  <option value="Solomon Islands">Solomon Islands</option>
-                  <option value="Somalia">Somalia</option>
-                  <option value="South Africa">South Africa</option>
-                  <option value="South Sudan">South Sudan</option>
-                  <option value="Spain">Spain</option>
-                  <option value="Sri Lanka">Sri Lanka</option>
-                  <option value="Sudan">Sudan</option>
-                  <option value="Suriname">Suriname</option>
-                  <option value="Sweden">Sweden</option>
-                  <option value="Switzerland">Switzerland</option>
-                  <option value="Syria">Syria</option>
-                  <option value="Taiwan">Taiwan</option>
-                  <option value="Tajikistan">Tajikistan</option>
-                  <option value="Tanzania">Tanzania</option>
-                  <option value="Thailand">Thailand</option>
-                  <option value="Timor-Leste">Timor-Leste</option>
-                  <option value="Togo">Togo</option>
-                  <option value="Tonga">Tonga</option>
-                  <option value="Trinidad and Tobago">
-                    Trinidad and Tobago
-                  </option>
-                  <option value="Tunisia">Tunisia</option>
-                  <option value="Turkey">Turkey</option>
-                  <option value="Turkmenistan">Turkmenistan</option>
-                  <option value="Tuvalu">Tuvalu</option>
-                  <option value="Uganda">Uganda</option>
-                  <option value="Ukraine">Ukraine</option>
-                  <option value="United Arab Emirates">
-                    United Arab Emirates
-                  </option>
-                  <option value="United Kingdom">United Kingdom</option>
-                  <option value="United States">United States</option>
-                  <option value="Uruguay">Uruguay</option>
-                  <option value="Uzbekistan">Uzbekistan</option>
-                  <option value="Vanuatu">Vanuatu</option>
-                  <option value="Vatican City">Vatican City</option>
-                  <option value="Venezuela">Venezuela</option>
-                  <option value="Vietnam">Vietnam</option>
-                  <option value="Yemen">Yemen</option>
-                  <option value="Zambia">Zambia</option>
-                  <option value="Zimbabwe">Zimbabwe</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-
-                <label for="country" class="form-label">City</label>
-                <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
-
-                <!-- City Select -->
-                <select id="city" class="form-select form-control form-input filter-select" v-model="formData.city">
-                  <option selected value="">City</option>
-                  <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
-                </select>
-              </div>
-              <div class="col-md-12">
-                <label for="storyHistory" class="form-label">Tell us about your {{ shopName }}</label>
-                <textarea id="storyHistory" class="form-control" rows="4" placeholder="Describe your story and history"
-                  v-model="formData.storyHistory"></textarea>
-              </div>
-              <div class="   col-md-12">
-                <label for="memorableStories" class="form-label">Can you tell us any memorable stories or adventures
-                  you’ve
-                  had that stands out
-                  the most?</label>
-                <textarea id="memorableStories" class="form-control" rows="4" placeholder="Share your memorable stories"
-                  v-model="formData.adventureStory"></textarea>
-              </div>
-              <div class="col-md-12">
-                <label for="storyName" class="form-label">What is the name of your story that you would like to
-                  choose?</label>
-                <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
-                  v-model="formData.storyName"></textarea>
-              </div>
-              <div class="col-md-12">
-                <label for="link" class="form-label">Add Instagram or Website Link</label>
-                <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
-                  v-model="formData.url">
-              </div>
-              <div class="col-md-12">
-                <label for="city" class="form-label">Upload Pictures Max 8</label>
-
-                <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                  accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
-                <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                  accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
-                  <span class="border-bottom-btn border-top-btn position-absolute">
-                    <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-                  </span>
-
-                  <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                    <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-                  </span>
-
-                  <span
-                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                    <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-                  </span>
-                  <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
-                    Choose Images
-                  </label>
-                  <span class="border-bottom-btn border-left-btn position-absolute">
-                    <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-                  </span>
-                  <span class="border-bottom-btn position-absolute">
-                    <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-                  </span>
-                </div>
-                <!-- <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
-                  <div v-for="(file, index) in uploadedFiles" :key="index"
-                    class="upImageArea d-flex justify-content-between position-relative align-items-center">
-                    <span>{{ file.name }}</span>
-                    <button class="btn btnRemv" @click="removeImage(index)">
-                      <i class="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12 p-0" id="second" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
-            <div class="row">
-              <div class="col-md-4 ">
-
-                <div class="customSelect position-relative" @blur="isOpen = false">
-                  <label for="country" class="form-label">Make
-                  </label>
-                  <input type="text" class="form-select form-control form-input" v-model="formData.make"
-                    :placeholder="$t('Select a Make')" @click="toggleDropdown" @input="filterMakeOptions"
-                    @change="getModels">
-                  <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
-                    <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
-                      {{ option }}
-                    </li>
-                  </ul>
-                  <ul v-else v-show="isOpen" class="options-list">
-
-                  </ul>
-                </div>
-
-              </div>
-              <div class="col-md-4  " :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }">
-                <label for="country" class="form-label">Model
-                </label>
-                <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
-                  <input type="text" class=" form-select form-control form-input" v-model="formData.model"
-                    :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
-                    @input="filterModelOptions" @change="getModels" v-if="formData.make == ''" disabled>
-                  <input type="text" class=" form-select form-control form-input" v-model="formData.model"
-                    :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="DropDModel"
-                    @input="filterModelOptions" @change="getModels" v-else>
-                  <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
-                    <li v-for="(option, index) in modelfilteredOptions" :key="index"
-                      @click="selectOptionModel(option.model)">
-                      {{ option.model }}
-                    </li>
-                  </ul>
-                  <ul v-else v-show="isOpenm" class="options-list">
-
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4 " :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }">
-                <label for="country" class="form-label">Production Year Generation
-                </label>
-                <div class="customSelect w-100 position-relative">
-                  <input type="text" class="form-select form-control form-input"
-                    :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
-                    @click="toggleOpeng" v-if="formData.model == ''" disabled>
-                  <input type="text" class="form-select form-control form-input"
-                    :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
-                    @click="toggleOpeng" v-else>
-                  <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
-                    <li v-for="(value, index) in GenfilteredOptions" :key="index"
-                      @click="updateModels(value), this.isOpeng = false">
-                      <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
-                      {{ value.production_years.split(' ')[0] }}
-                      <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
-                        }})</span>
-                    </li>
-                  </ul>
-                  <ul v-else v-show="isOpeng" class="options-list">
-
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-6 z1o">
-                <label for="name" class="form-label"> Tell us your car story together </label>
-                <textarea id="message" class="form-control form-input h-auto" name="message"
-                  :placeholder="$t('Enter here')" v-model="formData.story" rows="2"></textarea>
-
-              </div>
-              <div class="col-md-6 z1o">
-                <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
-                  or any specific features ? </label>
-                <textarea id="message" class="form-control form-input h-auto" name="message"
-                  :placeholder="$t('Enter here')" v-model="formData.modifications" rows="2"></textarea>
-
-              </div>
-              <div class="col-md-6 z1o">
-                <label for="email" class="form-label"> Can you share with us any memorable stories or adventures you’ve
-                  had
-                  with your car that stands out the most? </label>
-                <textarea id="message" class="form-control form-input h-auto" name="message"
-                  :placeholder="$t('Enter here')" v-model="formData.memorable" rows="2"></textarea>
-                <!-- Error message for Email -->
-                <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
-                <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
-              </div>
-              <div class="col-md-6 z1o">
-                <label for="phone" class="form-label"> If you could give advice to someone just starting their journey
-                  to
-                  modify their car, what would it be and why?</label>
-                <textarea id="message" class="form-control form-input h-auto" name="message"
-                  :placeholder="$t('Enter here')" v-model="formData.advice" rows="2"></textarea>
-              </div>
-              <div class="col-md-6 z1o">
-                <label for="country" class="form-label"> What is the name of your story that you would like to choose?
-                </label>
-                <input type="tel" id="phone" name="phone" class="form-control form-input"
-                  placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
-              </div>
-              <div class="col-md-6 z1o">
-                <label for="message" class="form-label">Add Instagram link </label>
-                <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
-                  rows="2" v-model="formData.social_media" />
-                <!-- Error message for Message -->
-                <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
-              </div>
-              <div class="col-md-12">
-                <label for="city" class="form-label">Upload Pictures Max 8</label>
-
-                <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                  accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
-                <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                  accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
-                  <span class="border-bottom-btn border-top-btn position-absolute">
-                    <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-                  </span>
-
-                  <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                    <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-                  </span>
-
-                  <span
-                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                    <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-                  </span>
-                  <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
-                    Choose Images
-                  </label>
-                  <span class="border-bottom-btn border-left-btn position-absolute">
-                    <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-                  </span>
-                  <span class="border-bottom-btn position-absolute">
-                    <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-                  </span>
-                </div>
-
-              </div>
+            <div class="logo-R-div flex-column d-flex justify-content-center align-items-center">
+              <img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
+              <h3 class="text-white mb-0 mt-3">Launching Soon</h3>
             </div>
 
 
-
-
-
-
-          </div>
-          <div class="col-md-12 my-1">
-            <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
-
-              <div v-for="(file, index) in croppedImages" :key="index"
-                class="upImageArea d-flex justify-content-between position-relative align-items-center">
-                <span>{{ file }}</span>
-                <button type="button" class="btn btnRemv" @click="removeImage(index)">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-            </div>
-            <!-- Cropped Images Preview -->
-            <!-- <div v-if="croppedImages.length" class="cropped-preview row">
-              <h4 class="text-white"> Cropped Images Preview:</h4>
-              <div v-for="(croppedImage, index) in croppedImages" :key="index" class="image-item col-md-6 my-2">
-
-
-
-                <div>
-                  <img class="img-fluid" :src="croppedImage.url" alt="Cropped Image Preview" />
-                </div>
-
-
-              </div>
-            </div> -->
-            <!-- Draggable List of Images -->
-            <!-- <div class="draggable-area" v-if="croppedImages.length > 0">
-
-              <div v-for="(image, index) in croppedImages" :key="index" class="image-item" draggable="true"
-                @dragstart="onDragStart(index)" @dragover.prevent @drop="onDrop(index)">
-                <span class="image-number">{{ index + 1 }}</span>
-                <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
-              </div>
-            </div> -->
-            <!-- workiing -->
-            <div class="draggable-area" v-if="croppedImages.length > 0">
-              <p class="Note"><strong>Note:</strong>Please place the image at the <strong>second(2) </strong> index to
-                set it as the main image for your story.</p>
-              <div v-for="(image, index) in croppedImages" :key="index"
-                :class="['image-item', { 'mainImage': index === 1 }]" draggable="true" @dragstart="onDragStart(index)"
-                @dragover.prevent @drop="onDrop(index)">
-                <span class="image-number">{{ index + 1 }}</span>
-                <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
-              </div>
-            </div>
-
-
-
-          </div>
-          <div class="col-md-12">
-            <div class="list-item-btn position-relative submit-btn-div">
+            <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important">
               <span class="border-bottom-btn border-top-btn position-absolute">
                 <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
               </span>
@@ -729,9 +35,9 @@
                 class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                 <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
               </span>
-              <button type="submit" class="signin-btnli submitNow" id="submit-button">
-                {{ $t('submitNow') }}
-              </button>
+              <router-link to="/offer" class="signin-btnli">
+                {{ $t('startEngine') }}
+              </router-link>
               <span class="border-bottom-btn border-left-btn position-absolute">
                 <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
               </span>
@@ -739,11 +45,725 @@
                 <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
               </span>
             </div>
+
           </div>
         </div>
-      </form>
-    </div>
+        <!-- Custom Navigation -->
+        <nav class="custom-navigation c-home">
+          <button class="position-relative pbutton" :class="{ active: activeSection === 'home' }"
+            @click="goToSection('home')">
+            <span class="progress"></span> Home
+          </button>
+          <button class="position-relative" :class="{ active: activeSection === 'featured' }"
+            @click="goToSection('featured')">
+            <span class="progress"></span> Featured Story
+          </button>
+          <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
+            @click="goToSection('shareStory')">
+            <span class="progress"></span> Share Your Story
+          </button>
+          <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
+            @click="goToSection('aboutUs')">
+            <span class="progress"></span> About Us
+          </button>
+        </nav>
+
+      </div>
+      <div class="section w-100" ref="section" data-section-id="featured">
+        <div class="row">
+          <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-4 position-relative">
+            <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4 d-none">
+              <img src="../../public/images/2.png">
+            </div>
+            <!-- Content -->
+
+            <router-link class="carContent row" to="/banner" style="cursor:pointer">
+              <div class="col-md-5">
+                <h5 class="h5-title text-capitalize mb-4">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
+                    }}</span></h5>
+                <div class="">
+                  <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
+                    class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" />
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="car-content-desc">
+                  <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
+                  <small class="car-content-link ">{{ bannerStories[0]?.social_media }}</small>
+                  <p class="car-content-para">Tell us your car story togather</p>
+                  <p class="car-content-para tranc" v-if="bannerStories[0]?.story != ''">
+                    {{ bannerStories[0]?.story }}
+                  </p>
+                  <!-- <p class="car-content-para">Can you share with us any memorable stories or adventures you’ve had with
+                    your car that stands out the most?</p>
+                  <p class="car-content-para tranc" v-if="bannerStories[0]?.memorable != ''">
+                    {{ bannerStories[0]?.memorable }}
+                  </p> -->
+
+                </div>
+              </div>
+
+
+            </router-link>
+
+            <div class="footer-allDetails">
+              <router-link class="viewall-content" to="/stories">
+                {{ $t('viewAllStories') }}
+              </router-link>
+            </div>
+
+
+          </div>
+          <nav class="custom-navigation c-feature">
+            <button class="position-relative" :class="{ active: activeSection === 'home' }"
+              @click="goToSection('home')">
+              <span class="progress"></span> Home
+            </button>
+            <button class="position-relative" :class="{ active: activeSection === 'featured' }"
+              @click="goToSection('featured')">
+              <span class="progress"></span> Featured Story
+            </button>
+            <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
+              @click="goToSection('shareStory')">
+              <span class="progress"></span> Share Your Story
+            </button>
+            <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
+              @click="goToSection('aboutUs')">
+              <span class="progress"></span> About Us
+            </button>
+          </nav>
+        </div>
+      </div>
+      <div class="section" ref="section" data-section-id="shareStory">
+        <div class="container my-5">
+
+
+          <div class="form-content-home1">
+            <!-- action="#" method="POST" data-bs-toggle="modal" -->
+            <!-- @submit.prevent="retrieveCommunities" -->
+            <form id="subscribe-form" @submit.prevent="SubmitStory">
+              <h2 class="form-title">
+                {{ $t('Share your story ') }}
+                <span class="form-span">{{ $t('Now') }} !</span>
+              </h2>
+              <div class="row">
+                <div class="col-md-12 p-0">
+
+                  <label for="storyType" class="form-label">Story Type</label>
+                  <select id="storyType" class="form-control" v-model="selectedStoryType" required @change="handleName">
+
+                    <option value="carEnthusiast">Car Enthusiast</option>
+                    <option value="carGarage">Car Garage</option>
+                    <option value="carModificationShop">Car Modification/Tuning Shop</option>
+                    <option value="carClub">Car Club</option>
+                    <option value="motorbikeEnthusiast">Motorbike Enthusiast</option>
+                    <option value="automotivePhotographerast">Automotive Photographer</option>
+
+                  </select>
+
+                </div>
+                <div class="col-md-12 p-0" id="first"
+                  v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                  <div class="row">
+                    <div class="col-md-6">
+
+                      <label for="country" class="form-label">Country</label>
+                      <!-- <input type="text" id="country" class="form-control" placeholder="Enter Country"
+              v-model="formData.country"> -->
+                      <select id="country" class="form-select form-control form-input filter-select"
+                        v-model="formData.country" @change="getcities(formData.country)">
+                        <option selected value="">Country</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Antigua and Barbuda">
+                          Antigua and Barbuda
+                        </option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia and Herzegovina">
+                          Bosnia and Herzegovina
+                        </option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Brunei">Brunei</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cabo Verde">Cabo Verde</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Central African Republic">
+                          Central African Republic
+                        </option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo">Congo</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">
+                          Dominican Republic
+                        </option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Eswatini">Eswatini</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Korea, North">Korea, North</option>
+                        <option value="Korea, South">Korea, South</option>
+                        <option value="Kosovo">Kosovo</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia">Micronesia</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montenegro">Montenegro</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar">Myanmar</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="North Macedonia">North Macedonia</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saint Kitts and Nevis">
+                          Saint Kitts and Nevis
+                        </option>
+                        <option value="Saint Lucia">Saint Lucia</option>
+                        <option value="Saint Vincent and the Grenadines">
+                          Saint Vincent and the Grenadines
+                        </option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome and Principe">
+                          Sao Tome and Principe
+                        </option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="South Sudan">South Sudan</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Timor-Leste">Timor-Leste</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad and Tobago">
+                          Trinidad and Tobago
+                        </option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">
+                          United Arab Emirates
+                        </option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Vatican City">Vatican City</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+
+                      <label for="country" class="form-label">City</label>
+                      <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
+
+                      <!-- City Select -->
+                      <select id="city" class="form-select form-control form-input filter-select"
+                        v-model="formData.city">
+                        <option selected value="">City</option>
+                        <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="storyHistory" class="form-label">Tell us about your {{ shopName }}</label>
+                      <textarea id="storyHistory" class="form-control" rows="4"
+                        placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
+                    </div>
+                    <div class="   col-md-12">
+                      <label for="memorableStories" class="form-label">Can you tell us any memorable stories or
+                        adventures
+                        you’ve
+                        had that stands out
+                        the most?</label>
+                      <textarea id="memorableStories" class="form-control" rows="4"
+                        placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="storyName" class="form-label">What is the name of your story that you would like to
+                        choose?</label>
+                      <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
+                        v-model="formData.storyName"></textarea>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="link" class="form-label">Add Instagram or Website Link</label>
+                      <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
+                        v-model="formData.url">
+                    </div>
+                    <div class="col-md-12">
+                      <label for="city" class="form-label">Upload Pictures Max 8</label>
+
+                      <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+              accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
+                      <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                        accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
+                      <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+                        <span class="border-bottom-btn border-top-btn position-absolute">
+                          <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                          <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span
+                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                          <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
+                          Choose Images
+                        </label>
+                        <span class="border-bottom-btn border-left-btn position-absolute">
+                          <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <span class="border-bottom-btn position-absolute">
+                          <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                        </span>
+                      </div>
+                      <!-- <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+              <div v-for="(file, index) in uploadedFiles" :key="index"
+                class="upImageArea d-flex justify-content-between position-relative align-items-center">
+                <span>{{ file.name }}</span>
+                <button class="btn btnRemv" @click="removeImage(index)">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12 p-0" id="second"
+                  v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  <div class="row">
+                    <div class="col-md-4 ">
+
+                      <div class="customSelect position-relative" @blur="isOpen = false">
+                        <label for="country" class="form-label">Make
+                        </label>
+                        <input type="text" class="form-select form-control form-input" v-model="formData.make"
+                          :placeholder="$t('Select a Make')" @click="toggleDropdown" @input="filterMakeOptions"
+                          @change="getModels">
+                        <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
+                          <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
+                            {{ option }}
+                          </li>
+                        </ul>
+                        <ul v-else v-show="isOpen" class="options-list">
+
+                        </ul>
+                      </div>
+
+                    </div>
+                    <div class="col-md-4  " :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }">
+                      <label for="country" class="form-label">Model
+                      </label>
+                      <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
+                        <input type="text" class=" form-select form-control form-input" v-model="formData.model"
+                          :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
+                          @input="filterModelOptions" @change="getModels" v-if="formData.make == ''" disabled>
+                        <input type="text" class=" form-select form-control form-input" v-model="formData.model"
+                          :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="DropDModel"
+                          @input="filterModelOptions" @change="getModels" v-else>
+                        <ul v-show="isOpenm" class="options-list" v-if="modelfilteredOptions.length > 0">
+                          <li v-for="(option, index) in modelfilteredOptions" :key="index"
+                            @click="selectOptionModel(option.model)">
+                            {{ option.model }}
+                          </li>
+                        </ul>
+                        <ul v-else v-show="isOpenm" class="options-list">
+
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-4 " :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }">
+                      <label for="country" class="form-label">Production Year Generation
+                      </label>
+                      <div class="customSelect w-100 position-relative">
+                        <input type="text" class="form-select form-control form-input"
+                          :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption"
+                          v-model="formData.year" @click="toggleOpeng" v-if="formData.model == ''" disabled>
+                        <input type="text" class="form-select form-control form-input"
+                          :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption"
+                          v-model="formData.year" @click="toggleOpeng" v-else>
+                        <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
+                          <li v-for="(value, index) in GenfilteredOptions" :key="index"
+                            @click="updateModels(value), this.isOpeng = false">
+                            <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+                            {{ value.production_years.split(' ')[0] }}
+                            <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
+                              }})</span>
+                          </li>
+                        </ul>
+                        <ul v-else v-show="isOpeng" class="options-list">
+
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-6 z1o">
+                      <label for="name" class="form-label"> Tell us your car story together </label>
+                      <textarea id="message" class="form-control form-input h-auto" name="message"
+                        :placeholder="$t('Enter here')" v-model="formData.story" rows="2"></textarea>
+
+                    </div>
+                    <div class="col-md-6 z1o">
+                      <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
+                        or any specific features ? </label>
+                      <textarea id="message" class="form-control form-input h-auto" name="message"
+                        :placeholder="$t('Enter here')" v-model="formData.modifications" rows="2"></textarea>
+
+                    </div>
+                    <div class="col-md-6 z1o">
+                      <label for="email" class="form-label"> Can you share with us any memorable stories or adventures
+                        you’ve
+                        had
+                        with your car that stands out the most? </label>
+                      <textarea id="message" class="form-control form-input h-auto" name="message"
+                        :placeholder="$t('Enter here')" v-model="formData.memorable" rows="2"></textarea>
+                      <!-- Error message for Email -->
+                      <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
+                      <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
+                    </div>
+                    <div class="col-md-6 z1o">
+                      <label for="phone" class="form-label"> If you could give advice to someone just starting their
+                        journey
+                        to
+                        modify their car, what would it be and why?</label>
+                      <textarea id="message" class="form-control form-input h-auto" name="message"
+                        :placeholder="$t('Enter here')" v-model="formData.advice" rows="2"></textarea>
+                    </div>
+                    <div class="col-md-6 z1o">
+                      <label for="country" class="form-label"> What is the name of your story that you would like to
+                        choose?
+                      </label>
+                      <input type="tel" id="phone" name="phone" class="form-control form-input"
+                        placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
+                    </div>
+                    <div class="col-md-6 z1o">
+                      <label for="message" class="form-label">Add Instagram link </label>
+                      <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
+                        rows="2" v-model="formData.social_media" />
+                      <!-- Error message for Message -->
+                      <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
+                    </div>
+                    <div class="col-md-12">
+                      <label for="city" class="form-label">Upload Pictures Max 8</label>
+
+                      <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+              accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
+                      <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                        accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
+                      <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+                        <span class="border-bottom-btn border-top-btn position-absolute">
+                          <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                          <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span
+                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                          <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
+                          Choose Images
+                        </label>
+                        <span class="border-bottom-btn border-left-btn position-absolute">
+                          <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <span class="border-bottom-btn position-absolute">
+                          <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+
+
+
+
+                </div>
+                <div class="col-md-12 my-1">
+                  <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+
+                    <div v-for="(file, index) in croppedImages" :key="index"
+                      class="upImageArea d-flex justify-content-between position-relative align-items-center">
+                      <span>{{ file }}</span>
+                      <button type="button" class="btn btnRemv" @click="removeImage(index)">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- workiing -->
+                  <div class="draggable-area" v-if="croppedImages.length > 0">
+                    <p class="Note"><strong>Note:</strong>Please place the image at the <strong>second(2) </strong>
+                      index to
+                      set it as the main image for your story.</p>
+                    <div v-for="(image, index) in croppedImages" :key="index"
+                      :class="['image-item', { 'mainImage': index === 1 }]" draggable="true"
+                      @dragstart="onDragStart(index)" @dragover.prevent @drop="onDrop(index)">
+                      <span class="image-number">{{ index + 1 }}</span>
+                      <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <div class="col-md-12">
+                  <div class="list-item-btn position-relative submit-btn-div">
+                    <span class="border-bottom-btn border-top-btn position-absolute">
+                      <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                    </span>
+
+                    <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                      <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                    </span>
+
+                    <span
+                      class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                      <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                    </span>
+                    <button type="submit" class="signin-btnli submitNow" id="submit-button">
+                      {{ $t('submitNow') }}
+                    </button>
+                    <span class="border-bottom-btn border-left-btn position-absolute">
+                      <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                    </span>
+                    <span class="border-bottom-btn position-absolute">
+                      <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <nav class="custom-navigation c-story">
+            <button class="position-relative" :class="{ active: activeSection === 'home' }"
+              @click="goToSection('home')">
+              <span class="progress"></span> Home
+            </button>
+            <button class="position-relative" :class="{ active: activeSection === 'featured' }"
+              @click="goToSection('featured')">
+              <span class="progress"></span> Featured Story
+            </button>
+            <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
+              @click="goToSection('shareStory')">
+              <span class="progress"></span> Share Your Story
+            </button>
+            <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
+              @click="goToSection('aboutUs')">
+              <span class="progress"></span> About Us
+            </button>
+          </nav>
+        </div>
+
+      </div>
+
+      <div class="section" ref="section" data-section-id="aboutUs">
+
+        <div class="banner-content">
+          <h1 class="banner-title">{{ $t('Aboutus') }}</h1>
+
+        </div>
+
+        <div class="container my-5">
+          <div class="main-content-home1">
+
+
+
+
+
+            <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important">
+              <span class="border-bottom-btn border-top-btn position-absolute">
+                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+              </span>
+
+              <span
+                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+              </span>
+              <router-link to="/offer" class="signin-btnli">
+                {{ $t('startEngine') }}
+              </router-link>
+              <span class="border-bottom-btn border-left-btn position-absolute">
+                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+              </span>
+              <span class="border-bottom-btn position-absolute">
+                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+              </span>
+            </div>
+
+          </div>
+        </div>
+        <!-- Custom Navigation -->
+        <nav class="custom-navigation c-home">
+          <button class="position-relative pbutton" :class="{ active: activeSection === 'home' }"
+            @click="goToSection('home')">
+            <span class="progress"></span> Home
+          </button>
+          <button class="position-relative" :class="{ active: activeSection === 'featured' }"
+            @click="goToSection('featured')">
+            <span class="progress"></span> Featured Story
+          </button>
+          <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
+            @click="goToSection('shareStory')">
+            <span class="progress"></span> Share Your Story
+          </button>
+          <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
+            @click="goToSection('aboutUs')">
+            <span class="progress"></span> About Us
+          </button>
+        </nav>
+
+
+      </div>
+    </full-page>
+
   </div>
+
+
 
   <div class="modal fade " id="ignismyModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -916,6 +936,7 @@
     </div>
   </div>
 
+
   <!-- Footer -->
   <footer class="footer">
     <!-- Section: Links  -->
@@ -1043,6 +1064,8 @@ import { computed } from "vue";
 import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
+
+
 // import draggable from 'vuedraggable';
 
 
@@ -1050,11 +1073,13 @@ export default {
   name: "HomeLanding",
   components: {
     // draggable,
+
   },
   setup() {
     const { state: profileImageState, setProfileImage } = useProfileImage();
     const { state: nameState, setName } = useProfileName();
     // const { state: loginState, setIslogin } = useIslogin();
+
     const { state, setIslogin } = useIslogin();
 
     const changeProfileImage = (newSrc) => {
@@ -1072,6 +1097,7 @@ export default {
     // Computed property to access the reactive state
     const isLogin = computed(() => state.isLogin);
     return {
+
       profileImageState,
       nameState,
 
@@ -1085,6 +1111,14 @@ export default {
   },
   data() {
     return {
+      fullpageOptions: {
+        // Options for scrolling behavior, navigation, and customization
+        navigation: true, // Show navigation dots
+        scrollingSpeed: 700, // Adjust scroll speed
+        autoScrolling: true,
+        fitToSection: true,
+        anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
+      },
       fileEvent: null,
       isCrop: null,
       isDropDYear: false,
@@ -1168,10 +1202,45 @@ export default {
       selectedData: '',
       uploadedFiles: [],
       bannerStories: [],
-      cities: []
+      cities: [],
+      activeSection: 'home',
     };
   },
   methods: {
+    goToSection(anchor) {
+      this.$refs.fullpage.api.moveTo(anchor);
+      // Navigate to section by anchor
+      this.activeSection = anchor;
+    },
+    createObserver() {
+      const options = {
+        root: null, // Use the viewport as the root
+        threshold: 0.5, // Trigger when 50% of the section is in view
+      };
+
+      // Ensure we handle both single and multiple elements
+      // const sections = Array.isArray(this.$refs.section) ? this.$refs.section : [this.$refs.section];
+      const sections = document.querySelectorAll('.section');
+
+
+      // Create an observer instance
+      const observer = new IntersectionObserver(this.onIntersection, options);
+
+      // Observe each section
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    },
+    onIntersection(entries) {
+      // Update activeSection based on which section is in view
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.dataset.sectionId;
+          this.activeSection = sectionId;
+          console.log("active sec", sectionId)
+        }
+      });
+    },
     handleYes() {
       console.log("Click Yes");
       this.isCrop = true;
@@ -2181,7 +2250,7 @@ export default {
   },
 
   async mounted() {
-
+    this.createObserver();
     this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
 
@@ -2200,7 +2269,9 @@ export default {
     this.fetchBannerStories()
 
   },
+
   beforeUnmount() {
+
     document.body.removeEventListener("click", this.handleOutsideClick);
     window.removeEventListener('storage', this.handleStorageChange); // Remove the event listener
 
@@ -2592,7 +2663,7 @@ textarea.form-control {
 }
 
 .tranc {
-  width: 250px !important;
+  /* width: 250px !important; */
   display: -webkit-box;
   /* Use WebKit for browser compatibility */
   -webkit-box-orient: vertical;
@@ -2709,5 +2780,98 @@ textarea.form-control {
   .footer-allDetails {
     text-align: center;
   }
+}
+
+
+
+.section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+}
+
+.custom-navigation {
+  /* position: fixed;
+  top: 10px;
+  right: 10px; */
+}
+
+.c-home {
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+
+.c-feature {
+  position: absolute;
+  left: 0;
+  top: 50%;
+}
+
+.c-story {
+  position: absolute;
+  left: 0;
+  top: 0%;
+}
+
+
+.custom-navigation button {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background: transparent;
+  color: #fff;
+  font-size: 12px;
+  border: none;
+  outline: none
+}
+
+
+
+.custom-navigation button .progress {
+  width: 3px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -10px;
+  background: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.custom-navigation button.active .progress {
+  background-color: #f95f19;
+  /* Active color */
+}
+
+.custom-navigation button.active {
+  color: #f95f19 !important
+}
+
+
+.carContent {
+  cursor: pointer;
+  /* background: #243248;
+  opacity: 0.7; */
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem;
+  /* From https://css.glass */
+  background: rgba(36, 50, 72, 0.39);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(36, 50, 72, 0.19);
+}
+
+.carContent img {
+  border-radius: 8px
+}
+
+.car-content-link {
+  color: #fff !important;
+  font-size: 11px
 }
 </style>

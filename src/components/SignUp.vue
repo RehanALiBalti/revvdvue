@@ -249,7 +249,7 @@
           </span>
 
           <div class="mt-4 py-2">
-            <h5 class="card-title"><span class="choose">Full Name Alredy Existed </span></h5>
+            <h5 class="card-title"><span class="choose">Nick Name Alredy Existed </span></h5>
 
             <p class="text-white">Please Try With Different Name</p>
           </div>

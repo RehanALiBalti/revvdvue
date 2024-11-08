@@ -12,7 +12,40 @@
             <div class="row">
                 <div class="col-md-12 mt-1">
                     <div class="row align-items-center">
-                        <div class="col-md-5">
+                        <div class="col-md-2 ">
+                            <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0"
+                                v-if="isLogin == true">
+                                <span class="border-bottom-btn border-top-btn position-absolute">
+                                    <img src="@/assets/images/Group12.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+                                <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                                    <img src="@/assets/images/Path467.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+                                <span
+                                    class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                                    <img src="@/assets/images/Path465.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+
+                                <router-link to='/ourcommunity' class="signin-btnli submitNow">
+                                    Back
+                                </router-link>
+
+                                <span class="border-bottom-btn border-left-btn position-absolute">
+                                    <img src="@/assets/images/Group11.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+                                <span class="border-bottom-btn position-absolute">
+                                    <img src="@/assets/images/Path473.png" class="img-border position-absolute"
+                                        alt="" />
+                                </span>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-4">
                             <nav aria-label="breadcrumb" class="nav-breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item fh2">
@@ -26,7 +59,7 @@
                                 </ol>
                             </nav>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <input type="text" name="" id="" class="form-control " placeholder="search" v-model="search"
                                 @input="applyFilter">
 

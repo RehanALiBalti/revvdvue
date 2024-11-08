@@ -26,6 +26,9 @@ import VueViewer from "v-viewer";
 import VueParticles from "vue-particles";
 import AvatarCropper from "vue-avatar-cropper";
 
+import VueFullPage from "vue-fullpage.js";
+import "fullpage.js/dist/fullpage.css";
+
 const i18n = createI18n({
   legacy: false, // Use Composition API
   locale: "en", // Set the initial locale
@@ -71,4 +74,5 @@ createApp(App)
   .use(VueViewer)
   .use(VueParticles)
   .use(AvatarCropper)
+  .use(VueFullPage)
   .mount("#app");
