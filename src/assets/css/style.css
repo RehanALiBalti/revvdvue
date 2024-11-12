@@ -846,7 +846,7 @@ a {
 
 .fp-overflow {
 	width: 80% !important;
-	overflow-x: hidden;
+	overflow: hidden !important;
 }
 
 
