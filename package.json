@@ -48,6 +48,7 @@
     "vue-fullpage.js": "^0.2.20",
     "vue-i18n": "^9.10.1",
     "vue-image-zoomer": "^2.2.3",
+    "vue-multiselect": "^3.1.0",
     "vue-particles": "^1.0.9",
     "vue-password-strength-meter": "^1.7.2",
     "vue-photoswipe": "^1.0.3",

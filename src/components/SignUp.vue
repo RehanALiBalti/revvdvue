@@ -54,8 +54,29 @@
                   {{ formErrors.email }}
                 </div>
               </div>
+              <div class="col-md-6 d-none d-md-block">
+                <label for="name" class="form-label pt-0">Nick Name</label>
+                <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
+                  :placeholder="$t('Enter here')" />
+                <div v-if="formErrors.name" class="text-danger">
+                  {{ formErrors.name }}
+                </div>
+                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
+                  :placeholder="$t('Enter here')" value="user" />
+              </div>
+              <div class="col-md-6 z-2 position-relative ">
+                <label for="cars" class="form-label pt-0">
+                  Select Preffered Cars
+                </label>
+                <multiselect v-model="value" :options="options" :multiple="true" :close-on-select="false"
+                  :clear-on-select="false" placeholder="Pick some" label="name" track-by="name"
+                  class="form-control form-input  ">
 
-              <div class="col-md-6 position-relative">
+                </multiselect>
+
+              </div>
+
+              <div class="col-md-6 position-relative z-1">
                 <label for="password" class="form-label">Password</label>
 
                 <div class="input-group">
@@ -84,7 +105,7 @@
                 </div>
               </div>
 
-              <div class="col-md-6 position-relative">
+              <div class="col-md-6 position-relative z-1">
                 <label for="confirmPassword" class="form-label">{{ $t('ConfirmPassword') }}</label>
                 <div class="input-group">
                   <input :type="formData.showPassword2 ? 'text' : 'password'" id="confirmPassword"
@@ -108,25 +129,7 @@
                   <li>Password Must contain at least one symbol</li>
                 </ul>
               </div>
-              <div class="col-md-6 d-none d-md-block">
-                <label for="name" class="form-label pt-0">Nick Name</label>
-                <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
-                  :placeholder="$t('Enter here')" />
-                <div v-if="formErrors.name" class="text-danger">
-                  {{ formErrors.name }}
-                </div>
-                <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
-                  :placeholder="$t('Enter here')" value="user" />
-              </div>
 
-              <div class="col-md-6">
-                <select class="form-control form-input formP form-select">
-                  <option selected>Select Preffered Cars </option>
-                  <option value="JDM">JDM </option>
-                  <option value="European">European </option>
-                  <option value="American">American </option>
-                </select>
-              </div>
               <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
                 <input type="checkbox" id="check1" class="form-check-input m-0" v-model="formData.check1" />
                 <label for="check1" class="form-label  mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
@@ -268,9 +271,11 @@ import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
 import { Auth, Hub } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
+import Multiselect from 'vue-multiselect'
 
 export default {
   name: "SignUp",
+  components: { Multiselect },
   setup() {
     const { state: profileImageState, setProfileImage } = useProfileImage();
     const { state: nameState, setName } = useProfileName();
@@ -327,6 +332,14 @@ export default {
         check1: "",
         check2: ""
       },
+      value: [],
+
+      options: [
+        { name: 'JDM' },
+        { name: 'European' },
+        { name: 'American' },
+
+      ]
     };
   },
   computed: {
@@ -740,6 +753,13 @@ export default {
   border-bottom-right-radius: 0 !important;
 
 }
+
+.multiselect {
+  height: 23px !important;
+  width: 95% !important;
+  min-height: 23px !important;
+}
+
 
 @media(max-width:992px) {
   .textnowrap {

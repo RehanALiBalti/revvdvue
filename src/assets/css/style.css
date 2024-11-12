@@ -848,6 +848,33 @@ a {
 	width: 75% !important
 }
 
+
+.multiselect__tags {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+
+}
+
+.multiselect__tag {
+	background: #FF7A00 !important;
+}
+
+.multiselect__content-wrapper {
+	background-color: #031726 !important;
+	border: 1px solid #1a202c;
+
+}
+
+.multiselect__element {
+	font-size: 12px;
+}
+
+.multiselect {
+	height: 23px !important;
+	width: 95% !important;
+}
+
 @keyframes flip {
 	0% {
 		transform: rotateY(0deg);
@@ -2145,6 +2172,16 @@ a:hover {
 	color: #F95F19;
 	cursor: pointer;
 
+}
+
+.main-title {
+	font-size: 60px;
+	color: #fff;
+	white-space: nowrap;
+}
+
+.main-title span {
+	color: #f95f19
 }
 
 @media(max-width:992px) {
