@@ -2866,13 +2866,13 @@ textarea.form-control {
 .c-home {
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 65%;
 }
 
 .c-feature {
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 65%;
 }
 
 .c-story {
