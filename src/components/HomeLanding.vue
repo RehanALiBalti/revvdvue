@@ -11,7 +11,7 @@
             {{ $t('ultimateHub') }} {{ $t('oneStopShop') }}
 
           </p> -->
-          <p class="banner-para mb-0">
+          <p class="banner-para  ">
             MOD THE DRIVE , FEEL ALIVE .
 
           </p>
@@ -466,6 +466,8 @@ v-model="formData.country"> -->
 
                     </div>
                     <div class="col-md-2">
+                      <label for="city" class="form-label"></label>
+
                       <div class="list-item-btn position-relative submit-btn-div">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                           <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
@@ -492,7 +494,7 @@ v-model="formData.country"> -->
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 " v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-3 z-3" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
 
                   <div class="customSelect position-relative" @blur="isOpen = false">
                     <label for="country" class="form-label">Make
@@ -511,7 +513,7 @@ v-model="formData.country"> -->
                   </div>
 
                 </div>
-                <div class="col-md-3  " :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
+                <div class="col-md-3 z-3 " :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Model
                   </label>
@@ -533,7 +535,7 @@ v-model="formData.country"> -->
                     </ul>
                   </div>
                 </div>
-                <div class="col-md-3 " :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
+                <div class="col-md-3 z-3" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Production Year Generation
                   </label>
@@ -560,7 +562,7 @@ v-model="formData.country"> -->
                 </div>
                 <div class="col-md-12 p-0" id="second"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
-                  <div class="row">
+                  <div class="row z-0">
 
                     <div class="col-md-6 z1o">
                       <label for="name" class="form-label"> Tell us your car story together </label>
@@ -641,6 +643,7 @@ v-model="formData.country"> -->
 
                     </div>
                     <div class="col-md-2">
+                      <label for="city" class="form-label"></label>
                       <div class="list-item-btn position-relative submit-btn-div">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                           <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
@@ -2818,7 +2821,7 @@ textarea.form-control {
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   /* font-size: 2em; */
 }
 
