@@ -159,7 +159,8 @@
                 <div class="col-md-3 p-0">
 
                   <label for="storyType" class="form-label">Story Type</label>
-                  <select id="storyType" class="form-control" v-model="selectedStoryType" required @change="handleName">
+                  <select id="storyType" class="form-control form-select form-input" v-model="selectedStoryType"
+                    required @change="handleName">
 
                     <option value="carEnthusiast">Car Enthusiast</option>
                     <option value="carGarage">Car Garage</option>
