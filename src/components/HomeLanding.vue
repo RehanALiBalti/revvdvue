@@ -762,9 +762,9 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
       </div>
 
-      <div class="section" ref="section" data-section-id="aboutUs">
+      <div class="section mt-5" ref="section" data-section-id="aboutUs">
 
-        <div class="banner-content">
+        <div class="banner-content mt-3">
           <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
           <h1 class="main-title">About <span>us</span></h1>
 
@@ -2859,6 +2859,7 @@ textarea.form-control {
     gap: 1rem;
     align-items: center;
     bottom: unset !important;
+    white-space: nowrap;
   }
 
   .c-feature {
