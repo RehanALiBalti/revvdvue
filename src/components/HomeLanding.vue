@@ -2854,30 +2854,33 @@ textarea.form-control {
   }
 
   .c-home {
-    top: 0px;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    bottom: unset !important;
+    /* top: 0px; */
+    /* display: flex; */
+    /* gap: 1rem; */
+    /* align-items: center; */
+    /* bottom: unset !important; */
     white-space: nowrap;
+    position: static !important;
   }
 
   .c-feature {
-    top: 0px;
+    /* top: 0px;
     display: flex;
     gap: 1rem;
     align-items: center;
     bottom: unset !important;
-    white-space: nowrap;
+    white-space: nowrap; */
+    position: static !important;
   }
 
   .c-story {
-    top: 0px;
+    /* top: 0px;
     display: flex;
     gap: 1rem;
     align-items: center;
     bottom: unset !important;
-    white-space: nowrap;
+    white-space: nowrap; */
+    position: static !important;
   }
 
   .fp-overflow {
