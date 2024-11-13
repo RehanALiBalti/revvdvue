@@ -2846,6 +2846,43 @@ textarea.form-control {
   .footer-allDetails {
     text-align: center;
   }
+
+  .main-title {
+    white-space: wrap;
+    font-size: 45px;
+    text-align: center;
+  }
+
+  .c-home {
+    top: -10px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    bottom: unset !important;
+  }
+
+  .c-feature {
+    top: -10px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    bottom: unset !important;
+    white-space: nowrap;
+  }
+
+  .c-story {
+    top: -10px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    bottom: unset !important;
+    white-space: nowrap;
+  }
+
+  .fp-overflow {
+    width: 100%;
+    overflow: auto;
+  }
 }
 
 
