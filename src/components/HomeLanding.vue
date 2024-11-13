@@ -2881,8 +2881,8 @@ textarea.form-control {
   }
 
   .fp-overflow {
-    width: 100%;
-    overflow: auto;
+    width: 100% !important;
+    overflow: auto !important;
   }
 }
 
