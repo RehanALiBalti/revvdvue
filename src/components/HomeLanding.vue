@@ -2854,7 +2854,7 @@ textarea.form-control {
   }
 
   .c-home {
-    top: -10px;
+    top: 0px;
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -2863,7 +2863,7 @@ textarea.form-control {
   }
 
   .c-feature {
-    top: -10px;
+    top: 0px;
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -2872,7 +2872,7 @@ textarea.form-control {
   }
 
   .c-story {
-    top: -10px;
+    top: 0px;
     display: flex;
     gap: 1rem;
     align-items: center;
