@@ -120,27 +120,27 @@
                 {{ $t('viewAllStories') }}
               </router-link>
             </div>
-
+            <nav class="custom-navigation c-feature">
+              <button class="position-relative" :class="{ active: activeSection === 'home' }"
+                @click="goToSection('home')">
+                <span class="progress"></span> Home
+              </button>
+              <button class="position-relative" :class="{ active: activeSection === 'featured' }"
+                @click="goToSection('featured')">
+                <span class="progress"></span> Featured Story
+              </button>
+              <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
+                @click="goToSection('shareStory')">
+                <span class="progress"></span> Share Your Story
+              </button>
+              <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
+                @click="goToSection('aboutUs')">
+                <span class="progress"></span> About Us
+              </button>
+            </nav>
 
           </div>
-          <nav class="custom-navigation c-feature">
-            <button class="position-relative" :class="{ active: activeSection === 'home' }"
-              @click="goToSection('home')">
-              <span class="progress"></span> Home
-            </button>
-            <button class="position-relative" :class="{ active: activeSection === 'featured' }"
-              @click="goToSection('featured')">
-              <span class="progress"></span> Featured Story
-            </button>
-            <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
-              @click="goToSection('shareStory')">
-              <span class="progress"></span> Share Your Story
-            </button>
-            <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
-              @click="goToSection('aboutUs')">
-              <span class="progress"></span> About Us
-            </button>
-          </nav>
+
         </div>
       </div>
       <div class="section" ref="section" data-section-id="shareStory">
@@ -740,6 +740,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               </div>
             </form>
           </div>
+
           <nav class="custom-navigation c-story">
             <button class="position-relative" :class="{ active: activeSection === 'home' }"
               @click="goToSection('home')">
@@ -2886,6 +2887,10 @@ textarea.form-control {
   .fp-overflow {
     width: 100% !important;
     overflow: auto !important;
+  }
+
+  .custom-navigation {
+    height: 250px !important;
   }
 }
 
