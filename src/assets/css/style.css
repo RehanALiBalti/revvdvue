@@ -846,7 +846,8 @@ a {
 
 .fp-overflow {
 	width: 80% !important;
-	overflow: hidden !important;
+	/* overflow: hidden !important; */
+	min-height: 100vh;
 }
 
 @media(max-width:768px) {

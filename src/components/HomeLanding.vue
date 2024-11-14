@@ -22,7 +22,7 @@
 
 
             <div class="logo-R-div flex-column d-flex justify-content-center align-items-center">
-              <img class="logo-R" src="@/assets/images/Group888.png" alt="R" />
+              <!-- <img class="logo-R" src="@/assets/images/Group888.png" alt="R" /> -->
               <h3 class="text-white mb-0 mt-3">Launching Soon</h3>
             </div>
 
@@ -78,7 +78,8 @@
         </nav>
 
       </div>
-      <div class="section w-100" ref="section" data-section-id="featured">
+      <div class="section " ref="section" data-section-id="featured">
+       <div class="container-fluid" >
         <div class="row">
           <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-4 position-relative">
             <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4 d-none">
@@ -120,7 +121,13 @@
                 {{ $t('viewAllStories') }}
               </router-link>
             </div>
-            <nav class="custom-navigation c-feature">
+          
+
+          </div>
+
+        </div>
+       </div>
+        <nav class="custom-navigation c-feature">
               <button class="position-relative" :class="{ active: activeSection === 'home' }"
                 @click="goToSection('home')">
                 <span class="progress"></span> Home
@@ -138,10 +145,6 @@
                 <span class="progress"></span> About Us
               </button>
             </nav>
-
-          </div>
-
-        </div>
       </div>
       <div class="section" ref="section" data-section-id="shareStory">
         <div class="container-fluid">
