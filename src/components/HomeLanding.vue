@@ -1264,6 +1264,14 @@ export default {
         autoScrolling: true,
         fitToSection: true,
         anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
+        onLeave: (origin, destination) => {
+          const sections = document.querySelectorAll('.section');
+          sections[origin.index].classList.add('slide-out-forward');
+          sections[destination.index].classList.add('slide-in-backward');
+          setTimeout(() => {
+            sections[origin.index].classList.remove('slide-out-forward');
+          }, 700); // Match the animation duration
+        },
       },
       fileEvent: null,
       isCrop: null,
@@ -3067,5 +3075,38 @@ textarea.form-control {
 .car-content-link {
   color: #fff !important;
   font-size: 11px
+}
+
+
+.slide-in-backward {
+  animation: slideInBackward 0.7s ease-out forwards;
+}
+
+@keyframes slideInBackward {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-out-forward {
+  animation: slideOutForward 0.7s ease-out forwards;
+}
+
+@keyframes slideOutForward {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 </style>
