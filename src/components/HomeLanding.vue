@@ -55,96 +55,132 @@
         </div>
         <!-- Custom Navigation -->
         <nav class="custom-navigation c-home">
-          <button class="position-relative pbutton" :class="{ active: activeSection === 'home' }"
-            @click="goToSection('home')">
-            <div class="flex flex-column">
+          <button class="position-relative pbutton d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span>
             </div> Home
           </button>
-          <button class="position-relative" :class="{ active: activeSection === 'featured' }"
-            @click="goToSection('featured')">
-            <span class="progress"></span> Featured Story
+          <button class="position-relative  d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> Featured Story
           </button>
-          <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
-            @click="goToSection('shareStory')">
-            <span class="progress"></span> Share Your Story
+          <button class="position-relative  d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
+            <div class="d-flex flex-column gap-1 ">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> Share Your Story
           </button>
-          <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
-            @click="goToSection('aboutUs')">
-            <span class="progress"></span> About Us
+          <button class="position-relative  d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> About Us
           </button>
         </nav>
 
       </div>
       <div class="section " ref="section" data-section-id="featured">
-       <div class="container-fluid" >
-        <div class="row">
-          <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-4 position-relative">
-            <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4 d-none">
-              <img src="../../public/images/2.png">
-            </div>
-            <!-- Content -->
-
-            <router-link class="carContent row" to="/banner" style="cursor:pointer">
-              <div class="col-md-5">
-                <h5 class="h5-title text-capitalize mb-4">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
-                <div class="">
-                  <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
-                    class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" />
-                </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-4 position-relative">
+              <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4 d-none">
+                <img src="../../public/images/2.png">
               </div>
-              <div class="col-md-7">
-                <div class="car-content-desc">
-                  <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
-                  <small class="car-content-link ">{{ bannerStories[0]?.social_media }}</small>
-                  <p class="car-content-para">Tell us your car story togather</p>
-                  <p class="car-content-para tranc" v-if="bannerStories[0]?.story != ''">
-                    {{ bannerStories[0]?.story }}
-                  </p>
-                  <!-- <p class="car-content-para">Can you share with us any memorable stories or adventures you’ve had with
+              <!-- Content -->
+
+              <router-link class="carContent row" to="/banner" style="cursor:pointer">
+                <div class="col-md-5">
+                  <h5 class="h5-title text-capitalize mb-4">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
+                      }}</span></h5>
+                  <div class="">
+                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
+                      class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" />
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="car-content-desc">
+                    <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
+                    <small class="car-content-link ">{{ bannerStories[0]?.social_media }}</small>
+                    <p class="car-content-para">Tell us your car story togather</p>
+                    <p class="car-content-para tranc" v-if="bannerStories[0]?.story != ''">
+                      {{ bannerStories[0]?.story }}
+                    </p>
+                    <!-- <p class="car-content-para">Can you share with us any memorable stories or adventures you’ve had with
                     your car that stands out the most?</p>
                   <p class="car-content-para tranc" v-if="bannerStories[0]?.memorable != ''">
                     {{ bannerStories[0]?.memorable }}
                   </p> -->
 
+                  </div>
                 </div>
+
+
+              </router-link>
+
+              <div class="footer-allDetails">
+                <router-link class="viewall-content" to="/stories">
+                  {{ $t('viewAllStories') }}
+                </router-link>
               </div>
 
 
-            </router-link>
-
-            <div class="footer-allDetails">
-              <router-link class="viewall-content" to="/stories">
-                {{ $t('viewAllStories') }}
-              </router-link>
             </div>
-          
 
           </div>
-
         </div>
-       </div>
         <nav class="custom-navigation c-feature">
-              <button class="position-relative" :class="{ active: activeSection === 'home' }"
-                @click="goToSection('home')">
-                <span class="progress"></span> Home
-              </button>
-              <button class="position-relative" :class="{ active: activeSection === 'featured' }"
-                @click="goToSection('featured')">
-                <span class="progress"></span> Featured Story
-              </button>
-              <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
-                @click="goToSection('shareStory')">
-                <span class="progress"></span> Share Your Story
-              </button>
-              <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
-                @click="goToSection('aboutUs')">
-                <span class="progress"></span> About Us
-              </button>
-            </nav>
+          <button class="position-relative  d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> Home
+          </button>
+          <button class="position-relative  d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> Featured Story
+          </button>
+          <button class="position-relative  d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> Share Your Story
+          </button>
+          <button class="position-relative d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> About Us
+          </button>
+        </nav>
       </div>
       <div class="section" ref="section" data-section-id="shareStory">
         <div class="container-fluid">
@@ -745,21 +781,41 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           </div>
 
           <nav class="custom-navigation c-story">
-            <button class="position-relative" :class="{ active: activeSection === 'home' }"
-              @click="goToSection('home')">
-              <span class="progress"></span> Home
+            <button class="position-relative d-flex align-items-start gap-2"
+              :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
+              <div class="d-flex flex-column gap-1">
+                <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span>
+              </div> Home
             </button>
-            <button class="position-relative" :class="{ active: activeSection === 'featured' }"
-              @click="goToSection('featured')">
-              <span class="progress"></span> Featured Story
+            <button class="position-relative d-flex align-items-start gap-2"
+              :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
+              <div class="d-flex flex-column gap-1">
+                <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span>
+              </div> Featured Story
             </button>
-            <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
-              @click="goToSection('shareStory')">
-              <span class="progress"></span> Share Your Story
+            <button class="position-relative d-flex align-items-start gap-2"
+              :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
+              <div class="d-flex flex-column gap-1">
+                <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span>
+              </div> Share Your Story
             </button>
-            <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
-              @click="goToSection('aboutUs')">
-              <span class="progress"></span> About Us
+            <button class="position-relative d-flex align-items-start gap-2"
+              :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+              <div class="d-flex flex-column gap-1">
+                <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span>
+              </div> About Us
             </button>
           </nav>
         </div>
@@ -768,7 +824,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
       <div class="section mt-5" ref="section" data-section-id="aboutUs">
 
-        <div class="banner-content mt-3">
+        <div class="banner-content mt-5">
           <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
           <h1 class="main-title">About <span>us</span></h1>
 
@@ -809,21 +865,41 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div>
         <!-- Custom Navigation -->
         <nav class="custom-navigation c-home">
-          <button class="position-relative pbutton" :class="{ active: activeSection === 'home' }"
-            @click="goToSection('home')">
-            <span class="progress"></span> Home
+          <button class="position-relative d-flex align-items-start gap-2 pbutton"
+            :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> Home
           </button>
-          <button class="position-relative" :class="{ active: activeSection === 'featured' }"
-            @click="goToSection('featured')">
-            <span class="progress"></span> Featured Story
+          <button class="position-relative d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> Featured Story
           </button>
-          <button class="position-relative" :class="{ active: activeSection === 'shareStory' }"
-            @click="goToSection('shareStory')">
-            <span class="progress"></span> Share Your Story
+          <button class="position-relative d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> Share Your Story
           </button>
-          <button class="position-relative" :class="{ active: activeSection === 'aboutUs' }"
-            @click="goToSection('aboutUs')">
-            <span class="progress"></span> About Us
+          <button class="position-relative d-flex align-items-start gap-2"
+            :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span>
+            </div> About Us
           </button>
         </nav>
 
@@ -2936,7 +3012,7 @@ textarea.form-control {
 
 .custom-navigation button {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   cursor: pointer;
   background: transparent;
   color: #fff;
@@ -2948,9 +3024,10 @@ textarea.form-control {
 
 
 .custom-navigation button .progress {
-  width: 3px;
-  height: 100%;
-  position: absolute;
+  width: 2px;
+  height: 9px;
+  /* position: absolute; */
+  border-radius: 0;
   top: 0;
   left: -10px;
   background: #fff;
