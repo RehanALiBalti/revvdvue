@@ -1266,10 +1266,10 @@ export default {
         anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
         onLeave: (origin, destination) => {
           const sections = document.querySelectorAll('.section');
-          sections[origin.index].classList.add('slide-out-forward');
-          sections[destination.index].classList.add('slide-in-backward');
+          sections[origin.index].classList.add('slide-out-forward-3d');
+          sections[destination.index].classList.add('slide-in-backward-3d');
           setTimeout(() => {
-            sections[origin.index].classList.remove('slide-out-forward');
+            sections[origin.index].classList.remove('slide-out-forward-3d');
           }, 700); // Match the animation duration
         },
       },
@@ -3077,19 +3077,19 @@ textarea.form-control {
   font-size: 11px
 }
 
-
+/* 
 .slide-in-backward {
   animation: slideInBackward 0.7s ease-out forwards;
 }
 
 @keyframes slideInBackward {
   from {
-    transform: translateX(-100%);
+    transform: translateY(-100%);
     opacity: 0;
   }
 
   to {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -3100,13 +3100,48 @@ textarea.form-control {
 
 @keyframes slideOutForward {
   from {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 
   to {
-    transform: translateX(100%);
+    transform: translateY(100%);
     opacity: 0;
+  }
+} */
+.section {
+  transform: rotateX(-90deg) translateZ(-100px);
+}
+
+.slide-in-backward-3d {
+  animation: slideInBackward3D 0.5s ease-out forwards;
+}
+
+@keyframes slideInBackward3D {
+  from {
+    transform: translateY(-100px);
+    scale: 0.02
+  }
+
+  to {
+    transform: translateY(0);
+    scale: 1
+  }
+}
+
+.slide-out-forward-3d {
+  animation: slideOutForward3D 0.5s ease-out forwards;
+}
+
+@keyframes slideOutForward3D {
+  from {
+    transform: translateY(0);
+    scale: 1
+  }
+
+  to {
+    transform: translateY(100px);
+    scale: 0.02
   }
 }
 </style>
