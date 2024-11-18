@@ -3,7 +3,7 @@
   <!-- <h1 class="text-white">login State: {{ isLogin }} {{ typeof (isLogin) }}</h1> -->
   <div class="container-fluid">
     <full-page id="fullpage" ref="fullpage" :options="fullpageOptions">
-      <div class="section" ref="section" data-section-id="home">
+      <div class="section slide-in-backward-3d" ref="section" data-section-id="home">
         <div class="banner-content">
           <!-- <h1 class=" main-title">{{ $t('changingTheCarWorld') }}</h1> -->
           <h1 class=" main-title">Changing the <span>Car</span> World</h1>
