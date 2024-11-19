@@ -9,8 +9,8 @@
     <router-view />
 
   </div>
-  <FooterSect v-if="showFooterSect" />
-  <FooterSect2 v-if="showFooterSect2" />
+  <FooterSect v-if="showFooterSect" v-show="showF" />
+  <FooterSect2 v-if="showFooterSect2" v-show="showF" />
 </template>
 
 <script>
@@ -29,7 +29,8 @@ export default {
   data() {
     return {
       selectedLanguage: 'en', // Default language
-      pNum: 140
+      pNum: 140,
+      showF: true
     };
   },
   methods: {
@@ -51,6 +52,9 @@ export default {
   mounted() {
     // Update pNum if needed on mounted
     this.pNum = this.isMobile() ? 100 : 120;
+    if (this.$route.path == "/") {
+      this.showF == false;
+    }
 
     // Add resize event listener to update pNum dynamically on screen resize
     window.addEventListener('resize', this.updatePNumOnResize);

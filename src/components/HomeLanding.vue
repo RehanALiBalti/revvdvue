@@ -824,45 +824,24 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
       <div class="section mt-5" ref="section" data-section-id="aboutUs">
 
-        <div class="banner-content mt-5">
+        <div class="banner-content mt-5 boxAbout p-2 ">
           <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
           <h1 class="main-title">About <span>us</span></h1>
 
+          <p class="banner-para ">We are a team of motor heads with fuel in our veins and nitrous igniting our
+            passion.
+            Our goal is to build the ultimate hub for modified cars, high-performance machines, supercars, and
+            motorbikes. We dream of creating a space where enthusiasts from all over the world can connect, sell, buy,
+            share ideas and collaborate; opening up endless opportunities for the automotive community. At RevvdOut, we
+            blend our love for motors with cutting-edge technology to give enthusiasts the tools to chase their passion.
+
+
+            Together, we’re building a global hub that transcends geographical boundaries by bringing like-minded
+            enthusiasts together and enjoy the thrill of everything on wheels.</p>
+
         </div>
 
-        <div class="container-fluid">
-          <div class="main-content-home1">
 
-
-
-
-
-            <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important">
-              <span class="border-bottom-btn border-top-btn position-absolute">
-                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-              </span>
-
-              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-              </span>
-
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-              </span>
-              <router-link to="/offer" class="signin-btnli">
-                {{ $t('startEngine') }}
-              </router-link>
-              <span class="border-bottom-btn border-left-btn position-absolute">
-                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-              </span>
-              <span class="border-bottom-btn position-absolute">
-                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-              </span>
-            </div>
-
-          </div>
-        </div>
         <!-- Custom Navigation -->
         <nav class="custom-navigation c-home">
           <button class="position-relative d-flex align-items-start gap-2 pbutton"
@@ -3075,6 +3054,20 @@ textarea.form-control {
 .car-content-link {
   color: #fff !important;
   font-size: 11px
+}
+
+.boxAbout {
+  background: rgba(36, 50, 72, 0.39);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(36, 50, 72, 0.19);
+}
+
+.boxAbout p {
+  color: #d8d8d8 !important;
+
 }
 
 /* 
