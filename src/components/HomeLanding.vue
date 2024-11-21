@@ -1063,7 +1063,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer d-none">
     <!-- Section: Links  -->
     <section class="">
       <div class="container text-center text-md-start mt-5">
@@ -2956,7 +2956,7 @@ textarea.form-control {
   }
 
   .custom-navigation {
-    height: 250px !important;
+    height: 320px !important;
   }
 }
 
