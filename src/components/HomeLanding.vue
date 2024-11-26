@@ -3058,9 +3058,9 @@ textarea.form-control {
 }
 
 .c-about {
-  position: absolute;
-  left: 0;
-  top: 73%;
+  position: relative;
+  left: -178px;
+  top: 8%;
   bottom: 15%
 }
 
