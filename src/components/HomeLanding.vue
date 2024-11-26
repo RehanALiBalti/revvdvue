@@ -3069,14 +3069,14 @@ textarea.form-control {
 
 .c-about {
   position: relative;
-  left: -178px;
+  left: -100px;
   top: 8%;
   bottom: 15%
 }
 
 .c-feature {
   position: relative;
-  left: -148px;
+  left: -95px;
   top: 6%;
   bottom: 15%
 }
