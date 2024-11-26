@@ -84,7 +84,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Share Your Story
+            </div> Share Your Story Now
           </button>
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -120,6 +120,10 @@
                   <div class="car-content-desc">
                     <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
                     <small class="car-content-link ">@Revvdout</small>
+                    <p class="car-content-para">Tell us your car story togather</p>
+                    <p class="form-label tranc" v-if="bannerStories[0]?.story != ''">
+                      {{ bannerStories[0]?.story }}
+                    </p>
                     <p class="car-content-para">Tell us your car story togather</p>
                     <p class="form-label tranc" v-if="bannerStories[0]?.story != ''">
                       {{ bannerStories[0]?.story }}
@@ -173,7 +177,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Share Your Story
+            </div> Share Your Story Now
           </button>
           <button class="position-relative d-flex align-items-start gap-2"
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -810,7 +814,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
                 <span class="progress"></span>
                 <span class="progress"></span> -->
-              </div> Share Your Story
+              </div> Share Your Story Now
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -828,22 +832,27 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
       <div class="section" ref="section" data-section-id="aboutUs">
 
-        <div class="banner-content  boxAbout p-2 ">
-          <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
-          <h1 class="form-title">About <span class="form-span">us</span></h1>
+        <div class="mianHome">
+          <div class="banner-content  boxAbout p-2 ">
+            <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
+            <h1 class="form-title">About <span class="form-span">us</span></h1>
 
-          <p class="form-label text-center ">We are a team of motor heads with fuel in our veins and nitrous igniting
-            our
-            passion.
-            Our goal is to build the ultimate hub for modified cars, high-performance machines, supercars, and
-            motorbikes. We dream of creating a space where enthusiasts from all over the world can connect, sell, buy,
-            share ideas and collaborate; opening up endless opportunities for the automotive community. At RevvdOut, we
-            blend our love for motors with cutting-edge technology to give enthusiasts the tools to chase their passion.
+            <p class="form-label text-center ">We are a team of motor heads with fuel in our veins and nitrous igniting
+              our
+              passion.
+              Our goal is to build the ultimate hub for modified cars, high-performance machines, supercars, and
+              motorbikes. We dream of creating a space where enthusiasts from all over the world can connect, sell, buy,
+              share ideas and collaborate; opening up endless opportunities for the automotive community. At RevvdOut,
+              we
+              blend our love for motors with cutting-edge technology to give enthusiasts the tools to chase their
+              passion.
 
 
-            Together, we’re building a global hub that transcends geographical boundaries by bringing like-minded
-            enthusiasts together and enjoy the thrill of everything on wheels.</p>
-
+              Together, we’re building a global hub that transcends geographical boundaries by bringing like-minded
+              enthusiasts together and enjoy the thrill of everything on wheels.</p>
+            <h1 class="form-title">Contact <span class="form-span">us</span></h1>
+            <p class="form-label text-center">info@revvdout.com</p>
+          </div>
         </div>
 
 
@@ -874,7 +883,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Share Your Story
+            </div> Share Your Story Now
           </button>
           <button class="position-relative d-flex align-items-start gap-2 my-2 "
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -918,7 +927,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Share Your Story
+        </div> Share Your Story Now
       </button>
       <button class="position-relative  d-flex align-items-start gap-2 my-2 my-2"
         :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
