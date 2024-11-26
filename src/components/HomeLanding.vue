@@ -3065,9 +3065,9 @@ textarea.form-control {
 }
 
 .c-feature {
-  position: absolute;
-  left: 0;
-  top: 72%;
+  position: relative;
+  left: -148px;
+  top: 6%;
   bottom: 15%
 }
 
