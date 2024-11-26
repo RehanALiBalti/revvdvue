@@ -57,7 +57,7 @@
         </div>
         <!-- Custom Navigation -->
         <nav class="custom-navigation c-home d-block d-md-none">
-          <button class="position-relative pbutton d-flex align-items-start gap-2"
+          <button class="position-relative pbutton d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -66,7 +66,7 @@
               <span class="progress"></span> -->
             </div> Home Page
           </button>
-          <button class="position-relative  d-flex align-items-start gap-2"
+          <button class="position-relative  d-flex align-items-start gap-2 my-2 my-2"
             :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -75,7 +75,7 @@
               <span class="progress"></span> -->
             </div> Featured Story
           </button>
-          <button class="position-relative  d-flex align-items-start gap-2"
+          <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
             <div class="d-flex flex-column gap-1 ">
               <span class="progress"></span>
@@ -84,7 +84,7 @@
               <span class="progress"></span> -->
             </div> Share Your Story
           </button>
-          <button class="position-relative  d-flex align-items-start gap-2"
+          <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -146,7 +146,7 @@
           </div>
         </div>
         <nav class="custom-navigation c-feature d-block d-md-none">
-          <button class="position-relative  d-flex align-items-start gap-2"
+          <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -155,7 +155,7 @@
               <span class="progress"></span> -->
             </div> Home Page
           </button>
-          <button class="position-relative  d-flex align-items-start gap-2"
+          <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -164,7 +164,7 @@
               <span class="progress"></span> -->
             </div> Featured Story
           </button>
-          <button class="position-relative  d-flex align-items-start gap-2"
+          <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -792,7 +792,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <span class="progress"></span> -->
               </div> Home Page
             </button>
-            <button class="position-relative d-flex align-items-start gap-2"
+            <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
               <div class="d-flex flex-column gap-1">
                 <span class="progress"></span>
@@ -801,7 +801,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <span class="progress"></span> -->
               </div> Featured Story
             </button>
-            <button class="position-relative d-flex align-items-start gap-2"
+            <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
               <div class="d-flex flex-column gap-1">
                 <span class="progress"></span>
@@ -810,7 +810,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <span class="progress"></span> -->
               </div> Share Your Story
             </button>
-            <button class="position-relative d-flex align-items-start gap-2"
+            <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
               <div class="d-flex flex-column gap-1">
                 <span class="progress"></span>
@@ -847,7 +847,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
         <!-- Custom Navigation -->
         <nav class="custom-navigation c-about d-block d-md-none">
-          <button class="position-relative d-flex align-items-start gap-2 pbutton"
+          <button class="position-relative d-flex align-items-start gap-2 my-2  pbutton"
             :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -856,7 +856,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
             </div> Home Page
           </button>
-          <button class="position-relative d-flex align-items-start gap-2"
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
             :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -865,7 +865,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
             </div> Featured Story
           </button>
-          <button class="position-relative d-flex align-items-start gap-2"
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
             :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -874,7 +874,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
             </div> Share Your Story
           </button>
-          <button class="position-relative d-flex align-items-start gap-2"
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
             <div class="d-flex flex-column gap-1">
               <span class="progress"></span>
@@ -900,7 +900,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Home
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2 my-2"
+      <button class="position-relative  d-flex align-items-start gap-2 my-2 my-2"
         :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
@@ -909,7 +909,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Featured Story
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2 my-2"
+      <button class="position-relative  d-flex align-items-start gap-2 my-2 my-2"
         :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
         <div class="d-flex flex-column gap-1 ">
           <span class="progress"></span>
@@ -918,7 +918,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Share Your Story
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2 my-2"
+      <button class="position-relative  d-flex align-items-start gap-2 my-2 my-2"
         :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
