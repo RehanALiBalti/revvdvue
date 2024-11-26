@@ -6,20 +6,21 @@
     <full-page id="fullpage" ref="fullpage" :options="fullpageOptions" @sectionChange="updateActiveSection">
 
       <div class="section slide-in-backward-3d" ref="section" data-section-id="home">
-        <div class="banner-content">
-          <!-- <h1 class=" main-title">{{ $t('changingTheCarWorld') }}</h1> -->
-          <h1 class=" main-title">Changing the <span>Car</span> World</h1>
-          <!-- <p class="banner-para mb-0">
+        <div class="mianHome">
+          <div class="banner-content">
+            <!-- <h1 class=" main-title">{{ $t('changingTheCarWorld') }}</h1> -->
+            <h1 class=" main-title">Changing the <span>Car</span> World</h1>
+            <!-- <p class="banner-para mb-0">
             {{ $t('ultimateHub') }} {{ $t('oneStopShop') }}
 
           </p> -->
-          <p class="form-label mb-4">
-            MOD THE DRIVE , FEEL ALIVE .
+            <p class="form-label mb-4">
+              MOD THE DRIVE , FEEL ALIVE .
 
-          </p>
-        </div>
+            </p>
+          </div>
 
-        <div class="container-fluid m-0">
+
           <div class="main-content-home1 gap-0">
 
 
@@ -55,6 +56,7 @@
 
           </div>
         </div>
+
         <!-- Custom Navigation -->
         <nav class="custom-navigation c-home d-block d-md-none">
           <button class="position-relative pbutton d-flex align-items-start gap-2 my-2"
@@ -3227,5 +3229,13 @@ textarea.form-control {
     transform: translateY(100px);
     scale: 0.02
   }
+}
+
+.mianHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
 }
 </style>
