@@ -116,7 +116,7 @@
                 <div class="col-md-7">
                   <div class="car-content-desc">
                     <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
-                    <small class="car-content-link ">{{ bannerStories[0]?.social_media }}</small>
+                    <small class="car-content-link ">@Revvdout</small>
                     <p class="car-content-para">Tell us your car story togather</p>
                     <p class="car-content-para tranc" v-if="bannerStories[0]?.story != ''">
                       {{ bannerStories[0]?.story }}
