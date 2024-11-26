@@ -119,13 +119,13 @@
                 <div class="col-md-7">
                   <div class="car-content-desc">
                     <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
-                    <small class="car-content-link ">@Revvdout</small>
-                    <p class="car-content-para">Tell us your car story togather</p>
-                    <p class="form-label tranc" v-if="bannerStories[0]?.story != ''">
+                    <small class="car-content-link ">Revvdout@{{ bannerStories[0]?.user_name }}</small>
+                    <p class="car-content-para my-1 p-0">Tell us your car story togather</p>
+                    <p class="form-label tranc my-1 p-0" v-if="bannerStories[0]?.story != ''">
                       {{ bannerStories[0]?.story }}
                     </p>
-                    <p class="car-content-para">Tell us your car story togather</p>
-                    <p class="form-label tranc" v-if="bannerStories[0]?.story != ''">
+                    <p class="car-content-para my-1 p-0">Tell us your car story togather</p>
+                    <p class="form-label tranc my-1 p-0" v-if="bannerStories[0]?.story != ''">
                       {{ bannerStories[0]?.story }}
                     </p>
                     <!-- <p class="car-content-para">Can you share with us any memorable stories or adventures you’ve had with
@@ -198,12 +198,12 @@
             <!-- action="#" method="POST" data-bs-toggle="modal" -->
             <!-- @submit.prevent="retrieveCommunities" -->
             <form id="subscribe-form" @submit.prevent="SubmitStory">
-              <h2 class="form-title">
+              <h2 class="form-title w-100 text-start">
                 {{ $t('Share your story ') }}
                 <span class="form-span">{{ $t('Now') }} !</span>
               </h2>
               <div class="row">
-                <div class="col-md-3 p-0">
+                <div class="col-md-3 p-0 p-md-1">
 
                   <label for="storyType" class="form-label">Story Type</label>
                   <select id="storyType" class="form-control form-select form-input" v-model="selectedStoryType"
@@ -219,7 +219,7 @@
                   </select>
 
                 </div>
-                <div class="col-md-5" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-5 p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
 
                   <label for="country" class="form-label">Country</label>
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter Country"
@@ -441,7 +441,7 @@ v-model="formData.country"> -->
                     <option value="Zimbabwe">Zimbabwe</option>
                   </select>
                 </div>
-                <div class="col-md-4" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-4 p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
 
                   <label for="country" class="form-label">City</label>
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
@@ -452,7 +452,7 @@ v-model="formData.country"> -->
                     <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                   </select>
                 </div>
-                <div class="col-md-12 p-0" id="first"
+                <div class="col-md-12 p-0 p-md-1" id="first"
                   v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <div class="row">
 
@@ -542,7 +542,7 @@ v-model="formData.country"> -->
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 z-3" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-3 z-3 p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
 
                   <div class="customSelect position-relative" @blur="isOpen = false">
                     <label for="country" class="form-label">Make
@@ -561,7 +561,7 @@ v-model="formData.country"> -->
                   </div>
 
                 </div>
-                <div class="col-md-3 z-3 " :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
+                <div class="col-md-3 z-3 p-0 p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Model
                   </label>
@@ -583,7 +583,7 @@ v-model="formData.country"> -->
                     </ul>
                   </div>
                 </div>
-                <div class="col-md-3 z-3" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
+                <div class="col-md-3 z-3 p-0 p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Production Year Generation
                   </label>
@@ -608,11 +608,11 @@ v-model="formData.country"> -->
                     </ul>
                   </div>
                 </div>
-                <div class="col-md-12 p-0" id="second"
+                <div class="col-md-12 p-0 pmd-1" id="second"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <div class="row z-0">
 
-                    <div class="col-md-6 z1o d-flex flex-column hustify-content-end">
+                    <div class="col-md-6 z1o d-flex flex-column justify-content-end">
                       <label for="name" class="form-label"> Tell us your car story together </label>
                       <textarea id="message" class="form-control form-input h-auto" name="message"
                         :placeholder="$t('Enter here')" v-model="formData.story" rows="2"></textarea>
@@ -645,14 +645,14 @@ v-model="formData.country"> -->
                         :placeholder="$t('Enter here')" v-model="formData.advice" rows="2"></textarea>
                     </div>
                     <div class="col-md-5 z1o ">
-                      <label for="country" class="form-label"> What is the name of your story you would like to
+                      <label for="country" class="form-label"> What is the name of your story  would like to
                         choose?
                       </label>
                       <input type="tel" id="phone" name="phone" class="form-control form-input"
                         placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
                     </div>
                     <div class="col-md-3 z1o ">
-                      <label for="message" class="form-label">Add Instagram link </label>
+                      <label for="message" class="form-label ">Add Instagram link </label>
                       <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
                         rows="2" v-model="formData.social_media" />
                       <!-- Error message for Message -->
@@ -1815,7 +1815,7 @@ export default {
         // Make the GET request with query parameters
         const response = await axios.get(url);
         console.log("ja loru response", response, response.data.nickname)
-
+        this.formData.user_name = response.data.nickname
         // Handle the response data
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.image = response.data.image
@@ -1946,6 +1946,8 @@ export default {
       data.append('user_name', this.formData.user_name);
       // data.append('user_name', "danish");
       data.append('user_email', this.formData.user_email);
+      console.log("uanme", this.formData.user_name)
+
 
 
       // data.append('user_email', "danish250ahmad@gmail.com");
@@ -1989,6 +1991,7 @@ export default {
       if (this.isLogin == 'true' || this.isLogin == true) {
 
         console.log("the condition is true and form submit")
+
         // Send POST request using Axios
         axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
           headers: {
