@@ -327,7 +327,7 @@
             </div>
 
             <!-- Tab Content -->
-            <div v-if="activeTab === 0" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
+            <div v-if="activeTab === 0" :class="isModalOpenFe ? 'z-0 position-relative ' : ''" style="overflow-x:hiddens">
                 <div class="row">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search"
@@ -6320,5 +6320,9 @@ form-select {
         width: 100%
     }
 
+}
+.card-content-car{
+    width:100%;
+    overflow:hidden
 }
 </style>

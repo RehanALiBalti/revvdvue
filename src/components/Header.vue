@@ -1,11 +1,13 @@
 <template>
+
   <section class="header">
     <!-- <h1 class="text-white">{{ isLogin2 }} {{ typeof (isLogin2) }}</h1> -->
     <nav class="navbar navbar-expand-lg sticky-top p-1 p-md-3">
       <div class="container px-0 px-md-1">
         <router-link class="navbar-brand" to="/">
-          <img class="logo-header" src="@/assets/images/RevvdoutLogo.svg" alt="Logo" draggable="false" height="30" />
+          <!-- <img class="logo-header" src="@/assets/images/RevvdoutLogo.svg" alt="Logo" draggable="false" height="30" /> -->
 
+          <img class="logo-header" src="@/assets/images/Group888.png" alt="Logo" draggable="false" height="30" />
         </router-link>
         <div class="d-flex gap-2">
           <router-link class="nav-link navLinkmd d-block d-lg-none" to="/" v-if="shouldShowLink && isLogin2">
@@ -30,6 +32,46 @@
 
 
           <ul class="navbar-nav ul-list ms-auto">
+            <li class=" position-relative d-block d-md-none" v-if="$route.path === '/'">
+              <nav class="custom-navigation c-home ">
+                <button class="position-relative pbutton d-flex align-items-start gap-2"
+                  :class="{ active: activeSection === 'home' }" @click="$emit('moveToSection', 'home')">
+                  <div class="d-flex flex-column gap-1">
+                    <span class="progress"></span>
+                    <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+                  </div> Home
+                </button>
+                <button class="position-relative  d-flex align-items-start gap-2"
+                  :class="{ active: activeSection === 'featured' }" @click="$emit('moveToSection', 'featured')">
+                  <div class="d-flex flex-column gap-1">
+                    <span class="progress"></span>
+                    <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+                  </div> Featured Story
+                </button>
+                <button class="position-relative  d-flex align-items-start gap-2"
+                  :class="{ active: activeSection === 'shareStory' }" @click="$emit('moveToSection', 'shareStory')">
+                  <div class="d-flex flex-column gap-1 ">
+                    <span class="progress"></span>
+                    <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+                  </div> Share Your Story
+                </button>
+                <button class="position-relative  d-flex align-items-start gap-2"
+                  :class="{ active: activeSection === 'aboutUs' }" @click="$emit('moveToSection', 'aboutUs')">
+                  <div class="d-flex flex-column gap-1">
+                    <span class="progress"></span>
+                    <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+                  </div> About Us
+                </button>
+              </nav>
+            </li>
             <li class="list-item-btn position-relative">
 
               <!-- <router-link class="nav-link d-none d-lg-block" to="/" v-if="shouldShowLink && isLogin2">
@@ -131,7 +173,7 @@
             </li>
 
 
-            <li class="">
+            <li class="d-none">
               <div class="dropdown ">
                 <button class="custom-select text-white w-100 minwBtn" type="button" id="dropdownMenuButton2"
                   data-bs-toggle="dropdown" aria-expanded="false">
@@ -261,12 +303,17 @@ import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
 import { useIslogin } from "@/composables/uselogin"
 import { computed } from "vue";
+import { inject } from 'vue';
 const { state, setIslogin } = useIslogin();
 
 // import { mapActions } from 'vuex';
 
 export default {
+  props: {
+    activeSection: String,
+  },
   setup() {
+
     const { state: profileImageState, setProfileImage } = useProfileImage();
     const { state: nameState, setName } = useProfileName();
 
@@ -282,8 +329,10 @@ export default {
       setIslogin(logvalue)
     };
     const isLogin2 = computed(() => state.isLogin);
+    const moveToSection = inject('moveToSection');
 
     return {
+      moveToSection,
       profileImageState,
       nameState,
       changeProfileImage,
@@ -296,6 +345,7 @@ export default {
 
   data() {
     return {
+      // activeSection: 'home',
       image: "",
       isOpen: false,
       issOpen: false,
@@ -386,6 +436,9 @@ export default {
   },
 
   methods: {
+
+
+
     getProfileImage(profileImage) {
       if (!profileImage || profileImage.includes('null') || profileImage.includes('undefined')) {
         return '/images/Group888.png';
@@ -637,5 +690,39 @@ export default {
   .custom-options {
     width: 100% !important;
   }
+}
+
+
+.custom-navigation button {
+  display: block;
+  margin-bottom: 2px;
+  cursor: pointer;
+  background: transparent;
+  color: #fff;
+  font-size: 12px;
+  border: none;
+  outline: none
+}
+
+
+
+.custom-navigation button .progress {
+  width: 2px;
+  height: 19px;
+  /* position: absolute; */
+  border-radius: 0;
+  top: 0;
+  left: -10px;
+  background: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.custom-navigation button.active .progress {
+  background-color: #f95f19;
+  /* Active color */
+}
+
+.custom-navigation button.active {
+  color: #f95f19 !important
 }
 </style>

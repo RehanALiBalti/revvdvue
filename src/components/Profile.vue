@@ -105,6 +105,8 @@
 									</div>
 								</div> -->
 							</div>
+
+
 							<div class="col-md-6">
 								<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional') }}</label>
 								<input v-model="socialMedia" id="socialMedia" type="text" name="socialMedia"
@@ -115,6 +117,17 @@
 								<label class="form-label" for="image">Select Image</label>
 								<input type="file" class="form-control-file my-2" ref="fileInput"
 									@change="openImageModal">
+							</div>
+							<div class="col-md-12 z-2 position-relative ">
+								<label for="cars" class="form-label pt-0">
+									Preffered Cars
+								</label>
+								<multiselect v-model="value" :options="options" :multiple="true"
+									:close-on-select="false" :clear-on-select="false" placeholder="Pick some"
+									label="name" track-by="name" class="form-control form-input  ">
+
+								</multiselect>
+
 							</div>
 							<div class="col-md-12">
 
@@ -746,6 +759,7 @@ const { state, setIslogin } = useIslogin();
 import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
+import Multiselect from 'vue-multiselect'
 // import VueAvatarCropper from 'vue-avatar-cropper';
 export default {
 	setup() {
@@ -776,10 +790,18 @@ export default {
 	name: "UserProfile",
 	components: {
 		// VueDraggableResizable,
+		Multiselect
 
 	},
 	data() {
 		return {
+			value: [],
+			options: [
+				{ name: 'JDM' },
+				{ name: 'European' },
+				{ name: 'American' },
+
+			],
 			isModalOpenName: false,
 			croppedBlob: null, // Added to store the cropped image blob
 			croppedImageUrl: null, // Added to store the URL of the cropped image

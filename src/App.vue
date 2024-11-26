@@ -5,7 +5,7 @@
       clickEffect="true" clickMode="push" />
   </div>
   <div class="min-h-80vh">
-    <HeaderItem />
+    <HeaderItem v-if="$route.path !== '/'" />
     <router-view />
 
   </div>
