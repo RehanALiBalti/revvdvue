@@ -4,6 +4,7 @@
   <Header :activeSection="activeSection" @moveToSection="moveToSection" />
   <div class="container-fluid">
     <full-page id="fullpage" ref="fullpage" :options="fullpageOptions" @sectionChange="updateActiveSection">
+
       <div class="section slide-in-backward-3d" ref="section" data-section-id="home">
         <div class="banner-content">
           <!-- <h1 class=" main-title">{{ $t('changingTheCarWorld') }}</h1> -->
@@ -12,14 +13,14 @@
             {{ $t('ultimateHub') }} {{ $t('oneStopShop') }}
 
           </p> -->
-          <p class="banner-para mb-4">
+          <p class="form-label mb-4">
             MOD THE DRIVE , FEEL ALIVE .
 
           </p>
         </div>
 
-        <div class="container-fluid">
-          <div class="main-content-home1">
+        <div class="container-fluid m-0">
+          <div class="main-content-home1 gap-0">
 
 
             <div class="logo-R-div flex-column d-flex justify-content-center align-items-center">
@@ -118,7 +119,7 @@
                     <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
                     <small class="car-content-link ">@Revvdout</small>
                     <p class="car-content-para">Tell us your car story togather</p>
-                    <p class="car-content-para tranc" v-if="bannerStories[0]?.story != ''">
+                    <p class="form-label tranc" v-if="bannerStories[0]?.story != ''">
                       {{ bannerStories[0]?.story }}
                     </p>
                     <!-- <p class="car-content-para">Can you share with us any memorable stories or adventures you’ve had with
@@ -581,9 +582,9 @@ v-model="formData.country"> -->
                   <label for="country" class="form-label">Production Year Generation
                   </label>
                   <div class="customSelect w-100 position-relative">
-                    <input type="text" class="form-select form-control form-input"
-                      :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
-                      @click="toggleOpeng" v-if="formData.model == ''" disabled>
+                    <input type="text" class="form-select form-control form-input" :placeholder="$t('Production Years')"
+                      @input="GenfilterOption" v-model="formData.year" @click="toggleOpeng" v-if="formData.model == ''"
+                      disabled>
                     <input type="text" class="form-select form-control form-input"
                       :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
                       @click="toggleOpeng" v-else>
@@ -605,7 +606,7 @@ v-model="formData.country"> -->
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <div class="row z-0">
 
-                    <div class="col-md-6 z1o">
+                    <div class="col-md-6 z1o d-flex flex-column hustify-content-end">
                       <label for="name" class="form-label"> Tell us your car story together </label>
                       <textarea id="message" class="form-control form-input h-auto" name="message"
                         :placeholder="$t('Enter here')" v-model="formData.story" rows="2"></textarea>
@@ -829,7 +830,8 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
           <h1 class="form-title">About <span class="form-span">us</span></h1>
 
-          <p class="banner-para ">We are a team of motor heads with fuel in our veins and nitrous igniting our
+          <p class="form-label text-center ">We are a team of motor heads with fuel in our veins and nitrous igniting
+            our
             passion.
             Our goal is to build the ultimate hub for modified cars, high-performance machines, supercars, and
             motorbikes. We dream of creating a space where enthusiasts from all over the world can connect, sell, buy,
@@ -888,8 +890,8 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
       <!-- Custom Navigation -->
 
     </full-page>
-    <nav class="custom-navigation c-home d-none d-md-block">
-      <button class="position-relative pbutton d-flex align-items-start gap-2"
+    <nav class="custom-navigation c-nav d-none d-md-block">
+      <button class="position-relative pbutton d-flex align-items-start gap-2 my-2"
         :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
@@ -898,7 +900,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Home
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2"
+      <button class="position-relative  d-flex align-items-start gap-2 my-2"
         :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
@@ -907,7 +909,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Featured Story
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2"
+      <button class="position-relative  d-flex align-items-start gap-2 my-2"
         :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
         <div class="d-flex flex-column gap-1 ">
           <span class="progress"></span>
@@ -916,8 +918,8 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Share Your Story
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2" :class="{ active: activeSection === 'aboutUs' }"
-        @click="goToSection('aboutUs')">
+      <button class="position-relative  d-flex align-items-start gap-2 my-2"
+        :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
           <!-- <span class="progress"></span>
@@ -3056,6 +3058,14 @@ textarea.form-control {
   top: 65%;
   bottom: 15%
 }
+
+.c-nav {
+  position: absolute;
+  left: 15px;
+  top: 65%;
+  bottom: 15%
+}
+
 
 .c-about {
   position: relative;
