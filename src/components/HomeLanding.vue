@@ -1633,49 +1633,49 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
             <h1 class="form-title">Contact <span class="form-span">us</span></h1>
             <p class="form-label text-center">info@revvdout.com</p>
           </div>
-           <!-- Custom Navigation -->
-        <nav class="custom-navigation c-about d-block d-md-none">
-          <button class="position-relative d-flex align-items-start gap-2 my-2  pbutton"
-            :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
-            <div class="d-flex flex-column gap-1">
-              <span class="progress"></span>
-              <!-- <span class="progress"></span>
-              <span class="progress"></span>
-              <span class="progress"></span> -->
-            </div> Home Page
-          </button>
-          <button class="position-relative d-flex align-items-start gap-2 my-2 "
-            :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
-            <div class="d-flex flex-column gap-1">
-              <span class="progress"></span>
-              <!-- <span class="progress"></span>
+          <!-- Custom Navigation -->
+          <nav class="custom-navigation c-about d-block d-md-none w-100">
+            <button class="position-relative d-flex align-items-start gap-2 my-2  pbutton"
+              :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
+              <div class="d-flex flex-column gap-1">
+                <span class="progress"></span>
+                <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Featured Story
-          </button>
-          <button class="position-relative d-flex align-items-start gap-2 my-2 "
-            :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
-            <div class="d-flex flex-column gap-1">
-              <span class="progress"></span>
-              <!-- <span class="progress"></span>
-              <span class="progress"></span>
-              <span class="progress"></span> -->
-            </div> Share Your Story Now
-          </button>
-          <button class="position-relative d-flex align-items-start gap-2 my-2 "
-            :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
-            <div class="d-flex flex-column gap-1">
-              <span class="progress"></span>
-              <!-- <span class="progress"></span>
+              </div> Home Page
+            </button>
+            <button class="position-relative d-flex align-items-start gap-2 my-2 "
+              :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
+              <div class="d-flex flex-column gap-1">
+                <span class="progress"></span>
+                <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> About Us
-          </button>
-        </nav>
+              </div> Featured Story
+            </button>
+            <button class="position-relative d-flex align-items-start gap-2 my-2 "
+              :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
+              <div class="d-flex flex-column gap-1">
+                <span class="progress"></span>
+                <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+              </div> Share Your Story Now
+            </button>
+            <button class="position-relative d-flex align-items-start gap-2 my-2 "
+              :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+              <div class="d-flex flex-column gap-1">
+                <span class="progress"></span>
+                <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+              </div> About Us
+            </button>
+          </nav>
         </div>
 
 
-       
+
 
 
       </div>
