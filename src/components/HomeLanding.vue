@@ -219,7 +219,7 @@
                 <span class="form-span">{{ $t('Now') }} !</span>
               </h2>
               <div class="row ps-3">
-                <div class="col-md-3 p-0 p-md-1">
+                <div class="col-md-3  p-md-1">
 
                   <label for="storyType" class="form-label">Story Type</label>
                   <select id="storyType" class="form-control form-select form-input" v-model="selectedStoryType"
@@ -235,7 +235,7 @@
                   </select>
 
                 </div>
-                <div class="col-md-5 p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-5 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
 
                   <label for="country" class="form-label">Country</label>
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter Country"
@@ -457,7 +457,7 @@ v-model="formData.country"> -->
                     <option value="Zimbabwe">Zimbabwe</option>
                   </select>
                 </div>
-                <div class="col-md-4 p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-4  p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
 
                   <label for="country" class="form-label">City</label>
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
@@ -469,7 +469,7 @@ v-model="formData.country"> -->
                   </select>
                 </div>
 
-                <div class="col-md-3 z-3 p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-3 z-3  p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
 
                   <div class="customSelect position-relative" @blur="isOpen = false">
                     <label for="country" class="form-label">Make
@@ -488,7 +488,7 @@ v-model="formData.country"> -->
                   </div>
 
                 </div>
-                <div class="col-md-3 z-3 p-0 p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
+                <div class="col-md-3 z-3  p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Model
                   </label>
@@ -510,7 +510,7 @@ v-model="formData.country"> -->
                     </ul>
                   </div>
                 </div>
-                <div class="col-md-3 z-3 p-0 p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
+                <div class="col-md-3 z-3  p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Production Year Generation
                   </label>
@@ -587,8 +587,7 @@ v-model="formData.country"> -->
       <!--  ==   carEnthusiast-->
       <div class="section" ref="section" data-section-id="shareStory3" v-if="isMobile == true">
         <div class="row" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
-          <div class="col-md-12 p-0 pmd-1" id="second"
-            v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+          <div class="col-md-12  pmd-1" id="second" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
             <div class="row z-0">
 
               <div class="col-md-6 z1o d-flex flex-column justify-content-end">
@@ -628,8 +627,7 @@ v-model="formData.country"> -->
           </div>
         </div>
         <div class="row" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
-          <div class="col-md-12 p-0 p-md-1" id="first"
-            v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+          <div class="col-md-12  p-md-1" id="first" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
             <div class="row">
 
               <div class="col-md-6">
