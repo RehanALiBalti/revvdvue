@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" :class="{ 'show': isNavOpen }" id="navbarNavDropdown">
 
 
-          <ul class="navbar-nav ul-list ms-auto">
+          <ul class="navbar-nav ul-list ms-auto nav-mob">
             <li class=" position-relative d-block d-md-none" v-if="$route.path === '/'">
               <nav class="custom-navigation c-home ">
                 <button class="position-relative pbutton d-flex align-items-start gap-2"
@@ -43,7 +43,7 @@
               <span class="progress"></span> -->
                   </div> Home
                 </button>
-                <button class="position-relative  d-flex align-items-start gap-2"
+                <button class="position-relative  d-flex align-items-start gap-2 my-3"
                   :class="{ active: activeSection === 'featured' }" @click="$emit('moveToSection', 'featured')">
                   <div class="d-flex flex-column gap-1">
                     <span class="progress"></span>
@@ -52,7 +52,7 @@
               <span class="progress"></span> -->
                   </div> Featured Story
                 </button>
-                <button class="position-relative  d-flex align-items-start gap-2"
+                <button class="position-relative  d-flex align-items-start gap-2 my-3"
                   :class="{ active: activeSection === 'shareStory' }" @click="$emit('moveToSection', 'shareStory')">
                   <div class="d-flex flex-column gap-1 ">
                     <span class="progress"></span>
@@ -61,7 +61,7 @@
               <span class="progress"></span> -->
                   </div> Share Your Story
                 </button>
-                <button class="position-relative  d-flex align-items-start gap-2"
+                <button class="position-relative  d-flex align-items-start gap-2 my-3"
                   :class="{ active: activeSection === 'aboutUs' }" @click="$emit('moveToSection', 'aboutUs')">
                   <div class="d-flex flex-column gap-1">
                     <span class="progress"></span>
@@ -699,7 +699,7 @@ export default {
   cursor: pointer;
   background: transparent;
   color: #fff;
-  font-size: 12px;
+  font-size: 15px;
   border: none;
   outline: none
 }
@@ -724,5 +724,12 @@ export default {
 
 .custom-navigation button.active {
   color: #f95f19 !important
+}
+
+@media(max-width:992px) {
+  .nav-mob {
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>
