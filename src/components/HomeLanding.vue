@@ -9,7 +9,7 @@
         <div class="mianHome">
           <div class="banner-content">
             <!-- <h1 class=" main-title">{{ $t('changingTheCarWorld') }}</h1> -->
-            <h1 class=" main-title">Changing the <span>Car</span> World</h1>
+            <h1 class=" main-title m-0">Changing the <span>Car</span> World</h1>
             <!-- <p class="banner-para mb-0">
             {{ $t('ultimateHub') }} {{ $t('oneStopShop') }}
 
@@ -645,7 +645,7 @@ v-model="formData.country"> -->
                         :placeholder="$t('Enter here')" v-model="formData.advice" rows="2"></textarea>
                     </div>
                     <div class="col-md-5 z1o ">
-                      <label for="country" class="form-label"> What is the name of your story  would like to
+                      <label for="country" class="form-label"> What is the name of your story would like to
                         choose?
                       </label>
                       <input type="tel" id="phone" name="phone" class="form-control form-input"
@@ -902,16 +902,16 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
     </full-page>
     <nav class="custom-navigation c-nav d-none d-md-block">
-      <button class="position-relative pbutton d-flex align-items-start gap-2 my-2"
+      <button class="position-relative pbutton d-flex align-items-start gap-2 my-3"
         :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Home
+        </div> Home Page
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2 my-2 my-2"
+      <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
@@ -920,7 +920,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Featured Story
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2 my-2 my-2"
+      <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
         <div class="d-flex flex-column gap-1 ">
           <span class="progress"></span>
@@ -929,7 +929,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Share Your Story Now
       </button>
-      <button class="position-relative  d-flex align-items-start gap-2 my-2 my-2"
+      <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
@@ -3047,6 +3047,7 @@ textarea.form-control {
 
   .custom-navigation {
     height: 320px !important;
+
   }
 }
 
@@ -3076,7 +3077,7 @@ textarea.form-control {
 .c-nav {
   position: absolute;
   left: 15px;
-  top: 65%;
+  top: 60%;
   bottom: 15%
 }
 
@@ -3108,7 +3109,7 @@ textarea.form-control {
   cursor: pointer;
   background: transparent;
   color: #fff;
-  font-size: 12px;
+  font-size: 15px;
   border: none;
   outline: none
 }
@@ -3248,6 +3249,6 @@ textarea.form-control {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 75%;
+  height: 72%;
 }
 </style>
