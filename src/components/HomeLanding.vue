@@ -1398,14 +1398,14 @@ v-model="formData.country"> -->
 
                     <div class="col-md-6 z1o d-flex flex-column justify-content-end">
                       <label for="name" class="form-label"> Tell us your car story together </label>
-                      <textarea id="message" class="form-control form-input h-auto" name="message"
+                      <textarea id="message" class="form-control form-input " name="message"
                         :placeholder="$t('Enter here')" v-model="formData.story" rows="2"></textarea>
 
                     </div>
                     <div class="col-md-6 z1o">
                       <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
                         or any specific features ? </label>
-                      <textarea id="message" class="form-control form-input h-auto" name="message"
+                      <textarea id="message" class="form-control form-input " name="message"
                         :placeholder="$t('Enter here')" v-model="formData.modifications" rows="2"></textarea>
 
                     </div>
@@ -1414,7 +1414,7 @@ v-model="formData.country"> -->
                         you’ve
                         had
                         with your car that stands out the most? </label>
-                      <textarea id="message" class="form-control form-input h-auto" name="message"
+                      <textarea id="message" class="form-control form-input " name="message"
                         :placeholder="$t('Enter here')" v-model="formData.memorable" rows="2"></textarea>
                       <!-- Error message for Email -->
                       <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
@@ -1425,7 +1425,7 @@ v-model="formData.country"> -->
                         journey
                         to
                         modify their car, what would it be and why?</label>
-                      <textarea id="message" class="form-control form-input h-auto" name="message"
+                      <textarea id="message" class="form-control form-input " name="message"
                         :placeholder="$t('Enter here')" v-model="formData.advice" rows="2"></textarea>
                     </div>
                     <div class="col-md-5 z1o ">
@@ -1714,13 +1714,12 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               <span class="progress"></span> -->
         </div> Share Your Story Now
       </button>
+
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
-          <!-- <span class="progress"></span>
-              <span class="progress"></span>
-              <span class="progress"></span> -->
+
         </div> About Us
       </button>
     </nav>
@@ -2094,7 +2093,7 @@ export default {
         scrollingSpeed: 700, // Adjust scroll speed
         autoScrolling: true,
         fitToSection: true,
-        anchors: ['home', 'featured', 'shareStory', 'shareStory0', 'shareStory1', 'shareStory2', 'shareStory3', 'shareStory4', 'aboutUs'],
+        anchors: ['home', 'featured', 'shareStory', 'aboutUs', 'shareStory0', 'shareStory1', 'shareStory2', 'shareStory3', 'shareStory4'],
         onLeave: (origin, destination) => {
           const sections = document.querySelectorAll('.section');
           sections[origin.index].classList.add('slide-out-forward-3d');
@@ -2218,6 +2217,7 @@ export default {
     //   }
     // },
     goToSection(anchor) {
+      console.log("anchor", anchor)
       this.$refs.fullpage.api.moveTo(anchor);
       // Navigate to section by anchor
       this.activeSection = anchor;
@@ -3501,7 +3501,7 @@ textarea.form-control {
 
 <style scoped>
 .form-control.form-input.h-auto {
-  height: auto !important;
+  /* height: auto !important; */
 }
 
 .form-check-input {
@@ -4086,7 +4086,7 @@ textarea.form-control {
 
 .modalswipper {
   width: 100% !important;
-  height: 180px !important;
+  height: 210px !important;
   overflow: visible !important;
 }
 
