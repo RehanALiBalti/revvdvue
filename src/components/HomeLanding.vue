@@ -541,7 +541,7 @@ v-model="formData.country"> -->
             </div>
           </div>
 
-          <nav class="custom-navigation c-story d-block d-md-none mt-4">
+          <nav class="custom-navigation c-story d-block d-md-none mt-4 w-100">
             <button class="position-relative d-flex align-items-start gap-2"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
               <div class="d-flex flex-column gap-1">
@@ -657,7 +657,7 @@ v-model="formData.country"> -->
           </div>
         </div>
 
-        <nav class="custom-navigation c-story d-block d-md-none mt-4">
+        <nav class="custom-navigation c-story d-block d-md-none mt-4 w-100">
           <button class="position-relative d-flex align-items-start gap-2" :class="{ active: activeSection === 'home' }"
             @click="goToSection('home')">
             <div class="d-flex flex-column gap-1">
@@ -930,7 +930,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
             </div>
           </div>
         </div>
-        <nav class="custom-navigation c-story d-block d-md-none mt-4">
+        <nav class="custom-navigation c-story2 d-block d-md-none mt-4 w-100">
           <button class="position-relative d-flex align-items-start gap-2" :class="{ active: activeSection === 'home' }"
             @click="goToSection('home')">
             <div class="d-flex flex-column gap-1">
@@ -1568,7 +1568,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
             </form>
           </div>
 
-          <nav class="custom-navigation c-story d-block d-md-none">
+          <nav class="custom-navigation c-story d-block d-md-none w-100">
             <button class="position-relative d-flex align-items-start gap-2"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
               <div class="d-flex flex-column gap-1">
@@ -3839,6 +3839,16 @@ textarea.form-control {
     position: static !important;
   }
 
+  .c-story2 {
+    /* top: 0px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    bottom: unset !important;
+    white-space: nowrap; */
+    position: relative !important;
+  }
+
   .fp-overflow {
     width: 100% !important;
     overflow: auto !important;
@@ -3884,7 +3894,7 @@ textarea.form-control {
 .c-about {
   position: relative;
   left: 22px;
-  top: 8%;
+  top: 2%;
   bottom: 15%
 }
 
@@ -3899,6 +3909,12 @@ textarea.form-control {
   position: absolute;
   left: 0;
   bottom: 15%;
+}
+
+.c-story2 {
+
+  left: 0;
+  bottom: 10%;
 }
 
 
