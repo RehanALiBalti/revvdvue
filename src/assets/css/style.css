@@ -2325,6 +2325,10 @@ a:hover {
 		max-height: 1000px;
 	}
 
+	.navbar-collapse.show {
+		height: 100vh;
+	}
+
 	.main-slider {
 		flex-direction: column;
 	}
