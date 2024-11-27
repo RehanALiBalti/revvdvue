@@ -14,8 +14,8 @@
             {{ $t('ultimateHub') }} {{ $t('oneStopShop') }}
 
           </p> -->
-            <p class="form-label mb-4">
-              MOD THE DRIVE , FEEL ALIVE .
+            <p class="form-label mb-4 wordspac">
+              MOD THE DRIVE, FEEL ALIVE.
 
             </p>
           </div>
@@ -107,27 +107,42 @@
               </div>
               <!-- Content -->
 
-              <router-link class="carContent row" to="/banner" style="cursor:pointer">
+              <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                 <div class="col-md-5">
                   <h5 class="h5-title text-capitalize mb-4">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
                       }}</span></h5>
                   <div class="">
-                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
-                      class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" />
+                    <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
+                      class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
+                    <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
+                      :initialSlide="1" :pagination="{ clickable: true }" :navigation="{
+                        nextEl: '.custom-next',
+                        prevEl: '.custom-prev',
+                      }" class="mySwiper swiper-no-shadow modalswipper">
+                      <swiper-slide v-for="(image, idx) in bannerStories[0].images" :key="idx"
+                        class="swiper-no-shadow modalswippersh">
+                        <div class="d-block">
+                          <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
+                            class="slider-img myCarListingCard-img modalswipperImage" :alt="`Car image #${idx + 1}`" />
+                        </div>
+                      </swiper-slide>
+                    </swiper>
+
+                    <div>
+
+                    </div>
+
                   </div>
                 </div>
                 <div class="col-md-7">
                   <div class="car-content-desc">
                     <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
                     <small class="car-content-link ">Revvdout@{{ bannerStories[0]?.user_name }}</small>
-                    <p class="car-content-para my-1 p-0">Tell us your car story togather</p>
+                    <p class="car-content-para my-1 p-0 fw-bolder">Tell us your car story togather</p>
                     <p class="form-label tranc my-1 p-0" v-if="bannerStories[0]?.story != ''">
                       {{ bannerStories[0]?.story }}
                     </p>
-                    <p class="car-content-para my-1 p-0">Tell us your car story togather</p>
-                    <p class="form-label tranc my-1 p-0" v-if="bannerStories[0]?.story != ''">
-                      {{ bannerStories[0]?.story }}
-                    </p>
+
                     <!-- <p class="car-content-para">Can you share with us any memorable stories or adventures you’ve had with
                     your car that stands out the most?</p>
                   <p class="car-content-para tranc" v-if="bannerStories[0]?.memorable != ''">
@@ -490,25 +505,25 @@ v-model="formData.country"> -->
                         accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
                       <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
                         <span class="border-bottom-btn border-top-btn position-absolute">
-                          <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                          <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
                         </span>
 
                         <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                          <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                          <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
                         </span>
 
                         <span
                           class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                          <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                          <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
                         </span>
-                        <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
+                        <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
                           Choose Images
                         </label>
                         <span class="border-bottom-btn border-left-btn position-absolute">
-                          <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                          <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
                         </span>
                         <span class="border-bottom-btn position-absolute">
-                          <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                          <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
                         </span>
                       </div>
 
@@ -668,25 +683,25 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                           accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
                         <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
                           <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
                           </span>
 
                           <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
                           </span>
 
                           <span
                             class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
                           </span>
-                          <label for="storyImages" class="signin-btnli submitNow" id="submit-button">
+                          <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
                             Choose Images
                           </label>
                           <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
                           </span>
                           <span class="border-bottom-btn position-absolute">
-                            <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
                           </span>
                         </div>
                       </div>
@@ -835,7 +850,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         <div class="mianHome">
           <div class="banner-content  boxAbout p-2 ">
             <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
-            <h1 class="form-title">About <span class="form-span">us</span></h1>
+            <h1 class="form-title mt-2 mb-0">About <span class="form-span">us</span></h1>
 
             <p class="form-label text-center ">We are a team of motor heads with fuel in our veins and nitrous igniting
               our
@@ -1244,6 +1259,9 @@ import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
 import Header from "./Header.vue"
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation } from "swiper/modules";
+import { EffectCards } from "swiper/modules";
 
 // import draggable from 'vuedraggable';
 
@@ -1252,7 +1270,9 @@ export default {
   name: "HomeLanding",
   components: {
     // draggable,
-    Header
+    Header,
+    Swiper,
+    SwiperSlide,
 
   },
   provide() {
@@ -1291,6 +1311,7 @@ export default {
       setLogin,
       isLogin,
       imageUrl: null, // Current image being cropped
+      modules: [EffectCards, Navigation],
 
     };
   },
@@ -1733,6 +1754,7 @@ export default {
           console.log("banner data", banner)
           banner.images = JSON.parse(banner.images); // Parse the images
           this.bannerStories = [banner]; // Store it in the featuredCars array
+          console.log("banner data", this.bannerStories[0].images)
         }
       } catch (error) {
         console.error('Error fetching featured stories:', error);
@@ -3250,5 +3272,31 @@ textarea.form-control {
   justify-content: center;
   align-items: center;
   height: 72%;
+}
+
+.wordspac {
+  word-spacing: 0.5rem;
+}
+
+.swiper-slide {
+  height: fit-content !important;
+}
+
+.swiper-wrapper {
+  height: fit-content !important;
+}
+
+.modalswipper {
+  width: 100% !important;
+  height: 180px !important;
+  overflow: visible !important;
+}
+
+.modalswipper .swiper-slide img {
+  width: 85% !important;
+  max-width: 86% !important;
+  height: 173px !important;
+
+  border-radius: 12px !important;
 }
 </style>
