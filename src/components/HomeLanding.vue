@@ -742,7 +742,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                       class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                       <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                     </span>
-                    <button type="submit" class="signin-btnli submitNow">
+                    <button type="button" class="signin-btnli submitNow" @click="SubmitStory">
                       submit
                     </button>
                     <span class="border-bottom-btn border-left-btn position-absolute">
@@ -877,7 +877,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                     class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                     <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                   </span>
-                  <button type="submit" class="signin-btnli submitNow" id="submit-button">
+                  <button type="button" class="signin-btnli submitNow" id="submit-button" @click="SubmitStory">
                     {{ $t('submitNow') }}
                   </button>
                   <span class="border-bottom-btn border-left-btn position-absolute">
