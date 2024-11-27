@@ -218,7 +218,7 @@
                 {{ $t('Share your story ') }}
                 <span class="form-span">{{ $t('Now') }} !</span>
               </h2>
-              <div class="row">
+              <div class="row ps-3">
                 <div class="col-md-3 p-0 p-md-1">
 
                   <label for="storyType" class="form-label">Story Type</label>
@@ -541,7 +541,7 @@ v-model="formData.country"> -->
             </div>
           </div>
 
-          <nav class="custom-navigation c-story d-block d-md-none">
+          <nav class="custom-navigation c-story d-block d-md-none mt-4">
             <button class="position-relative d-flex align-items-start gap-2"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
               <div class="d-flex flex-column gap-1">
@@ -662,7 +662,7 @@ v-model="formData.country"> -->
 
       <div class="section" ref="section" data-section-id="shareStory4">
         <div class="row" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
-          <div class="col-md-12 p-0 pmd-1" id="second"
+          <div class="col-md-12 px-4 pmd-1" id="second"
             v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
             <div class="row z-0">
 
@@ -787,7 +787,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
 
           </div>
-          <div class="col-md-12 my-1">
+          <div class="col-md-12 my-1 px-4">
             <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
 
               <div v-for="(file, index) in croppedImages" :key="index"
@@ -813,7 +813,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           </div>
         </div>
         <div class="row" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
-          <div class="col-md-12 p-0 p-md-1" id="first"
+          <div class="col-md-12 px-4 p-md-1" id="first"
             v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
             <div class="row">
 
