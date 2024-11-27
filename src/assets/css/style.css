@@ -236,7 +236,7 @@ video::-webkit-media-controls {
 
 .logo-header {
 	width: 100%;
-	max-width: 196px;
+	max-width: 45px;
 	height: 45px;
 }
 
@@ -2664,7 +2664,7 @@ a:hover {
 
 @media (max-width: 390px) {
 	.logo-header {
-		max-width: 126px;
+		max-width: 45px;
 	}
 
 	.location-img.location-logo-img2 {
