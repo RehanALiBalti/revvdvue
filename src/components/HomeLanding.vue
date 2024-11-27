@@ -657,10 +657,48 @@ v-model="formData.country"> -->
           </div>
         </div>
 
-
+        <nav class="custom-navigation c-story d-block d-md-none mt-4">
+          <button class="position-relative d-flex align-items-start gap-2" :class="{ active: activeSection === 'home' }"
+            @click="goToSection('home')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <!-- <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span> -->
+            </div> Home Page
+          </button>
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
+            :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <!-- <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span> -->
+            </div> Featured Story
+          </button>
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
+            :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <!-- <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span> -->
+            </div> Share Your Story Now
+          </button>
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
+            :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <!-- <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span> -->
+            </div> About Us
+          </button>
+        </nav>
       </div>
 
-      <div class="section" ref="section" data-section-id="shareStory4">
+      <div class="section" ref="section" data-section-id="shareStory4"
+        v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
         <div class="row" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
           <div class="col-md-12 px-4 pmd-1" id="second"
             v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
@@ -811,6 +849,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               </div>
             </div>
           </div>
+
         </div>
         <div class="row" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
           <div class="col-md-12 px-4 p-md-1" id="first"
@@ -891,6 +930,44 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
             </div>
           </div>
         </div>
+        <nav class="custom-navigation c-story d-block d-md-none mt-4">
+          <button class="position-relative d-flex align-items-start gap-2" :class="{ active: activeSection === 'home' }"
+            @click="goToSection('home')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <!-- <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span> -->
+            </div> Home Page
+          </button>
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
+            :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <!-- <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span> -->
+            </div> Featured Story
+          </button>
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
+            :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <!-- <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span> -->
+            </div> Share Your Story Now
+          </button>
+          <button class="position-relative d-flex align-items-start gap-2 my-2 "
+            :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+            <div class="d-flex flex-column gap-1">
+              <span class="progress"></span>
+              <!-- <span class="progress"></span>
+                <span class="progress"></span>
+                <span class="progress"></span> -->
+            </div> About Us
+          </button>
+        </nav>
       </div>
 
       <div class="section d-none d-md-flex" ref="section" data-section-id="shareStory" v-if="isMobile == false">
@@ -3814,7 +3891,7 @@ textarea.form-control {
 .c-feature {
   position: relative;
   left: 22px;
-  top: 6%;
+  top: 0%;
   bottom: 15%
 }
 
