@@ -3986,7 +3986,7 @@ textarea.form-control {
 .c-nav {
   position: absolute;
   left: 15px;
-  top: 60%;
+  top: 55%;
   bottom: 15%
 }
 
@@ -4123,8 +4123,26 @@ textarea.form-control {
     opacity: 0;
   }
 } */
-.section {
+
+
+@media(min-width:992px){
+  .section {
   transform: rotateX(-90deg) translateZ(-100px);
+}
+
+  .slide-out-forward-3d {
+  animation: slideOutForward3D 0.5s ease-out forwards;
+}
+@keyframes slideOutForward3D {
+  from {
+    transform: translateY(0);
+    scale: 1
+  }
+
+  to {
+    transform: translateY(100px);
+    scale: 0.02
+  }
 }
 
 .slide-in-backward-3d {
@@ -4142,22 +4160,9 @@ textarea.form-control {
     scale: 1
   }
 }
-
-.slide-out-forward-3d {
-  animation: slideOutForward3D 0.5s ease-out forwards;
 }
 
-@keyframes slideOutForward3D {
-  from {
-    transform: translateY(0);
-    scale: 1
-  }
 
-  to {
-    transform: translateY(100px);
-    scale: 0.02
-  }
-}
 
 .mianHome {
   display: flex;
