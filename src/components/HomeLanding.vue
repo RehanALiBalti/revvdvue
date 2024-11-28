@@ -1616,7 +1616,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
       <div class="section" ref="section" data-section-id="aboutUs">
 
-        <div class="mianHome">
+        <div class="mianab">
           <div class="banner-content  boxAbout p-2 ">
             <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
             <h1 class="form-title mt-2 mb-0">About <span class="form-span">us</span></h1>
@@ -4127,8 +4127,16 @@ textarea.form-control {
   height: 72%;
 }
 
+.mianab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 72%;
+}
+
 @media(max-width:992px) {
-  .mianHome {
+  .mianab {
     justify-content: start
   }
 }
