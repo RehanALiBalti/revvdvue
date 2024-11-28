@@ -99,8 +99,8 @@
 
       </div>
       <div class="section " ref="section" data-section-id="featured">
-        <div class="container-fluid">
-          <div class="mianHome">
+        <div class="container-fluid h70">
+          <div class="">
             <div class="row">
               <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-4 position-relative">
                 <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4 d-none">
@@ -211,7 +211,7 @@
       </div>
 
       <div class="section " ref="section" data-section-id="shareStory0" v-if="isMobile == true">
-        <div class="container-fluid px-md-5">
+        <div class="container-fluid px-md-5 h70">
           <div class="mianHome">
             <div class="form-content-home1">
               <!-- action="#" method="POST" data-bs-toggle="modal" -->
@@ -491,7 +491,7 @@ v-model="formData.country"> -->
                     </div>
 
                   </div>
-                  <div class="col-md-3 z-3  p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
+                  <div class="col-md-3   p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
                     v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                     <label for="country" class="form-label">Model
                     </label>
@@ -513,7 +513,7 @@ v-model="formData.country"> -->
                       </ul>
                     </div>
                   </div>
-                  <div class="col-md-3 z-3  p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
+                  <div class="col-md-3   p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
                     v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                     <label for="country" class="form-label">Production Year Generation
                     </label>
@@ -592,7 +592,7 @@ v-model="formData.country"> -->
 
       <!--  ==   carEnthusiast-->
       <div class="section" ref="section" data-section-id="shareStory3" v-if="isMobile == true">
-        <div class="container-fluid">
+        <div class="container-fluid h70">
           <div class="mianHome">
             <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
               <div class="col-md-12  pmd-1" id="second"
@@ -632,32 +632,34 @@ v-model="formData.country"> -->
             </div>
           </div>
           <div class="mianHome">
-            <div class="row" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
-              <div class="col-md-12  p-md-1" id="first"
-                v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
-                <div class="row">
+            <div class="container-fluid h70">
+              <div class="row" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
+                <div class="col-md-12  p-md-1" id="first"
+                  v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                  <div class="row">
 
-                  <div class="col-md-6">
-                    <label for="storyHistory" class="form-label">Tell us about your {{ shopName }}</label>
-                    <textarea id="storyHistory" class="form-control" rows="4"
-                      placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
-                  </div>
-                  <div class="   col-md-6">
-                    <label for="memorableStories" class="form-label">Can you tell us any memorable stories or
-                      adventures
-                      you’ve
-                      had that stands out
-                      the most?</label>
-                    <textarea id="memorableStories" class="form-control" rows="4"
-                      placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="storyName" class="form-label">What is the name of your story that you would like to
-                      choose?</label>
-                    <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
-                      v-model="formData.storyName"></textarea>
-                  </div>
+                    <div class="col-md-6">
+                      <label for="storyHistory" class="form-label">Tell us about your {{ shopName }}</label>
+                      <textarea id="storyHistory" class="form-control" rows="4"
+                        placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
+                    </div>
+                    <div class="   col-md-6">
+                      <label for="memorableStories" class="form-label">Can you tell us any memorable stories or
+                        adventures
+                        you’ve
+                        had that stands out
+                        the most?</label>
+                      <textarea id="memorableStories" class="form-control" rows="4"
+                        placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="storyName" class="form-label">What is the name of your story that you would like to
+                        choose?</label>
+                      <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
+                        v-model="formData.storyName"></textarea>
+                    </div>
 
+                  </div>
                 </div>
               </div>
             </div>
@@ -706,7 +708,7 @@ v-model="formData.country"> -->
 
       <div class="section" ref="section" data-section-id="shareStory4"
         v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
-        <div class="container-fluid">
+        <div class="container-fluid h70">
           <div class="mianHome">
             <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
               <div class="col-md-12 px-4 pmd-1" id="second"
@@ -858,80 +860,83 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           </div>
           <div class="mianHome">
 
-            <div class="row ps-2" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
-              <div class="col-md-12 px-4 p-md-1" id="first"
-                v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
-                <div class="row">
+            <div class="container-fluid h70">
+              <div class="row ps-2"
+                v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
+                <div class="col-md-12 px-4 p-md-1" id="first"
+                  v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                  <div class="row">
 
 
-                  <div class="col-md-6">
-                    <label for="storyName" class="form-label">What is the name of your story that you would like to
-                      choose?</label>
-                    <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
-                      v-model="formData.storyName"></textarea>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="link" class="form-label">Add Instagram or Website Link</label>
-                    <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
-                      v-model="formData.url">
-                  </div>
-                  <div class="col-6">
-                    <label for="city" class="form-label">Upload Pictures Max 8</label>
-
-                    <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-              accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
-                    <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                      accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                    <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
-                      <span class="border-bottom-btn border-top-btn position-absolute">
-                        <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-                      </span>
-
-                      <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                        <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-                      </span>
-
-                      <span
-                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                        <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-                      </span>
-                      <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
-                        Choose Images
-                      </label>
-                      <span class="border-bottom-btn border-left-btn position-absolute">
-                        <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-                      </span>
-                      <span class="border-bottom-btn position-absolute">
-                        <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-                      </span>
+                    <div class="col-md-6">
+                      <label for="storyName" class="form-label">What is the name of your story that you would like to
+                        choose?</label>
+                      <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
+                        v-model="formData.storyName"></textarea>
                     </div>
+                    <div class="col-md-6">
+                      <label for="link" class="form-label">Add Instagram or Website Link</label>
+                      <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
+                        v-model="formData.url">
+                    </div>
+                    <div class="col-6">
+                      <label for="city" class="form-label">Upload Pictures Max 8</label>
 
-                  </div>
-                  <div class="col-6">
-                    <label for="city" class="form-label"></label>
+                      <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+              accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
+                      <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                        accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
+                      <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+                        <span class="border-bottom-btn border-top-btn position-absolute">
+                          <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+                        </span>
 
-                    <div class="list-item-btn position-relative submit-btn-div">
-                      <span class="border-bottom-btn border-top-btn position-absolute">
-                        <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-                      </span>
+                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                          <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+                        </span>
 
-                      <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                        <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-                      </span>
+                        <span
+                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                          <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
+                          Choose Images
+                        </label>
+                        <span class="border-bottom-btn border-left-btn position-absolute">
+                          <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <span class="border-bottom-btn position-absolute">
+                          <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+                        </span>
+                      </div>
 
-                      <span
-                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                        <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-                      </span>
-                      <button type="button" class="signin-btnli submitNow" id="submit-button" @click="SubmitStory">
-                        {{ $t('submitNow') }}
-                      </button>
-                      <span class="border-bottom-btn border-left-btn position-absolute">
-                        <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-                      </span>
-                      <span class="border-bottom-btn position-absolute">
-                        <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-                      </span>
+                    </div>
+                    <div class="col-6">
+                      <label for="city" class="form-label"></label>
+
+                      <div class="list-item-btn position-relative submit-btn-div">
+                        <span class="border-bottom-btn border-top-btn position-absolute">
+                          <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                          <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span
+                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                          <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <button type="button" class="signin-btnli submitNow" id="submit-button" @click="SubmitStory">
+                          {{ $t('submitNow') }}
+                        </button>
+                        <span class="border-bottom-btn border-left-btn position-absolute">
+                          <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <span class="border-bottom-btn position-absolute">
+                          <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -3945,6 +3950,13 @@ textarea.form-control {
     height: 320px !important;
 
   }
+  .c-nav {
+  position: absolute;
+  left: 15px;
+  top: 52%;
+  bottom: 15%
+}
+
 }
 
 
@@ -4173,6 +4185,10 @@ textarea.form-control {
     justify-content: center;
     align-items: center;
     height: 100%;
+  }
+
+  .h70 {
+    height: 60% !important;
   }
 
 }

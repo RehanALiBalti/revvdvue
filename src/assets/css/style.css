@@ -860,7 +860,10 @@ a {
 	.fp-overflow {
 		width: 100% !important;
 		overflow: auto !important;
+
 	}
+
+
 }
 
 .fp-overflow:first-of-type {
