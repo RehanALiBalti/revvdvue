@@ -58,7 +58,7 @@
         </div>
 
         <!-- Custom Navigation -->
-        <nav class="custom-navigation c-home d-block d-md-none">
+        <nav class="custom-navigation c-home d-none d-md-none">
           <button class="position-relative pbutton d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
             <div class="d-flex flex-column gap-1">
@@ -166,7 +166,7 @@
 
           </div>
         </div>
-        <nav class="custom-navigation c-feature d-block d-md-none">
+        <nav class="custom-navigation c-feature d-none d-md-none">
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
             <div class="d-flex flex-column gap-1">
@@ -541,7 +541,7 @@ v-model="formData.country"> -->
             </div>
           </div>
 
-          <nav class="custom-navigation c-story d-block d-md-none mt-4 w-100">
+          <nav class="custom-navigation c-story d-none d-md-none mt-4 w-100">
             <button class="position-relative d-flex align-items-start gap-2"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
               <div class="d-flex flex-column gap-1">
@@ -658,7 +658,7 @@ v-model="formData.country"> -->
             </div>
           </div>
 
-          <nav class="custom-navigation c-story d-block d-md-none mt-4 w-100">
+          <nav class="custom-navigation c-story d-none d-md-none mt-4 w-100">
             <button class="position-relative d-flex align-items-start gap-2"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
               <div class="d-flex flex-column gap-1">
@@ -933,7 +933,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               </div>
             </div>
           </div>
-          <nav class="custom-navigation c-story2 d-block d-md-none mt-4 w-100">
+          <nav class="custom-navigation c-story2 d-none d-md-none mt-4 w-100">
             <button class="position-relative d-flex align-items-start gap-2"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
               <div class="d-flex flex-column gap-1">
@@ -1300,7 +1300,7 @@ v-model="formData.country"> -->
                     <div class="col-md-2">
                       <label for="city" class="form-label"></label>
 
-                      <div class="list-item-btn position-relative submit-btn-div">
+                      <div class="list-item-btn position-relative submit-btn-div ">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                           <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                         </span>
@@ -1482,7 +1482,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
                         <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
                           accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                        <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+                        <div class="list-item-btn position-relative submit-btn-div m-0 topN35 mt-5">
                           <span class="border-bottom-btn border-top-btn position-absolute">
                             <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                           </span>
@@ -1572,7 +1572,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
             </form>
           </div>
 
-          <nav class="custom-navigation c-story d-block d-md-none w-100">
+          <nav class="custom-navigation c-story d-none d-md-none w-100">
             <button class="position-relative d-flex align-items-start gap-2"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
               <div class="d-flex flex-column gap-1">
@@ -1638,7 +1638,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
             <p class="form-label text-center">info@revvdout.com</p>
           </div>
           <!-- Custom Navigation -->
-          <nav class="custom-navigation c-about d-block d-md-none w-100">
+          <nav class="custom-navigation c-about d-none d-md-none w-100">
             <button class="position-relative d-flex align-items-start gap-2 my-2  pbutton"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
               <div class="d-flex flex-column gap-1">
@@ -1686,7 +1686,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
       <!-- Custom Navigation -->
 
     </full-page>
-    <nav class="custom-navigation c-nav d-none d-md-block">
+    <nav class="custom-navigation c-nav d-none d-md-block ">
       <button class="position-relative pbutton d-flex align-items-start gap-2 my-3"
         :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
         <div class="d-flex flex-column gap-1">
@@ -1717,6 +1717,43 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+        <div class="d-flex flex-column gap-1">
+          <span class="progress"></span>
+
+        </div> About Us
+      </button>
+    </nav>
+    <nav class="custom-navigation c-nav d-block d-md-none  ">
+      <button class="position-relative pbutton d-flex align-items-start gap-2 my-3"
+        :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
+        <div class="d-flex flex-column gap-1">
+          <span class="progress"></span>
+          <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+        </div> Home Page
+      </button>
+      <button class="position-relative  d-flex align-items-start gap-2 my-3 "
+        :class="{ active: activeSection === 'featured' }" @click="goToSection('featured')">
+        <div class="d-flex flex-column gap-1">
+          <span class="progress"></span>
+          <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+        </div> Featured Story
+      </button>
+      <button class="position-relative  d-flex align-items-start gap-2 my-3 "
+        :class="{ active: activeSection === 'shareStory0' }" @click="goToSection('shareStory0')">
+        <div class="d-flex flex-column gap-1 ">
+          <span class="progress"></span>
+          <!-- <span class="progress"></span>
+              <span class="progress"></span>
+              <span class="progress"></span> -->
+        </div> Share Your Story Now
+      </button>
+
+      <button class="position-relative  d-flex align-items-start gap-2 my-3 "
+        :class="{ active: activeSection === 'aboutUs' }" @click="goToSectionabo('aboutUs')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
 
@@ -2093,7 +2130,7 @@ export default {
         scrollingSpeed: 700, // Adjust scroll speed
         autoScrolling: true,
         fitToSection: true,
-        anchors: ['home', 'featured', 'shareStory', 'aboutUs', 'shareStory0', 'shareStory1', 'shareStory2', 'shareStory3', 'shareStory4'],
+        anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
         onLeave: (origin, destination) => {
           const sections = document.querySelectorAll('.section');
           sections[origin.index].classList.add('slide-out-forward-3d');
@@ -2219,6 +2256,16 @@ export default {
     goToSection(anchor) {
       console.log("anchor", anchor)
       this.$refs.fullpage.api.moveTo(anchor);
+      // console.log("anchor Index", this.fullpageOptions.anchors.indexOf(anchor))
+      // this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) + 1);
+      // Navigate to section by anchor
+      this.activeSection = anchor;
+    },
+    goToSectionabo(anchor) {
+      console.log("anchor", anchor)
+      // this.$refs.fullpage.api.moveTo(anchor);
+      console.log("anchor Index", this.fullpageOptions.anchors.indexOf(anchor))
+      this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) + 1);
       // Navigate to section by anchor
       this.activeSection = anchor;
     },
@@ -3266,7 +3313,15 @@ export default {
   },
 
   async mounted() {
+    console.log("anchors", this.fullpageOptions.anchors)
     this.isMobile = this.checkDevice()
+    if (this.isMobile == true) {
+      let newanchors = ['home', "featured", "shareStory0", "shareStory3", "shareStory4", "aboutUs"]
+      this.fullpageOptions.anchors = newanchors;
+      console.log("newanchors", this.fullpageOptions.anchors)
+
+
+    }
     this.createObserver();
     this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
