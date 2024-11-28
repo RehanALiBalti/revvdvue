@@ -1,7 +1,7 @@
 <template>
 
   <!-- <h1 class="text-white">login State: {{ isLogin }} {{ typeof (isLogin) }}</h1> -->
-  <Header :activeSection="activeSection" @moveToSection="moveToSection" />
+  <Header :activeSection="activeSection" @moveToSection="moveToSection" class="mb-5" />
   <div class="container-fluid">
     <full-page id="fullpage" ref="fullpage" :options="fullpageOptions" @sectionChange="updateActiveSection">
 
