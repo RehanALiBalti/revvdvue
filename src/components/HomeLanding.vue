@@ -100,6 +100,7 @@
       </div>
       <div class="section " ref="section" data-section-id="featured">
         <div class="container-fluid">
+         <div class="mianHome">
           <div class="row">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-4 position-relative">
               <div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4 d-none">
@@ -165,6 +166,7 @@
             </div>
 
           </div>
+         </div>
         </div>
         <nav class="custom-navigation c-feature d-none d-md-none">
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
@@ -208,9 +210,8 @@
 
       <div class="section " ref="section" data-section-id="shareStory0" v-if="isMobile == true">
         <div class="container-fluid px-md-5">
-
-
-          <div class="form-content-home1">
+    <div class="mainHome">
+      <div class="form-content-home1">
             <!-- action="#" method="POST" data-bs-toggle="modal" -->
             <!-- @submit.prevent="retrieveCommunities" -->
             <div>
@@ -579,6 +580,9 @@ v-model="formData.country"> -->
               </div> About Us
             </button>
           </nav>
+    </div>
+
+          
         </div>
 
       </div>
@@ -587,6 +591,7 @@ v-model="formData.country"> -->
       <!--  ==   carEnthusiast-->
       <div class="section" ref="section" data-section-id="shareStory3" v-if="isMobile == true">
         <div class="container-fluid">
+        <div class="mainHome">
           <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
             <div class="col-md-12  pmd-1" id="second"
               v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
@@ -621,13 +626,10 @@ v-model="formData.country"> -->
 
               </div>
 
-
-
-
-
-
             </div>
           </div>
+        </div>
+         <div class="mainHome">
           <div class="row" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
             <div class="col-md-12  p-md-1" id="first"
               v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
@@ -657,6 +659,7 @@ v-model="formData.country"> -->
               </div>
             </div>
           </div>
+         </div>
 
           <nav class="custom-navigation c-story d-none d-md-none mt-4 w-100">
             <button class="position-relative d-flex align-items-start gap-2"
@@ -702,7 +705,8 @@ v-model="formData.country"> -->
       <div class="section" ref="section" data-section-id="shareStory4"
         v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
         <div class="container-fluid">
-          <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
+          <div class="mainHome">
+            <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
             <div class="col-md-12 px-4 pmd-1" id="second"
               v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
               <div class="row z-0">
@@ -822,11 +826,6 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
               </div>
 
-
-
-
-
-
             </div>
             <div class="col-md-12 my-1 px-4">
               <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
@@ -854,7 +853,10 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
             </div>
 
           </div>
-          <div class="row ps-2" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
+          </div>
+<div class="mainHome"> 
+
+  <div class="row ps-2" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
             <div class="col-md-12 px-4 p-md-1" id="first"
               v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
               <div class="row">
@@ -933,6 +935,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               </div>
             </div>
           </div>
+</div>
           <nav class="custom-navigation c-story2 d-none d-md-none mt-4 w-100">
             <button class="position-relative d-flex align-items-start gap-2"
               :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
