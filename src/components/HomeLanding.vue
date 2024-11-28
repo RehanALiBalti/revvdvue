@@ -3943,7 +3943,7 @@ textarea.form-control {
 
   .fp-overflow {
     width: 100% !important;
-    overflow: auto !important;
+    /* overflow: auto !important; */
   }
 
   .custom-navigation {
@@ -4125,41 +4125,42 @@ textarea.form-control {
 } */
 
 
-@media(min-width:992px){
+@media(min-width:992px) {
   .section {
-  transform: rotateX(-90deg) translateZ(-100px);
-}
+    transform: rotateX(-90deg) translateZ(-100px);
+  }
 
   .slide-out-forward-3d {
-  animation: slideOutForward3D 0.5s ease-out forwards;
-}
-@keyframes slideOutForward3D {
-  from {
-    transform: translateY(0);
-    scale: 1
+    animation: slideOutForward3D 0.5s ease-out forwards;
   }
 
-  to {
-    transform: translateY(100px);
-    scale: 0.02
-  }
-}
+  @keyframes slideOutForward3D {
+    from {
+      transform: translateY(0);
+      scale: 1
+    }
 
-.slide-in-backward-3d {
-  animation: slideInBackward3D 0.5s ease-out forwards;
-}
-
-@keyframes slideInBackward3D {
-  from {
-    transform: translateY(-100px);
-    scale: 0.02
+    to {
+      transform: translateY(100px);
+      scale: 0.02
+    }
   }
 
-  to {
-    transform: translateY(0);
-    scale: 1
+  .slide-in-backward-3d {
+    animation: slideInBackward3D 0.5s ease-out forwards;
   }
-}
+
+  @keyframes slideInBackward3D {
+    from {
+      transform: translateY(-100px);
+      scale: 0.02
+    }
+
+    to {
+      transform: translateY(0);
+      scale: 1
+    }
+  }
 }
 
 
