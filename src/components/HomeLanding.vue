@@ -4127,6 +4127,12 @@ textarea.form-control {
   height: 72%;
 }
 
+@media(max-width:992px) {
+  .mianHome {
+    justify-content: start
+  }
+}
+
 .wordspac {
   word-spacing: 0.5rem;
 }
