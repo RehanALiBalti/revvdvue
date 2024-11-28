@@ -1621,7 +1621,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
             <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
             <h1 class="form-title mt-2 mb-0">About <span class="form-span">us</span></h1>
 
-            <p class="form-label text-center ">We are a team of motor heads with fuel in our veins and nitrous igniting
+            <!-- <p class="form-label text-center ">We are a team of motor heads with fuel in our veins and nitrous igniting
               our
               passion.
               Our goal is to build the ultimate hub for modified cars, high-performance machines, supercars, and
@@ -1633,7 +1633,25 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
 
               Together, we’re building a global hub that transcends geographical boundaries by bringing like-minded
-              enthusiasts together and enjoy the thrill of everything on wheels.</p>
+              enthusiasts together and enjoy the thrill of everything on wheels.</p> -->
+            <p class="form-label text-center read-more-text" :class="{ expanded: isExpanded || !isMobile }"
+              ref="textElement">
+              We are a team of motor heads with fuel in our veins and nitrous igniting our passion. Our goal is to build
+              the
+              ultimate hub for modified cars, high-performance machines, supercars, and motorbikes. We dream of creating
+              a space
+              where enthusiasts from all over the world can connect, sell, buy, share ideas and collaborate; opening up
+              endless
+              opportunities for the automotive community. At RevvdOut, we blend our love for motors with cutting-edge
+              technology to give enthusiasts the tools to chase their passion.
+
+              Together, we’re building a global hub that transcends geographical boundaries by bringing like-minded
+              enthusiasts
+              together and enjoy the thrill of everything on wheels.
+            </p>
+            <button v-if="isMobile" class="read-more-btn" @click="toggleReadMore">
+              {{ isExpanded ? "Read Less" : "Read More" }}
+            </button>
             <h1 class="form-title">Contact <span class="form-span">us</span></h1>
             <p class="form-label text-center">info@revvdout.com</p>
           </div>
@@ -2123,6 +2141,7 @@ export default {
   },
   data() {
     return {
+      isExpanded: false,
       isMobile: false,
       fullpageOptions: {
         // Options for scrolling behavior, navigation, and customization
@@ -2228,6 +2247,9 @@ export default {
     };
   },
   methods: {
+    toggleReadMore() {
+      this.isExpanded = !this.isExpanded;
+    },
     checkDevice() {
       if (window.innerWidth <= 992) {
 
@@ -4165,5 +4187,29 @@ textarea.form-control {
   height: 173px !important;
 
   border-radius: 12px !important;
+}
+
+
+.read-more-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  /* Limit to 4 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease;
+}
+
+.read-more-text.expanded {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.read-more-btn {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  color: #f95f19 !important;
 }
 </style>
