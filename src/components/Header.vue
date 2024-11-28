@@ -53,7 +53,7 @@
                   </div> Featured Story
                 </button>
                 <button class="position-relative  d-flex align-items-start gap-2 my-3"
-                  :class="{ active: activeSection === 'shareStory' }" @click="$emit('moveToSection', 'shareStory')">
+                  :class="{ active: activeSection === 'shareStory0' }" @click="$emit('moveToSection', 'shareStory0')">
                   <div class="d-flex flex-column gap-1 ">
                     <span class="progress"></span>
                     <!-- <span class="progress"></span>
@@ -62,7 +62,7 @@
                   </div> Share Your Story
                 </button>
                 <button class="position-relative  d-flex align-items-start gap-2 my-3"
-                  :class="{ active: activeSection === 'aboutUs' }" @click="$emit('moveToSection', 'aboutUs')">
+                  :class="{ active: activeSection === 'aboutUs' }" @click="$emit('moveToSectionabo', 'aboutUs')">
                   <div class="d-flex flex-column gap-1">
                     <span class="progress"></span>
                     <!-- <span class="progress"></span>

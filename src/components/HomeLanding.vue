@@ -1,12 +1,12 @@
 <template>
 
   <!-- <h1 class="text-white">login State: {{ isLogin }} {{ typeof (isLogin) }}</h1> -->
-  <Header :activeSection="activeSection" @moveToSection="moveToSection" class="mb-5" />
+  <Header :activeSection="activeSection" @moveToSection="moveToSection"  @moveToSectionabo="moveToSectionabo" class="mb-5" />
   <div class="container-fluid">
     <full-page id="fullpage" ref="fullpage" :options="fullpageOptions" @sectionChange="updateActiveSection">
 
       <div class="section slide-in-backward-3d" ref="section" data-section-id="home">
-        <div class="mianHome">
+        <div class="mianHome1">
           <div class="banner-content">
             <!-- <h1 class=" main-title">{{ $t('changingTheCarWorld') }}</h1> -->
             <h1 class=" main-title m-0">Changing the <span>Car</span> World</h1>
@@ -211,7 +211,7 @@
       </div>
 
       <div class="section " ref="section" data-section-id="shareStory0" v-if="isMobile == true">
-        <div class="container-fluid px-md-5 h70">
+        <div class="container-fluid px-md-5">
           <div class="mianHome">
             <div class="form-content-home1">
               <!-- action="#" method="POST" data-bs-toggle="modal" -->
@@ -592,8 +592,8 @@ v-model="formData.country"> -->
 
       <!--  ==   carEnthusiast-->
       <div class="section" ref="section" data-section-id="shareStory3" v-if="isMobile == true">
-        <div class="container-fluid h70">
-          <div class="mianHome">
+        <div class="container-fluid ">
+          <div class="">
             <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
               <div class="col-md-12  pmd-1" id="second"
                 v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
@@ -631,8 +631,8 @@ v-model="formData.country"> -->
               </div>
             </div>
           </div>
-          <div class="mianHome">
-            <div class="container-fluid h70">
+          <div class="">
+            <div class="container-fluid ">
               <div class="row" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
                 <div class="col-md-12  p-md-1" id="first"
                   v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
@@ -708,8 +708,8 @@ v-model="formData.country"> -->
 
       <div class="section" ref="section" data-section-id="shareStory4"
         v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
-        <div class="container-fluid h70">
-          <div class="mianHome">
+        <div class="container-fluid ">
+          <div class="">
             <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
               <div class="col-md-12 px-4 pmd-1" id="second"
                 v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
@@ -2112,6 +2112,7 @@ export default {
   provide() {
     return {
       moveToSection: this.moveToSection,
+      moveToSectionabo: this.moveToSectionabo
     };
   },
   setup() {
@@ -2271,6 +2272,12 @@ export default {
     moveToSection(anchor) {
       if (this.$refs.fullpage && this.$refs.fullpage.api) {
         this.$refs.fullpage.api.moveTo(anchor);
+      }
+      this.activeSection = anchor;
+    },
+    moveToSectionabo(anchor) {
+      if (this.$refs.fullpage && this.$refs.fullpage.api) {
+        this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) + 1);
       }
       this.activeSection = anchor;
     },
@@ -3867,9 +3874,10 @@ textarea.form-control {
 }
 
 @media(max-width:768px) {
-  .section{
-    justify-content:center !important;
+  .section {
+    justify-content: center !important;
   }
+
   .car-content {
     flex-direction: column !important;
     align-items: center !important;
@@ -4166,6 +4174,13 @@ textarea.form-control {
   justify-content: center;
   align-items: center;
   height: 72%;
+}
+.mianHome1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65%;
 }
 
 .mianab {
