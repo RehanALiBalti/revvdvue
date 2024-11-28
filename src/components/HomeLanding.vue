@@ -138,8 +138,8 @@
                   <div class="car-content-desc">
                     <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
                     <small class="car-content-link ">Revvdout@{{ bannerStories[0]?.user_name }}</small>
-                    <p class="car-content-para my-1 p-0 fw-bolder">Tell us your car story togather</p>
-                    <p class="form-label tranc my-1 p-0" v-if="bannerStories[0]?.story != ''">
+                    <p class="car-content-para my-1 p-0 fw-bolder d-none d-md-block">Tell us your car story togather</p>
+                    <p class="form-label tranc my-1 p-0 d-none d-md-block" v-if="bannerStories[0]?.story != ''">
                       {{ bannerStories[0]?.story }}
                     </p>
 
@@ -4137,7 +4137,8 @@ textarea.form-control {
 
 @media(max-width:992px) {
   .mianab {
-    justify-content: start
+    height: 200px;
+    overflow: auto;
   }
 }
 
