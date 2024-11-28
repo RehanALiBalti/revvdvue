@@ -3950,12 +3950,13 @@ textarea.form-control {
     height: 320px !important;
 
   }
+
   .c-nav {
-  position: absolute;
-  left: 15px;
-  top: 52%;
-  bottom: 15%
-}
+    position: absolute;
+    left: 15px;
+    top: 52% !important;
+    bottom: 15%
+  }
 
 }
 
