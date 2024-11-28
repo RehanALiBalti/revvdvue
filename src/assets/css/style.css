@@ -853,13 +853,13 @@ a {
 .fp-overflow {
 	width: 85% !important;
 	/* overflow: hidden !important; */
-	/* min-height: 100vh; */
+	min-height: 100vh;
 }
 
 @media(max-width:768px) {
 	.fp-overflow {
 		width: 100% !important;
-		/* overflow: auto !important; */
+		overflow: auto !important;
 
 	}
 
