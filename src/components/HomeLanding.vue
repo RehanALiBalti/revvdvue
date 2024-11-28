@@ -4137,8 +4137,7 @@ textarea.form-control {
 
 @media(max-width:992px) {
   .mianab {
-    height: 200px;
-    overflow: auto;
+    height: 60%;
   }
 }
 
