@@ -210,7 +210,7 @@
 
       <div class="section " ref="section" data-section-id="shareStory0" v-if="isMobile == true">
         <div class="container-fluid px-md-5">
-    <div class="mainHome">
+    <div class="mianHome">
       <div class="form-content-home1">
             <!-- action="#" method="POST" data-bs-toggle="modal" -->
             <!-- @submit.prevent="retrieveCommunities" -->
@@ -591,7 +591,7 @@ v-model="formData.country"> -->
       <!--  ==   carEnthusiast-->
       <div class="section" ref="section" data-section-id="shareStory3" v-if="isMobile == true">
         <div class="container-fluid">
-        <div class="mainHome">
+        <div class="mianHome">
           <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
             <div class="col-md-12  pmd-1" id="second"
               v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
@@ -629,7 +629,7 @@ v-model="formData.country"> -->
             </div>
           </div>
         </div>
-         <div class="mainHome">
+         <div class="mianHome">
           <div class="row" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
             <div class="col-md-12  p-md-1" id="first"
               v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
@@ -705,7 +705,7 @@ v-model="formData.country"> -->
       <div class="section" ref="section" data-section-id="shareStory4"
         v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
         <div class="container-fluid">
-          <div class="mainHome">
+          <div class="mianHome">
             <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
             <div class="col-md-12 px-4 pmd-1" id="second"
               v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
@@ -854,7 +854,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
           </div>
           </div>
-<div class="mainHome"> 
+<div class="mianHome"> 
 
   <div class="row ps-2" v-if="selectedStoryType !== 'carEnthusiast' && selectedStoryType && isMobile == true">
             <div class="col-md-12 px-4 p-md-1" id="first"
