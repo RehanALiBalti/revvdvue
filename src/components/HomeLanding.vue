@@ -6,8 +6,8 @@
   <div class="container-fluid">
     <full-page id="fullpage" ref="fullpage" :options="fullpageOptions" @sectionChange="updateActiveSection">
 
-      <div class="section slide-in-backward-3d" ref="section" data-section-id="home">
-        <div class="">
+      <div class="section slide-in-backward-3d sectionhvh" ref="section" data-section-id="home">
+        <div class="mianHome1">
           <div class="banner-content">
             <!-- <h1 class=" main-title">{{ $t('changingTheCarWorld') }}</h1> -->
             <h1 class=" main-title m-0">Changing the <span>Car</span> World</h1>
@@ -99,8 +99,8 @@
         </nav>
 
       </div>
-      <div class="section slide-in-backward-3d" ref="section" data-section-id="featured">
-        <div class="container-fluid ">
+      <div class="section  sectionhvh" ref="section" data-section-id="featured">
+        <div class="container-fluid h70">
           <div class="">
             <div class="row">
               <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-4 position-relative">
@@ -211,9 +211,9 @@
         </nav>
       </div>
 
-      <div class="section slide-in-backward-3d" ref="section" data-section-id="shareStory0" v-if="isMobile == true">
+      <div class="section  sectionhvh" ref="section" data-section-id="shareStory0" v-if="isMobile == true">
         <div class="container-fluid px-md-5">
-          <div class="">
+          <div class="mianHome">
             <div class="form-content-home1">
               <!-- action="#" method="POST" data-bs-toggle="modal" -->
               <!-- @submit.prevent="retrieveCommunities" -->
@@ -592,7 +592,7 @@ v-model="formData.country"> -->
 
 
       <!--  ==   carEnthusiast-->
-      <div class="section slide-in-backward-3d" ref="section" data-section-id="shareStory3" v-if="isMobile == true">
+      <div class="section sectionhvh" ref="section" data-section-id="shareStory3" v-if="isMobile == true">
         <div class="container-fluid ">
           <div class="">
             <div class="row ps-2" v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
@@ -707,7 +707,7 @@ v-model="formData.country"> -->
         </div>
       </div>
 
-      <div class="section slide-in-backward-3d" ref="section" data-section-id="shareStory4"
+      <div class="section sectionhvh" ref="section" data-section-id="shareStory4"
         v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType && isMobile == true">
         <div class="container-fluid ">
           <div class="">
@@ -859,7 +859,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
             </div>
           </div>
-          <div class="">
+          <div class="mianHome">
 
             <div class="container-fluid h70">
               <div class="row ps-2"
@@ -985,7 +985,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div>
       </div>
 
-      <div class="section slide-in-backward-3d d-none d-md-flex" ref="section" data-section-id="shareStory"
+      <div class="section d-none d-md-flex sectionhvh" ref="section" data-section-id="shareStory"
         v-if="isMobile == false">
         <div class="container-fluid px-md-5">
 
@@ -1626,7 +1626,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
       </div>
 
-      <div class="section slide-in-backward-3d" ref="section" data-section-id="aboutUs">
+      <div class="section sectionhvh" ref="section" data-section-id="aboutUs">
 
         <div class="mianab">
           <div class="banner-content  boxAbout p-2 ">
@@ -3876,9 +3876,9 @@ textarea.form-control {
 }
 
 @media(max-width:768px) {
-  /* .section {
-    justify-content: center !important;
-  } */
+  .section {
+    /* justify-content: center !important; */
+  }
 
   .car-content {
     flex-direction: column !important;
@@ -3976,11 +3976,27 @@ textarea.form-control {
 
 
 .section {
-  /* height: 100vh;
+
+  /* font-size: 2em; */
+}
+
+.sectionhvh {
+  height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: start; */
-  /* font-size: 2em; */
+  justify-content: start;
+}
+
+@media(max-width:768px) {
+  .sectionhvh {
+    height: 100% !important;
+  }
+}
+
+.sectionMob {
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
 .custom-navigation {
@@ -4137,11 +4153,11 @@ textarea.form-control {
   }
 } */
 .section {
-  /* transform: rotateX(-90deg) translateZ(-100px); */
+  transform: rotateX(-90deg) translateZ(-100px);
 }
 
 .slide-in-backward-3d {
-  animation: slideInBackward3D 0.7s ease-out forwards;
+  animation: slideInBackward3D 0.5s ease-out forwards;
 }
 
 @keyframes slideInBackward3D {
@@ -4156,9 +4172,6 @@ textarea.form-control {
   }
 }
 
-.slide-out-forward-3d {
-  animation: slideOutForward3D 0.7s ease-out forwards;
-}
 
 
 @keyframes slideOutForward3D {
@@ -4173,7 +4186,7 @@ textarea.form-control {
   }
 }
 
-. {
+.mianHome {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -4181,7 +4194,7 @@ textarea.form-control {
   height: 72%;
 }
 
-.1 {
+.mianHome1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -4198,11 +4211,11 @@ textarea.form-control {
 }
 
 @media(max-width:992px) {
-  /* .mianab {
+  .mianab {
     height: 60%;
   }
 
-  . {
+  .mianHome {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -4212,7 +4225,7 @@ textarea.form-control {
 
   .h70 {
     height: 60% !important;
-  } */
+  }
 
 }
 
