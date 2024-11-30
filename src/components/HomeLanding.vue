@@ -140,7 +140,9 @@
                   <div class="col-md-7">
                     <div class="car-content-desc">
                       <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
-                      <small class="car-content-link ">Revvdout@{{ bannerStories[0]?.user_name }}</small>
+                      <small class="car-content-link "><img :src="instaIcon" width="55px" />Revvdout@{{
+                        bannerStories[0]?.user_name
+                        }}</small>
                       <p class="car-content-para my-1 p-0 fw-bolder d-none d-md-block">Tell us your car story togather
                       </p>
                       <p class="form-label tranc my-1 p-0 d-none d-md-block" v-if="bannerStories[0]?.story != ''">
@@ -2098,6 +2100,7 @@ import Header from "./Header.vue"
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper/modules";
 import { EffectCards } from "swiper/modules";
+import instaIcon from "@/assets/images/ins.png";
 
 // import draggable from 'vuedraggable';
 
@@ -2154,6 +2157,7 @@ export default {
   },
   data() {
     return {
+      instaIcon: instaIcon,
       isExpanded: false,
       isMobile: false,
       fullpageOptions: {
@@ -4199,7 +4203,7 @@ textarea.form-control {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 65%;
+  height: 58%;
 }
 
 .mianab {
@@ -4207,7 +4211,7 @@ textarea.form-control {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 72%;
+  height: 65%;
 }
 
 @media(max-width:992px) {

@@ -1,7 +1,7 @@
 <template>
 	<div class="container my-5">
 		<div class="row">
-			<div class="col-md-8 m-auto">
+			<div class="col-md-10 m-auto">
 				<div class="form-content-home1">
 
 					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'dealer'">
@@ -45,27 +45,27 @@
 
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
 								<input v-model="fullname" id="name" type="text" name="name"
 									class="form-control form-input" :placeholder="$t('Enter here')" required>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
 								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
 									:placeholder="$t('Enter here')" required>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<label for="age" class="form-label">{{ $t('age') }}</label>
 								<input v-model="age" id="age" type="text" name="age" class="form-control form-input"
 									:placeholder="$t('Enter here')" required>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
 								<input v-model="email" id="email" type="email" name="email"
 									class="form-control form-input" :placeholder="$t('Enter here')" required>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 								<input v-model="phone" id="phone" type="tel" name="phone"
 									class="form-control form-input" :placeholder="$t('+920000000000')" required>
@@ -107,28 +107,18 @@
 							</div>
 
 
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional') }}</label>
 								<input v-model="socialMedia" id="socialMedia" type="text" name="socialMedia"
 									class="form-control form-input" placeholder="Enter here">
 							</div>
-							<div class="col-md-6 d-none">
+							<div class="col-md-4 d-none">
 
 								<label class="form-label" for="image">Select Image</label>
 								<input type="file" class="form-control-file my-2" ref="fileInput"
 									@change="openImageModal">
 							</div>
-							<div class="col-md-12 z-2 position-relative ">
-								<label for="cars" class="form-label pt-0">
-									Preffered Cars
-								</label>
-								<multiselect v-model="value" :options="options" :multiple="true"
-									:close-on-select="false" :clear-on-select="false" placeholder="Pick some"
-									label="name" track-by="name" class="form-control form-input  ">
 
-								</multiselect>
-
-							</div>
 							<div class="col-md-12">
 
 							</div>
@@ -759,7 +749,7 @@ const { state, setIslogin } = useIslogin();
 import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
-import Multiselect from 'vue-multiselect'
+// import Multiselect from 'vue-multiselect'
 // import VueAvatarCropper from 'vue-avatar-cropper';
 export default {
 	setup() {
@@ -790,7 +780,7 @@ export default {
 	name: "UserProfile",
 	components: {
 		// VueDraggableResizable,
-		Multiselect
+		// Multiselect
 
 	},
 	data() {
