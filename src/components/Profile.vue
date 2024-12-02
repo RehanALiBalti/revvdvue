@@ -1,7 +1,7 @@
 <template>
-	<div class="container my-5">
+	<div class="container-fluid my-5">
 		<div class="row">
-			<div class="col-md-10 m-auto">
+			<div class="col-md-12 m-auto">
 				<div class="form-content-home1">
 
 					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'dealer'">
@@ -45,31 +45,33 @@
 
 						</div>
 						<div class="row">
-							<div class="col-md-4">
-								<label for="name" class="form-label">{{ $t('Full Name') }}</label>
-								<input v-model="fullname" id="name" type="text" name="name"
-									class="form-control form-input" :placeholder="$t('Enter here')" required>
-							</div>
-							<div class="col-md-4">
-								<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
-								<input v-model="name" id="name" type="text" name="name" class="form-control form-input"
-									:placeholder="$t('Enter here')" required>
-							</div>
-							<div class="col-md-4">
-								<label for="age" class="form-label">{{ $t('age') }}</label>
-								<input v-model="age" id="age" type="text" name="age" class="form-control form-input"
-									:placeholder="$t('Enter here')" required>
-							</div>
-							<div class="col-md-4">
-								<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
-								<input v-model="email" id="email" type="email" name="email"
-									class="form-control form-input" :placeholder="$t('Enter here')" required>
-							</div>
-							<div class="col-md-4">
-								<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
-								<input v-model="phone" id="phone" type="tel" name="phone"
-									class="form-control form-input" :placeholder="$t('+920000000000')" required>
-								<!-- <div
+							<div class="col-md-10 m-auto">
+								<div class="row">
+									<div class="col-md-4">
+										<label for="name" class="form-label">{{ $t('Full Name') }}</label>
+										<input v-model="fullname" id="name" type="text" name="name"
+											class="form-control form-input" :placeholder="$t('Enter here')" required>
+									</div>
+									<div class="col-md-4">
+										<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
+										<input v-model="name" id="name" type="text" name="name"
+											class="form-control form-input" :placeholder="$t('Enter here')" required>
+									</div>
+									<div class="col-md-4">
+										<label for="age" class="form-label">{{ $t('age') }}</label>
+										<input v-model="age" id="age" type="text" name="age"
+											class="form-control form-input" :placeholder="$t('Enter here')" required>
+									</div>
+									<div class="col-md-4">
+										<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
+										<input v-model="email" id="email" type="email" name="email"
+											class="form-control form-input" :placeholder="$t('Enter here')" required>
+									</div>
+									<div class="col-md-4">
+										<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
+										<input v-model="phone" id="phone" type="tel" name="phone"
+											class="form-control form-input" :placeholder="$t('+920000000000')" required>
+										<!-- <div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
 										<span class="border-bottom-btn border-top-btn position-absolute">
@@ -104,109 +106,200 @@
 										</span>
 									</div>
 								</div> -->
-							</div>
+									</div>
 
 
-							<div class="col-md-4">
-								<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional') }}</label>
-								<input v-model="socialMedia" id="socialMedia" type="text" name="socialMedia"
-									class="form-control form-input" placeholder="Enter here">
-							</div>
-							<div class="col-md-4 d-none">
+									<div class="col-md-4">
+										<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional')
+											}}</label>
+										<input v-model="socialMedia" id="socialMedia" type="text" name="socialMedia"
+											class="form-control form-input" placeholder="Enter here">
+									</div>
+									<div class="col-md-4 d-none">
 
-								<label class="form-label" for="image">Select Image</label>
-								<input type="file" class="form-control-file my-2" ref="fileInput"
-									@change="openImageModal">
-							</div>
+										<label class="form-label" for="image">Select Image</label>
+										<input type="file" class="form-control-file my-2" ref="fileInput"
+											@change="openImageModal">
+									</div>
 
-							<div class="col-md-12">
+									<div class="col-md-12">
 
-							</div>
-							<div class="col-md-12">
-								<div v-if="loading" class="d-flex justify-content-center loader">
-									<div class="box"></div>
+									</div>
+
 								</div>
-								<div
-									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
-									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-										<span class="border-bottom-btn border-top-btn position-absolute">
-											<img src="@/assets/images/Group12engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="row">
+										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
+											class="col-md-2">
+											<div class="customSelect position-relative" @blur="dropdown.isOpen = false">
+												<label for="country" class="form-label">{{ dropdown.carId }}</label>
+												<input type="text" class="form-select form-control form-input"
+													v-model="dropdown.make" :placeholder="$t('Select a Make')"
+													@click="toggleDropdown(index)" @input="filterMakeOptions(index)"
+													@change="getModels">
+												<ul v-show="dropdown.isOpen" class="options-list"
+													v-if="dropdown.makefilteredOptions.length">
+													<li v-for="(option, optionIndex) in dropdown.makefilteredOptions"
+														:key="optionIndex" @click="selectOption(index, option)">
+														{{ option }}
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
+											class="col-md-2 my-2">
+											<div class="customSelect w-100 position-relative"
+												@blur="dropdown.isOpenm = false">
+												<input type="text" class="form-select form-control form-input"
+													v-model="dropdown.model" :placeholder="$t('Select a Model')"
+													@click.stop="toggleDropdownm(index)"
+													@focus="dropdown.make === '' ? (dropdown.isOpenm = false) : null"
+													@input="filterModelOptions(index)" @change="getGenerations(index)"
+													:disabled="dropdown.make === ''">
+												<ul v-show="dropdown.isOpenm" class="options-list"
+													v-if="dropdown.modelfilteredOptions.length > 0">
+													<li v-for="(option, optionIndex) in dropdown.modelfilteredOptions"
+														:key="optionIndex"
+														@click="selectOptionModel(index, option.model)">
+														{{ option.model }}
+													</li>
+												</ul>
+											</div>
+										</div>
 
-										<span
-											class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-											<img src="@/assets/images/Path467engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
+										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
+											class="col-md-2">
+											<div class="customSelect w-100 position-relative"
+												@blur="dropdown.isOpeng = false">
+												<input type="text" class="form-select form-control form-input"
+													:placeholder="$t('Production Years')" v-model="dropdown.year"
+													@input="GenfilterOption(index)" @click.stop="toggleOpeng(index)"
+													:disabled="dropdown.model === ''">
+												<ul v-show="dropdown.isOpeng" class="options-list"
+													v-if="dropdown.GenfilteredOptions.length > 0">
+													<li v-for="(value, gIndex) in dropdown.GenfilteredOptions"
+														:key="gIndex" @click="updateModels(index, value)">
+														{{ value.production_years.split(' ')[0] }}
+														<span v-if="value.production_years.split(' ')[1]">({{
+															value.production_years.split(' ')[1] }})</span>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div v-for="(dropdown) in dropdowns" :key="dropdown.carId"
+											class="col-md-2 my-2sss">
 
-										<span
-											class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-											<img src="@/assets/images/Path465engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
-										<!-- data-bs-toggle="modal" -->
-										<button type="submit"
-											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-											id="submit-button" :disabled="loading">
-											{{
-												$t("updateProfile") }}
-										</button>
-										<span class="border-bottom-btn border-left-btn new-popup position-absolute">
-											<img src="@/assets/images/Group11engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
-										<span class="border-bottom-btn position-absolute">
-											<img src="@/assets/images/Path473engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
+											<!-- Existing Inputs for Year, Make, Model, etc. -->
+
+											<!-- New Select for cardSpec -->
+											<select v-model="dropdown.cardSpec"
+												class="form-select form-control form-input"
+												:placeholder="'Select a Card Spec'">
+												<option value="">Select a Card Spec</option>
+												<option value="Drag">Drag</option>
+												<option value="Street">Street</option>
+												<option value="Show / Stance">Show / Stance</option>
+												<option value="Drift">Drift</option>
+												<option value="Track">Track</option>
+												<option value="Off-Road">Off-Road</option>
+												<option value="Restoration">Restoration</option>
+												<option value="Daily Driver">Daily Driver</option>
+												<option value="Luxury tuner">Luxury tuner</option>
+												<option value="Hot Rod">Hot Rod</option>
+												<option value="Sleeper">Sleeper</option>
+											</select>
+
+										</div>
 									</div>
 								</div>
-								<!-- <div class="list-item-btn position-relative submit-btn-div">
+								<div class="col-md-12">
+									<div v-if="loading" class="d-flex justify-content-center loader">
+										<div class="box"></div>
+									</div>
+									<div
+										class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+										<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+											<span class="border-bottom-btn border-top-btn position-absolute">
+												<img src="@/assets/images/Group12engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+
+											<span
+												class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+												<img src="@/assets/images/Path467engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+
+											<span
+												class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+												<img src="@/assets/images/Path465engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+											<!-- data-bs-toggle="modal" -->
+											<button type="submit"
+												class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+												id="submit-button" :disabled="loading">
+												{{
+													$t("updateProfile") }}
+											</button>
+											<span class="border-bottom-btn border-left-btn new-popup position-absolute">
+												<img src="@/assets/images/Group11engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+											<span class="border-bottom-btn position-absolute">
+												<img src="@/assets/images/Path473engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+										</div>
+									</div>
+									<!-- <div class="list-item-btn position-relative submit-btn-div">
 									<button type="submit" class="signin-btnli submitNow" >{{
 						$t("updateProfile") }}</button>
 								</div> -->
-							</div>
-							<div class="col-md-12" v-if="socialSignIn == false">
-								<div
-									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
-									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-										<span class="border-bottom-btn border-top-btn position-absolute">
-											<img src="@/assets/images/Group12engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
-
-										<span
-											class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-											<img src="@/assets/images/Path467engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
-
-										<span
-											class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-											<img src="@/assets/images/Path465engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
-										<!-- data-bs-toggle="modal" -->
-										<button type="button"
-											class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-											id="submit-button" @click="isModalReset = true">
-											Change Password
-										</button>
-										<span class="border-bottom-btn border-left-btn new-popup position-absolute">
-											<img src="@/assets/images/Group11engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
-										<span class="border-bottom-btn position-absolute">
-											<img src="@/assets/images/Path473engine.png"
-												class="img-border position-absolute" alt="" />
-										</span>
-									</div>
 								</div>
-								<!-- <div class="list-item-btn position-relative submit-btn-div">
+								<div class="col-md-12" v-if="socialSignIn == false">
+									<div
+										class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+										<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+											<span class="border-bottom-btn border-top-btn position-absolute">
+												<img src="@/assets/images/Group12engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+
+											<span
+												class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+												<img src="@/assets/images/Path467engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+
+											<span
+												class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+												<img src="@/assets/images/Path465engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+											<!-- data-bs-toggle="modal" -->
+											<button type="button"
+												class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+												id="submit-button" @click="isModalReset = true">
+												Change Password
+											</button>
+											<span class="border-bottom-btn border-left-btn new-popup position-absolute">
+												<img src="@/assets/images/Group11engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+											<span class="border-bottom-btn position-absolute">
+												<img src="@/assets/images/Path473engine.png"
+													class="img-border position-absolute" alt="" />
+											</span>
+										</div>
+									</div>
+									<!-- <div class="list-item-btn position-relative submit-btn-div">
 									<button type="submit" class="signin-btnli submitNow" >{{
 						$t("updateProfile") }}</button>
 								</div> -->
+								</div>
 							</div>
 						</div>
 						<!-- nickname modal -->
@@ -749,6 +842,7 @@ const { state, setIslogin } = useIslogin();
 import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
+import CarDataService from '@/services/CarDataService';
 // import Multiselect from 'vue-multiselect'
 // import VueAvatarCropper from 'vue-avatar-cropper';
 export default {
@@ -785,7 +879,165 @@ export default {
 	},
 	data() {
 		return {
+			// dropdowns: [
+			// 	{
+			// 		carId: 'car1',
+			// 		make: '',
+			// 		model: '',
+			// 		year: '',
+			// 		isOpen: false,
+			// 		isOpenm: false,
+			// 		isOpeng: false,
+			// 		makefilteredOptions: [],
+			// 		modelfilteredOptions: [],
+			// 		GenfilteredOptions: []
+			// 	},
+			// 	{
+			// 		carId: 'car2',
+			// 		make: '',
+			// 		model: '',
+			// 		year: '',
+			// 		isOpen: false,
+			// 		isOpenm: false,
+			// 		isOpeng: false,
+			// 		makefilteredOptions: [],
+			// 		modelfilteredOptions: [],
+			// 		GenfilteredOptions: []
+			// 	},
+			// 	{
+			// 		carId: 'car3',
+			// 		make: '',
+			// 		model: '',
+			// 		year: '',
+			// 		isOpen: false,
+			// 		isOpenm: false,
+			// 		isOpeng: false,
+			// 		makefilteredOptions: [],
+			// 		modelfilteredOptions: [],
+			// 		GenfilteredOptions: []
+			// 	},
+			// 	{
+			// 		carId: 'car4',
+			// 		make: '',
+			// 		model: '',
+			// 		year: '',
+			// 		isOpen: false,
+			// 		isOpenm: false,
+			// 		isOpeng: false,
+			// 		makefilteredOptions: [],
+			// 		modelfilteredOptions: [],
+			// 		GenfilteredOptions: []
+			// 	},
+			// 	{
+			// 		carId: 'car5',
+			// 		make: '',
+			// 		model: '',
+			// 		year: '',
+			// 		isOpen: false,
+			// 		isOpenm: false,
+			// 		isOpeng: false,
+			// 		makefilteredOptions: [],
+			// 		modelfilteredOptions: [],
+			// 		GenfilteredOptions: []
+			// 	},
+			// 	{
+			// 		carId: 'car6',
+			// 		make: '',
+			// 		model: '',
+			// 		year: '',
+			// 		isOpen: false,
+			// 		isOpenm: false,
+			// 		isOpeng: false,
+			// 		makefilteredOptions: [],
+			// 		modelfilteredOptions: [],
+			// 		GenfilteredOptions: []
+			// 	},
+			// ],
+			dropdowns: [
+				{
+					carId: 'car1',
+					make: '',
+					model: '',
+					year: '',
+					cardSpec: '', // New property added
+					isOpen: false,
+					isOpenm: false,
+					isOpeng: false,
+					makefilteredOptions: [],
+					modelfilteredOptions: [],
+					GenfilteredOptions: []
+				},
+				{
+					carId: 'car2',
+					make: '',
+					model: '',
+					year: '',
+					cardSpec: '', // New property added
+					isOpen: false,
+					isOpenm: false,
+					isOpeng: false,
+					makefilteredOptions: [],
+					modelfilteredOptions: [],
+					GenfilteredOptions: []
+				},
+				{
+					carId: 'car3',
+					make: '',
+					model: '',
+					year: '',
+					cardSpec: '', // New property added
+					isOpen: false,
+					isOpenm: false,
+					isOpeng: false,
+					makefilteredOptions: [],
+					modelfilteredOptions: [],
+					GenfilteredOptions: []
+				},
+				{
+					carId: 'car4',
+					make: '',
+					model: '',
+					year: '',
+					cardSpec: '', // New property added
+					isOpen: false,
+					isOpenm: false,
+					isOpeng: false,
+					makefilteredOptions: [],
+					modelfilteredOptions: [],
+					GenfilteredOptions: []
+				},
+				{
+					carId: 'car5',
+					make: '',
+					model: '',
+					year: '',
+					cardSpec: '', // New property added
+					isOpen: false,
+					isOpenm: false,
+					isOpeng: false,
+					makefilteredOptions: [],
+					modelfilteredOptions: [],
+					GenfilteredOptions: []
+				},
+				{
+					carId: 'car6',
+					make: '',
+					model: '',
+					year: '',
+					cardSpec: '', // New property added
+					isOpen: false,
+					isOpenm: false,
+					isOpeng: false,
+					makefilteredOptions: [],
+					modelfilteredOptions: [],
+					GenfilteredOptions: []
+				}
+			]
+			,
+			makes: [],
+
 			value: [],
+			isOpen: false,
 			options: [
 				{ name: 'JDM' },
 				{ name: 'European' },
@@ -864,7 +1116,138 @@ export default {
 		};
 	},
 	methods: {
+		retrieveMakes() {
+			CarDataService.getAll()
+				.then((response) => {
+					this.makes = response.data.map(item => item.make);
+					this.dropdowns.forEach(dropdown => {
+						dropdown.makefilteredOptions = [...this.makes];
+					});
+				})
+				.catch((e) => {
+					console.log(e);
+				});
+		},
+		filterMakeOptions(index) {
+			const query = this.dropdowns[index].make.toLowerCase();
+			if (query === '') {
+				this.dropdowns[index].makefilteredOptions = this.makes;
+			} else {
+				this.dropdowns[index].makefilteredOptions = this.makes.filter(option =>
+					option.toLowerCase().includes(query)
+				);
+			}
+		},
+		toggleDropdown(index) {
+			console.log("index", index)
+			this.dropdowns[index].isOpen = !this.dropdowns[index].isOpen;
+		},
+		selectOption(index, option) {
+			this.dropdowns[index].make = option;
+			this.dropdowns[index].isOpen = false;
+			this.getModels(index)
+			// You can also perform an action specific to carId here
+			console.log(`Selected Make for ${this.dropdowns[index].carId}: ${option}`);
+		},
 
+		toggleDropdownm(index) {
+			console.log("index_modals", index)
+			this.dropdowns[index].isOpenm = !this.dropdowns[index].isOpenm;
+		},
+		filterModelOptions(index) {
+			const query = this.dropdowns[index].model.toLowerCase();
+			if (query === '') {
+				this.dropdowns[index].modelfilteredOptions = this.models;
+			} else {
+				this.dropdowns[index].modelfilteredOptions = this.models.filter(option =>
+					option.model.toLowerCase().includes(query)
+				);
+			}
+		},
+		selectOptionModel(index, option) {
+			this.dropdowns[index].model = option;
+			this.dropdowns[index].isOpenm = false;
+
+			console.log(`Selected Model for ${this.dropdowns[index].carId}: ${option}`);
+
+			// Trigger further actions if needed
+			this.getGenerations(index);
+		},
+		getModels(index) {
+			// Example: Fetch models based on selected make for a specific car
+			const selectedMake = this.dropdowns[index].make;
+			CarDataService.getModels(selectedMake)
+				.then((response) => {
+					this.dropdowns[index].modelfilteredOptions = response.data;
+					console.log(response);
+				})
+				.catch((e) => {
+					console.log(e);
+				});
+		},
+		getGenerations(index) {
+			// Retrieve the selected model from the dropdown based on the index
+			const selectedModel = this.dropdowns[index].model;
+			const selectedMake = this.dropdowns[index].make;
+			const carId = this.dropdowns[index].carId;
+
+			console.log(`Fetching generations for carId: ${carId}, make: ${selectedMake}, model: ${selectedModel}`);
+
+			// Fetch generation data based on make and model
+			CarDataService.getGenerations(selectedMake, selectedModel)
+				.then((response) => {
+					const data = response.data;
+					console.log("Fetched data:", data);
+
+					// Filter out invalid or unknown generations
+					const filteredOptions = data.filter(item => {
+						return (
+							item.generation !== "" &&
+							item.generation !== "-" &&
+							item.generation !== "??" &&
+							item.generation !== "?"
+						);
+					});
+
+					// Extract unique generations and production years
+					const generations = [...new Set(filteredOptions.map(item => item.generation))];
+					const productionYears = [...new Set(filteredOptions.map(item => item.production_years))];
+
+					// Update the dropdown state with the new data for the selected dropdown
+					this.dropdowns[index].GenfilteredOptions = filteredOptions;
+					this.dropdowns[index].generations = generations;
+					this.dropdowns[index].productionYears = productionYears;
+
+					// Log updated values
+					console.log(`Updated generations for carId ${carId}:`, generations);
+					console.log(`Updated production years for carId ${carId}:`, productionYears);
+				})
+				.catch((error) => {
+					console.error("Error fetching generations:", error);
+				});
+		},
+
+
+		toggleOpeng(index) {
+			console.log('opneg')
+			this.dropdowns[index].isOpeng = !this.dropdowns[index].isOpeng
+			//   this.isDropDYear = !this.isDropDYear
+
+		},
+		updateModels(index, value) {
+			// Close the dropdown for the specific car (dropdown at the given index)
+			this.dropdowns[index].isOpeng = false;
+
+			if (value) {
+				// Set the selected production year from the clicked value
+				this.dropdowns[index].productionYear = value.production_years;
+				this.dropdowns[index].year = value.production_years; // Update the model's year
+			} else {
+				// If no value is selected, set production year to null
+				this.dropdowns[index].productionYear = null;
+			}
+		}
+		,
 		// test 
 		openImageModal(event) {
 			const file = event.target.files[0];
@@ -2148,6 +2531,7 @@ export default {
 
 	},
 	async mounted() {
+		this.retrieveMakes()
 
 		await this.fetchProfileData();
 		await this.fetchproData();
@@ -2237,5 +2621,59 @@ export default {
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+
+
+
+.customSelect {
+
+	width: 100%;
+	padding: 1px;
+}
+
+.customSelect input {
+	width: 100% !important;
+	max-width: 100% !important;
+	border: 0px transparent !important;
+}
+
+.selected-option {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.options-list {
+	position: relative;
+	/* top: 100%;
+left: 0; */
+	width: 100%;
+	background-color: #031726;
+
+	border-top: none;
+	border-radius: 0 0 4px 4px;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	/* min-height: fit-content; */
+	max-height: 300px;
+	overflow-y: scroll;
+	color: #fff;
+	transition: height 0.5s ease-in-out;
+	z-index: 9999
+}
+
+.options-list li {
+	padding: 8px;
+	cursor: pointer;
+	display: flex;
+	justify-content: start;
+}
+
+.options-list li:hover {
+	background-color: #083f68;
 }
 </style>

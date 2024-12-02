@@ -130,7 +130,29 @@
                           </div>
                         </swiper-slide>
                       </swiper>
+                      <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important">
+                        <span class="border-bottom-btn border-top-btn position-absolute">
+                          <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                        </span>
 
+                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                          <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span
+                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                          <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <router-link to="/stories" class="signin-btnli">
+                          {{ $t('view all stories') }}
+                        </router-link>
+                        <span class="border-bottom-btn border-left-btn position-absolute">
+                          <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <span class="border-bottom-btn position-absolute">
+                          <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                        </span>
+                      </div>
                       <div>
 
                       </div>
@@ -142,7 +164,7 @@
                       <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
                       <small class="car-content-link "><img :src="instaIcon" width="55px" />Revvdout@{{
                         bannerStories[0]?.user_name
-                        }}</small>
+                      }}</small>
                       <p class="car-content-para my-1 p-0 fw-bolder d-none d-md-block">Tell us your car story togather
                       </p>
                       <p class="form-label tranc my-1 p-0 d-none d-md-block" v-if="bannerStories[0]?.story != ''">
