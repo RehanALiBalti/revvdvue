@@ -3005,7 +3005,7 @@ textarea.form-control {
     z-index: 0
   }
 
-  citei .options-list {
+  .options-list {
     position: static;
   }
 
