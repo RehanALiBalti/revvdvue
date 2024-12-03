@@ -121,7 +121,45 @@
 										<input type="file" class="form-control-file my-2" ref="fileInput"
 											@change="openImageModal">
 									</div>
+									<div class="col-md-12">
+										<label for="cars" class="form-label">{{ $t('Prefered Cars') }}</label>
+										<div class="row g-3">
+											<div class="col-md-4">
+												<select v-model="preferedCar1"
+													class="form-select form-control form-input"
+													:placeholder="'Select a Card Spec'">
+													<option value="">#1</option>
+													<option value="european">European</option>
+													<option value="american">American</option>
+													<option value="jdm">JDM</option>
 
+												</select>
+											</div>
+											<div class="col-md-4">
+												<select v-model="preferedCar2"
+													class="form-select form-control form-input"
+													:placeholder="'Select a Card Spec'">
+													<option value="">#2</option>
+													<option value="european">European</option>
+													<option value="american">American</option>
+													<option value="jdm">JDM</option>
+
+												</select>
+											</div>
+											<div class="col-md-4">
+												<select v-model="preferedCar3"
+													class="form-select form-control form-input"
+													:placeholder="'Select a Card Spec'">
+													<option value="">#3</option>
+													<option value="european">European</option>
+													<option value="american">American</option>
+													<option value="jdm">JDM</option>
+
+												</select>
+											</div>
+										</div>
+
+									</div>
 									<div class="col-md-12">
 
 									</div>
@@ -214,7 +252,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-12">
+								<div class="col-md-6">
 									<div v-if="loading" class="d-flex justify-content-center loader">
 										<div class="box"></div>
 									</div>
@@ -259,7 +297,7 @@
 						$t("updateProfile") }}</button>
 								</div> -->
 								</div>
-								<div class="col-md-12" v-if="socialSignIn == false">
+								<div class="col-md-6" v-if="socialSignIn == false">
 									<div
 										class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 										<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
@@ -879,80 +917,9 @@ export default {
 	},
 	data() {
 		return {
-			// dropdowns: [
-			// 	{
-			// 		carId: 'car1',
-			// 		make: '',
-			// 		model: '',
-			// 		year: '',
-			// 		isOpen: false,
-			// 		isOpenm: false,
-			// 		isOpeng: false,
-			// 		makefilteredOptions: [],
-			// 		modelfilteredOptions: [],
-			// 		GenfilteredOptions: []
-			// 	},
-			// 	{
-			// 		carId: 'car2',
-			// 		make: '',
-			// 		model: '',
-			// 		year: '',
-			// 		isOpen: false,
-			// 		isOpenm: false,
-			// 		isOpeng: false,
-			// 		makefilteredOptions: [],
-			// 		modelfilteredOptions: [],
-			// 		GenfilteredOptions: []
-			// 	},
-			// 	{
-			// 		carId: 'car3',
-			// 		make: '',
-			// 		model: '',
-			// 		year: '',
-			// 		isOpen: false,
-			// 		isOpenm: false,
-			// 		isOpeng: false,
-			// 		makefilteredOptions: [],
-			// 		modelfilteredOptions: [],
-			// 		GenfilteredOptions: []
-			// 	},
-			// 	{
-			// 		carId: 'car4',
-			// 		make: '',
-			// 		model: '',
-			// 		year: '',
-			// 		isOpen: false,
-			// 		isOpenm: false,
-			// 		isOpeng: false,
-			// 		makefilteredOptions: [],
-			// 		modelfilteredOptions: [],
-			// 		GenfilteredOptions: []
-			// 	},
-			// 	{
-			// 		carId: 'car5',
-			// 		make: '',
-			// 		model: '',
-			// 		year: '',
-			// 		isOpen: false,
-			// 		isOpenm: false,
-			// 		isOpeng: false,
-			// 		makefilteredOptions: [],
-			// 		modelfilteredOptions: [],
-			// 		GenfilteredOptions: []
-			// 	},
-			// 	{
-			// 		carId: 'car6',
-			// 		make: '',
-			// 		model: '',
-			// 		year: '',
-			// 		isOpen: false,
-			// 		isOpenm: false,
-			// 		isOpeng: false,
-			// 		makefilteredOptions: [],
-			// 		modelfilteredOptions: [],
-			// 		GenfilteredOptions: []
-			// 	},
-			// ],
+			preferedCar1: "",
+			preferedCar2: "",
+			preferedCar3: "",
 			dropdowns: [
 				{
 					carId: 'car1',
