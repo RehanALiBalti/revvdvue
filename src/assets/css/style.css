@@ -2398,8 +2398,14 @@ a:hover {
 	}
 
 	.navbar-collapse {
-		background-color: #000814;
+		/* background-color: #000814; */
 		padding: 20px;
+		background-color: rgba(0, 8, 20, 0.6);
+		/* Semi-transparent color */
+		backdrop-filter: blur(3px);
+		/* Blur effect */
+		-webkit-backdrop-filter: blur(3px);
+		/* Safari support */
 		/* margin-top: 2rem; */
 	}
 
@@ -2689,7 +2695,13 @@ a:hover {
 
 @media (max-width: 299px) {
 	.navbar-collapse {
-		background-color: #000814;
+		/* background-color: #000814; */
+		background-color: rgba(0, 8, 20, 0.6);
+		/* Semi-transparent color */
+		backdrop-filter: blur(3px);
+		/* Blur effect */
+		-webkit-backdrop-filter: blur(3px);
+		/* Safari support */
 		padding: 20px !important;
 		/* margin-top: 2rem !important; */
 	}

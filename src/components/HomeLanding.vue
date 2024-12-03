@@ -111,7 +111,7 @@
 
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
-                    <h5 class="h5-title text-capitalize mb-4">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
+                    <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
                         }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
@@ -246,8 +246,8 @@
             <!-- @submit.prevent="retrieveCommunities" -->
             <form id="subscribe-form" @submit.prevent="SubmitStory">
               <h2 class="form-title w-100 text-start">
-                {{ $t('Share your story ') }}
-                <span class="form-span">{{ $t('Now') }} !</span>
+                <span class="form-span"> {{ $t('Share your story ') }}</span>
+                {{ $t('Now') }} !
               </h2>
               <div class="row">
                 <div class="col-md-3 p-0 p-md-1">
@@ -509,17 +509,13 @@ v-model="formData.country"> -->
                         placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
                     </div>
                     <div class="   col-md-6">
-                      <label for="memorableStories" class="form-label">Can you tell us any memorable stories or
-                        adventures
-                        you’ve
-                        had that stands out
-                        the most?</label>
+                      <label for="memorableStories" class="form-label">Tell us the wildest or most unforgettable moment
+                        you’ve had with your car</label>
                       <textarea id="memorableStories" class="form-control" rows="4"
                         placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
                     </div>
                     <div class="col-md-6">
-                      <label for="storyName" class="form-label">What is the name of your story that you would like to
-                        choose?</label>
+                      <label for="storyName" class="form-label">What would your car story title be?</label>
                       <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
                         v-model="formData.storyName"></textarea>
                     </div>
@@ -660,23 +656,21 @@ v-model="formData.country"> -->
                   <div class="row z-0">
 
                     <div class="col-md-6 z1o d-flex flex-column justify-content-end">
-                      <label for="name" class="form-label"> Tell us your car story together </label>
+                      <label for="name" class="form-label"> What’s the story behind your car? </label>
                       <textarea id="message" class="form-control form-input " name="message"
                         :placeholder="$t('Enter here')" v-model="formData.story" rows="2"></textarea>
 
                     </div>
                     <div class="col-md-6 z1o">
-                      <label for="name" class="form-label"> Can you tell us about any modifications you made to your car
-                        or any specific features ? </label>
+                      <label for="name" class="form-label">Any awesome modifications or unique features you can share?
+                      </label>
                       <textarea id="message" class="form-control form-input " name="message"
                         :placeholder="$t('Enter here')" v-model="formData.modifications" rows="2"></textarea>
 
                     </div>
                     <div class="col-md-6 z1o">
-                      <label for="email" class="form-label"> Can you share with us any memorable stories or adventures
-                        you’ve
-                        had
-                        with your car that stands out the most? </label>
+                      <label for="email" class="form-label"> Tell us the wildest or most unforgettable moment you’ve had
+                        with your car </label>
                       <textarea id="message" class="form-control form-input " name="message"
                         :placeholder="$t('Enter here')" v-model="formData.memorable" rows="2"></textarea>
                       <!-- Error message for Email -->
@@ -684,16 +678,13 @@ v-model="formData.country"> -->
                       <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
                     </div>
                     <div class="col-md-6 z1o">
-                      <label for="phone" class="form-label"> If you could give advice to someone just starting their
-                        journey
-                        to
-                        modify their car, what would it be and why?</label>
+                      <label for="phone" class="form-label">What advise would you give to someone starting their journey
+                        as a car enthusiast?</label>
                       <textarea id="message" class="form-control form-input " name="message"
                         :placeholder="$t('Enter here')" v-model="formData.advice" rows="2"></textarea>
                     </div>
                     <div class="col-md-5 z1o ">
-                      <label for="country" class="form-label"> What is the name of your story would like to
-                        choose?
+                      <label for="country" class="form-label"> What would your car story title be?
                       </label>
                       <input type="tel" id="phone" name="phone" class="form-control form-input"
                         placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
@@ -705,7 +696,7 @@ v-model="formData.country"> -->
                       <!-- Error message for Message -->
                       <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
                     </div>
-                    <div class="col-md-4  d-flex gap-3 align-items-center">
+                    <div class="col-md-4  d-flex gap-1 align-items-center">
                       <div>
                         <label for="city" class="form-label">Upload Pictures Max 8</label>
 
@@ -3466,12 +3457,12 @@ textarea.form-control {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 65%;
+  height: 55%;
 }
 
 @media(max-width:992px) {
   .mianab {
-    height: 60%;
+    height: 45%;
   }
 
   .mianHome {
@@ -3502,7 +3493,7 @@ textarea.form-control {
 
 .modalswipper {
   width: 100% !important;
-  height: 210px !important;
+  height: 190px !important;
   overflow: visible !important;
 }
 

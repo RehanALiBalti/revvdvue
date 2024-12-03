@@ -8,7 +8,7 @@
 						<div class="user-profile-page">
 
 							<img :src="this.croppedImageUrl" height="150px" width="150px" @click="openFileInput"
-								v-if="this.croppedImageUrl">
+								v-if="this.croppedImageUrl" class="d-block mx-auto">
 
 							<img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
 								alt="Profile Image"
@@ -22,7 +22,7 @@
 										@click="openFileInput">
 								</div>
 								<div v-else>
-									<img src="../assets/img/uploadImage.png" height="150px" width="150px"
+									<img class="ms-4" src="../assets/img/uploadImage.png" height="150px" width="150px"
 										@click="openFileInput">
 								</div>
 								<p class="text-white text-center">Upload Image</p>
@@ -166,11 +166,11 @@
 
 								</div>
 							</div>
-							<div class="row">
+							<div class="row justify-content-center">
 								<div class="col-md-12">
 									<div class="row">
 										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
-											class="col-md-2">
+											class="col-md-2 z-5">
 											<div class="customSelect position-relative" @blur="dropdown.isOpen = false">
 												<label for="country" class="form-label">{{ dropdown.carId }}</label>
 												<input type="text" class="form-select form-control form-input"
@@ -187,7 +187,7 @@
 											</div>
 										</div>
 										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
-											class="col-md-2 my-2">
+											class="col-md-2 my-2 z-4">
 											<div class="customSelect w-100 position-relative"
 												@blur="dropdown.isOpenm = false">
 												<input type="text" class="form-select form-control form-input"
@@ -208,7 +208,7 @@
 										</div>
 
 										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
-											class="col-md-2">
+											class="col-md-2 z-3">
 											<div class="customSelect w-100 position-relative"
 												@blur="dropdown.isOpeng = false">
 												<input type="text" class="form-select form-control form-input"
@@ -227,7 +227,7 @@
 											</div>
 										</div>
 										<div v-for="(dropdown) in dropdowns" :key="dropdown.carId"
-											class="col-md-2 my-2sss">
+											class="col-md-2 my-2 z-2">
 
 											<!-- Existing Inputs for Year, Make, Model, etc. -->
 
@@ -252,7 +252,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-2">
 									<div v-if="loading" class="d-flex justify-content-center loader">
 										<div class="box"></div>
 									</div>
@@ -297,7 +297,7 @@
 						$t("updateProfile") }}</button>
 								</div> -->
 								</div>
-								<div class="col-md-6" v-if="socialSignIn == false">
+								<div class="col-md-2" v-if="socialSignIn == false">
 									<div
 										class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 										<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
@@ -2613,7 +2613,7 @@ export default {
 }
 
 .options-list {
-	position: relative;
+	position: absolute;
 	/* top: 100%;
 left: 0; */
 	width: 100%;
@@ -2642,5 +2642,25 @@ left: 0; */
 
 .options-list li:hover {
 	background-color: #083f68;
+}
+
+.z-5 {
+	z-index: 5 !important;
+}
+
+.z-4 {
+	z-index: 4 !important;
+}
+
+.z-3 {
+	z-index: 3 !important;
+}
+
+.z-2 {
+	z-index: 2 !important;
+}
+
+.z-1 {
+	z-index: 1 !important;
 }
 </style>
