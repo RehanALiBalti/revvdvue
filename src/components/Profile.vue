@@ -252,12 +252,13 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-6 d-flex justify-content-center gap-3">
 									<div v-if="loading" class="d-flex justify-content-center loader">
 										<div class="box"></div>
 									</div>
+
 									<div
-										class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+										class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto w-custom">
 										<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
 											<span class="border-bottom-btn border-top-btn position-absolute">
 												<img src="@/assets/images/Group12engine.png"
@@ -292,52 +293,47 @@
 											</span>
 										</div>
 									</div>
-									<!-- <div class="list-item-btn position-relative submit-btn-div">
-									<button type="submit" class="signin-btnli submitNow" >{{
-						$t("updateProfile") }}</button>
-								</div> -->
-								</div>
-								<div class="col-md-2" v-if="socialSignIn == false">
-									<div
-										class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
-										<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-											<span class="border-bottom-btn border-top-btn position-absolute">
-												<img src="@/assets/images/Group12engine.png"
-													class="img-border position-absolute" alt="" />
-											</span>
+									<div v-if="socialSignIn == false">
+										<div
+											class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto w-custom">
+											<div
+												class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+												<span class="border-bottom-btn border-top-btn position-absolute">
+													<img src="@/assets/images/Group12engine.png"
+														class="img-border position-absolute" alt="" />
+												</span>
 
-											<span
-												class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-												<img src="@/assets/images/Path467engine.png"
-													class="img-border position-absolute" alt="" />
-											</span>
+												<span
+													class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+													<img src="@/assets/images/Path467engine.png"
+														class="img-border position-absolute" alt="" />
+												</span>
 
-											<span
-												class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-												<img src="@/assets/images/Path465engine.png"
-													class="img-border position-absolute" alt="" />
-											</span>
-											<!-- data-bs-toggle="modal" -->
-											<button type="button"
-												class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-												id="submit-button" @click="isModalReset = true">
-												Change Password
-											</button>
-											<span class="border-bottom-btn border-left-btn new-popup position-absolute">
-												<img src="@/assets/images/Group11engine.png"
-													class="img-border position-absolute" alt="" />
-											</span>
-											<span class="border-bottom-btn position-absolute">
-												<img src="@/assets/images/Path473engine.png"
-													class="img-border position-absolute" alt="" />
-											</span>
+												<span
+													class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+													<img src="@/assets/images/Path465engine.png"
+														class="img-border position-absolute" alt="" />
+												</span>
+												<!-- data-bs-toggle="modal" -->
+												<button type="button"
+													class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+													id="submit-button" @click="isModalReset = true">
+													Change Password
+												</button>
+												<span
+													class="border-bottom-btn border-left-btn new-popup position-absolute">
+													<img src="@/assets/images/Group11engine.png"
+														class="img-border position-absolute" alt="" />
+												</span>
+												<span class="border-bottom-btn position-absolute">
+													<img src="@/assets/images/Path473engine.png"
+														class="img-border position-absolute" alt="" />
+												</span>
+											</div>
 										</div>
 									</div>
-									<!-- <div class="list-item-btn position-relative submit-btn-div">
-									<button type="submit" class="signin-btnli submitNow" >{{
-						$t("updateProfile") }}</button>
-								</div> -->
 								</div>
+
 							</div>
 						</div>
 						<!-- nickname modal -->
@@ -2662,5 +2658,9 @@ left: 0; */
 
 .z-1 {
 	z-index: 1 !important;
+}
+
+.w-custom {
+	width: 130px !important
 }
 </style>

@@ -1015,7 +1015,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div> Featured Story
       </button>
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
-        :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
+        :class="{ active: activeSection === 'shareStory' }" @click="goToSectionshare('shareStory')">
         <div class="d-flex flex-column gap-1 ">
           <span class="progress"></span>
           <!-- <span class="progress"></span>
@@ -1025,7 +1025,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
       </button>
 
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
-        :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
+        :class="{ active: activeSection === 'aboutUs' }" @click="goToSectionabo('aboutUs')">
         <div class="d-flex flex-column gap-1">
           <span class="progress"></span>
 
@@ -1523,8 +1523,10 @@ export default {
       this.activeSection = anchor;
     },
     moveToSectionabo(anchor) {
+      console.log("abo anchor", anchor)
       if (this.$refs.fullpage && this.$refs.fullpage.api) {
-        this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) + 1);
+        console.log("anum", this.fullpageOptions.anchors.indexOf(anchor))
+        this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) - 1);
       }
       this.activeSection = anchor;
     },
@@ -1551,7 +1553,15 @@ export default {
       console.log("anchor", anchor)
       // this.$refs.fullpage.api.moveTo(anchor);
       console.log("anchor Index", this.fullpageOptions.anchors.indexOf(anchor))
-      this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) + 1);
+      this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) - 1);
+      // Navigate to section by anchor
+      this.activeSection = anchor;
+    },
+    goToSectionshare(anchor) {
+      console.log("anchor", anchor)
+      // this.$refs.fullpage.api.moveTo(anchor);
+      console.log("anchor Index", this.fullpageOptions.anchors.indexOf(anchor))
+      this.$refs.fullpage.api.moveTo(3);
       // Navigate to section by anchor
       this.activeSection = anchor;
     },
@@ -3457,7 +3467,7 @@ textarea.form-control {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 55%;
+  height: 52%;
 }
 
 @media(max-width:992px) {
