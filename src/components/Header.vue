@@ -7,7 +7,7 @@
         <router-link class="navbar-brand" to="/">
           <!-- <img class="logo-header" src="@/assets/images/RevvdoutLogo.svg" alt="Logo" draggable="false" height="30" /> -->
 
-          <img class="logo-header ms-3 ms-md-0 object-fit-contain" src="@/assets/images/Group888.png" alt="Logo"
+          <img class="logo-header ms-3 ms-md-0 object-fit-contain" src="@/assets/images/R.png" alt="Logo"
             draggable="false" height="30" />
         </router-link>
         <div class="d-flex gap-2">
@@ -25,7 +25,7 @@
           <button class="navbar-toggler pe-0 me-3 md-md-0" type="button" aria-controls="navbarNavDropdown"
             aria-expanded="false" aria-label="Toggle navigation" @click="toggleNav">
             <span class="icon">
-              <i class="fa-solid fa-bars fs-1"></i>
+              <img src="@/assets/images/menu.png" width="50px">
             </span>
           </button>
         </div>
