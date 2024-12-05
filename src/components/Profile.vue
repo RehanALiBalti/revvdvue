@@ -353,7 +353,7 @@
 											@change="openImageModal">
 									</div>
 									<div class="col-md-12">
-										<label for="cars" class="form-label">{{ $t('Prefered Cars') }}</label>
+										<label for="cars" class="form-label">{{ $t('Prefered Carr Culture') }}</label>
 										<div class="row g-3">
 											<div class="col-md-4">
 												<select v-model="preferedCar1"
