@@ -3610,7 +3610,7 @@ textarea.form-control {
   }
 
   .read-more-text {
-    font-size: 13px !important;
+    font-size: 10px !important;
   }
 }
 </style>
