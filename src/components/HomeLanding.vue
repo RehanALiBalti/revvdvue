@@ -131,7 +131,7 @@
                         </swiper-slide>
                       </swiper>
                       <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important"
-                        v-if="isMobile == flase">
+                        v-if="isMobile == false">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                           <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                         </span>
@@ -900,7 +900,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         <div class="mianab">
           <div class="banner-content  boxAbout p-2 ">
             <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
-            <h1 class="form-title mt-2 mb-0">About <span class="form-span">us</span></h1>
+            <h1 class="form-title mt-2 mb-0 p-0">About <span class="form-span">us</span></h1>
 
             <!-- <p class="form-label text-center ">We are a team of motor heads with fuel in our veins and nitrous igniting
               our
@@ -915,7 +915,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
               Together, we’re building a global hub that transcends geographical boundaries by bringing like-minded
               enthusiasts together and enjoy the thrill of everything on wheels.</p> -->
-            <p class="form-label text-center read-more-text" :class="{ expanded: isExpanded || !isMobile }"
+            <p class="form-label text-center read-more-text p-0" :class="{ expanded: isExpanded || !isMobile }"
               ref="textElement">
               We are a team of motor heads with fuel in our veins and nitrous igniting our passion. Our goal is to build
               the
@@ -930,11 +930,11 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               enthusiasts
               together and enjoy the thrill of everything on wheels.
             </p>
-            <button v-if="isMobile" class="read-more-btn" @click="toggleReadMore">
+            <!-- <button v-if="isMobile" class="read-more-btn" @click="toggleReadMore">
               {{ isExpanded ? "Read Less" : "Read More" }}
-            </button>
-            <h1 class="form-title">Contact <span class="form-span">us</span></h1>
-            <p class="form-label text-center">info@revvdout.com</p>
+            </button> -->
+            <h1 class="form-title p-0 mb-0 mb-md-1">Contact <span class="form-span">us</span></h1>
+            <p class="form-label text-center p-0">info@revvdout.com</p>
           </div>
           <!-- Custom Navigation -->
           <nav class="custom-navigation c-about d-none d-md-none w-100">
@@ -3545,19 +3545,19 @@ textarea.form-control {
 
 
 .read-more-text {
-  display: -webkit-box;
+  /* display: -webkit-box;
   -webkit-line-clamp: 4;
-  /* Limit to 4 lines */
+
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; */
 }
 
 .read-more-text.expanded {
-  -webkit-line-clamp: unset;
+  /* -webkit-line-clamp: unset;
   overflow: visible;
-  text-overflow: unset;
+  text-overflow: unset; */
 }
 
 .read-more-btn {
@@ -3603,6 +3603,10 @@ textarea.form-control {
 
   .wordspac {
     word-spacing: 0.1rem !important;
+  }
+
+  .read-more-text {
+    font-size: 9px !important;
   }
 }
 </style>
