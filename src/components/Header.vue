@@ -1,13 +1,14 @@
 <template>
 
-  <section class="header">
+  <section class="header d-flex align-items-center ">
     <!-- <h1 class="text-white">{{ isLogin2 }} {{ typeof (isLogin2) }}</h1> -->
-    <nav class="navbar navbar-expand-lg sticky-top p-1 p-md-3">
+    <nav class="navbar navbar-expand-lg sticky-top p-1 p-md-3 w-100">
       <div class="container-fluid px-0 px-md-1">
         <router-link class="navbar-brand" to="/">
           <!-- <img class="logo-header" src="@/assets/images/RevvdoutLogo.svg" alt="Logo" draggable="false" height="30" /> -->
 
-          <img class="logo-header" src="@/assets/images/Group888.png" alt="Logo" draggable="false" height="30" />
+          <img class="logo-header ms-3 ms-md-0 object-fit-contain" src="@/assets/images/Group888.png" alt="Logo"
+            draggable="false" height="30" />
         </router-link>
         <div class="d-flex gap-2">
           <router-link class="nav-link navLinkmd d-block d-lg-none" to="/" v-if="shouldShowLink && isLogin2">
@@ -21,8 +22,8 @@
               </g>
             </svg>
           </router-link>
-          <button class="navbar-toggler pe-0" type="button" aria-controls="navbarNavDropdown" aria-expanded="false"
-            aria-label="Toggle navigation" @click="toggleNav">
+          <button class="navbar-toggler pe-0 me-3 md-md-0" type="button" aria-controls="navbarNavDropdown"
+            aria-expanded="false" aria-label="Toggle navigation" @click="toggleNav">
             <span class="icon">
               <i class="fa-solid fa-bars"></i>
             </span>
