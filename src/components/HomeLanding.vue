@@ -3303,7 +3303,7 @@ textarea.form-control {
 .c-nav {
   position: absolute;
   left: 15px;
-  top: 55%;
+  top: 53%;
   bottom: 15%
 }
 
@@ -3610,7 +3610,7 @@ textarea.form-control {
   }
 
   .read-more-text {
-    font-size: 9px !important;
+    font-size: 10px !important;
   }
 }
 </style>

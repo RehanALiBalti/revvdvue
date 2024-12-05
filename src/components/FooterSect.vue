@@ -15,7 +15,7 @@
                     </a>
                 </li>
 
-                <li class="icons-list-item">
+                <li class="icons-list-item d-none">
                     <a class="icons-list-atag" href="https://twitter.com/revvdout" target="_blank">
                         <!-- <i class="fab fa-twitter"></i> -->
                         <i class="fa-brands fa-x-twitter"></i>

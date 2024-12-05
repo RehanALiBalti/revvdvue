@@ -115,6 +115,237 @@
 										<input v-model="socialMedia" id="socialMedia" type="text" name="socialMedia"
 											class="form-control form-input" placeholder="Enter here">
 									</div>
+									<div class="col-md-4">
+										<label for="country" class="form-label">Country</label>
+
+										<select id="country" class="form-select form-control form-input filter-select"
+											v-model="formData.country" @change="getcities(formData.country)">
+											<option selected value="">Country</option>
+											<option value="Afghanistan">Afghanistan</option>
+											<option value="Albania">Albania</option>
+											<option value="Algeria">Algeria</option>
+											<option value="Andorra">Andorra</option>
+											<option value="Angola">Angola</option>
+											<option value="Antigua and Barbuda">
+												Antigua and Barbuda
+											</option>
+											<option value="Argentina">Argentina</option>
+											<option value="Armenia">Armenia</option>
+											<option value="Australia">Australia</option>
+											<option value="Austria">Austria</option>
+											<option value="Azerbaijan">Azerbaijan</option>
+											<option value="Bahamas">Bahamas</option>
+											<option value="Bahrain">Bahrain</option>
+											<option value="Bangladesh">Bangladesh</option>
+											<option value="Barbados">Barbados</option>
+											<option value="Belarus">Belarus</option>
+											<option value="Belgium">Belgium</option>
+											<option value="Belize">Belize</option>
+											<option value="Benin">Benin</option>
+											<option value="Bhutan">Bhutan</option>
+											<option value="Bolivia">Bolivia</option>
+											<option value="Bosnia and Herzegovina">
+												Bosnia and Herzegovina
+											</option>
+											<option value="Botswana">Botswana</option>
+											<option value="Brazil">Brazil</option>
+											<option value="Brunei">Brunei</option>
+											<option value="Bulgaria">Bulgaria</option>
+											<option value="Burkina Faso">Burkina Faso</option>
+											<option value="Burundi">Burundi</option>
+											<option value="Cabo Verde">Cabo Verde</option>
+											<option value="Cambodia">Cambodia</option>
+											<option value="Cameroon">Cameroon</option>
+											<option value="Canada">Canada</option>
+											<option value="Central African Republic">
+												Central African Republic
+											</option>
+											<option value="Chad">Chad</option>
+											<option value="Chile">Chile</option>
+											<option value="China">China</option>
+											<option value="Colombia">Colombia</option>
+											<option value="Comoros">Comoros</option>
+											<option value="Congo">Congo</option>
+											<option value="Costa Rica">Costa Rica</option>
+											<option value="Croatia">Croatia</option>
+											<option value="Cuba">Cuba</option>
+											<option value="Cyprus">Cyprus</option>
+											<option value="Czech Republic">Czech Republic</option>
+											<option value="Denmark">Denmark</option>
+											<option value="Djibouti">Djibouti</option>
+											<option value="Dominica">Dominica</option>
+											<option value="Dominican Republic">
+												Dominican Republic
+											</option>
+											<option value="Ecuador">Ecuador</option>
+											<option value="Egypt">Egypt</option>
+											<option value="El Salvador">El Salvador</option>
+											<option value="Equatorial Guinea">Equatorial Guinea</option>
+											<option value="Eritrea">Eritrea</option>
+											<option value="Estonia">Estonia</option>
+											<option value="Eswatini">Eswatini</option>
+											<option value="Ethiopia">Ethiopia</option>
+											<option value="Fiji">Fiji</option>
+											<option value="Finland">Finland</option>
+											<option value="France">France</option>
+											<option value="Gabon">Gabon</option>
+											<option value="Gambia">Gambia</option>
+											<option value="Georgia">Georgia</option>
+											<option value="Germany">Germany</option>
+											<option value="Ghana">Ghana</option>
+											<option value="Greece">Greece</option>
+											<option value="Grenada">Grenada</option>
+											<option value="Guatemala">Guatemala</option>
+											<option value="Guinea">Guinea</option>
+											<option value="Guinea-Bissau">Guinea-Bissau</option>
+											<option value="Guyana">Guyana</option>
+											<option value="Haiti">Haiti</option>
+											<option value="Honduras">Honduras</option>
+											<option value="Hungary">Hungary</option>
+											<option value="Iceland">Iceland</option>
+											<option value="India">India</option>
+											<option value="Indonesia">Indonesia</option>
+											<option value="Iran">Iran</option>
+											<option value="Iraq">Iraq</option>
+											<option value="Ireland">Ireland</option>
+											<option value="Israel">Israel</option>
+											<option value="Italy">Italy</option>
+											<option value="Jamaica">Jamaica</option>
+											<option value="Japan">Japan</option>
+											<option value="Jordan">Jordan</option>
+											<option value="Kazakhstan">Kazakhstan</option>
+											<option value="Kenya">Kenya</option>
+											<option value="Kiribati">Kiribati</option>
+											<option value="Korea, North">Korea, North</option>
+											<option value="Korea, South">Korea, South</option>
+											<option value="Kosovo">Kosovo</option>
+											<option value="Kuwait">Kuwait</option>
+											<option value="Kyrgyzstan">Kyrgyzstan</option>
+											<option value="Laos">Laos</option>
+											<option value="Latvia">Latvia</option>
+											<option value="Lebanon">Lebanon</option>
+											<option value="Lesotho">Lesotho</option>
+											<option value="Liberia">Liberia</option>
+											<option value="Libya">Libya</option>
+											<option value="Liechtenstein">Liechtenstein</option>
+											<option value="Lithuania">Lithuania</option>
+											<option value="Luxembourg">Luxembourg</option>
+											<option value="Madagascar">Madagascar</option>
+											<option value="Malawi">Malawi</option>
+											<option value="Malaysia">Malaysia</option>
+											<option value="Maldives">Maldives</option>
+											<option value="Mali">Mali</option>
+											<option value="Malta">Malta</option>
+											<option value="Marshall Islands">Marshall Islands</option>
+											<option value="Mauritania">Mauritania</option>
+											<option value="Mauritius">Mauritius</option>
+											<option value="Mexico">Mexico</option>
+											<option value="Micronesia">Micronesia</option>
+											<option value="Moldova">Moldova</option>
+											<option value="Monaco">Monaco</option>
+											<option value="Mongolia">Mongolia</option>
+											<option value="Montenegro">Montenegro</option>
+											<option value="Morocco">Morocco</option>
+											<option value="Mozambique">Mozambique</option>
+											<option value="Myanmar">Myanmar</option>
+											<option value="Namibia">Namibia</option>
+											<option value="Nauru">Nauru</option>
+											<option value="Nepal">Nepal</option>
+											<option value="Netherlands">Netherlands</option>
+											<option value="New Zealand">New Zealand</option>
+											<option value="Nicaragua">Nicaragua</option>
+											<option value="Niger">Niger</option>
+											<option value="Nigeria">Nigeria</option>
+											<option value="North Macedonia">North Macedonia</option>
+											<option value="Norway">Norway</option>
+											<option value="Oman">Oman</option>
+											<option value="Pakistan">Pakistan</option>
+											<option value="Palau">Palau</option>
+											<option value="Panama">Panama</option>
+											<option value="Papua New Guinea">Papua New Guinea</option>
+											<option value="Paraguay">Paraguay</option>
+											<option value="Peru">Peru</option>
+											<option value="Philippines">Philippines</option>
+											<option value="Poland">Poland</option>
+											<option value="Portugal">Portugal</option>
+											<option value="Qatar">Qatar</option>
+											<option value="Romania">Romania</option>
+											<option value="Russia">Russia</option>
+											<option value="Rwanda">Rwanda</option>
+											<option value="Saint Kitts and Nevis">
+												Saint Kitts and Nevis
+											</option>
+											<option value="Saint Lucia">Saint Lucia</option>
+											<option value="Saint Vincent and the Grenadines">
+												Saint Vincent and the Grenadines
+											</option>
+											<option value="Samoa">Samoa</option>
+											<option value="San Marino">San Marino</option>
+											<option value="Sao Tome and Principe">
+												Sao Tome and Principe
+											</option>
+											<option value="Saudi Arabia">Saudi Arabia</option>
+											<option value="Senegal">Senegal</option>
+											<option value="Serbia">Serbia</option>
+											<option value="Seychelles">Seychelles</option>
+											<option value="Sierra Leone">Sierra Leone</option>
+											<option value="Singapore">Singapore</option>
+											<option value="Slovakia">Slovakia</option>
+											<option value="Slovenia">Slovenia</option>
+											<option value="Solomon Islands">Solomon Islands</option>
+											<option value="Somalia">Somalia</option>
+											<option value="South Africa">South Africa</option>
+											<option value="South Sudan">South Sudan</option>
+											<option value="Spain">Spain</option>
+											<option value="Sri Lanka">Sri Lanka</option>
+											<option value="Sudan">Sudan</option>
+											<option value="Suriname">Suriname</option>
+											<option value="Sweden">Sweden</option>
+											<option value="Switzerland">Switzerland</option>
+											<option value="Syria">Syria</option>
+											<option value="Taiwan">Taiwan</option>
+											<option value="Tajikistan">Tajikistan</option>
+											<option value="Tanzania">Tanzania</option>
+											<option value="Thailand">Thailand</option>
+											<option value="Timor-Leste">Timor-Leste</option>
+											<option value="Togo">Togo</option>
+											<option value="Tonga">Tonga</option>
+											<option value="Trinidad and Tobago">
+												Trinidad and Tobago
+											</option>
+											<option value="Tunisia">Tunisia</option>
+											<option value="Turkey">Turkey</option>
+											<option value="Turkmenistan">Turkmenistan</option>
+											<option value="Tuvalu">Tuvalu</option>
+											<option value="Uganda">Uganda</option>
+											<option value="Ukraine">Ukraine</option>
+											<option value="United Arab Emirates">
+												United Arab Emirates
+											</option>
+											<option value="United Kingdom">United Kingdom</option>
+											<option value="United States">United States</option>
+											<option value="Uruguay">Uruguay</option>
+											<option value="Uzbekistan">Uzbekistan</option>
+											<option value="Vanuatu">Vanuatu</option>
+											<option value="Vatican City">Vatican City</option>
+											<option value="Venezuela">Venezuela</option>
+											<option value="Vietnam">Vietnam</option>
+											<option value="Yemen">Yemen</option>
+											<option value="Zambia">Zambia</option>
+											<option value="Zimbabwe">Zimbabwe</option>
+										</select>
+									</div>
+									<div class="col-md-4">
+										<label for="country" class="form-label">City</label>
+										<!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
+
+										<!-- City Select -->
+										<select id="city" class="form-select form-control form-input filter-select"
+											v-model="formData.city">
+											<option selected value="">City</option>
+											<option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
+										</select>
+									</div>
 									<div class="col-md-4 d-none">
 
 										<label class="form-label" for="image">Select Image</label>
@@ -127,7 +358,7 @@
 											<div class="col-md-4">
 												<select v-model="preferedCar1"
 													class="form-select form-control form-input"
-													:placeholder="'Select a Card Spec'">
+													:placeholder="' Card Spec'">
 													<option value="">#1</option>
 													<option value="european">European</option>
 													<option value="american">American</option>
@@ -138,7 +369,7 @@
 											<div class="col-md-4">
 												<select v-model="preferedCar2"
 													class="form-select form-control form-input"
-													:placeholder="'Select a Card Spec'">
+													:placeholder="' Card Spec'">
 													<option value="">#2</option>
 													<option value="european">European</option>
 													<option value="american">American</option>
@@ -149,7 +380,7 @@
 											<div class="col-md-4">
 												<select v-model="preferedCar3"
 													class="form-select form-control form-input"
-													:placeholder="'Select a Card Spec'">
+													:placeholder="' Card Spec'">
 													<option value="">#3</option>
 													<option value="european">European</option>
 													<option value="american">American</option>
@@ -167,6 +398,9 @@
 								</div>
 							</div>
 							<div class="row justify-content-center">
+								<label for="socialMedia" class="form-label colorOr">
+									<span>My</span> Garage
+								</label>
 								<div class="col-md-12">
 									<div class="row">
 										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
@@ -178,9 +412,8 @@
 											<div class="customSelect position-relative mb-2 z-5"
 												@blur="dropdown.isOpen = false">
 												<input type="text" class="form-select form-control form-input"
-													v-model="dropdown.make" :placeholder="$t('Select a Make')"
-													@click="toggleDropdown(index)" @input="filterMakeOptions(index)"
-													@change="getModels">
+													v-model="dropdown.make" :placeholder="$t(' Make')"
+													@click="toggleDropdown(index)" @input="filterMakeOptions(index)">
 												<ul v-show="dropdown.isOpen" class="options-list"
 													v-if="dropdown.makefilteredOptions.length">
 													<li v-for="(option, optionIndex) in dropdown.makefilteredOptions"
@@ -194,7 +427,7 @@
 											<div class="customSelect position-relative mb-2 z-4"
 												@blur="dropdown.isOpenm = false">
 												<input type="text" class="form-select form-control form-input"
-													v-model="dropdown.model" :placeholder="$t('Select a Model')"
+													v-model="dropdown.model" :placeholder="$t(' Model')"
 													@click.stop="toggleDropdownm(index)"
 													@focus="dropdown.make === '' ? (dropdown.isOpenm = false) : null"
 													@input="filterModelOptions(index)" @change="getGenerations(index)"
@@ -232,7 +465,7 @@
 											<div class="z-2">
 												<select v-model="dropdown.cardSpec"
 													class="form-select form-control form-input">
-													<option value="">Select a Card Spec</option>
+													<option value=""> Car Spec</option>
 													<option value="Drag">Drag</option>
 													<option value="Street">Street</option>
 													<option value="Show / Stance">Show / Stance</option>
@@ -911,6 +1144,7 @@ export default {
 	},
 	data() {
 		return {
+			cities: [],
 			preferedCar1: "",
 			preferedCar2: "",
 			preferedCar3: "",
@@ -996,7 +1230,9 @@ export default {
 			]
 			,
 			makes: [],
-
+			models: [],
+			dataGy: [],
+			make: "",
 			value: [],
 			isOpen: false,
 			options: [
@@ -1077,6 +1313,56 @@ export default {
 		};
 	},
 	methods: {
+		getcities() {
+			if (!this.formData.country) return;  // Exit if no country is selected
+
+			// Set up the headers and request body
+			const myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+			const urlencoded = new URLSearchParams();
+			urlencoded.append("country", this.formData.country);
+
+			const requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: urlencoded,
+				redirect: 'follow'
+			};
+			// Fetch cities based on the selected country
+			fetch("https://countriesnow.space/api/v0.1/countries/cities", requestOptions)
+				.then(response => response.json())  // Convert response to JSON
+				.then(result => {
+					if (result.data && result.data.length > 0) {
+						this.cities = result.data;  // Update cities array with the result
+					} else {
+						this.cities = [];  // Clear cities if no data is found
+					}
+				})
+				.catch(error => {
+					console.log('error', error);
+					this.cities = [];  // Clear cities if an error occurs
+				});
+		}
+		,
+		async fetchBannerStories() {
+			try {
+				const response = await fetch('https://buzzwaretech.com/adminrev/api/bannerstores');
+				const data = await response.json();
+				console.log("banner_response data", data)
+				if (data.success) {
+					// Parse the images field from JSON string to an array
+					const banner = data.banner;
+					console.log("banner data", banner)
+					banner.images = JSON.parse(banner.images); // Parse the images
+					this.bannerStories = [banner]; // Store it in the featuredCars array
+					console.log("banner data", this.bannerStories[0].images)
+				}
+			} catch (error) {
+				console.error('Error fetching featured stories:', error);
+			}
+		},
+
 		retrieveMakes() {
 			CarDataService.getAll()
 				.then((response) => {
@@ -1104,8 +1390,10 @@ export default {
 			this.dropdowns[index].isOpen = !this.dropdowns[index].isOpen;
 		},
 		selectOption(index, option) {
+			console.log("indexmake", index)
 			this.dropdowns[index].make = option;
 			this.dropdowns[index].isOpen = false;
+			this.make = this.dropdowns[index].make
 			this.getModels(index)
 			// You can also perform an action specific to carId here
 			console.log(`Selected Make for ${this.dropdowns[index].carId}: ${option}`);
@@ -1136,10 +1424,12 @@ export default {
 		},
 		getModels(index) {
 			// Example: Fetch models based on selected make for a specific car
+			console.log("index in getmod", index)
 			const selectedMake = this.dropdowns[index].make;
 			CarDataService.getModels(selectedMake)
 				.then((response) => {
 					this.dropdowns[index].modelfilteredOptions = response.data;
+					this.models = response.data
 					console.log(response);
 				})
 				.catch((e) => {
@@ -1178,7 +1468,7 @@ export default {
 					this.dropdowns[index].GenfilteredOptions = filteredOptions;
 					this.dropdowns[index].generations = generations;
 					this.dropdowns[index].productionYears = productionYears;
-
+					this.dataGy = filteredOptions
 					// Log updated values
 					console.log(`Updated generations for carId ${carId}:`, generations);
 					console.log(`Updated production years for carId ${carId}:`, productionYears);
@@ -1188,7 +1478,25 @@ export default {
 				});
 		},
 
+		GenfilterOption(index) {
+			// Get the specific dropdown object
+			const dropdown = this.dropdowns[index];
+			if (!dropdown) {
+				console.error(`Dropdown at index ${index} is undefined`);
+				return;
+			}
 
+			const query = dropdown.year.toLowerCase();
+			if (query === '') {
+				dropdown.GenfilteredOptions = this.dataGy; // Use the full options list when no query
+			} else {
+				dropdown.GenfilteredOptions = this.dataGy.filter(option =>
+					option.production_years.toLowerCase().includes(query)
+				);
+			}
+
+			console.log(`Filtered options for dropdown ${dropdown.carId}:`, dropdown.GenfilteredOptions);
+		},
 		toggleOpeng(index) {
 			console.log('opneg')
 			this.dropdowns[index].isOpeng = !this.dropdowns[index].isOpeng
@@ -2660,5 +2968,13 @@ left: 0; */
 
 .w-custom {
 	width: 130px !important
+}
+
+.colorOr {
+	font-size: 20px
+}
+
+.colorOr span {
+	color: #FF7A00 !important
 }
 </style>

@@ -595,6 +595,7 @@
 
 	.sender-chats,
 	.receiver-chats {
+		min-width: 300px;
 		max-width: 450px;
 	}
 
@@ -607,7 +608,8 @@
 
 	.sender-chats,
 	.receiver-chats {
-		max-width: 220px;
+		min-width: 300px;
+		max-width: 320px;
 	}
 
 	.user-details-car.carListing5-user-details-car {
@@ -619,7 +621,8 @@
 
 	.sender-chats,
 	.receiver-chats {
-		max-width: 239px;
+		min-width: 300px;
+		max-width: 500px;
 	}
 
 }

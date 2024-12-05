@@ -73,20 +73,9 @@
                 </button>
               </nav>
             </li>
-            <li class="list-item-btn position-relative">
+            <li class="list-item-btn position-relative" v-if="$route.path !== '/'">
 
-              <!-- <router-link class="nav-link d-none d-lg-block" to="/" v-if="shouldShowLink && isLogin2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
-                  viewBox="0 0 29 32">
-                  <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
-                    <path id="Path_1085" data-name="Path 1085"
-                      d="M4.5,13.5,18,3,31.5,13.5V30a3,3,0,0,1-3,3H7.5a3,3,0,0,1-3-3Z" fill="none" stroke="#fff"
-                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                    <path id="Path_1086" data-name="Path 1086" d="M13.5,33V18h9V33" fill="none" stroke="#fff"
-                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                  </g>
-                </svg>
-              </router-link> -->
+
               <router-link class="nav-link d-none d-lg-block" to="/">
                 <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
                   viewBox="0 0 29 32">
@@ -99,6 +88,23 @@
                   </g>
                 </svg>
               </router-link>
+
+            </li>
+            <li class="list-item-btn position-relative" v-if="$route.path === '/'">
+
+
+              <button class="nav-link d-none d-lg-block" @click="$emit('moveToSection', 'home')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
+                  viewBox="0 0 29 32">
+                  <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
+                    <path id="Path_1085" data-name="Path 1085"
+                      d="M4.5,13.5,18,3,31.5,13.5V30a3,3,0,0,1-3,3H7.5a3,3,0,0,1-3-3Z" fill="none" stroke="#fff"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                    <path id="Path_1086" data-name="Path 1086" d="M13.5,33V18h9V33" fill="none" stroke="#fff"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                  </g>
+                </svg>
+              </button>
 
             </li>
 
@@ -208,7 +214,7 @@
               <buttton type="button" class="dropdown user-custom-box w-100" data-bs-toggle="dropdown"
                 aria-expanded="false" id="dropdownMenuButton3">
                 <div class="user-content-inner">
-                  <div class="user-img-div d-none d-lg-block">
+                  <div class="user-img-div d-lg-block">
                     <!-- <img v-if="image" :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + image"
                       class="user-img" alt="" /> -->
                     <!-- <img :src="state.profileImage ? state.profileImage : 'path/to/alternate/image.png'" class="user-img"
