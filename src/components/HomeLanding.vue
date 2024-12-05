@@ -3577,7 +3577,9 @@ textarea.form-control {
   }
 
   .viewStoryBtn {
-    height: 35px !important
+    height: 35px !important;
+    width: 100px !important;
+
   }
 
   .shortTextMob {
@@ -3590,8 +3592,10 @@ textarea.form-control {
   }
 
   .car-content-title {
-    font-size: 16px !important;
+    font-size: 15px !important;
+    white-space: nowrap !important;
   }
+
 
   .form-label {
     font-size: 12px !important;
