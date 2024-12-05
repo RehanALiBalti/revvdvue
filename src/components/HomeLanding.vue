@@ -3588,6 +3588,14 @@ textarea.form-control {
     -webkit-line-clamp: 2;
     line-height: 1.5;
   }
-
+.car-content-title{
+  font-size:16px !important;
+}
+.form-label{
+  font-size:12px !important;
+}
+.h5-title {
+  font-size:22px !important;
+}
 }
 </style>
