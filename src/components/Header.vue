@@ -7,7 +7,7 @@
         <router-link class="navbar-brand" to="/">
           <!-- <img class="logo-header" src="@/assets/images/RevvdoutLogo.svg" alt="Logo" draggable="false" height="30" /> -->
 
-          <img class="logo-header ms-3 ms-md-0 object-fit-contain" src="@/assets/images/R.png" alt="Logo"
+          <img class="logo-header ms-3 ms-md-4 object-fit-contain" src="@/assets/images/R.png" alt="Logo"
             draggable="false" height="30" />
         </router-link>
         <div class="d-flex gap-2">
