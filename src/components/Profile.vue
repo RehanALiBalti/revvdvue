@@ -170,9 +170,13 @@
 								<div class="col-md-12">
 									<div class="row">
 										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
-											class="col-md-2 z-5">
-											<div class="customSelect position-relative" @blur="dropdown.isOpen = false">
-												<label for="country" class="form-label">{{ dropdown.carId }}</label>
+											class="col-md-2 ">
+											<!-- Card Identifier -->
+											<label for="country" class="form-label">{{ dropdown.carId }}</label>
+
+											<!-- Make Input -->
+											<div class="customSelect position-relative mb-2 z-5"
+												@blur="dropdown.isOpen = false">
 												<input type="text" class="form-select form-control form-input"
 													v-model="dropdown.make" :placeholder="$t('Select a Make')"
 													@click="toggleDropdown(index)" @input="filterMakeOptions(index)"
@@ -185,10 +189,9 @@
 													</li>
 												</ul>
 											</div>
-										</div>
-										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
-											class="col-md-2 my-2 z-4">
-											<div class="customSelect w-100 position-relative"
+
+											<!-- Model Input -->
+											<div class="customSelect position-relative mb-2 z-4"
 												@blur="dropdown.isOpenm = false">
 												<input type="text" class="form-select form-control form-input"
 													v-model="dropdown.model" :placeholder="$t('Select a Model')"
@@ -205,14 +208,12 @@
 													</li>
 												</ul>
 											</div>
-										</div>
 
-										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
-											class="col-md-2 z-3">
-											<div class="customSelect w-100 position-relative"
+											<!-- Production Year Input -->
+											<div class="customSelect position-relative mb-2 z-3"
 												@blur="dropdown.isOpeng = false">
 												<input type="text" class="form-select form-control form-input"
-													:placeholder="$t('Production Years')" v-model="dropdown.year"
+													v-model="dropdown.year" :placeholder="$t('Production Years')"
 													@input="GenfilterOption(index)" @click.stop="toggleOpeng(index)"
 													:disabled="dropdown.model === ''">
 												<ul v-show="dropdown.isOpeng" class="options-list"
@@ -220,37 +221,34 @@
 													<li v-for="(value, gIndex) in dropdown.GenfilteredOptions"
 														:key="gIndex" @click="updateModels(index, value)">
 														{{ value.production_years.split(' ')[0] }}
-														<span v-if="value.production_years.split(' ')[1]">({{
-															value.production_years.split(' ')[1] }})</span>
+														<span v-if="value.production_years.split(' ')[1]">
+															({{ value.production_years.split(' ')[1] }})
+														</span>
 													</li>
 												</ul>
 											</div>
-										</div>
-										<div v-for="(dropdown) in dropdowns" :key="dropdown.carId"
-											class="col-md-2 my-2 z-2">
 
-											<!-- Existing Inputs for Year, Make, Model, etc. -->
-
-											<!-- New Select for cardSpec -->
-											<select v-model="dropdown.cardSpec"
-												class="form-select form-control form-input"
-												:placeholder="'Select a Card Spec'">
-												<option value="">Select a Card Spec</option>
-												<option value="Drag">Drag</option>
-												<option value="Street">Street</option>
-												<option value="Show / Stance">Show / Stance</option>
-												<option value="Drift">Drift</option>
-												<option value="Track">Track</option>
-												<option value="Off-Road">Off-Road</option>
-												<option value="Restoration">Restoration</option>
-												<option value="Daily Driver">Daily Driver</option>
-												<option value="Luxury tuner">Luxury tuner</option>
-												<option value="Hot Rod">Hot Rod</option>
-												<option value="Sleeper">Sleeper</option>
-											</select>
-
+											<!-- Card Spec Select -->
+											<div class="z-2">
+												<select v-model="dropdown.cardSpec"
+													class="form-select form-control form-input">
+													<option value="">Select a Card Spec</option>
+													<option value="Drag">Drag</option>
+													<option value="Street">Street</option>
+													<option value="Show / Stance">Show / Stance</option>
+													<option value="Drift">Drift</option>
+													<option value="Track">Track</option>
+													<option value="Off-Road">Off-Road</option>
+													<option value="Restoration">Restoration</option>
+													<option value="Daily Driver">Daily Driver</option>
+													<option value="Luxury tuner">Luxury tuner</option>
+													<option value="Hot Rod">Hot Rod</option>
+													<option value="Sleeper">Sleeper</option>
+												</select>
+											</div>
 										</div>
 									</div>
+
 								</div>
 								<div class="col-md-6 d-flex justify-content-center gap-3">
 									<div v-if="loading" class="d-flex justify-content-center loader">
