@@ -1797,8 +1797,26 @@ export default {
 			formData.append('email', this.email);
 			formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
 			formData.append('socialMedia', this.socialMedia);
+			
 
-			console.log("Submitting form data:", formData);
+			// new changed data
+			formData.append('preferedCar1', this.preferedCar1);
+			formData.append('preferedCar2', this.preferedCar2);
+			formData.append('preferedCar3', this.preferedCar3);
+			formData.append('city', this.formData.city);
+			formData.append('city', this.formData.country);
+			this.dropdowns.forEach((dropdown, index) => {
+				formData.append(`dropdowns[${index}][carId]`, dropdown.carId || '');
+				formData.append(`dropdowns[${index}][make]`, dropdown.make || '');
+				formData.append(`dropdowns[${index}][model]`, dropdown.model || '');
+				formData.append(`dropdowns[${index}][year]`, dropdown.year || '');
+				formData.append(`dropdowns[${index}][cardSpec]`, dropdown.cardSpec || '');
+			});
+
+			console.log('FormData contents:');
+			formData.forEach((value, key) => {
+				console.log(`${key}: ${value}`);
+			});
 
 			try {
 				const response = await axios.post(

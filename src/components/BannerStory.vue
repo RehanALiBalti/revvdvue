@@ -1802,7 +1802,12 @@ export default {
 .modal {
     z-index: 1050 !important;
 }
+  .modal-content{
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
 
+  }
 @media (min-width: 576px) {
     .modal-dialog {
         max-width: auto;
@@ -2073,8 +2078,8 @@ form-select {
 
 .overlay {
     transition: opacity 0.3s ease-in-out;
-    height: 150px;
-    overflow-y: auto;
+    /* height: 150px; */
+    /* overflow-y: auto; */
 }
 
 .opacity-05 {
