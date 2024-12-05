@@ -25,7 +25,7 @@
           <button class="navbar-toggler pe-0 me-3 md-md-0" type="button" aria-controls="navbarNavDropdown"
             aria-expanded="false" aria-label="Toggle navigation" @click="toggleNav">
             <span class="icon">
-              <i class="fa-solid fa-bars"></i>
+              <i class="fa-solid fa-bars fs-1"></i>
             </span>
           </button>
         </div>
