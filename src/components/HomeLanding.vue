@@ -3276,7 +3276,7 @@ textarea.form-control {
   }
 
   .form-content-home1 {
-    height: 390px;
+    height: 360px;
     overflow: scroll;
   }
 }
@@ -3588,14 +3588,21 @@ textarea.form-control {
     -webkit-line-clamp: 2;
     line-height: 1.5;
   }
-.car-content-title{
-  font-size:16px !important;
-}
-.form-label{
-  font-size:12px !important;
-}
-.h5-title {
-  font-size:22px !important;
-}
+
+  .car-content-title {
+    font-size: 16px !important;
+  }
+
+  .form-label {
+    font-size: 12px !important;
+  }
+
+  .h5-title {
+    font-size: 22px !important;
+  }
+
+  .wordspac {
+    word-spacing: 0.1rem !important;
+  }
 }
 </style>
