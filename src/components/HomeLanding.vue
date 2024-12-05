@@ -3249,7 +3249,7 @@ textarea.form-control {
   .c-nav {
     position: absolute;
     left: 15px;
-    top: 52% !important;
+    top: 50% !important;
     bottom: 15%
   }
 
