@@ -130,7 +130,8 @@
                           </div>
                         </swiper-slide>
                       </swiper>
-                      <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important">
+                      <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important"
+                        v-if="isMobile == flase">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                           <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                         </span>
@@ -143,7 +144,7 @@
                           class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                           <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                         </span>
-                        <router-link to="/stories" class="signin-btnli">
+                        <router-link to="/stories" class="signin-btnli viewStoryBtn">
                           {{ $t('view all stories') }}
                         </router-link>
                         <span class="border-bottom-btn border-left-btn position-absolute">
@@ -161,13 +162,39 @@
                   </div>
                   <div class="col-md-7">
                     <div class="car-content-desc">
-                      <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
+                        <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important"
+                          v-if="isMobile == true">
+                          <span class="border-bottom-btn border-top-btn position-absolute">
+                            <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                          </span>
+
+                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                            <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                          </span>
+
+                          <span
+                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                            <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                          </span>
+                          <router-link to="/stories" class="signin-btnli viewStoryBtn">
+                            {{ $t('view all stories') }}
+                          </router-link>
+                          <span class="border-bottom-btn border-left-btn position-absolute">
+                            <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                          </span>
+                          <span class="border-bottom-btn position-absolute">
+                            <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                          </span>
+                        </div>
+                      </div>
                       <small class="car-content-link "><img :src="instaIcon" width="55px" />Revvdout@{{
                         bannerStories[0]?.user_name
                       }}</small>
-                      <p class="car-content-para my-1 p-0 fw-bolder d-none d-md-block">Tell us your car story togather
+                      <p class="car-content-para my-1 p-0 fw-bolder ">Tell us your car story togather
                       </p>
-                      <p class="form-label tranc my-1 p-0 d-none d-md-block" v-if="bannerStories[0]?.story != ''">
+                      <p class="form-label tranc my-1 p-0 shortTextMob" v-if="bannerStories[0]?.story != ''">
                         {{ bannerStories[0]?.story }}
                       </p>
 
@@ -3243,6 +3270,7 @@ textarea.form-control {
 }
 
 @media(max-width:768px) {
+
   .sectionhvh {
     height: 100% !important;
   }
@@ -3537,5 +3565,29 @@ textarea.form-control {
   border: none;
   font-size: 12px;
   color: #f95f19 !important;
+}
+
+@media(max-width:768px) {
+  .modalswipper {
+    height: 130px !important;
+  }
+
+  .modalswipper .swiper-slide img {
+    height: 119px !important
+  }
+
+  .viewStoryBtn {
+    height: 35px !important
+  }
+
+  .shortTextMob {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-height: 1.5;
+  }
+
 }
 </style>
