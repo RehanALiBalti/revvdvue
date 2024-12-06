@@ -342,7 +342,7 @@
 										<!-- City Select -->
 										<select id="city" class="form-select form-control form-input filter-select"
 											v-model="formData.city">
-											<option selected value="">City</option>
+											<option value="">City</option>
 											<option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
 										</select>
 									</div>
@@ -1286,7 +1286,7 @@ export default {
 				streetNo: '',
 				street2: '',
 				zipCode: '',
-				city: '',
+				city: 'sdsds',
 				country: '',
 				// intlPrefix1: '',
 				// prefix1: '',
@@ -1797,26 +1797,27 @@ export default {
 			formData.append('email', this.email);
 			formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
 			formData.append('socialMedia', this.socialMedia);
-			
+
 
 			// new changed data
 			formData.append('preferedCar1', this.preferedCar1);
 			formData.append('preferedCar2', this.preferedCar2);
 			formData.append('preferedCar3', this.preferedCar3);
 			formData.append('city', this.formData.city);
-			formData.append('city', this.formData.country);
+			formData.append('country', this.formData.country);
 			this.dropdowns.forEach((dropdown, index) => {
-				formData.append(`dropdowns[${index}][carId]`, dropdown.carId || '');
-				formData.append(`dropdowns[${index}][make]`, dropdown.make || '');
-				formData.append(`dropdowns[${index}][model]`, dropdown.model || '');
-				formData.append(`dropdowns[${index}][year]`, dropdown.year || '');
-				formData.append(`dropdowns[${index}][cardSpec]`, dropdown.cardSpec || '');
+				formData.append(`car${index}carId`, dropdown.carId || '');
+				formData.append(`car${index}make`, dropdown.make || '');
+				formData.append(`car${index}model`, dropdown.model || '');
+				formData.append(`car${index}year`, dropdown.year || '');
+				formData.append(`car${index}cardSpec`, dropdown.cardSpec || '');
 			});
 
 			console.log('FormData contents:');
 			formData.forEach((value, key) => {
 				console.log(`${key}: ${value}`);
 			});
+
 
 			try {
 				const response = await axios.post(
@@ -2776,6 +2777,25 @@ export default {
 
 				// Handle the response data
 				console.log(this.formData.sub, "new porofile Data is dw", response.data);
+				const profileData = response.data;
+				console.log("country", profileData.country, "city", profileData.city,)
+				this.formData.country = profileData.country || "";
+				this.getcities(this.formData.country)
+				this.formData.city = profileData.city || "";
+				this.preferedCar1 = profileData.preferedCar1 || "";
+				this.preferedCar2 = profileData.preferedCar2 || "";
+				this.preferedCar3 = profileData.preferedCar3 || "";
+
+				// Map cars data to dropdowns
+				for (let i = 0; i < this.dropdowns.length; i++) {
+					const carKey = `car${i}carId`;
+					if (profileData[carKey]) {
+						this.dropdowns[i].make = profileData[`car${i}make`] || "";
+						this.dropdowns[i].model = profileData[`car${i}model`] || "";
+						this.dropdowns[i].year = profileData[`car${i}year`] || "";
+						this.dropdowns[i].cardSpec = profileData[`car${i}cardSpec`] || "";
+					}
+				}
 				this.image = response.data.image
 				this.name = response.data.nickname
 				// this.name = response.data.nickname

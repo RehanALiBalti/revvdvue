@@ -52,8 +52,8 @@ export default {
   mounted() {
     // Update pNum if needed on mounted
     this.pNum = this.isMobile() ? 100 : 120;
-    if (this.$route.path == "/") {
-      this.showF == false;
+    if (this.$route.path == "/" || this.$route.path == "/stories" || this.$route.path == "/banner") {
+      this.showF = false;
     }
 
     // Add resize event listener to update pNum dynamically on screen resize
