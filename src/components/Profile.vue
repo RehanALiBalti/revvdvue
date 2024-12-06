@@ -404,7 +404,7 @@
 								<div class="col-md-12">
 									<div class="row">
 										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
-											class="col-md-2 ">
+											:class="['position-relative col-md-2', `z-${5 - index}`]">
 											<!-- Card Identifier -->
 											<label for="country" class="form-label">{{ dropdown.carId }}</label>
 
@@ -3014,5 +3014,11 @@ left: 0; */
 
 .colorOr span {
 	color: #FF7A00 !important
+}
+
+@media(max-width:768px) {
+	.options-list {
+		max-height: 133px !important;
+	}
 }
 </style>
