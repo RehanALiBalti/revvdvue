@@ -73,7 +73,7 @@
                 </button>
               </nav>
             </li>
-            <li class="list-item-btn position-relative" v-if="$route.path !== '/'">
+            <li class="list-item-btn position-relative d-none d-lg-block" v-if="$route.path !== '/'">
 
 
               <router-link class="nav-link d-none d-lg-block" to="/">
@@ -90,7 +90,7 @@
               </router-link>
 
             </li>
-            <li class="list-item-btn position-relative" v-if="$route.path === '/'">
+            <li class="list-item-btn position-relative d-none d-lg-block" v-if="$route.path === '/'">
 
 
               <button class="nav-link d-none d-lg-block" @click="$emit('moveToSection', 'home')">

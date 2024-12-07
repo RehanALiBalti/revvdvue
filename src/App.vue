@@ -9,7 +9,7 @@
     <router-view />
 
   </div>
-  <FooterSect v-if="showFooterSect" v-show="showF" />
+  <FooterSect v-if="isFooter == true" />
   <FooterSect2 v-if="showFooterSect2" v-show="showF" />
 </template>
 
@@ -18,14 +18,17 @@ import HeaderItem from '@/components/Header.vue';
 import FooterSect from '@/components/FooterSect'
 import FooterSect2 from '@/components/FooterSect2'
 import { useI18n } from 'vue-i18n';
+import { useShowFooter } from '@/composables/showFooter';
 
 export default {
+
   name: 'App',
   components: {
     HeaderItem,
     FooterSect,
     FooterSect2
   },
+
   data() {
     return {
       selectedLanguage: 'en', // Default language
@@ -45,20 +48,41 @@ export default {
     }
   },
   setup() {
+    const { state: IsFooter, setShowFooter } = useShowFooter();
+    const changeFooter = (value) => {
+      setShowFooter(value);
+    };
     const { t } = useI18n();
 
-    return { t };
+    return {
+      t,
+      IsFooter,
+      changeFooter
+    };
   },
   mounted() {
     // Update pNum if needed on mounted
     this.pNum = this.isMobile() ? 100 : 120;
-    if (this.$route.path == "/" || this.$route.path == "/stories" || this.$route.path == "/banner") {
-      this.showF = false;
+    if (this.$route.path == "/stories" || this.$route.path == "/banner") {
+      this.changeFooter(false)
     }
 
     // Add resize event listener to update pNum dynamically on screen resize
     window.addEventListener('resize', this.updatePNumOnResize);
   },
+  watch: {
+    $route(newRoute) {
+      if (newRoute.path === '/stories' || newRoute.path === '/banner') {
+
+        this.changeFooter(false);
+      } else {
+
+        this.changeFooter(true);
+        this.isFooter = true
+      }
+    },
+  }
+  ,
 
   computed: {
     showFooterSect2() {

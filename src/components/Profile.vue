@@ -353,7 +353,7 @@
 											@change="openImageModal">
 									</div>
 									<div class="col-md-12">
-										<label for="cars" class="form-label">{{ $t('Prefered Carr Culture') }}</label>
+										<label for="cars" class="form-label">{{ $t('Prefered Car Culture') }}</label>
 										<div class="row g-3">
 											<div class="col-md-4">
 												<select v-model="preferedCar1"
@@ -446,7 +446,7 @@
 											<div class="customSelect position-relative mb-2 z-3"
 												@blur="dropdown.isOpeng = false">
 												<input type="text" class="form-select form-control form-input"
-													v-model="dropdown.year" :placeholder="$t('Production Years')"
+													v-model="dropdown.year" :placeholder="$t(' Year')"
 													@input="GenfilterOption(index)" @click.stop="toggleOpeng(index)"
 													:disabled="dropdown.model === ''">
 												<ul v-show="dropdown.isOpeng" class="options-list"
@@ -454,9 +454,9 @@
 													<li v-for="(value, gIndex) in dropdown.GenfilteredOptions"
 														:key="gIndex" @click="updateModels(index, value)">
 														{{ value.production_years.split(' ')[0] }}
-														<span v-if="value.production_years.split(' ')[1]">
+														<!-- <span v-if="value.production_years.split(' ')[1]">
 															({{ value.production_years.split(' ')[1] }})
-														</span>
+														</span> -->
 													</li>
 												</ul>
 											</div>
@@ -1509,8 +1509,8 @@ export default {
 
 			if (value) {
 				// Set the selected production year from the clicked value
-				this.dropdowns[index].productionYear = value.production_years;
-				this.dropdowns[index].year = value.production_years; // Update the model's year
+				// this.dropdowns[index].productionYear = value.production_years;
+				this.dropdowns[index].year = value.production_years.split(' ')[0] // Update the model's year
 			} else {
 				// If no value is selected, set production year to null
 				this.dropdowns[index].productionYear = null;
