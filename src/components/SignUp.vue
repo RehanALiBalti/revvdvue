@@ -64,7 +64,7 @@
                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
                   :placeholder="$t('Enter here')" value="user" />
               </div>
-              <div class="col-md-6 z-2 position-relative ">
+              <!-- <div class="col-md-6 z-2 position-relative ">
                 <label for="cars" class="form-label pt-0">
                   Select Preffered Cars
                 </label>
@@ -74,7 +74,7 @@
 
                 </multiselect>
 
-              </div>
+              </div> -->
 
               <div class="col-md-6 position-relative z-1">
                 <label for="password" class="form-label">Password</label>
@@ -271,11 +271,11 @@ import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
 import { Auth, Hub } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-import Multiselect from 'vue-multiselect'
+// import Multiselect from 'vue-multiselect'
 
 export default {
   name: "SignUp",
-  components: { Multiselect },
+  // components: { Multiselect },
   setup() {
     const { state: profileImageState, setProfileImage } = useProfileImage();
     const { state: nameState, setName } = useProfileName();

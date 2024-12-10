@@ -1077,11 +1077,11 @@
 						<div v-if="imageUrl" class="frame">
 							<img ref="image" :src="imageUrl" alt="Source Image" />
 						</div>
-						<div v-if="imageUrl" class="zoom-controls">
+						<!-- <div v-if="imageUrl" class="zoom-controls">
 							<label for="zoom">Zoom:</label>
 							<input type="range" id="zoom" min="1" max="3" step="0.1" v-model="zoomLevel"
 								@input="onZoom" />
-						</div>
+						</div> -->
 						<button class="btn btn-primary mt-3" @click="closeModal(true)">Done</button>
 					</div>
 				</div>
@@ -1541,8 +1541,8 @@ export default {
 				aspectRatio: 1,
 				viewMode: 1,
 				autoCropArea: 1,
-				scalable: true,
-				zoomable: true,
+				scalable: false,
+				zoomable: false,
 				ready: () => {
 					this.cropper.zoomTo(this.zoomLevel);
 				}

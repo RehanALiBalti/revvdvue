@@ -531,18 +531,20 @@ v-model="formData.country"> -->
                   <div class="row">
 
                     <div class="col-md-6">
-                      <label for="storyHistory" class="form-label">Tell us about your {{ shopName }}</label>
+                      <label for="storyHistory" class="form-label"> Tell us your {{ shopName }} story & how it all
+                        started </label>
                       <textarea id="storyHistory" class="form-control" rows="4"
                         placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
                     </div>
                     <div class="   col-md-6">
-                      <label for="memorableStories" class="form-label">Tell us the wildest or most unforgettable moment
-                        you’ve had with your car</label>
+                      <label for="memorableStories" class="form-label">Any unforgettable memory, event or story you can
+                        share with us? </label>
                       <textarea id="memorableStories" class="form-control" rows="4"
                         placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
                     </div>
                     <div class="col-md-6">
-                      <label for="storyName" class="form-label">What would your car story title be?</label>
+                      <label for="storyName" class="form-label">What is the name of your story that you would like to
+                        choose? </label>
                       <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
                         v-model="formData.storyName"></textarea>
                     </div>
