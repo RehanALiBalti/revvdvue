@@ -1717,6 +1717,88 @@ export default {
     //     }
     //   });
     // },
+    // initCropper() {
+    //   this.$nextTick(() => {
+    //     const image = this.$refs.imageCrop; // Get the image element reference
+    //     if (image) {
+    //       if (this.cropper) {
+    //         this.cropper.destroy(); // Destroy the previous instance if it exists
+    //       }
+    //       this.cropper = new Cropper(image, {
+    //         // aspectRatio: NaN, // Example: Square crop (you can adjust aspect ratio if needed)
+    //         // aspectRatio: 16 / 9, // Set aspect ratio to match 1280x720
+    //         viewMode: 1,
+    //         autoCropArea: 1,
+    //         scalable: false,
+    //         zoomable: false,
+    //         moveable: true,
+    //         cropBoxResizable: true, // Disable resizing of the crop box
+    //         cropBoxMovable: true, // Enable moving the crop box
+    //         // minCropBoxWidth: '500px', // Set a fixed width
+    //         // minCropBoxHeight: '200px', // Set a fixed height
+    //         ready: () => {
+
+    //           // this.cropper.setCropBoxData({ width: 1280, height: 720 });
+
+
+    //         },
+    //       });
+    //     } else {
+    //       console.error("Image element not found for cropping.");
+    //     }
+    //   });
+    // },
+    // initCropper() {
+    //   this.$nextTick(() => {
+    //     const image = this.$refs.imageCrop; // Get the image element reference
+    //     if (image) {
+    //       if (this.cropper) {
+    //         this.cropper.destroy(); // Destroy the previous instance if it exists
+    //       }
+    //       this.cropper = new Cropper(image, {
+    //         aspectRatio: 1, // Allow free aspect ratio
+    //         viewMode: 3,      // Ensure the image fully fills the container
+    //         autoCropArea: 1,  // Initially cover the entire image
+    //         scalable: false,
+    //         zoomable: false,
+    //         movable: false,
+    //         cropBoxResizable: true,
+    //         cropBoxMovable: true,
+    //         ready: () => {
+    //           // const containerData = this.cropper.getContainerData();
+    //           // const imageData = this.cropper.getImageData();
+
+    //           // Calculate scaling factors for width and height
+    //           // const scaleWidth = containerData.width / imageData.naturalWidth;
+    //           // const scaleHeight = containerData.height / imageData.naturalHeight;
+
+    //           // Determine the larger scale to fully cover the container
+    //           // const scale = Math.max(scaleWidth, scaleHeight);
+    //           // Apply zoom to fit the image fully within the container
+    //           // this.cropper.zoomTo(scale);
+
+    //           // Center the image within the cropper container
+    //           // this.cropper.setCanvasData({
+    //           //   left: (containerData.width - imageData.naturalWidth * scale) / 2,
+    //           //   top: (containerData.height - imageData.naturalHeight * scale) / 2,
+    //           //   width: imageData.naturalWidth * scale,
+    //           //   height: imageData.naturalHeight * scale,
+    //           // });
+
+    //           // // Ensure crop box fits within the image boundaries
+    //           // this.cropper.setCropBoxData({
+    //           //   left: 0,
+    //           //   top: 0,
+    //           //   width: containerData.width,
+    //           //   height: containerData.height,
+    //           // });
+    //         },
+    //       });
+    //     } else {
+    //       console.error("Image element not found for cropping.");
+    //     }
+    //   });
+    // }
     initCropper() {
       this.$nextTick(() => {
         const image = this.$refs.imageCrop; // Get the image element reference
@@ -1725,29 +1807,53 @@ export default {
             this.cropper.destroy(); // Destroy the previous instance if it exists
           }
           this.cropper = new Cropper(image, {
-            // aspectRatio: 1, // Example: Square crop (you can adjust aspect ratio if needed)
-            // aspectRatio: 16 / 9, // Set aspect ratio to match 1280x720
-            viewMode: 1,
-            autoCropArea: 1,
+            aspectRatio: 1, // Free aspect ratio
+            viewMode: 1,      // Ensure the image fully fills the container
+            autoCropArea: 2,  // Initially cover the entire image
             scalable: true,
             zoomable: true,
-            moveable: true,
-            cropBoxResizable: true, // Disable resizing of the crop box
-            cropBoxMovable: true, // Enable moving the crop box
-            // minCropBoxWidth: '500px', // Set a fixed width
-            // minCropBoxHeight: '200px', // Set a fixed height
+            movable: true,
+            cropBoxResizable: true,
+            cropBoxMovable: true,
             ready: () => {
+              const containerData = this.cropper.getContainerData();
+              const imageData = this.cropper.getImageData();
 
-              // this.cropper.setCropBoxData({ width: 1280, height: 720 });
+              // Calculate scaling factors for width and height
+              const scaleWidth = containerData.width / imageData.naturalWidth;
+              const scaleHeight = containerData.height / imageData.naturalHeight;
 
+              // Determine the larger scale to fully cover the container
+              const scale = Math.max(scaleWidth, scaleHeight);
 
+              // Apply zoom to fit the image fully within the container
+              this.cropper.zoomTo(scale);
+
+              // Center the image within the cropper container
+              this.cropper.setCanvasData({
+                left: (containerData.width - imageData.naturalWidth * scale) / 2,
+                top: (containerData.height - imageData.naturalHeight * scale) / 2,
+                width: imageData.naturalWidth * scale,
+                height: imageData.naturalHeight * scale,
+              });
+
+              // Ensure crop box fits within the image boundaries
+              this.cropper.setCropBoxData({
+                left: 0,
+                top: 0,
+                width: containerData.width + 1400,
+                height: containerData.height,
+              });
             },
           });
         } else {
           console.error("Image element not found for cropping.");
         }
       });
-    },
+    }
+
+
+    ,
 
     onZoom() {
       if (this.cropper) {
@@ -3082,15 +3188,15 @@ textarea.form-control {
   border-radius: 10px !important;
 }
 
-.imgcrop {
+/* .imgcrop {
   width: 100%;
   height: 300px
-}
+} */
 
-.cropper-canvas img {
+/* .cropper-canvas img {
   width: 100% !important;
   height: 300px !important;
-}
+} */
 
 
 

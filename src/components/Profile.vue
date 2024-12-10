@@ -1544,6 +1544,13 @@ export default {
 				scalable: false,
 				zoomable: false,
 				ready: () => {
+					const canvasData = this.cropper.getCanvasData();
+					this.cropper.setCropBoxData({
+						left: canvasData.left,
+						top: canvasData.top,
+						width: canvasData.width,
+						height: canvasData.height
+					});
 					this.cropper.zoomTo(this.zoomLevel);
 				}
 			});
