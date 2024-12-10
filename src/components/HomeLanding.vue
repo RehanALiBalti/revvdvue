@@ -276,7 +276,7 @@
                 <span class="form-span"> {{ $t('Share your story ') }}</span>
                 {{ $t('Now') }} !
               </h2>
-              <div class="row">
+              <div class="row ">
                 <div class="col-md-3 p-0 p-md-1">
 
                   <label for="storyType" class="form-label">Story Type</label>
@@ -528,7 +528,7 @@ v-model="formData.country"> -->
                 </div>
                 <div class="col-md-12 p-0 p-md-1" id="first"
                   v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
-                  <div class="row">
+                  <div class="row justify-content-md-end">
 
                     <div class="col-md-6">
                       <label for="storyHistory" class="form-label"> Tell us your {{ shopName }} story & how it all
@@ -602,7 +602,7 @@ v-model="formData.country"> -->
                           <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                         </span>
                         <button type="submit" class="signin-btnli submitNow" id="submit-button">
-                          {{ $t('submitNow') }}
+                          {{ $t('Submit') }}
                         </button>
                         <span class="border-bottom-btn border-left-btn position-absolute">
                           <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
@@ -1799,6 +1799,58 @@ export default {
     //     }
     //   });
     // }
+    // initCropper() {
+    //   this.$nextTick(() => {
+    //     const image = this.$refs.imageCrop; // Get the image element reference
+    //     if (image) {
+    //       if (this.cropper) {
+    //         this.cropper.destroy(); // Destroy the previous instance if it exists
+    //       }
+    //       this.cropper = new Cropper(image, {
+    //         aspectRatio: 1, // Free aspect ratio
+    //         viewMode: 1,      // Ensure the image fully fills the container
+    //         autoCropArea: 2,  // Initially cover the entire image
+    //         scalable: true,
+    //         zoomable: true,
+    //         movable: true,
+    //         cropBoxResizable: true,
+    //         cropBoxMovable: true,
+    //         ready: () => {
+    //           const containerData = this.cropper.getContainerData();
+    //           const imageData = this.cropper.getImageData();
+
+    //           // Calculate scaling factors for width and height
+    //           const scaleWidth = containerData.width / imageData.naturalWidth;
+    //           const scaleHeight = containerData.height / imageData.naturalHeight;
+
+    //           // Determine the larger scale to fully cover the container
+    //           const scale = Math.max(scaleWidth, scaleHeight);
+
+    //           // Apply zoom to fit the image fully within the container
+    //           this.cropper.zoomTo(scale);
+
+    //           // Center the image within the cropper container
+    //           this.cropper.setCanvasData({
+    //             left: (containerData.width - imageData.naturalWidth * scale) / 2,
+    //             top: (containerData.height - imageData.naturalHeight * scale) / 2,
+    //             width: imageData.naturalWidth * scale,
+    //             height: imageData.naturalHeight * scale,
+    //           });
+
+    //           // Ensure crop box fits within the image boundaries
+    //           this.cropper.setCropBoxData({
+    //             left: 0,
+    //             top: 0,
+    //             width: containerData.width + 1400,
+    //             height: containerData.height,
+    //           });
+    //         },
+    //       });
+    //     } else {
+    //       console.error("Image element not found for cropping.");
+    //     }
+    //   });
+    // }
     initCropper() {
       this.$nextTick(() => {
         const image = this.$refs.imageCrop; // Get the image element reference
@@ -1815,34 +1867,38 @@ export default {
             movable: true,
             cropBoxResizable: true,
             cropBoxMovable: true,
+         
+          });
+
+          // Calculate the scaling factor to fit the image within the desired dimensions (200px width, 300px height)
+          const scaleWidth = 200 / image.naturalWidth; // Scale down to fit within 200px width
+          const scaleHeight = 300 / image.naturalHeight; // Scale down to fit within 300px height
+          const scale = Math.min(scaleWidth, scaleHeight); // Choose the smaller scale to maintain aspect ratio
+
+          this.cropper = new Cropper(image, {
+            aspectRatio: image.naturalWidth / image.naturalHeight, // Maintain the original aspect ratio
+            viewMode: 2, // Ensure the image fits entirely within the container
+            autoCropArea: 1, // Cover the entire image initially
+            scalable: false, // Disable scaling
+            zoomable: false, // Disable zooming
+            movable: false, // Disable movement
+            cropBoxResizable: false, // Disable resizing the crop box
+            cropBoxMovable: false, // Disable moving the crop box
             ready: () => {
-              const containerData = this.cropper.getContainerData();
-              const imageData = this.cropper.getImageData();
-
-              // Calculate scaling factors for width and height
-              const scaleWidth = containerData.width / imageData.naturalWidth;
-              const scaleHeight = containerData.height / imageData.naturalHeight;
-
-              // Determine the larger scale to fully cover the container
-              const scale = Math.max(scaleWidth, scaleHeight);
-
-              // Apply zoom to fit the image fully within the container
-              this.cropper.zoomTo(scale);
-
               // Center the image within the cropper container
               this.cropper.setCanvasData({
-                left: (containerData.width - imageData.naturalWidth * scale) / 2,
-                top: (containerData.height - imageData.naturalHeight * scale) / 2,
-                width: imageData.naturalWidth * scale,
-                height: imageData.naturalHeight * scale,
+                left: 0,
+                top: 0,
+                width: image.naturalWidth * scale, // Scale the width proportionally
+                height: 300, // Fixed height for the cropper container
               });
 
               // Ensure crop box fits within the image boundaries
               this.cropper.setCropBoxData({
                 left: 0,
                 top: 0,
-                width: containerData.width + 1400,
-                height: containerData.height,
+                width: image.naturalWidth * scale,
+                height: 300,
               });
             },
           });
@@ -1851,6 +1907,8 @@ export default {
         }
       });
     }
+
+
 
 
     ,
@@ -2746,6 +2804,7 @@ export default {
   async mounted() {
     console.log("anchors", this.fullpageOptions.anchors)
     this.isMobile = this.checkDevice()
+
     if (this.isMobile == true) {
       let newanchors = ['home', "featured", "shareStory0", "shareStory3", "shareStory4", "aboutUs"]
       this.fullpageOptions.anchors = newanchors;
@@ -2753,6 +2812,7 @@ export default {
 
 
     }
+    this.moveToSection("home");
     this.createObserver();
     this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
@@ -2978,6 +3038,7 @@ textarea.form-control {
   cursor: pointer;
   display: flex;
   justify-content: start;
+  font-size: 12px;
 }
 
 .options-list li:hover {
@@ -3377,6 +3438,13 @@ textarea.form-control {
   justify-content: start;
 }
 
+.form-content-home1 {
+  height: 550px;
+  overflow-x:hidden;
+  padding-inline:1rem;
+  overflow-y: auto
+}
+
 @media(max-width:768px) {
 
   .sectionhvh {
@@ -3449,7 +3517,7 @@ textarea.form-control {
   cursor: pointer;
   background: transparent;
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
   border: none;
   outline: none
 }
@@ -3673,6 +3741,19 @@ textarea.form-control {
   border: none;
   font-size: 12px;
   color: #f95f19 !important;
+}
+
+.cropper-bg {
+  background: #031726 !important;
+}
+
+.imgcrop {
+  width: 200px;
+  /* Fixed width */
+  height: 300px;
+  /* Fixed height */
+  object-fit: cover;
+  /* Ensure the image covers the container without distortion */
 }
 
 @media(max-width:768px) {

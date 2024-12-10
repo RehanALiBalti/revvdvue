@@ -2985,6 +2985,7 @@ left: 0; */
 	cursor: pointer;
 	display: flex;
 	justify-content: start;
+	font-size:12px
 }
 
 .options-list li:hover {
@@ -3016,7 +3017,7 @@ left: 0; */
 }
 
 .colorOr {
-	font-size: 20px
+	font-size: 26px
 }
 
 .colorOr span {

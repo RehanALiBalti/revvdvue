@@ -124,4 +124,12 @@ export default {
 .card-header {
     background-color: #f8f9fa;
 }
+
+.card-content-car h4 {
+    font-size: 26px
+}
+
+.card-content-car p {
+    font-size: 14px
+}
 </style>

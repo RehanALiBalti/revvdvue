@@ -623,7 +623,7 @@ export default {
 
 .fh2 {
     color: #F95F19;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .signin-btnli.submitNow {

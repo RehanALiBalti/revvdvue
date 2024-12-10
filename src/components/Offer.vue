@@ -1187,7 +1187,7 @@ export default {
 }
 
 .card-title {
-	font-size: 22px;
+	font-size: 26px;
 	font-weight: bold;
 	color: #ffffff;
 	margin-bottom: 1.5rem;

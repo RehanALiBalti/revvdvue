@@ -9,7 +9,7 @@
                         <h2 class="form-title">{{ $t('OnlineRegistrationForm') }}</h2>
                         <div class="row">
                             <div class="col-md-12">
-                                <h3 class="text-white mt-2 mb-0">{{ $t('LocationOfVehicle') }}</h3>
+                                <h3 class="text-white mt-2 mb-0 form-title">{{ $t('LocationOfVehicle') }}</h3>
                                 <label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
                                 <input v-model="formData.name" id="companyName" type="text"
                                     :class="['form-control', 'form-input', { 'is-invalid': formErrors.name }]"

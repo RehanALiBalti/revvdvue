@@ -54,8 +54,8 @@
                   {{ formErrors.email }}
                 </div>
               </div>
-              <div class="col-md-6 d-none d-md-block">
-                <label for="name" class="form-label pt-0">Nick Name</label>
+              <div class="col-md-12 d-none d-md-block">
+                <label for="name" class="form-label ">Nick Name</label>
                 <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
                 <div v-if="formErrors.name" class="text-danger">
@@ -122,7 +122,7 @@
               </div>
 
               <div class="col-md-6">
-                <ul class="text-white">
+                <ul class="text-white f14">
                   <li>Password must be at least 8 characters long.</li>
                   <li>Password must contain at least one uppercase letter.</li>
                   <li>Password must contain at least one number.</li>
@@ -188,7 +188,7 @@
                   </span>
                 </div>
               </div>
-              <div class="d-flex justify-content-center align-items-center">
+              <div class="d-flex justify-content-center align-items-center f14">
                 <router-link to="/dealerlogin" class="termsService">{{ $t('GoToDealerLogin') }}</router-link>
               </div>
             </div>
@@ -758,6 +758,10 @@ export default {
   height: 23px !important;
   width: 95% !important;
   min-height: 23px !important;
+}
+
+.f14 {
+  font-size: 14px !important;
 }
 
 

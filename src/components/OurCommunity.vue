@@ -1100,6 +1100,7 @@ export default {
   cursor: pointer;
   display: flex;
   justify-content: start;
+  font-size: 12px
 }
 
 .options-list li:hover {

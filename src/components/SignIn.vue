@@ -31,7 +31,7 @@
                 <label for="email" class="form-label"> {{ $t('email') }}</label>
                 <input id="email" type="email" v-model="formData.email" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
-                <div v-if="formErrors.email" class="text-danger">
+                <div v-if="formErrors.email" class="text-danger f14">
                   {{ formErrors.email }}
                 </div>
               </div>
@@ -50,7 +50,7 @@
                   {{ formErrors.password }}
                 </div>
                 <div class="d-flex justify-content-end align-items-center">
-                  <router-link to="/forget" class="termsService">{{ $t('ForgotPassword') }}?</router-link>
+                  <router-link to="/forget" class="termsService f14">{{ $t('ForgotPassword') }}?</router-link>
                 </div>
               </div>
 
@@ -380,6 +380,10 @@ export default {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 
+}
+
+.f14 {
+  font-size: 14px
 }
 
 @keyframes spin {
