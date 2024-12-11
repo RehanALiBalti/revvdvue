@@ -2140,7 +2140,7 @@ export default {
     },
     async fetchproData() {
 
-
+      this.$router.push({ hash: '#home' });
 
       const myid = this.sub
       const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
