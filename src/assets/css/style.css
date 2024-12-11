@@ -262,7 +262,7 @@ video::-webkit-media-controls {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: 400;
 	color: #ffffff;
 	transition: all 0.3s ease-in-out;

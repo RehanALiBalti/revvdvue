@@ -353,7 +353,7 @@
 											@change="openImageModal">
 									</div>
 									<div class="col-md-12">
-										<label for="cars" class="form-label">{{ $t('Prefered Car Culture') }}</label>
+										<label for="cars" class="form-label">{{ $t('Preferred Car Culture') }}</label>
 										<div class="row g-3">
 											<div class="col-md-4">
 												<select v-model="preferedCar1"
@@ -2985,7 +2985,7 @@ left: 0; */
 	cursor: pointer;
 	display: flex;
 	justify-content: start;
-	font-size:12px
+	font-size: 12px
 }
 
 .options-list li:hover {

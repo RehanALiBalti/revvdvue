@@ -98,11 +98,15 @@
                                         <img :src="getImage(tab, index, 'img3')" class="img-border position-absolute"
                                             alt="" />
                                     </span>
-                                    <span class="signin-btnli" data-bs-dismiss="offcanvas">{{ tab.name }}</span>
+                                    <span class="signin-btnli" data-bs-dismiss="offcanvas" >   
+                                  {{tab.name}}
+                                    </span>
+                                   
                                     <span class="border-bottom-btn border-left-btn position-absolute">
                                         <img :src="getImage(tab, index, 'img4')" class="img-border position-absolute"
                                             alt="" />
                                     </span>
+
                                     <span class="border-bottom-btn position-absolute">
                                         <img :src="getImage(tab, index, 'img5')" class="img-border position-absolute"
                                             alt="" />
@@ -135,7 +139,12 @@
                             class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                             <img :src="getImage(tab, index, 'img3')" class="img-border position-absolute" alt="" />
                         </span>
-                        <span class="signin-btnli">{{ tab.name }}</span>
+                        <span class="signin-btnli text-center" data-bs-dismiss="offcanvas"  v-if="tab.name == 'Car Modification/Tunning Shop'">    Car Modification/Tunning <br/> Shop
+                                  
+                                </span>
+                                <span  class="signin-btnli" v-else>
+{{ tab.name }}
+</span>
                         <span class="border-bottom-btn border-left-btn position-absolute">
                             <img :src="getImage(tab, index, 'img4')" class="img-border position-absolute" alt="" />
                         </span>

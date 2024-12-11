@@ -2018,7 +2018,7 @@ export default {
         this.shopName = "Motor Bike"
       }
       else if (this.selectedStoryType == "automotivePhotographerast") {
-        this.shopName = "Automotive Photographer"
+        this.shopName = "Automotive Photography"
       }
 
 
