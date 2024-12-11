@@ -2808,6 +2808,7 @@ export default {
 
     }
     this.moveToSection("home");
+    alert("noti push")
     this.$router.push({ hash: '#home' });
     this.createObserver();
     this.setLogin(localStorage.getItem('login'))
