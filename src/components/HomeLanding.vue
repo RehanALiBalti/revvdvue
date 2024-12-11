@@ -194,7 +194,7 @@
                       }}</small>
                       <p class="car-content-para my-1 p-0 fw-bolder ">Tell us your car story togather
                       </p>
-                      <p class="form-label tranc my-1 p-0 shortTextMob" v-if="bannerStories[0]?.story != ''">
+                      <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob" v-if="bannerStories[0]?.story != ''">
                         {{ bannerStories[0]?.story }}
                       </p>
 
@@ -3485,7 +3485,7 @@ textarea.form-control {
   .c-nav {
     position: absolute;
     left: 15px;
-    top: 50% !important;
+    top: 51% !important;
     bottom: 15%
   }
 
@@ -3519,7 +3519,7 @@ textarea.form-control {
   }
 
   .form-content-home1 {
-    height: 360px;
+    height: 344px;
     overflow: scroll;
   }
 }
@@ -3848,12 +3848,12 @@ textarea.form-control {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     line-height: 1.5;
   }
 
   .car-content-title {
-    font-size: 15px !important;
+    font-size: 14px !important;
     white-space: nowrap !important;
   }
 
