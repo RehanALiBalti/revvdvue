@@ -2795,13 +2795,13 @@ export default {
 
 
   },
-  watch: {
-    $route(to) {
-      if (!to.hash || to.hash !== '#home') {
-        this.$router.push({ hash: '#home' });
-      }
-    },
-  },
+    // watch: {
+    //   $route(to) {
+    //     if (!to.hash || to.hash !== '#home') {
+    //       this.$router.push({ hash: '#home' });
+    //     }
+    //   },
+    // },
 
   async mounted() {
     if (!this.$route.hash || this.$route.hash !== '#home') {
