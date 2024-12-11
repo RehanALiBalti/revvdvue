@@ -2953,7 +2953,7 @@ textarea.form-control {
 
 
 .topN36 {
-  top: -36px;
+  top: -38px;
   cursor: pointer;
   height: 36px !important;
 }
