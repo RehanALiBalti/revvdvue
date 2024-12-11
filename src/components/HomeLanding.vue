@@ -2808,7 +2808,7 @@ export default {
 
     }
     this.moveToSection("home");
-    alert("noti push")
+    // alert("noti push")
     this.$router.push({ hash: '#home' });
     this.createObserver();
     this.setLogin(localStorage.getItem('login'))
@@ -2825,7 +2825,7 @@ export default {
     await this.fetchProfileData()
     await this.fetchproData()
 
-
+    this.$router.push({ hash: '#home' });
     this.fetchBannerStories()
 
   },
