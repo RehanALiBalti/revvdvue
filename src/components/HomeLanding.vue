@@ -553,7 +553,7 @@ v-model="formData.country"> -->
                       <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
                         v-model="formData.url">
                     </div>
-                 
+
                     <div class="col-md-4  d-flex gap-1 align-items-center">
                       <div>
                         <label for="city" class="form-label">Upload Pictures Max 8</label>
@@ -594,7 +594,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
                         <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
                           accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                        <div class="list-item-btn position-relative submit-btn-div m-0 topN35 mt-5">
+                        <div class="list-item-btn position-relative submit-btn-div m-0 topN36 mt-5">
                           <span class="border-bottom-btn border-top-btn position-absolute">
                             <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                           </span>
@@ -796,7 +796,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
                         <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
                           accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                        <div class="list-item-btn position-relative submit-btn-div m-0 topN35 mt-5">
+                        <div class="list-item-btn position-relative submit-btn-div m-0 topN36 mt-5">
                           <span class="border-bottom-btn border-top-btn position-absolute">
                             <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                           </span>
@@ -2947,6 +2947,26 @@ textarea.form-control {
 }
 
 .topN35>label {
+
+  cursor: pointer
+}
+
+
+.topN36 {
+  top: -36px;
+  cursor: pointer;
+  height: 36px !important;
+}
+
+.topN36 .signup-btnli {
+  height: 36px !important;
+}
+
+.topN36 .signin-btnli {
+  height: 36px !important;
+}
+
+.topN36>label {
 
   cursor: pointer
 }
