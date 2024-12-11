@@ -553,42 +553,72 @@ v-model="formData.country"> -->
                       <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
                         v-model="formData.url">
                     </div>
-                    <div class="col-md-2">
-                      <label for="city" class="form-label">Upload Pictures Max 8</label>
+                 
+                    <div class="col-md-4  d-flex gap-1 align-items-center">
+                      <div>
+                        <label for="city" class="form-label">Upload Pictures Max 8</label>
 
-                      <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-              accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
-                      <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                        accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                      <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
-                        <span class="border-bottom-btn border-top-btn position-absolute">
-                          <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-                        </span>
+                        <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
+                        <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                          accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
+                        <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+                          <span class="border-bottom-btn border-top-btn position-absolute">
+                            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+                          </span>
 
-                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                          <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-                        </span>
+                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+                          </span>
 
-                        <span
-                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                          <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-                        </span>
-                        <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
-                          Choose Images
-                        </label>
-                        <span class="border-bottom-btn border-left-btn position-absolute">
-                          <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="border-bottom-btn position-absolute">
-                          <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-                        </span>
+                          <span
+                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+                          </span>
+                          <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
+                            Choose Images
+                          </label>
+                          <span class="border-bottom-btn border-left-btn position-absolute">
+                            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+                          </span>
+                          <span class="border-bottom-btn position-absolute">
+                            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+                          </span>
+                        </div>
                       </div>
 
-                    </div>
-                    <div class="col-md-2">
-                      <label for="city" class="form-label"></label>
+                      <div>
+                        <label for="city" class="form-label "><span> </span></label>
 
-                      <div class="list-item-btn position-relative submit-btn-div ">
+                        <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
+                        <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                          accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
+                        <div class="list-item-btn position-relative submit-btn-div m-0 topN35 mt-5">
+                          <span class="border-bottom-btn border-top-btn position-absolute">
+                            <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                          </span>
+
+                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                            <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                          </span>
+
+                          <span
+                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                            <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                          </span>
+                          <button type="submit" class="signin-btnli submitNow">
+                            submit
+                          </button>
+                          <span class="border-bottom-btn border-left-btn position-absolute">
+                            <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                          </span>
+                          <span class="border-bottom-btn position-absolute">
+                            <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                          </span>
+                        </div>
+                      </div>
+                      <!-- <div class="list-item-btn position-relative submit-btn-div">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                           <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                         </span>
@@ -602,7 +632,7 @@ v-model="formData.country"> -->
                           <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                         </span>
                         <button type="submit" class="signin-btnli submitNow" id="submit-button">
-                          {{ $t('Submit') }}
+                          {{ $t('submitNow') }}
                         </button>
                         <span class="border-bottom-btn border-left-btn position-absolute">
                           <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
@@ -610,7 +640,8 @@ v-model="formData.country"> -->
                         <span class="border-bottom-btn position-absolute">
                           <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                         </span>
-                      </div>
+                      </div> -->
+
                     </div>
                   </div>
                 </div>
@@ -2911,6 +2942,10 @@ textarea.form-control {
   height: 36px !important;
 }
 
+.topN35 .signin-btnli {
+  height: 36px !important;
+}
+
 .topN35>label {
 
   cursor: pointer
@@ -3766,6 +3801,11 @@ textarea.form-control {
   /* Fixed height */
   object-fit: cover;
   /* Ensure the image covers the container without distortion */
+}
+
+.form-label {
+  margin-bottom: 0.2rem !important;
+  padding-top: 0.4rem !important;
 }
 
 @media(max-width:768px) {
