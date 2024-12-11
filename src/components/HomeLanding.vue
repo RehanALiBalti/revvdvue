@@ -2790,7 +2790,7 @@ export default {
     // this.getprofile()
     //this.fetchProfileData()
     // this.checkIfGoogleOrFacebookUser()
-
+    this.$router.push({ hash: '#home' });
 
 
 
