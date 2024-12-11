@@ -2140,7 +2140,7 @@ export default {
     },
     async fetchproData() {
 
-      this.$router.push({ hash: '#home' });
+
 
       const myid = this.sub
       const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
@@ -2795,8 +2795,18 @@ export default {
 
 
   },
+  watch: {
+    $route(to) {
+      if (!to.hash || to.hash !== '#home') {
+        this.$router.push({ hash: '#home' });
+      }
+    },
+  },
 
   async mounted() {
+    if (!this.$route.hash || this.$route.hash !== '#home') {
+      this.$router.push({ hash: '#home' });
+    }
     console.log("anchors", this.fullpageOptions.anchors)
     this.isMobile = this.checkDevice()
 
