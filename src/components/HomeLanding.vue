@@ -2795,13 +2795,13 @@ export default {
 
 
   },
-    // watch: {
-    //   $route(to) {
-    //     if (!to.hash || to.hash !== '#home') {
-    //       this.$router.push({ hash: '#home' });
-    //     }
-    //   },
-    // },
+  // watch: {
+  //   $route(to) {
+  //     if (!to.hash || to.hash !== '#home') {
+  //       this.$router.push({ hash: '#home' });
+  //     }
+  //   },
+  // },
 
   async mounted() {
     if (!this.$route.hash || this.$route.hash !== '#home') {
@@ -2903,7 +2903,12 @@ textarea.form-control {
 
 .topN35 {
   top: -35px;
-  cursor: pointer
+  cursor: pointer;
+  height: 36px !important;
+}
+
+.topN35 .signup-btnli {
+  height: 36px !important;
 }
 
 .topN35>label {
