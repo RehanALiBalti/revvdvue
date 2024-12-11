@@ -22,7 +22,7 @@
 
                 <div class="row mb-1 w-100 justify-content-center">
 
-                  <div class="col-md-10 align-self-end d-flex justify-content-center">
+                  <div class="col-md-10 align-self-end d-flex ">
                     <h1 class="card-title-h2 community-title fh2 m-0" v-if="forumData">
                       {{ forumData.make }}
                       {{ decode(forumData.make) }}

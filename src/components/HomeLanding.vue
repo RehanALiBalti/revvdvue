@@ -31,7 +31,7 @@
             </div>
 
 
-            <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important">
+            <div class="list-item-btn position-relative w-fit libtn mt-2" style="width:fit-contet !important">
               <span class="border-bottom-btn border-top-btn position-absolute">
                 <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
               </span>

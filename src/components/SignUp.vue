@@ -29,7 +29,7 @@
                 <label for="name" class="form-label">Full Name</label>
                 <input id="name" type="text" v-model="formData.fullname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
-                <div v-if="formErrors.fullname" class="text-danger">
+                <div v-if="formErrors.fullname" class="text-danger f14">
                   {{ formErrors.fullname }}
                 </div>
                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
@@ -39,7 +39,7 @@
                 <label for="name" class="form-label pt-0">Nick Name</label>
                 <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
-                <div v-if="formErrors.name" class="text-danger">
+                <div v-if="formErrors.name" class="text-danger f14">
                   {{ formErrors.name }}
                 </div>
                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
@@ -50,7 +50,7 @@
                 <label for="email" class="form-label">Email (verification)</label>
                 <input id="email" type="email" v-model="formData.email" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
-                <div v-if="formErrors.email" class="text-danger">
+                <div v-if="formErrors.email" class="text-danger f14">
                   {{ formErrors.email }}
                 </div>
               </div>
@@ -58,7 +58,7 @@
                 <label for="name" class="form-label ">Nick Name</label>
                 <input id="name" type="text" v-model="formData.nickname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
-                <div v-if="formErrors.name" class="text-danger">
+                <div v-if="formErrors.name" class="text-danger f14">
                   {{ formErrors.name }}
                 </div>
                 <input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
@@ -100,7 +100,7 @@
                   <p :class="passwordStrengthClass">{{ passwordStrength }}</p>
                 </div>
 
-                <div v-if="formErrors.password" class="text-danger">
+                <div v-if="formErrors.password" class="text-danger f14">
                   {{ formErrors.password }}
                 </div>
               </div>
@@ -115,7 +115,7 @@
                     <i class="fa-solid" :class="eyeIcon2"></i>
                   </span>
                 </div>
-                <div v-if="formErrors.confirmPassword" class="text-danger">
+                <div v-if="formErrors.confirmPassword" class="text-danger f14 f14">
                   {{ formErrors.confirmPassword }}
                 </div>
 
@@ -137,7 +137,7 @@
                     $t('GeneralTermsAndConditions')
                   }}</router-link>
                 </label>
-                <div v-if="formErrors.check1" class="text-danger">
+                <div v-if="formErrors.check1" class="text-danger f14">
                   {{ formErrors.check1 }}
                 </div>
               </div>
@@ -148,7 +148,7 @@
                   <router-link to="/privacypolicy" class="termsService" target="_blank">{{ $t('PrivacyPolicy')
                     }}</router-link>
                 </label>
-                <div v-if="formErrors.check2" class="text-danger">
+                <div v-if="formErrors.check2" class="text-danger f14">
                   {{ formErrors.check2 }}
                 </div>
               </div>

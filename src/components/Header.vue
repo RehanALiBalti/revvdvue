@@ -2,8 +2,8 @@
 
   <section class="header d-flex align-items-center flex-column flex-md-row ">
     <!-- <h1 class="text-white">{{ isLogin2 }} {{ typeof (isLogin2) }}</h1> -->
-    <nav class="navbar navbar-expand-lg sticky-top p-1 p-md-3 w-100 h-100">
-      <div class="container-fluid px-0 px-md-1 py-3">
+    <nav class="navbar navbar-expand-lg sticky-top p-1 px-md-3 w-100 h-100">
+      <div class="container-fluid px-0 px-md-1 py-1">
         <router-link class="navbar-brand" to="/">
           <!-- <img class="logo-header" src="@/assets/images/RevvdoutLogo.svg" alt="Logo" draggable="false" height="30" /> -->
 
@@ -638,6 +638,10 @@ export default {
 
 
 <style scoped>
+.header {
+  height: 80px
+}
+
 .cardOverlay {
 
   position: absolute;
