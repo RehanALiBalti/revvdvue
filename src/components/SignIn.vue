@@ -339,6 +339,10 @@ export default {
 };
 </script>
 <style scoped>
+.form-label {
+  margin-bottom: 0px
+}
+
 .modal-dialog {
   max-width: auto;
   margin-right: auto;

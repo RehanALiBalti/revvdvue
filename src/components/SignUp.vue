@@ -657,6 +657,10 @@ export default {
 };
 </script>
 <style scoped>
+.form-label {
+  margin-bottom: 0px
+}
+
 .strength-bars {
   display: flex;
   justify-content: space-between;

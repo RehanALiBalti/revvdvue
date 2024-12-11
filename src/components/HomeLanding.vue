@@ -276,7 +276,7 @@
                 <span class="form-span"> {{ $t('Share your story ') }}</span>
                 {{ $t('Now') }} !
               </h2>
-              <div class="row ">
+              <div class="row px-2">
                 <div class="col-md-3 p-0 p-md-1">
 
                   <label for="storyType" class="form-label">Story Type</label>
@@ -711,7 +711,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                     </ul>
                   </div>
                 </div>
-                <div class="col-md-12 p-0 pmd-1" id="second"
+                <div class="col-md-12 p-0 p-md-1" id="second"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <div class="row z-0">
 
@@ -3508,7 +3508,7 @@ textarea.form-control {
 .form-content-home1 {
   height: 550px;
   overflow-x: hidden;
-  padding-inline: 1rem;
+  padding-inline: 0rem;
   overflow-y: auto
 }
 
