@@ -145,7 +145,7 @@
                           <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                         </span>
                         <router-link to="/stories" class="signin-btnli viewStoryBtn">
-                          {{ $t('view all stories') }}
+                          {{ $t('View all stories') }}
                         </router-link>
                         <span class="border-bottom-btn border-left-btn position-absolute">
                           <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
@@ -608,7 +608,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                             <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                           </span>
                           <button type="submit" class="signin-btnli submitNow">
-                            submit
+                            Submit
                           </button>
                           <span class="border-bottom-btn border-left-btn position-absolute">
                             <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
@@ -810,7 +810,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                             <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                           </span>
                           <button type="submit" class="signin-btnli submitNow">
-                            submit
+                            Submit
                           </button>
                           <span class="border-bottom-btn border-left-btn position-absolute">
                             <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />

@@ -1418,9 +1418,10 @@ a.footer-main-addresss:hover {
 .signin-btnli.Start.Engine.load-more-btn.proceed-btn {
 	max-width: 200px;
 	height: 45px;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: 400;
 }
+
 
 .list-item-btn.position-relative.load-more-div.proceed-div {
 	max-width: 133px;
