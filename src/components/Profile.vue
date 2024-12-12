@@ -401,7 +401,7 @@
 								<label for="socialMedia" class="form-label colorOr">
 									My <span>Garage</span>
 								</label>
-								<div class="col-md-12">
+								<div class="col-md-12 upper">
 									<div class="row">
 										<div v-for="(dropdown, index) in dropdowns" :key="dropdown.carId"
 											:class="['position-relative col-md-2', `z-${5 - index}`]">
@@ -3028,12 +3028,12 @@ left: 0; */
 	margin-bottom: 0px
 }
 
-input,
+.upper input,
 select {
 	text-transform: uppercase;
 }
 
-input,
+.upper input,
 select::placeholder {
 	text-transform: uppercase;
 }

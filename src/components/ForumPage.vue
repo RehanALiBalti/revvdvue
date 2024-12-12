@@ -13,8 +13,7 @@
                 <div class="col-md-12 mt-1">
                     <div class="row align-items-center">
                         <div class="col-md-2 ">
-                            <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0"
-                                v-if="isLogin == true">
+                            <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0">
                                 <span class="border-bottom-btn border-top-btn position-absolute">
                                     <img src="@/assets/images/Group12.png" class="img-border position-absolute"
                                         alt="" />
