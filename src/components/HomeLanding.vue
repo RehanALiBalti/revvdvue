@@ -163,7 +163,7 @@
                   <div class="col-md-7">
                     <div class="car-content-desc">
                       <div class="d-flex justify-content-between align-items-center">
-                        <h6 class="car-content-title coloror">{{ bannerStories[0]?.story_name }}</h6>
+                        <h6 class="car-content-title coloror f26">{{ bannerStories[0]?.story_name }}</h6>
                         <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important"
                           v-if="isMobile == true">
                           <span class="border-bottom-btn border-top-btn position-absolute">
@@ -189,7 +189,7 @@
                           </span>
                         </div>
                       </div>
-                      <small class="car-content-link "><img :src="instaIcon" width="55px" />Revvdout@{{
+                      <small class="car-content-link f14"><img :src="instaIcon" width="55px" />Revvdout@{{
                         bannerStories[0]?.user_name
                       }}</small>
                       <p class="car-content-para my-1 p-0 fw-bolder ">Tell us your car story togather
@@ -3873,5 +3873,13 @@ textarea.form-control {
   .read-more-text {
     font-size: 10px !important;
   }
+}
+
+.f26 {
+  font-size: 26px !important;
+}
+
+.f14 {
+  font-size: 14px
 }
 </style>

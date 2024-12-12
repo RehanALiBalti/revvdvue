@@ -23,12 +23,14 @@
                 <div class="row mb-1 w-100 justify-content-center">
 
                   <div class="col-md-10 align-self-end d-flex ">
-                    <h1 class="card-title-h2 community-title fh2 m-0" v-if="forumData">
-                      {{ forumData.make }}
-                      {{ decode(forumData.make) }}
-                      {{ decode(forumData.model) }}
-                      {{ decode(forumData.production_years) }}
-                      {{ decode(forumData.specifications) }}
+                    <h1 class="card-title-h2 community-title fh2 m-0"
+                      v-if="forumData && (forumData.make || forumData.model || forumData.production_years || forumData.specifications)">
+                      <span v-if="forumData.make != 'undefined'">{{ decode(forumData.make) }}</span>
+                      <span v-if="forumData.model != 'undefined'"> {{ decode(forumData.model) }}</span>
+                      <span v-if="forumData.production_years != 'undefined'"> {{ decode(forumData.production_years)
+                        }}</span>
+                      <span v-if="forumData.specifications != 'undefined'"> {{ decode(forumData.specifications)
+                        }}</span>
                     </h1>
                     <!-- <h1 class="card-title-h2 community-title fh2" v-if="forumData">
 

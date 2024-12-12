@@ -399,7 +399,7 @@
 							</div>
 							<div class="row justify-content-center">
 								<label for="socialMedia" class="form-label colorOr">
-									<span>My</span> Garage
+									My <span>Garage</span>
 								</label>
 								<div class="col-md-12">
 									<div class="row">
@@ -3026,6 +3026,16 @@ left: 0; */
 
 .form-label {
 	margin-bottom: 0px
+}
+
+input,
+select {
+	text-transform: uppercase;
+}
+
+input,
+select::placeholder {
+	text-transform: uppercase;
 }
 
 @media(max-width:768px) {

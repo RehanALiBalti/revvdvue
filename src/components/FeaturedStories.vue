@@ -191,12 +191,12 @@
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
                                                 <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px">
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px">
                                             <span v-if="car.advice">{{ car.advice }}</span>
                                             <span v-else>{{ car.story_history }}</span>
                                             <span class="view-more-a-tag" style="cursor: pointer" @click="openModalFe">
@@ -269,7 +269,7 @@
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <a :href="car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                style="font-size: 12px" target="_blank"
+                                                                style="font-size: 14px" target="_blank"
                                                                 rel="noopener noreferrer">
                                                                 {{ car.social_media }}
                                                             </a>
@@ -278,7 +278,7 @@
                                                             style="font-size: 14px; text-align: start" v-if="car.story">
                                                             Tell us your car story together
                                                         </p>
-                                                        <p class="text-white" style="font-size: 12px; text-align: start"
+                                                        <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.story">
                                                             {{ car.story }}
                                                         </p>
@@ -288,7 +288,7 @@
                                                             If you could give advice to someone just starting their
                                                             journey to modify their car, what would it be and why?
                                                         </p>
-                                                        <p class="text-white" style="font-size: 12px; text-align: start"
+                                                        <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.advice">
                                                             {{ car.advice }}
                                                         </p>
@@ -299,7 +299,7 @@
                                                             Can you share with us any memorable stories or adventures
                                                             you’ve had with your car that stands out the most?
                                                         </p>
-                                                        <p class="text-white" style="font-size: 12px; text-align: start"
+                                                        <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
                                                             {{ car.memorable }}
                                                         </p>
@@ -309,7 +309,7 @@
                                                             Can you tell us about any modifications you made to your car
                                                             or any specific features ?
                                                         </p>
-                                                        <p class="text-white" style="font-size: 12px; text-align: start"
+                                                        <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
                                                             {{ car.modifications }}
                                                         </p>
@@ -319,7 +319,7 @@
                                                             Can you tell us about any modifications you made to your car
                                                             or any specific features ?
                                                         </p>
-                                                        <p class="text-white" style="font-size: 12px; text-align: start"
+                                                        <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
                                                             {{ car.adventure_story }}
                                                         </p>
@@ -578,12 +578,12 @@
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
                                                 <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
                                             @click="openModal(index)">
                                             <span>{{ car.story }}</span>
 
@@ -657,7 +657,7 @@
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 12px">
+                                                                :to="car.social_media" style="font-size: 14px">
                                                                 {{ car.social_media }}
                                                             </router-link>
                                                         </div>
@@ -665,7 +665,7 @@
                                                             style="font-size: 14px; text-align: start">Tell us your car
                                                             story together</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.story }}
                                                         </p>
                                                         <p class="text-orange"
@@ -673,7 +673,7 @@
                                                             advice to someone just starting their journey to modify
                                                             their car, what would it be and why?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
                                                         <p class="text-orange"
@@ -681,7 +681,7 @@
                                                             with us any memorable stories or adventures you’ve had with
                                                             your car that stands out the most?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.memorable }}
                                                         </p>
                                                         <p class="text-orange"
@@ -689,7 +689,7 @@
                                                             about any modifications you made to your car or any specific
                                                             features ?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.modifications }}
                                                         </p>
 
@@ -1556,13 +1556,13 @@
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
                                                 <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
 
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -1637,7 +1637,7 @@
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 12px">
+                                                                :to="car.social_media" style="font-size: 14px">
                                                                 {{ car.social_media }}
                                                             </router-link>
                                                         </div>
@@ -1648,14 +1648,14 @@
                                                             any memorable stories or adventures you’ve had that stands
                                                             out the most?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us about
                                                             your Garage</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
 
@@ -2239,12 +2239,12 @@
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
                                                 <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -2321,7 +2321,7 @@
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 12px">
+                                                                :to="car.social_media" style="font-size: 14px">
                                                                 {{ car.social_media }}
                                                             </router-link>
                                                         </div>
@@ -2331,14 +2331,14 @@
                                                             any memorable stories or adventures you’ve had that stands
                                                             out the most?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us about
                                                             your shop</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                     </div>
@@ -2921,12 +2921,12 @@
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
                                                 <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -3002,7 +3002,7 @@
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 12px">
+                                                                :to="car.social_media" style="font-size: 14px">
                                                                 {{ car.social_media }}
                                                             </router-link>
                                                         </div>
@@ -3012,14 +3012,14 @@
                                                             any memorable stories or adventures you’ve had that stands
                                                             out the most?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us about
                                                             your club</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
 
@@ -3602,12 +3602,12 @@
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
                                                 <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -3683,7 +3683,7 @@
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 12px">
+                                                                :to="car.social_media" style="font-size: 14px">
                                                                 {{ car.social_media }}
                                                             </router-link>
                                                         </div>
@@ -3693,14 +3693,14 @@
                                                             any memorable stories or adventures you’ve had that stands
                                                             out the most?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us about
                                                             your Garage</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                     </div>
@@ -4283,12 +4283,12 @@
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
                                                 <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                     {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span>{{ car.story_history }}</span>
 
@@ -4363,7 +4363,7 @@
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 12px">
+                                                                :to="car.social_media" style="font-size: 14px">
                                                                 {{ car.social_media }}
                                                             </router-link>
                                                         </div>
@@ -4373,14 +4373,14 @@
                                                             any memorable stories or adventures you’ve had that stands
                                                             out the most?</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us about
                                                             your Garage</p>
                                                         <p class="text-white"
-                                                            style="font-size: 12px; text-align: start">
+                                                            style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                     </div>

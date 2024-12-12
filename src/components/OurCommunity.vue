@@ -1066,6 +1066,11 @@ export default {
   max-width: 100% !important;
   border: 0px transparent !important;
   height: 30px;
+  color: #fff !important;
+}
+
+.customSelect input::placeholder {
+  color: #fff !important;
 }
 
 .selected-option {

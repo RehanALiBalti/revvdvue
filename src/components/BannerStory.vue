@@ -107,12 +107,12 @@
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <img :src="instaIcon" class="instaIcon" />
                                             <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                style="font-size: 12px" target="_blank" rel="noopener noreferrer">
+                                                style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                 {{ car.social_media }}
                                             </a>
                                         </li>
                                     </ul>
-                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 12px">
+                                    <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px">
                                         <span v-if="car.advice">{{ car.advice }}</span>
                                         <span v-else>{{ car.story_history }}</span>
                                         <span class="view-more-a-tag" style="cursor: pointer" @click="openModal(index)">
@@ -165,13 +165,12 @@
                                                             <img :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <div class="d-flex justify-content-end" >
+                                                    <div class="d-flex justify-content-end">
                                                         <!-- <button class="btn btn-danger" @click="toggleOverlayOpacity">
                                                             <span class=""><i class="fa-solid fa-xmark"></i></span>
                                                         </button> -->
                                                     </div>
-                                                    <div class="overlay mt-5"
-                                                        :class="{ '': isOverlayTransparent }"
+                                                    <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
@@ -186,7 +185,7 @@
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <a :href="car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                style="font-size: 12px" target="_blank"
+                                                                style="font-size: 14px" target="_blank"
                                                                 rel="noopener noreferrer">
                                                                 {{ car.social_media }}
                                                             </a>
@@ -1802,12 +1801,14 @@ export default {
 .modal {
     z-index: 1050 !important;
 }
-  .modal-content{
+
+.modal-content {
     height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
 
-  }
+}
+
 @media (min-width: 576px) {
     .modal-dialog {
         max-width: auto;

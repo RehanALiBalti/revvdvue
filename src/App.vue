@@ -9,7 +9,7 @@
     <router-view />
 
   </div>
-  <FooterSect v-if="isFooter == true" />
+  <FooterSect v-if="IsFooter == true" />
   <FooterSect2 v-if="showFooterSect2" v-show="showF" />
 </template>
 
@@ -50,12 +50,14 @@ export default {
   setup() {
     const { state: IsFooter, setShowFooter } = useShowFooter();
     const changeFooter = (value) => {
+
       setShowFooter(value);
     };
     const { t } = useI18n();
 
     return {
       t,
+
       IsFooter,
       changeFooter
     };
@@ -65,6 +67,7 @@ export default {
     this.pNum = this.isMobile() ? 100 : 120;
     if (this.$route.path == "/stories" || this.$route.path == "/banner") {
       this.changeFooter(false)
+
     }
 
     // Add resize event listener to update pNum dynamically on screen resize
@@ -75,10 +78,12 @@ export default {
       if (newRoute.path === '/stories' || newRoute.path === '/banner') {
 
         this.changeFooter(false);
+        this.IsFooter = false
       } else {
 
         this.changeFooter(true);
-        this.isFooter = true
+        this.IsFooter = true
+
       }
     },
   }

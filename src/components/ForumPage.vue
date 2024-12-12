@@ -48,14 +48,18 @@
                         <div class="col-md-4">
                             <nav aria-label="breadcrumb" class="nav-breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item fh2">
+                                    <li v-if="make" class="breadcrumb-item fh2">
                                         {{ decode(make) }}
                                     </li>
-                                    <li class="breadcrumb-item fh2">
+                                    <li v-if="modal" class="breadcrumb-item fh2">
                                         {{ decode(modal) }}
                                     </li>
-                                    <li class="breadcrumb-item fh2">{{ decode(production_years) }}</li>
-                                    <li class="breadcrumb-item fh2">{{ decode(specifications) }}</li>
+                                    <li v-if="productionYears" class="breadcrumb-item fh2">
+                                        {{ decode(productionYears) }}
+                                    </li>
+                                    <li v-if="specifications" class="breadcrumb-item fh2">
+                                        {{ decode(specifications) }}
+                                    </li>
                                 </ol>
                             </nav>
                         </div>
