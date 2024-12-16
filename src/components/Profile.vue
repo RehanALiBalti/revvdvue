@@ -3028,6 +3028,10 @@ left: 0; */
 	margin-bottom: 0px
 }
 
+.fomr-select {
+	text-transform: capitalize;
+}
+
 .upper input,
 select {
 	text-transform: uppercase;
