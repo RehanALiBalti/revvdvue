@@ -855,18 +855,18 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
                 </div>
                 <div class="col-md-12 my-1">
-                  <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap">
+                  <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap mx-3">
 
                     <div v-for="(file, index) in croppedImages" :key="index"
                       class="upImageArea d-flex justify-content-between position-relative align-items-center">
-                      <span>{{ file }}</span>
+                      <span> image-{{ index + 1 }}</span>
                       <button type="button" class="btn btnRemv" @click="removeImage(index)">
                         <i class="fa-solid fa-xmark"></i>
                       </button>
                     </div>
                   </div>
                   <!-- workiing -->
-                  <div class="draggable-area" v-if="croppedImages.length > 0">
+                  <div class="draggable-area mx-4" v-if="croppedImages.length > 0">
                     <p class="Note"><strong>Note:</strong>Please place the image at the <strong>second(2) </strong>
                       index to
                       set it as the main image for your story.</p>
@@ -2978,7 +2978,7 @@ textarea.form-control {
 
 
 .topN36 {
-  top: -38px;
+  top: -40px;
   cursor: pointer;
   height: 36px !important;
 }
