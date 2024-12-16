@@ -298,8 +298,8 @@
                   <label for="country" class="form-label">Country</label>
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter Country"
 v-model="formData.country"> -->
-                  <select id="country" class="form-select form-control form-input filter-select"
-                    v-model="formData.country" @change="getcities(formData.country)">
+                  <select id="country" class="form-select form-control form-input " v-model="formData.country"
+                    @change="getcities(formData.country)">
                     <option selected value="">Country</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
@@ -521,7 +521,7 @@ v-model="formData.country"> -->
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
 
                   <!-- City Select -->
-                  <select id="city" class="form-select form-control form-input filter-select" v-model="formData.city">
+                  <select id="city" class="form-select form-control form-input " v-model="formData.city">
                     <option selected value="">City</option>
                     <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                   </select>
