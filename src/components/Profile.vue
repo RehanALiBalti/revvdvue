@@ -3028,7 +3028,7 @@ left: 0; */
 	margin-bottom: 0px
 }
 
-.fomr-select {
+.form-select {
 	text-transform: capitalize;
 }
 

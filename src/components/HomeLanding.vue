@@ -162,7 +162,7 @@
                   </div>
                   <div class="col-md-7">
                     <div class="car-content-desc">
-                      <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-flex justify-content-between align-items-center flex-wrap mb-1">
                         <h6 class="car-content-title coloror f26">{{ bannerStories[0]?.story_name }}</h6>
                         <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important"
                           v-if="isMobile == true">
@@ -931,7 +931,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
       <div class="section sectionhvh" ref="section" data-section-id="aboutUs">
 
         <div class="mianab">
-          <div class="banner-content  boxAbout p-2 ">
+          <div class="banner-content  boxAbout p-1 ">
             <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
             <h1 class="form-title mt-2 mb-0 p-0">About <span class="form-span">us</span></h1>
 
@@ -948,7 +948,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
               Together, we’re building a global hub that transcends geographical boundaries by bringing like-minded
               enthusiasts together and enjoy the thrill of everything on wheels.</p> -->
-            <p class="form-label text-center read-more-text p-0" :class="{ expanded: isExpanded || !isMobile }"
+            <p class="form-label text-center read-more-text p-0 m-0" :class="{ expanded: isExpanded || !isMobile }"
               ref="textElement">
               We are a team of motor heads with fuel in our veins and nitrous igniting our passion. Our goal is to build
               the
@@ -967,7 +967,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
               {{ isExpanded ? "Read Less" : "Read More" }}
             </button> -->
             <h1 class="form-title p-0 mb-0 mb-md-1">Contact <span class="form-span">us</span></h1>
-            <p class="form-label text-center p-0">info@revvdout.com</p>
+            <p class="form-label text-center p-0 mb-0">info@revvdout.com</p>
           </div>
           <!-- Custom Navigation -->
           <nav class="custom-navigation c-about d-none d-md-none w-100">
