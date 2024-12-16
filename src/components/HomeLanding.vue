@@ -933,7 +933,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         <div class="mianab">
           <div class="banner-content  boxAbout p-1 ">
             <!-- <h1 class="banner-title">{{ $t('Aboutus') }}</h1> -->
-            <h1 class="form-title mt-2 mb-0 p-0">About <span class="form-span">us</span></h1>
+            <h1 class="form-title mt-4 mb-0 p-0 ">About <span class="form-span">us</span></h1>
 
             <!-- <p class="form-label text-center ">We are a team of motor heads with fuel in our veins and nitrous igniting
               our
