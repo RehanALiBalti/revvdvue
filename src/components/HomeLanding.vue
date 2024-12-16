@@ -194,7 +194,7 @@
                       }}</small>
                       <p class="car-content-para my-1 p-0 fw-bolder ">Tell us your car story togather
                       </p>
-                      <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob" v-if="bannerStories[0]?.story != ''">
+                      <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob pt-0 mt-0" v-if="bannerStories[0]?.story != ''">
                         {{ bannerStories[0]?.story }}
                       </p>
 
