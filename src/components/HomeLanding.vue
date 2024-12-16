@@ -194,7 +194,8 @@
                       }}</small>
                       <p class="car-content-para my-1 p-0 fw-bolder ">Tell us your car story togather
                       </p>
-                      <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob pt-0 mt-0" v-if="bannerStories[0]?.story != ''">
+                      <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob pt-0 mt-0"
+                        v-if="bannerStories[0]?.story != ''">
                         {{ bannerStories[0]?.story }}
                       </p>
 
@@ -2005,6 +2006,8 @@ export default {
         this.processNextImage(); // Process the next image in the queue
       }
     },
+
+
     uploadWithoutCrop() {
       const file = this.fileEvent.target.files[0]; // Access the selected file
       if (file) {
@@ -2028,6 +2031,8 @@ export default {
         console.error("No file selected for uploading without cropping.");
       }
     }
+
+
     ,
 
     hideModalStoryFail() {
@@ -2290,14 +2295,34 @@ export default {
       return new File([fileBlob], `image-${index}.png`, { type: fileBlob.type }); // Create File object
     }
     ,
+    // async convertAndAppendImages() {
+    //   const storyImages = await Promise.all(
+    //     this.croppedImages.map((blob, index) => this.convertBlobToFile(blob, index))
+    //   );
+
+    //   // Now replace the original array with File objects
+    //   this.formData.storyImages = storyImages;
+    //   console.log("sotry images", this.formData.storyImages)
+    // },
     async convertAndAppendImages() {
-      const storyImages = await Promise.all(
-        this.croppedImages.map((blob, index) => this.convertBlobToFile(blob, index))
+      const storyImagesWithUrls = await Promise.all(
+        this.croppedImages.map(async (blob, index) => {
+          const response = await fetch(blob.url); // Fetch the Blob URL
+          const fileBlob = await response.blob(); // Get the Blob
+          const file = new File([fileBlob], `image-${index}.png`, { type: fileBlob.type });
+
+          // Construct the URL
+          const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file.name}`;
+
+          return { file, url: fullImagePath };
+        })
       );
 
-      // Now replace the original array with File objects
-      this.formData.storyImages = storyImages;
-    },
+      // Replace the original array with objects containing File and URL
+      this.formData.storyImages = storyImagesWithUrls;
+      console.log("Story images with URLs:", this.formData.storyImages);
+    }
+    ,
     async SubmitStory() {
       console.log("submit story", this.formData);
 
@@ -2345,9 +2370,16 @@ export default {
 
 
       // Append images (if any)
-      this.formData.storyImages.forEach((file) => {
-        data.append('storyImages', file);
-      });
+      // this.formData.storyImages.forEach((file) => {
+      //   data.append('storyImages', file);
+      // });
+      // this.formData.storyImages.forEach((file) => {
+      //   const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file}`;
+      //   data.append('storyImages', fullImagePath); // Append the full URL
+      // });
+
+
+
 
 
 
