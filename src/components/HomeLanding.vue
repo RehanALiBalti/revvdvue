@@ -3937,5 +3937,8 @@ select::placeholder {
   .f26 {
     font-size: 14px !important;
   }
+  .form-control{
+    width:104% !important;
+  }
 }
 </style>
