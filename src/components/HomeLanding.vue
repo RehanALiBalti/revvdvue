@@ -3873,7 +3873,7 @@ select::placeholder {
 
 .form-label {
   margin-bottom: 0.2rem !important;
-  padding-top: 0.4rem !important;
+  padding-top: 0.2rem !important;
 }
 
 @media(max-width:768px) {
