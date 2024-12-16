@@ -796,7 +796,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
                         <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
                           accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                        <div class="list-item-btn position-relative submit-btn-div m-0 topN36 mt-5">
+                        <div class="list-item-btn position-relative submit-btn-div m-0 topN37 mt-5">
                           <span class="border-bottom-btn border-top-btn position-absolute">
                             <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                           </span>
@@ -2983,6 +2983,26 @@ textarea.form-control {
   height: 36px !important;
 }
 
+.topN37 {
+  top: -42px;
+  cursor: pointer;
+  height: 36px !important;
+}
+
+.topN37 .signup-btnli {
+  height: 36px !important;
+}
+
+.topN37 .signin-btnli {
+  height: 36px !important;
+}
+
+.topN37>label {
+
+  cursor: pointer
+}
+
+
 .topN36 .signup-btnli {
   height: 36px !important;
 }
@@ -3937,8 +3957,9 @@ select::placeholder {
   .f26 {
     font-size: 14px !important;
   }
-  .form-control{
+
+  /* .form-control{
     width:104% !important;
-  }
+  } */
 }
 </style>
