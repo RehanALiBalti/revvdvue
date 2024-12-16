@@ -69,7 +69,7 @@
                     <div class="col-md-12 px-4">
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                            <img :src="
                                 image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                         </div>
@@ -85,7 +85,7 @@
                                             <swiper-slide class="swiper-no-shadow"
                                                 v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                 <div class="d-block">
-                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
+                                                    <img :src="
                                                         image
                                                         " class="slider-img myCarListingCard-img" alt="car" />
                                                 </div>
@@ -144,8 +144,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                                                        image
+                                                                    <img :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -902,8 +901,8 @@ export default {
             this.viewerImages = carImages
             console.log("in open viewer", image);
             this.isOverlayTransparent = true;
-            this.currentImage = this.getImageUrl(image); // Set current image URL
-
+            // this.currentImage = this.getImageUrl(image); // Set current image URL
+            this.currentImage = image; // Set current image URL
             const viewerElement = this.$refs.viewerContainer; // Reference the container
             if (viewerElement) {
                 // Destroy any previous instance if it exists to prevent duplication

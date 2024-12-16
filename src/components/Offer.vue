@@ -53,8 +53,8 @@
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
-					<div class="card z-0">
-						<div class="card-body d-flex flex-column justify-content-center align-items-center">
+					<div class="card z-0 loadCard">
+						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('buy') }}</h5>
 							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
@@ -100,8 +100,8 @@
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
-					<div class="card">
-						<div class="card-body d-flex flex-column justify-content-center align-items-center">
+					<div class="card loadCard">
+						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('sell') }}</h5>
 							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
@@ -141,8 +141,8 @@
 					</div>
 				</div>
 				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4">
-					<div class="card">
-						<div class="card-body d-flex flex-column justify-content-center align-items-center">
+					<div class="card loadCard">
+						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('community') }}</h5>
 							<p class="card-text ctext">
 								Ask, share and connect with fellow enthusiasts.
@@ -188,8 +188,8 @@
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
-					<div class="card">
-						<div class="card-body d-flex flex-column justify-content-center align-items-center">
+					<div class="card loadCard">
+						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('carShop') }}</h5>
 							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
@@ -233,8 +233,8 @@
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
-					<div class="card">
-						<div class="card-body d-flex flex-column justify-content-center align-items-center">
+					<div class="card loadCard">
+						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('marketPlace') }}</h5>
 							<p class="card-text ctext">
 								Lorem Ipsum is simply dummy text of the printing and
@@ -1331,5 +1331,9 @@ export default {
 		/* object-fit: contain; */
 		height: 102%;
 	}
+}
+
+.loadCard .card-body {
+	min-height: 257px
 }
 </style>

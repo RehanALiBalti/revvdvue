@@ -124,8 +124,7 @@
                         <swiper-slide v-for="(image, idx) in bannerStories[0].images" :key="idx"
                           class="swiper-no-shadow modalswippersh">
                           <div class="d-block">
-                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image"
-                              class="slider-img myCarListingCard-img modalswipperImage"
+                            <img :src="image" class="slider-img myCarListingCard-img modalswipperImage"
                               :alt="`Car image #${idx + 1}`" />
                           </div>
                         </swiper-slide>
@@ -2295,34 +2294,35 @@ export default {
       return new File([fileBlob], `image-${index}.png`, { type: fileBlob.type }); // Create File object
     }
     ,
-    // async convertAndAppendImages() {
-    //   const storyImages = await Promise.all(
-    //     this.croppedImages.map((blob, index) => this.convertBlobToFile(blob, index))
-    //   );
-
-    //   // Now replace the original array with File objects
-    //   this.formData.storyImages = storyImages;
-    //   console.log("sotry images", this.formData.storyImages)
-    // },
     async convertAndAppendImages() {
-      const storyImagesWithUrls = await Promise.all(
-        this.croppedImages.map(async (blob, index) => {
-          const response = await fetch(blob.url); // Fetch the Blob URL
-          const fileBlob = await response.blob(); // Get the Blob
-          const file = new File([fileBlob], `image-${index}.png`, { type: fileBlob.type });
-
-          // Construct the URL
-          const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file.name}`;
-
-          return { file, url: fullImagePath };
-        })
+      const storyImages = await Promise.all(
+        this.croppedImages.map((blob, index) => this.convertBlobToFile(blob, index))
       );
 
-      // Replace the original array with objects containing File and URL
-      this.formData.storyImages = storyImagesWithUrls;
-      console.log("Story images with URLs:", this.formData.storyImages);
-    }
-    ,
+      // Now replace the original array with File objects
+      this.formData.storyImages = storyImages;
+      console.log("sotry images", this.formData.storyImages)
+    },
+    // async convertAndAppendImages() {
+    //   const storyImagesWithUrls = await Promise.all(
+    //     this.croppedImages.map(async (blob, index) => {
+    //       const response = await fetch(blob.url); // Fetch the Blob URL
+    //       const fileBlob = await response.blob(); // Get the Blob
+    //       const file = new File([fileBlob], `image-${index}.png`, { type: fileBlob.type });
+
+    //       // Construct the URL
+    //       const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file.name}`;
+
+    //       // return { file, url: fullImagePath };
+    //       return { url: fullImagePath };
+    //     })
+    //   );
+
+    //   // Replace the original array with objects containing File and URL
+    //   this.formData.storyImages = storyImagesWithUrls;
+    //   console.log("Story images with URLs:", this.formData.storyImages);
+    // },
+
     async SubmitStory() {
       console.log("submit story", this.formData);
 
@@ -2370,20 +2370,13 @@ export default {
 
 
       // Append images (if any)
-      // this.formData.storyImages.forEach((file) => {
-      //   data.append('storyImages', file);
-      // });
+      this.formData.storyImages.forEach((file) => {
+        data.append('storyImages', file);
+      });
       // this.formData.storyImages.forEach((file) => {
       //   const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file}`;
       //   data.append('storyImages', fullImagePath); // Append the full URL
       // });
-
-
-
-
-
-
-
 
       if (this.isLogin == 'true' || this.isLogin == true) {
 
@@ -3104,6 +3097,20 @@ textarea.form-control {
   border: 0px transparent !important;
 }
 
+.customSelect input::placeholder {
+  font-size: 12px !important;
+}
+
+input,
+select {
+  font-size: 12px !important;
+}
+
+input,
+select::placeholder {
+  font-size: 12px !important;
+}
+
 .selected-option {
   width: 100%;
   padding: 5px;
@@ -3676,10 +3683,13 @@ textarea.form-control {
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border: 1px solid rgba(36, 50, 72, 0.19);
+  line-height: 15px !important;
 }
 
 .boxAbout p {
   color: #d8d8d8 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 
 }
 
@@ -3861,6 +3871,8 @@ textarea.form-control {
 }
 
 @media(max-width:768px) {
+
+
   .modalswipper {
     height: 130px !important;
   }
@@ -3913,5 +3925,11 @@ textarea.form-control {
 
 .f14 {
   font-size: 14px
+}
+
+@media(max-width:768px) {
+  .f26 {
+    font-size: 14px !important;
+  }
 }
 </style>

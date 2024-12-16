@@ -3039,7 +3039,11 @@ select {
 
 .upper input,
 select::placeholder {
-	text-transform: uppercase;
+	text-transform: uppercase !important;
+}
+
+.upper .form-select {
+	text-transform: uppercase !important;
 }
 
 @media(max-width:768px) {

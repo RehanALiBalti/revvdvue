@@ -5,19 +5,19 @@
         <div class="form-content-home1">
           <form id="subscribe-form position-relative" @submit.prevent="validateForm">
             <h2 class="form-title">
-              Create <span class="form-span"> Forum </span>
+              Create <span class="form-span"> Thread </span>
             </h2>
             <div v-if="loading" class="d-flex justify-content-center loader">
               <div class="box"></div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label for="title" class="form-label">Forum Title</label>
+                <label for="title" class="form-label">Thread Title</label>
                 <input v-model="formData.title" id="title" type="text" name="title" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
               </div>
               <div class="col-md-12">
-                <label for="description" class="form-label">Forum Description</label>
+                <label for="description" class="form-label">Thread Description</label>
                 <textarea v-model="formData.description" id="description" class="form-control form-input tarea"
                   name="description" :placeholder="$t('Enter here')" rows="4" cols="20"></textarea>
               </div>
