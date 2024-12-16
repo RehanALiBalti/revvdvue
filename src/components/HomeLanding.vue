@@ -3683,7 +3683,7 @@ select::placeholder {
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border: 1px solid rgba(36, 50, 72, 0.19);
-  line-height: 15px !important;
+
 }
 
 .boxAbout p {
@@ -3691,6 +3691,12 @@ select::placeholder {
   margin: 0 !important;
   padding: 0 !important;
 
+}
+
+@media(max-width:768px) {
+  .boxAbout {
+    line-height: 15px !important;
+  }
 }
 
 /* 
