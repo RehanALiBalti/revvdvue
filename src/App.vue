@@ -1,16 +1,27 @@
 <template>
   <div id="particlees">
+    <!-- <vue-particles color="#dedede" particleOpacity="1" :particlesNumber="pNum" shapeType="circle" particleSize="4"
+      linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
+      clickEffect="true" clickMode="push" v-if="$route.path !== '/termofservice'" /> -->
     <vue-particles color="#dedede" particleOpacity="1" :particlesNumber="pNum" shapeType="circle" particleSize="4"
       linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
-      clickEffect="true" clickMode="push" />
+      clickEffect="true" clickMode="push" v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy'" />
+
   </div>
   <div class="min-h-80vh">
-    <HeaderItem v-if="$route.path !== '/'" />
+    <!-- <HeaderItem v-if="$route.path !== '/'"  /> -->
+    <!-- <HeaderItem v-if="$route.path !== '/' && $route.path !== '/termofservice'" /> -->
+    <HeaderItem v-if="$route.path !== '/' && $route.path !== '/termofservice' && $route.path !== '/privacypolicy'" />
+
+
     <router-view />
 
   </div>
-  <FooterSect v-if="IsFooter == true" />
-  <FooterSect2 v-if="showFooterSect2" v-show="showF" />
+  <div v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy'">
+    <FooterSect v-if="IsFooter == true" />
+    <FooterSect2 v-if="showFooterSect2" v-show="showF" />
+  </div>
+
 </template>
 
 <script>
@@ -118,6 +129,7 @@ export default {
 
   width: 100%;
   /* height: 100vh; */
+
 
 }
 </style>

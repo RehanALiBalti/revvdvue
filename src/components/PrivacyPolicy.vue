@@ -2,8 +2,8 @@
     <div class="container">
         <div name="termly-embed" data-id="5a579c58-9c7c-40c5-8345-6731f59458c9"></div>
     </div>
-
 </template>
+
 <script type="text/javascript">
 (function (d, s, id) {
     var js,
@@ -15,6 +15,7 @@
     tjs.parentNode.insertBefore(js, tjs);
 })(document, "script", "termly-jssdk");
 </script>
+
 <style scoped>
 /* Style the container of the privacy policy */
 div[name="termly-embed"] {
@@ -23,9 +24,9 @@ div[name="termly-embed"] {
     color: #333;
     line-height: 1.5;
     padding: 20px;
-    border: 1px solid #ccc;
+
     border-radius: 8px;
-    background-color: #f9f9f9;
+
     /* max-width: 800px; */
     position: relative;
     z-index: 9999;

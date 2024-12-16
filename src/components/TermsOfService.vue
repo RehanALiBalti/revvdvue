@@ -22,12 +22,12 @@
 div[name="termly-embed"] {
     font-family: Arial, sans-serif;
     font-size: 16px;
-    color: #333;
+    color: #fff !important;
     line-height: 1.5;
     padding: 20px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 8px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
     /* max-width: 800px; */
     position: relative;
     z-index: 9999;
@@ -39,7 +39,7 @@ div[name="termly-embed"] {
 div[name="termly-embed"] h1,
 div[name="termly-embed"] h2,
 div[name="termly-embed"] h3 {
-    color: #0056b3;
+    color: #fff !important;
 }
 
 div[name="termly-embed"] a {
@@ -49,5 +49,10 @@ div[name="termly-embed"] a {
 
 div[name="termly-embed"] a:hover {
     text-decoration: underline;
+}
+
+.particles-js-canvas-el {
+    display: none !important;
+
 }
 </style>
