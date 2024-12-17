@@ -1464,7 +1464,7 @@ export default {
         normalScrollElements: '.form-content-home1',
         // Options for scrolling behavior, navigation, and customization
         navigation: true, // Show navigation dots
-        scrollingSpeed: 700, // Adjust scroll speed
+        scrollingSpeed: 850, // Adjust scroll speed
         autoScrolling: true,
         fitToSection: true,
         anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
@@ -1474,7 +1474,7 @@ export default {
           sections[destination.index].classList.add('slide-in-backward-3d');
           setTimeout(() => {
             sections[origin.index].classList.remove('slide-out-forward-3d');
-          }, 700); // Match the animation duration
+          }, 850); // Match the animation duration
         },
       },
       fileEvent: null,
@@ -2911,7 +2911,8 @@ export default {
 
 
 textarea.form-control {
-  min-height: calc(1.5em +(1.75rem + 2px)) !important;
+  /* min-height: calc(1.5em +(1.75rem + 2px)) !important; */
+  min-height: 35px !important
 }
 
 .modalaa {
