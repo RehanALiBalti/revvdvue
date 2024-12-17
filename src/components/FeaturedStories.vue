@@ -139,8 +139,8 @@
                             class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                             <img :src="getImage(tab, index, 'img3')" class="img-border position-absolute" alt="" />
                         </span>
-                        <span class="signin-btnli text-center" 
-                            v-if="tab.name == 'Car Modification/Tunning Shop'"> Car Modification/Tunning <br /> Shop
+                        <span class="signin-btnli text-center" v-if="tab.name == 'Car Modification/Tunning Shop'"> Car
+                            Modification/Tunning <br /> Shop
 
                         </span>
                         <span class="signin-btnli" v-else>
@@ -228,8 +228,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="
-                                                                        image
+                                                                    <img :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -544,8 +543,7 @@
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                    image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                             </div>
                             <div v-for="(car, index) in this.filteredStories.CarEnthusiast" :key="index"
@@ -617,8 +615,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="
-                                                                        image
+                                                                    <img :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -724,7 +721,7 @@
                                                                 <router-link class="d-block"
                                                                     :to="`/carListing${index + 1}`">
                                                                     <h1 class="text-white">{{ image }}</h1>
-                                                                    <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + image
+                                                                    <img :src=" image
                                                                         " class="slider-img myCarListingCard-img"
                                                                         alt="car" />
                                                                 </router-link>
@@ -815,7 +812,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1040,7 +1037,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1069,7 +1066,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1491,7 +1488,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1521,8 +1518,7 @@
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                    image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarGarage" :key="index"
@@ -1595,8 +1591,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="
-                                                                        image
+                                                                    <img :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -1717,7 +1712,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1939,7 +1934,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -1959,7 +1954,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2181,7 +2176,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2202,8 +2197,7 @@
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                    image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories
@@ -2277,8 +2271,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="
-                                                                        image
+                                                                    <img :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -2399,7 +2392,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2621,7 +2614,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2641,7 +2634,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2863,7 +2856,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2884,8 +2877,7 @@
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                    image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories.CarClub" :key="index"
@@ -2958,8 +2950,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="
-                                                                        image
+                                                                    <img :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -3079,7 +3070,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3301,7 +3292,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3321,7 +3312,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3543,7 +3534,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3563,8 +3554,7 @@
                         <!-- Container for the Viewer.js to manage image viewing -->
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                         </div>
                         <div class="row">
@@ -3638,8 +3628,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="
-                                                                        image
+                                                                    <img :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -3758,7 +3747,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -3980,7 +3969,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4000,7 +3989,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4222,7 +4211,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4242,8 +4231,7 @@
                         <!-- Container for the Viewer.js to manage image viewing -->
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' +
-                                image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                         </div>
                         <div class="row">
@@ -4317,8 +4305,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="
-                                                                        image
+                                                                    <img :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -5023,7 +5010,7 @@ export default {
             console.log("in open viewer", image);
             this.isOverlayTransparent = true;
             // this.currentImage = this.getImageUrl(image); // Set current image URL
-            this.currentImage =image; // Set current image URL
+            this.currentImage = image; // Set current image URL
 
             const viewerElement = this.$refs.viewerContainer; // Reference the container
             if (viewerElement) {
