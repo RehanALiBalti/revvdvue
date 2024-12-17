@@ -1358,26 +1358,59 @@ export default {
   },
   data() {
     return {
+      isScrolling: false,
       instaIcon: instaIcon,
       isExpanded: false,
       isMobile: false,
+      // fullpageOptions: {
+      //   normalScrollElements: '.form-content-home1',
+      //   // Options for scrolling behavior, navigation, and customization
+      //   navigation: true, // Show navigation dots
+      //   scrollingSpeed: 1000, // Adjust scroll speed
+      //   fitToSectionDelay: 1000,
+
+      //   autoScrolling: true,
+      //   fitToSection: true,
+      //   anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
+      //   onLeave: (origin, destination) => {
+      //     const sections = document.querySelectorAll('.section');
+      //     sections[origin.index].classList.add('slide-out-forward-3d');
+      //     sections[destination.index].classList.add('slide-in-backward-3d');
+      //     setTimeout(() => {
+      //       sections[origin.index].classList.remove('slide-out-forward-3d');
+      //     }, 850); // Match the animation duration
+      //   },
+      // },
       fullpageOptions: {
         normalScrollElements: '.form-content-home1',
-        // Options for scrolling behavior, navigation, and customization
-        navigation: true, // Show navigation dots
-        scrollingSpeed: 850, // Adjust scroll speed
+        navigation: true,
+        scrollingSpeed: 850,
         autoScrolling: true,
+
         fitToSection: true,
+        fitToSectionDelay: 1000,
+        touchSensitivity: 5,
+        bigSectionsDestination: 'top',
+        easingcss3: 'ease-in-out',
         anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
         onLeave: (origin, destination) => {
+          if (this.isScrolling) return; // Prevent multiple triggers
+          this.isScrolling = true;
+
           const sections = document.querySelectorAll('.section');
+          const animationDuration = 850;
+
           sections[origin.index].classList.add('slide-out-forward-3d');
           sections[destination.index].classList.add('slide-in-backward-3d');
+
           setTimeout(() => {
             sections[origin.index].classList.remove('slide-out-forward-3d');
-          }, 850); // Match the animation duration
+            sections[destination.index].classList.remove('slide-in-backward-3d');
+            this.isScrolling = false; // Reset scroll lock
+          }, animationDuration);
         },
       },
+
       fileEvent: null,
       isCrop: null,
       isDropDYear: false,
@@ -3654,7 +3687,7 @@ select::placeholder {
   }
 } */
 .section {
-  transform: rotateX(-90deg) translateZ(-100px);
+  /* transform: rotateX(-90deg) translateZ(-100px); */
 }
 
 .slide-in-backward-3d {
