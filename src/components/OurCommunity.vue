@@ -987,7 +987,7 @@ export default {
   height: 50px;
   padding: 0.375rem 2.25rem 0.375rem 1.75rem;
   -moz-padding-start: calc(0.75rem - 3px);
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: #c5c5c5;
@@ -1067,10 +1067,12 @@ export default {
   border: 0px transparent !important;
   height: 30px;
   color: #fff !important;
+  font-size: 14px !important
 }
 
 .customSelect input::placeholder {
   color: #fff !important;
+  font-size: 14px !important
 }
 
 .selected-option {
@@ -1105,7 +1107,7 @@ export default {
   cursor: pointer;
   display: flex;
   justify-content: start;
-  font-size: 12px
+  font-size: 14px
 }
 
 .options-list li:hover {
