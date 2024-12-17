@@ -528,25 +528,25 @@ v-model="formData.country"> -->
                 </div>
 
 
-                <div class="col-md-6" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="storyHistory" class="form-label"> Tell us your {{ shopName }} story & how it all
                     started </label>
                   <textarea id="storyHistory" class="form-control" rows="4"
                     placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
                 </div>
-                <div class="   col-md-6" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="   col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="memorableStories" class="form-label">Any unforgettable memory, event or story you can
                     share with us? </label>
                   <textarea id="memorableStories" class="form-control" rows="4"
                     placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
                 </div>
-                <div class="col-md-6" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="storyName" class="form-label">What is the name of your story that you would like to
                     choose? </label>
                   <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
                     v-model="formData.storyName"></textarea>
                 </div>
-                <div class="col-md-6" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="link" class="form-label">Add Instagram or Website Link</label>
                   <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
                     v-model="formData.url">
@@ -572,7 +572,7 @@ v-model="formData.country"> -->
                   </div>
 
                 </div>
-                <div class="col-md-3 z-3 p-0 p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
+                <div class="col-md-3 z-3 p-0 p-md-1  p-0 p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Model
                   </label>
@@ -1388,8 +1388,8 @@ export default {
         autoScrolling: true,
 
         fitToSection: true,
-        fitToSectionDelay: 1000,
-        touchSensitivity: 5,
+        fitToSectionDelay: 1200,
+        touchSensitivity: 3,
         bigSectionsDestination: 'top',
         easingcss3: 'ease-in-out',
         anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
@@ -3053,17 +3053,17 @@ textarea.form-control {
 }
 
 .customSelect input::placeholder {
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 
 input,
 select {
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 
 input,
 select::placeholder {
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 
 .selected-option {
@@ -3099,7 +3099,7 @@ select::placeholder {
   cursor: pointer;
   display: flex;
   justify-content: start;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .options-list li:hover {

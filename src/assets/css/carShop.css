@@ -317,7 +317,7 @@
 	border: 1px solid #1a202c;
 	font-size: 22px;
 	font-weight: 400;
-	color: #c5c5c5;
+	color: #fff;
 	overflow: auto;
 	padding: 1rem 5rem 1rem 2rem;
 	white-space: pre-wrap;
@@ -327,7 +327,8 @@
 .form-control.form-input.inputComments::placeholder {
 	font-size: 22px;
 	font-weight: 400;
-	color: #c5c5c5;
+	/* color: #c5c5c5; */
+	color: #fff;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

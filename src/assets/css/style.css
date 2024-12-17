@@ -680,14 +680,14 @@ video::-webkit-media-controls {
 	transform: skew(-40deg, 0deg);
 	outline: none;
 	padding-left: 1.2rem;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 400;
 	color: #ffffff;
 	font-family: "Gruppo", sans-serif;
 }
 
 .form-control.input-control::placeholder {
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 400;
 	color: #ffffff;
 	font-family: "Gruppo", sans-serif;
@@ -893,7 +893,7 @@ a {
 }
 
 .multiselect__element {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .multiselect {
@@ -1014,9 +1014,10 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 }
 
 .form-select.form-control.form-input option {
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 400;
-	color: #c5c5c5;
+	/* color: #c5c5c5; */
+	color: #fff;
 	background-color: #031726;
 }
 
@@ -1027,9 +1028,10 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 	background-color: #031726 !important;
 	border: 1px solid #1a202c !important;
 	font-family: "Gruppo", sans-serif !important;
-	font-size: 12px !important;
+	font-size: 14px !important;
 	font-weight: 400 !important;
-	color: #c5c5c5 !important;
+	/* color: #c5c5c5 !important; */
+	color: #fff !important;
 }
 
 textarea.form-control {
@@ -1048,7 +1050,7 @@ textarea.form-control {
 	font-family: "Gruppo", sans-serif !important;
 	font-size: 14px !important;
 	font-weight: 400 !important;
-	color: #c5c5c5 !important;
+	color: #fff !important;
 }
 
 .footer-para {
@@ -1529,9 +1531,9 @@ a {
 	background-image: url("../images/Icon\ awesome-caret-down.png");
 	background-size: 7px;
 	background-position: right 0.75rem center;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 400;
-	color: #c5c5c5;
+	color: #fff;
 }
 
 .signin-btnli.submitNow {
@@ -1540,9 +1542,9 @@ a {
 }
 
 .form-select.form-control.form-input.filter-select option {
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 400;
-	color: #c5c5c5;
+	color: #ffff;
 }
 
 .filter-image-div {
@@ -1579,14 +1581,14 @@ select.form-select.form-control.form-input.sorting-select {
 	background-color: #1a202c;
 	padding: 0 15px;
 	background-position: right 0.75rem center;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 400;
 	color: #ffffff;
 	font-family: "Goldman", sans-serif;
 }
 
 select.form-select.form-control.form-input.sorting-select option {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .card-sorting-content {
@@ -2287,13 +2289,13 @@ a:hover {
 	.form-select.form-control.form-input,
 	.form-control {
 		height: 50px;
-		font-size: 12px;
+		font-size: 14px;
 	}
 
 	.form-control.input-control::placeholder,
 	.form-control::placeholder,
 	.form-select.form-control.form-input::placeholder {
-		font-size: 12px;
+		font-size: 14px;
 	}
 }
 
