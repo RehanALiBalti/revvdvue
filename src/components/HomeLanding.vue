@@ -526,125 +526,33 @@ v-model="formData.country"> -->
                     <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                   </select>
                 </div>
-                <div class="col-md-12 p-0 p-md-1" id="first"
-                  v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
-                  <div class="row justify-content-md-end">
 
-                    <div class="col-md-6">
-                      <label for="storyHistory" class="form-label"> Tell us your {{ shopName }} story & how it all
-                        started </label>
-                      <textarea id="storyHistory" class="form-control" rows="4"
-                        placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
-                    </div>
-                    <div class="   col-md-6">
-                      <label for="memorableStories" class="form-label">Any unforgettable memory, event or story you can
-                        share with us? </label>
-                      <textarea id="memorableStories" class="form-control" rows="4"
-                        placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="storyName" class="form-label">What is the name of your story that you would like to
-                        choose? </label>
-                      <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
-                        v-model="formData.storyName"></textarea>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="link" class="form-label">Add Instagram or Website Link</label>
-                      <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
-                        v-model="formData.url">
-                    </div>
 
-                    <div class="col-md-4  d-flex gap-1 align-items-center">
-                      <div>
-                        <label for="city" class="form-label">Upload Pictures Max 8</label>
-
-                        <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
-                        <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                          accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                        <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
-                          <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-                          </span>
-
-                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-                          </span>
-
-                          <span
-                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
-                            Choose Images
-                          </label>
-                          <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <span class="border-bottom-btn position-absolute">
-                            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-                          </span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label for="city" class="form-label "><span> </span></label>
-
-                        <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
-                        <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                          accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                        <div class="list-item-btn position-relative submit-btn-div m-0 topN36 mt-5">
-                          <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-                          </span>
-
-                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-                          </span>
-
-                          <span
-                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <button type="submit" class="signin-btnli submitNow">
-                            Submit
-                          </button>
-                          <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <span class="border-bottom-btn position-absolute">
-                            <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-                          </span>
-                        </div>
-                      </div>
-                      <!-- <div class="list-item-btn position-relative submit-btn-div">
-                        <span class="border-bottom-btn border-top-btn position-absolute">
-                          <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-                        </span>
-
-                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                          <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-                        </span>
-
-                        <span
-                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                          <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-                        </span>
-                        <button type="submit" class="signin-btnli submitNow" id="submit-button">
-                          {{ $t('submitNow') }}
-                        </button>
-                        <span class="border-bottom-btn border-left-btn position-absolute">
-                          <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="border-bottom-btn position-absolute">
-                          <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-                        </span>
-                      </div> -->
-
-                    </div>
-                  </div>
+                <div class="col-md-6" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                  <label for="storyHistory" class="form-label"> Tell us your {{ shopName }} story & how it all
+                    started </label>
+                  <textarea id="storyHistory" class="form-control" rows="4"
+                    placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
                 </div>
+                <div class="   col-md-6" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                  <label for="memorableStories" class="form-label">Any unforgettable memory, event or story you can
+                    share with us? </label>
+                  <textarea id="memorableStories" class="form-control" rows="4"
+                    placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
+                </div>
+                <div class="col-md-6" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                  <label for="storyName" class="form-label">What is the name of your story that you would like to
+                    choose? </label>
+                  <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
+                    v-model="formData.storyName"></textarea>
+                </div>
+                <div class="col-md-6" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                  <label for="link" class="form-label">Add Instagram or Website Link</label>
+                  <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
+                    v-model="formData.url">
+                </div>
+
+
                 <div class="col-md-3 z-3 p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
 
                   <div class="customSelect position-relative" @blur="isOpen = false">
@@ -711,116 +619,116 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                     </ul>
                   </div>
                 </div>
-                <div class="col-md-12 p-0 p-md-1" id="second"
+
+
+                <div class="col-md-6 z1o d-flex flex-column  p-0 p-md-1"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
-                  <div class="row z-0">
+                  <label for="name" class="form-label"> What’s the story behind your car? </label>
+                  <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
+                    v-model="formData.story" rows="2"></textarea>
 
-                    <div class="col-md-6 z1o d-flex flex-column justify-content-end">
-                      <label for="name" class="form-label"> What’s the story behind your car? </label>
-                      <textarea id="message" class="form-control form-input " name="message"
-                        :placeholder="$t('Enter here')" v-model="formData.story" rows="2"></textarea>
+                </div>
+                <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  <label for="name" class="form-label">Any awesome modifications or unique features you can share?
+                  </label>
+                  <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
+                    v-model="formData.modifications" rows="2"></textarea>
 
-                    </div>
-                    <div class="col-md-6 z1o">
-                      <label for="name" class="form-label">Any awesome modifications or unique features you can share?
-                      </label>
-                      <textarea id="message" class="form-control form-input " name="message"
-                        :placeholder="$t('Enter here')" v-model="formData.modifications" rows="2"></textarea>
+                </div>
+                <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  <label for="email" class="form-label"> Tell us the wildest or most unforgettable moment you’ve had
+                    with your car </label>
+                  <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
+                    v-model="formData.memorable" rows="2"></textarea>
+                  <!-- Error message for Email -->
+                  <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
+                  <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
+                </div>
+                <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  <label for="phone" class="form-label">What advise would you give to someone starting their journey
+                    as a car enthusiast?</label>
+                  <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
+                    v-model="formData.advice" rows="2"></textarea>
+                </div>
+                <div class="col-md-5 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  <label for="country" class="form-label"> What would your car story title be?
+                  </label>
+                  <input type="tel" id="phone" name="phone" class="form-control form-input"
+                    placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
+                </div>
+                <div class="col-md-3 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  <label for="message" class="form-label ">Add Instagram link </label>
+                  <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
+                    rows="2" v-model="formData.social_media" />
+                  <!-- Error message for Message -->
+                  <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
+                </div>
+                <div class="col-md-4  d-flex gap-1 align-items-center p-0 p-md-1"
+                  v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  <div>
+                    <label for="city" class="form-label">Upload Pictures Max 8</label>
 
-                    </div>
-                    <div class="col-md-6 z1o">
-                      <label for="email" class="form-label"> Tell us the wildest or most unforgettable moment you’ve had
-                        with your car </label>
-                      <textarea id="message" class="form-control form-input " name="message"
-                        :placeholder="$t('Enter here')" v-model="formData.memorable" rows="2"></textarea>
-                      <!-- Error message for Email -->
-                      <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
-                      <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
-                    </div>
-                    <div class="col-md-6 z1o">
-                      <label for="phone" class="form-label">What advise would you give to someone starting their journey
-                        as a car enthusiast?</label>
-                      <textarea id="message" class="form-control form-input " name="message"
-                        :placeholder="$t('Enter here')" v-model="formData.advice" rows="2"></textarea>
-                    </div>
-                    <div class="col-md-5 z1o ">
-                      <label for="country" class="form-label"> What would your car story title be?
-                      </label>
-                      <input type="tel" id="phone" name="phone" class="form-control form-input"
-                        placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
-                    </div>
-                    <div class="col-md-3 z1o ">
-                      <label for="message" class="form-label ">Add Instagram link </label>
-                      <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
-                        rows="2" v-model="formData.social_media" />
-                      <!-- Error message for Message -->
-                      <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
-                    </div>
-                    <div class="col-md-4  d-flex gap-1 align-items-center">
-                      <div>
-                        <label for="city" class="form-label">Upload Pictures Max 8</label>
-
-                        <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                    <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
-                        <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                          accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                        <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
-                          <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-                          </span>
+                    <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                      accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
+                    <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
+                      <span class="border-bottom-btn border-top-btn position-absolute">
+                        <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+                      </span>
 
-                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-                          </span>
+                      <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                        <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+                      </span>
 
-                          <span
-                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
-                            Choose Images
-                          </label>
-                          <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <span class="border-bottom-btn position-absolute">
-                            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-                          </span>
-                        </div>
-                      </div>
+                      <span
+                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                        <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+                      </span>
+                      <label for="storyImages" class="signin-btnli submitNow signup-btnli" id="submit-button">
+                        Choose Images
+                      </label>
+                      <span class="border-bottom-btn border-left-btn position-absolute">
+                        <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+                      </span>
+                      <span class="border-bottom-btn position-absolute">
+                        <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+                      </span>
+                    </div>
+                  </div>
 
-                      <div>
-                        <label for="city" class="form-label "><span> </span></label>
+                  <div>
+                    <label for="city" class="form-label "><span> </span></label>
 
-                        <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                    <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
-                        <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                          accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
-                        <div class="list-item-btn position-relative submit-btn-div m-0 topN37 mt-5">
-                          <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-                          </span>
+                    <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                      accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
+                    <div class="list-item-btn position-relative submit-btn-div m-0 topN37 mt-5">
+                      <span class="border-bottom-btn border-top-btn position-absolute">
+                        <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                      </span>
 
-                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-                          </span>
+                      <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                        <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                      </span>
 
-                          <span
-                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <button type="submit" class="signin-btnli submitNow">
-                            Submit
-                          </button>
-                          <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <span class="border-bottom-btn position-absolute">
-                            <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-                          </span>
-                        </div>
-                      </div>
-                      <!-- <div class="list-item-btn position-relative submit-btn-div">
+                      <span
+                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                        <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                      </span>
+                      <button type="submit" class="signin-btnli submitNow">
+                        Submit
+                      </button>
+                      <span class="border-bottom-btn border-left-btn position-absolute">
+                        <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                      </span>
+                      <span class="border-bottom-btn position-absolute">
+                        <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                      </span>
+                    </div>
+                  </div>
+                  <!-- <div class="list-item-btn position-relative submit-btn-div">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                           <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                         </span>
@@ -844,16 +752,9 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                         </span>
                       </div> -->
 
-                    </div>
-
-                  </div>
-
-
-
-
-
-
                 </div>
+
+
                 <div class="col-md-12 my-1">
                   <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap mx-3">
 
