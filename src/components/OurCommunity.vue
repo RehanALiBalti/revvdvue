@@ -75,7 +75,7 @@
                       <div class="customSelect w-100" @blur="isOpenm = false">
                         <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
                           @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
-                          @change="getModels" v-if="make == ''">
+                          @change="getModels" v-if="make == ''" readonly>
                         <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
                           @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
                           @change="getModels" v-else>
@@ -103,7 +103,7 @@
                       <div class="customSelect w-100">
                         <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
                           @input="GenfilterOption" v-model="selectedData" @change="changeGen" @click="toggleOpeng"
-                          v-if="smodel == ''">
+                          v-if="smodel == ''" readonly>
                         <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
                           @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" @change="changeGen"
                           v-else>
