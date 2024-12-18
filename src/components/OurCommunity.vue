@@ -75,7 +75,7 @@
                       <div class="customSelect w-100" @blur="isOpenm = false">
                         <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
                           @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
-                          @change="getModels" v-if="make == ''" disabled>
+                          @change="getModels" v-if="make == ''">
                         <input type="text" class=" form-select" v-model="smodel" :placeholder="$t('Select a Model')"
                           @click.stop="toggleDropdownm" @focus="isOpen = false" @input="filterModelOptions"
                           @change="getModels" v-else>
