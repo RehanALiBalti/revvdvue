@@ -1071,6 +1071,14 @@ export default {
   color: #f95f19
 }
 
+.form-select:disabled {
+  color: #fff !important;
+}
+
+.form-select:disabled::placeholder {
+  color: #fff !important;
+}
+
 /* new */
 
 .customSelect {
