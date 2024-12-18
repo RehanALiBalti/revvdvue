@@ -1005,10 +1005,14 @@ export default {
   appearance: none;
   font-family: "Gruppo", sans-serif;
   cursor: pointer;
+  -webkit-text-fill-color: #fff !important;
+  /* iOS-specific text color fix */
 }
 
 .form-select::placeholder {
   color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  /* iOS-specific text color fix */
 }
 
 .form-select option[value=""] {
@@ -1073,10 +1077,14 @@ export default {
 
 .form-select:disabled {
   color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  /* iOS-specific text color fix */
 }
 
 .form-select:disabled::placeholder {
   color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  /* iOS-specific text color fix */
 }
 
 /* new */
