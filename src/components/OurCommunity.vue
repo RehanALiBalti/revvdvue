@@ -103,7 +103,7 @@
                       <div class="customSelect w-100">
                         <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
                           @input="GenfilterOption" v-model="selectedData" @change="changeGen" @click="toggleOpeng"
-                          v-if="smodel == ''" disabled>
+                          v-if="smodel == ''">
                         <input type="text" class="form-select" :placeholder="$t('Production Years(Generation)')"
                           @input="GenfilterOption" v-model="selectedData" @click="toggleOpeng" @change="changeGen"
                           v-else>
@@ -124,7 +124,7 @@
                     <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
                       <div class="customSelect w-100">
                         <input type="text" class="form-select" :placeholder="$t('ThreadCategory')"
-                          v-model="specfications" @click="toggleOpengs" v-if="smodel == ''" disabled
+                          v-model="specfications" @click="toggleOpengs" v-if="smodel == ''"
                           @input="filterSpecificationOptions">
                         <input type="text" class="form-select" :placeholder="$t('ThreadCategory')"
                           v-model="specfications" @click="toggleOpengs" @input="filterSpecificationOptions" v-else>
