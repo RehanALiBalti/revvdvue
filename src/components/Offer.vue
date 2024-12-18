@@ -49,7 +49,7 @@
 			<div class="row justify-content-center">
 
 
-				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+				<!-- <div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
@@ -57,7 +57,7 @@
 						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('buy') }}</h5>
 							<p class="card-text ctext">
-								Ask, share and connect with fellow enthusiasts.
+
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
 								<div class="list-item-btn position-relative load-more-div">
@@ -104,7 +104,7 @@
 						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('sell') }}</h5>
 							<p class="card-text ctext">
-								Ask, share and connect with fellow enthusiasts.
+
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
 								<div class="list-item-btn position-relative load-more-div">
@@ -127,6 +127,96 @@
 									<router-link to="/carShop" class="signin-btnli Start Engine load-more-btn mx-auto">
 										{{ $t('loadMore') }}
 									</router-link>
+									<span class="border-bottom-btn border-left-btn position-absolute">
+										<img src="@/assets/images/Group11engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+									<span class="border-bottom-btn position-absolute">
+										<img src="@/assets/images/Path473engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+						<img src="../../public/images/layer2.png">
+					</div>
+					<div class="card loadCard">
+						<div class="card-body d-flex flex-column justify-content-between align-items-center">
+							<h5 class="card-title">{{ $t('Buy') }}</h5>
+							<p class="card-text ctext">
+
+							</p>
+							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
+								<div class="list-item-btn position-relative load-more-div">
+									<span class="border-bottom-btn border-top-btn position-absolute">
+										<img src="@/assets/images/Group12engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+
+									<span
+										class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+										<img src="@/assets/images/Path467engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+
+									<span
+										class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+										<img src="@/assets/images/Path465engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+									<button type="button" class="signin-btnli Start Engine load-more-btn mx-auto"
+										data-bs-toggle="modal" data-bs-target="#carShopFilter">
+										{{ $t('loadMore') }}
+									</button>
+									<span class="border-bottom-btn border-left-btn position-absolute">
+										<img src="@/assets/images/Group11engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+									<span class="border-bottom-btn position-absolute">
+										<img src="@/assets/images/Path473engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+						<img src="../../public/images/layer2.png">
+					</div>
+					<div class="card loadCard">
+						<div class="card-body d-flex flex-column justify-content-between align-items-center">
+							<h5 class="card-title">{{ $t('Sell') }}</h5>
+							<p class="card-text ctext">
+
+							</p>
+							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
+								<div class="list-item-btn position-relative load-more-div">
+									<span class="border-bottom-btn border-top-btn position-absolute">
+										<img src="@/assets/images/Group12engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+
+									<span
+										class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+										<img src="@/assets/images/Path467engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+
+									<span
+										class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+										<img src="@/assets/images/Path465engine.png"
+											class="img-border position-absolute" alt="">
+									</span>
+									<button type="button" class="signin-btnli Start Engine load-more-btn mx-auto"
+										data-bs-toggle="modal" data-bs-target="#maketModal">
+										{{ $t('loadMore') }}
+									</button>
 									<span class="border-bottom-btn border-left-btn position-absolute">
 										<img src="@/assets/images/Group11engine.png"
 											class="img-border position-absolute" alt="">
@@ -192,7 +282,7 @@
 						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('carShop') }}</h5>
 							<p class="card-text ctext">
-								Ask, share and connect with fellow enthusiasts.
+
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
 								<div class="list-item-btn position-relative load-more-div">
@@ -237,7 +327,7 @@
 						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('marketPlace') }}</h5>
 							<p class="card-text ctext">
-								Ask, share and connect with fellow enthusiasts.
+
 							</p>
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
 								<div class="list-item-btn position-relative load-more-div">
@@ -1334,6 +1424,10 @@ export default {
 }
 
 .loadCard .card-body {
-	min-height: 257px
+	min-height: 246px
+}
+
+.loadCard .card-body p {
+	width: 130px
 }
 </style>
