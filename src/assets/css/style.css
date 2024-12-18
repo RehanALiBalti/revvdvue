@@ -1383,7 +1383,7 @@ a.footer-main-addresss:hover {
 	font-size: 20px;
 	font-weight: 400;
 	line-height: 1.5;
-	color: #c5c5c5;
+	color: #fff;
 	background-color: #000b1c;
 	background-image: url("../images/Icon\ awesome-chevron-down.png");
 	background-repeat: no-repeat;
@@ -1402,7 +1402,7 @@ a.footer-main-addresss:hover {
 .form-select option {
 	font-size: 20px;
 	font-weight: 400;
-	color: #c5c5c5;
+	color: #fff;
 	font-family: "Gruppo", sans-serif;
 	cursor: pointer;
 }
@@ -1514,7 +1514,7 @@ a {
 }
 
 .form-label.filter-label {
-	color: #c5c5c5;
+	color: #fff;
 	font-size: 14px;
 	font-weight: 400;
 	font-family: "Goldman", cursive;
@@ -1857,7 +1857,7 @@ select.form-select.form-control.form-input.sorting-select option {
 input:-webkit-autofill,
 select:-webkit-autofill,
 textarea:-webkit-autofill {
-	-webkit-text-fill-color: #c5c5c5 !important;
+	-webkit-text-fill-color: #fff !important;
 	/* Text color on autofill */
 	transition: background-color 5000s ease-in-out 0s;
 	/* Prevent background change for a long time */
@@ -1869,7 +1869,7 @@ select,
 textarea {
 	background-color: #031726 !important;
 	/* Background color */
-	color: #c5c5c5 !important;
+	color: #fff !important;
 	/* Text color */
 }
 

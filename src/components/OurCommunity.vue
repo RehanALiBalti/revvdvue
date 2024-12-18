@@ -990,7 +990,7 @@ export default {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  color: #c5c5c5;
+  color: #fff !important;
   background-color: #000b1c;
   /* background-image: url("../images/Icon\ awesome-chevron-down.png"); */
   background-image: url("../assets/images/Icon\ awesome-chevron-down.png");
