@@ -1011,6 +1011,21 @@ export default {
   color: #fff !important;
 }
 
+.form-select option[value=""] {
+  color: #fff;
+  /* Placeholder color */
+}
+
+.form-select:invalid {
+  color: #fff;
+  /* Default text color when invalid */
+}
+
+.form-select:not(:invalid) {
+  color: #fff;
+  /* Text color for valid selection */
+}
+
 .modal-dialog {
   width: 100%;
   max-width: 1000px;
