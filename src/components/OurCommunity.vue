@@ -1007,6 +1007,10 @@ export default {
   cursor: pointer;
 }
 
+.form-select::placeholder {
+  color: #fff !important;
+}
+
 .modal-dialog {
   width: 100%;
   max-width: 1000px;
