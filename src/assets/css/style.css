@@ -262,7 +262,7 @@ video::-webkit-media-controls {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 10px;
+	font-size: 14px;
 	font-weight: 400;
 	color: #ffffff;
 	transition: all 0.3s ease-in-out;
@@ -975,7 +975,7 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 	height: 50px;
 	border: none;
 	outline: none;
-	font-size: 12px;
+	font-size: 14px;
 	border-radius: 0px 23px 23px 0;
 }
 
@@ -1310,7 +1310,7 @@ a.footer-main-addresss:hover {
 	width: 100%;
 	max-width: 140px;
 	height: 35px;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 400;
 	border-radius: 0px 11px 11px 0;
 }
@@ -1420,7 +1420,7 @@ a.footer-main-addresss:hover {
 .signin-btnli.Start.Engine.load-more-btn.proceed-btn {
 	max-width: 200px;
 	height: 45px;
-	font-size: 10px;
+	font-size: 14px;
 	font-weight: 400;
 }
 

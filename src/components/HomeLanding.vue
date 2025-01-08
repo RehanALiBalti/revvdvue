@@ -534,7 +534,8 @@ v-model="formData.country"> -->
                   <textarea id="storyHistory" class="form-control" rows="4"
                     placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
                 </div>
-                <div class="   col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="   col-md-6  p-0 p-md-1"
+                  v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="memorableStories" class="form-label">Any unforgettable memory, event or story you can
                     share with us? </label>
                   <textarea id="memorableStories" class="form-control" rows="4"
@@ -622,7 +623,7 @@ v-model="formData.country"> -->
 
 
                 <div class="col-md-6 z1o d-flex flex-column  p-0 p-md-1"
-                  v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="name" class="form-label"> What’s the story behind your car? </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
                     v-model="formData.story" rows="2"></textarea>

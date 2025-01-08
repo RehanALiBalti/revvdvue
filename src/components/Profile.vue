@@ -413,7 +413,7 @@
 												@blur="dropdown.isOpen = false">
 												<input type="text" class="form-select form-control form-input"
 													v-model="dropdown.make" :placeholder="$t(' Make')"
-													@click="toggleDropdown(index)" @input="filterMakeOptions(index)">
+													@click="toggleDropdown(index)" @input="filterMakeOptions(index);">
 												<ul v-show="dropdown.isOpen" class="options-list"
 													v-if="dropdown.makefilteredOptions.length">
 													<li v-for="(option, optionIndex) in dropdown.makefilteredOptions"
@@ -1313,6 +1313,7 @@ export default {
 		};
 	},
 	methods: {
+
 		getcities() {
 			if (!this.formData.country) return;  // Exit if no country is selected
 
@@ -1377,6 +1378,7 @@ export default {
 		},
 		filterMakeOptions(index) {
 			const query = this.dropdowns[index].make.toLowerCase();
+
 			if (query === '') {
 				this.dropdowns[index].makefilteredOptions = this.makes;
 			} else {
@@ -1391,6 +1393,11 @@ export default {
 		},
 		selectOption(index, option) {
 			console.log("indexmake", index)
+			this.dropdowns[index].model = '';
+			this.dropdowns[index].year = '';
+			this.dropdowns[index].cardSpec = '';
+
+			console.log("da", this.dropdowns[index].model)
 			this.dropdowns[index].make = option;
 			this.dropdowns[index].isOpen = false;
 			this.make = this.dropdowns[index].make
@@ -2857,6 +2864,7 @@ export default {
 		// this.getProfileImage()
 		// this.checkIfGoogleOrFacebookUser()
 	},
+
 
 
 };
