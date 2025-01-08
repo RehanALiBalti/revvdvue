@@ -273,6 +273,7 @@ video::-webkit-media-controls {
 @media(max-width:992px) {
 	.signin-btnli {
 		width: 135px;
+		font-size: 10px !important;
 	}
 }
 
