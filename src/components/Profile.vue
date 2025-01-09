@@ -1364,18 +1364,36 @@ export default {
 			}
 		},
 
+		// retrieveMakes() {
+		// 	CarDataService.getAll()
+		// 		.then((response) => {
+		// 			this.makes = response.data.map(item => item.make);
+		// 			this.dropdowns.forEach(dropdown => {
+		// 				dropdown.makefilteredOptions = [...this.makes];
+		// 			});
+		// 		})
+		// 		.catch((e) => {
+		// 			console.log(e);
+		// 		});
+		// },
 		retrieveMakes() {
 			CarDataService.getAll()
 				.then((response) => {
-					this.makes = response.data.map(item => item.make);
+					// Filter out empty or falsy 'make' values
+					this.makes = response.data
+						.map(item => item.make)
+						.filter(make => make && make.trim() !== "");
+
+					// Assign filtered makes to each dropdown's makefilteredOptions
 					this.dropdowns.forEach(dropdown => {
 						dropdown.makefilteredOptions = [...this.makes];
 					});
 				})
-				.catch((e) => {
-					console.log(e);
+				.catch((error) => {
+					console.error("Error fetching makes:", error);
 				});
 		},
+
 		filterMakeOptions(index) {
 			const query = this.dropdowns[index].make.toLowerCase();
 
