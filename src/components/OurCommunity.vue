@@ -54,7 +54,7 @@
 
                       <div class="customSelect" @blur="isOpen = false">
                         <input type="text" class="form-select" v-model="make" :placeholder="$t('Select a Make')"
-                          @click="toggleDropdown" @input="filterMakeOptions" @change="getModels">
+                          @click="toggleDropdown" @keyup="filterMakeOptions" @change="getModels">
                         <ul v-show="isOpen" class="options-list" v-if="makefilteredOptions != ''">
                           <li v-for="(option, index) in makefilteredOptions" :key="index" @click="selectOption(option)">
                             {{ option }}
