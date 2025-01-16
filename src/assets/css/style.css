@@ -2891,7 +2891,7 @@ input::placeholder {
 .v-select {
 	background-color: #031726;
 	border-radius: 8px;
-	height: 35px;
+	min-height: 35px;
 }
 
 .vs--disabled .vs__dropdown-toggle,
