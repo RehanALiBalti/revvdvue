@@ -401,19 +401,38 @@ export default {
       }
     },
 
+    // filterMakeOptions() {
+    //   this.modelfilteredOptions = [];
+    //   this.selectedData = "";
+
+    //   this.smodel = ""
+    //   const query = this.make.toLowerCase();
+    //   if (query === '') {
+    //     this.makefilteredOptions = this.makes;
+    //   } else {
+    //     this.makefilteredOptions = this.makes.filter(option => option.toLowerCase().indexOf(query) > -1);
+
+    //   }
+    // },
     filterMakeOptions() {
       this.modelfilteredOptions = [];
       this.selectedData = "";
+      this.smodel = "";
 
-      this.smodel = ""
-      const query = this.make.toLowerCase();
+      const query = this.make ? this.make.toLowerCase() : '';
       if (query === '') {
-        this.makefilteredOptions = this.makes;
+        this.makefilteredOptions = [...this.makes];
       } else {
-        this.makefilteredOptions = this.makes.filter(option => option.toLowerCase().indexOf(query) > -1);
-
+        this.makefilteredOptions = this.makes.filter(option =>
+          option.toLowerCase().includes(query)
+        );
       }
-    },
+
+      this.$nextTick(() => {
+        console.log("Force updated options list");
+      });
+    }
+    ,
     filterModelOptions() {
       this.selectedData = ""
       this.specfications = ""
