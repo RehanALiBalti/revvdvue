@@ -2736,10 +2736,15 @@ a:hover {
 .vs__dropdown-menu {
 	background-color: #031726 !important;
 	color: #fff !important;
-	z-index: 3 !important;
-	position: relative !important;
+	z-index: 10000 !important;
+	position: absolute !important;
 	font-weight: 400 !important;
 }
+
+.modal-body .vs__dropdown-menu {
+	position: relative !important;
+}
+
 
 .vs__dropdown-toggle {
 	padding: 0.6rem !important;

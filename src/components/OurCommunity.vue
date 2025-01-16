@@ -46,7 +46,7 @@
                   <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-12 position-relative z-1">
                     <v-select v-model="make" :options="makefilteredOptions" placeholder="Select a Make"
                       :filterable="true" @search:input="filterMakeOptions" @change="getModels" @input="getModels"
                       @select="getModels">
@@ -81,7 +81,7 @@
 
                     </div>
                   </div> -->
-                  <div class="col-md-12 ">
+                  <div class="col-md-12  position-relative z-2">
                     <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
 
                       <!-- Vue Select for Model Selection -->
@@ -168,7 +168,7 @@
                     </div>
 
                   </div> -->
-                  <div class="col-md-12 ">
+                  <div class="col-md-12 position-reltive z-3">
                     <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
                       <!-- Production Years (Generation) Vue Select -->
                       <v-select v-model="selectedData" :options="GenfilteredOptions"
@@ -289,7 +289,7 @@ import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
 // import { defineComponent } from 'vue';
 import vSelect from "vue-select";
-import "vue-select/dist/vue-select.css";
+//import "vue-select/dist/vue-select.css";
 
 // import axios from 'axios'
 // import https from 'https'
@@ -1050,7 +1050,7 @@ export default {
 };
 </script>
 <style scoped>
-@import "vue-select/dist/vue-select.css";
+/* @import "vue-select/dist/vue-select.css"; */
 
 .modalaa {
   position: static !important;
@@ -1260,8 +1260,8 @@ export default {
   font-size: 14px
 }
 
-.vs__dropdown-menu {
+/* .vs__dropdown-menu {
   max-height: 200px;
   overflow-y: auto;
-}
+} */
 </style>
