@@ -555,7 +555,7 @@ v-model="formData.country"> -->
 
 
                 <div class="col-md-3 z-3 p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
-
+                  <!-- 
                   <div class="customSelect position-relative" @blur="isOpen = false">
                     <label for="country" class="form-label">Make
                     </label>
@@ -570,14 +570,24 @@ v-model="formData.country"> -->
                     <ul v-else v-show="isOpen" class="options-list">
 
                     </ul>
-                  </div>
+                  </div> -->
+                  <label for="country" class="form-label">Make
+                  </label>
+                  <v-select v-model="formData.make" :options="makefilteredOptions" placeholder="Select a Make"
+                    :filterable="true" @search:input="filterMakeOptions" @change="getModels" @input="getModels"
+                    @select="getModels">
+                    <template #no-options>
+                      <span>No options available</span>
+                    </template>
+                  </v-select>
+
 
                 </div>
                 <div class="col-md-3 z-3 p-0 p-md-1  p-0 p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Model
                   </label>
-                  <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
+                  <!-- <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
                     <input type="text" class=" form-select form-control form-input" v-model="formData.model"
                       :placeholder="$t('Select a Model')" @click.stop="toggleDropdownm" @focus="isOpen = false"
                       @input="filterModelOptions" @change="getModels" v-if="formData.make == ''" disabled>
@@ -593,7 +603,15 @@ v-model="formData.country"> -->
                     <ul v-else v-show="isOpenm" class="options-list">
 
                     </ul>
-                  </div>
+                  </div> -->
+                  <v-select v-model="formData.model" :options="modelfilteredOptions" placeholder="Select a Model"
+                    :filterable="true" :disabled="formData.make === ''" @search:input="filterModelOptions"
+                    @change="getModels" @select="selectOptionModel">
+                    <template #no-options>
+                      <span>No models available</span>
+                    </template>
+                  </v-select>
+
                 </div>
                 <div class="col-md-3 z-3 p-0 p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
@@ -1305,6 +1323,9 @@ import { EffectCards } from "swiper/modules";
 import instaIcon from "@/assets/images/ins.png";
 
 // import draggable from 'vuedraggable';
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
+
 
 
 export default {
@@ -1314,6 +1335,7 @@ export default {
     Header,
     Swiper,
     SwiperSlide,
+    vSelect,
 
   },
   provide() {
@@ -2381,6 +2403,7 @@ export default {
       }
     },
     filterModelOptions() {
+      console.log("in filter")
       // this.selectedData = ""
       this.formData.year = ""
 
@@ -2392,6 +2415,7 @@ export default {
       } else {
 
         this.modelfilteredOptions = this.models.filter(option => option && option.model && option.model.toLowerCase().includes(query));
+        console.log("filter data", this.modelfilteredOptions)
       }
     },
 
@@ -2417,7 +2441,7 @@ export default {
 
     },
     selectOptionModel(option) {
-
+      console.log("opt", option)
       this.formData.model = option;
       this.isOpenm = false;
       this.isDropDModel = false;
@@ -2562,31 +2586,53 @@ export default {
           console.log(e);
         });
     },
+    // getModels() {
+    //   console.log("get modals")
+    //   this.formData.year = ""
+    //   this.smodel = ""
+    //   this.generations = [];
+    //   this.GenfilteredOptions = []
+    //   this.productionYears = [];
+    //   if (this.formData.make == "") {
+    //     this.modelfilteredOptions = ""
+    //   }
+    //   else {
+    //     CarDataService.getModels(this.formData.make)
+    //       .then((response) => {
+    //         this.models = response.data;
+    //         this.modelfilteredOptions = response.data;
+    //         console.log("modal filter options ", this.modelfilteredOptions)
+
+    //       })
+    //       .catch((e) => {
+    //         console.log(e);
+    //       });
+    //   }
+
+    // },
     getModels() {
-      console.log("get modals")
-      this.formData.year = ""
-      this.smodel = ""
+      console.log("get models");
+      this.formData.year = "";
+      this.smodel = "";
       this.generations = [];
-      this.GenfilteredOptions = []
+      this.GenfilteredOptions = [];
       this.productionYears = [];
-      if (this.formData.make == "") {
-        this.modelfilteredOptions = ""
-      }
-      else {
+
+      if (this.formData.make === "") {
+        this.modelfilteredOptions = [];
+      } else {
         CarDataService.getModels(this.formData.make)
           .then((response) => {
-            this.models = response.data;
-            this.modelfilteredOptions = response.data;
-            console.log("modal filter options ", this.modelfilteredOptions)
-
+            this.models = response.data; // Assuming the API response is an array of objects like { "model": "Medallion" }
+            this.modelfilteredOptions = this.models.map(item => item.model); // Extract "model" values for the dropdown
+            console.log("model filter options ", this.modelfilteredOptions);
           })
           .catch((e) => {
             console.log(e);
           });
       }
-
-    },
-
+    }
+    ,
 
     getGenerations() {
       // console.log('in generation', "make", this.make, "modal", this.smodel);
@@ -2786,13 +2832,25 @@ export default {
 
 
   },
-  // watch: {
-  //   $route(to) {
-  //     if (!to.hash || to.hash !== '#home') {
-  //       this.$router.push({ hash: '#home' });
-  //     }
-  //   },
-  // },
+  watch: {
+    // $route(to) {
+    //   if (!to.hash || to.hash !== '#home') {
+    //     this.$router.push({ hash: '#home' });
+    //   }
+    // },
+    'formData.make'(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        // Call getModels whenever the 'make' value changes
+        this.getModels();
+      }
+    },
+    'formData.model'(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        // Call getGenerations whenever the 'model' value changes
+        this.getGenerations();
+      }
+    },
+  },
 
   async mounted() {
     if (!this.$route.hash || this.$route.hash !== '#home') {

@@ -2875,5 +2875,29 @@ input::placeholder {
 }
 
 .vs--disabled .vs__dropdown-toggle {
-	background: transparent !important;
+	background-color: #031726 !important;
+}
+
+
+.vs__dropdown-toggle {
+	height: 35px !important;
+}
+
+.vs__search {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.v-select {
+	background-color: #031726;
+	border-radius: 8px;
+	height: 35px;
+}
+
+.vs--disabled .vs__dropdown-toggle,
+.vs--disabled .vs__clear,
+.vs--disabled .vs__search,
+.vs--disabled .vs__selected,
+.vs--disabled .vs__open-indicator {
+	background-color: transparent !important;
 }
