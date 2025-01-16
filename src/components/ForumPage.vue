@@ -53,8 +53,9 @@
                                     <li v-if="modal" class="breadcrumb-item fh2">
                                         {{ decode(modal) }}
                                     </li>
-                                    <li v-if="productionYears" class="breadcrumb-item fh2">
-                                        {{ decode(productionYears) }}
+                                    <li v-if="production_years" class="breadcrumb-item fh2">
+                                        {{ decode(production_years) }}
+                                        <!-- {{ productionYears }} -->
                                     </li>
                                     <li v-if="specifications" class="breadcrumb-item fh2">
                                         {{ decode(specifications) }}
@@ -591,7 +592,7 @@ export default {
         // this.pageId = this.$route.params.id;
         this.make = encodeURIComponent(this.$route.params.make)
         this.modal = encodeURIComponent(this.$route.params.model)
-        this.production_years = encodeURIComponent(this.$route.params.production_years)
+        this.production_years = this.$route.params.production_years
         this.specifications = encodeURIComponent(this.$route.params.specifications)
         console.log("params data is", this.make, this.modal, this.production_years, this.specifications)
         this.getForumData()

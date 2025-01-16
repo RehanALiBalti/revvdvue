@@ -657,3 +657,11 @@
 		max-width: 100%;
 	}
 }
+
+.vs__open-indicator {
+	fill: #fff !important
+}
+
+.vs__selected {
+	font-size: 14px !important;
+}

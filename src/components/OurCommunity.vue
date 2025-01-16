@@ -46,18 +46,21 @@
                   <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
                 </div>
                 <div class="row">
-                  <div>
+                  <div class="col-md-12">
                     <v-select v-model="make" :options="makefilteredOptions" placeholder="Select a Make"
-                      :filterable="true" @search:input="filterMakeOptions">
+                      :filterable="true" @search:input="filterMakeOptions" @change="getModels" @input="getModels"
+                      @select="getModels">
+
                       <template #no-options>
                         <span>No options available</span>
                       </template>
+
                     </v-select>
-                    <p>Selected Make: {{ make }}</p>
+
 
                   </div>
 
-                  <div class="col-md-12 z-0 ">
+                  <!-- <div class="col-md-12 z-0 ">
                     <div class="mt-2   d-flex justify-content-center align-items-center borderBr">
 
 
@@ -77,9 +80,22 @@
 
 
                     </div>
-                  </div>
+                  </div> -->
+                  <div class="col-md-12 ">
+                    <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
 
-                  <div class="col-md-12 z-0">
+                      <!-- Vue Select for Model Selection -->
+                      <v-select v-model="smodel" :options="modelfilteredOptions" :placeholder="$t('Select a Model')"
+                        :filterable="true" @search="filterModelOptions" :disabled="make === ''" label="model"
+                        @change="getGenerations" @input="getGenerations" @select="getGenerations()">
+                        <template #no-options>
+                          <span>No models available</span>
+                        </template>
+                      </v-select>
+
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-12 z-0">
                     <div class="mt-2  d-flex justify-content-center align-items-center borderBr ">
 
                       <div class="customSelect w-100" @blur="isOpenm = false">
@@ -101,11 +117,11 @@
                       </div>
 
                     </div>
-                  </div>
+                  </div> -->
 
 
 
-                  <div class="col-md-12 z-0">
+                  <!-- <div class="col-md-12 z-0">
 
 
 
@@ -120,7 +136,7 @@
                         <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                           <li v-for="(value, index) in GenfilteredOptions" :key="index"
                             @click="updateModels(value), this.isOpeng = false">
-                            <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+                        
                             {{ value.production_years.split(' ')[0] }}
                             <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
                               }})</span>
@@ -138,14 +154,7 @@
                           @input="filterSpecificationOptions">
                         <input type="text" class="form-select" :placeholder="$t('ThreadCategory')"
                           v-model="specfications" @click="toggleOpengs" @input="filterSpecificationOptions" v-else>
-                        <!-- <ul v-show="isOpengs" class="options-list" v-if="specifctionOptions.length > 0">
-                      <li v-for="(value, index) in specifctionOptions" :key="index"
-                        @click="updatesepecification(value), this.isOpengs = false">
-                      
-                        <span>{{ value.specification
-                          }}</span>
-                      </li>
-                    </ul> -->
+                    
                         <ul v-show="isOpengs" class="options-list" v-if="filteredSpecificationOptions.length > 0">
                           <li v-for="(value, index) in filteredSpecificationOptions" :key="index"
                             @click="updatesepecification(value)">
@@ -158,10 +167,33 @@
                       </div>
                     </div>
 
+                  </div> -->
+                  <div class="col-md-12 ">
+                    <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
+                      <!-- Production Years (Generation) Vue Select -->
+                      <v-select v-model="selectedData" :options="GenfilteredOptions"
+                        :placeholder="$t('Production Years(Generation)')" @search="GenfilterOption"
+                        :disabled="smodel === ''" label="production_years" :clearable="false">
+                        <template #no-options>
+                          <span>No options available</span>
+                        </template>
+                      </v-select>
+                    </div>
+
+                    <div class="mt-2 d-flex justify-content-center align-items-center borderBr">
+                      <!-- Thread Category (Specifications) Vue Select -->
+                      <v-select v-model="specfications" :options="filteredSpecificationOptions"
+                        :placeholder="$t('ThreadCategory')" @search="filterSpecificationOptions"
+                        :disabled="smodel === ''" label="specification" :clearable="false">
+                        <template #no-options>
+                          <span>No options available</span>
+                        </template>
+                      </v-select>
+                    </div>
                   </div>
 
 
-                  <div class="col-md-12 m-auto z-0">
+                  <div class="col-md-12 m-auto ">
                     <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-0 mx-auto mt-2">
                       <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                         <span class="border-bottom-btn border-top-btn position-absolute">
@@ -460,22 +492,27 @@ export default {
     }
 
     ,
-    filterModelOptions() {
-      this.selectedData = ""
-      this.specfications = ""
-      this.filteredSpecificationOptions = this.specifctionOptions
+    // filterModelOptions() {
+    //   this.selectedData = ""
+    //   this.specfications = ""
+    //   this.filteredSpecificationOptions = this.specifctionOptions
 
-      console.log(this.smodel);
-      const query = this.smodel.toLowerCase();
+    //   console.log(this.smodel);
+    //   const query = this.smodel.toLowerCase();
 
-      if (query === '') {
-        this.modelfilteredOptions = this.models;
-      } else {
+    //   if (query === '') {
+    //     this.modelfilteredOptions = this.models;
+    //   } else {
 
-        this.modelfilteredOptions = this.models.filter(option => option && option.model && option.model.toLowerCase().includes(query));
-      }
+    //     this.modelfilteredOptions = this.models.filter(option => option && option.model && option.model.toLowerCase().includes(query));
+    //   }
+    // },
+    filterModelOptions(query) {
+      this.modelfilteredOptions = this.models.filter(option =>
+        option && option.model && option.model.toLowerCase().includes(query.toLowerCase())
+      );
+      console.log('Filtered Models:', this.modelfilteredOptions);
     },
-
     filterSpecificationOptions() {
       const query = this.specfications.toLowerCase();
       if (query === '') {
@@ -787,7 +824,7 @@ export default {
     sendForumData() {
       // Get the dynamic parameters
       const make = this.make;
-      const model = this.smodel;
+      const model = this.smodel.model;
       let production_years = this.selectedData;
       let specifications = this.specfications;
 
@@ -800,24 +837,25 @@ export default {
       }
 
       // Remove '%', '/', and ',' from production_years and specifications
-      const sanitizeString = (str) => str.replace(/[%/,\s]/g, '');
+      // const sanitizeString = (str) => str.replace(/[%/,\s]/g, '');
 
-      production_years = sanitizeString(production_years);
-      specifications = sanitizeString(specifications);
+      // production_years = sanitizeString(production_years);
+      // specifications = sanitizeString(specifications);
 
       // Encode the URL parameters to handle special characters
       const encodedMake = encodeURIComponent(make);
       const encodedModel = encodeURIComponent(model);
-      const encodedSpecifications = encodeURIComponent(specifications);
+      const encodedSpecifications = encodeURIComponent(specifications.specification);
       let routeUrl = `/community/${encodedMake}/${encodedModel}`;
 
       if (production_years) {
-        const encodedProductionYears = encodeURIComponent(production_years);
+        const encodedProductionYears = encodeURIComponent(production_years.production_years);
         routeUrl += `/${encodedProductionYears}`;
       }
 
       routeUrl += `/${encodedSpecifications}`;
 
+      console.log("spec", specifications.specification)
       // Navigate to the constructed URL
       this.$router.push({ path: routeUrl });
       // console.log(routeUrl)
@@ -860,7 +898,7 @@ export default {
           .then((response) => {
             this.models = response.data;
             this.modelfilteredOptions = response.data;
-
+            console.log(this.modelfilteredOptions)
           })
           .catch((e) => {
             console.log(e);
@@ -871,9 +909,9 @@ export default {
 
 
     getGenerations() {
-      console.log('in generation', "make", this.make, "modal", this.smodel);
+      console.log('in generation', "make", this.smodel, "modal", this.smodel);
       this.selectedData = ""
-      CarDataService.getGenerations(this.make, this.smodel)
+      CarDataService.getGenerations(this.make, this.smodel.model)
         .then((response) => {
           const data = response.data;
           console.log("data is", data);
@@ -996,6 +1034,18 @@ export default {
     currentPage() {
       this.paginateCommunities();
     },
+    make(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        // Call getModels whenever the 'make' value changes
+        this.getModels();
+      }
+    },
+    smodel(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        // Call getModels whenever the 'make' value changes
+        this.getGenerations();
+      }
+    }
   },
 };
 </script>
@@ -1118,6 +1168,16 @@ export default {
   border-radius: 10px;
 }
 
+.v-select {
+  border: 1px solid #f95f19 !important;
+  width: 100% !important;
+  border-radius: 10px !important;
+}
+
+.vs__open-indicator {
+  fill: #fff !important
+}
+
 .fontColr {
   color: #f95f19
 }
@@ -1198,5 +1258,10 @@ export default {
 
 .ps2 {
   font-size: 14px
+}
+
+.vs__dropdown-menu {
+  max-height: 200px;
+  overflow-y: auto;
 }
 </style>
