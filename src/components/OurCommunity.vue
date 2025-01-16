@@ -410,7 +410,8 @@ export default {
       if (query === '') {
         this.makefilteredOptions = this.makes;
       } else {
-        this.makefilteredOptions = this.makes.filter(option => option.toLowerCase().includes(query));
+        this.makefilteredOptions = this.makes.filter(option => option.toLowerCase().indexOf(query) > -1);
+
       }
     },
     filterModelOptions() {
