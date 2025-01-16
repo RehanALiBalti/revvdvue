@@ -46,6 +46,16 @@
                   <h5 class="card-title"><span class="choose"> {{ $t('filters') }} </span></h5>
                 </div>
                 <div class="row">
+                  <div>
+                    <v-select v-model="make" :options="makefilteredOptions" placeholder="Select a Make"
+                      :filterable="true" @search:input="filterMakeOptions">
+                      <template #no-options>
+                        <span>No options available</span>
+                      </template>
+                    </v-select>
+                    <p>Selected Make: {{ make }}</p>
+
+                  </div>
 
                   <div class="col-md-12 z-0 ">
                     <div class="mt-2   d-flex justify-content-center align-items-center borderBr">
@@ -246,7 +256,8 @@
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
 // import { defineComponent } from 'vue';
-
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
 
 // import axios from 'axios'
 // import https from 'https'
@@ -255,10 +266,7 @@ export default {
   name: "OurCommunity",
 
 
-  components: {
-
-
-  },
+  components: { vSelect },
   data() {
     return {
       isOpen: false,
@@ -414,12 +422,30 @@ export default {
 
     //   }
     // },
-    filterMakeOptions() {
+    // filterMakeOptions() {
+    //   this.modelfilteredOptions = [];
+    //   this.selectedData = "";
+    //   this.smodel = "";
+
+    //   const query = this.make ? this.make.toLowerCase() : '';
+    //   if (query === '') {
+    //     this.makefilteredOptions = [...this.makes];
+    //   } else {
+    //     this.makefilteredOptions = this.makes.filter(option =>
+    //       option.toLowerCase().includes(query)
+    //     );
+    //   }
+
+    //   this.$nextTick(() => {
+    //     console.log("Force updated options list");
+    //   });
+    // }
+    filterMakeOptions(search) {
       this.modelfilteredOptions = [];
       this.selectedData = "";
       this.smodel = "";
 
-      const query = this.make ? this.make.toLowerCase() : '';
+      const query = search ? search.toLowerCase() : '';
       if (query === '') {
         this.makefilteredOptions = [...this.makes];
       } else {
@@ -432,6 +458,7 @@ export default {
         console.log("Force updated options list");
       });
     }
+
     ,
     filterModelOptions() {
       this.selectedData = ""
