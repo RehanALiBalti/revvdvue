@@ -3037,7 +3037,7 @@ left: 0; */
 	margin: 0;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	/* min-height: fit-content; */
-	max-height: 300px;
+	max-height: 140px;
 	overflow-y: scroll;
 	color: #fff;
 	transition: height 0.5s ease-in-out;
