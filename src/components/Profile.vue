@@ -430,7 +430,7 @@
 													v-model="dropdown.model" :placeholder="$t(' Model')"
 													@click.stop="toggleDropdownm(index)"
 													@focus="dropdown.make === '' ? (dropdown.isOpenm = false) : null"
-													@input="filterModelOptions(index)" @change="getGenerations(index)"
+													@input="filterModelOptions(index);" @change="getGenerations(index)"
 													:disabled="dropdown.make === ''">
 												<ul v-show="dropdown.isOpenm" class="options-list"
 													v-if="dropdown.modelfilteredOptions.length > 0">
@@ -1313,6 +1313,14 @@ export default {
 		};
 	},
 	methods: {
+		resetDependentFields(index, level) {
+			if (level === 'make') {
+				this.dropdowns[index].model = '';
+				this.dropdowns[index].year = '';
+			} else if (level === 'model') {
+				this.dropdowns[index].year = '';
+			}
+		},
 
 		getcities() {
 			if (!this.formData.country) return;  // Exit if no country is selected
@@ -1396,7 +1404,9 @@ export default {
 
 		filterMakeOptions(index) {
 			const query = this.dropdowns[index].make.toLowerCase();
-
+			this.dropdowns[index].model = '';
+			this.dropdowns[index].year = '';
+			this.dropdowns[index].cardSpec = '';
 			if (query === '') {
 				this.dropdowns[index].makefilteredOptions = this.makes;
 			} else {
@@ -1430,6 +1440,9 @@ export default {
 		},
 		filterModelOptions(index) {
 			const query = this.dropdowns[index].model.toLowerCase();
+			this.dropdowns[index].make = '';
+			this.dropdowns[index].year = '';
+			this.dropdowns[index].cardSpec = '';
 			if (query === '') {
 				this.dropdowns[index].modelfilteredOptions = this.models;
 			} else {
@@ -1506,6 +1519,9 @@ export default {
 		GenfilterOption(index) {
 			// Get the specific dropdown object
 			const dropdown = this.dropdowns[index];
+			this.dropdowns[index].make = '';
+			this.dropdowns[index].model = '';
+			this.dropdowns[index].cardSpec = '';
 			if (!dropdown) {
 				console.error(`Dropdown at index ${index} is undefined`);
 				return;
@@ -2881,6 +2897,28 @@ export default {
 		// this.setName(this.name);
 		// this.getProfileImage()
 		// this.checkIfGoogleOrFacebookUser()
+	},
+
+	watch: {
+		dropdowns: {
+			handler(newVal, oldVal) {
+				newVal.forEach((dropdown, index) => {
+					const oldDropdown = oldVal[index];
+
+					// If 'make' is cleared, reset 'model' and 'year'
+					if (dropdown.make === '' && oldDropdown.make !== '') {
+						this.$set(this.dropdowns[index], 'model', '');
+						this.$set(this.dropdowns[index], 'year', '');
+					}
+
+					// If 'model' is cleared, reset 'year'
+					if (dropdown.model === '' && oldDropdown.model !== '') {
+						this.$set(this.dropdowns[index], 'year', '');
+					}
+				});
+			},
+			deep: true, // Ensures deep watching of nested objects
+		},
 	},
 
 
