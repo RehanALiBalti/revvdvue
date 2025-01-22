@@ -1440,7 +1440,7 @@ export default {
 		},
 		filterModelOptions(index) {
 			const query = this.dropdowns[index].model.toLowerCase();
-			this.dropdowns[index].make = '';
+			//this.dropdowns[index].make = '';
 			this.dropdowns[index].year = '';
 			this.dropdowns[index].cardSpec = '';
 			if (query === '') {
@@ -1464,6 +1464,7 @@ export default {
 			// Example: Fetch models based on selected make for a specific car
 			console.log("index in getmod", index)
 			const selectedMake = this.dropdowns[index].make;
+			console.log("make in getmod", this.dropdowns[index].make)
 			CarDataService.getModels(selectedMake)
 				.then((response) => {
 					this.dropdowns[index].modelfilteredOptions = response.data;
@@ -1519,8 +1520,8 @@ export default {
 		GenfilterOption(index) {
 			// Get the specific dropdown object
 			const dropdown = this.dropdowns[index];
-			this.dropdowns[index].make = '';
-			this.dropdowns[index].model = '';
+			// this.dropdowns[index].make = '';
+			// this.dropdowns[index].model = '';
 			this.dropdowns[index].cardSpec = '';
 			if (!dropdown) {
 				console.error(`Dropdown at index ${index} is undefined`);
@@ -2897,6 +2898,13 @@ export default {
 		// this.setName(this.name);
 		// this.getProfileImage()
 		// this.checkIfGoogleOrFacebookUser()
+		for (let i = 0; i <= 5; i++) {
+			this.getModels(i)
+		}
+		for (let i = 0; i <= 5; i++) {
+			this.getGenerations(i)
+		}
+
 	},
 
 	watch: {
