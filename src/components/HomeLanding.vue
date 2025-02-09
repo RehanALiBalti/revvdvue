@@ -583,7 +583,7 @@ v-model="formData.country"> -->
 
 
                 </div>
-                <div class="col-md-3 z-3 p-0 p-md-1  p-0 p-md-1" :class="{ 'z-2': isDropDModel, 'z1o2': !isDropDModel }"
+                <div class="col-md-3  p-0 p-md-1  p-0 p-md-1" :class="{ 'z-2': isDropDModel, 'z-2': !isDropDModel }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Model
                   </label>
@@ -613,7 +613,7 @@ v-model="formData.country"> -->
                   </v-select>
 
                 </div>
-                <div class="col-md-3 z-3 p-0 p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
+                <div class="col-md-3  p-0 p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
                   v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Production Year Generation
                   </label>
@@ -1093,9 +1093,9 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div>
         <div class="modal-body">
           <div class="thank-you-pop">
-            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
-            <h1 class="coloror">Succss!</h1>
-            <p>Your Story submitted successfylly</p>
+            <img :src='icons_tick' alt="" />
+            <h1 class="coloror">Success!</h1>
+            <p>Your Story submitted successfully</p>
           </div>
         </div>
       </div>
@@ -1325,7 +1325,7 @@ import instaIcon from "@/assets/images/ins.png";
 // import draggable from 'vuedraggable';
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
-
+import icons_tick from '../assets/images/icons8-ok-76.png'
 
 
 export default {
@@ -1383,6 +1383,7 @@ export default {
     return {
       isScrolling: false,
       instaIcon: instaIcon,
+      icons_tick: icons_tick,
       isExpanded: false,
       isMobile: false,
       // fullpageOptions: {

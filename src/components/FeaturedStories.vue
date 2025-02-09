@@ -6343,4 +6343,8 @@ form-select {
 .card-content-car p {
     font-size: 14px
 }
+
+.btn-filter {
+    border: none !important
+}
 </style>
