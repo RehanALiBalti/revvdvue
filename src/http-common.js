@@ -7,6 +7,7 @@ export default axios.create({
   // baseURL: "https://king-prawn-app-3rw3o.ondigitalocean.app/api",
   // for development purpose
   baseURL: "https://king-prawn-app-3rw3o.ondigitalocean.app/api",
+  // baseURL: "https://3.75.88.121/api",
   // adding header
   // rejectUnauthorized: false,
   headers: {
