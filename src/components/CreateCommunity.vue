@@ -214,12 +214,18 @@ export default {
 
       // Data to be sent in the POST request
       const postData = {
+        // title: this.formData.title,
+        // description: this.formData.description,
+        // make: encodeURIComponent(this.formData.make),
+        // model: encodeURIComponent(this.formData.model),
+        // production_years: encodeURIComponent(this.formData.production_years),
+        // specifications: encodeURIComponent(this.formData.specifications)
         title: this.formData.title,
         description: this.formData.description,
-        make: encodeURIComponent(this.formData.make),
-        model: encodeURIComponent(this.formData.model),
-        production_years: encodeURIComponent(this.formData.production_years),
-        specifications: encodeURIComponent(this.formData.specifications)
+        make: this.formData.make,
+        model: this.formData.model,
+        production_years: this.formData.production_years,
+        specifications: this.formData.specifications
       };
 
       try {
