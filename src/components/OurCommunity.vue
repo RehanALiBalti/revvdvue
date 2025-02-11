@@ -824,7 +824,8 @@ export default {
     sendForumData() {
       // Get the dynamic parameters
       const make = this.make;
-      const model = this.smodel.model;
+      // const model = this.smodel.model;
+      const model = this.smodel.model.replace(/\//g, " ");
       let production_years = this.selectedData;
       let specifications = this.specfications;
 

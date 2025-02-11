@@ -447,7 +447,8 @@ export default {
 
 
     getProfileImage(profileImage) {
-      if (!profileImage || profileImage.includes('null') || profileImage.includes('undefined')) {
+      console.log("profile_image", profileImage)
+      if (!profileImage || profileImage.includes('null') || profileImage.includes('undefined') || profileImage == 'https://king-prawn-app-3rw3o.ondigitalocean.app/users/') {
         return '/images/Group888.png';
       }
       return profileImage;

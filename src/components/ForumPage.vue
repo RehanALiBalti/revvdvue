@@ -455,6 +455,7 @@ export default {
         async getForumData() {
             console.log()
             try {
+
                 const response = await axios.get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/filter', {
                     params: {
                         make: this.make,
@@ -590,10 +591,14 @@ export default {
     },
     mounted() {
         // this.pageId = this.$route.params.id;
-        this.make = encodeURIComponent(this.$route.params.make)
-        this.modal = encodeURIComponent(this.$route.params.model)
+        // this.make = encodeURIComponent(this.$route.params.make)
+        // this.modal = encodeURIComponent(this.$route.params.model)
+        // this.production_years = this.$route.params.production_years
+        // this.specifications = encodeURIComponent(this.$route.params.specifications)
+        this.make = this.$route.params.make
+        this.modal = this.$route.params.model
         this.production_years = this.$route.params.production_years
-        this.specifications = encodeURIComponent(this.$route.params.specifications)
+        this.specifications = this.$route.params.specifications
         console.log("params data is", this.make, this.modal, this.production_years, this.specifications)
         this.getForumData()
         this.isLogin = JSON.parse(localStorage.getItem('login')) || false,
