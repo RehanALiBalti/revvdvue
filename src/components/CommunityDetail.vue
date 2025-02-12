@@ -131,7 +131,7 @@
                               :src="comment.userimage != 'undefined' || comment.userimage != 'null' ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
                             <img class="UsrImage"
-                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/users/' + comment.userImage : dummyuserImage"
+                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null ? '' + comment.userImage : dummyuserImage"
                               alt="" width="50px" />
 
                             <small class="uName">{{ comment.nickname }}</small>
@@ -196,7 +196,7 @@
                               :src="comment.userimage != 'undefined' || 'null' ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
                             <img class="UsrImage"
-                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/users/' + comment.userImage : dummyuserImage"
+                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null ? '' + comment.userImage : dummyuserImage"
                               alt="" width="50px" />
                             <small class="uName">{{ comment.nickname }} </small>
                           </div>
@@ -374,6 +374,7 @@ export default {
 
   data() {
     return {
+      secureUld: "",
       isLogin: "",
       loginModal: false,
       likesCountComments: reactive({}),
@@ -552,24 +553,71 @@ export default {
         });
     },
 
-    handleImageChange(event) {
-      console.log("in image cange")
-      const file = event.target.files[0];
-      console.log(file.result)
-      // Do something with the selected file, like saving it to data or uploading it
-      this.rImage = file;
-      if (file) {
+    // handleImageChange(event) {
+    //   console.log("in image cange")
+    //   const file = event.target.files[0];
+    //   console.log(file.result)
+    //   // Do something with the selected file, like saving it to data or uploading it
+    //   this.rImage = file;
+    //   if (file) {
 
-        // Read the file as a data URL
+    //     // Read the file as a data URL
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       // Update imageUrl with the data URL of the uploaded image
+    //       this.RimageUrl = e.target.result;
+    //       console.log(this.RimageUrl)
+    //     };
+    //     reader.readAsDataURL(file);
+    //   }
+    // },
+    handleImageChange(event) {
+      console.log("in image change");
+
+      const file = event.target.files[0]; // Get the uploaded file
+      console.log(file);
+
+      if (file) {
+        // Store the file in the component's data
+        this.rImage = file;
+
+        // Read the file as a data URL for preview
         const reader = new FileReader();
         reader.onload = (e) => {
           // Update imageUrl with the data URL of the uploaded image
           this.RimageUrl = e.target.result;
-          console.log(this.RimageUrl)
+          console.log(this.RimageUrl);
         };
         reader.readAsDataURL(file);
+
+        // Create a FormData object to send the file to the API
+        const formData = new FormData();
+        formData.append('file', file); // Add the file to the FormData object
+
+        // Use axios to send the file to the server
+        axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data', // Indicate it's a file upload
+          },
+        })
+          .then((response) => {
+            // Handle successful upload
+            console.log('Upload Successful:', response.data);
+            if (response.data && response.data.secureUld) {
+              // Store the secure UID or any other response data
+              this.secureUld = response.data.secureUld;
+              console.log('File uploaded, secureUid:', this.secureUld);
+            }
+          })
+          .catch((error) => {
+            // Handle any errors during the upload
+            console.error('Upload Error:', error);
+          });
+      } else {
+        console.log("No file selected");
       }
     },
+
     openFileInput2() {
       // Trigger click event of file input
       document.getElementById('rImage').click();
@@ -698,9 +746,10 @@ export default {
         formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
         formData.append('user_email', this.user_email);
         formData.append('user_name', this.user_name);
-        formData.append('image', this.rImage);
+        // formData.append('image', this.rImage);
+        formData.append('image', this.secureUld);
         formData.append('type', "reply");
-        console.log("r_imag", this.rImage)
+        console.log("r_imag", this.secureUld)
         formData.append('sub', this.sub);
 
         // Log the form data
@@ -792,7 +841,8 @@ export default {
     // reply
     getImageUrl(imagePath) {
       // return `https://52.59.240.119/${imagePath}`;
-      return `https://king-prawn-app-3rw3o.ondigitalocean.app/${imagePath}`;
+      // return `https://king-prawn-app-3rw3o.ondigitalocean.app/${imagePath}`;
+      return imagePath
     },
 
     openViewer(imagePath) {
@@ -910,26 +960,74 @@ export default {
     openFileInput() {
       this.$refs.fileInput.click(); // Trigger click event on file input when icon is clicked
     },
-    handleFileChange(event) {
-      // Handle file change event and update this.image
-      const file = event.target.files[0]; // Get the uploaded file
-      // Check if a file is selected
-      this.imageName = file.name
+    // handleFileChange(event) {
+    //   // Handle file change event and update this.image
+    //   const file = event.target.files[0]; // Get the uploaded file
+    //   // Check if a file is selected
+    //   this.imageName = file.name
 
+    //   if (file) {
+    //     this.image = this.$refs.fileInput.files[0];
+    //     // Read the file as a data URL
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       // Update imageUrl with the data URL of the uploaded image
+    //       this.imageUrl = e.target.result;
+    //     };
+    //     reader.readAsDataURL(file);
+    //   }
+
+
+
+    // },
+    handleFileChange(event) {
+      // Get the uploaded file
+      const file = event.target.files[0];
+
+      // Check if a file is selected
       if (file) {
-        this.image = this.$refs.fileInput.files[0];
-        // Read the file as a data URL
+        // Store file name and file object
+        this.imageName = file.name;
+        this.image = file;
+
+        // Create a FormData object
+        const formData = new FormData();
+        formData.append('file', file); // Add the file to the form data
+
+        // Use axios to send the formData to the server
+        axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data', // Indicate that we're uploading a file
+          }
+        })
+          .then((response) => {
+            // Handle the response from the API
+            console.log('Upload Successful:', response.data);
+
+            // Optionally, you can store the uploaded file URL or any data from the response
+            if (response.data && response.data.secureUld) {
+              this.secureUld = response.data.secureUld;
+              console.log('File uploaded, secureUid:', this.secureUld);
+            }
+          })
+          .catch((error) => {
+            // Handle errors
+            console.error('Upload Error:', error);
+          });
+
+        // If you want to preview the image before upload, you can use FileReader:
         const reader = new FileReader();
         reader.onload = (e) => {
-          // Update imageUrl with the data URL of the uploaded image
+          // Update imageUrl with the data URL of the uploaded image for preview
           this.imageUrl = e.target.result;
         };
         reader.readAsDataURL(file);
+      } else {
+        console.error('No file selected');
       }
+    }
 
-
-
-    },
+    ,
     async fetchProfileData() {
       try {
         console.log("Fetching profile data...");
@@ -1006,7 +1104,9 @@ export default {
         // console.log(this.user_image)
         this.imgLoading = true;
 
-        const file = this.$refs.fileInput.files[0];
+        // const file = this.$refs.fileInput.files[0];
+        const file = this.secureUld
+        console.log("comment Image", file)
         console.log("post comment image ifle", file)
         const maxSizeInBytes = 3 * 1024 * 1024; // 3 MB
 

@@ -10,8 +10,11 @@
 							<img :src="this.croppedImageUrl" height="150px" width="150px" @click="openFileInput"
 								v-if="this.croppedImageUrl" class="d-block mx-auto">
 
-							<img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
+							<!-- <img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
 								alt="Profile Image"
+								v-else-if="this.image != '' && this.image != null && this.image != undefined"
+								@click="openFileInput" /> -->
+							<img :src="profileImageState.profileImage" class="user-profile-page-img" alt="Profile Image"
 								v-else-if="this.image != '' && this.image != null && this.image != undefined"
 								@click="openFileInput" />
 
@@ -595,8 +598,11 @@
 						<img :src="this.croppedImageUrl" height="150px" width="150px" @click="openFileInput"
 							v-if="this.croppedImageUrl">
 
-						<img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
+						<!-- <img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
 							alt="Profile Image"
+							v-else-if="this.image != '' && this.image != null && this.image != undefined"
+							@click="openFileInput" /> -->
+						<img :src="profileImageState.profileImage" class="user-profile-page-img" alt="Profile Image"
 							v-else-if="this.image != '' && this.image != null && this.image != undefined"
 							@click="openFileInput" />
 
@@ -1144,6 +1150,7 @@ export default {
 	},
 	data() {
 		return {
+			secureUld: "",
 			cities: [],
 			preferedCar1: "",
 			preferedCar2: "",
@@ -1602,19 +1609,64 @@ export default {
 				this.cropper.zoomTo(this.zoomLevel);
 			}
 		},
-		closeModal(done) {
+		// closeModal(done) {
+		// 	if (done && this.cropper) {
+		// 		const canvas = this.cropper.getCroppedCanvas();
+		// 		canvas.toBlob((blob) => {
+		// 			this.croppedBlob = blob; // Store the cropped image blob
+		// 			this.croppedImageUrl = URL.createObjectURL(blob); // Create a URL for the cropped image
+		// 			this.imageModal = false;
+		// 		}, 'image/png');
+		// 	} else {
+		// 		this.imageModal = false;
+		// 		console.log("sdss")
+		// 	}
+		// },
+		async closeModal(done) {
 			if (done && this.cropper) {
 				const canvas = this.cropper.getCroppedCanvas();
-				canvas.toBlob((blob) => {
-					this.croppedBlob = blob; // Store the cropped image blob
-					this.croppedImageUrl = URL.createObjectURL(blob); // Create a URL for the cropped image
+				canvas.toBlob(async (blob) => {
+					if (!blob) return;
+
+					// Convert Blob to File
+					const file = new File([blob], "cropped-image.png", { type: "image/png" });
+
+					this.croppedFile = file; // Store the cropped image as a File
+					this.croppedImageUrl = URL.createObjectURL(file); // Create a URL for preview
 					this.imageModal = false;
-				}, 'image/png');
+
+					try {
+						// Prepare FormData for image upload
+						const formData = new FormData();
+						formData.append("file", this.croppedFile); // Ensure key is 'file'
+
+						// Upload the image
+						const response = await fetch("https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload", {
+							method: "POST",
+							body: formData,
+						});
+
+						const result = await response.json();
+						console.log("Upload Response:", result);
+
+						if (result.success) {
+							this.secureUld = result.secureUld; // Store secureUid for later use
+							console.log("Secure UID:", this.secureUld);
+						} else {
+							console.error("Image upload failed:", result);
+						}
+					} catch (error) {
+						console.error("Error during image upload:", error);
+					}
+				}, "image/png");
 			} else {
 				this.imageModal = false;
-				console.log("sdss")
+				console.log("Modal closed without cropping.");
 			}
-		},
+		}
+
+
+		,
 		// working with image
 		// async submitProfileForm() {
 		// 	this.loading = true;
@@ -1830,14 +1882,18 @@ export default {
 		// Function to submit the form data
 		async submitFormData() {
 			const formData = new FormData();
-			const file = this.$refs.fileInput.files[0];
-			const originalFilename = file ? file.name : null;
+			// const file = this.$refs.fileInput.files[0];
+			// const originalFilename = file ? file.name : null;
 
 			// Add image to form data if croppedBlob exists
-			if (this.croppedBlob) {
-				formData.append('image', this.croppedBlob, originalFilename);
-			}
-
+			// if (this.croppedBlob) {
+			// 	// formData.append('image', this.croppedBlob, originalFilename);
+			// 	console.log("image secure issss", this.secureUld);
+			// 	formData.append('image', this.secureUld);
+			// }
+			console.log("image secure issss", this.secureUld);
+			formData.append('image', this.secureUld);
+			console.log("user_age", this.age)
 			// Add other form fields to the form data
 			formData.append('sub', this.formData.sub);
 			formData.append('name', this.fullname);
@@ -1898,6 +1954,100 @@ export default {
 			}
 		},
 
+		// async submitFormData() {
+		// 	try {
+		// 		// 1️⃣ Upload Image First
+		// 		const file = this.$refs.fileInput.files[0];
+		// 		let secureUid = null;
+
+		// 		if (file) {
+		// 			const imageFormData = new FormData();
+		// 			imageFormData.append('image', file, file.name);
+
+		// 			const uploadResponse = await axios.post(
+		// 				'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+		// 				imageFormData,
+		// 				{
+		// 					headers: { 'Content-Type': 'multipart/form-data' },
+		// 				}
+		// 			);
+
+		// 			console.log('Image Upload Response:', uploadResponse.data);
+
+		// 			if (uploadResponse.data.success) {
+		// 				secureUid = uploadResponse.data.secureUid; // Extract secureUid
+		// 			} else {
+		// 				console.error('Image upload failed:', uploadResponse.data);
+		// 				return; // Stop execution if image upload fails
+		// 			}
+		// 		}
+
+		// 		// 2️⃣ Prepare Form Data for Update
+		// 		const formData = new FormData();
+
+		// 		// Attach the cropped image along with the secureUid
+		// 		if (this.croppedBlob && secureUid) {
+		// 			formData.append('image', this.croppedBlob, secureUid); // Use secureUid as the filename
+		// 		}
+
+		// 		formData.append('sub', this.formData.sub);
+		// 		formData.append('name', this.fullname);
+		// 		formData.append('nickname', this.name);
+		// 		formData.append('age', this.age);
+		// 		formData.append('email', this.email);
+		// 		formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+		// 		formData.append('socialMedia', this.socialMedia);
+
+		// 		// New changed data
+		// 		formData.append('preferedCar1', this.preferedCar1);
+		// 		formData.append('preferedCar2', this.preferedCar2);
+		// 		formData.append('preferedCar3', this.preferedCar3);
+		// 		formData.append('city', this.formData.city);
+		// 		formData.append('country', this.formData.country);
+
+		// 		this.dropdowns.forEach((dropdown, index) => {
+		// 			formData.append(`car${index}carId`, dropdown.carId || '');
+		// 			formData.append(`car${index}make`, dropdown.make || '');
+		// 			formData.append(`car${index}model`, dropdown.model || '');
+		// 			formData.append(`car${index}year`, dropdown.year || '');
+		// 			formData.append(`car${index}cardSpec`, dropdown.cardSpec || '');
+		// 		});
+
+		// 		console.log('FormData contents:');
+		// 		formData.forEach((value, key) => {
+		// 			console.log(`${key}: ${value}`);
+		// 		});
+
+		// 		// 3️⃣ Submit Form Data to Update User API
+		// 		const response = await axios.post(
+		// 			'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/updateuser',
+		// 			formData,
+		// 			{
+		// 				headers: { 'Content-Type': 'multipart/form-data' },
+		// 			}
+		// 		);
+
+		// 		console.log('Form data submitted successfully:', response.data);
+
+		// 		this.loading = false;
+
+		// 		if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = response.data.message;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
+
+		// 		// 4️⃣ Fetch profile data after successful submission
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+		// 	} catch (error) {
+		// 		this.loading = false;
+		// 		console.error('Error during form submission:', error);
+		// 	}
+		// }
+		// ,
 
 		async submitProfileFormDeler() {
 			console.log("blob image ", this.croppedBlob)
@@ -2856,7 +3006,8 @@ export default {
 				// let imageUrl = "https://52.59.240.119/users/" + this.image;
 				let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
 				console.log("image url", imageUrl);
-				this.changeProfileImage(imageUrl)
+				// this.changeProfileImage(imageUrl)
+				this.changeProfileImage(this.image)
 				//				this.image = response.data[0].image
 			} catch (error) {
 				// Handle any errors

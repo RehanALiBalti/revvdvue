@@ -2159,9 +2159,9 @@ export default {
         // console.log(this.formData.sub, "new porofile Data is", response.data);
         this.image = response.data.image
 
-        let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+        // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
 
-        this.changeProfileImage(imageUrl)
+        this.changeProfileImage(this.image)
         if (this.role != 'dealer') {
           this.changeName(response.data.nickname)
         }
@@ -2293,34 +2293,142 @@ export default {
     //   console.log("Story images with URLs:", this.formData.storyImages);
     // },
 
+    // async SubmitStory() {
+    //   console.log("submit story", this.formData);
+
+    //   // Create a new FormData object
+    //   let data = new FormData();
+    //   await this.convertAndAppendImages();
+
+
+    //   // Always append common data
+    //   data.append('story_type', this.selectedStoryType);
+    //   data.append('user_name', this.formData.user_name);
+    //   // data.append('user_name', "danish");
+    //   data.append('user_email', this.formData.user_email);
+    //   console.log("uanme", this.formData.user_name)
+
+
+
+    //   // data.append('user_email', "danish250ahmad@gmail.com");
+
+    //   // Conditionally append based on StoryType
+    //   if (this.selectedStoryType === 'carEnthusiast') {
+    //     // Append carEnthusiast related data
+    //     data.append('make', this.formData.make);
+    //     // data.append('make', "Audi");
+    //     data.append('model', this.formData.model);
+    //     // data.append('model', "100");
+    //     data.append('year', this.formData.year);
+    //     // data.append('year', "2007");
+    //     data.append('modifications', this.formData.modifications);
+    //     data.append('memorable', this.formData.memorable);
+    //     data.append('advice', this.formData.advice);
+    //     data.append('story', this.formData.story);
+    //     data.append('story_name', this.formData.story_name);
+    //     data.append('social_media', this.formData.social_media);
+    //   } else {
+    //     // Append non-carEnthusiast related data
+    //     data.append('country', this.formData.country);
+    //     data.append('city', this.formData.city);
+    //     data.append('story_history', this.formData.storyHistory);
+    //     data.append('adventure_story', this.formData.adventureStory);
+    //     data.append('story_name', this.formData.storyName);
+    //     data.append('social_media', this.formData.url);
+    //   }
+
+
+
+    //   // Append images (if any)
+    //   this.formData.storyImages.forEach((file) => {
+    //     data.append('storyImages', file);
+    //   });
+    //   // this.formData.storyImages.forEach((file) => {
+    //   //   const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file}`;
+    //   //   data.append('storyImages', fullImagePath); // Append the full URL
+    //   // });
+
+    //   if (this.isLogin == 'true' || this.isLogin == true) {
+
+    //     console.log("the condition is true and form submit")
+
+    //     // Send POST request using Axios
+    //     axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data'
+    //       }
+    //     })
+    //       .then(response => {
+    //         // Handle success
+    //         console.log('Post request successful:', response.data);
+    //         this.ModalStorySucces = true
+    //         // Handle success actions here
+    //       })
+    //       .catch(error => {
+    //         // Handle error
+    //         console.error('Error making post request:', error);
+    //         // Handle error actions here
+
+    //         this.modalTitle = "Something went wrong"
+    //         this.modaldescription = "Plese try after sometime"
+    //         this.ModalStoryFail = true;
+    //       });
+    //   }
+    //   else {
+    //     console.log("false please login ")
+    //     this.modalTitle = "Something went wrong"
+    //     this.modaldescription = "Plese login first to submit story"
+    //     this.ModalStoryFail = true
+    //   }
+
+
+    // }
     async SubmitStory() {
       console.log("submit story", this.formData);
 
       // Create a new FormData object
       let data = new FormData();
-      await this.convertAndAppendImages();
 
+      // Array to store uploaded image URLs
+      let uploadedImageUrls = [];
 
+      // Upload images one by one and collect URLs
+      for (const file of this.formData.storyImages) {
+        let formData = new FormData();
+        formData.append('file', file);
+
+        try {
+          const response = await axios.post(
+            'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+            formData,
+            { headers: { 'Content-Type': 'multipart/form-data' } }
+          );
+
+          if (response.data && response.data.secureUld) {
+            alert("in if");
+            console.log("images_sty", response.data.secureUld)
+            uploadedImageUrls.push(response.data.secureUld);
+          }
+        } catch (error) {
+          console.error("Error uploading image:", error);
+          this.modalTitle = "Something went wrong";
+          this.modaldescription = "Failed to upload one or more images. Please try again.";
+          this.ModalStoryFail = true;
+          return; // Stop execution if an image upload fails
+        }
+      }
+
+      console.log("uploadedImageUrls", uploadedImageUrls)
       // Always append common data
       data.append('story_type', this.selectedStoryType);
       data.append('user_name', this.formData.user_name);
-      // data.append('user_name', "danish");
       data.append('user_email', this.formData.user_email);
-      console.log("uanme", this.formData.user_name)
 
-
-
-      // data.append('user_email', "danish250ahmad@gmail.com");
-
-      // Conditionally append based on StoryType
+      // Append specific fields based on the selected story type
       if (this.selectedStoryType === 'carEnthusiast') {
-        // Append carEnthusiast related data
         data.append('make', this.formData.make);
-        // data.append('make', "Audi");
         data.append('model', this.formData.model);
-        // data.append('model', "100");
         data.append('year', this.formData.year);
-        // data.append('year', "2007");
         data.append('modifications', this.formData.modifications);
         data.append('memorable', this.formData.memorable);
         data.append('advice', this.formData.advice);
@@ -2328,7 +2436,6 @@ export default {
         data.append('story_name', this.formData.story_name);
         data.append('social_media', this.formData.social_media);
       } else {
-        // Append non-carEnthusiast related data
         data.append('country', this.formData.country);
         data.append('city', this.formData.city);
         data.append('story_history', this.formData.storyHistory);
@@ -2337,54 +2444,50 @@ export default {
         data.append('social_media', this.formData.url);
       }
 
-
-
-      // Append images (if any)
-      this.formData.storyImages.forEach((file) => {
-        data.append('storyImages', file);
+      // Append uploaded image URLs
+      /*
+      uploadedImageUrls.forEach(url => {
+        console.log("Imagesurl", url)
+        data.append('storyImages', url); // Send URL instead of file
       });
-      // this.formData.storyImages.forEach((file) => {
-      //   const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file}`;
-      //   data.append('storyImages', fullImagePath); // Append the full URL
-      // });
+      */
+      if (uploadedImageUrls.length > 0) {
+
+        data.append("images", JSON.stringify(uploadedImageUrls));
+      }
+      for (let [key, value] of data.entries()) {
+        console.log(key, value);
+      }
+
 
       if (this.isLogin == 'true' || this.isLogin == true) {
+        console.log("the condition is true and form submit");
 
-        console.log("the condition is true and form submit")
+        try {
+          const response = await axios.post(
+            'https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories',
+            data,
+            { headers: { 'Content-Type': 'multipart/form-data' } }
+          );
 
-        // Send POST request using Axios
-        axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-          .then(response => {
-            // Handle success
-            console.log('Post request successful:', response.data);
-            this.ModalStorySucces = true
-            // Handle success actions here
-          })
-          .catch(error => {
-            // Handle error
-            console.error('Error making post request:', error);
-            // Handle error actions here
-
-            this.modalTitle = "Something went wrong"
-            this.modaldescription = "Plese try after sometime"
-            this.ModalStoryFail = true;
-          });
+          console.log('Post request successful:', response.data);
+          this.ModalStorySucces = true;
+        } catch (error) {
+          console.error('Error making post request:', error);
+          this.modalTitle = "Something went wrong";
+          this.modaldescription = "Please try again later.";
+          this.ModalStoryFail = true;
+        }
+      } else {
+        console.log("false please login");
+        this.modalTitle = "Something went wrong";
+        this.modaldescription = "Please login first to submit the story";
+        this.ModalStoryFail = true;
       }
-      else {
-        console.log("false please login ")
-        this.modalTitle = "Something went wrong"
-        this.modaldescription = "Plese login first to submit story"
-        this.ModalStoryFail = true
-      }
-
-
     }
-
     ,
+
+
     toggleOpeng() {
       console.log('opneg')
       this.isOpeng = !this.isOpeng
