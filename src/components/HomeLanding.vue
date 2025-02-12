@@ -576,6 +576,12 @@ v-model="formData.country"> -->
                   <v-select v-model="formData.make" :options="makefilteredOptions" placeholder="Select a Make"
                     :filterable="true" @search:input="filterMakeOptions" @change="getModels" @input="getModels"
                     @select="getModels">
+                    <template #open-indicator>
+                      <!-- Custom SVG Icon -->
+                      <img
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                        width="11px" />
+                    </template>
                     <template #no-options>
                       <span>No options available</span>
                     </template>
@@ -607,6 +613,12 @@ v-model="formData.country"> -->
                   <v-select v-model="formData.model" :options="modelfilteredOptions" placeholder="Select a Model"
                     :filterable="true" :disabled="formData.make === ''" @search:input="filterModelOptions"
                     @change="getModels" @select="selectOptionModel">
+                    <template #open-indicator>
+                      <!-- Custom SVG Icon -->
+                      <img
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                        width="11px" />
+                    </template>
                     <template #no-options>
                       <span>No models available</span>
                     </template>
@@ -672,7 +684,7 @@ v-model="formData.country"> -->
                 <div class="col-md-5 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label"> What would your car story title be?
                   </label>
-                  <input type="tel" id="phone" name="phone" class="form-control form-input"
+                  <input type="text" id="phone" name="phone" class="form-control form-input"
                     placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
                 </div>
                 <div class="col-md-3 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
