@@ -547,8 +547,10 @@ export default {
         this.image = response.data.image
         // use this origional
         // let imageUrl = "https://52.59.240.119/users/" + this.image;
-        let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
-        this.changeProfileImage(imageUrl)
+        // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+        // this.changeProfileImage(imageUrl)
+        this.changeProfileImage(this.image)
+
         console.log("the image of user dloru header", this.image)
         //				this.image = response.data[0].image
       } catch (error) {
