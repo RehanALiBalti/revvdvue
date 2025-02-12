@@ -2888,9 +2888,22 @@ input::placeholder {
 	height: 35px !important;
 }
 
+
+
 .vs__search {
 	padding: 0 !important;
 	margin: 0 !important;
+	font-size: 14px !important;
+	color: #fff !important;
+	font-weight: 400 !important;
+	font-family: "Gruppo", sans-serif !important;
+}
+
+.vs__selected {
+	font-size: 14px !important;
+	color: #fff !important;
+	font-weight: 400 !important;
+	font-family: "Gruppo", sans-serif !important;
 }
 
 .v-select {
