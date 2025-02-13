@@ -2902,6 +2902,13 @@ input::placeholder {
 	font-family: "Gruppo", sans-serif !important;
 }
 
+.vs__search:disabled {
+	color: #fff !important;
+	/* Text color */
+
+}
+
+
 .vs__selected {
 	font-size: 14px !important;
 	color: #fff !important;
