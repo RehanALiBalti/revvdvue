@@ -611,7 +611,7 @@ v-model="formData.country"> -->
                     </ul>
                   </div> -->
                   <v-select v-model="formData.model" :options="modelfilteredOptions" placeholder="Select a Model"
-                    :filterable="true" :disabled="formData.make === ''" @search:input="filterModelOptions"
+                    :filterable="true" :readonly="formData.make === ''" @search:input="filterModelOptions"
                     @change="getModels" @select="selectOptionModel">
                     <template #open-indicator>
                       <!-- Custom SVG Icon -->
@@ -632,7 +632,7 @@ v-model="formData.country"> -->
                   <div class="customSelect w-100 position-relative">
                     <input type="text" class="form-select form-control form-input" :placeholder="$t('Production Years')"
                       @input="GenfilterOption" v-model="formData.year" @click="toggleOpeng" v-if="formData.model == ''"
-                      disabled>
+                      readonly>
                     <input type="text" class="form-select form-control form-input"
                       :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
                       @click="toggleOpeng" v-else>
