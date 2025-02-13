@@ -2747,7 +2747,9 @@ a:hover {
 
 
 .vs__dropdown-toggle {
-	padding: 0.6rem !important;
+	/* padding: 0.6rem !important; */
+	padding-block: 0.2rem !important;
+	padding-left: 0.6rem !important;
 }
 
 .vs__selected {
@@ -2892,6 +2894,7 @@ input::placeholder {
 
 .vs__search {
 	padding: 0 !important;
+	padding-left: 0.9rem !important;
 	margin: 0 !important;
 	font-size: 14px !important;
 	color: #fff !important;
