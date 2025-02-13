@@ -2903,7 +2903,7 @@ input::placeholder {
 }
 
 .vs__search:disabled {
-	color: red !important;
+	color: #fff !important;
 	/* Text color */
 
 }
