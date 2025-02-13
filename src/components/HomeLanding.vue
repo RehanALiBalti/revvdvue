@@ -578,7 +578,7 @@ v-model="formData.country"> -->
                     @select="getModels">
                     <template #open-indicator>
                       <!-- Custom SVG Icon -->
-                      <img
+                      <img class="indicator_Image"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
                         width="11px" />
                     </template>
@@ -615,7 +615,7 @@ v-model="formData.country"> -->
                     @change="getModels" @select="selectOptionModel">
                     <template #open-indicator>
                       <!-- Custom SVG Icon -->
-                      <img
+                      <img class="indicator_Image"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
                         width="11px" />
                     </template>
@@ -2383,19 +2383,149 @@ export default {
 
 
     // }
+    // real working
+    // async SubmitStory() {
+    //   console.log("submit story", this.formData);
+
+    //   // Create a new FormData object
+    //   let data = new FormData();
+
+    //   // Array to store uploaded image URLs
+    //   let uploadedImageUrls = [];
+
+    //   // Upload images one by one and collect URLs
+    //   for (const file of this.formData.storyImages) {
+    //     let formData = new FormData();
+    //     formData.append('file', file);
+
+    //     try {
+    //       const response = await axios.post(
+    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //         formData,
+    //         { headers: { 'Content-Type': 'multipart/form-data' } }
+    //       );
+
+    //       if (response.data && response.data.secureUld) {
+
+    //         console.log("images_sty", response.data.secureUld)
+    //         uploadedImageUrls.push(response.data.secureUld);
+    //       }
+    //     } catch (error) {
+    //       console.error("Error uploading image:", error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
+    //       this.ModalStoryFail = true;
+    //       return; // Stop execution if an image upload fails
+    //     }
+    //   }
+
+    //   console.log("uploadedImageUrls", uploadedImageUrls)
+    //   // Always append common data
+    //   data.append('story_type', this.selectedStoryType);
+    //   data.append('user_name', this.formData.user_name);
+    //   data.append('user_email', this.formData.user_email);
+
+    //   // Append specific fields based on the selected story type
+    //   if (this.selectedStoryType === 'carEnthusiast') {
+    //     data.append('make', this.formData.make);
+    //     data.append('model', this.formData.model);
+    //     data.append('year', this.formData.year);
+    //     data.append('modifications', this.formData.modifications);
+    //     data.append('memorable', this.formData.memorable);
+    //     data.append('advice', this.formData.advice);
+    //     data.append('story', this.formData.story);
+    //     data.append('story_name', this.formData.story_name);
+    //     data.append('social_media', this.formData.social_media);
+    //   } else {
+    //     data.append('country', this.formData.country);
+    //     data.append('city', this.formData.city);
+    //     data.append('story_history', this.formData.storyHistory);
+    //     data.append('adventure_story', this.formData.adventureStory);
+    //     data.append('story_name', this.formData.storyName);
+    //     data.append('social_media', this.formData.url);
+    //   }
+
+    //   // Append uploaded image URLs
+    //   /*
+    //   uploadedImageUrls.forEach(url => {
+    //     console.log("Imagesurl", url)
+    //     data.append('storyImages', url); // Send URL instead of file
+    //   });
+    //   */
+    //   if (uploadedImageUrls.length > 0) {
+
+    //     data.append("images", JSON.stringify(uploadedImageUrls));
+    //   }
+    //   for (let [key, value] of data.entries()) {
+    //     console.log(key, value);
+    //   }
+
+
+    //   if (this.isLogin == 'true' || this.isLogin == true) {
+    //     console.log("the condition is true and form submit");
+
+    //     try {
+    //       const response = await axios.post(
+    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories',
+    //         data,
+    //         { headers: { 'Content-Type': 'multipart/form-data' } }
+    //       );
+
+    //       console.log('Post request successful:', response.data);
+    //       this.ModalStorySucces = true;
+    //     } catch (error) {
+    //       console.error('Error making post request:', error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Please try again later.";
+    //       this.ModalStoryFail = true;
+    //     }
+    //   } else {
+    //     console.log("false please login");
+    //     this.modalTitle = "Something went wrong";
+    //     this.modaldescription = "Please login first to submit the story";
+    //     this.ModalStoryFail = true;
+    //   }
+    // }
     async SubmitStory() {
       console.log("submit story", this.formData);
 
-      // Create a new FormData object
+      // Create a new FormData object to store the form data
       let data = new FormData();
 
       // Array to store uploaded image URLs
       let uploadedImageUrls = [];
 
       // Upload images one by one and collect URLs
-      for (const file of this.formData.storyImages) {
-        let formData = new FormData();
-        formData.append('file', file);
+      // for (const file of this.formData.storyImages) {
+      //   let formData = new FormData();
+      //   formData.append('file', file);
+
+      //   try {
+      //     const response = await axios.post(
+      //       'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+      //       formData,
+      //       { headers: { 'Content-Type': 'multipart/form-data' } }
+      //     );
+
+      //     if (response.data && response.data.secureUld) {
+      //       console.log("Image uploaded:", response.data.secureUld);
+      //       uploadedImageUrls.push(response.data.secureUld); // Add the uploaded URL to the array
+      //     }
+      //   } catch (error) {
+      //     console.error("Error uploading image:", error);
+      //     this.modalTitle = "Something went wrong";
+      //     this.modaldescription = "Failed to upload one or more images. Please try again.";
+      //     this.ModalStoryFail = true;
+      //     return; // Stop execution if an image upload fails
+      //   }
+      // }
+      for (let i = 0; i < this.formData.storyImages.length; i++) {
+        console.log("sto_image", this.formData.storyImages[i])
+        const file = this.formData.storyImages[i];
+        console.log("file" + i, file, file.name);
+        const formData = new FormData();
+        formData.append(`file`, file); // Use a unique key for each file
+
 
         try {
           const response = await axios.post(
@@ -2405,8 +2535,8 @@ export default {
           );
 
           if (response.data && response.data.secureUld) {
-            alert("in if");
-            console.log("images_sty", response.data.secureUld)
+            console.log("response data", response.data)
+            console.log("Image uploaded:", response.data.secureUld);
             uploadedImageUrls.push(response.data.secureUld);
           }
         } catch (error) {
@@ -2414,11 +2544,12 @@ export default {
           this.modalTitle = "Something went wrong";
           this.modaldescription = "Failed to upload one or more images. Please try again.";
           this.ModalStoryFail = true;
-          return; // Stop execution if an image upload fails
+          return;
         }
-      }
 
-      console.log("uploadedImageUrls", uploadedImageUrls)
+      }
+      console.log("uploadedImageUrls", uploadedImageUrls);
+
       // Always append common data
       data.append('story_type', this.selectedStoryType);
       data.append('user_name', this.formData.user_name);
@@ -2445,23 +2576,18 @@ export default {
       }
 
       // Append uploaded image URLs
-      /*
-      uploadedImageUrls.forEach(url => {
-        console.log("Imagesurl", url)
-        data.append('storyImages', url); // Send URL instead of file
-      });
-      */
       if (uploadedImageUrls.length > 0) {
-
-        data.append("images", JSON.stringify(uploadedImageUrls));
+        data.append("images", JSON.stringify(uploadedImageUrls)); // Send image URLs as a JSON string
       }
+
+      // Log form data entries for debugging
       for (let [key, value] of data.entries()) {
         console.log(key, value);
       }
 
-
-      if (this.isLogin == 'true' || this.isLogin == true) {
-        console.log("the condition is true and form submit");
+      // Check if the user is logged in before proceeding
+      if (this.isLogin === true || this.isLogin === 'true') {
+        console.log("User is logged in, submitting form");
 
         try {
           const response = await axios.post(
@@ -2471,20 +2597,23 @@ export default {
           );
 
           console.log('Post request successful:', response.data);
-          this.ModalStorySucces = true;
+          this.ModalStorySucces = true; // Show success modal
         } catch (error) {
           console.error('Error making post request:', error);
           this.modalTitle = "Something went wrong";
           this.modaldescription = "Please try again later.";
-          this.ModalStoryFail = true;
+          this.ModalStoryFail = true; // Show failure modal
         }
       } else {
-        console.log("false please login");
+        console.log("User not logged in. Please login first.");
         this.modalTitle = "Something went wrong";
         this.modaldescription = "Please login first to submit the story";
-        this.ModalStoryFail = true;
+        this.ModalStoryFail = true; // Show failure modal
       }
+
+
     }
+
     ,
 
 
@@ -3010,6 +3139,16 @@ export default {
     document.body.removeEventListener("click", this.handleOutsideClick);
     window.removeEventListener('storage', this.handleStorageChange); // Remove the event listener
 
+  },
+  computed: {
+    convertedImages() {
+      return this.formData.storyImages.map((image) => {
+        if (image instanceof File) {
+          return URL.createObjectURL(image); // Convert File to Object URL
+        }
+        return image; // Return existing URLs unchanged
+      });
+    }
   },
 };
 
@@ -4071,5 +4210,10 @@ select::placeholder {
   /* .form-control{
     width:104% !important;
   } */
+}
+
+.indicator_Image {
+  position: relative !important;
+  left: -22px !important;
 }
 </style>
