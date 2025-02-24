@@ -305,12 +305,13 @@
 
 <script>
 import { Auth } from 'aws-amplify';
-import axios from 'axios';
+// import axios from 'axios';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
 import { useIslogin } from "@/composables/uselogin"
 import { computed } from "vue";
 import { inject } from 'vue';
+import http from "@/http-common";
 const { state, setIslogin } = useIslogin();
 
 // import { mapActions } from 'vuex';
@@ -530,34 +531,62 @@ export default {
     },
 
     async fetchproData() {
-
-
-
-      const myid = this.sub
-      const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
-      console.log("jaloru header", myid, url);
-      try {
-        // Make the GET request with query parameters
-        const response = await axios.get(url);
-        console.log("ja loru response", response, response.data.nickname)
-
-        // Handle the response data
-        // console.log(this.formData.sub, "new porofile Data is", response.data);
-        this.changeName(response.data.nickname);
-        this.image = response.data.image
-        // use this origional
-        // let imageUrl = "https://52.59.240.119/users/" + this.image;
-        // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
-        // this.changeProfileImage(imageUrl)
-        this.changeProfileImage(this.image)
-
-        console.log("the image of user dloru header", this.image)
-        //				this.image = response.data[0].image
-      } catch (error) {
-        // Handle any errors
-        console.error('Error making GET request:', error);
+      if (!this.sub) {
+        console.warn("User ID (sub) is missing!");
+        return;
       }
-    },
+
+      try {
+        console.log("Fetching profile data for:", this.sub);
+
+        const response = await http.get(`/users/sub`, { params: { sub: this.sub } });
+
+        console.log("Profile response:", response.data);
+
+        // Update user data
+        this.changeName(response.data.nickname);
+        this.image = response.data.image;
+
+        // Construct and set profile image
+        // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+        // console.log("User profile image:", imageUrl);
+        this.changeProfileImage(this.image);
+
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    }
+    ,
+    // before link changing its working laetst
+    // async fetchproData() {
+
+
+
+    //   const myid = this.sub
+    //   const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
+    //   console.log("jaloru header", myid, url);
+    //   try {
+    //     // Make the GET request with query parameters
+    //     const response = await axios.get(url);
+    //     console.log("ja loru response", response, response.data.nickname)
+
+    //     // Handle the response data
+    //     // console.log(this.formData.sub, "new porofile Data is", response.data);
+    //     this.changeName(response.data.nickname);
+    //     this.image = response.data.image
+    //     // use this origional
+    //     // let imageUrl = "https://52.59.240.119/users/" + this.image;
+    //     // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+    //     // this.changeProfileImage(imageUrl)
+    //     this.changeProfileImage(this.image)
+
+    //     console.log("the image of user dloru header", this.image)
+    //     //				this.image = response.data[0].image
+    //   } catch (error) {
+    //     // Handle any errors
+    //     console.error('Error making GET request:', error);
+    //   }
+    // },
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
     },

@@ -114,7 +114,7 @@
 
 									<div class="col-md-4">
 										<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional')
-											}}</label>
+										}}</label>
 										<input v-model="socialMedia" id="socialMedia" type="text" name="socialMedia"
 											class="form-control form-input" placeholder="Enter here">
 									</div>
@@ -1102,7 +1102,7 @@
 
 <script>
 
-import axios from 'axios';
+// import axios from 'axios';
 import { Auth } from 'aws-amplify';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
@@ -1114,6 +1114,7 @@ import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
 import CarDataService from '@/services/CarDataService';
+import http from "@/http-common";
 // import Multiselect from 'vue-multiselect'
 // import VueAvatarCropper from 'vue-avatar-cropper';
 export default {
@@ -1623,6 +1624,7 @@ export default {
 		// 	}
 		// },
 		async closeModal(done) {
+			const baseURL = http.defaults.baseURL; // Extract the base URL
 			if (done && this.cropper) {
 				const canvas = this.cropper.getCroppedCanvas();
 				canvas.toBlob(async (blob) => {
@@ -1641,7 +1643,11 @@ export default {
 						formData.append("file", this.croppedFile); // Ensure key is 'file'
 
 						// Upload the image
-						const response = await fetch("https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload", {
+						// const response = await fetch("https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload", {
+						// 	method: "POST",
+						// 	body: formData,
+						// });
+						const response = await fetch(`${baseURL}/common/upload`, {
 							method: "POST",
 							body: formData,
 						});
@@ -1846,17 +1852,55 @@ export default {
 		// 		console.error('Error during nickname check or form submission:', error);
 		// 	}
 		// }
+		// before link change working
+		// async submitProfileForm() {
+
+		// 	console.log("initial name", this.initialNickname, "name", this.name)
+		// 	// If the nickname has changed, check its availability
+		// 	if (this.name !== this.initialNickname) {
+		// 		console.log("Checking nickname availability for:", this.name);
+		// 		this.loading = true;
+
+		// 		try {
+		// 			// Check if the nickname is unique
+		// 			const nicknameUrl = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${this.name}`;
+		// 			const nicknameResponse = await axios.get(nicknameUrl);
+		// 			console.log("Nickname check response:", nicknameResponse);
+
+		// 			if (nicknameResponse.data && nicknameResponse.data.count === 0) {
+		// 				console.log("Nickname is unique, proceeding with form submission");
+
+		// 				// Proceed with form submission
+		// 				await this.submitFormData();
+		// 			} else {
+		// 				console.log("Nickname already exists");
+		// 				this.isModalOpenName = true;
+		// 				this.loading = false;
+		// 			}
+		// 		} catch (error) {
+		// 			this.loading = false;
+		// 			console.error('Error during nickname check or form submission:', error);
+		// 		}
+		// 	} else {
+		// 		// If the nickname hasn't changed, submit the form directly
+		// 		await this.submitFormData();
+		// 	}
+		// },
+
+
 		async submitProfileForm() {
-			console.log("initial name", this.initialNickname, "name", this.name)
+			console.log("initial name", this.initialNickname, "name", this.name);
+
 			// If the nickname has changed, check its availability
 			if (this.name !== this.initialNickname) {
 				console.log("Checking nickname availability for:", this.name);
 				this.loading = true;
 
 				try {
-					// Check if the nickname is unique
-					const nicknameUrl = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${this.name}`;
-					const nicknameResponse = await axios.get(nicknameUrl);
+					// Use baseURL from httpCommon.js
+					const nicknameUrl = `${http.defaults.baseURL}/users/nickname?nickname=${this.name}`;
+					const nicknameResponse = await http.get(nicknameUrl); // Use http instead of axios
+
 					console.log("Nickname check response:", nicknameResponse);
 
 					if (nicknameResponse.data && nicknameResponse.data.count === 0) {
@@ -1871,73 +1915,140 @@ export default {
 					}
 				} catch (error) {
 					this.loading = false;
-					console.error('Error during nickname check or form submission:', error);
+					console.error("Error during nickname check or form submission:", error);
 				}
 			} else {
 				// If the nickname hasn't changed, submit the form directly
 				await this.submitFormData();
 			}
-		},
-
+		}
+		,
 		// Function to submit the form data
+		// befor link chnaging its working
+		// async submitFormData() {
+		// 	const formData = new FormData();
+		// 	// const file = this.$refs.fileInput.files[0];
+		// 	// const originalFilename = file ? file.name : null;
+
+		// 	// Add image to form data if croppedBlob exists
+		// 	// if (this.croppedBlob) {
+		// 	// 	// formData.append('image', this.croppedBlob, originalFilename);
+		// 	// 	console.log("image secure issss", this.secureUld);
+		// 	// 	formData.append('image', this.secureUld);
+		// 	// }
+		// 	console.log("image secure issss", this.secureUld);
+		// 	formData.append('image', this.secureUld);
+		// 	console.log("user_age", this.age)
+		// 	// Add other form fields to the form data
+		// 	formData.append('sub', this.formData.sub);
+		// 	formData.append('name', this.fullname);
+		// 	formData.append('nickname', this.name);
+		// 	formData.append('age', this.age);
+		// 	formData.append('email', this.email);
+		// 	formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+		// 	formData.append('socialMedia', this.socialMedia);
+
+
+		// 	// new changed data
+		// 	formData.append('preferedCar1', this.preferedCar1);
+		// 	formData.append('preferedCar2', this.preferedCar2);
+		// 	formData.append('preferedCar3', this.preferedCar3);
+		// 	formData.append('city', this.formData.city);
+		// 	formData.append('country', this.formData.country);
+		// 	this.dropdowns.forEach((dropdown, index) => {
+		// 		formData.append(`car${index}carId`, dropdown.carId || '');
+		// 		formData.append(`car${index}make`, dropdown.make || '');
+		// 		formData.append(`car${index}model`, dropdown.model || '');
+		// 		formData.append(`car${index}year`, dropdown.year || '');
+		// 		formData.append(`car${index}cardSpec`, dropdown.cardSpec || '');
+		// 	});
+
+		// 	console.log('FormData contents:');
+		// 	formData.forEach((value, key) => {
+		// 		console.log(`${key}: ${value}`);
+		// 	});
+
+
+		// 	try {
+		// 		const response = await axios.post(
+		// 			'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/updateuser',
+		// 			formData,
+		// 			{
+		// 				headers: {
+		// 					'Content-Type': 'multipart/form-data',
+		// 				}
+		// 			}
+		// 		);
+		// 		this.loading = false;
+		// 		console.log('Form data submitted successfully:', response.data);
+
+		// 		if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = response.data.message;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
+
+		// 		// Fetch profile data after successful submission
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+		// 	} catch (error) {
+		// 		this.loading = false;
+		// 		console.error('Error during form submission:', error);
+		// 	}
+		// },
 		async submitFormData() {
 			const formData = new FormData();
-			// const file = this.$refs.fileInput.files[0];
-			// const originalFilename = file ? file.name : null;
 
-			// Add image to form data if croppedBlob exists
-			// if (this.croppedBlob) {
-			// 	// formData.append('image', this.croppedBlob, originalFilename);
-			// 	console.log("image secure issss", this.secureUld);
-			// 	formData.append('image', this.secureUld);
-			// }
 			console.log("image secure issss", this.secureUld);
-			formData.append('image', this.secureUld);
-			console.log("user_age", this.age)
-			// Add other form fields to the form data
-			formData.append('sub', this.formData.sub);
-			formData.append('name', this.fullname);
-			formData.append('nickname', this.name);
-			formData.append('age', this.age);
-			formData.append('email', this.email);
-			formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
-			formData.append('socialMedia', this.socialMedia);
+			formData.append("image", this.secureUld);
+			console.log("user_age", this.age);
 
+			// Add other form fields
+			formData.append("sub", this.formData.sub);
+			formData.append("name", this.fullname);
+			formData.append("nickname", this.name);
+			formData.append("age", this.age);
+			formData.append("email", this.email);
+			formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
+			formData.append("socialMedia", this.socialMedia);
 
-			// new changed data
-			formData.append('preferedCar1', this.preferedCar1);
-			formData.append('preferedCar2', this.preferedCar2);
-			formData.append('preferedCar3', this.preferedCar3);
-			formData.append('city', this.formData.city);
-			formData.append('country', this.formData.country);
+			// New changed data
+			formData.append("preferedCar1", this.preferedCar1);
+			formData.append("preferedCar2", this.preferedCar2);
+			formData.append("preferedCar3", this.preferedCar3);
+			formData.append("city", this.formData.city);
+			formData.append("country", this.formData.country);
+
 			this.dropdowns.forEach((dropdown, index) => {
-				formData.append(`car${index}carId`, dropdown.carId || '');
-				formData.append(`car${index}make`, dropdown.make || '');
-				formData.append(`car${index}model`, dropdown.model || '');
-				formData.append(`car${index}year`, dropdown.year || '');
-				formData.append(`car${index}cardSpec`, dropdown.cardSpec || '');
+				formData.append(`car${index}carId`, dropdown.carId || "");
+				formData.append(`car${index}make`, dropdown.make || "");
+				formData.append(`car${index}model`, dropdown.model || "");
+				formData.append(`car${index}year`, dropdown.year || "");
+				formData.append(`car${index}cardSpec`, dropdown.cardSpec || "");
 			});
 
-			console.log('FormData contents:');
+			console.log("FormData contents:");
 			formData.forEach((value, key) => {
 				console.log(`${key}: ${value}`);
 			});
 
-
 			try {
-				const response = await axios.post(
-					'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/updateuser',
-					formData,
-					{
-						headers: {
-							'Content-Type': 'multipart/form-data',
-						}
-					}
-				);
-				this.loading = false;
-				console.log('Form data submitted successfully:', response.data);
+				const response = await http.post("/users/updateuser", formData, {
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				});
 
-				if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+				this.loading = false;
+				console.log("Form data submitted successfully:", response.data);
+
+				if (
+					response.data &&
+					response.data.message &&
+					response.data.message.includes("Phone number already exists")
+				) {
 					this.IsphonExists = true;
 					this.errorMessage = response.data.message;
 					this.isModalOpenFail = true;
@@ -1950,7 +2061,7 @@ export default {
 				return profiledata;
 			} catch (error) {
 				this.loading = false;
-				console.error('Error during form submission:', error);
+				console.error("Error during form submission:", error);
 			}
 		},
 
@@ -2048,57 +2159,120 @@ export default {
 		// 	}
 		// }
 		// ,
+		// befor link changing its working
+		// async submitProfileFormDeler() {
+		// 	console.log("blob image ", this.croppedBlob)
+		// 	this.loading = true;
+		// 	console.log("nick namee in submit", 'nickname', this.name)
+		// 	try {
+		// 		const file = this.$refs.fileInput.files[0];
+		// 		const originalFilename = file ? file.name : null;
 
+		// 		const formData = new FormData();
+		// 		if (this.croppedBlob) {
+		// 			formData.append('image', this.croppedBlob, originalFilename);
+
+		// 			console.log("Submitting form data:", formData);
+		// 		}
+
+		// 		formData.append('sub', this.formData.sub);
+		// 		formData.append('street1', this.formData.street);
+		// 		formData.append('street2', this.formData.street2);
+		// 		formData.append('zipCode', this.formData.zipCode);
+		// 		formData.append('mobileCustomer', this.formData.mobilePhone);
+		// 		formData.append('number', this.formData.phone1);
+		// 		formData.append('phoneCustomer', this.formData.phone1);
+
+
+		// 		formData.append('name', this.formData.CompanyName);
+		// 		formData.append('companyName', this.formData.CompanyName);
+		// 		formData.append('nickname', this.formData.CompanyName);
+		// 		formData.append('country', this.formData.country);
+
+		// 		formData.append('city', this.formData.city);
+		// 		formData.append('email', this.formData.email);
+		// 		formData.append('emailForCustomer', this.formData.email);
+		// 		formData.append('faxCustomer', this.formData.fax);
+		// 		formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
+
+
+		// 		// Send the form data to the API
+		// 		const response = await axios.post(
+		// 			'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/updateuser',
+		// 			formData,
+		// 			{
+		// 				headers: {
+		// 					'Content-Type': 'multipart/form-data',
+		// 				}
+		// 			}
+		// 		);
+		// 		this.loading = false;
+		// 		console.log('Form data submitted successfully dealer1:', response.data);
+
+		// 		if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+		// 			this.IsphonExists = true;
+		// 			this.errorMessage = response.data.message;
+		// 			this.isModalOpenFail = true;
+		// 		} else {
+		// 			this.IsphonExists = false;
+		// 		}
+
+		// 		const profiledata = await this.fetchproData();
+		// 		return profiledata;
+		// 	} catch (error) {
+		// 		this.loading = false;
+		// 		console.error('Error submitting form:', error);
+		// 	}
+		// },
+		// end test
 		async submitProfileFormDeler() {
-			console.log("blob image ", this.croppedBlob)
+			console.log("blob image ", this.croppedBlob);
 			this.loading = true;
-			console.log("nick namee in submit", 'nickname', this.name)
+			console.log("nick namee in submit", "nickname", this.name);
+
 			try {
-				const file = this.$refs.fileInput.files[0];
+				const file = this.$refs.fileInput?.files[0];
 				const originalFilename = file ? file.name : null;
 
 				const formData = new FormData();
 				if (this.croppedBlob) {
-					formData.append('image', this.croppedBlob, originalFilename);
-
+					formData.append("image", this.croppedBlob, originalFilename);
 					console.log("Submitting form data:", formData);
 				}
 
-				formData.append('sub', this.formData.sub);
-				formData.append('street1', this.formData.street);
-				formData.append('street2', this.formData.street2);
-				formData.append('zipCode', this.formData.zipCode);
-				formData.append('mobileCustomer', this.formData.mobilePhone);
-				formData.append('number', this.formData.phone1);
-				formData.append('phoneCustomer', this.formData.phone1);
+				formData.append("sub", this.formData.sub);
+				formData.append("street1", this.formData.street);
+				formData.append("street2", this.formData.street2);
+				formData.append("zipCode", this.formData.zipCode);
+				formData.append("mobileCustomer", this.formData.mobilePhone);
+				formData.append("number", this.formData.phone1);
+				formData.append("phoneCustomer", this.formData.phone1);
 
-
-				formData.append('name', this.formData.CompanyName);
-				formData.append('companyName', this.formData.CompanyName);
-				formData.append('nickname', this.formData.CompanyName);
-				formData.append('country', this.formData.country);
-
-				formData.append('city', this.formData.city);
-				formData.append('email', this.formData.email);
-				formData.append('emailForCustomer', this.formData.email);
-				formData.append('faxCustomer', this.formData.fax);
-				formData.append('phone', this.phone.replace(/[+\-()]/g, ''));
-
+				formData.append("name", this.formData.CompanyName);
+				formData.append("companyName", this.formData.CompanyName);
+				formData.append("nickname", this.formData.CompanyName);
+				formData.append("country", this.formData.country);
+				formData.append("city", this.formData.city);
+				formData.append("email", this.formData.email);
+				formData.append("emailForCustomer", this.formData.email);
+				formData.append("faxCustomer", this.formData.fax);
+				formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
 
 				// Send the form data to the API
-				const response = await axios.post(
-					'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/updateuser',
-					formData,
-					{
-						headers: {
-							'Content-Type': 'multipart/form-data',
-						}
-					}
-				);
-				this.loading = false;
-				console.log('Form data submitted successfully dealer1:', response.data);
+				const response = await http.post("/users/updateuser", formData, {
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				});
 
-				if (response.data && response.data.message && response.data.message.includes('Phone number already exists')) {
+				this.loading = false;
+				console.log("Form data submitted successfully dealer1:", response.data);
+
+				if (
+					response.data &&
+					response.data.message &&
+					response.data.message.includes("Phone number already exists")
+				) {
 					this.IsphonExists = true;
 					this.errorMessage = response.data.message;
 					this.isModalOpenFail = true;
@@ -2110,11 +2284,9 @@ export default {
 				return profiledata;
 			} catch (error) {
 				this.loading = false;
-				console.error('Error submitting form:', error);
+				console.error("Error submitting form:", error);
 			}
 		},
-		// end test
-
 		// wprking
 
 		// openImageModal(event) {
@@ -2344,56 +2516,95 @@ export default {
 		// 		this.socialSignIn = false;
 		// 	}
 		// }
+
+		// laetst wrking
+		// async checkIfGoogleOrFacebookUser() {
+		// 	try {
+		// 		const user = await Auth.currentAuthenticatedUser();
+		// 		console.log("socail service", user);
+		// 		console.log("social user attribute", user.attributes)
+		// 		let socialCheck = localStorage.getItem("social")
+		// 		console.log("check social", socialCheck, typeof (socialCheck));
+
+		// 		if (socialCheck == "true") {
+		// 			console.log("in socila if state")
+		// 			const mydata = {
+		// 				// "name": user.attributes.name,
+		// 				// "nickname": user.attributes.name,
+		// 				"fullname": user.attributes.name,
+		// 				"nickname": user.attributes.given_name
+		// 				,
+		// 				"sub": user.attributes.sub,
+		// 				"email": user.attributes.email,
+		// 				"cognitoId": user.attributes.sub,
+		// 				"role": "user"
+
+		// 			}
+		// 			console.log("mydata", mydata)
+		// 			const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', mydata);
+
+		// 			// Handle success response
+		// 			console.log('Form data submitted successfully:', response.data);
+		// 			localStorage.setItem("social", "false")
+		// 			this.fetchproData()
+
+		// 		}
+
+
+
+		// 		const identities = user.attributes.identities;
+
+		// 		// Check if the user has identities
+		// 		if (identities) {
+		// 			this.socialSignIn = true;
+
+		// 		} else {
+		// 			console.log('User does not have any identities');
+		// 			this.socialSignIn = false;
+		// 		}
+		// 	} catch (error) {
+		// 		console.error('Error:', error);
+		// 		this.socialSignIn = false;
+		// 	}
+		// }
 		async checkIfGoogleOrFacebookUser() {
 			try {
 				const user = await Auth.currentAuthenticatedUser();
-				console.log("socail service", user);
-				console.log("social user attribute", user.attributes)
-				let socialCheck = localStorage.getItem("social")
-				console.log("check social", socialCheck, typeof (socialCheck));
+				console.log("Social service:", user);
+				console.log("Social user attributes:", user.attributes);
 
-				if (socialCheck == "true") {
-					console.log("in socila if state")
+				let socialCheck = localStorage.getItem("social");
+				console.log("Check social:", socialCheck, typeof socialCheck);
+
+				if (socialCheck === "true") {
+					console.log("In social user check");
+
 					const mydata = {
-						// "name": user.attributes.name,
-						// "nickname": user.attributes.name,
-						"fullname": user.attributes.name,
-						"nickname": user.attributes.given_name
-						,
-						"sub": user.attributes.sub,
-						"email": user.attributes.email,
-						"cognitoId": user.attributes.sub,
-						"role": "user"
+						fullname: user.attributes.name,
+						nickname: user.attributes.given_name,
+						sub: user.attributes.sub,
+						email: user.attributes.email,
+						cognitoId: user.attributes.sub,
+						role: "user",
+					};
 
-					}
-					console.log("mydata", mydata)
-					const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', mydata);
+					console.log("Sending user data:", mydata);
+					const response = await http.post("/users", mydata);
 
-					// Handle success response
-					console.log('Form data submitted successfully:', response.data);
-					localStorage.setItem("social", "false")
-					this.fetchproData()
+					console.log("User data submitted successfully:", response.data);
+					localStorage.setItem("social", "false");
 
+					await this.fetchproData();
 				}
-
-
 
 				const identities = user.attributes.identities;
+				this.socialSignIn = !!identities; // Sets `true` if identities exist, else `false`
 
-				// Check if the user has identities
-				if (identities) {
-					this.socialSignIn = true;
-
-				} else {
-					console.log('User does not have any identities');
-					this.socialSignIn = false;
-				}
 			} catch (error) {
-				console.error('Error:', error);
+				console.error("Error:", error);
 				this.socialSignIn = false;
 			}
 		}
-
 
 		,
 		async changePassword(oldPassword, newPassword) {
@@ -2416,28 +2627,52 @@ export default {
 		openFileInput() {
 			this.$refs.fileInput.click(); // Trigger click event on file input when icon is clicked
 		},
-		handleFileChange() {
-			console.log("filechange")
-			// Handle file change event and update this.image
+		// befor link change wring
+		// handleFileChange() {
+		// 	console.log("filechange")
+		// 	// Handle file change event and update this.image
+		// 	const formData = new FormData();
+
+		// 	formData.append('userImage', this.$refs.fileInput.files[0]);
+		// 	console.log(this.$refs.fileInput.files[0]);
+		// 	axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/users', formData)
+		// 		.then(response => {
+		// 			// Handle success
+		// 			console.log('Post request successful:', response.data);
+		// 			this.image = response.data.photo_url
+		// 			// Optionally, update the comments data with the response data if needed
+		// 			// this.comments = response.data;
+
+		// 		})
+		// 		.catch(error => {
+		// 			// Handle error
+		// 			console.error('Error making post request:', error);
+		// 		});
+
+
+		// },
+		async handleFileChange() {
+			console.log("File change detected");
+
+			const file = this.$refs.fileInput.files[0];
+			if (!file) {
+				console.warn("No file selected.");
+				return;
+			}
+
 			const formData = new FormData();
+			formData.append("userImage", file);
+			console.log("Uploading file:", file);
 
-			formData.append('userImage', this.$refs.fileInput.files[0]);
-			console.log(this.$refs.fileInput.files[0]);
-			axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/users', formData)
-				.then(response => {
-					// Handle success
-					console.log('Post request successful:', response.data);
-					this.image = response.data.photo_url
-					// Optionally, update the comments data with the response data if needed
-					// this.comments = response.data;
+			try {
+				const response = await http.post("/comments/users", formData);
+				console.log("File upload successful:", response.data);
 
-				})
-				.catch(error => {
-					// Handle error
-					console.error('Error making post request:', error);
-				});
-
-
+				// Update image URL in the component state
+				this.image = response.data.photo_url;
+			} catch (error) {
+				console.error("Error uploading file:", error);
+			}
 		},
 		// async updateUserAttributes() {
 
@@ -2960,61 +3195,110 @@ export default {
 		},
 
 
+		// async fetchproData() {
+		// 	if (localStorage.getItem('signupstatus') == "true") {
+		// 		localStorage.setItem('signupstatus', "");
+
+		// 		//await this.fetchProfileData()
+		// 	}
+		// 	console.log("calling fetchPRo Data1", this.formData.sub)
+		// 	const myid = this.formData.sub || localStorage.getItem('storgekey');
+		// 	const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
+		// 	console.log("jaloru", myid, url);
+		// 	try {
+		// 		// Make the GET request with query parameters
+		// 		const response = await axios.get(url);
+
+		// 		// Handle the response data
+		// 		console.log(this.formData.sub, "new porofile Data is dw", response.data);
+		// 		const profileData = response.data;
+		// 		console.log("country", profileData.country, "city", profileData.city,)
+		// 		this.formData.country = profileData.country || "";
+		// 		this.getcities(this.formData.country)
+		// 		this.formData.city = profileData.city || "";
+		// 		this.preferedCar1 = profileData.preferedCar1 || "";
+		// 		this.preferedCar2 = profileData.preferedCar2 || "";
+		// 		this.preferedCar3 = profileData.preferedCar3 || "";
+
+		// 		// Map cars data to dropdowns
+		// 		for (let i = 0; i < this.dropdowns.length; i++) {
+		// 			const carKey = `car${i}carId`;
+		// 			if (profileData[carKey]) {
+		// 				this.dropdowns[i].make = profileData[`car${i}make`] || "";
+		// 				this.dropdowns[i].model = profileData[`car${i}model`] || "";
+		// 				this.dropdowns[i].year = profileData[`car${i}year`] || "";
+		// 				this.dropdowns[i].cardSpec = profileData[`car${i}cardSpec`] || "";
+		// 			}
+		// 		}
+		// 		this.image = response.data.image
+		// 		this.name = response.data.nickname
+		// 		// this.name = response.data.nickname
+		// 		// this.fullname = response.data.name
+		// 		// console.log("before set the name", this.name);
+		// 		// this.changeName(this.name);
+		// 		// console.log("username is", this.uname);
+		// 		// use this origional
+		// 		// let imageUrl = "https://52.59.240.119/users/" + this.image;
+		// 		let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+		// 		console.log("image url", imageUrl);
+		// 		// this.changeProfileImage(imageUrl)
+		// 		this.changeProfileImage(this.image)
+		// 		//				this.image = response.data[0].image
+		// 	} catch (error) {
+		// 		// Handle any errors
+		// 		console.error('Error making GET request:', error);
+		// 	}
+		// },
 		async fetchproData() {
-			if (localStorage.getItem('signupstatus') == "true") {
-				localStorage.setItem('signupstatus', "");
-
-				//await this.fetchProfileData()
+			if (localStorage.getItem("signupstatus") === "true") {
+				localStorage.setItem("signupstatus", "");
 			}
-			console.log("calling fetchPRo Data1", this.formData.sub)
-			const myid = this.formData.sub || localStorage.getItem('storgekey');
-			const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
-			console.log("jaloru", myid, url);
-			try {
-				// Make the GET request with query parameters
-				const response = await axios.get(url);
 
-				// Handle the response data
-				console.log(this.formData.sub, "new porofile Data is dw", response.data);
+			console.log("Calling fetchPRo Data1", this.formData.sub);
+
+			const myid = this.formData.sub || localStorage.getItem("storgekey");
+			if (!myid) {
+				console.warn("No user ID found!");
+				return;
+			}
+
+			try {
+				const response = await http.get(`/users/sub`, { params: { sub: myid } });
+
+				console.log("New profile data:", response.data);
+
 				const profileData = response.data;
-				console.log("country", profileData.country, "city", profileData.city,)
 				this.formData.country = profileData.country || "";
-				this.getcities(this.formData.country)
+				this.getcities(this.formData.country);
 				this.formData.city = profileData.city || "";
 				this.preferedCar1 = profileData.preferedCar1 || "";
 				this.preferedCar2 = profileData.preferedCar2 || "";
 				this.preferedCar3 = profileData.preferedCar3 || "";
 
 				// Map cars data to dropdowns
-				for (let i = 0; i < this.dropdowns.length; i++) {
+				this.dropdowns.forEach((dropdown, i) => {
 					const carKey = `car${i}carId`;
 					if (profileData[carKey]) {
-						this.dropdowns[i].make = profileData[`car${i}make`] || "";
-						this.dropdowns[i].model = profileData[`car${i}model`] || "";
-						this.dropdowns[i].year = profileData[`car${i}year`] || "";
-						this.dropdowns[i].cardSpec = profileData[`car${i}cardSpec`] || "";
+						dropdown.make = profileData[`car${i}make`] || "";
+						dropdown.model = profileData[`car${i}model`] || "";
+						dropdown.year = profileData[`car${i}year`] || "";
+						dropdown.cardSpec = profileData[`car${i}cardSpec`] || "";
 					}
-				}
-				this.image = response.data.image
-				this.name = response.data.nickname
-				// this.name = response.data.nickname
-				// this.fullname = response.data.name
-				// console.log("before set the name", this.name);
-				// this.changeName(this.name);
-				// console.log("username is", this.uname);
-				// use this origional
-				// let imageUrl = "https://52.59.240.119/users/" + this.image;
-				let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
-				console.log("image url", imageUrl);
-				// this.changeProfileImage(imageUrl)
-				this.changeProfileImage(this.image)
-				//				this.image = response.data[0].image
+				});
+
+				this.image = profileData.image;
+				this.name = profileData.nickname;
+
+				// Construct image URL
+				// const imageUrl = `https://backend.revvdout.com//users/${this.image}`;
+				const imageUrl = `${this.image}`;
+				console.log("Profile Image URL:", imageUrl);
+
+				this.changeProfileImage(imageUrl);
 			} catch (error) {
-				// Handle any errors
-				console.error('Error making GET request:', error);
+				console.error("Error fetching profile data:", error);
 			}
 		},
-
 
 
 		// isFormValid() {

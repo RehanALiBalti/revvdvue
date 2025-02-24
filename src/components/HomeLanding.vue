@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -1321,7 +1321,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 <script>
 
 import axios from 'axios';
-
+import http from "@/http-common";
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
 import { useProfileImage } from '@/composables/useProfileImage';
@@ -2152,33 +2152,66 @@ export default {
         }
       }
     },
+    // before link chaging it is working
+    // async fetchproData() {
+
+
+
+    //   const myid = this.sub
+    //   const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
+    //   console.log("jaloru header", myid, url);
+    //   try {
+    //     // Make the GET request with query parameters
+    //     const response = await axios.get(url);
+    //     console.log("ja loru response", response, response.data.nickname)
+    //     this.formData.user_name = response.data.nickname
+    //     // Handle the response data
+    //     // console.log(this.formData.sub, "new porofile Data is", response.data);
+    //     this.image = response.data.image
+
+    //     // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+
+    //     this.changeProfileImage(this.image)
+    //     if (this.role != 'dealer') {
+    //       this.changeName(response.data.nickname)
+    //     }
+    //     console.log("the image of user dloru header", this.image)
+    //     //				this.image = response.data[0].image
+    //   } catch (error) {
+    //     // Handle any errors
+    //     console.error('Error making GET request:', error);
+    //   }
+    // },
     async fetchproData() {
+      if (!this.sub) {
+        console.warn("⚠️ User ID (sub) is missing!");
+        return;
+      }
 
-
-
-      const myid = this.sub
-      const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
-      console.log("jaloru header", myid, url);
       try {
-        // Make the GET request with query parameters
-        const response = await axios.get(url);
-        console.log("ja loru response", response, response.data.nickname)
-        this.formData.user_name = response.data.nickname
-        // Handle the response data
-        // console.log(this.formData.sub, "new porofile Data is", response.data);
-        this.image = response.data.image
+        console.log("📡 Fetching profile data for:", this.sub);
 
-        // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+        const response = await http.get(`/users/sub`, { params: { sub: this.sub } });
+        const profileData = response.data;
 
-        this.changeProfileImage(this.image)
-        if (this.role != 'dealer') {
-          this.changeName(response.data.nickname)
+        console.log("✅ Profile Response:", profileData);
+
+        // Update user data
+        this.formData.user_name = profileData.nickname;
+        this.image = profileData.image;
+
+        // Update profile image
+        this.changeProfileImage(this.image);
+
+        // Change name only if the user is not a dealer
+        if (this.role !== "dealer") {
+          this.changeName(profileData.nickname);
         }
-        console.log("the image of user dloru header", this.image)
-        //				this.image = response.data[0].image
+
+        console.log("🖼️ User profile image updated:", this.image);
+
       } catch (error) {
-        // Handle any errors
-        console.error('Error making GET request:', error);
+        console.error("❌ Error fetching profile data:", error);
       }
     },
     // validateFiles(event) {
@@ -2498,7 +2531,7 @@ export default {
     // latest working submit story
     async SubmitStory() {
       console.log("submit story", this.formData);
-this.loading=true;
+      this.loading = true;
       // Create a new FormData object to store the form data
       let data = new FormData();
 
@@ -2608,7 +2641,7 @@ this.loading=true;
 
           console.log('Post request successful:', response.data);
           this.resetForm();
-          this.loading=false
+          this.loading = false
           this.ModalStorySucces = true; // Show success modal
         } catch (error) {
           console.error('Error making post request:', error);
@@ -2645,7 +2678,7 @@ this.loading=true;
         storyName: "",
         url: ""
       };
-      this.croppedImages= []
+      this.croppedImages = []
 
       // this.selectedStoryType = "";
     }
