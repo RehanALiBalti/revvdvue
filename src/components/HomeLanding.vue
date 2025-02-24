@@ -2659,98 +2659,227 @@ export default {
 
 
     // },
+    // async SubmitStory() {
+    //   console.log("submit story", this.formData);
+    //   this.loading = true;
+    //   let data = new FormData();
+    //   let uploadedImageUrls = [];
+
+    //   for (let i = 0; i < this.formData.storyImages.length; i++) {
+    //     console.log("sto_image", this.formData.storyImages[i]);
+    //     const file = this.formData.storyImages[i];
+    //     console.log("file" + i, file, file.name);
+    //     const formData = new FormData();
+    //     formData.append("file", file);
+
+    //     try {
+    //       const response = await http.post("/common/upload", formData, {
+    //         headers: { "Content-Type": "multipart/form-data" },
+    //       });
+
+    //       if (response.data && response.data.secureUld) {
+    //         console.log("response data", response.data);
+    //         console.log("Image uploaded:", response.data.secureUld);
+    //         uploadedImageUrls.push(response.data.secureUld);
+    //       }
+    //     } catch (error) {
+    //       console.error("Error uploading image:", error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
+    //       this.ModalStoryFail = true;
+    //       return;
+    //     }
+    //   }
+
+    //   console.log("uploadedImageUrls", uploadedImageUrls);
+
+    //   data.append("story_type", this.selectedStoryType);
+    //   data.append("user_name", this.formData.user_name);
+    //   data.append("user_email", this.formData.user_email);
+
+    //   if (this.selectedStoryType === "carEnthusiast") {
+    //     data.append("make", this.formData.make);
+    //     data.append("model", this.formData.model);
+    //     data.append("year", this.formData.year);
+    //     data.append("modifications", this.formData.modifications);
+    //     data.append("memorable", this.formData.memorable);
+    //     data.append("advice", this.formData.advice);
+    //     data.append("story", this.formData.story);
+    //     data.append("story_name", this.formData.story_name);
+    //     data.append("social_media", this.formData.social_media);
+    //   } else {
+    //     data.append("country", this.formData.country);
+    //     data.append("city", this.formData.city);
+    //     data.append("story_history", this.formData.storyHistory);
+    //     data.append("adventure_story", this.formData.adventureStory);
+    //     data.append("story_name", this.formData.storyName);
+    //     data.append("social_media", this.formData.url);
+    //   }
+
+    //   if (uploadedImageUrls.length > 0) {
+    //     data.append("images", JSON.stringify(uploadedImageUrls));
+    //   }
+
+    //   for (let [key, value] of data.entries()) {
+    //     console.log(key, value);
+    //   }
+
+    //   if (this.isLogin === true || this.isLogin === "true") {
+    //     console.log("User is logged in, submitting form");
+
+    //     try {
+    //       const response = await http.post("/stories", data, {
+    //         headers: { "Content-Type": "multipart/form-data" },
+    //       });
+
+    //       console.log("Post request successful:", response.data);
+    //       this.resetForm();
+    //       this.loading = false;
+    //       this.ModalStorySucces = true;
+    //     } catch (error) {
+    //       console.error("Error making post request:", error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Please try again later.";
+    //       this.ModalStoryFail = true;
+    //       this.loading = false;
+    //     }
+    //   } else {
+    //     console.log("User not logged in. Please login first.");
+    //     this.modalTitle = "Something went wrong";
+    //     this.modaldescription = "Please login first to submit the story";
+    //     this.ModalStoryFail = true;
+    //     this.loading = false;
+    //   }
+    // },
     async SubmitStory() {
-      console.log("submit story", this.formData);
-      this.loading = true;
-      let data = new FormData();
-      let uploadedImageUrls = [];
+  console.log("submit story", this.formData);
+  this.loading = true;
+  let data = new FormData();
+  let uploadedImageUrls = [];
 
-      for (let i = 0; i < this.formData.storyImages.length; i++) {
-        console.log("sto_image", this.formData.storyImages[i]);
-        const file = this.formData.storyImages[i];
-        console.log("file" + i, file, file.name);
-        const formData = new FormData();
-        formData.append("file", file);
+  // **Validate Required Fields**
+  let missingFields = [];
 
-        try {
-          const response = await http.post("/common/upload", formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-          });
+  if (!this.selectedStoryType) missingFields.push("Story Type");
+  // if (!this.formData.user_name) missingFields.push("User Name");
+  // if (!this.formData.user_email) missingFields.push("User Email");
 
-          if (response.data && response.data.secureUld) {
-            console.log("response data", response.data);
-            console.log("Image uploaded:", response.data.secureUld);
-            uploadedImageUrls.push(response.data.secureUld);
-          }
-        } catch (error) {
-          console.error("Error uploading image:", error);
-          this.modalTitle = "Something went wrong";
-          this.modaldescription = "Failed to upload one or more images. Please try again.";
-          this.ModalStoryFail = true;
-          return;
-        }
+  if (this.selectedStoryType === "carEnthusiast") {
+    if (!this.formData.make) missingFields.push("Make");
+    if (!this.formData.model) missingFields.push("Model");
+    if (!this.formData.year) missingFields.push("Year");
+    if (!this.formData.modifications) missingFields.push("Modifications");
+    if (!this.formData.memorable) missingFields.push("Memorable Moment");
+    if (!this.formData.advice) missingFields.push("Advice");
+    if (!this.formData.story) missingFields.push("Story");
+    if (!this.formData.story_name) missingFields.push("Story Name");
+  } else {
+    if (!this.formData.country) missingFields.push("Country");
+    if (!this.formData.city) missingFields.push("City");
+    if (!this.formData.storyHistory) missingFields.push("Story History");
+    if (!this.formData.adventureStory) missingFields.push("Adventure Story");
+    if (!this.formData.storyName) missingFields.push("Story Name");
+  }
+
+  // **Show error modal if any required field is missing**
+  if (missingFields.length > 0) {
+    this.modalTitle = "Missing Required Fields";
+    this.modaldescription = `Please fill in the following required fields:\n\n- ${missingFields.join("\n- ")}`;
+    this.ModalStoryFail = true;
+    this.loading = false;
+    return;
+  }
+
+  // **Handle Image Uploads**
+  for (let i = 0; i < this.formData.storyImages.length; i++) {
+    console.log("sto_image", this.formData.storyImages[i]);
+    const file = this.formData.storyImages[i];
+    console.log("file" + i, file, file.name);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await http.post("/common/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      if (response.data && response.data.secureUld) {
+        console.log("response data", response.data);
+        console.log("Image uploaded:", response.data.secureUld);
+        uploadedImageUrls.push(response.data.secureUld);
       }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      this.modalTitle = "Something went wrong";
+      this.modaldescription = "Failed to upload one or more images. Please try again.";
+      this.ModalStoryFail = true;
+      this.loading = false;
+      return;
+    }
+  }
 
-      console.log("uploadedImageUrls", uploadedImageUrls);
+  console.log("uploadedImageUrls", uploadedImageUrls);
 
-      data.append("story_type", this.selectedStoryType);
-      data.append("user_name", this.formData.user_name);
-      data.append("user_email", this.formData.user_email);
+  // **Append Form Data**
+  data.append("story_type", this.selectedStoryType);
+  data.append("user_name", this.formData.user_name);
+  data.append("user_email", this.formData.user_email);
 
-      if (this.selectedStoryType === "carEnthusiast") {
-        data.append("make", this.formData.make);
-        data.append("model", this.formData.model);
-        data.append("year", this.formData.year);
-        data.append("modifications", this.formData.modifications);
-        data.append("memorable", this.formData.memorable);
-        data.append("advice", this.formData.advice);
-        data.append("story", this.formData.story);
-        data.append("story_name", this.formData.story_name);
-        data.append("social_media", this.formData.social_media);
-      } else {
-        data.append("country", this.formData.country);
-        data.append("city", this.formData.city);
-        data.append("story_history", this.formData.storyHistory);
-        data.append("adventure_story", this.formData.adventureStory);
-        data.append("story_name", this.formData.storyName);
-        data.append("social_media", this.formData.url);
-      }
+  if (this.selectedStoryType === "carEnthusiast") {
+    data.append("make", this.formData.make);
+    data.append("model", this.formData.model);
+    data.append("year", this.formData.year);
+    data.append("modifications", this.formData.modifications);
+    data.append("memorable", this.formData.memorable);
+    data.append("advice", this.formData.advice);
+    data.append("story", this.formData.story);
+    data.append("story_name", this.formData.story_name);
+    data.append("social_media", this.formData.social_media || ""); // Optional field
+  } else {
+    data.append("country", this.formData.country);
+    data.append("city", this.formData.city);
+    data.append("story_history", this.formData.storyHistory);
+    data.append("adventure_story", this.formData.adventureStory);
+    data.append("story_name", this.formData.storyName);
+    data.append("social_media", this.formData.url || ""); // Optional field
+  }
 
-      if (uploadedImageUrls.length > 0) {
-        data.append("images", JSON.stringify(uploadedImageUrls));
-      }
+  if (uploadedImageUrls.length > 0) {
+    data.append("images", JSON.stringify(uploadedImageUrls));
+  }
 
-      for (let [key, value] of data.entries()) {
-        console.log(key, value);
-      }
+  for (let [key, value] of data.entries()) {
+    console.log(key, value);
+  }
 
-      if (this.isLogin === true || this.isLogin === "true") {
-        console.log("User is logged in, submitting form");
+  if (this.isLogin === true || this.isLogin === "true") {
+    console.log("User is logged in, submitting form");
 
-        try {
-          const response = await http.post("/stories", data, {
-            headers: { "Content-Type": "multipart/form-data" },
-          });
+    try {
+      const response = await http.post("/stories", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-          console.log("Post request successful:", response.data);
-          this.resetForm();
-          this.loading = false;
-          this.ModalStorySucces = true;
-        } catch (error) {
-          console.error("Error making post request:", error);
-          this.modalTitle = "Something went wrong";
-          this.modaldescription = "Please try again later.";
-          this.ModalStoryFail = true;
-          this.loading = false;
-        }
-      } else {
-        console.log("User not logged in. Please login first.");
-        this.modalTitle = "Something went wrong";
-        this.modaldescription = "Please login first to submit the story";
-        this.ModalStoryFail = true;
-        this.loading = false;
-      }
-    },
+      console.log("Post request successful:", response.data);
+      this.resetForm();
+      this.loading = false;
+      this.ModalStorySucces = true;
+    } catch (error) {
+      console.error("Error making post request:", error);
+      this.modalTitle = "Something went wrong";
+      this.modaldescription = "Please try again later.";
+      this.ModalStoryFail = true;
+      this.loading = false;
+    }
+  } else {
+    console.log("User not logged in. Please login first.");
+    this.modalTitle = "Something went wrong";
+    this.modaldescription = "Please login first to submit the story";
+    this.ModalStoryFail = true;
+    this.loading = false;
+  }
+}
+,
     resetForm() {
       this.formData = {
 
