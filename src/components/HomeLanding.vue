@@ -642,7 +642,7 @@ v-model="formData.country"> -->
                         <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
                         {{ value.production_years.split(' ')[0] }}
                         <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
-                          }})</span>
+                        }})</span>
                       </li>
                     </ul>
                     <ul v-else v-show="isOpeng" class="options-list">
@@ -2486,6 +2486,7 @@ export default {
     //     this.ModalStoryFail = true;
     //   }
     // }
+    // latest working submit story
     async SubmitStory() {
       console.log("submit story", this.formData);
 
@@ -2597,6 +2598,7 @@ export default {
           );
 
           console.log('Post request successful:', response.data);
+          this.resetForm();
           this.ModalStorySucces = true; // Show success modal
         } catch (error) {
           console.error('Error making post request:', error);
@@ -2612,6 +2614,29 @@ export default {
       }
 
 
+    },
+    resetForm() {
+      this.formData = {
+
+        storyImages: [],
+        make: "",
+        model: "",
+        year: "",
+        modifications: "",
+        memorable: "",
+        advice: "",
+        story: "",
+        story_name: "",
+        social_media: "",
+        country: "",
+        city: "",
+        storyHistory: "",
+        adventureStory: "",
+        storyName: "",
+        url: ""
+      };
+
+      // this.selectedStoryType = "";
     }
 
     ,
