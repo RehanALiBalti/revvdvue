@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -277,6 +277,9 @@
                 {{ $t('Now') }} !
               </h2>
               <div class="row px-2">
+                <div class="position-relative" v-if="this.loading == true">
+                  <div class="box"></div>
+                </div>
                 <div class="col-md-3 p-0 p-md-1">
 
                   <label for="storyType" class="form-label">Story Type</label>
@@ -642,7 +645,7 @@ v-model="formData.country"> -->
                         <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
                         {{ value.production_years.split(' ')[0] }}
                         <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
-                          }})</span>
+                        }})</span>
                       </li>
                     </ul>
                     <ul v-else v-show="isOpeng" class="options-list">
@@ -1318,7 +1321,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 <script>
 
 import axios from 'axios';
-
+import http from "@/http-common";
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
 import { useProfileImage } from '@/composables/useProfileImage';
@@ -1393,6 +1396,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       isScrolling: false,
       instaIcon: instaIcon,
       icons_tick: icons_tick,
@@ -2029,6 +2033,7 @@ export default {
 
     },
     getcities() {
+      this.loading = true
       if (!this.formData.country) return;  // Exit if no country is selected
 
       // Set up the headers and request body
@@ -2049,9 +2054,13 @@ export default {
         .then(response => response.json())  // Convert response to JSON
         .then(result => {
           if (result.data && result.data.length > 0) {
-            this.cities = result.data;  // Update cities array with the result
+
+            this.cities = result.data; // Update cities array with the result
+            this.loading = false
           } else {
-            this.cities = [];  // Clear cities if no data is found
+            this.cities = [];
+            this.loading = false
+            // Clear cities if no data is found
           }
         })
         .catch(error => {
@@ -2143,33 +2152,66 @@ export default {
         }
       }
     },
+    // before link chaging it is working
+    // async fetchproData() {
+
+
+
+    //   const myid = this.sub
+    //   const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
+    //   console.log("jaloru header", myid, url);
+    //   try {
+    //     // Make the GET request with query parameters
+    //     const response = await axios.get(url);
+    //     console.log("ja loru response", response, response.data.nickname)
+    //     this.formData.user_name = response.data.nickname
+    //     // Handle the response data
+    //     // console.log(this.formData.sub, "new porofile Data is", response.data);
+    //     this.image = response.data.image
+
+    //     // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+
+    //     this.changeProfileImage(this.image)
+    //     if (this.role != 'dealer') {
+    //       this.changeName(response.data.nickname)
+    //     }
+    //     console.log("the image of user dloru header", this.image)
+    //     //				this.image = response.data[0].image
+    //   } catch (error) {
+    //     // Handle any errors
+    //     console.error('Error making GET request:', error);
+    //   }
+    // },
     async fetchproData() {
+      if (!this.sub) {
+        console.warn("⚠️ User ID (sub) is missing!");
+        return;
+      }
 
-
-
-      const myid = this.sub
-      const url = 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/sub?sub=' + myid;
-      console.log("jaloru header", myid, url);
       try {
-        // Make the GET request with query parameters
-        const response = await axios.get(url);
-        console.log("ja loru response", response, response.data.nickname)
-        this.formData.user_name = response.data.nickname
-        // Handle the response data
-        // console.log(this.formData.sub, "new porofile Data is", response.data);
-        this.image = response.data.image
+        console.log("📡 Fetching profile data for:", this.sub);
 
-        // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+        const response = await http.get(`/users/sub`, { params: { sub: this.sub } });
+        const profileData = response.data;
 
-        this.changeProfileImage(this.image)
-        if (this.role != 'dealer') {
-          this.changeName(response.data.nickname)
+        console.log("✅ Profile Response:", profileData);
+
+        // Update user data
+        this.formData.user_name = profileData.nickname;
+        this.image = profileData.image;
+
+        // Update profile image
+        this.changeProfileImage(this.image);
+
+        // Change name only if the user is not a dealer
+        if (this.role !== "dealer") {
+          this.changeName(profileData.nickname);
         }
-        console.log("the image of user dloru header", this.image)
-        //				this.image = response.data[0].image
+
+        console.log("🖼️ User profile image updated:", this.image);
+
       } catch (error) {
-        // Handle any errors
-        console.error('Error making GET request:', error);
+        console.error("❌ Error fetching profile data:", error);
       }
     },
     // validateFiles(event) {
@@ -2486,9 +2528,10 @@ export default {
     //     this.ModalStoryFail = true;
     //   }
     // }
+    // latest working submit story
     async SubmitStory() {
       console.log("submit story", this.formData);
-
+      this.loading = true;
       // Create a new FormData object to store the form data
       let data = new FormData();
 
@@ -2597,6 +2640,8 @@ export default {
           );
 
           console.log('Post request successful:', response.data);
+          this.resetForm();
+          this.loading = false
           this.ModalStorySucces = true; // Show success modal
         } catch (error) {
           console.error('Error making post request:', error);
@@ -2612,6 +2657,30 @@ export default {
       }
 
 
+    },
+    resetForm() {
+      this.formData = {
+
+        storyImages: [],
+        make: "",
+        model: "",
+        year: "",
+        modifications: "",
+        memorable: "",
+        advice: "",
+        story: "",
+        story_name: "",
+        social_media: "",
+        country: "",
+        city: "",
+        storyHistory: "",
+        adventureStory: "",
+        storyName: "",
+        url: ""
+      };
+      this.croppedImages = []
+
+      // this.selectedStoryType = "";
     }
 
     ,
@@ -3157,6 +3226,27 @@ export default {
 <style scoped>
 @import "vue-select/dist/vue-select.css";
 
+.box {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: #FF7A00 transparent;
+  animation: spin 1s infinite ease-out;
+  position: absolute;
+  top: 91%;
+  left: 50%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 textarea.form-control {
   /* min-height: calc(1.5em +(1.75rem + 2px)) !important; */

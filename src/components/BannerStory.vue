@@ -69,8 +69,7 @@
                     <div class="col-md-12 px-4">
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="
-                                image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
 
                         </div>
                         <div class="row">
@@ -85,8 +84,7 @@
                                             <swiper-slide class="swiper-no-shadow"
                                                 v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                 <div class="d-block">
-                                                    <img :src="
-                                                        image
+                                                    <img :src="image
                                                         " class="slider-img myCarListingCard-img" alt="car" />
                                                 </div>
                                             </swiper-slide>
@@ -247,6 +245,7 @@
 </template>
 
 <script>
+import http from "@/http-common"; // Import centralized Axios instance
 import Image1 from "@/assets/images/4image.png";
 import Image2 from "@/assets/images/d722fc518c6127ea183d184e5dc715e3.png";
 import Image3 from "@/assets/images/20210412111611_Ford_Territory_front.png";
@@ -276,7 +275,7 @@ import prevIcon from "@/assets/images/prev.png";
 //Import Swiper styles
 // import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import axios from "axios";
+// import axios from "axios";
 import CarDataService from "@/services/CarDataService";
 import CommunityDataService from "@/services/CommunityDataService";
 import { Pagination, Navigation } from "swiper/modules";
@@ -1630,56 +1629,89 @@ export default {
                 return [];
             }
         },
+        // before link updating itsworking
+        // fetchStories() {
+        //     axios
+        //         .get("https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories")
+        //         .then((response) => {
+        //             console.log("stories", response.data);
+        //             const stories = response.data;
+
+        //             // Filter stories by their type and assign them to respective objects
+        //             this.filteredStories.CarEnthusiast = stories.filter(
+        //                 (story) => story.story_type === "carEnthusiast"
+        //             );
+        //             this.filteredStories.CarGarage = stories.filter(
+        //                 (story) => story.story_type === "carGarage"
+        //             );
+        //             this.filteredStories.CarModificationTunningShop = stories.filter(
+        //                 (story) => story.story_type === "carModificationShop"
+        //             );
+        //             this.filteredStories.CarClub = stories.filter(
+        //                 (story) => story.story_type === "carClub"
+        //             );
+        //             this.filteredStories.MotorbikeEnthusiast = stories.filter(
+        //                 (story) => story.story_type === "motorbikeEnthusiast"
+        //             );
+        //             this.filteredStories.AutomotivePhotographer = stories.filter(
+        //                 (story) => story.story_type === "automotivePhotographerast"
+        //             );
+
+        //             console.log("Filtered stories:", this.filteredStories);
+        //             // this.originalCars = this.filteredStories
+        //             this.originalCars.CarEnthusiast = stories.filter(
+        //                 (story) => story.story_type === "carEnthusiast"
+        //             );
+        //             this.originalCars.CarGarage = stories.filter(
+        //                 (story) => story.story_type === "carGarage"
+        //             );
+        //             this.originalCars.CarModificationTunningShop = stories.filter(
+        //                 (story) => story.story_type === "carModificationShop"
+        //             );
+        //             this.originalCars.CarClub = stories.filter(
+        //                 (story) => story.story_type === "carClub"
+        //             );
+        //             this.originalCars.MotorbikeEnthusiast = stories.filter(
+        //                 (story) => story.story_type === "motorbikeEnthusiast"
+        //             );
+        //             this.originalCars.AutomotivePhotographer = stories.filter(
+        //                 (story) => story.story_type === "automotivePhotographerast"
+        //             );
+        //         })
+        //         .catch((error) => {
+        //             console.error("Error fetching stories:", error);
+        //         });
+        // },
         fetchStories() {
-            axios
-                .get("https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories")
+            http
+                .get("/stories")
                 .then((response) => {
-                    console.log("stories", response.data);
+                    console.log("📖 Stories fetched:", response.data);
+
                     const stories = response.data;
+                    const storyTypes = [
+                        "carEnthusiast",
+                        "carGarage",
+                        "carModificationShop",
+                        "carClub",
+                        "motorbikeEnthusiast",
+                        "automotivePhotographer"
+                    ];
 
-                    // Filter stories by their type and assign them to respective objects
-                    this.filteredStories.CarEnthusiast = stories.filter(
-                        (story) => story.story_type === "carEnthusiast"
-                    );
-                    this.filteredStories.CarGarage = stories.filter(
-                        (story) => story.story_type === "carGarage"
-                    );
-                    this.filteredStories.CarModificationTunningShop = stories.filter(
-                        (story) => story.story_type === "carModificationShop"
-                    );
-                    this.filteredStories.CarClub = stories.filter(
-                        (story) => story.story_type === "carClub"
-                    );
-                    this.filteredStories.MotorbikeEnthusiast = stories.filter(
-                        (story) => story.story_type === "motorbikeEnthusiast"
-                    );
-                    this.filteredStories.AutomotivePhotographer = stories.filter(
-                        (story) => story.story_type === "automotivePhotographerast"
-                    );
+                    // Clear existing data
+                    this.filteredStories = {};
+                    this.originalCars = {};
 
-                    console.log("Filtered stories:", this.filteredStories);
-                    // this.originalCars = this.filteredStories
-                    this.originalCars.CarEnthusiast = stories.filter(
-                        (story) => story.story_type === "carEnthusiast"
-                    );
-                    this.originalCars.CarGarage = stories.filter(
-                        (story) => story.story_type === "carGarage"
-                    );
-                    this.originalCars.CarModificationTunningShop = stories.filter(
-                        (story) => story.story_type === "carModificationShop"
-                    );
-                    this.originalCars.CarClub = stories.filter(
-                        (story) => story.story_type === "carClub"
-                    );
-                    this.originalCars.MotorbikeEnthusiast = stories.filter(
-                        (story) => story.story_type === "motorbikeEnthusiast"
-                    );
-                    this.originalCars.AutomotivePhotographer = stories.filter(
-                        (story) => story.story_type === "automotivePhotographerast"
-                    );
+                    // Dynamically filter stories by type
+                    storyTypes.forEach((type) => {
+                        this.filteredStories[type] = stories.filter((story) => story.story_type === type);
+                        this.originalCars[type] = [...this.filteredStories[type]];
+                    });
+
+                    console.log("✅ Filtered Stories:", this.filteredStories);
                 })
                 .catch((error) => {
-                    console.error("Error fetching stories:", error);
+                    console.error("❌ Error fetching stories:", error);
                 });
         },
         openModal(index) {

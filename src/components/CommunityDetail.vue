@@ -28,9 +28,9 @@
                       <span v-if="forumData.make != 'undefined'">{{ decode(forumData.make) }}</span>
                       <span v-if="forumData.model != 'undefined'"> {{ decode(forumData.model) }}</span>
                       <span v-if="forumData.production_years != 'undefined'"> {{ decode(forumData.production_years)
-                        }}</span>
+                      }}</span>
                       <span v-if="forumData.specifications != 'undefined'"> {{ decode(forumData.specifications)
-                        }}</span>
+                      }}</span>
                     </h1>
                     <!-- <h1 class="card-title-h2 community-title fh2" v-if="forumData">
 
@@ -51,7 +51,7 @@
 
                   <div class="">
                     <h1 class="card-title-h2 community-title" v-if="forumData && forumData.title">{{ forumData.title
-                      }}
+                    }}
                     </h1>
 
 
@@ -80,7 +80,7 @@
                       <!-- <span class="total-likes" v-if="forumData">{{ forumData.likes
                         }}</span> -->
                       <span class="total-likes" v-if="forumData">{{ likesCount
-                        }}</span>
+                      }}</span>
                     </button>
 
                     <div class="like-community">
@@ -114,7 +114,7 @@
 
 
 
-              <div v-for="comment in filteredComments " :key="comment.id">
+              <div v-for="comment in filteredComments" :key="comment.id">
                 <div class="d-flex flex-column position-relative">
                   <div class="d-flex justify-content-end align-items-center me-2"></div>
                 </div>
@@ -146,7 +146,7 @@
                             <i class="fa-solid fa-reply"></i> Reply
                           </p>
                           <small class="text-white fonts1 ms-0 mb-0 text-end">{{ formatDate(comment.created_date)
-                            }}</small>
+                          }}</small>
                         </div>
                         <div v-if="showReplyInput === comment.id">
                           <div class=" position-relative " v-if="RimageUrl != ''">
@@ -210,7 +210,7 @@
                             <i class="fa-solid fa-reply"></i> Reply
                           </p>
                           <small class="text-white fonts1 ms-0 mb-0 text-end">{{ formatDate(comment.created_date)
-                            }}</small>
+                          }}</small>
                         </div>
                         <div v-if="showReplyInput === comment.id">
                           <div class=" position-relative " v-if="RimageUrl != ''">
@@ -358,6 +358,7 @@
 </template>
 
 <script>
+import API from "@/http-common"; // ✅ Import the API instance
 import CommunityDataService from "../services/CommunityDataService";
 import axios from 'axios';
 
@@ -486,32 +487,55 @@ export default {
         this.filteredComments = filtered;
       }
     },
+    // before link changing these works
+    // getNoOfComments() {
+
+    //   const apiUrl = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/count?community_id=${this.pageId}`;
+
+    //   axios.get(apiUrl)
+    //     .then(response => {
+    //       console.log('No Of Comments:', response.data.count);
+    //       this.totalComments = response.data.count
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching data:', error);
+    //     });
+    // },
+    // async getForumData() {
+    //   try {
+    //     // Make the GET request with query parameters
+    //     const response = await axios.get(`https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/${this.pageId}`,);
+
+    //     // Handle the response data
+    //     console.log("new get response", response.data);
+    //     this.forumData = response.data
+    //     console.log("forun data issssss", this.forumData)
+
+    //   } catch (error) {
+    //     // Handle any errors
+    //     console.error('Error making GET request:', error);
+    //   }
+    // },
     getNoOfComments() {
-
-      const apiUrl = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/count?community_id=${this.pageId}`;
-
-      axios.get(apiUrl)
+      API.get(`/comments/count?community_id=${this.pageId}`)
         .then(response => {
-          console.log('No Of Comments:', response.data.count);
-          this.totalComments = response.data.count
+          console.log('🗨️ No Of Comments:', response.data.count);
+          this.totalComments = response.data.count;
         })
         .catch(error => {
-          console.error('Error fetching data:', error);
+          console.error('❌ Error fetching comments:', error);
         });
     },
+
     async getForumData() {
       try {
-        // Make the GET request with query parameters
-        const response = await axios.get(`https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/${this.pageId}`,);
+        const response = await API.get(`/communities/${this.pageId}`);
 
-        // Handle the response data
-        console.log("new get response", response.data);
-        this.forumData = response.data
-        console.log("forun data issssss", this.forumData)
+        console.log("📌 Forum Data:", response.data);
+        this.forumData = response.data;
 
       } catch (error) {
-        // Handle any errors
-        console.error('Error making GET request:', error);
+        console.error('❌ Error fetching forum data:', error);
       }
     },
     formSubmit() {
@@ -571,51 +595,91 @@ export default {
     //     reader.readAsDataURL(file);
     //   }
     // },
+    // before link updating itd working
+    // handleImageChange(event) {
+    //   console.log("in image change");
+
+    //   const file = event.target.files[0]; // Get the uploaded file
+    //   console.log(file);
+
+    //   if (file) {
+    //     // Store the file in the component's data
+    //     this.rImage = file;
+
+    //     // Read the file as a data URL for preview
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       // Update imageUrl with the data URL of the uploaded image
+    //       this.RimageUrl = e.target.result;
+    //       console.log(this.RimageUrl);
+    //     };
+    //     reader.readAsDataURL(file);
+
+    //     // Create a FormData object to send the file to the API
+    //     const formData = new FormData();
+    //     formData.append('file', file); // Add the file to the FormData object
+
+    //     // Use axios to send the file to the server
+    //     axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload', formData, {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data', // Indicate it's a file upload
+    //       },
+    //     })
+    //       .then((response) => {
+    //         // Handle successful upload
+    //         console.log('Upload Successful:', response.data);
+    //         if (response.data && response.data.secureUld) {
+    //           // Store the secure UID or any other response data
+    //           this.secureUld = response.data.secureUld;
+    //           console.log('File uploaded, secureUid:', this.secureUld);
+    //         }
+    //       })
+    //       .catch((error) => {
+    //         // Handle any errors during the upload
+    //         console.error('Upload Error:', error);
+    //       });
+    //   } else {
+    //     console.log("No file selected");
+    //   }
+    // },
     handleImageChange(event) {
-      console.log("in image change");
+      console.log("📸 Image change detected");
 
       const file = event.target.files[0]; // Get the uploaded file
-      console.log(file);
-
-      if (file) {
-        // Store the file in the component's data
-        this.rImage = file;
-
-        // Read the file as a data URL for preview
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          // Update imageUrl with the data URL of the uploaded image
-          this.RimageUrl = e.target.result;
-          console.log(this.RimageUrl);
-        };
-        reader.readAsDataURL(file);
-
-        // Create a FormData object to send the file to the API
-        const formData = new FormData();
-        formData.append('file', file); // Add the file to the FormData object
-
-        // Use axios to send the file to the server
-        axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data', // Indicate it's a file upload
-          },
-        })
-          .then((response) => {
-            // Handle successful upload
-            console.log('Upload Successful:', response.data);
-            if (response.data && response.data.secureUld) {
-              // Store the secure UID or any other response data
-              this.secureUld = response.data.secureUld;
-              console.log('File uploaded, secureUid:', this.secureUld);
-            }
-          })
-          .catch((error) => {
-            // Handle any errors during the upload
-            console.error('Upload Error:', error);
-          });
-      } else {
-        console.log("No file selected");
+      if (!file) {
+        console.log("⚠️ No file selected");
+        return;
       }
+
+      console.log("🖼️ Selected file:", file);
+      this.rImage = file; // Store file in component state
+
+      // Read file for preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.RimageUrl = e.target.result;
+        console.log("🔍 Preview URL:", this.RimageUrl);
+      };
+      reader.readAsDataURL(file);
+
+      // Prepare file upload
+      const formData = new FormData();
+      formData.append('file', file);
+
+      // Send file to server using API instance
+      API.post('/common/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+        .then((response) => {
+          console.log("✅ Upload Successful:", response.data);
+          if (response.data?.secureUld) {
+            this.secureUld = response.data.secureUld;
+            console.log("🔒 File uploaded, Secure UID:", this.secureUld);
+          }
+        })
+        .catch((error) => {
+          console.error("❌ Upload Error:", error);
+        });
     },
 
     openFileInput2() {
@@ -666,21 +730,36 @@ export default {
     },
 
     // get reply 
-    getreply(commentId) {
+    // before updating link this works
+    // getreply(commentId) {
 
-      console.log("reply function is calling on id", commentId)
-      this.replies = [];
-      axios.get(`https://king-prawn-app-3rw3o.ondigitalocean.app/api/replies/replyall/${commentId}`)
+    //   console.log("reply function is calling on id", commentId)
+    //   this.replies = [];
+    //   axios.get(`https://king-prawn-app-3rw3o.ondigitalocean.app/api/replies/replyall/${commentId}`)
+    //     .then(response => {
+
+    //       this.replies.push(...response.data);
+    //       console.log("all repllies", this.replies)
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching replies:', error);
+    //     });
+    // },
+
+    getReply(commentId) {
+      console.log("💬 Fetching replies for comment ID:", commentId);
+
+      this.replies = []; // Reset replies array before fetching
+
+      API.get(`/replies/replyall/${commentId}`)
         .then(response => {
-
-          this.replies.push(...response.data);
-          console.log("all repllies", this.replies)
+          this.replies = response.data; // Directly assign fetched replies
+          console.log("✅ All replies:", this.replies);
         })
         .catch(error => {
-          console.error('Error fetching replies:', error);
+          console.error("❌ Error fetching replies:", error);
         });
     },
-
     // submitReply(commentId) {
     //   const formData = new FormData()
     //   console.log(commentId);
@@ -730,69 +809,115 @@ export default {
     //   this.replyText = '';
     //   this.showReplyInput = null;
     // }
+    // beore link change its working
+    // submitReply(commentId) {
+    //   if (this.isLogin == false) {
+    //     this.loginModal = true
+    //   }
+    //   else {
+    //     const formData = new FormData()
+    //     console.log(commentId);
+    //     console.log(this.replyText);
+    //     console.log(this.user_email);
+    //     console.log(this.user_name);
+    //     formData.append('community_id', this.id);
+
+    //     formData.append('parent_id', commentId); // Assuming `this.id` contains the community ID
+    //     formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
+    //     formData.append('user_email', this.user_email);
+    //     formData.append('user_name', this.user_name);
+    //     // formData.append('image', this.rImage);
+    //     formData.append('image', this.secureUld);
+    //     formData.append('type', "reply");
+    //     console.log("r_imag", this.secureUld)
+    //     formData.append('sub', this.sub);
+
+    //     // Log the form data
+    //     console.log("formData", formData);
+    //     if (this.RimageUrl == "" && this.replyText == "") {
+    //       this.isModal2Open = true;
+    //       this.imgLoading = false;
+    //     }
+    //     else {
+    //       axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/comments', formData, {
+    //         headers: {
+    //           'Content-Type': 'application/x-www-form-urlencoded'
+    //         }
+    //       })
+    //         .then(response => {
+    //           // Handle success
+    //           console.log('Post request successful of replies:', response.data);
+    //           // Append the new comment to the comments array
+    //           // this.replies.push(response.data);
+    //           // this.getreplyOnSubmit(commentId)
+    //           this.getComments()
+
+    //           console.log("rrr", this.replies)
+    //           // Clear inputs
+    //           this.replyText = '';
+    //           // this.showReplyInput = null;
+    //           // Set imgLoading back to false after successful response
+    //         })
+    //         .catch(error => {
+    //           // Handle error
+    //           console.error('Error making post request:', error);
+    //           // Set imgLoading back to false after error
+    //           this.replyText = '';
+    //           // this.showReplyInput = null;
+    //         });
+
+    //       // Clear the reply input
+    //       this.replyText = '';
+    //       this.showReplyInput = null;
+    //     }
+
+    //   }
+
+    // }
     submitReply(commentId) {
-      if (this.isLogin == false) {
-        this.loginModal = true
+      if (!this.isLogin) {
+        this.loginModal = true;
+        return;
       }
-      else {
-        const formData = new FormData()
-        console.log(commentId);
-        console.log(this.replyText);
-        console.log(this.user_email);
-        console.log(this.user_name);
-        formData.append('community_id', this.id);
 
-        formData.append('parent_id', commentId); // Assuming `this.id` contains the community ID
-        formData.append('comments', this.replyText); // Assuming `this.newComment` contains the new comment text
-        formData.append('user_email', this.user_email);
-        formData.append('user_name', this.user_name);
-        // formData.append('image', this.rImage);
-        formData.append('image', this.secureUld);
-        formData.append('type', "reply");
-        console.log("r_imag", this.secureUld)
-        formData.append('sub', this.sub);
+      if (!this.replyText && !this.RimageUrl) {
+        this.isModal2Open = true;
+        this.imgLoading = false;
+        return;
+      }
 
-        // Log the form data
-        console.log("formData", formData);
-        if (this.RimageUrl == "" && this.replyText == "") {
-          this.isModal2Open = true;
-          this.imgLoading = false;
-        }
-        else {
-          axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/comments', formData, {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          })
-            .then(response => {
-              // Handle success
-              console.log('Post request successful of replies:', response.data);
-              // Append the new comment to the comments array
-              // this.replies.push(response.data);
-              // this.getreplyOnSubmit(commentId)
-              this.getComments()
+      const formData = new FormData();
+      console.log("📩 Submitting reply for comment ID:", commentId);
 
-              console.log("rrr", this.replies)
-              // Clear inputs
-              this.replyText = '';
-              // this.showReplyInput = null;
-              // Set imgLoading back to false after successful response
-            })
-            .catch(error => {
-              // Handle error
-              console.error('Error making post request:', error);
-              // Set imgLoading back to false after error
-              this.replyText = '';
-              // this.showReplyInput = null;
-            });
+      // Append necessary fields
+      formData.append("community_id", this.id);
+      formData.append("parent_id", commentId);
+      formData.append("comments", this.replyText);
+      formData.append("user_email", this.user_email);
+      formData.append("user_name", this.user_name);
+      formData.append("image", this.secureUld || ""); // Ensure safe handling
+      formData.append("type", "reply");
+      formData.append("sub", this.sub);
 
-          // Clear the reply input
-          this.replyText = '';
+      console.log("📦 FormData:", Object.fromEntries(formData));
+
+      // ✅ Send API request
+      API.post("/comments/comments", formData, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      })
+        .then(response => {
+          console.log("✅ Reply submitted successfully:", response.data);
+
+          // Refresh comments & reset input fields
+          this.getComments();
+          this.replyText = "";
           this.showReplyInput = null;
-        }
-
-      }
-
+        })
+        .catch(error => {
+          console.error("❌ Error submitting reply:", error);
+          this.replyText = "";
+          this.showReplyInput = null;
+        });
     }
     ,
     //   const formData = new FormData();
@@ -980,53 +1105,93 @@ export default {
 
 
     // },
+    // before link change its working
+    // handleFileChange(event) {
+    //   // Get the uploaded file
+    //   const file = event.target.files[0];
+
+    //   // Check if a file is selected
+    //   if (file) {
+    //     // Store file name and file object
+    //     this.imageName = file.name;
+    //     this.image = file;
+
+    //     // Create a FormData object
+    //     const formData = new FormData();
+    //     formData.append('file', file); // Add the file to the form data
+
+    //     // Use axios to send the formData to the server
+    //     axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload', formData, {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data', // Indicate that we're uploading a file
+    //       }
+    //     })
+    //       .then((response) => {
+    //         // Handle the response from the API
+    //         console.log('Upload Successful:', response.data);
+
+    //         // Optionally, you can store the uploaded file URL or any data from the response
+    //         if (response.data && response.data.secureUld) {
+    //           this.secureUld = response.data.secureUld;
+    //           console.log('File uploaded, secureUid:', this.secureUld);
+    //         }
+    //       })
+    //       .catch((error) => {
+    //         // Handle errors
+    //         console.error('Upload Error:', error);
+    //       });
+
+    //     // If you want to preview the image before upload, you can use FileReader:
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       // Update imageUrl with the data URL of the uploaded image for preview
+    //       this.imageUrl = e.target.result;
+    //     };
+    //     reader.readAsDataURL(file);
+    //   } else {
+    //     console.error('No file selected');
+    //   }
+    // }
     handleFileChange(event) {
-      // Get the uploaded file
       const file = event.target.files[0];
 
-      // Check if a file is selected
-      if (file) {
-        // Store file name and file object
-        this.imageName = file.name;
-        this.image = file;
+      if (!file) {
+        console.error("❌ No file selected");
+        return;
+      }
 
-        // Create a FormData object
-        const formData = new FormData();
-        formData.append('file', file); // Add the file to the form data
+      // Store file data
+      this.imageName = file.name;
+      this.image = file;
 
-        // Use axios to send the formData to the server
-        axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data', // Indicate that we're uploading a file
+      // Preview the image before uploading
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+
+      // Create FormData
+      const formData = new FormData();
+      formData.append("file", file);
+
+      // ✅ Upload File
+      API.post("/common/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+      })
+        .then(response => {
+          console.log("✅ Upload Successful:", response.data);
+
+          // Store the secure UID from the response
+          if (response.data?.secureUld) {
+            this.secureUld = response.data.secureUld;
+            console.log("🔗 File uploaded, Secure UID:", this.secureUld);
           }
         })
-          .then((response) => {
-            // Handle the response from the API
-            console.log('Upload Successful:', response.data);
-
-            // Optionally, you can store the uploaded file URL or any data from the response
-            if (response.data && response.data.secureUld) {
-              this.secureUld = response.data.secureUld;
-              console.log('File uploaded, secureUid:', this.secureUld);
-            }
-          })
-          .catch((error) => {
-            // Handle errors
-            console.error('Upload Error:', error);
-          });
-
-        // If you want to preview the image before upload, you can use FileReader:
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          // Update imageUrl with the data URL of the uploaded image for preview
-          this.imageUrl = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        console.error('No file selected');
-      }
+        .catch(error => {
+          console.error("❌ Upload Error:", error);
+        });
     }
-
     ,
     async fetchProfileData() {
       try {
@@ -1094,77 +1259,137 @@ export default {
 
 
 
+    // beoforeupdating link its working
+    // postComment() {
+    //   if (this.isLogin == false) {
+    //     this.loginModal = true
+    //   }
+    //   else {
+    //     // Set imgLoading to true before making the request
+    //     // console.log(this.user_image)
+    //     this.imgLoading = true;
 
+    //     // const file = this.$refs.fileInput.files[0];
+    //     const file = this.secureUld
+    //     console.log("comment Image", file)
+    //     console.log("post comment image ifle", file)
+    //     const maxSizeInBytes = 3 * 1024 * 1024; // 3 MB
+
+    //     if (file && file.size > maxSizeInBytes) {
+    //       // Provide feedback to the user that the image size exceeds the limit
+    //       this.isModal3Open = true;
+    //       this.imgLoading = false; // Reset imgLoading
+    //       return;
+    //     }
+
+    //     const formData = new FormData();
+    //     formData.append('image', file); // Append the selected file
+    //     formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
+    //     formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
+    //     // formData.append('user_email', this.user_email);
+    //     // formData.append('user_name', this.user_name);
+    //     console.log("sub in comments", this.sub)
+    //     formData.append('sub', this.sub);
+    //     formData.append('type', "comment");
+    //     // formData.append('image', this.user_name);
+    //     // formData.append('User_imagimage', this.user_image)
+
+
+    //     // Check if formData is empty
+    //     if (this.imageUrl == "" && this.newComment == "") {
+    //       this.isModal2Open = true;
+    //       this.imgLoading = false;
+    //     } else {
+    //       axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/comments', formData)
+    //         .then(response => {
+    //           // Handle success
+    //           console.log('Post request successful:', response.data);
+    //           // Append the new comment to the comments array
+    //           this.comments.push(response.data);
+    //           // Clear inputs
+    //           this.newComment = "";
+    //           this.imageUrl = "";
+    //           this.getComments()
+    //           this.getNoOfComments()
+    //           // Check if this.$refs.fileInput exists before accessing its properties
+    //           if (this.$refs.fileInput) {
+    //             this.$refs.fileInput.value = '';
+    //           }
+
+    //           this.$nextTick(() => {
+    //             this.scrollToBottom();
+    //           });
+    //           // Set imgLoading back to false after successful response
+    //           this.imgLoading = false;
+    //         })
+    //         .catch(error => {
+    //           // Handle error
+    //           console.error('Error making post request:', error);
+    //           // Set imgLoading back to false after error
+    //           this.imgLoading = false;
+    //         });
+    //     }
+    //   }
+    // }
     postComment() {
-      if (this.isLogin == false) {
-        this.loginModal = true
+      if (!this.isLogin) {
+        this.loginModal = true;
+        return;
       }
-      else {
-        // Set imgLoading to true before making the request
-        // console.log(this.user_image)
-        this.imgLoading = true;
 
-        // const file = this.$refs.fileInput.files[0];
-        const file = this.secureUld
-        console.log("comment Image", file)
-        console.log("post comment image ifle", file)
-        const maxSizeInBytes = 3 * 1024 * 1024; // 3 MB
+      this.imgLoading = true; // ✅ Start loading indicator
+      const file = this.secureUld; // ✅ Use secure URL from upload response
+      const maxSizeInBytes = 3 * 1024 * 1024; // ✅ 3MB size limit
 
-        if (file && file.size > maxSizeInBytes) {
-          // Provide feedback to the user that the image size exceeds the limit
-          this.isModal3Open = true;
-          this.imgLoading = false; // Reset imgLoading
-          return;
-        }
+      console.log("🖼️ Comment Image:", file);
 
-        const formData = new FormData();
-        formData.append('image', file); // Append the selected file
-        formData.append('community_id', this.id); // Assuming `this.id` contains the community ID
-        formData.append('comments', this.newComment); // Assuming `this.newComment` contains the new comment text
-        // formData.append('user_email', this.user_email);
-        // formData.append('user_name', this.user_name);
-        console.log("sub in comments", this.sub)
-        formData.append('sub', this.sub);
-        formData.append('type', "comment");
-        // formData.append('image', this.user_name);
-        // formData.append('User_imagimage', this.user_image)
-
-
-        // Check if formData is empty
-        if (this.imageUrl == "" && this.newComment == "") {
-          this.isModal2Open = true;
-          this.imgLoading = false;
-        } else {
-          axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/comments', formData)
-            .then(response => {
-              // Handle success
-              console.log('Post request successful:', response.data);
-              // Append the new comment to the comments array
-              this.comments.push(response.data);
-              // Clear inputs
-              this.newComment = "";
-              this.imageUrl = "";
-              this.getComments()
-              this.getNoOfComments()
-              // Check if this.$refs.fileInput exists before accessing its properties
-              if (this.$refs.fileInput) {
-                this.$refs.fileInput.value = '';
-              }
-
-              this.$nextTick(() => {
-                this.scrollToBottom();
-              });
-              // Set imgLoading back to false after successful response
-              this.imgLoading = false;
-            })
-            .catch(error => {
-              // Handle error
-              console.error('Error making post request:', error);
-              // Set imgLoading back to false after error
-              this.imgLoading = false;
-            });
-        }
+      if (file && file.size > maxSizeInBytes) {
+        this.isModal3Open = true;
+        this.imgLoading = false;
+        return;
       }
+
+      // ✅ Ensure comment is not empty
+      if (!this.imageUrl && !this.newComment.trim()) {
+        this.isModal2Open = true;
+        this.imgLoading = false;
+        return;
+      }
+
+      // ✅ Create FormData
+      const formData = new FormData();
+      formData.append("image", file || ""); // Append image if available
+      formData.append("community_id", this.id);
+      formData.append("comments", this.newComment.trim());
+      formData.append("sub", this.sub);
+      formData.append("type", "comment");
+
+      // ✅ Send request using `apiClient`
+      API.post("/comments/comments", formData)
+        .then(response => {
+          console.log("✅ Comment posted successfully:", response.data);
+
+          // ✅ Update comments list
+          this.comments.push(response.data);
+          this.getComments();
+          this.getNoOfComments();
+
+          // ✅ Clear form inputs
+          this.newComment = "";
+          this.imageUrl = "";
+          if (this.$refs.fileInput) {
+            this.$refs.fileInput.value = "";
+          }
+
+          // ✅ Auto-scroll to the latest comment
+          this.$nextTick(() => this.scrollToBottom());
+
+          this.imgLoading = false; // ✅ Stop loading indicator
+        })
+        .catch(error => {
+          console.error("❌ Error posting comment:", error);
+          this.imgLoading = false; // ✅ Stop loading indicator on error
+        });
     }
 
     ,
@@ -1255,6 +1480,7 @@ export default {
     //     console.error('Error making POST request:', error);
     //   }
     // }
+    // beforevupdating itsworking
     async addLike() {
       // Indicate loading state
       this.loading = true;
