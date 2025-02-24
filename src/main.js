@@ -52,7 +52,7 @@ Amplify.configure({
   Auth: {
     region: "eu-central-1",
     userPoolId: "eu-central-1_09WbuSvnw",
-    userPoolWebClientId: "77vvtadtcb89tiq83t1rm5igrb",
+    userPoolWebClientId: "4nse3u3jp2b50nn5a8693liv3t",
     authenticationFlowType: "USER_SRP_AUTH",
     oauth: {
       domain: "rev-dev.auth.eu-central-1.amazoncognito.com",
