@@ -58,8 +58,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+// import axios from 'axios';
+import apiClient from "@/http-common";
 export default {
   name: "CreateCommunity",
 
@@ -207,19 +207,12 @@ export default {
     //     console.error('Error making POST request:', error);
     //   }
     // }
-
+    // work before link change
     async formSubmit() {
-      // Indicate that loading is in progress
-      this.loading = true;
+      this.loading = true; // ✅ Start loading indicator
 
-      // Data to be sent in the POST request
+      // ✅ Data for the request
       const postData = {
-        // title: this.formData.title,
-        // description: this.formData.description,
-        // make: encodeURIComponent(this.formData.make),
-        // model: encodeURIComponent(this.formData.model),
-        // production_years: encodeURIComponent(this.formData.production_years),
-        // specifications: encodeURIComponent(this.formData.specifications)
         title: this.formData.title,
         description: this.formData.description,
         make: this.formData.make,
@@ -229,39 +222,89 @@ export default {
       };
 
       try {
-        // Make the POST request with the specified data
-        const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/', postData);
+        // ✅ Send the request using `apiClient`
+        const response = await apiClient.post("/communities/", postData);
 
-        // Handle the response data
-        console.log(response.data);
+        console.log("✅ Form submitted successfully:", response.data);
 
-        // Encode the URL parameters to handle special characters
-        const encodedMake = postData.make;
-        const encodedModel = postData.model;
-        const encodedSpecifications = postData.specifications;
+        // ✅ Encode parameters if needed
+        const encodedMake = encodeURIComponent(postData.make);
+        const encodedModel = encodeURIComponent(postData.model);
+        const encodedSpecifications = encodeURIComponent(postData.specifications);
 
-        // Construct the base URL with mandatory parameters
+        // ✅ Construct the navigation URL
         let routeUrl = `/community/${encodedMake}/${encodedModel}`;
 
-        // Include production_years if it is not empty
         if (postData.production_years) {
           const encodedProductionYears = encodeURIComponent(postData.production_years);
           routeUrl += `/${encodedProductionYears}`;
         }
 
-        // Add specifications to the URL
         routeUrl += `/${encodedSpecifications}`;
-        console.log(routeUrl)
-        // Navigate to the constructed URL
-        this.loading = false;
-        // this.$router.push({ path: routeUrl });
-        this.$router.back();
+
+        console.log("🔗 Navigating to:", routeUrl);
+
+        this.loading = false; // ✅ Stop loading indicator
+        this.$router.back(); // ✅ Navigate back
       } catch (error) {
-        // Handle any errors
-        this.loading = false;
-        console.error('Error making POST request:', error);
+        console.error("❌ Error making POST request:", error);
+        this.loading = false; // ✅ Stop loading indicator on error
       }
     }
+    // async formSubmit() {
+    //   // Indicate that loading is in progress
+    //   this.loading = true;
+
+    //   // Data to be sent in the POST request
+    //   const postData = {
+    //     // title: this.formData.title,
+    //     // description: this.formData.description,
+    //     // make: encodeURIComponent(this.formData.make),
+    //     // model: encodeURIComponent(this.formData.model),
+    //     // production_years: encodeURIComponent(this.formData.production_years),
+    //     // specifications: encodeURIComponent(this.formData.specifications)
+    //     title: this.formData.title,
+    //     description: this.formData.description,
+    //     make: this.formData.make,
+    //     model: this.formData.model,
+    //     production_years: this.formData.production_years,
+    //     specifications: this.formData.specifications
+    //   };
+
+    //   try {
+    //     // Make the POST request with the specified data
+    //     const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/', postData);
+
+    //     // Handle the response data
+    //     console.log(response.data);
+
+    //     // Encode the URL parameters to handle special characters
+    //     const encodedMake = postData.make;
+    //     const encodedModel = postData.model;
+    //     const encodedSpecifications = postData.specifications;
+
+    //     // Construct the base URL with mandatory parameters
+    //     let routeUrl = `/community/${encodedMake}/${encodedModel}`;
+
+    //     // Include production_years if it is not empty
+    //     if (postData.production_years) {
+    //       const encodedProductionYears = encodeURIComponent(postData.production_years);
+    //       routeUrl += `/${encodedProductionYears}`;
+    //     }
+
+    //     // Add specifications to the URL
+    //     routeUrl += `/${encodedSpecifications}`;
+    //     console.log(routeUrl)
+    //     // Navigate to the constructed URL
+    //     this.loading = false;
+    //     // this.$router.push({ path: routeUrl });
+    //     this.$router.back();
+    //   } catch (error) {
+    //     // Handle any errors
+    //     this.loading = false;
+    //     console.error('Error making POST request:', error);
+    //   }
+    // }
 
   }
 
