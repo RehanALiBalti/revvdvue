@@ -213,7 +213,7 @@
                                     </div>
                                     <div class="like-community">
                                         <i class="fa-solid fa-eye"></i><span class="total-likes">{{ community.views
-                                            }}</span>
+                                        }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -320,7 +320,7 @@
 <script>
 import CommunityDataService from "@/services/CommunityDataService";
 import axios from "axios";
-
+import apiClient from "@/http-common";
 export default {
     data() {
         return {
@@ -452,11 +452,33 @@ export default {
         //         console.error('Error making GET request:', error);
         //     }
         // },
-        async getForumData() {
-            console.log()
-            try {
 
-                const response = await axios.get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/filter', {
+        // working before link change
+        // async getForumData() {
+        //     console.log()
+        //     try {
+
+        //         const response = await axios.get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/filter', {
+        //             params: {
+        //                 make: this.make,
+        //                 model: this.modal,
+        //                 production_years: this.production_years,
+        //                 specifications: this.specifications
+        //             }
+        //         });
+        //         console.log("new get responseon forum pags", response.data);
+        //         this.communities = response.data;
+
+        //         for (const community of this.communities) {
+        //             await this.getNoOfComments(community);
+        //         }
+        //     } catch (error) {
+        //         console.error('Error making GET request:', error);
+        //     }
+        // },
+        async getForumData() {
+            try {
+                const response = await apiClient.get("/communities/filter", {
                     params: {
                         make: this.make,
                         model: this.modal,
@@ -464,17 +486,17 @@ export default {
                         specifications: this.specifications
                     }
                 });
-                console.log("new get responseon forum pags", response.data);
+
+                console.log("✅ Forum data response:", response.data);
                 this.communities = response.data;
 
                 for (const community of this.communities) {
                     await this.getNoOfComments(community);
                 }
             } catch (error) {
-                console.error('Error making GET request:', error);
+                console.error("❌ Error fetching forum data:", error);
             }
         },
-
         // applyFilter() {
         //     const searchLower = this.search.trim().toLowerCase();
         //     if (searchLower === '') {
@@ -499,19 +521,34 @@ export default {
             }
         }
         ,
-        getNoOfComments(community) {
-            const apiUrl = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/count?community_id=${community.id}`;
+        // working before link change
+        // getNoOfComments(community) {
+        //     const apiUrl = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/comments/count?community_id=${community.id}`;
 
-            axios.get(apiUrl)
-                .then(response => {
-                    console.log('No Of Comments:', response.data.count);
-                    // this.$set(community, 'comments', response.data.count); // Update the community object
-                    community.comments = response.data.count
-                })
+        //     axios.get(apiUrl)
+        //         .then(response => {
+        //             console.log('No Of Comments:', response.data.count);
+        //             // this.$set(community, 'comments', response.data.count); // Update the community object
+        //             community.comments = response.data.count
+        //         })
 
-                .catch(error => {
-                    console.error('Error fetching data:', error);
+        //         .catch(error => {
+        //             console.error('Error fetching data:', error);
+        //         });
+        // },
+        async getNoOfComments(community) {
+            try {
+                const response = await apiClient.get("/comments/count", {
+                    params: {
+                        community_id: community.id
+                    }
                 });
+
+                console.log("✅ No Of Comments:", response.data.count);
+                community.comments = response.data.count; // ✅ Update the community object
+            } catch (error) {
+                console.error("❌ Error fetching comment count:", error);
+            }
         },
 
 

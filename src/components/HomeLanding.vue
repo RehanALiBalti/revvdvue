@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
+                        }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -1320,7 +1320,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
 <script>
 
-import axios from 'axios';
+// import axios from 'axios';
 import http from "@/http-common";
 import CarDataService from "../services/CarDataService";
 import CommunityDataService from "../services/CommunityDataService";
@@ -1342,6 +1342,7 @@ import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 import icons_tick from '../assets/images/icons8-ok-76.png'
 
+// import http from "@/http-common"; // Importing the http-common instance // ✅ Centralized Axios instance
 
 export default {
   name: "HomeLanding",
@@ -2528,57 +2529,156 @@ export default {
     //     this.ModalStoryFail = true;
     //   }
     // }
-    // latest working submit story
+    // latest working submit story before link update
+    // async SubmitStory() {
+    //   console.log("submit story", this.formData);
+    //   this.loading = true;
+    //   // Create a new FormData object to store the form data
+    //   let data = new FormData();
+
+    //   // Array to store uploaded image URLs
+    //   let uploadedImageUrls = [];
+
+    //   // Upload images one by one and collect URLs
+    //   // for (const file of this.formData.storyImages) {
+    //   //   let formData = new FormData();
+    //   //   formData.append('file', file);
+
+    //   //   try {
+    //   //     const response = await axios.post(
+    //   //       'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //   //       formData,
+    //   //       { headers: { 'Content-Type': 'multipart/form-data' } }
+    //   //     );
+
+    //   //     if (response.data && response.data.secureUld) {
+    //   //       console.log("Image uploaded:", response.data.secureUld);
+    //   //       uploadedImageUrls.push(response.data.secureUld); // Add the uploaded URL to the array
+    //   //     }
+    //   //   } catch (error) {
+    //   //     console.error("Error uploading image:", error);
+    //   //     this.modalTitle = "Something went wrong";
+    //   //     this.modaldescription = "Failed to upload one or more images. Please try again.";
+    //   //     this.ModalStoryFail = true;
+    //   //     return; // Stop execution if an image upload fails
+    //   //   }
+    //   // }
+    //   for (let i = 0; i < this.formData.storyImages.length; i++) {
+    //     console.log("sto_image", this.formData.storyImages[i])
+    //     const file = this.formData.storyImages[i];
+    //     console.log("file" + i, file, file.name);
+    //     const formData = new FormData();
+    //     formData.append(`file`, file); // Use a unique key for each file
+
+
+    //     try {
+    //       const response = await axios.post(
+    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //         formData,
+    //         { headers: { 'Content-Type': 'multipart/form-data' } }
+    //       );
+
+    //       if (response.data && response.data.secureUld) {
+    //         console.log("response data", response.data)
+    //         console.log("Image uploaded:", response.data.secureUld);
+    //         uploadedImageUrls.push(response.data.secureUld);
+    //       }
+    //     } catch (error) {
+    //       console.error("Error uploading image:", error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
+    //       this.ModalStoryFail = true;
+    //       return;
+    //     }
+
+    //   }
+    //   console.log("uploadedImageUrls", uploadedImageUrls);
+
+    //   // Always append common data
+    //   data.append('story_type', this.selectedStoryType);
+    //   data.append('user_name', this.formData.user_name);
+    //   data.append('user_email', this.formData.user_email);
+
+    //   // Append specific fields based on the selected story type
+    //   if (this.selectedStoryType === 'carEnthusiast') {
+    //     data.append('make', this.formData.make);
+    //     data.append('model', this.formData.model);
+    //     data.append('year', this.formData.year);
+    //     data.append('modifications', this.formData.modifications);
+    //     data.append('memorable', this.formData.memorable);
+    //     data.append('advice', this.formData.advice);
+    //     data.append('story', this.formData.story);
+    //     data.append('story_name', this.formData.story_name);
+    //     data.append('social_media', this.formData.social_media);
+    //   } else {
+    //     data.append('country', this.formData.country);
+    //     data.append('city', this.formData.city);
+    //     data.append('story_history', this.formData.storyHistory);
+    //     data.append('adventure_story', this.formData.adventureStory);
+    //     data.append('story_name', this.formData.storyName);
+    //     data.append('social_media', this.formData.url);
+    //   }
+
+    //   // Append uploaded image URLs
+    //   if (uploadedImageUrls.length > 0) {
+    //     data.append("images", JSON.stringify(uploadedImageUrls)); // Send image URLs as a JSON string
+    //   }
+
+    //   // Log form data entries for debugging
+    //   for (let [key, value] of data.entries()) {
+    //     console.log(key, value);
+    //   }
+
+    //   // Check if the user is logged in before proceeding
+    //   if (this.isLogin === true || this.isLogin === 'true') {
+    //     console.log("User is logged in, submitting form");
+
+    //     try {
+    //       const response = await axios.post(
+    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories',
+    //         data,
+    //         { headers: { 'Content-Type': 'multipart/form-data' } }
+    //       );
+
+    //       console.log('Post request successful:', response.data);
+    //       this.resetForm();
+    //       this.loading = false
+    //       this.ModalStorySucces = true; // Show success modal
+    //     } catch (error) {
+    //       console.error('Error making post request:', error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Please try again later.";
+    //       this.ModalStoryFail = true; // Show failure modal
+    //     }
+    //   } else {
+    //     console.log("User not logged in. Please login first.");
+    //     this.modalTitle = "Something went wrong";
+    //     this.modaldescription = "Please login first to submit the story";
+    //     this.ModalStoryFail = true; // Show failure modal
+    //   }
+
+
+    // },
     async SubmitStory() {
       console.log("submit story", this.formData);
       this.loading = true;
-      // Create a new FormData object to store the form data
       let data = new FormData();
-
-      // Array to store uploaded image URLs
       let uploadedImageUrls = [];
 
-      // Upload images one by one and collect URLs
-      // for (const file of this.formData.storyImages) {
-      //   let formData = new FormData();
-      //   formData.append('file', file);
-
-      //   try {
-      //     const response = await axios.post(
-      //       'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
-      //       formData,
-      //       { headers: { 'Content-Type': 'multipart/form-data' } }
-      //     );
-
-      //     if (response.data && response.data.secureUld) {
-      //       console.log("Image uploaded:", response.data.secureUld);
-      //       uploadedImageUrls.push(response.data.secureUld); // Add the uploaded URL to the array
-      //     }
-      //   } catch (error) {
-      //     console.error("Error uploading image:", error);
-      //     this.modalTitle = "Something went wrong";
-      //     this.modaldescription = "Failed to upload one or more images. Please try again.";
-      //     this.ModalStoryFail = true;
-      //     return; // Stop execution if an image upload fails
-      //   }
-      // }
       for (let i = 0; i < this.formData.storyImages.length; i++) {
-        console.log("sto_image", this.formData.storyImages[i])
+        console.log("sto_image", this.formData.storyImages[i]);
         const file = this.formData.storyImages[i];
         console.log("file" + i, file, file.name);
         const formData = new FormData();
-        formData.append(`file`, file); // Use a unique key for each file
-
+        formData.append("file", file);
 
         try {
-          const response = await axios.post(
-            'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
-            formData,
-            { headers: { 'Content-Type': 'multipart/form-data' } }
-          );
+          const response = await http.post("/api/common/upload", formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
 
           if (response.data && response.data.secureUld) {
-            console.log("response data", response.data)
+            console.log("response data", response.data);
             console.log("Image uploaded:", response.data.secureUld);
             uploadedImageUrls.push(response.data.secureUld);
           }
@@ -2589,74 +2689,65 @@ export default {
           this.ModalStoryFail = true;
           return;
         }
-
       }
+
       console.log("uploadedImageUrls", uploadedImageUrls);
 
-      // Always append common data
-      data.append('story_type', this.selectedStoryType);
-      data.append('user_name', this.formData.user_name);
-      data.append('user_email', this.formData.user_email);
+      data.append("story_type", this.selectedStoryType);
+      data.append("user_name", this.formData.user_name);
+      data.append("user_email", this.formData.user_email);
 
-      // Append specific fields based on the selected story type
-      if (this.selectedStoryType === 'carEnthusiast') {
-        data.append('make', this.formData.make);
-        data.append('model', this.formData.model);
-        data.append('year', this.formData.year);
-        data.append('modifications', this.formData.modifications);
-        data.append('memorable', this.formData.memorable);
-        data.append('advice', this.formData.advice);
-        data.append('story', this.formData.story);
-        data.append('story_name', this.formData.story_name);
-        data.append('social_media', this.formData.social_media);
+      if (this.selectedStoryType === "carEnthusiast") {
+        data.append("make", this.formData.make);
+        data.append("model", this.formData.model);
+        data.append("year", this.formData.year);
+        data.append("modifications", this.formData.modifications);
+        data.append("memorable", this.formData.memorable);
+        data.append("advice", this.formData.advice);
+        data.append("story", this.formData.story);
+        data.append("story_name", this.formData.story_name);
+        data.append("social_media", this.formData.social_media);
       } else {
-        data.append('country', this.formData.country);
-        data.append('city', this.formData.city);
-        data.append('story_history', this.formData.storyHistory);
-        data.append('adventure_story', this.formData.adventureStory);
-        data.append('story_name', this.formData.storyName);
-        data.append('social_media', this.formData.url);
+        data.append("country", this.formData.country);
+        data.append("city", this.formData.city);
+        data.append("story_history", this.formData.storyHistory);
+        data.append("adventure_story", this.formData.adventureStory);
+        data.append("story_name", this.formData.storyName);
+        data.append("social_media", this.formData.url);
       }
 
-      // Append uploaded image URLs
       if (uploadedImageUrls.length > 0) {
-        data.append("images", JSON.stringify(uploadedImageUrls)); // Send image URLs as a JSON string
+        data.append("images", JSON.stringify(uploadedImageUrls));
       }
 
-      // Log form data entries for debugging
       for (let [key, value] of data.entries()) {
         console.log(key, value);
       }
 
-      // Check if the user is logged in before proceeding
-      if (this.isLogin === true || this.isLogin === 'true') {
+      if (this.isLogin === true || this.isLogin === "true") {
         console.log("User is logged in, submitting form");
 
         try {
-          const response = await axios.post(
-            'https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories',
-            data,
-            { headers: { 'Content-Type': 'multipart/form-data' } }
-          );
+          const response = await http.post("/api/stories", data, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
 
-          console.log('Post request successful:', response.data);
+          console.log("Post request successful:", response.data);
           this.resetForm();
-          this.loading = false
-          this.ModalStorySucces = true; // Show success modal
+          this.loading = false;
+          this.ModalStorySucces = true;
         } catch (error) {
-          console.error('Error making post request:', error);
+          console.error("Error making post request:", error);
           this.modalTitle = "Something went wrong";
           this.modaldescription = "Please try again later.";
-          this.ModalStoryFail = true; // Show failure modal
+          this.ModalStoryFail = true;
         }
       } else {
         console.log("User not logged in. Please login first.");
         this.modalTitle = "Something went wrong";
         this.modaldescription = "Please login first to submit the story";
-        this.ModalStoryFail = true; // Show failure modal
+        this.ModalStoryFail = true;
       }
-
-
     },
     resetForm() {
       this.formData = {
