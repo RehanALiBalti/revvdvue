@@ -2673,7 +2673,7 @@ export default {
         formData.append("file", file);
 
         try {
-          const response = await http.post("/api/common/upload", formData, {
+          const response = await http.post("/common/upload", formData, {
             headers: { "Content-Type": "multipart/form-data" },
           });
 
@@ -2728,7 +2728,7 @@ export default {
         console.log("User is logged in, submitting form");
 
         try {
-          const response = await http.post("/api/stories", data, {
+          const response = await http.post("/stories", data, {
             headers: { "Content-Type": "multipart/form-data" },
           });
 
