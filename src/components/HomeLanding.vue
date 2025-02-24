@@ -277,6 +277,9 @@
                 {{ $t('Now') }} !
               </h2>
               <div class="row px-2">
+                <div class="position-relative" v-if="this.loading == true">
+                  <div class="box"></div>
+                </div>
                 <div class="col-md-3 p-0 p-md-1">
 
                   <label for="storyType" class="form-label">Story Type</label>
@@ -1393,6 +1396,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       isScrolling: false,
       instaIcon: instaIcon,
       icons_tick: icons_tick,
@@ -2029,6 +2033,7 @@ export default {
 
     },
     getcities() {
+      this.loading = true
       if (!this.formData.country) return;  // Exit if no country is selected
 
       // Set up the headers and request body
@@ -2049,9 +2054,13 @@ export default {
         .then(response => response.json())  // Convert response to JSON
         .then(result => {
           if (result.data && result.data.length > 0) {
-            this.cities = result.data;  // Update cities array with the result
+
+            this.cities = result.data; // Update cities array with the result
+            this.loading = false
           } else {
-            this.cities = [];  // Clear cities if no data is found
+            this.cities = [];
+            this.loading = false
+            // Clear cities if no data is found
           }
         })
         .catch(error => {
@@ -2489,7 +2498,7 @@ export default {
     // latest working submit story
     async SubmitStory() {
       console.log("submit story", this.formData);
-
+this.loading=true;
       // Create a new FormData object to store the form data
       let data = new FormData();
 
@@ -2599,6 +2608,7 @@ export default {
 
           console.log('Post request successful:', response.data);
           this.resetForm();
+          this.loading=false
           this.ModalStorySucces = true; // Show success modal
         } catch (error) {
           console.error('Error making post request:', error);
@@ -2635,6 +2645,7 @@ export default {
         storyName: "",
         url: ""
       };
+      this.croppedImages= []
 
       // this.selectedStoryType = "";
     }
@@ -3182,6 +3193,27 @@ export default {
 <style scoped>
 @import "vue-select/dist/vue-select.css";
 
+.box {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: #FF7A00 transparent;
+  animation: spin 1s infinite ease-out;
+  position: absolute;
+  top: 91%;
+  left: 50%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 textarea.form-control {
   /* min-height: calc(1.5em +(1.75rem + 2px)) !important; */
