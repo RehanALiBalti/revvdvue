@@ -93,7 +93,7 @@
             <li class="list-item-btn position-relative d-none d-lg-block" v-if="$route.path === '/'">
 
 
-              <button class="nav-link d-none d-lg-block" @click="$emit('moveToSection', 'home')">
+              <button class="nav-link d-none " @click="$emit('moveToSection', 'home')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="home-icon-svg" width="29" height="32"
                   viewBox="0 0 29 32">
                   <g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(-3.5 -2)">
