@@ -832,11 +832,13 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                   </div>
 
                   <div class="draggable-area mx-4" v-if="uploadedFiles.length > 0">
-                    <p class="Note"><strong>Note:</strong>Please place the image at the <strong>First(1) </strong>
-                      index to
-                      set it as the main image for your story.</p>
-                    <div v-for="(image, index) in uploadedFiles" :key="index" :class="['image-item']" draggable="true"
+
+                    <!-- <div v-for="(image, index) in uploadedFiles" :key="index" :class="['image-item']" draggable="true"
                       @dragstart="onDragStart(index)" @dragover.prevent @drop="onDrop(index)">
+                      <span class="image-number">{{ index + 1 }}</span>
+                      <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
+                    </div> -->
+                    <div v-for="(image, index) in uploadedFiles" :key="index" :class="['image-item']">
                       <span class="image-number">{{ index + 1 }}</span>
                       <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
                     </div>
