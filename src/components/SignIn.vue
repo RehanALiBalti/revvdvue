@@ -125,7 +125,8 @@
   <!-- modal end -->
 </template>
 <script>
-import axios from 'axios';
+import http from "@/http-common"; // Adjust the path if needed // Adjust path if needed
+
 import { Auth, Hub } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import { mapActions } from 'vuex';
@@ -208,42 +209,66 @@ export default {
   },
   methods: {
     ...mapActions(['signup']),
+    // working before link change
+    // async submitProfileForm() {
+    //   try {
+    //     this.loading = true
+    //     // Make a POST request to the API endpoint
+    //     // const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', { email: this.formData.email });
+    //     const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users',
+    //       { email: this.formData.email },
+    //       {
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //           Accept: "*/*",
+    //         }
+    //       }
+    //     );
+
+    //     // Handle success response
+    //     console.log('Form data submitted successfully:', response.data[0]);
+    //     // const { email, name, role } = response.data;
+    //     const email = response.data[0].email
+    //     const name = response.data[0].name
+    //     const role = response.data[0].role
+    //     // this.$store.signup({ email, name, role });
+    //     console.log("data", { email, name, role })
+    //     await this.$store.dispatch('auth/signup', { email, name, role });
+
+    //     this.loading = false
+
+    //     // You can perform further actions here, such as redirecting the user or showing a success message
+    //   } catch (error) {
+    //     // Handle error
+    //     console.error('Error submitting form data:', error);
+    //     this.loading = false
+
+    //     // You can show an error message to the user or handle the error in any other appropriate way
+    //   }
+    // },
     async submitProfileForm() {
       try {
-        this.loading = true
-        // Make a POST request to the API endpoint
-        // const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', { email: this.formData.email });
-        const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users',
-          { email: this.formData.email },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: "*/*",
-            }
-          }
-        );
+        this.loading = true;
+
+        const response = await http.post("/users", { email: this.formData.email });
 
         // Handle success response
         console.log('Form data submitted successfully:', response.data[0]);
-        // const { email, name, role } = response.data;
-        const email = response.data[0].email
-        const name = response.data[0].name
-        const role = response.data[0].role
-        // this.$store.signup({ email, name, role });
-        console.log("data", { email, name, role })
+
+        const email = response.data[0].email;
+        const name = response.data[0].name;
+        const role = response.data[0].role;
+
+        console.log("data", { email, name, role });
         await this.$store.dispatch('auth/signup', { email, name, role });
 
-        this.loading = false
-
-        // You can perform further actions here, such as redirecting the user or showing a success message
+        this.loading = false;
       } catch (error) {
-        // Handle error
         console.error('Error submitting form data:', error);
-        this.loading = false
-
-        // You can show an error message to the user or handle the error in any other appropriate way
+        this.loading = false;
       }
     },
+
     togglePasswordVisibility() {
       this.formData.showPassword = !this.formData.showPassword;
     },

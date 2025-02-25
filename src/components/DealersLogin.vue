@@ -204,8 +204,8 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
-
+// import axios from 'axios';
+import apiClient from "@/http-common";
 export default {
     name: "DealersLogin",
 
@@ -340,19 +340,39 @@ export default {
         togglePasswordVisibility2() {
             this.formData.showPassword = !this.formData.showPassword;
         },
-        async submitProfileForm() {
-            console.log("in submit profile form")
-            try {
-                // Make a POST request to the API endpoint
-                const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', this.formData);
+        // working before link change
+        // async submitProfileForm() {
+        //     console.log("in submit profile form")
+        //     try {
+        //         // Make a POST request to the API endpoint
+        //         const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', this.formData);
 
-                // Handle success response
-                console.log('Form data submitted successfully:', response.data);
-                // You can perform further actions here, such as redirecting the user or showing a success message
+        //         // Handle success response
+        //         console.log('Form data submitted successfully:', response.data);
+        //         // You can perform further actions here, such as redirecting the user or showing a success message
+        //     } catch (error) {
+        //         // Handle error
+        //         console.error('Error submitting form data:', error);
+        //         // You can show an error message to the user or handle the error in any other appropriate way
+        //     }
+        // },
+        async submitProfileForm() {
+            console.log("🚀 Submitting profile form...");
+
+            try {
+                // ✅ Make API request using `apiClient`
+                const response = await apiClient.post("/users", this.formData);
+
+                // ✅ Handle success response
+                console.log("✅ Profile form submitted successfully:", response.data);
+
+                // ✅ Additional success actions (e.g., redirect, success message)
+                // this.$router.push("/profile-success");
             } catch (error) {
-                // Handle error
-                console.error('Error submitting form data:', error);
-                // You can show an error message to the user or handle the error in any other appropriate way
+                console.error("❌ Error submitting profile form:", error);
+
+                // ✅ Handle error (show error message)
+                // this.errorMessage = "Failed to submit profile form. Please try again.";
             }
         },
         validatePassword() {
@@ -472,32 +492,61 @@ export default {
         //         console.log("Form is invalid");
         //     }
         // },
+        // working before link change
+        // async submitForm() {
+        //     this.validateForm();
+        //     if (this.isFormValid()) {
+        //         try {
+        //             const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`;
+        //             const response = await axios.get(url);
+        //             if (response.data.count === 0) {
+        //                 this.$store.dispatch('auth/handleSignUp2', this.formData).then(data => {
+        //                     if (data.success === 1) {
+        //                         localStorage.setItem('login', true);
+        //                         this.$router.push("/profile");
+        //                     } else {
+        //                         this.errorMessage = data.error;
+        //                     }
+        //                 }).catch(error => {
+        //                     console.error("Error during form submission:", error);
+        //                 });
+        //             }
+        //         } catch (error) {
+        //             console.error("Error:", error);
+        //         }
+        //     } else {
+        //         console.log("Form is invalid");
+        //     }
+        // },
         async submitForm() {
             this.validateForm();
+
             if (this.isFormValid()) {
                 try {
-                    const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`;
-                    const response = await axios.get(url);
+                    // ✅ Use `apiClient` for the GET request
+                    const response = await apiClient.get(`/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`);
+
                     if (response.data.count === 0) {
-                        this.$store.dispatch('auth/handleSignUp2', this.formData).then(data => {
-                            if (data.success === 1) {
-                                localStorage.setItem('login', true);
-                                this.$router.push("/profile");
-                            } else {
-                                this.errorMessage = data.error;
-                            }
-                        }).catch(error => {
-                            console.error("Error during form submission:", error);
-                        });
+                        this.$store.dispatch("auth/handleSignUp2", this.formData)
+                            .then(data => {
+                                if (data.success === 1) {
+                                    localStorage.setItem("login", true);
+                                    this.$router.push("/profile");
+                                } else {
+                                    this.errorMessage = data.error;
+                                }
+                            })
+                            .catch(error => {
+                                console.error("❌ Error during form submission:", error);
+                            });
                     }
                 } catch (error) {
-                    console.error("Error:", error);
+                    console.error("❌ API Error:", error);
                 }
             } else {
-                console.log("Form is invalid");
+                console.log("❌ Form is invalid");
             }
         },
-
         // isFormValid() {
         //     return Object.values(this.formErrors).every(error => !error);
         // },

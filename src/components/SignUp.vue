@@ -146,7 +146,7 @@
                 <input type="checkbox" id="check2" class="form-check-input m-0" v-model="formData.check2" />
                 <label for="check2" class="form-label  mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                   <router-link to="/privacypolicy" class="termsService" target="_blank">{{ $t('PrivacyPolicy')
-                    }}</router-link>
+                  }}</router-link>
                 </label>
                 <div v-if="formErrors.check2" class="text-danger f14">
                   {{ formErrors.check2 }}
@@ -272,6 +272,7 @@ import { useProfileName } from '@/composables/useProfileName';
 import { Auth, Hub } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 // import Multiselect from 'vue-multiselect'
+import http from "@/http-common"; // Import Axios instance
 
 export default {
   name: "SignUp",
@@ -484,24 +485,55 @@ export default {
       }
     },
 
+    // async submitProfileForm() {
+    //   try {
+    //     // Make a POST request to the API endpoint
+    //     const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', this.formData);
+
+    //     // Handle success response
+    //     console.log('Form data submitted successfully user:', response.data);
+
+    //     const { email, name, role } = this.formData;
+    //     // this.$store.signup({ email, name, role });
+    //     await this.$store.dispatch('auth/signup', { email, name, role });
+    //     console.log("before name", name);
+    //     this.changeName(name);
+    //     // You can perform further actions here, such as redirecting the user or showing a success message
+    //   } catch (error) {
+    //     // Handle error
+    //     console.error('Error submitting form data:', error);
+    //     // You can show an error message to the user or handle the error in any other appropriate way
+    //   }
+    // },
     async submitProfileForm() {
       try {
-        // Make a POST request to the API endpoint
-        const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', this.formData);
+        this.loading = true;
+
+        // Make a POST request using the configured Axios instance
+        const response = await http.post("/users", this.formData);
 
         // Handle success response
-        console.log('Form data submitted successfully user:', response.data);
+        console.log("Form data submitted successfully user:", response.data);
 
-        const { email, name, role } = this.formData;
-        // this.$store.signup({ email, name, role });
-        await this.$store.dispatch('auth/signup', { email, name, role });
+        const { email, name, role } = response.data; // Extract data from response instead of formData
+
+        // Dispatch the signup action to Vuex store
+        await this.$store.dispatch("auth/signup", { email, name, role });
+
         console.log("before name", name);
+
+        // Call the method to change the name
         this.changeName(name);
-        // You can perform further actions here, such as redirecting the user or showing a success message
+
+        this.loading = false;
       } catch (error) {
         // Handle error
-        console.error('Error submitting form data:', error);
-        // You can show an error message to the user or handle the error in any other appropriate way
+        console.error("Error submitting form data:", error);
+
+        // You can show an error message to the user
+        this.$swal("Error", "Failed to submit profile. Please try again.", "error");
+
+        this.loading = false;
       }
     },
     togglePasswordVisibility() {
