@@ -1024,7 +1024,8 @@ div.start-engine-div .border-bottom-btn.border-top-btn.border-right-radius.borde
 
 .form-select.form-control.form-input,
 .form-control {
-	height: 35px !important;
+	/* height: 35px !important; */
+	min-height: 35px;
 	border-radius: 5px !important;
 	background-color: #031726 !important;
 	border: 1px solid #1a202c !important;
@@ -1091,6 +1092,10 @@ textarea.form-control {
 	transition: left 0.3s ease;
 	cursor: pointer;
 	object-fit: contain;
+}
+
+.h35px {
+	height: 35px !important;
 }
 
 .map-custom-container {
