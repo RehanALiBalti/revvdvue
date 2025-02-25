@@ -1098,6 +1098,14 @@ textarea.form-control {
 	height: 35px !important;
 }
 
+textarea {
+	overflow-y: hidden !important;
+
+	transition: height 0.2s ease-in-out !important;
+	max-height: 220px !important;
+	/* Smooth transition */
+}
+
 .map-custom-container {
 	display: none;
 }
