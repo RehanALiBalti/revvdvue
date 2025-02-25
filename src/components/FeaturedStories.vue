@@ -165,7 +165,7 @@
                                 <div class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1" @click="openModalFe">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
@@ -174,7 +174,23 @@
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                    : parsedImages(car.images))" :key="idx">
+
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+
+                                                </swiper-slide>
+
                                             </swiper>
+
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -218,7 +234,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -235,7 +251,29 @@
                                                                         @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                                : parsedImages(car.images))" :key="idx">
+
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+
+                                                            </swiper-slide>
+
                                                         </swiper>
+
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
@@ -552,7 +590,7 @@
                                     @click="openModal(index)">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
@@ -561,7 +599,23 @@
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                    : parsedImages(car.images))" :key="idx">
+
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+
+                                                </swiper-slide>
+
                                             </swiper>
+
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -605,7 +659,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -622,7 +676,29 @@
                                                                         @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                                : parsedImages(car.images))" :key="idx">
+
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+
+                                                            </swiper-slide>
+
                                                         </swiper>
+
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
@@ -1527,7 +1603,7 @@
                                     class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
@@ -1536,7 +1612,23 @@
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                    : parsedImages(car.images))" :key="idx">
+
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+
+                                                </swiper-slide>
+
                                             </swiper>
+
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -1581,7 +1673,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -1598,7 +1690,29 @@
                                                                         @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                                : parsedImages(car.images))" :key="idx">
+
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+
+                                                            </swiper-slide>
+
                                                         </swiper>
+
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
@@ -2207,7 +2321,9 @@
                                     class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+
+
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
@@ -2216,7 +2332,23 @@
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                    : parsedImages(car.images))" :key="idx">
+
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+
+                                                </swiper-slide>
+
                                             </swiper>
+
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -2261,7 +2393,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -2278,7 +2410,29 @@
                                                                         @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                                : parsedImages(car.images))" :key="idx">
+
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+
+                                                            </swiper-slide>
+
                                                         </swiper>
+
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
@@ -2886,7 +3040,7 @@
                                     class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
@@ -2895,7 +3049,23 @@
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                    : parsedImages(car.images))" :key="idx">
+
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+
+                                                </swiper-slide>
+
                                             </swiper>
+
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -2940,7 +3110,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -2957,7 +3127,24 @@
                                                                         @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                            <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                                : parsedImages(car.images))" :key="idx">
+
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img"
+                                                                        alt="car" />
+                                                                </div>
+
+                                                            </swiper-slide>
+
                                                         </swiper>
+
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
@@ -3564,7 +3751,7 @@
                                     class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
@@ -3573,7 +3760,23 @@
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                    : parsedImages(car.images))" :key="idx">
+
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+
+                                                </swiper-slide>
+
                                             </swiper>
+
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -3618,7 +3821,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -3635,7 +3838,32 @@
                                                                         @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
-                                                        </swiper>
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+    :initialSlide="1" :pagination="{ clickable: true }"
+    :navigation="{
+        nextEl: '.custom-next',
+        prevEl: '.custom-prev',
+    }"
+    class="mySwiper swiper-no-shadow modalswipper">
+
+    <swiper-slide class="swiper-no-shadow modalswippersh"
+        v-for="(image, idx) in (parsedImages(car.images).length > 1 
+            ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)] 
+            : parsedImages(car.images))"
+        :key="idx">
+        
+        <div class="d-block">
+            <img :src="image"
+                class="slider-img myCarListingCard-img modalswipperImage"
+                alt="car"
+                @click="openViewer(image, car.images)" />
+        </div>
+
+    </swiper-slide>
+
+</swiper>
+
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
@@ -4242,7 +4470,7 @@
                                     class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
@@ -4251,7 +4479,25 @@
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
-                                            </swiper>
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+    :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+    <swiper-slide class="swiper-no-shadow"
+        v-for="(image, idx) in (parsedImages(car.images).length > 1 
+            ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)] 
+            : parsedImages(car.images))"
+        :key="idx">
+        
+        <div class="d-block">
+            <img :src="image"
+                class="slider-img myCarListingCard-img" alt="car" />
+        </div>
+
+    </swiper-slide>
+
+</swiper>
+
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -4295,7 +4541,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -4312,7 +4558,32 @@
                                                                         @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
-                                                        </swiper>
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+    :initialSlide="1" :pagination="{ clickable: true }"
+    :navigation="{
+        nextEl: '.custom-next',
+        prevEl: '.custom-prev',
+    }" 
+    class="mySwiper swiper-no-shadow modalswipper">
+
+    <swiper-slide class="swiper-no-shadow modalswippersh"
+        v-for="(image, idx) in (parsedImages(car.images).length > 1 
+            ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)] 
+            : parsedImages(car.images))"
+        :key="idx">
+        
+        <div class="d-block">
+            <img :src="image"
+                class="slider-img myCarListingCard-img modalswipperImage"
+                alt="car"
+                @click="openViewer(image, car.images)" />
+        </div>
+
+    </swiper-slide>
+
+</swiper>
+
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>
@@ -5809,38 +6080,38 @@ export default {
         //         });
         // },
         fetchStories() {
-    API.get("/stories") // ✅ Use the pre-configured base URL
-        .then((response) => {
-            console.log("📖 Stories fetched:", response.data);
-            
-            const stories = response.data;
-            const storyTypes = {
-                CarEnthusiast: "carEnthusiast",
-                CarGarage: "carGarage",
-                CarModificationTunningShop: "carModificationShop",
-                CarClub: "carClub",
-                MotorbikeEnthusiast: "motorbikeEnthusiast",
-                AutomotivePhotographer: "automotivePhotographerast" // ✅ Fixed typo
-            };
+            API.get("/stories") // ✅ Use the pre-configured base URL
+                .then((response) => {
+                    console.log("📖 Stories fetched:", response.data);
 
-            // Reset the filtered and original stories
-            this.filteredStories = {};
-            this.originalCars = {};
+                    const stories = response.data;
+                    const storyTypes = {
+                        CarEnthusiast: "carEnthusiast",
+                        CarGarage: "carGarage",
+                        CarModificationTunningShop: "carModificationShop",
+                        CarClub: "carClub",
+                        MotorbikeEnthusiast: "motorbikeEnthusiast",
+                        AutomotivePhotographer: "automotivePhotographerast" // ✅ Fixed typo
+                    };
 
-            // Assign filtered stories dynamically
-            Object.keys(storyTypes).forEach((key) => {
-                this.filteredStories[key] = stories.filter(
-                    (story) => story.story_type === storyTypes[key]
-                );
-                this.originalCars[key] = [...this.filteredStories[key]];
-            });
+                    // Reset the filtered and original stories
+                    this.filteredStories = {};
+                    this.originalCars = {};
 
-            console.log("✅ Filtered Stories:", this.filteredStories);
-        })
-        .catch((error) => {
-            console.error("❌ Error fetching stories:", error);
-        });
-},
+                    // Assign filtered stories dynamically
+                    Object.keys(storyTypes).forEach((key) => {
+                        this.filteredStories[key] = stories.filter(
+                            (story) => story.story_type === storyTypes[key]
+                        );
+                        this.originalCars[key] = [...this.filteredStories[key]];
+                    });
+
+                    console.log("✅ Filtered Stories:", this.filteredStories);
+                })
+                .catch((error) => {
+                    console.error("❌ Error fetching stories:", error);
+                });
+        },
         openModal(index) {
             console.log("Modal opened for car index:", index);
             this.activeCarIndex = index; // Set the active index to the clicked car

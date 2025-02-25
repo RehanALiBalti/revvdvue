@@ -132,7 +132,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="2" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -149,7 +149,29 @@
                                                                         @click="openViewer(image, car.images)" />
                                                                 </div>
                                                             </swiper-slide>
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                                : parsedImages(car.images))" :key="idx">
+
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+
+                                                            </swiper-slide>
+
                                                         </swiper>
+
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
                                                     </div>

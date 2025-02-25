@@ -116,7 +116,7 @@
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
-                      <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
+                      <!-- <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
                         :initialSlide="1" :pagination="{ clickable: true }" :navigation="{
                           nextEl: '.custom-next',
                           prevEl: '.custom-prev',
@@ -128,7 +128,26 @@
                               :alt="`Car image #${idx + 1}`" />
                           </div>
                         </swiper-slide>
+                      </swiper> -->
+                      <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
+                        :initialSlide="1" :pagination="{ clickable: true }" :navigation="{
+                          nextEl: '.custom-next',
+                          prevEl: '.custom-prev',
+                        }" class="mySwiper swiper-no-shadow modalswipper">
+
+                        <swiper-slide v-for="(image, idx) in (bannerStories[0].images.length > 1
+                          ? [bannerStories[0].images[1], bannerStories[0].images[0], ...bannerStories[0].images.slice(2)]
+                          : bannerStories[0].images)" :key="idx" class="swiper-no-shadow modalswippersh">
+
+                          <div class="d-block">
+                            <img :src="image" class="slider-img myCarListingCard-img modalswipperImage"
+                              :alt="`Car image #${idx + 1}`" />
+                          </div>
+
+                        </swiper-slide>
+
                       </swiper>
+
                       <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important"
                         v-if="isMobile == false">
                         <span class="border-bottom-btn border-top-btn position-absolute">
@@ -704,8 +723,11 @@ v-model="formData.country"> -->
 
                     <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
+                    <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
+                      accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" /> -->
                     <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
-                      accept=".jpg,.png,.jpeg" multiple v-on:change="validateFiles" @change="openImageModal" />
+                      accept=".jpg,.png,.jpeg" multiple @change="handleFileUpload" />
+
                     <div class="list-item-btn position-relative submit-btn-div m-0 topN35">
                       <span class="border-bottom-btn border-top-btn position-absolute">
                         <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
@@ -792,7 +814,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <div class="col-md-12 my-1">
                   <div class="uploadedImages d-flex align-items-center gap-2 flex-wrap mx-3">
 
-                    <div v-for="(file, index) in croppedImages" :key="index"
+                    <div v-for="(file, index) in uploadedFiles" :key="index"
                       class="upImageArea d-flex justify-content-between position-relative align-items-center">
                       <span> image-{{ index + 1 }}</span>
                       <button type="button" class="btn btnRemv" @click="removeImage(index)">
@@ -800,13 +822,12 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                       </button>
                     </div>
                   </div>
-                  <!-- workiing -->
-                  <div class="draggable-area mx-4" v-if="croppedImages.length > 0">
-                    <p class="Note"><strong>Note:</strong>Please place the image at the <strong>second(2) </strong>
+
+                  <div class="draggable-area mx-4" v-if="uploadedFiles.length > 0">
+                    <p class="Note"><strong>Note:</strong>Please place the image at the <strong>second(1) </strong>
                       index to
                       set it as the main image for your story.</p>
-                    <div v-for="(image, index) in croppedImages" :key="index"
-                      :class="['image-item', { 'mainImage': index === 1 }]" draggable="true"
+                    <div v-for="(image, index) in uploadedFiles" :key="index" :class="['image-item']" draggable="true"
                       @dragstart="onDragStart(index)" @dragover.prevent @drop="onDrop(index)">
                       <span class="image-number">{{ index + 1 }}</span>
                       <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
@@ -816,6 +837,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
 
 
                 </div>
+
 
               </div>
             </form>
@@ -1329,7 +1351,7 @@ import { useProfileName } from '@/composables/useProfileName';
 import { useIslogin } from "@/composables/uselogin"
 import { computed } from "vue";
 import '../../node_modules/vue-draggable-resizable/dist/style.css';
-import Cropper from 'cropperjs';
+// import Cropper from 'cropperjs'; 
 import 'cropperjs/dist/cropper.css';
 import Header from "./Header.vue"
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -1668,18 +1690,31 @@ export default {
       this.isDropDYear = !this.isDropDYear
     },
 
-    onDrop(targetIndex) {
-      if (this.draggedIndex === targetIndex) return; // Prevent moving to the same index
-      const draggedImage = this.croppedImages[this.draggedIndex]; // Get the dragged image
-      // Remove it from its original position
-      this.croppedImages.splice(this.draggedIndex, 1);
-      // Insert it at the new position
-      this.croppedImages.splice(targetIndex, 0, draggedImage);
-      this.draggedIndex = null; // Reset the dragged index
+    // onDrop(targetIndex) {
+    //   if (this.draggedIndex === targetIndex) return; // Prevent moving to the same index
+    //   const draggedImage = this.croppedImages[this.draggedIndex]; // Get the dragged image
+    //   // Remove it from its original position
+    //   this.croppedImages.splice(this.draggedIndex, 1);
+    //   // Insert it at the new position
+    //   this.croppedImages.splice(targetIndex, 0, draggedImage);
+    //   this.draggedIndex = null; // Reset the dragged index
 
-      // Log the updated croppedImages array
-      console.log("Updated croppedImages:", this.croppedImages);
+    //   // Log the updated croppedImages array
+    //   console.log("Updated croppedImages:", this.croppedImages);
+    // },
+    onDrop(targetIndex) {
+      if (this.draggedIndex !== null) {
+        const draggedImage = this.uploadedFiles[this.draggedIndex];
+
+        // Remove dragged image from the original position
+        this.uploadedFiles.splice(this.draggedIndex, 1);
+
+        // Insert at new position
+        this.uploadedFiles.splice(targetIndex, 0, draggedImage);
+      }
+      this.draggedIndex = null;
     },
+
     // daraable
     // Desktop Drag Start
     onDragStart(index) {
@@ -1693,237 +1728,41 @@ export default {
 
 
     // end dragable
-    openImageModal(event) {
-      this.fileEvent = event;
-      this.confirmModal = true
+    // openImageModal(event) {
+    //   this.fileEvent = event;
+    //   this.confirmModal = true
 
 
-    }
-    ,
-    // Initializes the cropper for the image
-    // initCropper() {
-    //   this.$nextTick(() => {
-    //     const image = this.$refs.imageCrop;
-    //     if (image) {
-    //       if (this.cropper) {
-    //         this.cropper.destroy(); // Destroy the previous cropper instance
-    //       }
-    //       this.cropper = new Cropper(image, {
-    //         aspectRatio: 1, // Example: Square crop
-    //         viewMode: 1,
-    //         autoCropArea: 1,
-    //         scalable: true,
-    //         zoomable: true,
-    //         ready: () => {
-    //           this.cropper.zoomTo(this.zoomLevel); // Set the initial zoom level
-    //         },
-    //       });
-    //     } else {
-    //       console.error("Image element not found for cropping.");
-    //     }
-    //   });
-    // },
-    // initCropper() {
-    //   this.$nextTick(() => {
-    //     const image = this.$refs.imageCrop; // Get the image element reference
-    //     if (image) {
-    //       if (this.cropper) {
-    //         this.cropper.destroy(); // Destroy the previous instance if it exists
-    //       }
-    //       this.cropper = new Cropper(image, {
-    //         // aspectRatio: NaN, // Example: Square crop (you can adjust aspect ratio if needed)
-    //         // aspectRatio: 16 / 9, // Set aspect ratio to match 1280x720
-    //         viewMode: 1,
-    //         autoCropArea: 1,
-    //         scalable: false,
-    //         zoomable: false,
-    //         moveable: true,
-    //         cropBoxResizable: true, // Disable resizing of the crop box
-    //         cropBoxMovable: true, // Enable moving the crop box
-    //         // minCropBoxWidth: '500px', // Set a fixed width
-    //         // minCropBoxHeight: '200px', // Set a fixed height
-    //         ready: () => {
-
-    //           // this.cropper.setCropBoxData({ width: 1280, height: 720 });
-
-
-    //         },
-    //       });
-    //     } else {
-    //       console.error("Image element not found for cropping.");
-    //     }
-    //   });
-    // },
-    initCropper() {
-      this.$nextTick(() => {
-        const image = this.$refs.imageCrop; // Get the image element reference
-        if (image) {
-          if (this.cropper) {
-            this.cropper.destroy(); // Destroy the previous instance if it exists
-          }
-          this.cropper = new Cropper(image, {
-            // aspectRatio: nan, // Allow free aspect ratio
-            viewMode: 2,      // Ensure the image fully fills the container
-            autoCropArea: 1,  // Initially cover the entire image
-            scalable: false,
-            zoomable: false,
-            movable: false,
-            cropBoxResizable: true,
-            cropBoxMovable: true,
-            ready: () => {
-              const containerData = this.cropper.getContainerData();
-              // const imageData = this.cropper.getImageData();
-
-              // Calculate scaling factors for width and height
-              // const scaleWidth = containerData.width / imageData.naturalWidth;
-              // const scaleHeight = containerData.height / imageData.naturalHeight;
-
-              // Determine the larger scale to fully cover the container
-              // const scale = Math.max(scaleWidth, scaleHeight);
-              // Apply zoom to fit the image fully within the container
-              // this.cropper.zoomTo(scale);
-
-              // Center the image within the cropper container
-
-
-              // Ensure crop box fits within the image boundaries
-              this.cropper.setCropBoxData({
-                left: 0,
-                top: 0,
-                width: containerData.width,
-                height: containerData.height,
-              });
-            },
-          });
-        } else {
-          console.error("Image element not found for cropping.");
-        }
-      });
-    }
-    // initCropper() {
-    //   this.$nextTick(() => {
-    //     const image = this.$refs.imageCrop; // Get the image element reference
-    //     if (image) {
-    //       if (this.cropper) {
-    //         this.cropper.destroy(); // Destroy the previous instance if it exists
-    //       }
-    //       this.cropper = new Cropper(image, {
-    //         aspectRatio: 1, // Free aspect ratio
-    //         viewMode: 1,      // Ensure the image fully fills the container
-    //         autoCropArea: 2,  // Initially cover the entire image
-    //         scalable: true,
-    //         zoomable: true,
-    //         movable: true,
-    //         cropBoxResizable: true,
-    //         cropBoxMovable: true,
-    //         ready: () => {
-    //           const containerData = this.cropper.getContainerData();
-    //           const imageData = this.cropper.getImageData();
-
-    //           // Calculate scaling factors for width and height
-    //           const scaleWidth = containerData.width / imageData.naturalWidth;
-    //           const scaleHeight = containerData.height / imageData.naturalHeight;
-
-    //           // Determine the larger scale to fully cover the container
-    //           const scale = Math.max(scaleWidth, scaleHeight);
-
-    //           // Apply zoom to fit the image fully within the container
-    //           this.cropper.zoomTo(scale);
-
-    //           // Center the image within the cropper container
-    //           this.cropper.setCanvasData({
-    //             left: (containerData.width - imageData.naturalWidth * scale) / 2,
-    //             top: (containerData.height - imageData.naturalHeight * scale) / 2,
-    //             width: imageData.naturalWidth * scale,
-    //             height: imageData.naturalHeight * scale,
-    //           });
-
-    //           // Ensure crop box fits within the image boundaries
-    //           this.cropper.setCropBoxData({
-    //             left: 0,
-    //             top: 0,
-    //             width: containerData.width + 1400,
-    //             height: containerData.height,
-    //           });
-    //         },
-    //       });
-    //     } else {
-    //       console.error("Image element not found for cropping.");
-    //     }
-    //   });
-    // }
-    // initCropper() {
-    //   this.$nextTick(() => {
-    //     const image = this.$refs.imageCrop; // Get the image element reference
-    //     if (image) {
-    //       if (this.cropper) {
-    //         this.cropper.destroy(); // Destroy the previous instance if it exists
-    //       }
-    //       this.cropper = new Cropper(image, {
-    //         aspectRatio: 1, // Free aspect ratio
-    //         viewMode: 1,      // Ensure the image fully fills the container
-    //         autoCropArea: 1,  // Initially cover the entire image
-    //         scalable: true,
-    //         zoomable: true,
-    //         movable: true,
-    //         cropBoxResizable: true,
-    //         cropBoxMovable: true,
-
-    //       });
-
-    //       // Calculate the scaling factor to fit the image within the desired dimensions (200px width, 300px height)
-    //       const scaleWidth = 200 / image.naturalWidth; // Scale down to fit within 200px width
-    //       const scaleHeight = 300 / image.naturalHeight; // Scale down to fit within 300px height
-    //       const scale = Math.min(scaleWidth, scaleHeight); // Choose the smaller scale to maintain aspect ratio
-
-    //       this.cropper = new Cropper(image, {
-    //         aspectRatio: image.naturalWidth / image.naturalHeight, // Maintain the original aspect ratio
-    //         viewMode: 2, // Ensure the image fits entirely within the container
-    //         autoCropArea: 1, // Cover the entire image initially
-    //         scalable: false, // Disable scaling
-    //         zoomable: false, // Disable zooming
-    //         movable: false, // Disable movement
-    //         cropBoxResizable: false, // Disable resizing the crop box
-    //         cropBoxMovable: false, // Disable moving the crop box
-    //         ready: () => {
-    //           // Center the image within the cropper container
-    //           this.cropper.setCanvasData({
-    //             left: 0,
-    //             top: 0,
-    //             width: image.naturalWidth * scale, // Scale the width proportionally
-    //             height: 300, // Fixed height for the cropper container
-    //           });
-
-    //           // Ensure crop box fits within the image boundaries
-    //           this.cropper.setCropBoxData({
-    //             left: 0,
-    //             top: 0,
-    //             width: image.naturalWidth * scale,
-    //             height: 300,
-    //           });
-    //         },
-    //       });
-    //     } else {
-    //       console.error("Image element not found for cropping.");
-    //     }
-    //   });
     // }
 
+    // processNextImage() {
+    //   if (this.filesQueue.length === 0) return; // Exit if no more images in the queue
 
+    //   const file = this.filesQueue.shift(); // Get the next file from the queue
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     this.imageUrlCrop = e.target.result; // Set the image URL for cropping
+    //     this.$nextTick(() => {
+    //       this.imageModal = true; // Open the modal for cropping
+    //       this.initCropper(); // Initialize the cropper
+    //     });
+    //   };
+    //   reader.readAsDataURL(file); // Read the image file
+    // },
 
-
-    ,
-
-    onZoom() {
-      if (this.cropper) {
-        this.cropper.zoomTo(this.zoomLevel);
-      }
-    },
+    // Closes the modal and processes the cropped image
     // closeModal(done) {
     //   if (done && this.cropper) {
     //     const canvas = this.cropper.getCroppedCanvas();
     //     canvas.toBlob((blob) => {
-    //       this.uploadedFiles.push(blob); // Add the cropped image blob to uploaded files
+    //       const imageUrl = URL.createObjectURL(blob); // Create URL for preview
+
+    //       // Add the cropped image to both uploaded files and croppedImages array
+    //       this.uploadedFiles.push(blob);
+    //       this.croppedImages.push({ url: imageUrl });
+    //       const croppedImageFile = new File([blob], `cropped-image-${Date.now()}.png`, { type: 'image/png' });
+    //       this.formData.storyImages.push(croppedImageFile);
+
     //       this.imageModal = false; // Close the modal
     //       this.cropper.destroy(); // Destroy the cropper instance
     //       this.cropper = null; // Reset the cropper
@@ -1938,76 +1777,32 @@ export default {
     //     this.processNextImage(); // Process the next image in the queue
     //   }
     // },
-    processNextImage() {
-      if (this.filesQueue.length === 0) return; // Exit if no more images in the queue
-
-      const file = this.filesQueue.shift(); // Get the next file from the queue
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imageUrlCrop = e.target.result; // Set the image URL for cropping
-        this.$nextTick(() => {
-          this.imageModal = true; // Open the modal for cropping
-          this.initCropper(); // Initialize the cropper
-        });
-      };
-      reader.readAsDataURL(file); // Read the image file
-    },
-
-    // Closes the modal and processes the cropped image
-    closeModal(done) {
-      if (done && this.cropper) {
-        const canvas = this.cropper.getCroppedCanvas();
-        canvas.toBlob((blob) => {
-          const imageUrl = URL.createObjectURL(blob); // Create URL for preview
-
-          // Add the cropped image to both uploaded files and croppedImages array
-          this.uploadedFiles.push(blob);
-          this.croppedImages.push({ url: imageUrl });
-          const croppedImageFile = new File([blob], `cropped-image-${Date.now()}.png`, { type: 'image/png' });
-          this.formData.storyImages.push(croppedImageFile);
-
-          this.imageModal = false; // Close the modal
-          this.cropper.destroy(); // Destroy the cropper instance
-          this.cropper = null; // Reset the cropper
-          this.imageUrlCrop = null; // Clear the image URL
-          this.processNextImage(); // Process the next image in the queue
-        }, 'image/png');
-      } else {
-        this.imageModal = false; // Close modal without saving
-        this.cropper.destroy(); // Destroy the cropper instance
-        this.cropper = null;
-        this.imageUrlCrop = null; // Clear the image URL
-        this.processNextImage(); // Process the next image in the queue
-      }
-    },
 
 
-    uploadWithoutCrop() {
-      const file = this.fileEvent.target.files[0]; // Access the selected file
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.imageUrlCrop = e.target.result; // Set the image URL from the file
+    // uploadWithoutCrop() {
+    //   const file = this.fileEvent.target.files[0]; // Access the selected file
+    //   if (file) {
+    //     const reader = new FileReader();
+    //     reader.onload = (e) => {
+    //       this.imageUrlCrop = e.target.result; // Set the image URL from the file
 
-          // Push the image file and URL directly to the uploadedFiles and croppedImages arrays
-          this.uploadedFiles.push(file); // Store the file directly
-          this.croppedImages.push({ url: this.imageUrlCrop });
+    //       // Push the image file and URL directly to the uploadedFiles and croppedImages arrays
+    //       this.uploadedFiles.push(file); // Store the file directly
+    //       this.croppedImages.push({ url: this.imageUrlCrop });
 
-          console.log("Uploading without crop:", this.imageUrlCrop);
+    //       console.log("Uploading without crop:", this.imageUrlCrop);
 
-          const imageFile = new File([file], `image-${Date.now()}.png`, { type: file.type });
-          this.formData.storyImages.push(imageFile); // Add the image to formData.storyImages
+    //       const imageFile = new File([file], `image-${Date.now()}.png`, { type: file.type });
+    //       this.formData.storyImages.push(imageFile); // Add the image to formData.storyImages
 
-          this.processNextImage(); // Proceed to the next image if any
-        };
-        reader.readAsDataURL(file); // Load the file as a Data URL
-      } else {
-        console.error("No file selected for uploading without cropping.");
-      }
-    }
+    //       this.processNextImage(); // Proceed to the next image if any
+    //     };
+    //     reader.readAsDataURL(file); // Load the file as a Data URL
+    //   } else {
+    //     console.error("No file selected for uploading without cropping.");
+    //   }
+    // }
 
-
-    ,
 
     hideModalStoryFail() {
       this.ModalStoryFail = false
@@ -2089,15 +1884,29 @@ export default {
     },
 
     // origional
+    // handleFileUpload(event) {
+    //   const files = event.target.files;
+    //   if (files.length + this.uploadedFiles.length > 8) {
+    //     alert("You can only upload a maximum of 8 images.");
+    //     return;
+    //   }
+    //   this.filesQueue = Array.from(files); // Convert FileList to array and queue it
+    //   this.processNextImage(); // Start processing the first image
+    // },
     handleFileUpload(event) {
       const files = event.target.files;
       if (files.length + this.uploadedFiles.length > 8) {
         alert("You can only upload a maximum of 8 images.");
         return;
       }
-      this.filesQueue = Array.from(files); // Convert FileList to array and queue it
-      this.processNextImage(); // Start processing the first image
+      this.uploadedFiles = Array.from(files).map((file) => {
+        return {
+          url: URL.createObjectURL(file), // Create a temporary URL for preview
+          file,
+        };
+      });
     },
+
     // Processes the next image in the queue
     //   processNextImage() {
     //   if (this.filesQueue.length === 0) return; // Exit if no more images in the queue
@@ -2118,9 +1927,12 @@ export default {
     //   this.uploadedImages.splice(index, 1);
     // }
     // ,
+    // removeImage(index) {
+    //   this.uploadedFiles.splice(index, 1);
+    //   this.croppedImages.splice(index, 1);
+    // },
     removeImage(index) {
       this.uploadedFiles.splice(index, 1);
-      this.croppedImages.splice(index, 1);
     },
     async fetchProfileData() {
       try {
@@ -2195,10 +2007,11 @@ export default {
         const response = await http.get(`/users/sub`, { params: { sub: this.sub } });
         const profileData = response.data;
 
-        console.log("✅ Profile Response:", profileData);
+        console.log("✅ Profile Response s:", profileData);
 
         // Update user data
         this.formData.user_name = profileData.nickname;
+        this.formData.user_email = profileData.email
         this.image = profileData.image;
 
         // Update profile image
@@ -2751,135 +2564,268 @@ export default {
     //     this.loading = false;
     //   }
     // },
+    // async SubmitStory() {
+    //   console.log("submit story", this.formData);
+
+    //   this.loading = true;
+    //   let data = new FormData();
+
+    //   let uploadedImageUrls = [];
+
+    //   // **Validate Required Fields**
+    //   let missingFields = [];
+
+    //   if (!this.selectedStoryType) missingFields.push("Story Type");
+    //   // if (!this.formData.user_name) missingFields.push("User Name");
+    //   // if (!this.formData.user_email) missingFields.push("User Email");
+
+    //   if (this.selectedStoryType === "carEnthusiast") {
+    //     if (!this.formData.make) missingFields.push("Make");
+    //     if (!this.formData.model) missingFields.push("Model");
+    //     if (!this.formData.year) missingFields.push("Year");
+    //     if (!this.formData.modifications) missingFields.push("Modifications");
+    //     if (!this.formData.memorable) missingFields.push("Memorable Moment");
+    //     if (!this.formData.advice) missingFields.push("Advice");
+    //     if (!this.formData.story) missingFields.push("Story");
+    //     if (!this.formData.story_name) missingFields.push("Story Name");
+    //   } else {
+    //     if (!this.formData.country) missingFields.push("Country");
+    //     if (!this.formData.city) missingFields.push("City");
+    //     if (!this.formData.storyHistory) missingFields.push("Story History");
+    //     if (!this.formData.adventureStory) missingFields.push("Adventure Story");
+    //     if (!this.formData.storyName) missingFields.push("Story Name");
+    //   }
+
+    //   // **Show error modal if any required field is missing**
+    //   if (missingFields.length > 0) {
+    //     this.modalTitle = "Missing Required Fields";
+    //     this.modaldescription = `Please fill in the following required fields:\n\n- ${missingFields.join("\n- ")}`;
+    //     this.ModalStoryFail = true;
+    //     this.loading = false;
+    //     return;
+    //   }
+
+    //   // **Handle Image Uploads**
+    //   for (let i = 0; i < this.formData.storyImages.length; i++) {
+    //     console.log("sto_image", this.formData.storyImages[i]);
+    //     const file = this.formData.storyImages[i];
+    //     console.log("file" + i, file, file.name);
+    //     const formData = new FormData();
+    //     formData.append("file", file);
+
+    //     try {
+    //       const response = await http.post("/common/upload", formData, {
+    //         headers: { "Content-Type": "multipart/form-data" },
+    //       });
+
+    //       if (response.data && response.data.secureUld) {
+    //         console.log("response data", response.data);
+    //         console.log("Image uploaded:", response.data.secureUld);
+    //         uploadedImageUrls.push(response.data.secureUld);
+    //       }
+    //     } catch (error) {
+    //       console.error("Error uploading image:", error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
+    //       this.ModalStoryFail = true;
+    //       this.loading = false;
+    //       return;
+    //     }
+    //   }
+
+    //   console.log("uploadedImageUrls", uploadedImageUrls);
+
+    //   // **Append Form Data**
+    //   data.append("story_type", this.selectedStoryType);
+    //   data.append("user_name", this.formData.user_name);
+    //   data.append("user_email", this.formData.user_email);
+
+    //   if (this.selectedStoryType === "carEnthusiast") {
+    //     data.append("make", this.formData.make);
+    //     data.append("model", this.formData.model);
+    //     data.append("year", this.formData.year);
+    //     data.append("modifications", this.formData.modifications);
+    //     data.append("memorable", this.formData.memorable);
+    //     data.append("advice", this.formData.advice);
+    //     data.append("story", this.formData.story);
+    //     data.append("story_name", this.formData.story_name);
+    //     data.append("social_media", this.formData.social_media || ""); // Optional field
+    //   } else {
+    //     data.append("country", this.formData.country);
+    //     data.append("city", this.formData.city);
+    //     data.append("story_history", this.formData.storyHistory);
+    //     data.append("adventure_story", this.formData.adventureStory);
+    //     data.append("story_name", this.formData.storyName);
+    //     data.append("social_media", this.formData.url || ""); // Optional field
+    //   }
+
+    //   if (uploadedImageUrls.length > 0) {
+    //     data.append("images", JSON.stringify(uploadedImageUrls));
+    //   }
+
+    //   for (let [key, value] of data.entries()) {
+    //     console.log(key, value);
+    //   }
+
+    //   if (this.isLogin === true || this.isLogin === "true") {
+    //     console.log("User is logged in, submitting form");
+
+    //     try {
+    //       const response = await http.post("/stories", data, {
+    //         headers: { "Content-Type": "multipart/form-data" },
+    //       });
+
+    //       console.log("Post request successful:", response.data);
+    //       this.resetForm();
+    //       this.loading = false;
+    //       this.ModalStorySucces = true;
+    //     } catch (error) {
+    //       console.error("Error making post request:", error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Please try again later.";
+    //       this.ModalStoryFail = true;
+    //       this.loading = false;
+    //     }
+    //   } else {
+    //     console.log("User not logged in. Please login first.");
+    //     this.modalTitle = "Something went wrong";
+    //     this.modaldescription = "Please login first to submit the story";
+    //     this.ModalStoryFail = true;
+    //     this.loading = false;
+    //   }
+    // }
     async SubmitStory() {
-  console.log("submit story", this.formData);
-  this.loading = true;
-  let data = new FormData();
-  let uploadedImageUrls = [];
+      console.log("submit story", this.formData);
 
-  // **Validate Required Fields**
-  let missingFields = [];
+      this.loading = true;
+      let data = new FormData();
+      let uploadedImageUrls = [];
 
-  if (!this.selectedStoryType) missingFields.push("Story Type");
-  // if (!this.formData.user_name) missingFields.push("User Name");
-  // if (!this.formData.user_email) missingFields.push("User Email");
+      // **Validate Required Fields**
+      let missingFields = [];
 
-  if (this.selectedStoryType === "carEnthusiast") {
-    if (!this.formData.make) missingFields.push("Make");
-    if (!this.formData.model) missingFields.push("Model");
-    if (!this.formData.year) missingFields.push("Year");
-    if (!this.formData.modifications) missingFields.push("Modifications");
-    if (!this.formData.memorable) missingFields.push("Memorable Moment");
-    if (!this.formData.advice) missingFields.push("Advice");
-    if (!this.formData.story) missingFields.push("Story");
-    if (!this.formData.story_name) missingFields.push("Story Name");
-  } else {
-    if (!this.formData.country) missingFields.push("Country");
-    if (!this.formData.city) missingFields.push("City");
-    if (!this.formData.storyHistory) missingFields.push("Story History");
-    if (!this.formData.adventureStory) missingFields.push("Adventure Story");
-    if (!this.formData.storyName) missingFields.push("Story Name");
-  }
+      if (!this.selectedStoryType) missingFields.push("Story Type");
 
-  // **Show error modal if any required field is missing**
-  if (missingFields.length > 0) {
-    this.modalTitle = "Missing Required Fields";
-    this.modaldescription = `Please fill in the following required fields:\n\n- ${missingFields.join("\n- ")}`;
-    this.ModalStoryFail = true;
-    this.loading = false;
-    return;
-  }
-
-  // **Handle Image Uploads**
-  for (let i = 0; i < this.formData.storyImages.length; i++) {
-    console.log("sto_image", this.formData.storyImages[i]);
-    const file = this.formData.storyImages[i];
-    console.log("file" + i, file, file.name);
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const response = await http.post("/common/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      if (response.data && response.data.secureUld) {
-        console.log("response data", response.data);
-        console.log("Image uploaded:", response.data.secureUld);
-        uploadedImageUrls.push(response.data.secureUld);
+      if (this.selectedStoryType === "carEnthusiast") {
+        if (!this.formData.make) missingFields.push("Make");
+        if (!this.formData.model) missingFields.push("Model");
+        if (!this.formData.year) missingFields.push("Year");
+        if (!this.formData.modifications) missingFields.push("Modifications");
+        if (!this.formData.memorable) missingFields.push("Memorable Moment");
+        if (!this.formData.advice) missingFields.push("Advice");
+        if (!this.formData.story) missingFields.push("Story");
+        if (!this.formData.story_name) missingFields.push("Story Name");
+      } else {
+        if (!this.formData.country) missingFields.push("Country");
+        if (!this.formData.city) missingFields.push("City");
+        if (!this.formData.storyHistory) missingFields.push("Story History");
+        if (!this.formData.adventureStory) missingFields.push("Adventure Story");
+        if (!this.formData.storyName) missingFields.push("Story Name");
       }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      this.modalTitle = "Something went wrong";
-      this.modaldescription = "Failed to upload one or more images. Please try again.";
-      this.ModalStoryFail = true;
-      this.loading = false;
-      return;
+
+      // **Show error modal if any required field is missing**
+      if (missingFields.length > 0) {
+        this.modalTitle = "Missing Required Fields";
+        this.modaldescription = `Please fill in the following required fields:\n\n- ${missingFields.join("\n- ")}`;
+        this.ModalStoryFail = true;
+        this.loading = false;
+        return;
+      }
+
+      // **Transfer `uploadedFiles` to `formData.storyImages`**
+      this.formData.storyImages = this.uploadedFiles.map(fileObj => fileObj.file);
+
+      // **Handle Image Uploads**
+      for (let i = 0; i < this.formData.storyImages.length; i++) {
+        console.log("sto_image", this.formData.storyImages[i]);
+        const file = this.formData.storyImages[i];
+        console.log("file" + i, file, file.name);
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+          const response = await http.post("/common/upload", formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+
+          if (response.data && response.data.secureUld) {
+            console.log("response data", response.data);
+            console.log("Image uploaded:", response.data.secureUld);
+            uploadedImageUrls.push(response.data.secureUld);
+          }
+        } catch (error) {
+          console.error("Error uploading image:", error);
+          this.modalTitle = "Something went wrong";
+          this.modaldescription = "Failed to upload one or more images. Please try again.";
+          this.ModalStoryFail = true;
+          this.loading = false;
+          return;
+        }
+      }
+
+      console.log("uploadedImageUrls", uploadedImageUrls);
+
+      // **Append Form Data**
+      data.append("story_type", this.selectedStoryType);
+      data.append("user_name", this.formData.user_name);
+      data.append("user_email", this.formData.user_email);
+
+      if (this.selectedStoryType === "carEnthusiast") {
+        data.append("make", this.formData.make);
+        data.append("model", this.formData.model);
+        data.append("year", this.formData.year);
+        data.append("modifications", this.formData.modifications);
+        data.append("memorable", this.formData.memorable);
+        data.append("advice", this.formData.advice);
+        data.append("story", this.formData.story);
+        data.append("story_name", this.formData.story_name);
+        data.append("social_media", this.formData.social_media || ""); // Optional field
+      } else {
+        data.append("country", this.formData.country);
+        data.append("city", this.formData.city);
+        data.append("story_history", this.formData.storyHistory);
+        data.append("adventure_story", this.formData.adventureStory);
+        data.append("story_name", this.formData.storyName);
+        data.append("social_media", this.formData.url || ""); // Optional field
+      }
+
+      if (uploadedImageUrls.length > 0) {
+        data.append("images", JSON.stringify(uploadedImageUrls));
+      }
+
+      for (let [key, value] of data.entries()) {
+        console.log(key, value);
+      }
+
+      if (this.isLogin === true || this.isLogin === "true") {
+        console.log("User is logged in, submitting form");
+
+        try {
+          const response = await http.post("/stories", data, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+
+          console.log("Post request successful:", response.data);
+          this.resetForm();
+          this.loading = false;
+          this.ModalStorySucces = true;
+        } catch (error) {
+          console.error("Error making post request:", error);
+          this.modalTitle = "Something went wrong";
+          this.modaldescription = "Please try again later.";
+          this.ModalStoryFail = true;
+          this.loading = false;
+        }
+      } else {
+        console.log("User not logged in. Please login first.");
+        this.modalTitle = "Something went wrong";
+        this.modaldescription = "Please login first to submit the story";
+        this.ModalStoryFail = true;
+        this.loading = false;
+      }
     }
-  }
 
-  console.log("uploadedImageUrls", uploadedImageUrls);
-
-  // **Append Form Data**
-  data.append("story_type", this.selectedStoryType);
-  data.append("user_name", this.formData.user_name);
-  data.append("user_email", this.formData.user_email);
-
-  if (this.selectedStoryType === "carEnthusiast") {
-    data.append("make", this.formData.make);
-    data.append("model", this.formData.model);
-    data.append("year", this.formData.year);
-    data.append("modifications", this.formData.modifications);
-    data.append("memorable", this.formData.memorable);
-    data.append("advice", this.formData.advice);
-    data.append("story", this.formData.story);
-    data.append("story_name", this.formData.story_name);
-    data.append("social_media", this.formData.social_media || ""); // Optional field
-  } else {
-    data.append("country", this.formData.country);
-    data.append("city", this.formData.city);
-    data.append("story_history", this.formData.storyHistory);
-    data.append("adventure_story", this.formData.adventureStory);
-    data.append("story_name", this.formData.storyName);
-    data.append("social_media", this.formData.url || ""); // Optional field
-  }
-
-  if (uploadedImageUrls.length > 0) {
-    data.append("images", JSON.stringify(uploadedImageUrls));
-  }
-
-  for (let [key, value] of data.entries()) {
-    console.log(key, value);
-  }
-
-  if (this.isLogin === true || this.isLogin === "true") {
-    console.log("User is logged in, submitting form");
-
-    try {
-      const response = await http.post("/stories", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      console.log("Post request successful:", response.data);
-      this.resetForm();
-      this.loading = false;
-      this.ModalStorySucces = true;
-    } catch (error) {
-      console.error("Error making post request:", error);
-      this.modalTitle = "Something went wrong";
-      this.modaldescription = "Please try again later.";
-      this.ModalStoryFail = true;
-      this.loading = false;
-    }
-  } else {
-    console.log("User not logged in. Please login first.");
-    this.modalTitle = "Something went wrong";
-    this.modaldescription = "Please login first to submit the story";
-    this.ModalStoryFail = true;
-    this.loading = false;
-  }
-}
-,
+    ,
     resetForm() {
       this.formData = {
 
@@ -3954,7 +3900,7 @@ select::placeholder {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  border: 2px dashed #fff;
+  /* border: 2px dashed #fff; */
   padding: 15px;
   margin-top: 20px;
 }
