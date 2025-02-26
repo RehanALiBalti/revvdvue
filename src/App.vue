@@ -5,13 +5,15 @@
       clickEffect="true" clickMode="push" v-if="$route.path !== '/termofservice'" /> -->
     <vue-particles color="#dedede" particleOpacity="1" :particlesNumber="pNum" shapeType="circle" particleSize="4"
       linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
-      clickEffect="true" clickMode="push" v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy'" />
+      clickEffect="true" clickMode="push"
+      v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy' && $route.path !== '/cookies'" />
 
   </div>
   <div class="min-h-80vh">
     <!-- <HeaderItem v-if="$route.path !== '/'"  /> -->
     <!-- <HeaderItem v-if="$route.path !== '/' && $route.path !== '/termofservice'" /> -->
-    <HeaderItem v-if="$route.path !== '/' && $route.path !== '/termofservice' && $route.path !== '/privacypolicy'" />
+    <HeaderItem
+      v-if="$route.path !== '/' && $route.path !== '/termofservice' && $route.path !== '/privacypolicy' && $route.path !== '/cookies'" />
 
 
     <router-view />
