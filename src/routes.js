@@ -33,6 +33,7 @@ import FeaturedStories from "./components/FeaturedStories.vue";
 import CoverPhoto from "./components/CoverPhoto.vue";
 import SingleStory from "./components/SingleStory.vue";
 import BannerStory from "./components/BannerStory.vue";
+import cookies from "./components/cookies.vue";
 const routes = [
   {
     name: "HomeLanding",
@@ -205,6 +206,12 @@ const routes = [
     path: "/termofservice",
     name: "TermsOfService",
     component: TermsOfService,
+  },
+
+  {
+    path: "/cookies",
+    name: "cookies",
+    component: cookies,
   },
   {
     path: "/contact",
