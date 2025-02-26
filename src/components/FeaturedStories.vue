@@ -888,7 +888,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1113,7 +1113,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1142,7 +1142,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1564,7 +1564,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1826,7 +1826,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2048,7 +2048,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2068,7 +2068,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2290,7 +2290,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2546,7 +2546,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2768,7 +2768,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2788,7 +2788,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3010,7 +3010,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3257,7 +3257,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3479,7 +3479,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3499,7 +3499,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3721,7 +3721,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3840,29 +3840,26 @@
                                                             </swiper-slide>
                                                         </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-    :initialSlide="1" :pagination="{ clickable: true }"
-    :navigation="{
-        nextEl: '.custom-next',
-        prevEl: '.custom-prev',
-    }"
-    class="mySwiper swiper-no-shadow modalswipper">
+                                                            :initialSlide="1" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-    <swiper-slide class="swiper-no-shadow modalswippersh"
-        v-for="(image, idx) in (parsedImages(car.images).length > 1 
-            ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)] 
-            : parsedImages(car.images))"
-        :key="idx">
-        
-        <div class="d-block">
-            <img :src="image"
-                class="slider-img myCarListingCard-img modalswipperImage"
-                alt="car"
-                @click="openViewer(image, car.images)" />
-        </div>
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                                : parsedImages(car.images))" :key="idx">
 
-    </swiper-slide>
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
 
-</swiper>
+                                                            </swiper-slide>
+
+                                                        </swiper>
 
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -3975,7 +3972,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4197,7 +4194,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4217,7 +4214,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4439,7 +4436,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4481,22 +4478,20 @@
                                                 </swiper-slide>
                                             </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-    :initialSlide="1" class="mySwiper swiper-no-shadow">
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
 
-    <swiper-slide class="swiper-no-shadow"
-        v-for="(image, idx) in (parsedImages(car.images).length > 1 
-            ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)] 
-            : parsedImages(car.images))"
-        :key="idx">
-        
-        <div class="d-block">
-            <img :src="image"
-                class="slider-img myCarListingCard-img" alt="car" />
-        </div>
+                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                    : parsedImages(car.images))" :key="idx">
 
-    </swiper-slide>
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
 
-</swiper>
+                                                </swiper-slide>
+
+                                            </swiper>
 
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
@@ -4560,29 +4555,26 @@
                                                             </swiper-slide>
                                                         </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-    :initialSlide="1" :pagination="{ clickable: true }"
-    :navigation="{
-        nextEl: '.custom-next',
-        prevEl: '.custom-prev',
-    }" 
-    class="mySwiper swiper-no-shadow modalswipper">
+                                                            :initialSlide="1" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-    <swiper-slide class="swiper-no-shadow modalswippersh"
-        v-for="(image, idx) in (parsedImages(car.images).length > 1 
-            ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)] 
-            : parsedImages(car.images))"
-        :key="idx">
-        
-        <div class="d-block">
-            <img :src="image"
-                class="slider-img myCarListingCard-img modalswipperImage"
-                alt="car"
-                @click="openViewer(image, car.images)" />
-        </div>
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                                : parsedImages(car.images))" :key="idx">
 
-    </swiper-slide>
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
 
-</swiper>
+                                                            </swiper-slide>
+
+                                                        </swiper>
 
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -5357,9 +5349,46 @@ export default {
                 return tab[imgType];
             }
         },
+        // getcities(country) {
+        //     console.log("in  citeis");
+        //     if (!country) return; // Exit if no country is selected
+
+        //     // Set up the headers and request body
+        //     const myHeaders = new Headers();
+        //     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        //     const urlencoded = new URLSearchParams();
+        //     urlencoded.append("country", country);
+
+        //     const requestOptions = {
+        //         method: "POST",
+        //         headers: myHeaders,
+        //         body: urlencoded,
+        //         redirect: "follow",
+        //     };
+
+        //     // Fetch cities based on the selected country
+        //     fetch(
+        //         "https://countriesnow.space/api/v0.1/countries/cities",
+        //         requestOptions
+        //     )
+        //         .then((response) => response.json()) // Convert response to JSON
+        //         .then((result) => {
+        //             if (result.data && result.data.length > 0) {
+        //                 this.cities = result.data; // Update cities array with the result
+        //                 console.log(this.cities);
+        //             } else {
+        //                 this.cities = []; // Clear cities if no data is found
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             console.log("error", error);
+        //             this.cities = []; // Clear cities if an error occurs
+        //         });
+        // },
         getcities(country) {
-            console.log("in  citeis");
-            if (!country) return; // Exit if no country is selected
+            this.loading = true;
+            if (!country) return;  // Exit if no country is selected
 
             // Set up the headers and request body
             const myHeaders = new Headers();
@@ -5369,29 +5398,30 @@ export default {
             urlencoded.append("country", country);
 
             const requestOptions = {
-                method: "POST",
+                method: 'POST',
                 headers: myHeaders,
                 body: urlencoded,
-                redirect: "follow",
+                redirect: 'follow'
             };
 
-            // Fetch cities based on the selected country
-            fetch(
-                "https://countriesnow.space/api/v0.1/countries/cities",
-                requestOptions
-            )
-                .then((response) => response.json()) // Convert response to JSON
-                .then((result) => {
-                    if (result.data && result.data.length > 0) {
-                        this.cities = result.data; // Update cities array with the result
-                        console.log(this.cities);
+            // Fetch states based on the selected country
+            fetch("https://countriesnow.space/api/v0.1/countries/states", requestOptions)
+                .then(response => response.json())  // Convert response to JSON
+                .then(result => {
+                    console.log("states countries", result);
+                    if (result.data && result.data.states.length > 0) {
+                        console.log("states ag countries", result.data);
+                        this.cities = result.data.states.map(state => state.name); // Extract state names
+                        this.loading = false;
                     } else {
-                        this.cities = []; // Clear cities if no data is found
+                        this.cities = [];
+                        this.loading = false;
                     }
                 })
-                .catch((error) => {
-                    console.log("error", error);
-                    this.cities = []; // Clear cities if an error occurs
+                .catch(error => {
+                    console.log('error', error);
+                    this.cities = [];  // Clear cities if an error occurs
+                    this.loading = false;
                 });
         },
         async handleTabClick(index, tabName) {

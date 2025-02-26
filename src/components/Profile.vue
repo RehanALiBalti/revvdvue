@@ -1330,7 +1330,39 @@ export default {
 			}
 		},
 
+		// getcities() {
+		// 	if (!this.formData.country) return;  // Exit if no country is selected
+
+		// 	// Set up the headers and request body
+		// 	const myHeaders = new Headers();
+		// 	myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+		// 	const urlencoded = new URLSearchParams();
+		// 	urlencoded.append("country", this.formData.country);
+
+		// 	const requestOptions = {
+		// 		method: 'POST',
+		// 		headers: myHeaders,
+		// 		body: urlencoded,
+		// 		redirect: 'follow'
+		// 	};
+		// 	// Fetch cities based on the selected country
+		// 	fetch("https://countriesnow.space/api/v0.1/countries/cities", requestOptions)
+		// 		.then(response => response.json())  // Convert response to JSON
+		// 		.then(result => {
+		// 			if (result.data && result.data.length > 0) {
+		// 				this.cities = result.data;  // Update cities array with the result
+		// 			} else {
+		// 				this.cities = [];  // Clear cities if no data is found
+		// 			}
+		// 		})
+		// 		.catch(error => {
+		// 			console.log('error', error);
+		// 			this.cities = [];  // Clear cities if an error occurs
+		// 		});
+		// }
 		getcities() {
+			this.loading = true;
 			if (!this.formData.country) return;  // Exit if no country is selected
 
 			// Set up the headers and request body
@@ -1346,19 +1378,25 @@ export default {
 				body: urlencoded,
 				redirect: 'follow'
 			};
-			// Fetch cities based on the selected country
-			fetch("https://countriesnow.space/api/v0.1/countries/cities", requestOptions)
+
+			// Fetch states based on the selected country
+			fetch("https://countriesnow.space/api/v0.1/countries/states", requestOptions)
 				.then(response => response.json())  // Convert response to JSON
 				.then(result => {
-					if (result.data && result.data.length > 0) {
-						this.cities = result.data;  // Update cities array with the result
+					console.log("states countries", result);
+					if (result.data && result.data.states.length > 0) {
+						console.log("states ag countries", result.data);
+						this.cities = result.data.states.map(state => state.name); // Extract state names
+						this.loading = false;
 					} else {
-						this.cities = [];  // Clear cities if no data is found
+						this.cities = [];
+						this.loading = false;
 					}
 				})
 				.catch(error => {
 					console.log('error', error);
 					this.cities = [];  // Clear cities if an error occurs
+					this.loading = false;
 				});
 		}
 		,
