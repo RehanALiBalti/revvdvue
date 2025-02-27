@@ -56,9 +56,10 @@ Amplify.configure({
     authenticationFlowType: "USER_SRP_AUTH",
     oauth: {
       domain: "revdot.auth.eu-central-1.amazoncognito.com",
-      redirectSignIn: "https://master.d26xar06lf8hqo.amplifyapp.com/",
+      redirectSignIn: "https://revdout-local.d26xar06lf8hqo.amplifyapp.com/",
       // redirectSignIn: "http://localhost:8081/",
-      redirectSignOut: "https://master.d26xar06lf8hqo.amplifyapp.com/signin",
+      redirectSignOut:
+        "https://revdout-local.d26xar06lf8hqo.amplifyapp.com/signin",
       // redirectSignOut: "http://localhost:8081/",
       scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
       responseType: "code",
