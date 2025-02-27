@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -296,7 +296,7 @@
                 {{ $t('Now') }} !
               </h2>
               <div class="row px-2">
-                <div class="position-relative" v-if="this.loading == true">
+                <div class="position-relative" v-if="this.loading == true" style="z-index:999">
                   <div class="box"></div>
                 </div>
                 <div class="col-md-3 p-0 p-md-1">
@@ -709,7 +709,8 @@ v-model="formData.country"> -->
                   <!-- <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
                     v-model="formData.advice" rows="2"></textarea> -->
                   <textarea id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.advice" rows="1" ref="autoExpandTextarea" @input="adjustHeight" @blur="resetHeight"></textarea>
+                    v-model="formData.advice" rows="1" ref="autoExpandTextarea" @input="adjustHeight"
+                    @blur="resetHeight"></textarea>
                 </div>
                 <div class="col-md-5 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label"> What would your car story title be?
@@ -1073,7 +1074,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div>
         <div class="modal-body">
           <div class="thank-you-pop">
-            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
+            <!-- <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" /> -->
             <h1>Thank You!</h1>
             <p>Your submission is received, and we will contact you soon</p>
           </div>
@@ -1157,7 +1158,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div>
         <div class="modal-body">
           <div class="thank-you-pop">
-            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
+            <!-- <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" /> -->
             <h1 class="coloror">{{ modalTitle }}</h1>
             <p>{{ modaldescription }}</p>
           </div>
@@ -3018,8 +3019,8 @@ export default {
         url: ""
       };
       this.croppedImages = []
-      this.uploadedImageUrls=[]
-      this.uploadedFiles=[]
+      this.uploadedImageUrls = []
+      this.uploadedFiles = []
 
       // this.selectedStoryType = "";
     }
@@ -3582,9 +3583,9 @@ export default {
   border: 6px solid;
   border-color: #FF7A00 transparent;
   animation: spin 1s infinite ease-out;
-  position: absolute;
-  top: 91%;
-  left: 50%;
+  position: fixed;
+  /* top: 91%; */
+  left: 40%;
 }
 
 @keyframes spin {
