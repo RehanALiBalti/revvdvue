@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
+                        }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -553,7 +553,7 @@ v-model="formData.country"> -->
                 <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="storyHistory" class="form-label"> Tell us your {{ shopName }} story & how it all
                     started </label>
-                  <textarea id="storyHistory" class="form-control" rows="4"
+                  <textarea id="storyHistory" class="form-control form-input" rows="1"
                     placeholder="Describe your story and history" v-model="formData.storyHistory"
                     ref="autoExpandTextarea6" @input="adjustHeight6" @blur="resetHeight6"></textarea>
                 </div>
@@ -561,14 +561,14 @@ v-model="formData.country"> -->
                   v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="memorableStories" class="form-label">Any unforgettable memory, event or story you can
                     share with us? </label>
-                  <textarea id="memorableStories" class="form-control" rows="4"
+                  <textarea id="memorableStories" class="form-control form-input" rows="1"
                     placeholder="Share your memorable stories" v-model="formData.adventureStory"
                     ref="autoExpandTextarea5" @input="adjustHeight5" @blur="resetHeight5"></textarea>
                 </div>
                 <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="storyName" class="form-label">What is the name of your story that you would like to
                     choose? </label>
-                  <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
+                  <textarea id="storyName" class="form-control form-input" placeholder="Enter Story Name"
                     v-model="formData.storyName" ref="autoExpandTextarea7" @input="adjustHeight7"
                     @blur="resetHeight7"></textarea>
                 </div>
@@ -681,7 +681,7 @@ v-model="formData.country"> -->
                   v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="name" class="form-label"> What’s the story behind your car? </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.story" rows="2" ref="autoExpandTextarea4" @input="adjustHeight4"
+                    v-model="formData.story" rows="1" ref="autoExpandTextarea4" @input="adjustHeight4"
                     @blur="resetHeight4"></textarea>
 
                 </div>
@@ -689,7 +689,7 @@ v-model="formData.country"> -->
                   <label for="name" class="form-label">Any awesome modifications or unique features you can share?
                   </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.modifications" rows="2" ref="autoExpandTextarea3" @input="adjustHeight3"
+                    v-model="formData.modifications" rows="1" ref="autoExpandTextarea3" @input="adjustHeight3"
                     @blur="resetHeight3"></textarea>
 
                 </div>
@@ -697,7 +697,7 @@ v-model="formData.country"> -->
                   <label for="email" class="form-label"> Tell us the wildest or most unforgettable moment you’ve had
                     with your car </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.memorable" rows="2" ref="autoExpandTextarea2" @input="adjustHeight2"
+                    v-model="formData.memorable" rows="1" ref="autoExpandTextarea2" @input="adjustHeight2"
                     @blur="resetHeight2"></textarea>
                   <!-- Error message for Email -->
                   <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
@@ -709,7 +709,7 @@ v-model="formData.country"> -->
                   <!-- <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
                     v-model="formData.advice" rows="2"></textarea> -->
                   <textarea id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.advice" rows="2" ref="autoExpandTextarea" @input="adjustHeight"></textarea>
+                    v-model="formData.advice" rows="1" ref="autoExpandTextarea" @input="adjustHeight" @blur="resetHeight"></textarea>
                 </div>
                 <div class="col-md-5 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label"> What would your car story title be?
@@ -720,7 +720,7 @@ v-model="formData.country"> -->
                 <div class="col-md-3 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="message" class="form-label ">Add Instagram link </label>
                   <input id="message" class="form-control form-input h35px" name="message"
-                    :placeholder="$t('Enter here')" rows="2" v-model="formData.social_media" />
+                    :placeholder="$t('Enter here')" rows="1" v-model="formData.social_media" />
                   <!-- Error message for Message -->
                   <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
                 </div>
@@ -1625,13 +1625,20 @@ export default {
     ,
     adjustHeight6() {
       console.log("in adjustheight")
+
       const textarea = this.$refs.autoExpandTextarea6;
       if (textarea) {
+
         console.log("working")
-        textarea.style.height = "auto"; // Reset height
+        textarea.style.height = "auto";
+        // Reset height
+        console.log("text-are scroll height", textarea.scrollHeight)
         textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
       }
     }
+
+
+
     ,
     adjustHeight7() {
       console.log("in adjustheight")
@@ -3011,6 +3018,8 @@ export default {
         url: ""
       };
       this.croppedImages = []
+      this.uploadedImageUrls=[]
+      this.uploadedFiles=[]
 
       // this.selectedStoryType = "";
     }
@@ -4267,6 +4276,9 @@ select::placeholder {
   align-items: center;
   justify-content: start;
 }
+
+
+
 
 .custom-navigation {
   /* position: fixed;
