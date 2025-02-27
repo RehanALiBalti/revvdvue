@@ -34,7 +34,7 @@ import CoverPhoto from "./components/CoverPhoto.vue";
 import SingleStory from "./components/SingleStory.vue";
 import BannerStory from "./components/BannerStory.vue";
 import cookies from "./components/cookies.vue";
-import buyCar  from 
+
 const routes = [
   {
     name: "HomeLanding",
