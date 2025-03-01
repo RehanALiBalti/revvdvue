@@ -9,7 +9,7 @@
       v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy' && $route.path !== '/cookies' && $route.path !== '/map' && $route.path !== '/map2' && $route.path !== '/map3'" />
 
   </div>
-  <div class="min-h-80vh">
+  <div class="min-h-80vh container-fluid">
     <!-- <HeaderItem v-if="$route.path !== '/'"  /> -->
     <!-- <HeaderItem v-if="$route.path !== '/' && $route.path !== '/termofservice'" /> -->
     <HeaderItem
