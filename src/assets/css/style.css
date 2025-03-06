@@ -2183,13 +2183,14 @@ a:hover {
 	right: -160px !important;
 	top: -20px !important;
 	font-size: 16px;
+	cursor: pointer;
 }
 
 .mapboxgl-popup-content::before {
 	content: "" !important;
 	position: absolute !important;
 	top: 10px !important;
-	left: 50px !important;
+	left: 36px !important;
 	background: url("../../../public/images/d1.png") !important;
 	/* Correct image URL */
 	width: 200px !important;

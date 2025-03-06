@@ -39,7 +39,7 @@ import buyCar2 from "./components/buyCar2.vue";
 import buyCar3 from "./components/buyCar3.vue";
 import buyCar4 from "./components/buyCar4.vue";
 import sellCar from "./components/sellCar.vue";
-
+import carDetails from "./components/carDetails.vue";
 const routes = [
   {
     name: "HomeLanding",
@@ -284,6 +284,11 @@ const routes = [
     path: "/sell",
     name: "sellCar",
     component: sellCar,
+  },
+  {
+    path: "/cardetails",
+    name: "carDetails",
+    component: carDetails,
   },
 ];
 

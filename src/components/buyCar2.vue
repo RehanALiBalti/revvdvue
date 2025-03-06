@@ -49,7 +49,7 @@
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide">
                                                 <p class="fontC2">USA</p>
-                                                <img class="" :src="logo1" width="300px" />
+                                                <img class="" :src="logo1" width="250px" />
 
                                                 <div
                                                     class="border-orange d-flex justify-content-between align-items-center p-2">
@@ -64,7 +64,7 @@
                                             </div>
                                             <div class="swiper-slide">
                                                 <p class="fontC2"> Germany</p>
-                                                <img class="" :src="logo2" width="300px" />
+                                                <img class="" :src="logo2" width="250px" />
 
                                                 <div
                                                     class="border-orange d-flex justify-content-between align-items-center p-2">
@@ -329,5 +329,6 @@ export default {
 
 .swpipwcon {
     max-width: 562px !important;
+    height: 300px !important
 }
 </style>

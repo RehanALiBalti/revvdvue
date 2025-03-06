@@ -192,7 +192,7 @@
                                         class="form-select form-control filter-select fsel">
                                         <option selected>{{ filter.label }}</option>
                                         <option v-for="option in filter.options" :key="option" :value="option">{{ option
-                                            }}</option>
+                                        }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                     <div class="row">
                         <!-- template -->
                         <div class="col-md-12">
-                            <div class="card card-bg my-2 ">
+                            <router-link to="/carslistingdetails" class="card card-bg my-2 ">
                                 <div class="d-flex justify-content-start w-100 position-relative z-5">
                                     <div class="badgecar">Premium</div>
                                 </div>
@@ -285,7 +285,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </router-link>
                         </div>
 
 

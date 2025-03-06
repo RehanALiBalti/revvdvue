@@ -3,11 +3,15 @@
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-5">
+
           <div class="swiper-container swiper-width">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper position-relative" ref="viewerContainer">
               <div v-for="(image, index) in images" :key="index" class="swiper-slide swiper-adjustment">
-                <img :src="require(`@/assets/images/${image}`)" class="slider-img car-image-slider2" alt="car" />
+                <img :src="require(`@/assets/images/${image}`)" class="slider-img car-image-slider2" alt="car"
+                  @click="openViewer(index)" />
+
               </div>
+
               <!-- Add more slides as needed -->
             </div>
             <div class="swiper-button-prev"></div>
@@ -15,7 +19,9 @@
             <div class="swiper-pagination"></div>
           </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 position-relative">
+          <router-link to="/cardetails"> <button class="btn btn-link"> <i
+                class="fa-solid fa-arrow-up-right-from-square"></i></button></router-link>
           <div class="container h-100">
             <div class="swiper-container content-swiper-container position-relative">
               <div class="swiper-wrapper">
@@ -130,6 +136,252 @@
                     </form>
                   </div>
                 </div>
+                <div class="swiper-slide swiper-adjustment">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-bg my-2 ">
+                        <div class="d-flex justify-content-start w-100 position-relative z-5">
+                          <div class="badgecar">Premium</div>
+                        </div>
+                        <div class="row mx-1 my-3">
+                          <div class="col-6 col-md-3 align-self-center">
+                            <img class="w-100" :src="Image2" height="130px" width="150px" />
+                          </div>
+                          <div class="col-6 col-md-1 align-self-center ">
+                            <img class="img-fluid" :src="carlogo1" />
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <div class="d-flex justify-content-end">
+                              <div class="d-flex align-items-center gap-2">
+                                <img :src="share" width="25px" />
+                                <img :src="badge" width="25px" />
+                              </div>
+                            </div>
+                            <div>
+                              <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
+                              <div class="row my-1">
+                                <div class="col-12 col-md-4">
+                                  <p class="car-sec-text"> Price: 250,000 <span>$</span></p>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                  <p class="car-sec-text"> Year: 2020</p>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                  <div class="d-flex gap-2 align-items-center">
+                                    <img :src="date" width="30px" />
+                                    <p class="car-sec-text"> 13.02.2025</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row my-1">
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="meter" width="25px" />
+                                    <p class="car-sec-text2"> 700 HP</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="gear" width="25px" />
+                                    <p class="car-sec-text2"> Automatic</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="race" width="25px" />
+                                    <p class="car-sec-text2"> 13.02.Street</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="road" width="25px" />
+                                    <p class="car-sec-text2">30,000 Km </p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="gasoline" width="25px" />
+                                    <p class="car-sec-text2"> Gasoline</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="location" width="20px" />
+                                    <p class="car-sec-text2"> Berlin</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide swiper-adjustment">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-bg my-2 ">
+                        <div class="d-flex justify-content-start w-100 position-relative z-5">
+                          <div class="badgecar">Premium</div>
+                        </div>
+                        <div class="row mx-1 my-3">
+                          <div class="col-6 col-md-3 align-self-center">
+                            <img class="w-100" :src="Image2" height="130px" width="150px" />
+                          </div>
+                          <div class="col-6 col-md-1 align-self-center ">
+                            <img class="img-fluid" :src="carlogo1" />
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <div class="d-flex justify-content-end">
+                              <div class="d-flex align-items-center gap-2">
+                                <img :src="share" width="25px" />
+                                <img :src="badge" width="25px" />
+                              </div>
+                            </div>
+                            <div>
+                              <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
+                              <div class="row my-1">
+                                <div class="col-12 col-md-4">
+                                  <p class="car-sec-text"> Price: 250,000 <span>$</span></p>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                  <p class="car-sec-text"> Year: 2020</p>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                  <div class="d-flex gap-2 align-items-center">
+                                    <img :src="date" width="30px" />
+                                    <p class="car-sec-text"> 13.02.2025</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row my-1">
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="meter" width="25px" />
+                                    <p class="car-sec-text2"> 700 HP</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="gear" width="25px" />
+                                    <p class="car-sec-text2"> Automatic</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="race" width="25px" />
+                                    <p class="car-sec-text2"> 13.02.Street</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="road" width="25px" />
+                                    <p class="car-sec-text2">30,000 Km </p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="gasoline" width="25px" />
+                                    <p class="car-sec-text2"> Gasoline</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="location" width="20px" />
+                                    <p class="car-sec-text2"> Berlin</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide swiper-adjustment">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-bg my-2 ">
+                        <div class="d-flex justify-content-start w-100 position-relative z-5">
+                          <div class="badgecar">Premium</div>
+                        </div>
+                        <div class="row mx-1 my-3">
+                          <div class="col-6 col-md-3 align-self-center">
+                            <img class="w-100" :src="Image2" height="130px" width="150px" />
+                          </div>
+                          <div class="col-6 col-md-1 align-self-center ">
+                            <img class="img-fluid" :src="carlogo1" />
+                          </div>
+                          <div class="col-12 col-md-8">
+                            <div class="d-flex justify-content-end">
+                              <div class="d-flex align-items-center gap-2">
+                                <img :src="share" width="25px" />
+                                <img :src="badge" width="25px" />
+                              </div>
+                            </div>
+                            <div>
+                              <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
+                              <div class="row my-1">
+                                <div class="col-12 col-md-4">
+                                  <p class="car-sec-text"> Price: 250,000 <span>$</span></p>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                  <p class="car-sec-text"> Year: 2020</p>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                  <div class="d-flex gap-2 align-items-center">
+                                    <img :src="date" width="30px" />
+                                    <p class="car-sec-text"> 13.02.2025</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row my-1">
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="meter" width="25px" />
+                                    <p class="car-sec-text2"> 700 HP</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="gear" width="25px" />
+                                    <p class="car-sec-text2"> Automatic</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="race" width="25px" />
+                                    <p class="car-sec-text2"> 13.02.Street</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="road" width="25px" />
+                                    <p class="car-sec-text2">30,000 Km </p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="gasoline" width="25px" />
+                                    <p class="car-sec-text2"> Gasoline</p>
+                                  </div>
+                                </div>
+                                <div class="col-12 col-md-4 my-1">
+                                  <div class="d-flex align-items-center gap-2">
+                                    <img :src="location" width="20px" />
+                                    <p class="car-sec-text2"> Berlin</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <!-- <div class="swiper-slide">
                   <div class="text-content-slide">
@@ -241,6 +493,21 @@ import "swiper/swiper-bundle.css";
 //Import Swiper modules
 import { Pagination, Navigation } from "swiper/modules";
 import logo1 from "../assets/images/cars_logos/26.png"
+import carlogo1 from "../assets/images/cars_logos/26.png"
+import Image2 from "@/assets/images/d722fc518c6127ea183d184e5dc715e3.png";
+import meter from "../assets/images/icons/meter.png"
+import date from "../assets/images/icons/date.png"
+import dollar from "../assets/images/icons/dollar.png"
+import gasoline from "../assets/images/icons/gasoline.png"
+
+import gear from "../assets/images/icons/gear.png"
+import location from "../assets/images/icons/location.png"
+import race from "../assets/images/icons/race.png"
+import road from "../assets/images/icons/road.png"
+import share from "../assets/images/icons/share.png"
+import badge from "../assets/images/icons/badge.png"
+import Viewer from "viewerjs";
+import "viewerjs/dist/viewer.css";
 // Install Swiper modules
 Swiper.use([Pagination, Navigation]);
 
@@ -248,6 +515,19 @@ export default {
   name: "CarsListingDetails",
   data() {
     return {
+      viewer: null,
+      carlogo1,
+      meter,
+      date,
+      dollar,
+      Image2,
+      gasoline,
+      gear,
+      location,
+      race,
+      road,
+      share,
+      badge,
       images: [
         "10_2021_koenigsegg_jesko.png",
         "10_2021_koenigsegg_jesko.png",
@@ -295,6 +575,27 @@ export default {
     };
   },
   mounted() {
+    this.viewer = new Viewer(this.$refs.viewerContainer, {
+
+      toolbar: {
+        prev: true,
+        play: false,
+        next: true,
+        zoomIn: false,
+        zoomOut: false,
+        rotateLeft: false,
+        rotateRight: false,
+        flipHorizontal: false,
+        flipVertical: false,
+        reset: false,
+        close: false, // Add close button
+      },
+      zoomOnWheel: true, // Allow zooming with mouse wheel
+      fullscreen: false, // Disable fullscreen mode
+      title: false, // Disable image title display
+      navbar: false, // Disable the navigation bar
+      tooltip: false, // Disable tooltips for image actions
+    });
     this.$nextTick(() => {
       // Initialize Swiper
       new Swiper(".swiper-container.swiper-width", {
@@ -328,6 +629,12 @@ export default {
         },
       });
     });
+
+  },
+  methods: {
+    openViewer(index) {
+      this.viewer.view(index); // Open the clicked image in full size
+    },
   },
 };
 </script>
@@ -363,5 +670,66 @@ export default {
 
 .form-Input {
   border: 1px solid #f95f19 !important;
+}
+
+.btn-link {
+  position: absolute;
+  right: 63px;
+  top: 200px;
+  color: #f95f19 !important;
+  font-size: 20px;
+  z-index: 999;
+}
+
+.car-sec-text {
+  color: #fff;
+  margin: 0;
+  font-size: 16px;
+  text-align: start;
+}
+
+.car-sec-text2 {
+  color: #fff;
+  margin: 0;
+  font-size: 14px;
+  text-align: start;
+}
+
+.car-title {
+  color: #fff;
+  text-align: start;
+  font-size: 24px;
+  margin: 0
+}
+
+.car-title span {
+  color: #f95f19
+}
+
+.car-sec-text span {
+  color: #f95f19
+}
+
+.badgecar {
+  border-top-left-radius: 10px;
+  background-color: #f95f19;
+  color: #fff;
+  padding-inline: 1rem;
+  padding-block: 0.6rem;
+  position: absolute;
+  left: -2px
+}
+
+.card-bg {
+  background-color: #031726cd !important;
+  border-radius: 10px !important;
+}
+
+.z-5 {
+  z-index: 5;
+}
+
+.h5-title span {
+  color: #f95f19
 }
 </style>
