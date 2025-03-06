@@ -62,8 +62,8 @@ export default {
             );
         });
 
-        const cityCoordinates = {
 
+        const cityCoordinates = {
             "USA": { lat: 37.0902, lng: -95.7129, link: "/buy2" }
             // Add coordinates for other cities as needed
         };
@@ -72,25 +72,36 @@ export default {
             const markerElement = document.createElement("div");
             markerElement.className = "custom-marker";
 
+            // Style the marker
             markerElement.style.backgroundSize = "contain";
             markerElement.style.backgroundRepeat = "no-repeat";
             markerElement.style.width = "20px";
             markerElement.style.height = "20px";
+            markerElement.style.cursor = "pointer"; // Make it look clickable
 
-            const popupContent = document.createElement("div");
-            popupContent.classList.add("clickable")
-            popupContent.innerHTML = `<h3 class="c">${city}</h3>`;
-            popupContent.addEventListener("click", () => {
-                // Programmatically navigate to the specified route using Vue router
-                // Assuming you have access to the Vue instance and the router
-                router.push(cityCoordinates[city].link);
+            // Navigate to the URL when clicking the marker
+            markerElement.addEventListener("click", () => {
+                router.push(cityCoordinates[city].link); // Redirect to URL
             });
 
+            // Create the popup content
+            const popupContent = document.createElement("div");
+            popupContent.classList.add("clickable");
+            popupContent.innerHTML = `<h3 class="c">${city}</h3>`;
+
+            const popup = new mapboxgl.Popup({ offset: 25 })
+                .setDOMContent(popupContent);
+
+            // Create marker and add it to the map
             new mapboxgl.Marker(markerElement)
                 .setLngLat([cityCoordinates[city].lng, cityCoordinates[city].lat])
-                .setPopup(new mapboxgl.Popup().setDOMContent(popupContent))
+                .setPopup(popup) // Attach the popup
                 .addTo(map);
+
+            // Show the popup by default when the marker is added
+            popup.addTo(map);
         }
+
 
 
     }

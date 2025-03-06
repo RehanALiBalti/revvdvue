@@ -2189,8 +2189,8 @@ a:hover {
 .mapboxgl-popup-content::before {
 	content: "" !important;
 	position: absolute !important;
-	top: 10px !important;
-	left: 36px !important;
+	top: 35px !important;
+	left: 35px !important;
 	background: url("../../../public/images/d1.png") !important;
 	/* Correct image URL */
 	width: 200px !important;
