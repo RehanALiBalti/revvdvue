@@ -240,7 +240,7 @@ import mapboxgl from 'mapbox-gl';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from "swiper/modules";
 import 'swiper/swiper-bundle.css';
-import logo1 from "../assets/images/cars_logos/26.png"
+import logo1 from "../assets/images/cars_logos/60.png"
 import logo2 from "../assets/images/cars_logos/56.png"
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
