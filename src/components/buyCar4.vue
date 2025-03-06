@@ -56,7 +56,7 @@
                                                     <button class=" swiperbutton swiper-prev">
                                                         <i class="fa-solid fa-chevron-left"></i>
                                                     </button>
-                                                    Ford
+                                                    MG
                                                     <button class=" swiperbutton swiper-next">
                                                         <i class="fa-solid fa-chevron-right"></i>
                                                     </button>
@@ -132,7 +132,7 @@
             <div class="col-md-4 my-2">
                 <div class="modal-dialog ">
                     <div class="modal-content px-3 py-2">
-                        <p class="text-white text-center mb-2">Ford</p>
+                        <p class="text-white text-center mb-2">MG</p>
                         <v-select v-model="formData.make" class="my-2 fsel" :options="makefilteredOptions"
                             placeholder="Select a Make" :filterable="true">
                             <template #open-indicator>
@@ -338,7 +338,8 @@ export default {
 }
 
 .fontC2 {
-    font-size: 25px
+    font-size: 25px;
+    color: #FF7A00;
 }
 
 .fontC span {

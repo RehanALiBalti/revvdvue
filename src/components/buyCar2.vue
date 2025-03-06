@@ -56,7 +56,7 @@
                                                     <button class=" swiperbutton swiper-prev">
                                                         <i class="fa-solid fa-chevron-left"></i>
                                                     </button>
-                                                    Ford
+                                                    MG
                                                     <button class=" swiperbutton swiper-next">
                                                         <i class="fa-solid fa-chevron-right"></i>
                                                     </button>
@@ -235,7 +235,8 @@ export default {
 }
 
 .fontC2 {
-    font-size: 25px
+    font-size: 25px;
+    color: #FF7A00;
 }
 
 .fontC span {
