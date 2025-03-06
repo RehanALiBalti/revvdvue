@@ -353,7 +353,7 @@ export default {
 
 .modalPos {
     position: absolute;
-    top: 33%;
+    top: 32%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%
