@@ -438,6 +438,6 @@ export default {
 
 .posrel {
     position: relative;
-    top: -230px;
+    top: -200px;
 }
 </style>
