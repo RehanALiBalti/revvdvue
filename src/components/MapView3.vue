@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="map-container">
         <div id="map"></div>
     </div>
 </template>
@@ -9,7 +9,7 @@ import mapboxgl from 'mapbox-gl';
 import router from '.././routes'; // Path to your Vue router instance
 
 export default {
-    name: 'MapComponent3',
+    name: 'MapComponent2',
     mounted() {
         mapboxgl.accessToken =
             "pk.eyJ1IjoiZGFuaXNoMjUwIiwiYSI6ImNsc3lxb3E0MjBnYTcycXJvYjUzcWxyc2sifQ.BTgJLfSCkp9R4ItQTxSVng";
@@ -63,8 +63,8 @@ export default {
         });
 
         const cityCoordinates = {
-            "New York": { lat: 40.7128, lng: -74.006, link: "/map4" },
-            "Los Angeles": { lat: 34.0522, lng: -118.2437, link: "/map4" },
+
+            "USA": { lat: 37.0902, lng: -95.7129, link: "/buy2" }
             // Add coordinates for other cities as needed
         };
 
@@ -98,8 +98,29 @@ export default {
 </script>
 
 <style scoped>
-#map {
+/* #map {
     height: 500px;
     width: 100%;
+} */
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.custom-marker {
+
+    /* Ensure correct image path */
+    background-size: cover;
+    width: 30px;
+    /* Increase size if needed */
+    height: 30px;
+    border-radius: 50%;
+    /* Optional for rounded markers */
+    transform: translate(-50%, -50%);
+    /* Center the marker on the coordinates */
+    position: absolute;
 }
 </style>

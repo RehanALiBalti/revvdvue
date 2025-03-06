@@ -5,16 +5,8 @@
         <div class="col-md-5">
           <div class="swiper-container swiper-width">
             <div class="swiper-wrapper">
-              <div
-                v-for="(image, index) in images"
-                :key="index"
-                class="swiper-slide swiper-adjustment"
-              >
-                <img
-                  :src="require(`@/assets/images/${image}`)"
-                  class="slider-img car-image-slider2"
-                  alt="car"
-                />
+              <div v-for="(image, index) in images" :key="index" class="swiper-slide swiper-adjustment">
+                <img :src="require(`@/assets/images/${image}`)" class="slider-img car-image-slider2" alt="car" />
               </div>
               <!-- Add more slides as needed -->
             </div>
@@ -25,15 +17,9 @@
         </div>
         <div class="col-md-7">
           <div class="container h-100">
-            <div
-              class="swiper-container content-swiper-container position-relative"
-            >
+            <div class="swiper-container content-swiper-container position-relative">
               <div class="swiper-wrapper">
-                <div
-                  class="swiper-slide"
-                  v-for="(car, index) in cars"
-                  :key="index"
-                >
+                <div class="swiper-slide" v-for="(car, index) in cars" :key="index">
                   <div class="text-content-slide">
                     <div class="skew-div">
                       <h2 class="card-title-h2 koenigsegg-title">
@@ -48,16 +34,9 @@
                     </div>
                     <div class="pricing-content-text">
                       <div class="icon-user-pricing">
-                        <img
-                          src="@/assets/images/carlistintg7Icon.png"
-                          class="icon-user-img-pricing"
-                          alt="icon"
-                        />
+                        <img src="@/assets/images/carlistintg7Icon.png" class="icon-user-img-pricing" alt="icon" />
                       </div>
-                      <router-link
-                        class="price-text-atag"
-                        href="javascript:void(0);"
-                      >
+                      <router-link class="price-text-atag" to="#">
                         {{ car.price }}
                       </router-link>
                     </div>
@@ -87,11 +66,7 @@
                           <p class="map-para overview-para-list">Mileage:</p>
                           <p class="map-para overview-para-list">115,500Km</p>
                         </div> -->
-                        <div
-                          class="model-list-content"
-                          v-for="(detail, detailIndex) in car.details"
-                          :key="detailIndex"
-                        >
+                        <div class="model-list-content" v-for="(detail, detailIndex) in car.details" :key="detailIndex">
                           <p class="map-para overview-para-list">
                             {{ detail.label }}
                           </p>
@@ -119,11 +94,8 @@
                           <p class="map-para overview-para-list">Drivetrain</p>
                           <p class="map-para overview-para-list">FWD</p>
                         </div> -->
-                        <div
-                          class="model-list-content"
-                          v-for="(detail, detailIndex) in car.detailsNew"
-                          :key="detailIndex"
-                        >
+                        <div class="model-list-content" v-for="(detail, detailIndex) in car.detailsNew"
+                          :key="detailIndex">
                           <p class="map-para overview-para-list">
                             {{ detail.label }}
                           </p>
@@ -160,7 +132,7 @@
                       </div>
                       <router-link
                         class="price-text-atag"
-                        href="javascript:void(0);"
+                       to="#"
                       >
                         2000000
                       </router-link>
@@ -243,7 +215,7 @@ import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 
 //Import Swiper modules
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation } from "swiper/modules";
 
 // Install Swiper modules
 Swiper.use([Pagination, Navigation]);
@@ -401,4 +373,29 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+
+<style scoped>
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 12px !important;
+  color: #fff !important
+}
+
+.swiper-button-prev {
+  left: 54px
+}
+
+.content-swiper-container>.content-next:after,
+.content-prev:after {
+  font-size: 12px !important;
+  color: #000 !important;
+}
+
+.content-swiper-container>.content-next {
+  left: unset !important;
+}
+
+.content-swiper-container>.content-prev {
+  left: unset !important;
+}
+</style>
