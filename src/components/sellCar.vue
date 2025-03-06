@@ -211,7 +211,7 @@
                 <h3 class="form-title mb-0">List of <span>Modifications</span></h3>
 
                 <!-- Dropdown to select modification category -->
-                <div class="col-md-12">
+                <div class="col-md-12 pos-rel">
                     <label class="form-label">Modification Category</label>
                     <!-- <select class="form-select form-input h35px" v-model="selectedModCategory">
                         <option value="" selected>Select a category</option>
@@ -220,7 +220,7 @@
                         </option>
                     </select> -->
 
-                    <v-select class=" form-input h35px" v-model="selectedModCategory" :options="modCategories"
+                    <v-select class=" form-input h35px f-v-sel" v-model="selectedModCategory" :options="modCategories"
                         placeholder="Select a Category" :filterable="true" taggable multiple>
                         <template #selected-options="{ values }">
                             <div class="selected-tags">
@@ -302,7 +302,8 @@
                     <div v-for="(mod, index) in modifications" :key="index" class="modification">
 
 
-                        <h3 class="form-title">Modification {{ index + 1 }} <span>({{ mod.category }})</span></h3>
+                        <h3 class="form-title">Modification {{ index + 1 }} <span>({{ mod.category }})</span>
+                        </h3>
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <input v-model="mod.partName" class="form-control form-input h35px" type="text"
@@ -587,14 +588,29 @@ export default {
     },
     watch: {
         // Watch for changes in the selected modification category
-        selectedModCategory(newCategory) {
-            this.newMod.category = newCategory;
-            if (newCategory) {
-                this.addNewModification(newCategory);
+        // selectedModCategory(newCategory) {
+        //     this.newMod.category = newCategory;
+        //     if (newCategory) {
+        //         this.addNewModification(newCategory);
 
+        //     }
+        // },
+        selectedModCategory(newCategories) {
+            // Ensure selectedModCategory is always an array
+            if (!Array.isArray(newCategories)) {
+                newCategories = [];
             }
-        },
 
+            // Remove modifications that are no longer in the selected categories
+            this.modifications = this.modifications.filter(mod => newCategories.includes(mod.category));
+
+            // Add only the newly selected categories that don't exist in modifications
+            newCategories.forEach(category => {
+                if (!this.modifications.some(mod => mod.category === category)) {
+                    this.addNewModification(category);
+                }
+            });
+        }
 
     },
     methods: {
@@ -622,9 +638,21 @@ export default {
             }
         },
         // Remove a modification
+        // removeMod(index) {
+        //     this.modifications.splice(index, 1);
+        // },
         removeMod(index) {
+            const removedCategory = this.modifications[index].category;
+
+            // Remove the modification from the array
             this.modifications.splice(index, 1);
+
+            // Remove the category from selectedModCategory if no more modifications exist for it
+            if (!this.modifications.some(mod => mod.category === removedCategory)) {
+                this.selectedModCategory = this.selectedModCategory.filter(cat => cat !== removedCategory);
+            }
         },
+
         // Reset the new modification form
         resetNewMod() {
             this.newMod = {
@@ -1433,7 +1461,10 @@ export default {
     font-weight: bold;
 }
 
-.vs__selected {
-    background-color: #f95f19 !important;
+
+
+.pos-rel {
+    position: relative;
+    z-index: 999;
 }
 </style>

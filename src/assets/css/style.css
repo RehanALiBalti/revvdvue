@@ -2955,3 +2955,7 @@ input::placeholder {
 .swpipwcon {
 	max-width: 562px !important;
 }
+
+.f-v-sel .vs__selected {
+	background-color: #f95f19 !important;
+}
