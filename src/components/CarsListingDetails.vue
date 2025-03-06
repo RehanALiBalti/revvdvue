@@ -675,7 +675,7 @@ export default {
 .btn-link {
   position: absolute;
   right: 63px;
-  top: 200px;
+  top: 150px;
   color: #f95f19 !important;
   font-size: 20px;
   z-index: 999;
@@ -731,5 +731,10 @@ export default {
 
 .h5-title span {
   color: #f95f19
+}
+
+.swiper-button-prev.content-prev,
+.swiper-button-next.content-next {
+  bottom: 104px !important;
 }
 </style>
