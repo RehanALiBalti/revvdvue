@@ -64,7 +64,7 @@
                                             </div>
                                             <div class="swiper-slide">
                                                 <p class="fontC2"> Germany</p>
-                                                <img class="" :src="logo2" width="250px" />
+                                                <img class="" :src="logo2" width="250px" height="150px" />
 
                                                 <div
                                                     class="border-orange d-flex justify-content-between align-items-center p-2">
@@ -352,7 +352,7 @@ export default {
 
 .modalPos {
     position: absolute;
-    top: 38%;
+    top: 33%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%
@@ -432,11 +432,11 @@ export default {
 
 .swpipwcon {
     max-width: 562px !important;
-    height: 300px !important
+    height: 280px !important
 }
 
 .posrel {
     position: relative;
-    top: -130px;
+    top: -230px;
 }
 </style>
