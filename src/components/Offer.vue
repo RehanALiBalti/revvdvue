@@ -49,7 +49,7 @@
 			<div class="row justify-content-center">
 
 
-				<!-- <div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
+				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
 						<img src="../../public/images/layer2.png">
 					</div>
@@ -139,7 +139,8 @@
 							</div>
 						</div>
 					</div>
-				</div> -->
+				</div>
+				<!-- 			
 				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
 
 					<div class="card loadCard">
@@ -148,38 +149,7 @@
 							<p class="card-text ctext">
 								Ask, share and connect with fellow enthusiasts.
 							</p>
-							<!-- <div class="load-more-info w-100 d-flex justify-content-center align-items-center">
-								<div class="list-item-btn position-relative load-more-div">
-									<span class="border-bottom-btn border-top-btn position-absolute">
-										<img src="@/assets/images/Group12engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
 
-									<span
-										class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-										<img src="@/assets/images/Path467engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-
-									<span
-										class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-										<img src="@/assets/images/Path465engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-									<button type="button" class="signin-btnli Start Engine load-more-btn mx-auto"
-										data-bs-toggle="modal" data-bs-target="#carShopFilter">
-										{{ $t('loadMore') }}
-									</button>
-									<span class="border-bottom-btn border-left-btn position-absolute">
-										<img src="@/assets/images/Group11engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-									<span class="border-bottom-btn position-absolute">
-										<img src="@/assets/images/Path473engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-								</div>
-							</div> -->
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
 								<div class="list-item-btn position-relative load-more-div">
 									<span class="border-bottom-btn border-top-btn position-absolute">
@@ -222,40 +192,7 @@
 							<p class="card-text ctext">
 								Ask, share and connect with fellow enthusiasts.
 							</p>
-							<!-- <div class="load-more-info w-100 d-flex justify-content-center align-items-center">
 
-
-								<div class="list-item-btn position-relative load-more-div">
-									<span class="border-bottom-btn border-top-btn position-absolute">
-										<img src="@/assets/images/Group12engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-
-									<span
-										class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-										<img src="@/assets/images/Path467engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-
-									<span
-										class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-										<img src="@/assets/images/Path465engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-									<button type="button" class="signin-btnli Start Engine load-more-btn mx-auto"
-										data-bs-toggle="modal" data-bs-target="#maketModal">
-										{{ $t('loadMore') }}
-									</button>
-									<span class="border-bottom-btn border-left-btn position-absolute">
-										<img src="@/assets/images/Group11engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-									<span class="border-bottom-btn position-absolute">
-										<img src="@/assets/images/Path473engine.png"
-											class="img-border position-absolute" alt="">
-									</span>
-								</div>
-							</div> -->
 							<div class="load-more-info w-100 d-flex justify-content-center align-items-center">
 								<div class="list-item-btn position-relative load-more-div">
 									<span class="border-bottom-btn border-top-btn position-absolute">
@@ -289,7 +226,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4">
 					<div class="card loadCard">
 						<div class="card-body d-flex flex-column justify-content-between align-items-center">
