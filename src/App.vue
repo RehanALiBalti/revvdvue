@@ -1,12 +1,12 @@
 <template>
   <div class="loader  " ref="loader">
     <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
-      <source :src="videoSrc" ref="video" type="video/mp4">
+      <source :src="videoSrc" type="video/mp4">
     </video>
     <!-- <video id="myVideo" class="video-loader" muted playsinline>
 			<source src="<?= base_url('/assets/images/revvdoutVideo1mobile.mp4') ?>" type="video/mp4">
 		</video> -->
-    <div class="btn-div-create-forum position-absolute" v-if="showStartButton" >
+    <div class="btn-div-create-forum position-absolute" v-if="showStartButton">
       <span class="border-bottom-btn border-top-btn position-absolute">
         <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
       </span>
