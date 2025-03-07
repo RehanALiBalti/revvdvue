@@ -21,11 +21,11 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
 								<router-link to="/profile" class="breadcrumb-item-a-tag">{{ $t('profile')
-									}}</router-link>
+								}}</router-link>
 							</li>
 							<li class="breadcrumb-item">
 								<router-link to="/mycarlisting" class="breadcrumb-item-a-tag">{{ $t('myCarListing')
-									}}</router-link>
+								}}</router-link>
 							</li>
 						</ol>
 					</nav>
@@ -48,9 +48,10 @@
 						<div class="swiper-container myCarListingCard-swiper-container">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide" v-for="(image, idx) in car.images" :key="idx">
-									<router-link class="d-block" :to="`/carListing${index + 1}`">
+									<!-- <router-link class="d-block" :to="`/carListing${index + 1}`">
 										<img :src="image" class="slider-img myCarListingCard-img" alt="car" />
-									</router-link>
+									</router-link> -->
+									<img :src="image" class="slider-img myCarListingCard-img" alt="car" />
 								</div>
 
 
@@ -84,7 +85,9 @@
 
 							</ul>
 							<div class="view-more-cars">
-								<router-link class="view-more-a-tag" :to="`/carListing${index + 1}`">View
+								<!-- <router-link class="view-more-a-tag" :to="`/carListing${index + 1}`">View
+									more</router-link> -->
+								<router-link class="view-more-a-tag" to="#">View
 									more</router-link>
 							</div>
 						</div>

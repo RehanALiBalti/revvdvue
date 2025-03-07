@@ -1681,11 +1681,11 @@ export default {
 						formData.append("file", this.croppedFile); // Ensure key is 'file'
 
 						// Upload the image
-						// const response = await fetch("https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload", {
+						// const response = await fetch("https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3", {
 						// 	method: "POST",
 						// 	body: formData,
 						// });
-						const response = await fetch(`${baseURL}/common/upload`, {
+						const response = await fetch(`${baseURL}/common/uploadS3`, {
 							method: "POST",
 							body: formData,
 						});
@@ -1694,7 +1694,7 @@ export default {
 						console.log("Upload Response:", result);
 
 						if (result.success) {
-							this.secureUld = result.secureUld; // Store secureUid for later use
+							this.secureUld = result.s3Url; // Store secureUid for later use
 							console.log("Secure UID:", this.secureUld);
 						} else {
 							console.error("Image upload failed:", result);
@@ -2114,7 +2114,7 @@ export default {
 		// 			imageFormData.append('image', file, file.name);
 
 		// 			const uploadResponse = await axios.post(
-		// 				'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+		// 				'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
 		// 				imageFormData,
 		// 				{
 		// 					headers: { 'Content-Type': 'multipart/form-data' },

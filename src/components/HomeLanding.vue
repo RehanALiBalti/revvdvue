@@ -2428,7 +2428,7 @@ export default {
 
     //     try {
     //       const response = await axios.post(
-    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
     //         formData,
     //         { headers: { 'Content-Type': 'multipart/form-data' } }
     //       );
@@ -2531,7 +2531,7 @@ export default {
 
     //   //   try {
     //   //     const response = await axios.post(
-    //   //       'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //   //       'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
     //   //       formData,
     //   //       { headers: { 'Content-Type': 'multipart/form-data' } }
     //   //     );
@@ -2558,7 +2558,7 @@ export default {
 
     //     try {
     //       const response = await axios.post(
-    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
     //         formData,
     //         { headers: { 'Content-Type': 'multipart/form-data' } }
     //       );
@@ -2658,7 +2658,7 @@ export default {
     //     formData.append("file", file);
 
     //     try {
-    //       const response = await http.post("/common/upload", formData, {
+    //       const response = await http.post("/common/uploadS3", formData, {
     //         headers: { "Content-Type": "multipart/form-data" },
     //       });
 
@@ -2786,7 +2786,7 @@ export default {
     //     formData.append("file", file);
 
     //     try {
-    //       const response = await http.post("/common/upload", formData, {
+    //       const response = await http.post("/common/uploadS3", formData, {
     //         headers: { "Content-Type": "multipart/form-data" },
     //       });
 
@@ -2916,14 +2916,14 @@ export default {
         formData.append("file", file);
 
         try {
-          const response = await http.post("/common/upload", formData, {
+          const response = await http.post("/common/uploadS3", formData, {
             headers: { "Content-Type": "multipart/form-data" },
           });
 
-          if (response.data && response.data.secureUld) {
+          if (response.data && response.data.s3Url) {
             console.log("response data", response.data);
-            console.log("Image uploaded:", response.data.secureUld);
-            uploadedImageUrls.push(response.data.secureUld);
+            console.log("Image uploaded:", response.data.s3Url);
+            uploadedImageUrls.push(response.data.s3Url);
           }
         } catch (error) {
           console.error("Error uploading image:", error);

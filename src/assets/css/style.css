@@ -1471,8 +1471,10 @@ a.footer-main-addresss:hover {
 	text-align: center;
 	/* background-image: linear-gradient(rgba(0, 11, 28, 0.7), rgba(0, 11, 28, 0.7)),
 		url("../images/Groupaa1.png"); */
-	background-image: linear-gradient(rgba(0, 11, 28, 0.9), rgba(0, 11, 28, 0.9)),
-		url("../images/ncar.png");
+	/* background-image: linear-gradient(rgba(0, 11, 28, 0.9), rgba(0, 11, 28, 0.9)),
+		url("../images/ncar.png"); */
+	background-image: linear-gradient(rgba(0, 11, 28, 0.618), rgba(0, 11, 28, 0.9)),
+		url("../images/Groupaa1.png");
 	/* background: url("../images/Groupaa1.png"); */
 	;
 	background-repeat: no-repeat;
