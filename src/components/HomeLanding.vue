@@ -296,13 +296,13 @@
                 {{ $t('Now') }} !
               </h2>
               <div class="row px-2">
-                <div class="position-relative" v-if="this.loading == true">
+                <div class="position-relative" v-if="this.loading == true" style="z-index:999">
                   <div class="box"></div>
                 </div>
                 <div class="col-md-3 p-0 p-md-1">
 
                   <label for="storyType" class="form-label">Story Type</label>
-                  <select id="storyType" class="form-control form-select form-input" v-model="selectedStoryType"
+                  <select id="storyType" class="form-control form-select form-input h35px" v-model="selectedStoryType"
                     required @change="handleName">
 
                     <option value="carEnthusiast">Car Enthusiast</option>
@@ -320,7 +320,7 @@
                   <label for="country" class="form-label">Country</label>
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter Country"
 v-model="formData.country"> -->
-                  <select id="country" class="form-select form-control form-input " v-model="formData.country"
+                  <select id="country" class="form-select form-control form-input h35px" v-model="formData.country"
                     @change="getcities(formData.country)">
                     <option selected value="">Country</option>
                     <option value="Afghanistan">Afghanistan</option>
@@ -543,7 +543,7 @@ v-model="formData.country"> -->
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
 
                   <!-- City Select -->
-                  <select id="city" class="form-select form-control form-input " v-model="formData.city">
+                  <select id="city" class="form-select form-control form-input h35px" v-model="formData.city">
                     <option selected value="">City</option>
                     <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                   </select>
@@ -553,25 +553,28 @@ v-model="formData.country"> -->
                 <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="storyHistory" class="form-label"> Tell us your {{ shopName }} story & how it all
                     started </label>
-                  <textarea id="storyHistory" class="form-control" rows="4"
-                    placeholder="Describe your story and history" v-model="formData.storyHistory"></textarea>
+                  <textarea id="storyHistory" class="form-control form-input" rows="1"
+                    placeholder="Describe your story and history" v-model="formData.storyHistory"
+                    ref="autoExpandTextarea6" @input="adjustHeight6" @blur="resetHeight6"></textarea>
                 </div>
                 <div class="   col-md-6  p-0 p-md-1"
                   v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="memorableStories" class="form-label">Any unforgettable memory, event or story you can
                     share with us? </label>
-                  <textarea id="memorableStories" class="form-control" rows="4"
-                    placeholder="Share your memorable stories" v-model="formData.adventureStory"></textarea>
+                  <textarea id="memorableStories" class="form-control form-input" rows="1"
+                    placeholder="Share your memorable stories" v-model="formData.adventureStory"
+                    ref="autoExpandTextarea5" @input="adjustHeight5" @blur="resetHeight5"></textarea>
                 </div>
                 <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="storyName" class="form-label">What is the name of your story that you would like to
                     choose? </label>
-                  <textarea id="storyName" class="form-control" placeholder="Enter Story Name"
-                    v-model="formData.storyName"></textarea>
+                  <textarea id="storyName" class="form-control form-input" placeholder="Enter Story Name"
+                    v-model="formData.storyName" ref="autoExpandTextarea7" @input="adjustHeight7"
+                    @blur="resetHeight7"></textarea>
                 </div>
                 <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
                   <label for="link" class="form-label">Add Instagram or Website Link</label>
-                  <input type="url" id="link" class="form-control" placeholder="Enter Instagram or Website Link"
+                  <input type="url" id="link" class="form-control h35px" placeholder="Enter Instagram or Website Link"
                     v-model="formData.url">
                 </div>
 
@@ -652,10 +655,10 @@ v-model="formData.country"> -->
                   <label for="country" class="form-label">Production Year Generation
                   </label>
                   <div class="customSelect w-100 position-relative">
-                    <input type="text" class="form-select form-control form-input" :placeholder="$t('Production Years')"
-                      @input="GenfilterOption" v-model="formData.year" @click="toggleOpeng" v-if="formData.model == ''"
-                      readonly>
-                    <input type="text" class="form-select form-control form-input"
+                    <input type="text" class="form-select form-control form-input h35px"
+                      :placeholder="$t('Production Years')" @input="GenfilterOption" v-model="formData.year"
+                      @click="toggleOpeng" v-if="formData.model == ''" readonly>
+                    <input type="text" class="form-select form-control form-input h35px"
                       :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
                       @click="toggleOpeng" v-else>
                     <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
@@ -678,21 +681,24 @@ v-model="formData.country"> -->
                   v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="name" class="form-label"> What’s the story behind your car? </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.story" rows="2"></textarea>
+                    v-model="formData.story" rows="1" ref="autoExpandTextarea4" @input="adjustHeight4"
+                    @blur="resetHeight4"></textarea>
 
                 </div>
                 <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="name" class="form-label">Any awesome modifications or unique features you can share?
                   </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.modifications" rows="2"></textarea>
+                    v-model="formData.modifications" rows="1" ref="autoExpandTextarea3" @input="adjustHeight3"
+                    @blur="resetHeight3"></textarea>
 
                 </div>
                 <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="email" class="form-label"> Tell us the wildest or most unforgettable moment you’ve had
                     with your car </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.memorable" rows="2"></textarea>
+                    v-model="formData.memorable" rows="1" ref="autoExpandTextarea2" @input="adjustHeight2"
+                    @blur="resetHeight2"></textarea>
                   <!-- Error message for Email -->
                   <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
                   <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
@@ -700,19 +706,22 @@ v-model="formData.country"> -->
                 <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="phone" class="form-label">What advise would you give to someone starting their journey
                     as a car enthusiast?</label>
-                  <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
-                    v-model="formData.advice" rows="2"></textarea>
+                  <!-- <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
+                    v-model="formData.advice" rows="2"></textarea> -->
+                  <textarea id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
+                    v-model="formData.advice" rows="1" ref="autoExpandTextarea" @input="adjustHeight"
+                    @blur="resetHeight"></textarea>
                 </div>
                 <div class="col-md-5 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label"> What would your car story title be?
                   </label>
-                  <input type="text" id="phone" name="phone" class="form-control form-input"
+                  <input type="text" id="phone" name="phone" class="form-control form-input h35px"
                     placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
                 </div>
                 <div class="col-md-3 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
                   <label for="message" class="form-label ">Add Instagram link </label>
-                  <input id="message" class="form-control form-input" name="message" :placeholder="$t('Enter here')"
-                    rows="2" v-model="formData.social_media" />
+                  <input id="message" class="form-control form-input h35px" name="message"
+                    :placeholder="$t('Enter here')" rows="1" v-model="formData.social_media" />
                   <!-- Error message for Message -->
                   <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
                 </div>
@@ -824,11 +833,13 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                   </div>
 
                   <div class="draggable-area mx-4" v-if="uploadedFiles.length > 0">
-                    <p class="Note"><strong>Note:</strong>Please place the image at the <strong>First(1) </strong>
-                      index to
-                      set it as the main image for your story.</p>
-                    <div v-for="(image, index) in uploadedFiles" :key="index" :class="['image-item']" draggable="true"
+
+                    <!-- <div v-for="(image, index) in uploadedFiles" :key="index" :class="['image-item']" draggable="true"
                       @dragstart="onDragStart(index)" @dragover.prevent @drop="onDrop(index)">
+                      <span class="image-number">{{ index + 1 }}</span>
+                      <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
+                    </div> -->
+                    <div v-for="(image, index) in uploadedFiles" :key="index" :class="['image-item']">
                       <span class="image-number">{{ index + 1 }}</span>
                       <img :src="image.url" class="img-fluid" alt="Cropped Image Preview" />
                     </div>
@@ -1063,7 +1074,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div>
         <div class="modal-body">
           <div class="thank-you-pop">
-            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
+            <!-- <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" /> -->
             <h1>Thank You!</h1>
             <p>Your submission is received, and we will contact you soon</p>
           </div>
@@ -1147,7 +1158,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div>
         <div class="modal-body">
           <div class="thank-you-pop">
-            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" />
+            <!-- <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="" /> -->
             <h1 class="coloror">{{ modalTitle }}</h1>
             <p>{{ modaldescription }}</p>
           </div>
@@ -1364,6 +1375,7 @@ import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 import icons_tick from '../assets/images/icons8-ok-76.png'
 
+
 // import http from "@/http-common"; // Importing the http-common instance // ✅ Centralized Axios instance
 
 export default {
@@ -1562,6 +1574,127 @@ export default {
     };
   },
   methods: {
+    adjustHeight() {
+      console.log("in adjustheight")
+      const textarea = this.$refs.autoExpandTextarea;
+      if (textarea) {
+        console.log("working")
+        textarea.style.height = "auto"; // Reset height
+        textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
+      }
+    }
+    ,
+    adjustHeight2() {
+      console.log("in adjustheight")
+      const textarea = this.$refs.autoExpandTextarea2;
+      if (textarea) {
+        console.log("working")
+        textarea.style.height = "auto"; // Reset height
+        textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
+      }
+    }
+    ,
+    adjustHeight3() {
+      console.log("in adjustheight")
+      const textarea = this.$refs.autoExpandTextarea3;
+      if (textarea) {
+        console.log("working")
+        textarea.style.height = "auto"; // Reset height
+        textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
+      }
+    }
+    ,
+    adjustHeight4() {
+      console.log("in adjustheight")
+      const textarea = this.$refs.autoExpandTextarea4;
+      if (textarea) {
+        console.log("working")
+        textarea.style.height = "auto"; // Reset height
+        textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
+      }
+    }
+    ,
+    adjustHeight5() {
+      console.log("in adjustheight")
+      const textarea = this.$refs.autoExpandTextarea5;
+      if (textarea) {
+        console.log("working")
+        textarea.style.height = "auto"; // Reset height
+        textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
+      }
+    }
+    ,
+    adjustHeight6() {
+      console.log("in adjustheight")
+
+      const textarea = this.$refs.autoExpandTextarea6;
+      if (textarea) {
+
+        console.log("working")
+        textarea.style.height = "auto";
+        // Reset height
+        console.log("text-are scroll height", textarea.scrollHeight)
+        textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
+      }
+    }
+
+
+
+    ,
+    adjustHeight7() {
+      console.log("in adjustheight")
+      const textarea = this.$refs.autoExpandTextarea7;
+      if (textarea) {
+        console.log("working")
+        textarea.style.height = "auto"; // Reset height
+        textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
+      }
+    }
+    ,
+    resetHeight() {
+      const textarea = this.$refs.autoExpandTextarea
+      if (textarea) {
+        textarea.style.height = "35px"; // Reset to default height on blur
+      }
+    },
+    resetHeight2() {
+      const textarea = this.$refs.autoExpandTextarea2
+      if (textarea) {
+        textarea.style.height = "35px"; // Reset to default height on blur
+      }
+    },
+    resetHeight3() {
+      const textarea = this.$refs.autoExpandTextarea3
+      if (textarea) {
+        textarea.style.height = "35px"; // Reset to default height on blur
+      }
+    },
+    resetHeight4() {
+      const textarea = this.$refs.autoExpandTextarea4
+      if (textarea) {
+        textarea.style.height = "35px"; // Reset to default height on blur
+      }
+    },
+    resetHeight5() {
+      const textarea = this.$refs.autoExpandTextarea5
+      if (textarea) {
+        textarea.style.height = "35px"; // Reset to default height on blur
+      }
+    },
+    resetHeight6() {
+      const textarea = this.$refs.autoExpandTextarea6
+      if (textarea) {
+        textarea.style.height = "35px"; // Reset to default height on blur
+      }
+    },
+    resetHeight7() {
+      const textarea = this.$refs.autoExpandTextarea7
+      if (textarea) {
+        textarea.style.height = "35px"; // Reset to default height on blur
+      }
+    },
+
+
     toggleReadMore() {
       this.isExpanded = !this.isExpanded;
     },
@@ -1828,8 +1961,45 @@ export default {
 
 
     },
+    // getcities() {
+    //   this.loading = true
+    //   if (!this.formData.country) return;  // Exit if no country is selected
+
+    //   // Set up the headers and request body
+    //   const myHeaders = new Headers();
+    //   myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    //   const urlencoded = new URLSearchParams();
+    //   urlencoded.append("country", this.formData.country);
+
+    //   const requestOptions = {
+    //     method: 'POST',
+    //     headers: myHeaders,
+    //     body: urlencoded,
+    //     redirect: 'follow'
+    //   };
+    //   // Fetch cities based on the selected country
+    //   fetch("https://countriesnow.space/api/v0.1/countries/cities", requestOptions)
+    //     .then(response => response.json())  // Convert response to JSON
+    //     .then(result => {
+    //       if (result.data && result.data.length > 0) {
+
+    //         this.cities = result.data; // Update cities array with the result
+    //         this.loading = false
+    //       } else {
+    //         this.cities = [];
+    //         this.loading = false
+    //         // Clear cities if no data is found
+    //       }
+    //     })
+    //     .catch(error => {
+    //       console.log('error', error);
+    //       this.cities = [];  // Clear cities if an error occurs
+    //     });
+    // }
+    // ,
     getcities() {
-      this.loading = true
+      this.loading = true;
       if (!this.formData.country) return;  // Exit if no country is selected
 
       // Set up the headers and request body
@@ -1845,23 +2015,25 @@ export default {
         body: urlencoded,
         redirect: 'follow'
       };
-      // Fetch cities based on the selected country
-      fetch("https://countriesnow.space/api/v0.1/countries/cities", requestOptions)
+
+      // Fetch states based on the selected country
+      fetch("https://countriesnow.space/api/v0.1/countries/states", requestOptions)
         .then(response => response.json())  // Convert response to JSON
         .then(result => {
-          if (result.data && result.data.length > 0) {
-
-            this.cities = result.data; // Update cities array with the result
-            this.loading = false
+          console.log("states countries", result);
+          if (result.data && result.data.states.length > 0) {
+            console.log("states ag countries", result.data);
+            this.cities = result.data.states.map(state => state.name); // Extract state names
+            this.loading = false;
           } else {
             this.cities = [];
-            this.loading = false
-            // Clear cities if no data is found
+            this.loading = false;
           }
         })
         .catch(error => {
           console.log('error', error);
           this.cities = [];  // Clear cities if an error occurs
+          this.loading = false;
         });
     }
     ,
@@ -2256,7 +2428,7 @@ export default {
 
     //     try {
     //       const response = await axios.post(
-    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
     //         formData,
     //         { headers: { 'Content-Type': 'multipart/form-data' } }
     //       );
@@ -2359,7 +2531,7 @@ export default {
 
     //   //   try {
     //   //     const response = await axios.post(
-    //   //       'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //   //       'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
     //   //       formData,
     //   //       { headers: { 'Content-Type': 'multipart/form-data' } }
     //   //     );
@@ -2386,7 +2558,7 @@ export default {
 
     //     try {
     //       const response = await axios.post(
-    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload',
+    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
     //         formData,
     //         { headers: { 'Content-Type': 'multipart/form-data' } }
     //       );
@@ -2486,7 +2658,7 @@ export default {
     //     formData.append("file", file);
 
     //     try {
-    //       const response = await http.post("/common/upload", formData, {
+    //       const response = await http.post("/common/uploadS3", formData, {
     //         headers: { "Content-Type": "multipart/form-data" },
     //       });
 
@@ -2614,7 +2786,7 @@ export default {
     //     formData.append("file", file);
 
     //     try {
-    //       const response = await http.post("/common/upload", formData, {
+    //       const response = await http.post("/common/uploadS3", formData, {
     //         headers: { "Content-Type": "multipart/form-data" },
     //       });
 
@@ -2744,14 +2916,14 @@ export default {
         formData.append("file", file);
 
         try {
-          const response = await http.post("/common/upload", formData, {
+          const response = await http.post("/common/uploadS3", formData, {
             headers: { "Content-Type": "multipart/form-data" },
           });
 
-          if (response.data && response.data.secureUld) {
+          if (response.data && response.data.s3Url) {
             console.log("response data", response.data);
-            console.log("Image uploaded:", response.data.secureUld);
-            uploadedImageUrls.push(response.data.secureUld);
+            console.log("Image uploaded:", response.data.s3Url);
+            uploadedImageUrls.push(response.data.s3Url);
           }
         } catch (error) {
           console.error("Error uploading image:", error);
@@ -2847,6 +3019,8 @@ export default {
         url: ""
       };
       this.croppedImages = []
+      this.uploadedImageUrls = []
+      this.uploadedFiles = []
 
       // this.selectedStoryType = "";
     }
@@ -3335,6 +3509,14 @@ export default {
   },
 
   async mounted() {
+    this.adjustHeight();
+    this.resetHeight();
+    this.resetHeight2();
+    this.resetHeight3();
+    this.resetHeight4();
+    this.resetHeight5();
+    this.resetHeight6();
+    this.resetHeight7();
     if (!this.$route.hash || this.$route.hash !== '#home') {
       this.$router.push({ hash: '#home' });
     }
@@ -3401,9 +3583,9 @@ export default {
   border: 6px solid;
   border-color: #FF7A00 transparent;
   animation: spin 1s infinite ease-out;
-  position: absolute;
-  top: 91%;
-  left: 50%;
+  position: fixed;
+  /* top: 91%; */
+  left: 40%;
 }
 
 @keyframes spin {
@@ -4095,6 +4277,9 @@ select::placeholder {
   align-items: center;
   justify-content: start;
 }
+
+
+
 
 .custom-navigation {
   /* position: fixed;

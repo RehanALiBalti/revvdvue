@@ -620,7 +620,7 @@ export default {
     //     formData.append('file', file); // Add the file to the FormData object
 
     //     // Use axios to send the file to the server
-    //     axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload', formData, {
+    //     axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3', formData, {
     //       headers: {
     //         'Content-Type': 'multipart/form-data', // Indicate it's a file upload
     //       },
@@ -667,13 +667,13 @@ export default {
       formData.append('file', file);
 
       // Send file to server using API instance
-      API.post('/common/upload', formData, {
+      API.post('/common/uploadS3', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
         .then((response) => {
           console.log("✅ Upload Successful:", response.data);
-          if (response.data?.secureUld) {
-            this.secureUld = response.data.secureUld;
+          if (response.data?.s3Url) {
+            this.secureUld = response.data.s3Url;
             console.log("🔒 File uploaded, Secure UID:", this.secureUld);
           }
         })
@@ -1121,7 +1121,7 @@ export default {
     //     formData.append('file', file); // Add the file to the form data
 
     //     // Use axios to send the formData to the server
-    //     axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/upload', formData, {
+    //     axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3', formData, {
     //       headers: {
     //         'Content-Type': 'multipart/form-data', // Indicate that we're uploading a file
     //       }
@@ -1176,15 +1176,19 @@ export default {
       formData.append("file", file);
 
       // ✅ Upload File
-      API.post("/common/upload", formData, {
+      API.post("/common/uploadS3", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       })
         .then(response => {
           console.log("✅ Upload Successful:", response.data);
 
           // Store the secure UID from the response
-          if (response.data?.secureUld) {
-            this.secureUld = response.data.secureUld;
+          // if (response.data?.secureUld) {
+          //   this.secureUld = response.data.secureUld;
+          //   console.log("🔗 File uploaded, Secure UID:", this.secureUld);
+          // }
+          if (response.data?.s3Url) {
+            this.secureUld = response.data.s3Url;
             console.log("🔗 File uploaded, Secure UID:", this.secureUld);
           }
         })

@@ -33,6 +33,13 @@ import FeaturedStories from "./components/FeaturedStories.vue";
 import CoverPhoto from "./components/CoverPhoto.vue";
 import SingleStory from "./components/SingleStory.vue";
 import BannerStory from "./components/BannerStory.vue";
+import cookies from "./components/cookies.vue";
+import buyCar from "./components/buyCar.vue";
+import buyCar2 from "./components/buyCar2.vue";
+import buyCar3 from "./components/buyCar3.vue";
+import buyCar4 from "./components/buyCar4.vue";
+import sellCar from "./components/sellCar.vue";
+import carDetails from "./components/carDetails.vue";
 const routes = [
   {
     name: "HomeLanding",
@@ -182,7 +189,7 @@ const routes = [
     path: "/CarsListing",
   },
   {
-    path: "/carslistingdetails/",
+    path: "/carslistingdetails",
     name: "CarsListingDetails",
     component: CarsListingDetails,
   },
@@ -205,6 +212,12 @@ const routes = [
     path: "/termofservice",
     name: "TermsOfService",
     component: TermsOfService,
+  },
+
+  {
+    path: "/cookies",
+    name: "cookies",
+    component: cookies,
   },
   {
     path: "/contact",
@@ -246,6 +259,36 @@ const routes = [
     path: "/stories",
     name: "FeaturedStories",
     component: FeaturedStories,
+  },
+  {
+    path: "/buy",
+    name: "buyCar",
+    component: buyCar,
+  },
+  {
+    path: "/buy2",
+    name: "buyCar2",
+    component: buyCar2,
+  },
+  {
+    path: "/buy3",
+    name: "buyCar3",
+    component: buyCar3,
+  },
+  {
+    path: "/buy4",
+    name: "buyCar4",
+    component: buyCar4,
+  },
+  {
+    path: "/sell",
+    name: "sellCar",
+    component: sellCar,
+  },
+  {
+    path: "/cardetails",
+    name: "carDetails",
+    component: carDetails,
   },
 ];
 
