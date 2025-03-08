@@ -1996,8 +1996,29 @@ a.termsService {
 	z-index: 999;
 	width: 154px;
 	height: 50px;
-	bottom: 20px;
-	right: 20px;
+	/* bottom: 20px; */
+	bottom: 32%;
+	/* right: 20px; */
+	left: 45%;
+}
+
+#fp-nav {
+
+	display: none;
+}
+
+@media(max-width:768px) {
+	.btn-div-create-forum.position-absolute {
+		right: 0;
+		bottom: 0;
+		z-index: 999;
+		width: 154px;
+		height: 50px;
+		/* bottom: 20px; */
+		bottom: 19%;
+		/* right: 20px; */
+		left: 33%;
+	}
 }
 
 /* video btn css end */
