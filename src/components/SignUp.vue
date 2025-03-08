@@ -143,7 +143,7 @@
               </div>
 
               <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap ">
-                <input type="checkbox" id="check2" class="form-check-input m-0" v-model="formData.check2" />
+                <input type="checkbox" id="check2" class="form-check-input m-0" />
                 <label for="check2" class="form-label  mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                   <router-link to="/privacypolicy" class="termsService" target="_blank">{{ $t('PrivacyPolicy')
                   }}</router-link>
@@ -154,7 +154,8 @@
               </div>
 
               <div class="col-md-12 d-flex  flex-md-row  gap-3  gap-md-2 mt-3 textnowrap ">
-                <input type="checkbox" id="check2" class="form-check-input m-0" :placeholder="$t('Enter here')" />
+                <input type="checkbox" id="check2" class="form-check-input m-0" :placeholder="$t('Enter here')"
+                  v-model="formData.check2" />
                 <label for="check2" class="form-label  mb-0 p-0">{{ $t('NoEmails') }}
 
                 </label>
@@ -265,12 +266,13 @@
   <!-- modal ends -->
 </template>
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import { mapActions } from 'vuex';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
 import { Auth, Hub } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
+
 // import Multiselect from 'vue-multiselect'
 import http from "@/http-common"; // Import Axios instance
 
@@ -558,69 +560,116 @@ export default {
       }
     },
 
+    // async submitForm() {
+    //   console.log(this.formData)
+    //   this.validateForm();
+    //   if (this.isFormValid()) {
+
+    //     // Submit form data
+    //     const mydata = {
+
+    //       nickname: this.formData.nickname.trim().toLowerCase(),
+    //       // age: this.formData.age,
+    //       email: this.formData.email,
+    //       phone: this.formData.phone,
+    //       password: this.formData.password,
+    //       fullname: this.formData.fullname,
+    //       check1: this.formData.check1 ? "true" : "false",
+    //       check2: this.formData.check2 ? "true" : "false",
+    //       // socialMedia: this.formData.socialMedia,
+    //     };
+
+    //     console.log("Form submitted successfully", mydata);
+    //     try {
+    //       const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${mydata.nickname}`;
+    //       const response = await axios.get(url);
+    //       console.log("respi", response)
+    //       if (response.data.count == 0) {
+
+    //         this.$store.dispatch('auth/handleSignUp',
+    //           mydata)
+    //           .then(
+    //             (data) => {
+    //               if (data.success == 1) {
+
+    //                 // this.isModalOpen = true
+    //                 //          this.submitProfileForm()
+    //                 localStorage.setItem('login', true);
+    //                 localStorage.setItem('firstTimeLogin', true);
+    //                 //  window.location.reload();
+    //                 // this.$router.push("/signin");
+    //                 // this.$router.push("/profile");
+    //                 // window.location.reload()
+    //                 // this.$router.push({ name: 'UserProfile' })
+    //               } else {
+    //                 this.isModalOpenFail = true
+    //                 this.errorMessage = data.error
+    //               }
+
+    //               console.log(data);
+    //             })
+    //       }
+    //       else {
+    //         this.isModalOpenName = true
+    //       }
+    //     }
+    //     catch (error) {
+    //       console.log("error", error)
+    //     }
+    //     // console.log('User information retrieved successfully:', response.data);
+
+
+
+    //   } else {
+    //     console.log("Form validation failed");
+    //   }
+    // },
+
     async submitForm() {
-      console.log(this.formData)
+      console.log(this.formData);
       this.validateForm();
+
       if (this.isFormValid()) {
-
-        // Submit form data
+        // Prepare form data
         const mydata = {
-
           nickname: this.formData.nickname.trim().toLowerCase(),
-          // age: this.formData.age,
           email: this.formData.email,
           phone: this.formData.phone,
           password: this.formData.password,
-          fullname: this.formData.fullname
-          // socialMedia: this.formData.socialMedia,
+          fullname: this.formData.fullname,
+          check1: this.formData.check1 ? "true" : "false",
+          check2: this.formData.check2 ? "true" : "false",
         };
 
         console.log("Form submitted successfully", mydata);
+
         try {
-          const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/nickname?nickname=${mydata.nickname}`;
-          const response = await axios.get(url);
-          console.log("respi", response)
+          // Use http-common for API request
+          const response = await http.get(`/users/nickname?nickname=${mydata.nickname}`);
+          console.log("Response:", response);
+
           if (response.data.count == 0) {
-
-            this.$store.dispatch('auth/handleSignUp',
-              mydata)
-              .then(
-                (data) => {
-                  if (data.success == 1) {
-
-                    // this.isModalOpen = true
-                    //          this.submitProfileForm()
-                    localStorage.setItem('login', true);
-                    localStorage.setItem('firstTimeLogin', true);
-                    //  window.location.reload();
-                    // this.$router.push("/signin");
-                    // this.$router.push("/profile");
-                    // window.location.reload()
-                    // this.$router.push({ name: 'UserProfile' })
-                  } else {
-                    this.isModalOpenFail = true
-                    this.errorMessage = data.error
-                  }
-
-                  console.log(data);
-                })
+            this.$store.dispatch('auth/handleSignUp', mydata)
+              .then((data) => {
+                if (data.success == 1) {
+                  localStorage.setItem('login', true);
+                  localStorage.setItem('firstTimeLogin', true);
+                } else {
+                  this.isModalOpenFail = true;
+                  this.errorMessage = data.error;
+                }
+                console.log(data);
+              });
+          } else {
+            this.isModalOpenName = true;
           }
-          else {
-            this.isModalOpenName = true
-          }
+        } catch (error) {
+          console.error("Error:", error);
         }
-        catch (error) {
-          console.log("error", error)
-        }
-        // console.log('User information retrieved successfully:', response.data);
-
-
-
       } else {
         console.log("Form validation failed");
       }
     },
-
     validateForm() {
       this.formErrors = {};
       // console.log("check1", this.formData.check1)

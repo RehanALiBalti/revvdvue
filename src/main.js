@@ -149,18 +149,37 @@ const i18n = createI18n({
 //     authenticationFlowType: "USER_SRP_AUTH",
 //   },
 // });
+// fore testing
+// Amplify.configure({
+//   Auth: {
+//     region: "eu-central-1",
+//     userPoolId: "eu-central-1_CcqX3oNN7",
+//     userPoolWebClientId: "83qurrrrh1r49cch9hl2hii2e",
+//     authenticationFlowType: "USER_SRP_AUTH",
+//     oauth: {
+//       domain: "revdot.auth.eu-central-1.amazoncognito.com",
+//       redirectSignIn: "https://revdout-local.d26xar06lf8hqo.amplifyapp.com/",
+//       // redirectSignIn: "http://localhost:8081/",
+//       redirectSignOut:
+//         "https://revdout-local.d26xar06lf8hqo.amplifyapp.com/signin",
+//       // redirectSignOut: "http://localhost:8081/",
+//       scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
+//       responseType: "code",
+//     },
+//   },
+// });
+// for live
 Amplify.configure({
   Auth: {
     region: "eu-central-1",
-    userPoolId: "eu-central-1_CcqX3oNN7",
-    userPoolWebClientId: "83qurrrrh1r49cch9hl2hii2e",
+    userPoolId: "eu-central-1_09WbuSvnw",
+    userPoolWebClientId: "4nse3u3jp2b50nn5a8693liv3t",
     authenticationFlowType: "USER_SRP_AUTH",
     oauth: {
-      domain: "revdot.auth.eu-central-1.amazoncognito.com",
-      redirectSignIn: "https://revdout-local.d26xar06lf8hqo.amplifyapp.com/",
+      domain: "rev-dev.auth.eu-central-1.amazoncognito.com",
+      redirectSignIn: "https://master.d2r1t98mmb0340.amplifyapp.com/",
       // redirectSignIn: "http://localhost:8081/",
-      redirectSignOut:
-        "https://revdout-local.d26xar06lf8hqo.amplifyapp.com/signin",
+      redirectSignOut: "https://master.d2r1t98mmb0340.amplifyapp.com/signin",
       // redirectSignOut: "http://localhost:8081/",
       scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
       responseType: "code",

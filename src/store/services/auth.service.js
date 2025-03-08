@@ -313,8 +313,16 @@ function logout() {
 //       });
 //   });
 // }
-function register(fullname, name, password, email) {
-  console.log("before request", fullname, name, password, email);
+function register(fullname, name, password, email, check1, check2) {
+  console.log(
+    "before request",
+    fullname,
+    name,
+    password,
+    email,
+    check1,
+    check2
+  );
 
   return new Promise((resolve, reject) => {
     // Call Auth.signUp
@@ -328,6 +336,12 @@ function register(fullname, name, password, email) {
         nickname: name,
 
         "custom:fullname": fullname,
+        "custom:check1": check1,
+        "custom:check2": check2,
+
+        // "custom:check1": "true",
+        // "custom:check2": "true",
+
         //   'custom:age':age,
         //   'custom:socialMedia':socialMedia,
         // Add other optional attributes as needed
@@ -374,7 +388,9 @@ function register2(
   mobilePhone,
   email,
   password,
-  role
+  role,
+  check1,
+  check2
 ) {
   console.log(
     "before request",
@@ -397,7 +413,9 @@ function register2(
     email,
     password,
     "here is role",
-    role
+    role,
+    check1,
+    check2
   );
 
   return new Promise((resolve, reject) => {
@@ -427,7 +445,8 @@ function register2(
         "custom:mobileCustomer": mobilePhone,
         "custom:emailForCustomer": email,
         "custom:dealerPassword": password,
-        "custom:Role": role,
+        "custom:check1": check1,
+        "custom:check2": check2,
       },
 
       autoConfirm: true,
@@ -442,12 +461,122 @@ function register2(
         resolve(response);
       })
       .catch((error) => {
+        console.log("Auth Service test33", error);
         console.log("Auth Service test22", error.message);
         const response = { success: 0, error: error.message };
         reject(response);
       });
   });
 }
+// function register2(
+//   name,
+//   street,
+//   streetNo,
+//   street2,
+//   zipCode,
+//   city,
+//   country,
+//   intlPrefix1,
+//   prefix1,
+//   phone1,
+//   intlPrefix2,
+//   prefix2,
+//   fax,
+//   intlPrefix3,
+//   prefix3,
+//   mobilePhone,
+//   email,
+//   password,
+//   role,
+//   check1,
+//   check2
+// ) {
+//   console.log(
+//     "before request",
+//     name,
+//     street,
+//     streetNo,
+//     street2,
+//     zipCode,
+//     city,
+//     country,
+//     intlPrefix1,
+//     prefix1,
+//     phone1,
+//     intlPrefix2,
+//     prefix2,
+//     fax,
+//     intlPrefix3,
+//     prefix3,
+//     mobilePhone,
+//     email,
+//     password,
+//     "here is role",
+//     role,
+//     check1,
+//     check2
+//   );
+
+//   return new Promise((resolve, reject) => {
+//     const attributes = {
+//       name: name,
+//       "custom:companyName": name,
+//       nickname: name,
+//       "custom:street1": street,
+//       "custom:number": mobilePhone,
+//       "custom:street2": street2,
+//       "custom:zipCode": zipCode,
+//       "custom:country": country,
+//       "custom:interanetPrefix1": intlPrefix1,
+//       "custom:prefix1": prefix1,
+//       "custom:phoneCustomer": phone1,
+//       "custom:interanetPrefix2": intlPrefix2,
+//       "custom:prefix2": prefix2,
+//       "custom:faxCustomer": fax,
+//       "custom:interanetPrefix3": intlPrefix3,
+//       "custom:city": city,
+//       "custom:prefix3": prefix3,
+//       "custom:mobileCustomer": mobilePhone,
+//       "custom:emailForCustomer": email,
+//       "custom:dealerPassword": password,
+//       // "custom:check1": check1,
+//       // "custom:check2": check2,
+//     };
+
+//     console.log("Attempting to sign up with attributes:", attributes);
+
+//     Auth.signUp({
+//       username: email,
+//       password: password,
+//       attributes: attributes,
+//       autoConfirm: true,
+//     })
+//       .then(({ user }) => {
+//         console.log("Auth Service success", user);
+//         resolve({ success: 1, result: user });
+//       })
+//       .catch((error) => {
+//         console.error("Auth Service Error:", error);
+//         console.log("Error Message:", error.message);
+
+//         // Detect which attribute is causing the issue
+//         Object.keys(attributes).forEach((key) => {
+//           try {
+//             Auth.signUp({
+//               username: email,
+//               password: password,
+//               attributes: { [key]: attributes[key] },
+//             });
+//             console.log(`✅ Allowed attribute: ${key}`);
+//           } catch (err) {
+//             console.log(`❌ Unauthorized attribute: ${key}`);
+//           }
+//         });
+
+//         reject({ success: 0, error: error.message });
+//       });
+//   });
+// }
 
 export default {
   login,

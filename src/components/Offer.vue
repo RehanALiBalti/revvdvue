@@ -142,7 +142,9 @@
 				</div> -->
 
 				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
-
+					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+						<img src="../../public/images/newlayer2.png">
+					</div>
 					<div class="card loadCard">
 						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('Buy') }}</h5>
@@ -185,7 +187,9 @@
 					</div>
 				</div>
 				<div class="col-6 col-sm-6 col-md-3 col-lg-2  mb-4 position-relative">
-
+					<div class="cardOverlay d-flex justify-content-start align-items-center flex-column pt-4">
+						<img src="../../public/images/newlayer2.png">
+					</div>
 					<div class="card loadCard">
 						<div class="card-body d-flex flex-column justify-content-between align-items-center">
 							<h5 class="card-title">{{ $t('Sell') }}</h5>
