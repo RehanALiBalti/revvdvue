@@ -97,7 +97,9 @@
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
                                 <input type="checkbox" id="check1" v-model="formData.check1"
-                                    :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check1 }]" />
+                                    :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check1 }]"
+                                    :checked="formData.check1 === 'true'"
+                                    @change="formData.check1 = $event.target.checked ? 'true' : 'false'" />
                                 <label for="check1" class="form-label m-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
                                     <router-link to="/termofservice" class="termsService" target="_blank">{{
                                         $t('GeneralTermsAndConditions') }}</router-link>
@@ -107,7 +109,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
-                                <input type="checkbox" id="check2" v-model="formData.check2"
+                                <input type="checkbox" id="check2"
                                     :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check2 }]" />
                                 <label for="check2" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                                     <router-link to="/privacypolicy" class="termsService" target="_blank">{{
@@ -118,7 +120,9 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
-                                <input type="checkbox" id="check3" class="form-check-input" />
+                                <input type="checkbox" id="check3" class="form-check-input" v-model="formData.check2"
+                                    :checked="formData.check2 === 'true'"
+                                    @change="formData.check2 = $event.target.checked ? 'true' : 'false'" />
                                 <label for="check3" class="form-label m-0 p-0">{{ $t('NoEmails') }}</label>
                             </div>
                             <div class="col-md-12">

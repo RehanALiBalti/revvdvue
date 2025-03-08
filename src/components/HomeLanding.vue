@@ -2038,8 +2038,10 @@ export default {
     }
     ,
     async fetchBannerStories() {
+      // previous link
+      // https://buzzwaretech.com/adminrev/api/bannerstores
       try {
-        const response = await fetch('https://buzzwaretech.com/adminrev/api/bannerstores');
+        const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
         const data = await response.json();
         console.log("banner_response data", data)
         if (data.success) {

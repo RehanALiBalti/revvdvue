@@ -181,7 +181,7 @@ const actions = {
   async handleSignUp(
     context,
     // { name, age, password, email, phone, socialMedia }
-    { fullname, nickname, password, email }
+    { fullname, nickname, password, email, check1, check2 }
   ) {
     console.log("yes", context);
     try {
@@ -189,7 +189,9 @@ const actions = {
         fullname,
         nickname,
         password,
-        email
+        email,
+        check1,
+        check2
       );
       console.log("usersignup", result1);
       const result = await AuthService.login(email, password);
@@ -227,6 +229,8 @@ const actions = {
       email,
       password,
       role,
+      check1,
+      check2,
     }
   ) {
     console.log("yes", context);
@@ -250,7 +254,9 @@ const actions = {
         mobilePhone,
         email,
         password,
-        role
+        role,
+        check1,
+        check2
       );
       console.log("singup delear object", result1);
       const result = await AuthService.login(email, password);

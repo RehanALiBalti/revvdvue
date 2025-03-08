@@ -1,43 +1,41 @@
 <template>
   <div class="loader  " ref="loader">
     <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
-      <source :src="videoSrc" ref="video" type="video/mp4">
+      <source :src="videoSrc" type="video/mp4">
     </video>
-    <!-- <video id="myVideo" class="video-loader" muted playsinline>
-			<source src="<?= base_url('/assets/images/revvdoutVideo1mobile.mp4') ?>" type="video/mp4">
-		</video> -->
-    <div class="btn-div-create-forum position-absolute" v-if="showStartButton" >
-      <span class="border-bottom-btn border-top-btn position-absolute">
-        <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
-      </span>
 
-      <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-        <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
-      </span>
+    <div class="d-flex justify-content-center">
+      <div class="btn-div-create-forum position-absolute" v-if="showStartButton">
+        <span class="border-bottom-btn border-top-btn position-absolute">
+          <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
+        </span>
 
-      <span
-        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-        <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
-      </span> <!-- <button class="sound-btn-on-video" id="soundToggle" @click="playVideo">Start Engine</button> -->
-      <button class="sound-btn-on-video" @click="playVideo">
-        Start Engine
-      </button>
+        <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+          <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
+        </span>
 
-      <!-- <button v-else class="sound-btn-on-video" @click="toggleSound">
-        {{ soundButtonText }}
-      </button> -->
-      <span class="border-bottom-btn border-left-btn new-popup position-absolute">
-        <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
-      </span>
-      <span class="border-bottom-btn position-absolute">
-        <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
-      </span>
+        <span
+          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+          <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
+        </span>
+        <button class="sound-btn-on-video" @click="playVideo">
+          Start Engine
+        </button>
+
+
+        <span class="border-bottom-btn border-left-btn new-popup position-absolute">
+          <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
+        </span>
+        <span class="border-bottom-btn position-absolute">
+          <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
+        </span>
+      </div>
     </div>
     <div class="title-loader-div" v-show="isTextShow">
       <h1 class="banner-title new-heading-loader">
         Trun up the volume for better experience
       </h1>
-      <!-- <h1 class="banner-title new-heading-loader">Turn up the volume for a better experience</h1> -->
+
     </div>
   </div>
   <div id="particlees">
@@ -73,7 +71,7 @@ import FooterSect from '@/components/FooterSect'
 import FooterSect2 from '@/components/FooterSect2'
 import { useI18n } from 'vue-i18n';
 import { useShowFooter } from '@/composables/showFooter';
-import videoSrc from "./assets/images/loader.mp4"
+import videoSrc from "./assets/images/landv.mp4"
 export default {
 
   name: 'App',
