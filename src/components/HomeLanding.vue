@@ -130,7 +130,7 @@
                         </swiper-slide>
                       </swiper> -->
                       <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
-                        :initialSlide="1" :pagination="{ clickable: true }" :navigation="{
+                        :initialSlide="1"  :navigation="{
                           nextEl: '.custom-next',
                           prevEl: '.custom-prev',
                         }" class="mySwiper swiper-no-shadow modalswipper">
@@ -1366,7 +1366,7 @@ import '../../node_modules/vue-draggable-resizable/dist/style.css';
 import 'cropperjs/dist/cropper.css';
 import Header from "./Header.vue"
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation } from "swiper/modules";
+// import { Navigation } from "swiper/modules";
 import { EffectCards } from "swiper/modules";
 import instaIcon from "@/assets/images/ins.png";
 
@@ -1425,7 +1425,7 @@ export default {
       setLogin,
       isLogin,
       imageUrl: null, // Current image being cropped
-      modules: [EffectCards, Navigation],
+      modules: [EffectCards],
 
     };
   },
@@ -4660,5 +4660,9 @@ select::placeholder {
 .indicator_Image {
   position: relative !important;
   left: -22px !important;
+}
+
+.swiper-pagination{
+  display:none !important;
 }
 </style>
