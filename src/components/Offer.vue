@@ -1,5 +1,5 @@
 <template>
-	<section class="my-5 " id="gallery">
+	<section class="my-5 container-fluid" id="gallery">
 		<div class="container my-5 d-block d-md-none">
 			<div class="banner-content">
 				<!-- <h1 class="banner-title">Changing the Car World</h1> -->

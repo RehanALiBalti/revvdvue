@@ -1,19 +1,46 @@
 <template>
     <div class="container">
-        <div name="termly-embed" data-id="5a579c58-9c7c-40c5-8345-6731f59458c9"></div>
+        <div name="termly-embed" :key="$route.fullPath" data-id="5a579c58-9c7c-40c5-8345-6731f59458c9"></div>
     </div>
 </template>
 
-<script type="text/javascript">
-(function (d, s, id) {
-    var js,
-        tjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://app.termly.io/embed-policy.min.js";
-    tjs.parentNode.insertBefore(js, tjs);
-})(document, "script", "termly-jssdk");
+<script>
+export default {
+    name: 'PrivacyPolicy',
+    mounted() {
+        this.loadTermlyScript();
+    },
+    watch: {
+        '$route'() {
+            this.loadTermlyScript();
+        }
+    },
+    methods: {
+        loadTermlyScript() {
+            const existingScript = document.getElementById('termly-jssdk');
+            if (existingScript) {
+                existingScript.remove();
+            }
+
+            setTimeout(() => {
+                (function (d, s, id) {
+                    var js, tjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "https://app.termly.io/embed-policy.min.js";
+                    js.onload = () => {
+                        console.log('Termly script loaded successfully!');
+                    };
+                    js.onerror = () => {
+                        console.error('Failed to load Termly script.');
+                    };
+                    tjs.parentNode.insertBefore(js, tjs);
+                })(document, "script", "termly-jssdk");
+            }, 500);
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -24,13 +51,9 @@ div[name="termly-embed"] {
     color: #333;
     line-height: 1.5;
     padding: 20px;
-
     border-radius: 8px;
-
-    /* max-width: 800px; */
     position: relative;
     z-index: 9999;
-
     margin: 20px auto;
 }
 
