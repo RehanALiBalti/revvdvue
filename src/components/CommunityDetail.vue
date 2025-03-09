@@ -1335,6 +1335,66 @@ export default {
     //     }
     //   }
     // }
+    // postComment() {
+    //   if (!this.isLogin) {
+    //     this.loginModal = true;
+    //     return;
+    //   }
+
+    //   this.imgLoading = true; // ✅ Start loading indicator
+    //   const file = this.secureUld; // ✅ Use secure URL from upload response
+    //   const maxSizeInBytes = 3 * 1024 * 1024; // ✅ 3MB size limit
+
+    //   console.log("🖼️ Comment Image:", file);
+
+    //   if (file && file.size > maxSizeInBytes) {
+    //     this.isModal3Open = true;
+    //     this.imgLoading = false;
+    //     return;
+    //   }
+
+    //   // ✅ Ensure comment is not empty
+    //   if (!this.imageUrl && !this.newComment.trim()) {
+    //     this.isModal2Open = true;
+    //     this.imgLoading = false;
+    //     return;
+    //   }
+
+    //   // ✅ Create FormData
+    //   const formData = new FormData();
+    //   formData.append("image", file || ""); // Append image if available
+    //   formData.append("community_id", this.id);
+    //   formData.append("comments", this.newComment.trim());
+    //   formData.append("sub", this.sub);
+    //   formData.append("type", "comment");
+
+    //   // ✅ Send request using `apiClient`
+    //   API.post("/comments/comments", formData)
+    //     .then(response => {
+    //       console.log("✅ Comment posted successfully:", response.data);
+
+    //       // ✅ Update comments list
+    //       this.comments.push(response.data);
+    //       this.getComments();
+    //       this.getNoOfComments();
+
+    //       // ✅ Clear form inputs
+    //       this.newComment = "";
+    //       this.imageUrl = "";
+    //       if (this.$refs.fileInput) {
+    //         this.$refs.fileInput.value = "";
+    //       }
+
+    //       // ✅ Auto-scroll to the latest comment
+    //       this.$nextTick(() => this.scrollToBottom());
+
+    //       this.imgLoading = false; // ✅ Stop loading indicator
+    //     })
+    //     .catch(error => {
+    //       console.error("❌ Error posting comment:", error);
+    //       this.imgLoading = false; // ✅ Stop loading indicator on error
+    //     });
+    // }
     postComment() {
       if (!this.isLogin) {
         this.loginModal = true;
@@ -1362,7 +1422,14 @@ export default {
 
       // ✅ Create FormData
       const formData = new FormData();
-      formData.append("image", file || ""); // Append image if available
+
+      // Only append the image if a new image is selected
+      if (this.imageUrl) {
+        formData.append("image", file || ""); // Append image if available
+      } else {
+        this.secureUld = ""; // Clear the secureUld if no new image is selected
+      }
+
       formData.append("community_id", this.id);
       formData.append("comments", this.newComment.trim());
       formData.append("sub", this.sub);
@@ -1381,6 +1448,7 @@ export default {
           // ✅ Clear form inputs
           this.newComment = "";
           this.imageUrl = "";
+          this.secureUld = ""; // Clear the secureUld after posting the comment
           if (this.$refs.fileInput) {
             this.$refs.fileInput.value = "";
           }
