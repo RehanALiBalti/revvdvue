@@ -1362,7 +1362,7 @@ export default {
 		// 		});
 		// }
 		getcities() {
-			this.loading = true;
+			
 			if (!this.formData.country) return;  // Exit if no country is selected
 
 			// Set up the headers and request body
