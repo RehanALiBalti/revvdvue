@@ -327,7 +327,24 @@ const router = createRouter({
   //   }
   // },
 });
+router.beforeEach((to, from, next) => {
+  const appElement = document.getElementById("app");
 
+  // Check if the current route is one of the specified routes
+  if (
+    to.path === "/termofservice" ||
+    to.path === "/privacypolicy" ||
+    to.path === "/cookies"
+  ) {
+    appElement.classList.remove("bg-color-header-main");
+    appElement.classList.add("bg-white");
+  } else {
+    appElement.classList.remove("bg-white");
+    appElement.classList.add("bg-color-header-main");
+  }
+
+  next();
+});
 router.beforeEach((to, from, next) => {
   const isAuthenticated = JSON.parse(localStorage.getItem("login")) || false;
 
