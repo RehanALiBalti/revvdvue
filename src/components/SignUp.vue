@@ -133,7 +133,7 @@
               <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap ">
                 <input type="checkbox" id="check1" class="form-check-input m-0" v-model="formData.check1" />
                 <label for="check1" class="form-label  mb-0 p-0">{{ $t('IHaveReadAndAgreeWith') }}
-                  <router-link to="/termofservice" class="termsService" target="_blank"> {{
+                  <router-link to="/termofservice" class="termsService"> {{
                     $t('GeneralTermsAndConditions')
                   }}</router-link>
                 </label>
@@ -145,7 +145,7 @@
               <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap ">
                 <input type="checkbox" id="check2" class="form-check-input m-0" />
                 <label for="check2" class="form-label  mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
-                  <router-link to="/privacypolicy" class="termsService" target="_blank">{{ $t('PrivacyPolicy')
+                  <router-link to="/privacypolicy" class="termsService">{{ $t('PrivacyPolicy')
                   }}</router-link>
                 </label>
                 <div v-if="formErrors.check2" class="text-danger f14">
