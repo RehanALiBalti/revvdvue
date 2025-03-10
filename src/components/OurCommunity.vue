@@ -1054,8 +1054,9 @@ export default {
 /* @import "vue-select/dist/vue-select.css"; */
 
 .modalaa {
-  position: static !important;
+  position: relative !important;
   background: transparent !important;
+  z-index: 5;
 }
 
 

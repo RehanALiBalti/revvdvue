@@ -62,7 +62,7 @@
 									</div>
 									<div class="col-md-4">
 										<label for="age" class="form-label">{{ $t('age') }}</label>
-										<input v-model="age" id="age" type="text" name="age"
+										<input v-model="age" id="age" type="number" name="age"
 											class="form-control form-input" :placeholder="$t('Enter here')" required>
 									</div>
 									<div class="col-md-4">
@@ -1362,7 +1362,7 @@ export default {
 		// 		});
 		// }
 		getcities() {
-			
+
 			if (!this.formData.country) return;  // Exit if no country is selected
 
 			// Set up the headers and request body
@@ -3594,6 +3594,7 @@ select::placeholder {
 @media(max-width:768px) {
 	.options-list {
 		max-height: 133px !important;
+		position: relative;
 	}
 }
 </style>
