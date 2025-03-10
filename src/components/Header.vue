@@ -769,6 +769,11 @@ export default {
   color: #f95f19 !important
 }
 
+.nav-mob {
+  position: relative;
+  z-index: 999;
+}
+
 @media(max-width:992px) {
   .nav-mob {
     justify-content: center;

@@ -143,13 +143,13 @@
               </div>
 
               <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap ">
-                <input type="checkbox" id="check2" class="form-check-input m-0" />
-                <label for="check2" class="form-label  mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
+                <input type="checkbox" id="check3" class="form-check-input m-0" v-model="formData.check3" />
+                <label for="check3" class="form-label  mb-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                   <router-link to="/privacypolicy" class="termsService">{{ $t('PrivacyPolicy')
                   }}</router-link>
                 </label>
-                <div v-if="formErrors.check2" class="text-danger f14">
-                  {{ formErrors.check2 }}
+                <div v-if="formErrors.check3" class="text-danger f14">
+                  {{ formErrors.check3 }}
                 </div>
               </div>
 
@@ -318,6 +318,7 @@ export default {
         confirmPassword: "",
         check1: "",
         check2: "",
+        check3: "",
         showPassword: false,
         showPassword2: false,
         role: "user"
@@ -333,7 +334,8 @@ export default {
         password: "",
         confirmPassword: "",
         check1: "",
-        check2: ""
+        check2: "",
+        check3: ""
       },
       value: [],
 
@@ -673,8 +675,8 @@ export default {
     validateForm() {
       this.formErrors = {};
       // console.log("check1", this.formData.check1)
-      if (!this.formData.check2) {
-        this.formErrors.check2 = "Please Check the Privacy and Policy"
+      if (!this.formData.check3) {
+        this.formErrors.check3 = "Please Check the Privacy and Policy"
       }
       if (!this.formData.check1) {
         this.formErrors.check1 = "Please Check the General Terms and Conditions"

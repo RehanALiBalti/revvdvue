@@ -219,15 +219,20 @@
                               <span class="cancel" @click="removeImageReply"><i class="fa-solid fa-xmark"></i></span>
                             </div>
                           </div>
+
                           <div class="input-group">
                             <input type="file" class="Reply-image d-none" id="rImage" @change="handleImageChange"
                               ref="fileInputReply">
-                            <span class="input-group-text igt-left" @click="openFileInput2">
+                            <div v-if="imgLoading2" class="imgLoadingBox z99">
+                              <div class="box2"></div>
+                            </div>
+                            <span class="input-group-text igt-left" @click="openFileInput2" v-else>
                               <i data-v-2645ce9a="" class="fa-solid fa-image"></i>
                             </span>
                             <input class="form-control formc1" type="text" v-model="replyText"
                               placeholder="Type your reply here">
-                            <span class="input-group-text igt-right" @click="submitReply(comment.id)">
+                            <span class="input-group-text igt-right" @click="submitReply(comment.id)"
+                              v-if="imgLoading2 == false">
                               <svg xmlns="http://www.w3.org/2000/svg" class="" width="31.5" height="27"
                                 viewBox="0 0 31.5 27">
                                 <path id="Icon_material-send" data-name="Icon material-send"
@@ -375,6 +380,7 @@ export default {
 
   data() {
     return {
+      imgLoading2: false,
       secureUld: "",
       isLogin: "",
       loginModal: false,
@@ -642,17 +648,64 @@ export default {
     //     console.log("No file selected");
     //   }
     // },
-    handleImageChange(event) {
-      console.log("📸 Image change detected");
+    // handleImageChange(event) {
+    //   console.log("📸 Image change detected");
 
-      const file = event.target.files[0]; // Get the uploaded file
+    //   const file = event.target.files[0]; // Get the uploaded file
+    //   if (!file) {
+    //     console.log("⚠️ No file selected");
+    //     return;
+    //   }
+
+    //   console.log("🖼️ Selected file:", file);
+    //   this.rImage = file; // Store file in component state
+
+    //   // Read file for preview
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     this.RimageUrl = e.target.result;
+    //     console.log("🔍 Preview URL:", this.RimageUrl);
+    //   };
+    //   reader.readAsDataURL(file);
+
+    //   // Prepare file upload
+    //   const formData = new FormData();
+    //   formData.append('file', file);
+
+    //   // Send file to server using API instance
+    //   API.post('/common/uploadS3', formData, {
+    //     headers: { 'Content-Type': 'multipart/form-data' },
+    //   })
+    //     .then((response) => {
+    //       console.log("✅ Upload Successful:", response.data);
+    //       if (response.data?.s3Url) {
+    //         this.secureUld = response.data.s3Url;
+    //         console.log("🔒 File uploaded, Secure UID:", this.secureUld);
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.error("❌ Upload Error:", error);
+    //     });
+    // },
+    async handleImageChange(event) {
+      console.log("📸 Image change detected");
+      this.imgLoading2 = true
+      const file = event.target.files[0];
       if (!file) {
         console.log("⚠️ No file selected");
+        this.imgLoading2 = false
         return;
       }
 
       console.log("🖼️ Selected file:", file);
       this.rImage = file; // Store file in component state
+
+      // Validate file size (e.g., 5MB max)
+      const maxSizeMB = 5;
+      if (file.size > maxSizeMB * 1024 * 1024) {
+        console.error(`🚨 File too large! Max size is ${maxSizeMB}MB.`);
+        return;
+      }
 
       // Read file for preview
       const reader = new FileReader();
@@ -662,26 +715,29 @@ export default {
       };
       reader.readAsDataURL(file);
 
-      // Prepare file upload
-      const formData = new FormData();
-      formData.append('file', file);
+      try {
+        // Prepare file upload
+        const formData = new FormData();
+        formData.append("file", file);
 
-      // Send file to server using API instance
-      API.post('/common/uploadS3', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-        .then((response) => {
-          console.log("✅ Upload Successful:", response.data);
-          if (response.data?.s3Url) {
-            this.secureUld = response.data.s3Url;
-            console.log("🔒 File uploaded, Secure UID:", this.secureUld);
-          }
-        })
-        .catch((error) => {
-          console.error("❌ Upload Error:", error);
+        // Upload to S3
+        const response = await API.post("/common/uploadS3", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
         });
-    },
 
+        console.log("✅ Upload Successful:", response.data);
+        this.imgLoading2 = false
+        if (response.data?.s3Url) {
+
+          this.secureUld = response.data.s3Url;
+          console.log("🔒 File uploaded, Secure UID:", this.secureUld);
+        }
+      } catch (error) {
+        this.imgLoading2 = false
+        console.error("❌ Upload Error:", error);
+      }
+    }
+    ,
     openFileInput2() {
       // Trigger click event of file input
       document.getElementById('rImage').click();
@@ -874,49 +930,91 @@ export default {
     //   }
 
     // }
+    // submitReply(commentId) {
+    //   if (!this.isLogin) {
+    //     this.loginModal = true;
+    //     return;
+    //   }
+
+    //   if (!this.replyText && !this.RimageUrl) {
+    //     this.isModal2Open = true;
+    //     this.imgLoading = false;
+    //     return;
+    //   }
+
+    //   const formData = new FormData();
+    //   console.log("📩 Submitting reply for comment ID:", commentId);
+
+    //   // Append necessary fields
+    //   formData.append("community_id", this.id);
+    //   formData.append("parent_id", commentId);
+    //   formData.append("comments", this.replyText);
+    //   formData.append("user_email", this.user_email);
+    //   formData.append("user_name", this.user_name);
+    //   formData.append("image", this.secureUld || ""); // Ensure safe handling
+    //   formData.append("type", "reply");
+    //   formData.append("sub", this.sub);
+
+    //   console.log("📦 FormData:", Object.fromEntries(formData));
+
+    //   // ✅ Send API request
+    //   API.post("/comments/comments", formData, {
+    //     headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    //   })
+    //     .then(response => {
+    //       console.log("✅ Reply submitted successfully:", response.data);
+
+    //       // Refresh comments & reset input fields
+    //       this.getComments();
+    //       this.replyText = "";
+    //       this.showReplyInput = null;
+    //     })
+    //     .catch(error => {
+    //       console.error("❌ Error submitting reply:", error);
+    //       this.replyText = "";
+    //       this.showReplyInput = null;
+    //     });
+    // }
     submitReply(commentId) {
       if (!this.isLogin) {
         this.loginModal = true;
         return;
       }
 
-      if (!this.replyText && !this.RimageUrl) {
+      if (!this.replyText.trim() && !this.RimageUrl) {
         this.isModal2Open = true;
-        this.imgLoading = false;
         return;
       }
 
       const formData = new FormData();
-      console.log("📩 Submitting reply for comment ID:", commentId);
-
-      // Append necessary fields
       formData.append("community_id", this.id);
       formData.append("parent_id", commentId);
-      formData.append("comments", this.replyText);
+      formData.append("comments", this.replyText.trim());
       formData.append("user_email", this.user_email);
       formData.append("user_name", this.user_name);
-      formData.append("image", this.secureUld || ""); // Ensure safe handling
+      formData.append("image", this.secureUld || "");
       formData.append("type", "reply");
       formData.append("sub", this.sub);
 
-      console.log("📦 FormData:", Object.fromEntries(formData));
-
-      // ✅ Send API request
       API.post("/comments/comments", formData, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" }
       })
         .then(response => {
           console.log("✅ Reply submitted successfully:", response.data);
-
-          // Refresh comments & reset input fields
           this.getComments();
+
+          // Reset fields after reply submission
           this.replyText = "";
-          this.showReplyInput = null;
+          this.RimageUrl = "";
+          this.secureUld = "";
+          this.image = null;
+
+          if (this.$refs.fileInput) {
+            this.$refs.fileInput.value = "";
+          }
         })
         .catch(error => {
           console.error("❌ Error submitting reply:", error);
-          this.replyText = "";
-          this.showReplyInput = null;
         });
     }
     ,
@@ -1152,47 +1250,83 @@ export default {
     //     console.error('No file selected');
     //   }
     // }
+    // handleFileChange(event) {
+    //   const file = event.target.files[0];
+
+    //   if (!file) {
+    //     console.error("❌ No file selected");
+    //     return;
+    //   }
+
+    //   // Store file data
+    //   this.imageName = file.name;
+    //   this.image = file;
+
+    //   // Preview the image before uploading
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     this.imageUrl = e.target.result;
+    //   };
+    //   reader.readAsDataURL(file);
+
+    //   // Create FormData
+    //   const formData = new FormData();
+    //   formData.append("file", file);
+
+    //   // ✅ Upload File
+    //   API.post("/common/uploadS3", formData, {
+    //     headers: { "Content-Type": "multipart/form-data" }
+    //   })
+    //     .then(response => {
+    //       console.log("✅ Upload Successful:", response.data);
+
+    //       // Store the secure UID from the response
+    //       // if (response.data?.secureUld) {
+    //       //   this.secureUld = response.data.secureUld;
+    //       //   console.log("🔗 File uploaded, Secure UID:", this.secureUld);
+    //       // }
+    //       if (response.data?.s3Url) {
+    //         this.secureUld = response.data.s3Url;
+    //         console.log("🔗 File uploaded, Secure UID:", this.secureUld);
+    //       }
+    //     })
+    //     .catch(error => {
+    //       console.error("❌ Upload Error:", error);
+    //     });
+    // }
     handleFileChange(event) {
       const file = event.target.files[0];
-
+      this.imgLoading = true
       if (!file) {
         console.error("❌ No file selected");
+        this.imgLoading = false
         return;
       }
 
-      // Store file data
       this.imageName = file.name;
       this.image = file;
 
-      // Preview the image before uploading
+      // Preview the image
       const reader = new FileReader();
       reader.onload = (e) => {
         this.imageUrl = e.target.result;
       };
       reader.readAsDataURL(file);
 
-      // Create FormData
+      // Upload Image
       const formData = new FormData();
       formData.append("file", file);
 
-      // ✅ Upload File
       API.post("/common/uploadS3", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       })
         .then(response => {
+          this.imgLoading = false
           console.log("✅ Upload Successful:", response.data);
-
-          // Store the secure UID from the response
-          // if (response.data?.secureUld) {
-          //   this.secureUld = response.data.secureUld;
-          //   console.log("🔗 File uploaded, Secure UID:", this.secureUld);
-          // }
-          if (response.data?.s3Url) {
-            this.secureUld = response.data.s3Url;
-            console.log("🔗 File uploaded, Secure UID:", this.secureUld);
-          }
+          this.secureUld = response.data?.s3Url || "";
         })
         .catch(error => {
+          this.imgLoading = false
           console.error("❌ Upload Error:", error);
         });
     }
@@ -1395,75 +1529,135 @@ export default {
     //       this.imgLoading = false; // ✅ Stop loading indicator on error
     //     });
     // }
+    // postComment() {
+    //   if (!this.isLogin) {
+    //     this.loginModal = true;
+    //     return;
+    //   }
+
+    //   this.imgLoading = true; // ✅ Start loading indicator
+    //   const file = this.secureUld; // ✅ Use secure URL from upload response
+    //   const maxSizeInBytes = 3 * 1024 * 1024; // ✅ 3MB size limit
+
+    //   console.log("🖼️ Comment Image:", file);
+
+    //   if (file && file.size > maxSizeInBytes) {
+    //     this.isModal3Open = true;
+    //     this.imgLoading = false;
+    //     return;
+    //   }
+
+    //   // ✅ Ensure comment is not empty
+    //   if (!this.imageUrl && !this.newComment.trim()) {
+    //     this.isModal2Open = true;
+    //     this.imgLoading = false;
+    //     return;
+    //   }
+
+    //   // ✅ Create FormData
+    //   const formData = new FormData();
+
+    //   // Only append the image if a new image is selected
+    //   if (this.imageUrl) {
+    //     formData.append("image", file || ""); // Append image if available
+    //   } else {
+    //     this.secureUld = ""; // Clear the secureUld if no new image is selected
+    //   }
+
+    //   formData.append("community_id", this.id);
+    //   formData.append("comments", this.newComment.trim());
+    //   formData.append("sub", this.sub);
+    //   formData.append("type", "comment");
+
+    //   // ✅ Send request using `apiClient`
+    //   API.post("/comments/comments", formData)
+    //     .then(response => {
+    //       console.log("✅ Comment posted successfully:", response.data);
+
+    //       // ✅ Update comments list
+    //       this.comments.push(response.data);
+    //       this.getComments();
+    //       this.getNoOfComments();
+
+    //       // ✅ Clear form inputs
+    //       this.newComment = "";
+    //       this.imageUrl = "";
+    //       this.secureUld = ""; // Clear the secureUld after posting the comment
+    //       if (this.$refs.fileInput) {
+    //         this.$refs.fileInput.value = "";
+    //       }
+
+    //       // ✅ Auto-scroll to the latest comment
+    //       this.$nextTick(() => this.scrollToBottom());
+
+    //       this.imgLoading = false; // ✅ Stop loading indicator
+    //     })
+    //     .catch(error => {
+    //       console.error("❌ Error posting comment:", error);
+    //       this.imgLoading = false; // ✅ Stop loading indicator on error
+    //     });
+    // }
+
     postComment() {
       if (!this.isLogin) {
         this.loginModal = true;
         return;
       }
 
-      this.imgLoading = true; // ✅ Start loading indicator
-      const file = this.secureUld; // ✅ Use secure URL from upload response
-      const maxSizeInBytes = 3 * 1024 * 1024; // ✅ 3MB size limit
+      this.imgLoading = true; // Start loading indicator
 
-      console.log("🖼️ Comment Image:", file);
-
-      if (file && file.size > maxSizeInBytes) {
-        this.isModal3Open = true;
-        this.imgLoading = false;
-        return;
-      }
-
-      // ✅ Ensure comment is not empty
-      if (!this.imageUrl && !this.newComment.trim()) {
+      // Validate comment or image presence
+      if (!this.newComment.trim() && !this.imageUrl) {
         this.isModal2Open = true;
         this.imgLoading = false;
         return;
       }
 
-      // ✅ Create FormData
-      const formData = new FormData();
+      // Ensure uploaded image URL is properly handled
+      const file = this.secureUld || "";
+      const maxSizeInBytes = 3 * 1024 * 1024;
 
-      // Only append the image if a new image is selected
-      if (this.imageUrl) {
-        formData.append("image", file || ""); // Append image if available
-      } else {
-        this.secureUld = ""; // Clear the secureUld if no new image is selected
+      if (file && this.image && this.image.size > maxSizeInBytes) {
+        this.isModal3Open = true;
+        this.imgLoading = false;
+        return;
       }
 
+      // Create FormData for API
+      const formData = new FormData();
       formData.append("community_id", this.id);
       formData.append("comments", this.newComment.trim());
       formData.append("sub", this.sub);
       formData.append("type", "comment");
+      formData.append("image", file); // Ensure valid image
 
-      // ✅ Send request using `apiClient`
+      // Post request
       API.post("/comments/comments", formData)
         .then(response => {
           console.log("✅ Comment posted successfully:", response.data);
 
-          // ✅ Update comments list
           this.comments.push(response.data);
           this.getComments();
           this.getNoOfComments();
 
-          // ✅ Clear form inputs
+          // Reset fields after posting
           this.newComment = "";
           this.imageUrl = "";
-          this.secureUld = ""; // Clear the secureUld after posting the comment
+          this.secureUld = "";
+          this.image = null;
+
           if (this.$refs.fileInput) {
             this.$refs.fileInput.value = "";
           }
 
-          // ✅ Auto-scroll to the latest comment
           this.$nextTick(() => this.scrollToBottom());
-
-          this.imgLoading = false; // ✅ Stop loading indicator
+          this.imgLoading = false;
         })
         .catch(error => {
           console.error("❌ Error posting comment:", error);
-          this.imgLoading = false; // ✅ Stop loading indicator on error
+          this.imgLoading = false;
         });
     }
-
     ,
 
 
@@ -2155,6 +2349,10 @@ export default {
 
 .wcol {
   width: 83.5%
+}
+
+.z99 {
+  z-index: 9999 !important
 }
 
 @media(max-width:768px) {
