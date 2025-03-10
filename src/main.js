@@ -157,7 +157,7 @@ Amplify.configure({
     userPoolWebClientId: "83qurrrrh1r49cch9hl2hii2e",
     authenticationFlowType: "USER_SRP_AUTH",
     oauth: {
-      domain: "revdot.auth.eu-central-1.amazoncognito.com",
+      domain: "revdout-local.d26xar06lf8hqo.amplifyapp.com",
       redirectSignIn: "https://revdout-local.d26xar06lf8hqo.amplifyapp.com/",
       // redirectSignIn: "http://localhost:8081/",
       redirectSignOut:
