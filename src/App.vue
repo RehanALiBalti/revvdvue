@@ -1,5 +1,5 @@
 <template>
-  <div class="loader  " ref="loader" v-if="isLogin2 != 'true'">
+  <div class="loader  " ref="loader" v-show="showVideo == 'true' || showVideo === true">
     <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
       <source :src="videoSrc" type="video/mp4">
     </video>
@@ -34,6 +34,7 @@
     <div class="title-loader-div" v-show="isTextShow">
       <h1 class="banner-title new-heading-loader">
         Trun up the volume for better experience
+        {{ showVideo }}
 
       </h1>
 
@@ -88,6 +89,7 @@ export default {
   data() {
     return {
       // isLogin2: false,
+      showVideo: "true",
       isTextShow: true,
       videoSrc,
       showStartButton: true, // Controls visibility of "Start Engine" button
@@ -128,6 +130,8 @@ export default {
 
     videoEnded() {
       console.log("Video ended");
+      // this.showVideo = false; // Set showVideo to false
+      // localStorage.setItem('showVideo', 'false'); // Store showVideo in local storage
       this.$refs.loader.classList.remove("show"); // Remove "show" class when video ends
     },
     changeLanguage() {
@@ -164,10 +168,21 @@ export default {
     };
   },
   mounted() {
+    const storedShowVideo = localStorage.getItem('showVideo');
 
+    // If a value exists in local storage, parse it and update showVideo
+    if (storedShowVideo !== null) {
+      this.showVideo = storedShowVideo === 'true';
+    } else {
+      // If no value exists in local storage, set showVideo to true and store it
+      this.showVideo = true;
+      localStorage.setItem('showVideo', 'true');
+    }
     this.checkLoginStatus()
     this.$nextTick(() => {
-      if (this.isLogin2 == 'false') {
+      console.log("in necttick:", this.showVideo, "loader", this.$refs.loader);
+      if (this.showVideo == 'true' || this.showVideo == true) {
+        console.log("in if show if true:", this.$refs.video);
         if (this.$refs.video instanceof HTMLVideoElement) {
           console.log("Video element is ready:", this.$refs.video);
         } else {
