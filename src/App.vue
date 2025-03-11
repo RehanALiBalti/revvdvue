@@ -108,7 +108,7 @@ export default {
         this.isTextShow = false;
         videoElement.play()
           .then(() => {
-            console.log("Video is playing");
+            console.log("Video is playing s");
             this.showStartButton = false; // Hide "Start Engine" button
           })
           .catch(error => console.error("Error playing video:", error));
