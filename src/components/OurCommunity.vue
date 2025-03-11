@@ -934,6 +934,46 @@ export default {
           console.log(e);
         });
     },
+    // getGenerations() {
+    //   console.log('in generation', "make", this.make, "model", this.smodel);
+    //   this.selectedData = "";
+
+    //   CarDataService.getGenerations(this.make, this.smodel.model)
+    //     .then((response) => {
+    //       const data = response.data;
+    //       console.log("data is", data);
+    //       this.dataGy = data;
+
+    //       // Filter valid generations
+    //       this.GenfilteredOptions = data.filter(item => (
+    //         item.generation !== "" &&
+    //         item.generation !== "-" &&
+    //         item.generation !== "??" &&
+    //         item.generation !== "?"
+    //       ));
+
+    //       // Extract unique generations
+    //       this.generations = [...new Set(this.GenfilteredOptions.map(item => item.generation))];
+
+    //       // Get current year
+    //       const currentYear = new Date().getFullYear();
+
+    //       // Replace "____" with current year inside the original objects
+    //       this.GenfilteredOptions = this.GenfilteredOptions.map(item => ({
+    //         ...item,
+    //         production_years: item.production_years.replace("____", currentYear)
+    //       }));
+
+    //       // Extract unique production years after replacement
+    //       this.productionYears = [...new Set(this.GenfilteredOptions.map(item => item.production_years))];
+
+    //       console.log("Updated this.GenfilteredOptions", this.GenfilteredOptions);
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // }
+
 
     getYears() {
 
@@ -1056,7 +1096,7 @@ export default {
 .modalaa {
   position: relative !important;
   background: transparent !important;
-  z-index: 5;
+  z-index: 5
 }
 
 
