@@ -89,7 +89,7 @@ export default {
   data() {
     return {
       // isLogin2: false,
-      showVideo: "true",
+      showVideo: "",
       isTextShow: true,
       videoSrc,
       showStartButton: true, // Controls visibility of "Start Engine" button
@@ -169,15 +169,15 @@ export default {
   },
   mounted() {
     const storedShowVideo = localStorage.getItem('showVideo');
-
+    this.showVideo = storedShowVideo
     // If a value exists in local storage, parse it and update showVideo
-    if (storedShowVideo !== null) {
-      this.showVideo = storedShowVideo === 'true';
-    } else {
-      // If no value exists in local storage, set showVideo to true and store it
-      this.showVideo = true;
-      localStorage.setItem('showVideo', 'true');
-    }
+    // if (storedShowVideo !== null) {
+    //   this.showVideo = storedShowVideo === 'true';
+    // } else {
+    //   // If no value exists in local storage, set showVideo to true and store it
+    //   this.showVideo = true;
+    //   localStorage.setItem('showVideo', 'true');
+    // }
     this.checkLoginStatus()
     this.$nextTick(() => {
       console.log("in necttick:", this.showVideo, "loader", this.$refs.loader);

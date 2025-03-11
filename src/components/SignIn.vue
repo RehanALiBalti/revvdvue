@@ -164,7 +164,6 @@ export default {
     Hub.listen("auth", ({ payload: { event, data } }) => {
       console.log(`Auth event: ${event}`, data);
 
-
       localStorage.setItem('showVideo', 'false');
       if (event == 'signIn') {
         localStorage.setItem('showVideo', 'false');
