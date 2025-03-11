@@ -109,14 +109,16 @@
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-3 gap-md-2 mt-3 textnowrap flexwrap">
-                                <input type="checkbox" id="check2"
-                                    :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check2 }]" />
+                                <input type="checkbox" id="3"
+                                    :class="['form-check-input m-0 p-0', { 'is-invalid': formErrors.check3 }]"
+                                    :checked="formData.check3 === 'true'"
+                                    @change="formData.check3 = $event.target.checked ? 'true' : 'false'" />
                                 <label for="check2" class="form-label m-0 p-0">{{ $t('IAgreeWithDataUsage') }}
                                     <router-link to="/privacypolicy" class="termsService" target="_blank">{{
                                         $t('PrivacyPolicy') }}</router-link>
                                 </label>
-                                <div v-if="formErrors.check2" class="text-danger">
-                                    <p class="text-danger m-0 p-0">{{ formErrors.check2 }}</p>
+                                <div v-if="formErrors.check3" class="text-danger">
+                                    <p class="text-danger m-0 p-0">{{ formErrors.check3 }}</p>
                                 </div>
                             </div>
                             <div class="col-md-12 d-flex align-items-center gap-2 mt-3">
@@ -238,6 +240,7 @@ export default {
                 password: "",
                 check1: "",
                 check2: "",
+                check3: "",
                 role: "dealer"
             },
             formErrors: {}
@@ -585,7 +588,7 @@ export default {
             if (!this.formData.email) this.formErrors.email = 'Email is required';
             if (!this.formData.password) this.formErrors.password = 'Password is required';
             if (!this.formData.check1) this.formErrors.check1 = 'Please accept the terms';
-            if (!this.formData.check2) this.formErrors.check2 = 'Please accept the privacy policy';
+            if (!this.formData.check3) this.formErrors.check2 = 'Please accept the privacy policy';
         },
 
     },
