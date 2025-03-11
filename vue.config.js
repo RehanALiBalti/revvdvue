@@ -17,7 +17,7 @@ const { defineConfig } = require("@vue/cli-service");
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  // publicPath: "/", // ✅ Important for AWS
+  publicPath: "/", // ✅ Important for AWS
   devServer: {
     port: 8081,
     proxy: {
