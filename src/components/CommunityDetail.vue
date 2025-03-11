@@ -365,7 +365,7 @@
 <script>
 import API from "@/http-common"; // ✅ Import the API instance
 import CommunityDataService from "../services/CommunityDataService";
-import axios from 'axios';
+// import axios from 'axios';
 
 import CommentDataService from "../services/CommentDataService";
 
@@ -544,10 +544,48 @@ export default {
         console.error('❌ Error fetching forum data:', error);
       }
     },
+    // formSubmit() {
+    //   const formData = new FormData();
+    //   // alert(this.pageId)
+    //   formData.append('filter_id', this.pageId)
+
+    //   const config = {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //       'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
+    //     }
+    //   };
+    //   axios
+    //     .post("https://buzzwaretech.com/adminrev/Api/readallforums", formData, config)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       if (response.data.success && Array.isArray(response.data.forums)) {
+    //         this.communities = response.data.forums;
+    //         const filteredCommunities = response.data.forums.filter(item => item.id === this.forumId);
+    //         console.log("fiter data", filteredCommunities)
+    //         this.forumData = filteredCommunities[0]
+    //         console.log("forum data", this.forumData.description)
+    //       } else {
+    //         console.error(
+    //           "API response does not contain forums array:",
+    //           response.data
+    //         );
+    //         this.communities = [];
+    //       }
+
+    //     })
+    //     .catch((error) => {
+    //       console.error("There was an error!", error);
+    //       this.communities = [];
+    //     })
+    //     .finally(() => {
+    //       this.submitting = false;
+    //     });
+    // },
+
     formSubmit() {
       const formData = new FormData();
-      // alert(this.pageId)
-      formData.append('filter_id', this.pageId)
+      formData.append('filter_id', this.pageId);
 
       const config = {
         headers: {
@@ -555,24 +593,20 @@ export default {
           'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
         }
       };
-      axios
-        .post("https://buzzwaretech.com/adminrev/Api/readallforums", formData, config)
+
+      API.post("/adminrev/Api/readallforums", formData, config)
         .then((response) => {
           console.log(response.data);
           if (response.data.success && Array.isArray(response.data.forums)) {
             this.communities = response.data.forums;
             const filteredCommunities = response.data.forums.filter(item => item.id === this.forumId);
-            console.log("fiter data", filteredCommunities)
-            this.forumData = filteredCommunities[0]
-            console.log("forum data", this.forumData.description)
+            console.log("Filtered data", filteredCommunities);
+            this.forumData = filteredCommunities[0];
+            console.log("Forum data", this.forumData.description);
           } else {
-            console.error(
-              "API response does not contain forums array:",
-              response.data
-            );
+            console.error("API response does not contain forums array:", response.data);
             this.communities = [];
           }
-
         })
         .catch((error) => {
           console.error("There was an error!", error);
@@ -1747,8 +1781,38 @@ export default {
     //   }
     // }
     // beforevupdating itsworking
+    // async addLike() {
+    //   // Indicate loading state
+    //   this.loading = true;
+    //   console.log("id:", this.pageId, "type:", "community", "sub:", this.sub);
+
+    //   // Create URLSearchParams instance
+    //   const params = new URLSearchParams();
+    //   params.append('id', this.pageId);
+    //   params.append('type', "community");
+    //   params.append('sub', this.sub);
+
+    //   try {
+    //     // Make the POST request with the URLSearchParams instance
+    //     const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/likes/like', params, {
+    //       headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //       }
+    //     });
+
+    //     // Handle the response data
+    //     console.log(response.data);
+    //     this.getLikesCount()
+    //     // Additional logic after successful request
+    //     this.loading = false;
+    //     // Navigate or update the UI as needed
+    //   } catch (error) {
+    //     // Handle any errors
+    //     this.loading = false;
+    //     console.error('Error making POST request:', error);
+    //   }
+    // }
     async addLike() {
-      // Indicate loading state
       this.loading = true;
       console.log("id:", this.pageId, "type:", "community", "sub:", this.sub);
 
@@ -1759,27 +1823,24 @@ export default {
       params.append('sub', this.sub);
 
       try {
-        // Make the POST request with the URLSearchParams instance
-        const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/likes/like', params, {
+        // Use `http.post` from `http-common.js`
+        const response = await API.post('/likes/like', params, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         });
 
-        // Handle the response data
         console.log(response.data);
-        this.getLikesCount()
-        // Additional logic after successful request
-        this.loading = false;
-        // Navigate or update the UI as needed
-      } catch (error) {
-        // Handle any errors
-        this.loading = false;
-        console.error('Error making POST request:', error);
-      }
-    }
+        this.getLikesCount(); // Refresh likes count after successful like
 
-    ,
+      } catch (error) {
+        console.error('Error making POST request:', error);
+      } finally {
+        this.loading = false; // Ensure loading state resets
+      }
+    },
+
+
     // addLike2(cid) {
     //   console.log("click comment with", cid)
     //   // alert(cid)
@@ -1829,37 +1890,37 @@ export default {
     //       });
     //   }
     // }
-    async addLike2(cid) {
+    // async addLike2(cid) {
 
-      this.loading = true;
-      console.log("id:", cid, "type:", "comment", "sub:", this.sub);
+    //   this.loading = true;
+    //   console.log("id:", cid, "type:", "comment", "sub:", this.sub);
 
-      // Create URLSearchParams instance
-      const params = new URLSearchParams();
-      params.append('id', cid);
-      params.append('type', "comment");
-      params.append('sub', this.sub);
+    //   // Create URLSearchParams instance
+    //   const params = new URLSearchParams();
+    //   params.append('id', cid);
+    //   params.append('type', "comment");
+    //   params.append('sub', this.sub);
 
-      try {
-        // Make the POST request with the URLSearchParams instance
-        const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/likes/like', params, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        });
+    //   try {
+    //     // Make the POST request with the URLSearchParams instance
+    //     const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/likes/like', params, {
+    //       headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //       }
+    //     });
 
-        // Handle the response data
-        console.log(response.data);
-        this.getLikesCountComments(cid)
-        // Additional logic after successful request
-        this.loading = false;
-        // Navigate or update the UI as needed
-      } catch (error) {
-        // Handle any errors
-        this.loading = false;
-        console.error('Error making POST request:', error);
-      }
-    }
+    //     // Handle the response data
+    //     console.log(response.data);
+    //     this.getLikesCountComments(cid)
+    //     // Additional logic after successful request
+    //     this.loading = false;
+    //     // Navigate or update the UI as needed
+    //   } catch (error) {
+    //     // Handle any errors
+    //     this.loading = false;
+    //     console.error('Error making POST request:', error);
+    //   }
+    // }
 
     // addLike() {
     //   this.isloadingLike = true;
@@ -1895,29 +1956,40 @@ export default {
     //     });
 
     // }
-    ,
+
+    // addView() {
+    //   const requestData = {
+    //     id: this.id
+    //   };
+    //   axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/views', requestData)
+    //     .then(response => {
+    //       // Handle success
+    //       console.log('Post of views request successful:', response.data);
+
+    //       // Set the flag in local storage with the respective ID
+
+
+    //       this.fetchCommunityData()
+
+    //     })
+    //     .catch(error => {
+    //       // Handle error
+    //       console.error('Error making post request:', error);
+    //     });
+    // },
+
     addView() {
-      const requestData = {
-        id: this.id
-      };
-      axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/communities/views', requestData)
+      const requestData = { id: this.id };
+
+      API.post("/communities/views", requestData)
         .then(response => {
-          // Handle success
           console.log('Post of views request successful:', response.data);
-
-          // Set the flag in local storage with the respective ID
-
-
-          this.fetchCommunityData()
-
+          this.fetchCommunityData(); // Fetch updated data after posting the view
         })
         .catch(error => {
-          // Handle error
           console.error('Error making post request:', error);
         });
     },
-
-
     sendMessageOnEnter(event) {
       // Check if the Enter key is pressed and the textarea is not empty
       if (event.key === "Enter" && this.isTextareaNotEmpty) {
@@ -1950,41 +2022,72 @@ export default {
       return this.isLike
     }
     ,
+    // async fetchproData(subId) {
+    //   try {
+    //     // Make the GET request with query parameters
+    //     const response = await axios.get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/', {
+    //       params: {
+    //         sub: subId
+    //       }
+    //     });
+
+    //     // Handle the response data
+    //     console.log("new porofile Data is", response.data);
+    //     this.image = response.data[0].image
+    //   } catch (error) {
+    //     // Handle any errors
+    //     console.error('Error making GET request:', error);
+    //   }
+    // },
     async fetchproData(subId) {
       try {
         // Make the GET request with query parameters
-        const response = await axios.get('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/', {
-          params: {
-            sub: subId
-          }
+        const response = await API.get('/users/', {
+          params: { sub: subId }
         });
 
         // Handle the response data
-        console.log("new porofile Data is", response.data);
-        this.image = response.data[0].image
+        console.log("New profile data:", response.data);
+        this.image = response.data[0]?.image || ''; // Handle potential undefined response
+
       } catch (error) {
-        // Handle any errors
         console.error('Error making GET request:', error);
       }
     },
+    // getLikesCount() {
+    //   const communityId = this.$route.params.id;
+    //   console.log(communityId)
+    //   // Replace this with the actual community ID if it's dynamic
+    //   const type = 'community'; // Replace this with the actual type if it's dynamic
+    //   const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/likes/likescount?id=${communityId}&type=${type}`;
+
+    //   axios.get(url)
+    //     .then(response => {
+    //       console.log('Likes count:', response.data);
+    //       // Update your component's state with the likes count
+    //       this.likesCount = response.data.count;
+
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching likes count:', error);
+    //     });
+    // },
     getLikesCount() {
       const communityId = this.$route.params.id;
-      console.log(communityId)
-      // Replace this with the actual community ID if it's dynamic
-      const type = 'community'; // Replace this with the actual type if it's dynamic
-      const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/likes/likescount?id=${communityId}&type=${type}`;
+      const type = 'community'; // Static or dynamic based on your logic
 
-      axios.get(url)
+      console.log("Fetching likes count for Community ID:", communityId);
+
+      API.get(`/likes/likescount?id=${communityId}&type=${type}`)
         .then(response => {
           console.log('Likes count:', response.data);
-          // Update your component's state with the likes count
-          this.likesCount = response.data.count;
-
+          this.likesCount = response.data.count; // Update the component's state
         })
         .catch(error => {
           console.error('Error fetching likes count:', error);
         });
     },
+
     // getLikesCountComments(cid) {
 
     //   console.log("comment_id", cid)
@@ -2003,14 +2106,26 @@ export default {
     //       console.error('Error fetching likes count:', error);
     //     });
     // }
-    getLikesCountComments(cid) {
-      const type = 'comment'; // Replace this with the actual type if it's dynamic
-      const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
+    // getLikesCountComments(cid) {
+    //   const type = 'comment'; // Replace this with the actual type if it's dynamic
+    //   const url = `https://king-prawn-app-3rw3o.ondigitalocean.app/api/likes/likescount?id=${cid}&type=${type}`;
 
-      axios.get(url)
+    //   axios.get(url)
+    //     .then(response => {
+    //       // Update likes count for the comment
+    //       console.log("commets likes", response.data.count, "of id", cid)
+    //       this.likesCountComments[cid] = response.data.count;
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching likes count:', error);
+    //     });
+    // },
+    getLikesCountComments(cid) {
+      const type = 'comment'; // Static or dynamic based on your logic
+
+      API.get(`/likes/likescount?id=${cid}&type=${type}`)
         .then(response => {
-          // Update likes count for the comment
-          console.log("commets likes", response.data.count, "of id", cid)
+          console.log("Comment likes:", response.data.count, "for ID:", cid);
           this.likesCountComments[cid] = response.data.count;
         })
         .catch(error => {
