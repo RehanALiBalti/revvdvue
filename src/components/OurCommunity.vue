@@ -909,31 +909,72 @@ export default {
     },
 
 
+    // getGenerations() {
+    //   console.log('in generation', "make", this.smodel, "modal", this.smodel);
+    //   this.selectedData = ""
+    //   CarDataService.getGenerations(this.make, this.smodel.model)
+    //     .then((response) => {
+    //       const data = response.data;
+    //       console.log("data is", data);
+    //       this.dataGy = data;
+
+    //       this.GenfilteredOptions = data.filter(item => {
+    //         return (
+    //           item.generation !== "" &&
+    //           item.generation !== "-" &&
+    //           item.generation !== "??" &&
+    //           item.generation !== "?"
+    //         );
+    //       });
+
+    //       this.generations = [...new Set(this.GenfilteredOptions.map(item => item.generation))];
+    //       this.productionYears = [...new Set(this.GenfilteredOptions.map(item => item.production_years))];
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
     getGenerations() {
-      console.log('in generation', "make", this.smodel, "modal", this.smodel);
-      this.selectedData = ""
+      console.log('in generation', "make", this.smodel, "model", this.smodel);
+      this.selectedData = "";
+
       CarDataService.getGenerations(this.make, this.smodel.model)
         .then((response) => {
           const data = response.data;
           console.log("data is", data);
           this.dataGy = data;
 
-          this.GenfilteredOptions = data.filter(item => {
-            return (
-              item.generation !== "" &&
-              item.generation !== "-" &&
-              item.generation !== "??" &&
-              item.generation !== "?"
-            );
-          });
+          // Filter valid generations
+          this.GenfilteredOptions = data.filter(item => (
+            item.generation !== "" &&
+            item.generation !== "-" &&
+            item.generation !== "??" &&
+            item.generation !== "?"
+          ));
 
+          // Get current year
+          const currentYear = new Date().getFullYear();
+
+          // Replace "____" with the current year inside the production_years field
+          this.GenfilteredOptions = this.GenfilteredOptions.map(item => ({
+            ...item,
+            production_years: item.production_years.replace("____", currentYear)
+          }));
+
+          // Extract unique generations
           this.generations = [...new Set(this.GenfilteredOptions.map(item => item.generation))];
+
+          // Extract unique production years after replacement
           this.productionYears = [...new Set(this.GenfilteredOptions.map(item => item.production_years))];
+
+          console.log("Updated this.GenfilteredOptions", this.GenfilteredOptions);
         })
         .catch((e) => {
           console.log(e);
         });
-    },
+    }
+    ,
+
     // getGenerations() {
     //   console.log('in generation', "make", this.make, "model", this.smodel);
     //   this.selectedData = "";

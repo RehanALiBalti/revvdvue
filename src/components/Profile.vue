@@ -64,7 +64,8 @@
 									<div class="col-md-4">
 										<label for="age" class="form-label">{{ $t('age') }}</label>
 										<input v-model="age" id="age" type="number" name="age"
-											class="form-control form-input" :placeholder="$t('Enter here')" required>
+											class="form-control form-input" :placeholder="$t('Enter here')" required
+											inputmode="numeric" pattern="[0-9]*">
 									</div>
 									<div class="col-md-4">
 										<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
@@ -1522,6 +1523,47 @@ export default {
 					console.log(e);
 				});
 		},
+		// getGenerations(index) {
+		// 	// Retrieve the selected model from the dropdown based on the index
+		// 	const selectedModel = this.dropdowns[index].model;
+		// 	const selectedMake = this.dropdowns[index].make;
+		// 	const carId = this.dropdowns[index].carId;
+
+		// 	console.log(`Fetching generations for carId: ${carId}, make: ${selectedMake}, model: ${selectedModel}`);
+
+		// 	// Fetch generation data based on make and model
+		// 	CarDataService.getGenerations(selectedMake, selectedModel)
+		// 		.then((response) => {
+		// 			const data = response.data;
+		// 			console.log("Fetched data:", data);
+
+		// 			// Filter out invalid or unknown generations
+		// 			const filteredOptions = data.filter(item => {
+		// 				return (
+		// 					item.generation !== "" &&
+		// 					item.generation !== "-" &&
+		// 					item.generation !== "??" &&
+		// 					item.generation !== "?"
+		// 				);
+		// 			});
+
+		// 			// Extract unique generations and production years
+		// 			const generations = [...new Set(filteredOptions.map(item => item.generation))];
+		// 			const productionYears = [...new Set(filteredOptions.map(item => item.production_years))];
+
+		// 			// Update the dropdown state with the new data for the selected dropdown
+		// 			this.dropdowns[index].GenfilteredOptions = filteredOptions;
+		// 			this.dropdowns[index].generations = generations;
+		// 			this.dropdowns[index].productionYears = productionYears;
+		// 			this.dataGy = filteredOptions
+		// 			// Log updated values
+		// 			console.log(`Updated generations for carId ${carId}:`, generations);
+		// 			console.log(`Updated production years for carId ${carId}:`, productionYears);
+		// 		})
+		// 		.catch((error) => {
+		// 			console.error("Error fetching generations:", error);
+		// 		});
+		// },
 		getGenerations(index) {
 			// Retrieve the selected model from the dropdown based on the index
 			const selectedModel = this.dropdowns[index].model;
@@ -1536,15 +1578,21 @@ export default {
 					const data = response.data;
 					console.log("Fetched data:", data);
 
-					// Filter out invalid or unknown generations
-					const filteredOptions = data.filter(item => {
-						return (
+					// Get the current year
+					const currentYear = new Date().getFullYear();
+
+					// Filter out invalid generations and replace "____" in production_years
+					const filteredOptions = data
+						.filter(item => (
 							item.generation !== "" &&
 							item.generation !== "-" &&
 							item.generation !== "??" &&
 							item.generation !== "?"
-						);
-					});
+						))
+						.map(item => ({
+							...item,
+							production_years: item.production_years.replace("____", currentYear) // Replace "____"
+						}));
 
 					// Extract unique generations and production years
 					const generations = [...new Set(filteredOptions.map(item => item.generation))];
@@ -1554,7 +1602,8 @@ export default {
 					this.dropdowns[index].GenfilteredOptions = filteredOptions;
 					this.dropdowns[index].generations = generations;
 					this.dropdowns[index].productionYears = productionYears;
-					this.dataGy = filteredOptions
+					this.dataGy = filteredOptions;
+
 					// Log updated values
 					console.log(`Updated generations for carId ${carId}:`, generations);
 					console.log(`Updated production years for carId ${carId}:`, productionYears);
@@ -1562,7 +1611,8 @@ export default {
 				.catch((error) => {
 					console.error("Error fetching generations:", error);
 				});
-		},
+		}
+		,
 
 		GenfilterOption(index) {
 			// Get the specific dropdown object

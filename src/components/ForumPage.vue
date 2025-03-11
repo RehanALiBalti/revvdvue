@@ -213,7 +213,7 @@
                                     </div>
                                     <div class="like-community">
                                         <i class="fa-solid fa-eye"></i><span class="total-likes">{{ community.views
-                                        }}</span>
+                                            }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -319,7 +319,7 @@
 
 <script>
 import CommunityDataService from "@/services/CommunityDataService";
-import axios from "axios";
+// import axios from "axios";
 import apiClient from "@/http-common";
 export default {
     data() {
@@ -591,10 +591,43 @@ export default {
                 this.paginateCommunities();
             }
         },
+        // formSubmit() {
+        //     const formData = new FormData();
+        //     // alert(this.pageId)
+        //     formData.append('filter_id', this.pageId)
+
+        //     const config = {
+        //         headers: {
+        //             'Content-Type': 'multipart/form-data',
+        //             'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
+        //         }
+        //     };
+        //     axios
+        //         .post("https://buzzwaretech.com/adminrev/Api/readallforums", formData, config)
+        //         .then((response) => {
+        //             console.log(response.data);
+        //             if (response.data.success && Array.isArray(response.data.forums)) {
+        //                 this.communities = response.data.forums;
+        //             } else {
+        //                 console.error(
+        //                     "API response does not contain forums array:",
+        //                     response.data
+        //                 );
+        //                 this.communities = [];
+        //             }
+        //             this.paginateCommunities();
+        //         })
+        //         .catch((error) => {
+        //             console.error("There was an error!", error);
+        //             this.communities = [];
+        //         })
+        //         .finally(() => {
+        //             this.submitting = false;
+        //         });
+        // },
         formSubmit() {
             const formData = new FormData();
-            // alert(this.pageId)
-            formData.append('filter_id', this.pageId)
+            formData.append('filter_id', this.pageId);
 
             const config = {
                 headers: {
@@ -602,19 +635,18 @@ export default {
                     'Cookie': 'ci_session=2f7cae7a141b4553e24fe62237c5171e3df6f513'
                 }
             };
-            axios
-                .post("https://buzzwaretech.com/adminrev/Api/readallforums", formData, config)
+
+            apiClient.post("/readallforums", formData, config)
                 .then((response) => {
                     console.log(response.data);
+
                     if (response.data.success && Array.isArray(response.data.forums)) {
                         this.communities = response.data.forums;
                     } else {
-                        console.error(
-                            "API response does not contain forums array:",
-                            response.data
-                        );
+                        console.error("API response does not contain forums array:", response.data);
                         this.communities = [];
                     }
+
                     this.paginateCommunities();
                 })
                 .catch((error) => {
@@ -624,7 +656,8 @@ export default {
                 .finally(() => {
                     this.submitting = false;
                 });
-        },
+        }
+
     },
     mounted() {
         // this.pageId = this.$route.params.id;

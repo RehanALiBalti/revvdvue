@@ -888,7 +888,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1113,7 +1113,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1142,7 +1142,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1564,7 +1564,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1826,7 +1826,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2048,7 +2048,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2068,7 +2068,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2290,7 +2290,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2546,7 +2546,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2768,7 +2768,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2788,7 +2788,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3010,7 +3010,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3257,7 +3257,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3479,7 +3479,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3499,7 +3499,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3721,7 +3721,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3972,7 +3972,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4194,7 +4194,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4214,7 +4214,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4436,7 +4436,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4692,6 +4692,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 import FooterSect from "./FooterSect";
+import http from "@/http-common";
 export default {
     name: "FeaturedStories",
     components: {
@@ -5121,8 +5122,11 @@ export default {
         this.fetchCarEnthusiastStories();
     },
     methods: {
+        // getImageUrl(image) {
+        //     return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
+        // },
         getImageUrl(image) {
-            return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
+            return `${http.defaults.baseURL.replace("/api", "")}/stories/${image}`;
         },
         // openViewer(image) {
         //   console.log("in open viewer", image);
@@ -5443,7 +5447,7 @@ export default {
                     await this.fetchFeaturedStoriesByType("motorbikeEnthusiast");
                     break;
                 case "Automotive Photographer":
-                    await this.fetchFeaturedStoriesByType("automotivePhotographer");
+                    await this.fetchFeaturedStoriesByType("automotivePhotographerast");
                     break;
                 default:
                     console.warn("Unknown tab name");
@@ -5485,28 +5489,57 @@ export default {
         //     }
         // },
 
+        // async fetchFeaturedStoriesByType(storyType) {
+        //     console.log(storyType)
+        //     try {
+
+        //         const response = await fetch(
+        //             `https://backend.revvdout.com/api/stories/featurestores/${storyType}`
+        //         );
+        //         const data = await response.json();
+
+        //         console.log("API Response:", data); // Debugging
+
+        //         if (data.success && data.banner) {
+        //             const featured = data.banner;
+        //             featured.images = featured.images ? JSON.parse(featured.images) : []; // Ensure valid JSON parsing
+        //             this.featuredStories = [featured]; // Store it in the featuredStories array
+        //         } else {
+        //             console.warn(`No featured stories found for ${storyType}`);
+        //             this.featuredStories = []; // Reset if no data
+        //             console.log("in else", this.featuredStories)
+        //         }
+        //     } catch (error) {
+
+        //         this.featuredStories = []; // Reset if no data
+        //         console.error(
+        //             `Error fetching featured stories for ${storyType}:`,
+        //             error
+        //         );
+        //         console.log("in error", this.featuredStories)
+        //     }
+        // }
         async fetchFeaturedStoriesByType(storyType) {
+            console.log(storyType);
             try {
-                const response = await fetch(
-                    `https://buzzwaretech.com/adminrev/api/featurestores/${storyType}`
-                );
-                const data = await response.json();
+                const response = await http.get(`/stories/featurestores/${storyType}`);
+                const data = response.data;
 
                 console.log("API Response:", data); // Debugging
 
-                if (data.success && data.featured) {
-                    const featured = data.featured;
+                if (data.success && data.banner) {
+                    const featured = data.banner;
                     featured.images = featured.images ? JSON.parse(featured.images) : []; // Ensure valid JSON parsing
                     this.featuredStories = [featured]; // Store it in the featuredStories array
                 } else {
                     console.warn(`No featured stories found for ${storyType}`);
                     this.featuredStories = []; // Reset if no data
+                    console.log("in else", this.featuredStories);
                 }
             } catch (error) {
-                console.error(
-                    `Error fetching featured stories for ${storyType}:`,
-                    error
-                );
+                this.featuredStories = []; // Reset if no data
+                console.error(`Error fetching featured stories for ${storyType}:`, error);
+                console.log("in error", this.featuredStories);
             }
         }
         ,
@@ -5657,37 +5690,77 @@ export default {
             }
         },
 
+        // getGenerations() {
+        //     // console.log('in generation', "make", this.make, "modal", this.smodel);
+        //     this.formData.year = "";
+        //     CarDataService.getGenerations(this.formData.make, this.formData.model)
+        //         .then((response) => {
+        //             const data = response.data;
+        //             console.log("data is", data);
+        //             this.dataGy = data;
+
+        //             this.GenfilteredOptions = data.filter((item) => {
+        //                 return (
+        //                     item.generation !== "" &&
+        //                     item.generation !== "-" &&
+        //                     item.generation !== "??" &&
+        //                     item.generation !== "?"
+        //                 );
+        //             });
+
+        //             this.generations = [
+        //                 ...new Set(this.GenfilteredOptions.map((item) => item.generation)),
+        //             ];
+        //             this.productionYears = [
+        //                 ...new Set(
+        //                     this.GenfilteredOptions.map((item) => item.production_years)
+        //                 ),
+        //             ];
+        //         })
+        //         .catch((e) => {
+        //             console.log(e);
+        //         });
+        // },
         getGenerations() {
-            // console.log('in generation', "make", this.make, "modal", this.smodel);
+            // Reset year selection
             this.formData.year = "";
+
             CarDataService.getGenerations(this.formData.make, this.formData.model)
                 .then((response) => {
                     const data = response.data;
                     console.log("data is", data);
                     this.dataGy = data;
 
-                    this.GenfilteredOptions = data.filter((item) => {
-                        return (
-                            item.generation !== "" &&
-                            item.generation !== "-" &&
-                            item.generation !== "??" &&
-                            item.generation !== "?"
-                        );
-                    });
+                    // Filter valid generations
+                    this.GenfilteredOptions = data.filter((item) => (
+                        item.generation !== "" &&
+                        item.generation !== "-" &&
+                        item.generation !== "??" &&
+                        item.generation !== "?"
+                    ));
 
-                    this.generations = [
-                        ...new Set(this.GenfilteredOptions.map((item) => item.generation)),
-                    ];
-                    this.productionYears = [
-                        ...new Set(
-                            this.GenfilteredOptions.map((item) => item.production_years)
-                        ),
-                    ];
+                    // Get the current year
+                    const currentYear = new Date().getFullYear();
+
+                    // Replace "____" with the current year in production_years
+                    this.GenfilteredOptions = this.GenfilteredOptions.map((item) => ({
+                        ...item,
+                        production_years: item.production_years.replace("____", currentYear)
+                    }));
+
+                    // Extract unique generations
+                    this.generations = [...new Set(this.GenfilteredOptions.map((item) => item.generation))];
+
+                    // Extract unique production years after replacement
+                    this.productionYears = [...new Set(this.GenfilteredOptions.map((item) => item.production_years))];
+
+                    console.log("Updated this.GenfilteredOptions", this.GenfilteredOptions);
                 })
                 .catch((e) => {
                     console.log(e);
                 });
-        },
+        }
+        ,
 
         getYears() {
             this.productionYears = [];
