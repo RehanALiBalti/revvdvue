@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from "vue-router";
+// import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import HomeItem from "./components/Home.vue";
 import SignUp from "./components/SignUp.vue";
 import SignIn from "./components/SignIn.vue";
@@ -317,7 +318,7 @@ const protectedRoutes = [
   // "ContactUs",
 ];
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
   // scrollBehavior(to, from, savedPosition) {
   //   if (savedPosition) {

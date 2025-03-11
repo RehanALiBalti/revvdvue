@@ -1,7 +1,7 @@
 <template>
 	<div class="container-fluid my-5">
 		<div class="row">
-			<h1 class="text-white">sddsd{{ formData.role }}</h1>
+
 			<div class="col-md-12 m-auto">
 				<div class="form-content-home1">
 
