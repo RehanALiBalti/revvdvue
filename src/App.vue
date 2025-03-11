@@ -1,5 +1,5 @@
 <template>
-  <div class="loader  " ref="loader" v-if="!isLogin2">
+  <div class="loader  " ref="loader" v-if="isLogin2 != 'true'">
     <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
       <source :src="videoSrc" type="video/mp4">
     </video>
@@ -34,6 +34,7 @@
     <div class="title-loader-div" v-show="isTextShow">
       <h1 class="banner-title new-heading-loader">
         Trun up the volume for better experience
+
       </h1>
 
     </div>
@@ -72,6 +73,9 @@ import FooterSect2 from '@/components/FooterSect2'
 import { useI18n } from 'vue-i18n';
 import { useShowFooter } from '@/composables/showFooter';
 import videoSrc from "./assets/images/landv.mp4"
+import { useIslogin } from "@/composables/uselogin"
+import { computed } from "vue";
+const { state } = useIslogin();
 export default {
 
   name: 'App',
@@ -83,7 +87,7 @@ export default {
 
   data() {
     return {
-      isLogin2: false,
+      // isLogin2: false,
       isTextShow: true,
       videoSrc,
       showStartButton: true, // Controls visibility of "Start Engine" button
@@ -136,9 +140,9 @@ export default {
       this.pNum = this.isMobile() ? 50 : 120;
     },
     checkLoginStatus() {
-      const storedIsLogin = localStorage.getItem('login');
-      this.isLogin2 = storedIsLogin ? JSON.parse(storedIsLogin) : false;
-      console.log("login value", this.isLogin2)
+
+      console.log("login val", this.isLogin2)
+      console.log("Computed isLogin2:", this.isLogin2, typeof this.isLogin2);
 
     }
   },
@@ -148,20 +152,22 @@ export default {
 
       setShowFooter(value);
     };
+    const isLogin2 = computed(() => state.isLogin);
     const { t } = useI18n();
 
     return {
       t,
 
       IsFooter,
-      changeFooter
+      changeFooter,
+      isLogin2
     };
   },
   mounted() {
 
     this.checkLoginStatus()
     this.$nextTick(() => {
-      if (!this.isLogin2) {
+      if (this.isLogin2 == 'false') {
         if (this.$refs.video instanceof HTMLVideoElement) {
           console.log("Video element is ready:", this.$refs.video);
         } else {
