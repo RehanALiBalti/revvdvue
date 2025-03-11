@@ -273,6 +273,7 @@ export default {
       this.formData.showPassword = !this.formData.showPassword;
     },
     async handleFacebookLogin() {
+      localStorage.setItem('showVideo', 'false');
       try {
         const response = await Auth.federatedSignIn({
           provider: CognitoHostedUIIdentityProvider.Facebook
