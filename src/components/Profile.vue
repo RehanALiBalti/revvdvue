@@ -3118,7 +3118,7 @@ export default {
 					nickname: this.name,
 					email: this.email,
 					age: this.age,
-					phone: this.phone,
+					phone: String(this.phone),
 					socialMedia: this.socialMedia,
 					image: this.image,
 				};

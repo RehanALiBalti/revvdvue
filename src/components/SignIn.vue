@@ -167,7 +167,7 @@ export default {
 
 
       if (event == 'signIn') {
-
+        localStorage.setItem('showVideo', 'false');
         localStorage.setItem('login', true);
         localStorage.setItem('social', true);
 
@@ -183,6 +183,7 @@ export default {
 
       }
       if (event == 'signUp') {
+        localStorage.setItem('showVideo', 'false');
         localStorage.setItem('signupstatus', "true");
         localStorage.setItem('login', true);
         localStorage.setItem('storgekey', data.userSub);

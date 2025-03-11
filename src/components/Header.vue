@@ -620,6 +620,7 @@ export default {
         localStorage.setItem('storgekey', "");
         localStorage.setItem('signupstatus', "");
         localStorage.setItem('firstTimeLogin', false);
+        localStorage.setItem('showVideo', 'true');
 
         this.changeName("");
         //  this.changeProfileImage("");
