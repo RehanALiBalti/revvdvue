@@ -417,7 +417,7 @@ export default {
 
   mounted() {
     console.log(this.loggedIn)
-    Hub.listen("auth", ({ payload: { event, data } }) => {
+    Hub.listen("authddd", ({ payload: { event, data } }) => {
       console.log(`Auth event: ${event}`, data);
 
 
