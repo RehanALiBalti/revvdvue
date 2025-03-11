@@ -58,7 +58,8 @@ function setprofile(data) {
     try {
       const updatedAttributes = {
         email: data.email,
-        phone_number: data.phone,
+        // phone_number: data.phone,
+        phone_number: data.phone ? data.phone.toString() : "",
         name: data.name,
         nickname: data.name,
 
