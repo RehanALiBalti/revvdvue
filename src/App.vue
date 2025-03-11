@@ -129,7 +129,7 @@ export default {
     },
 
     videoEnded() {
-      console.log("Video ended");
+      console.log("Video ended s");
       // this.showVideo = false; // Set showVideo to false
       // localStorage.setItem('showVideo', 'false'); // Store showVideo in local storage
       this.$refs.loader.classList.remove("show"); // Remove "show" class when video ends
