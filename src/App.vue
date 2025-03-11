@@ -170,6 +170,13 @@ export default {
   mounted() {
     const storedShowVideo = localStorage.getItem('showVideo');
     this.showVideo = storedShowVideo
+
+    let socialSIgnin = localStorage.getItem('amplify-signin-with-hostedUI');
+    console.log("social sinf", socialSIgnin, typeof socialSIgnin)
+    if (socialSIgnin == 'true') {
+      localStorage.setItem('showVideo', 'false');
+      this.showVideo = 'false'
+    }
     // If a value exists in local storage, parse it and update showVideo
     // if (storedShowVideo !== null) {
     //   this.showVideo = storedShowVideo === 'true';
