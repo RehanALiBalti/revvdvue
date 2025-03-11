@@ -288,6 +288,7 @@ export default {
       }
     },
     async handleGoogleLogin() {
+      localStorage.setItem('showVideo', 'false');
       try {
         const response = await Auth.federatedSignIn({ provider: 'Google' });
         // Handle successful login
