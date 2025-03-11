@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
+                        }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -130,7 +130,7 @@
                         </swiper-slide>
                       </swiper> -->
                       <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
-                        :initialSlide="1"  :navigation="{
+                        :initialSlide="1" :navigation="{
                           nextEl: '.custom-next',
                           prevEl: '.custom-prev',
                         }" class="mySwiper swiper-no-shadow modalswipper">
@@ -662,13 +662,24 @@ v-model="formData.country"> -->
                       :placeholder="$t('Production Years(Generation)')" @input="GenfilterOption" v-model="formData.year"
                       @click="toggleOpeng" v-else>
                     <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
-                      <li v-for="(value, index) in GenfilteredOptions" :key="index"
+                      <!-- <li v-for="(value, index) in GenfilteredOptions" :key="index"
                         @click="updateModels(value), this.isOpeng = false">
-                        <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+                      
                         {{ value.production_years.split(' ')[0] }}
                         <span v-if="value.production_years.split(' ')[1]">({{ value.production_years.split(' ')[1]
                         }})</span>
+                      </li> -->
+                      <li v-for="(value, index) in GenfilteredOptions" :key="index"
+                        @click="updateModels(value), this.isOpeng = false">
+
+                        {{ value.production_years.split(' ')[0].replace('____', new Date().getFullYear()) }}
+
+                        <span v-if="value.production_years.split(' ')[1]">
+                          ({{ value.production_years.split(' ')[1].replace('____', new Date().getFullYear()) }})
+                        </span>
+
                       </li>
+
                     </ul>
                     <ul v-else v-show="isOpeng" class="options-list">
 
@@ -4662,7 +4673,7 @@ select::placeholder {
   left: -22px !important;
 }
 
-.swiper-pagination{
-  display:none !important;
+.swiper-pagination {
+  display: none !important;
 }
 </style>

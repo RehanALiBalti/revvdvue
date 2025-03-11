@@ -447,6 +447,7 @@ function register2(
         "custom:dealerPassword": password,
         "custom:check1": check1,
         "custom:check2": check2,
+        "custom:Role": role,
       },
 
       autoConfirm: true,

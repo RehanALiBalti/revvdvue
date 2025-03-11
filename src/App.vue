@@ -1,5 +1,5 @@
 <template>
-  <div class="loader  " ref="loader">
+  <div class="loader  " ref="loader" v-if="!isLogin2">
     <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
       <source :src="videoSrc" type="video/mp4">
     </video>
@@ -83,6 +83,7 @@ export default {
 
   data() {
     return {
+      isLogin2: false,
       isTextShow: true,
       videoSrc,
       showStartButton: true, // Controls visibility of "Start Engine" button
@@ -133,6 +134,12 @@ export default {
     },
     updatePNumOnResize() {
       this.pNum = this.isMobile() ? 50 : 120;
+    },
+    checkLoginStatus() {
+      const storedIsLogin = localStorage.getItem('login');
+      this.isLogin2 = storedIsLogin ? JSON.parse(storedIsLogin) : false;
+      console.log("login value", this.isLogin2)
+
     }
   },
   setup() {
@@ -152,13 +159,16 @@ export default {
   },
   mounted() {
 
+    this.checkLoginStatus()
     this.$nextTick(() => {
-      if (this.$refs.video instanceof HTMLVideoElement) {
-        console.log("Video element is ready:", this.$refs.video);
-      } else {
-        console.error("Video element is not properly referenced:", this.$refs.video);
+      if (!this.isLogin2) {
+        if (this.$refs.video instanceof HTMLVideoElement) {
+          console.log("Video element is ready:", this.$refs.video);
+        } else {
+          console.error("Video element is not properly referenced:", this.$refs.video);
+        }
+        this.$refs.loader.classList.add("show"); // Add 'show' class on page load
       }
-      this.$refs.loader.classList.add("show"); // Add 'show' class on page load
     });
 
     // Update pNum if needed on mounted
