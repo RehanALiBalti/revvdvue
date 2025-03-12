@@ -3371,34 +3371,37 @@ export default {
 
 				console.log("New profile data:", response.data);
 
-				const profileData = response.data;
-				this.formData.country = profileData.country || "";
-				this.getcities(this.formData.country);
-				this.formData.city = profileData.city || "";
-				this.preferedCar1 = profileData.preferedCar1 || "";
-				this.preferedCar2 = profileData.preferedCar2 || "";
-				this.preferedCar3 = profileData.preferedCar3 || "";
+				if (response.data) {
+					const profileData = response.data;
+					this.formData.country = profileData.country || "";
+					this.getcities(this.formData.country);
+					this.formData.city = profileData.city || "";
+					this.preferedCar1 = profileData.preferedCar1 || "";
+					this.preferedCar2 = profileData.preferedCar2 || "";
+					this.preferedCar3 = profileData.preferedCar3 || "";
 
-				// Map cars data to dropdowns
-				this.dropdowns.forEach((dropdown, i) => {
-					const carKey = `car${i}carId`;
-					if (profileData[carKey]) {
-						dropdown.make = profileData[`car${i}make`] || "";
-						dropdown.model = profileData[`car${i}model`] || "";
-						dropdown.year = profileData[`car${i}year`] || "";
-						dropdown.cardSpec = profileData[`car${i}cardSpec`] || "";
-					}
-				});
+					// Map cars data to dropdowns
+					this.dropdowns.forEach((dropdown, i) => {
+						const carKey = `car${i}carId`;
+						if (profileData[carKey]) {
+							dropdown.make = profileData[`car${i}make`] || "";
+							dropdown.model = profileData[`car${i}model`] || "";
+							dropdown.year = profileData[`car${i}year`] || "";
+							dropdown.cardSpec = profileData[`car${i}cardSpec`] || "";
+						}
+					});
 
-				this.image = profileData.image;
-				this.name = profileData.nickname;
+					this.image = profileData.image;
+					this.name = profileData.nickname;
 
-				// Construct image URL
-				// const imageUrl = `https://backend.revvdout.com//users/${this.image}`;
-				const imageUrl = `${this.image}`;
-				console.log("Profile Image URL:", imageUrl);
+					// Construct image URL
+					// const imageUrl = `https://backend.revvdout.com//users/${this.image}`;
+					const imageUrl = `${this.image}`;
+					console.log("Profile Image URL:", imageUrl);
 
-				this.changeProfileImage(imageUrl);
+					this.changeProfileImage(imageUrl);
+				}
+
 			} catch (error) {
 				console.error("Error fetching profile data:", error);
 			}
