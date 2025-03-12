@@ -75,7 +75,7 @@
 									<div class="col-md-4">
 										<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 										<input v-model="phone" id="phone" type="tel" name="phone"
-											class="form-control form-input" :placeholder="$t('+920000000000')">
+											class="form-control form-input" :placeholder="$t('+352000000000')">
 										<!-- <div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
@@ -2100,6 +2100,7 @@ export default {
 			formData.append("nickname", this.name);
 			formData.append("age", this.age);
 			formData.append("email", this.email);
+
 			formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
 			formData.append("socialMedia", this.socialMedia);
 

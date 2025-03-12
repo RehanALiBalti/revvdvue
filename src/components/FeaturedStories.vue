@@ -572,9 +572,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-image-div my-4">
+                        <!-- <div class="filter-image-div my-4">
                             <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-md-9 px-4">
                         <div class="row">
