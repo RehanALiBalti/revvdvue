@@ -3265,6 +3265,7 @@ export default {
 					console.log("socialsttus", social)
 					if (social === true) {
 						this.name = this.UserData.given_name
+						this.changeName(this.name)
 						this.email = this.UserData.email
 
 						this.socialMedia = this.UserData.website
@@ -3278,7 +3279,7 @@ export default {
 					else {
 						this.name = this.UserData.name
 						this.email = this.UserData.email
-
+						this.changeName(this.name)
 						this.socialMedia = this.UserData.website
 						this.phone = this.UserData.phone_number
 						this.age = this.UserData["custom:age"]
