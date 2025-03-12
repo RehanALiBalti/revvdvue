@@ -5671,6 +5671,7 @@ export default {
             console.log("get modals");
             this.formData.year = "";
             this.smodel = "";
+            this.formData.model="",
             this.generations = [];
             this.GenfilteredOptions = [];
             this.productionYears = [];

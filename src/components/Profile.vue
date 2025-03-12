@@ -3263,16 +3263,31 @@ export default {
 						this.socialSignIn = true
 					}
 					console.log("socialsttus", social)
-					this.name = this.UserData.name
-					this.email = this.UserData.email
+					if (social === true) {
+						this.name = this.UserData.given_name
+						this.email = this.UserData.email
 
-					this.socialMedia = this.UserData.website
-					this.phone = this.UserData.phone_number
-					this.age = this.UserData["custom:age"]
-					this.fullname = this.UserData["custom:fullname"]
-					if (this.UserData.picture) {
-						this.image = this.UserData.picture
+						this.socialMedia = this.UserData.website
+						this.phone = this.UserData.phone_number
+						this.age = this.UserData["custom:age"]
+						this.fullname = this.UserData.name
+						if (this.UserData.picture) {
+							this.image = this.UserData.picture
+						}
 					}
+					else {
+						this.name = this.UserData.name
+						this.email = this.UserData.email
+
+						this.socialMedia = this.UserData.website
+						this.phone = this.UserData.phone_number
+						this.age = this.UserData["custom:age"]
+						this.fullname = this.UserData["custom:fullname"]
+						if (this.UserData.picture) {
+							this.image = this.UserData.picture
+						}
+					}
+
 				}
 
 
