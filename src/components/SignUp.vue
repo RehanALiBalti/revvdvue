@@ -164,6 +164,9 @@
                 <p id="errormsg"></p>
               </div>
               <div class="col-md-12">
+                <div v-if="loading" class="d-flex justify-content-center ">
+                  <div class="box"></div>
+                </div>
                 <div class="list-item-btn position-relative submit-btn-div">
                   <span class="border-bottom-btn border-top-btn position-absolute">
 
@@ -231,7 +234,7 @@
           </span>
 
           <div class="mt-4 py-2">
-            <h5 class="card-title"><span class="choose">Something Went Wronge </span></h5>
+            <h5 class="card-title"><span class="choose">Something Went Wrong </span></h5>
             <p class="text-white">{{ this.errorMessage }}</p>
             <p class="text-white">Please Try Again</p>
           </div>
@@ -300,6 +303,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       password: "", // Add this line
       strength: "", // Add this line
       isModalOpen: false,
@@ -629,6 +633,7 @@ export default {
 
     async submitForm() {
       console.log(this.formData);
+      this.loading = true
       this.validateForm();
 
       if (this.isFormValid()) {
@@ -659,17 +664,21 @@ export default {
                 } else {
                   this.isModalOpenFail = true;
                   this.errorMessage = data.error;
+                  this.loading = false
                 }
                 console.log(data);
               });
           } else {
             this.isModalOpenName = true;
+            this.loading = false
           }
         } catch (error) {
           console.error("Error:", error);
+          this.loading = false
         }
       } else {
         console.log("Form validation failed");
+        this.loading = false
       }
     },
     validateForm() {
@@ -859,6 +868,25 @@ export default {
 
   .flexwrap {
     flex-wrap: wrap
+  }
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: #FF7A00 transparent;
+  animation: spin 1s infinite ease-out;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>

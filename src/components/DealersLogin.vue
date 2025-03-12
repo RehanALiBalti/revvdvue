@@ -198,7 +198,7 @@
                     </span>
 
                     <div class="mt-4 py-2">
-                        <h5 class="card-title"><span class="choose">Something Went Wronge </span></h5>
+                        <h5 class="card-title"><span class="choose">Something Went Wrong </span></h5>
                         <p class="text-white">{{ this.errorMessage }}</p>
                         <p class="text-white">Please Try Again</p>
                     </div>
