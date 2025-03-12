@@ -52,61 +52,6 @@ async function getcurrentprofile() {
 //   });
 // }
 // working
-// function setprofile(data) {
-//   console.log("before request", data);
-
-//   return new Promise((resolve, reject) => {
-//     try {
-//       const updatedAttributes = {
-//         email: data.email,
-//         phone_number: data.phone,
-//         // phone_number: data.phone ? data.phone.toString() : "",
-//         // "custom:phone": data.phone ? data.phone.toString() : "",
-//         name: data.name,
-//         nickname: data.name,
-
-//         "custom:fullname": data.fullname, // Correctly access fullName property
-//         "custom:age": data.age,
-//         // Add other attributes you want to update
-//       };
-//       if (data.socialMedia) {
-//         updatedAttributes.website = data.socialMedia;
-//       }
-
-//       // if (data.image !== "") {
-//       //   updatedAttributes.picture = data.image;
-//       // }
-//       console.log("update", updatedAttributes);
-
-//       Auth.currentAuthenticatedUser()
-//         .then((user) => {
-//           console.log("authenuser", user);
-//           console.log(user.signInUserSession.accessToken.jwtToken);
-
-//           Auth.updateUserAttributes(user, updatedAttributes)
-//             .then((result) => {
-//               resolve(result);
-//             })
-//             .catch((error) => {
-//               const errorString =
-//                 typeof error === "string" ? error : String(error);
-//               const cleanedErrorMessage = errorString.replace(
-//                 /^InvalidParameterException:\s*/,
-//                 ""
-//               );
-//               console.log("ttt", error, typeof error);
-//               reject(cleanedErrorMessage);
-//             });
-//         })
-//         .catch((error) => {
-//           reject(error);
-//         });
-//     } catch (error) {
-//       console.error("Error updating user attributes:", error);
-//       reject(error);
-//     }
-//   });
-// }
 function setprofile(data) {
   console.log("before request", data);
 
@@ -114,56 +59,44 @@ function setprofile(data) {
     try {
       const updatedAttributes = {
         email: data.email,
-        // phone_number: data.phone,
+        phone_number: data.phone,
         // phone_number: data.phone ? data.phone.toString() : "",
-        "custom:phone": data.phone ? data.phone.toString() : "",
+        // "custom:phone": data.phone ? data.phone.toString() : "",
         name: data.name,
         nickname: data.name,
-        "custom:fullname": data.fullname,
-        "custom:age": data.age ? data.age.toString() : "", // Ensure it's a string
-      };
 
+        "custom:fullname": data.fullname, // Correctly access fullName property
+        // "custom:age": data.age,
+        "custom:age": data.age ? data.age.toString() : "", // Ensure it's a string
+        // Add other attributes you want to update
+      };
       if (data.socialMedia) {
         updatedAttributes.website = data.socialMedia;
       }
 
-      console.log("Attempting to update attributes:", updatedAttributes);
+      // if (data.image !== "") {
+      //   updatedAttributes.picture = data.image;
+      // }
+      console.log("update", updatedAttributes);
 
       Auth.currentAuthenticatedUser()
         .then((user) => {
-          console.log("Authenticated user:", user);
+          console.log("authenuser", user);
+          console.log(user.signInUserSession.accessToken.jwtToken);
 
-          // ✅ Check each attribute individually to identify the issue
-          const attributeKeys = Object.keys(updatedAttributes);
-          let attributeError = null;
-
-          const updateEachAttribute = async () => {
-            for (const key of attributeKeys) {
-              try {
-                console.log(
-                  `Updating attribute: ${key} -> ${updatedAttributes[key]}`
-                );
-                await Auth.updateUserAttributes(user, {
-                  [key]: updatedAttributes[key],
-                });
-              } catch (error) {
-                console.error(`Error updating attribute: ${key} ->`, error);
-                attributeError = key;
-                break;
-              }
-            }
-          };
-
-          updateEachAttribute()
-            .then(() => {
-              if (attributeError) {
-                reject(`Failed to update attribute: ${attributeError}`);
-              } else {
-                resolve("All attributes updated successfully");
-              }
+          Auth.updateUserAttributes(user, updatedAttributes)
+            .then((result) => {
+              resolve(result);
             })
             .catch((error) => {
-              reject(error);
+              const errorString =
+                typeof error === "string" ? error : String(error);
+              const cleanedErrorMessage = errorString.replace(
+                /^InvalidParameterException:\s*/,
+                ""
+              );
+              console.log("ttt", error, typeof error);
+              reject(cleanedErrorMessage);
             });
         })
         .catch((error) => {
@@ -175,7 +108,6 @@ function setprofile(data) {
     }
   });
 }
-
 // function setprofile2(data) {
 //   console.log("before request", data);
 
