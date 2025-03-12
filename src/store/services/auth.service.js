@@ -59,7 +59,7 @@ function setprofile(data) {
     try {
       const updatedAttributes = {
         email: data.email,
-        phone_number: data.phone,
+        phone_number: data.phone || "",
         // phone_number: data.phone ? data.phone.toString() : "",
         // "custom:phone": data.phone ? data.phone.toString() : "",
         name: data.name,
@@ -207,7 +207,8 @@ function setprofile2(data) {
 
         "custom:street1": data.street1,
 
-        "custom:street2": data.street2,
+        // "custom:street2": data.street2,
+        "custom:street2": data.street2 || "",
 
         "custom:zipCode": data.zipCode,
 
