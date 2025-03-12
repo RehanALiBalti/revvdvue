@@ -544,13 +544,15 @@ export default {
         console.log("Profile response:", response.data);
 
         // Update user data
-        this.changeName(response.data.nickname);
-        this.image = response.data.image;
+        if (response.data) {
+          this.changeName(response.data.nickname);
+          this.image = response.data.image;
 
-        // Construct and set profile image
-        // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
-        // console.log("User profile image:", imageUrl);
-        this.changeProfileImage(this.image);
+          // Construct and set profile image
+          // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+          // console.log("User profile image:", imageUrl);
+          this.changeProfileImage(this.image);
+        }
 
       } catch (error) {
         console.error("Error fetching profile data:", error);
