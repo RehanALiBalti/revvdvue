@@ -2349,9 +2349,15 @@ export default {
 				formData.append("email", this.formData.email);
 				formData.append("emailForCustomer", this.formData.email);
 				formData.append("faxCustomer", this.formData.fax);
-				// formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
+				formData.append("phone", this.formData.phone1.replace(/[+\-()]/g, ""));
 
 				// Send the form data to the API
+				console.log("FormData contents:");
+				formData.forEach((value, key) => {
+					console.log(`${key}:`, value);
+				});
+
+
 				const response = await http.post("/users/updateuser", formData, {
 					headers: {
 						"Content-Type": "multipart/form-data",
