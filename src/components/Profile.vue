@@ -75,7 +75,7 @@
 									<div class="col-md-4">
 										<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 										<input v-model="phone" id="phone" type="tel" name="phone"
-											class="form-control form-input" :placeholder="$t('+920000000000')" required>
+											class="form-control form-input" :placeholder="$t('+920000000000')">
 										<!-- <div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
@@ -458,7 +458,7 @@
 													v-if="dropdown.GenfilteredOptions.length > 0">
 													<li v-for="(value, gIndex) in dropdown.GenfilteredOptions"
 														:key="gIndex" @click="updateModels(index, value)">
-														{{ value.production_years.split(' ')[0] }}
+														{{ value.production_years }}
 														<!-- <span v-if="value.production_years.split(' ')[1]">
 															({{ value.production_years.split(' ')[1] }})
 														</span> -->
@@ -653,7 +653,7 @@
 							<div class="col-md-3">
 								<label for="street2" class="form-label">{{ $t('Street') }} 2</label>
 								<input v-model="formData.street2" id="street2" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input" :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
@@ -852,7 +852,7 @@
 					</span>
 
 					<div class="mt-4 py-2">
-						<h5 class="card-title"><span class="choose">Something Went Wronge </span></h5>
+						<h5 class="card-title"><span class="choose">Something Went Wrong </span></h5>
 
 						<p class="text-white">{{ errorMessage }}</p>
 					</div>
@@ -2329,6 +2329,10 @@ export default {
 					console.log("Submitting form data:", formData);
 				}
 
+				console.log("Image secure:", this.secureUld);
+
+				console.log("Submitting form data:", this.formData);
+				formData.append("image", this.secureUld);
 				formData.append("sub", this.formData.sub);
 				formData.append("street1", this.formData.street);
 				formData.append("street2", this.formData.street2);
@@ -2345,7 +2349,7 @@ export default {
 				formData.append("email", this.formData.email);
 				formData.append("emailForCustomer", this.formData.email);
 				formData.append("faxCustomer", this.formData.fax);
-				formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
+				// formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
 
 				// Send the form data to the API
 				const response = await http.post("/users/updateuser", formData, {
@@ -3236,6 +3240,7 @@ export default {
 				this.formData.fullname = this.UserData['custom:fullname']
 				// this.role = this.UserData.nickname
 				if (this.role == "dealer") {
+					console.log("in dealer", this.UserData["custom:country"], "country", this.formData.country)
 					this.changeName(this.UserData.name)
 					this.formData.CompanyName = this.UserData.name;
 					this.formData.email = this.UserData.email
@@ -3374,9 +3379,11 @@ export default {
 
 				if (response.data) {
 					const profileData = response.data;
-					this.formData.country = profileData.country || "";
-					this.getcities(this.formData.country);
-					this.formData.city = profileData.city || "";
+					if (this.role !== 'dealer') {
+						this.formData.country = profileData.country || "";
+						this.getcities(this.formData.country);
+						this.formData.city = profileData.city || "";
+					}
 					this.preferedCar1 = profileData.preferedCar1 || "";
 					this.preferedCar2 = profileData.preferedCar2 || "";
 					this.preferedCar3 = profileData.preferedCar3 || "";

@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -1154,7 +1154,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <div class="thank-you-pop">
             <img :src='icons_tick' alt="" />
             <h1 class="coloror">Success!</h1>
-            <p>Your Story submitted successfully</p>
+            <p>Your story was submitted for review.</p>
           </div>
         </div>
       </div>
