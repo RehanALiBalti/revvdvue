@@ -552,6 +552,7 @@ export default {
         // },
         async submitForm() {
             console.log("in submit form")
+            this.loading = true
             this.validateForm();
 
             if (this.isFormValid()) {
@@ -583,9 +584,11 @@ export default {
                     }
                 } catch (error) {
                     console.error("❌ API Error:", error);
+                    this.loading = false
                 }
             } else {
                 console.log("❌ Form is invalid");
+                this.loading = false
             }
         },
         // isFormValid() {
