@@ -570,6 +570,7 @@ export default {
                                     localStorage.setItem("login", true);
                                     this.$router.push("/profile");
                                 } else {
+                                    this.isModalOpenFail = true
                                     this.errorMessage = data.error;
                                 }
                             })
