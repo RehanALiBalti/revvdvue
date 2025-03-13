@@ -1737,7 +1737,7 @@
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
-                                                                    {{ car.country }}
+                                                                    {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -2458,7 +2458,7 @@
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
-                                                                    {{ car.country }}
+                                                                    {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -3169,7 +3169,7 @@
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
-                                                                    {{ car.country }}
+                                                                    {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -3885,7 +3885,7 @@
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
-                                                                    {{ car.country }}
+                                                                    {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -4600,7 +4600,7 @@
                                                             <div class="d-flex align-items-center gap-2">
                                                                 <img :src="iconford" class="d-none" alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
-                                                                    {{ car.country }}
+                                                                    {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
@@ -5671,8 +5671,8 @@ export default {
             console.log("get modals");
             this.formData.year = "";
             this.smodel = "";
-            this.formData.model="",
-            this.generations = [];
+            this.formData.model = "",
+                this.generations = [];
             this.GenfilteredOptions = [];
             this.productionYears = [];
             if (this.formData.make == "") {

@@ -33,8 +33,8 @@
     </div>
     <div class="title-loader-div" v-show="isTextShow">
       <h1 class="banner-title new-heading-loader">
-        Trun up the volume for better experience
-        {{ showVideo }}
+        Turn up the volume for better experience
+
 
       </h1>
 
