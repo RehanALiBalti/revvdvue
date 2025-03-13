@@ -3491,8 +3491,12 @@ export default {
 					this.formData.streetNo = this.UserData["custom:number"]
 					this.formData.street2 = this.UserData["custom:street2"]
 					this.formData.zipCode = this.UserData["custom:zipCode"]
-					this.formData.city = this.UserData["custom:city"]
+
+
+					console.log("city", this.UserData["custom:city"])
 					this.formData.country = this.UserData["custom:country"]
+					this.getcities(this.formData.country);
+					this.formData.city = this.UserData["custom:city"]
 
 				} else {
 					let social = false;
@@ -3618,9 +3622,9 @@ export default {
 						this.getcities(this.formData.country);
 						this.formData.city = profileData.city || "";
 					}
-					this.formData.country = profileData.country || "";
-					this.getcities(this.formData.country);
-					this.formData.city = profileData.city || "";
+					// this.formData.country = profileData.country || "";
+					// this.getcities(this.formData.country);
+					// this.formData.city = profileData.city || "";
 					this.preferedCar1 = profileData.preferedCar1 || "";
 					this.preferedCar2 = profileData.preferedCar2 || "";
 					this.preferedCar3 = profileData.preferedCar3 || "";
@@ -3666,8 +3670,9 @@ export default {
 	async created() {
 
 		// this.getprofile()
-		await this.fetchProfileData()
 		await this.fetchproData()
+		await this.fetchProfileData()
+
 		await this.checkIfGoogleOrFacebookUser()
 
 
@@ -3677,8 +3682,9 @@ export default {
 	async mounted() {
 		this.retrieveMakes()
 
-		await this.fetchProfileData();
+
 		await this.fetchproData();
+		await this.fetchProfileData();
 		this.initialNickname = this.name
 		console.log("ini name", this.initialNickname)
 		this.setLogin("true");
