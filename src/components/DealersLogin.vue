@@ -572,6 +572,7 @@ export default {
                                 } else {
                                     this.isModalOpenFail = true
                                     this.errorMessage = data.error;
+                                    this.loading = false
                                 }
                             })
                             .catch(error => {
