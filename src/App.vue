@@ -169,6 +169,10 @@ export default {
   },
   mounted() {
     const storedShowVideo = localStorage.getItem('showVideo');
+    if (storedShowVideo === null) {
+      // If 'showVideo' does not exist, set it to 'true'
+      localStorage.setItem('showVideo', 'true');
+    }
     this.showVideo = storedShowVideo
 
 
