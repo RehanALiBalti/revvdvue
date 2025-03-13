@@ -12,28 +12,28 @@
                                 <h3 class="text-white mt-2 mb-0 form-title">{{ $t('LocationOfVehicle') }}</h3>
                                 <label for="companyName" class="form-label">{{ $t('CompanyName') }}</label>
                                 <input v-model="formData.name" id="companyName" type="text"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.name }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.name }]"
                                     :placeholder="$t('Enter here')" />
                                 <div v-if="formErrors.name" class="text-danger">{{ formErrors.name }}</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="street" class="form-label">{{ $t('Street') }}</label>
                                 <input v-model="formData.street" id="street" type="text"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.street }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.street }]"
                                     :placeholder="$t('Enter here')" />
                                 <div v-if="formErrors.street" class="text-danger">{{ formErrors.street }}</div>
                             </div>
                             <div class="col-md-3">
                                 <label for="streetNo" class="form-label">{{ $t('StreetNo') }}</label>
                                 <input v-model="formData.streetNo" id="streetNo" type="text"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.streetNo }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.streetNo }]"
                                     :placeholder="$t('Enter here')" @input="validatestreeet1" />
                                 <div v-if="formErrors.streetNo" class="text-danger">{{ formErrors.streetNo }}</div>
                             </div>
                             <div class="col-md-3">
                                 <label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
                                 <input v-model="formData.zipCode" id="zipCode" type="text"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.zipCode }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.zipCode }]"
                                     :placeholder="$t('Enter here')" />
                                 <div v-if="formErrors.zipCode" class="text-danger">{{ formErrors.zipCode }}</div>
                             </div>
@@ -41,10 +41,10 @@
                             <div class="col-md-3">
                                 <label for="country" class="form-label">{{ $t('Country') }}</label>
                                 <!-- <input v-model="formData.country" id="country" type="text"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.country }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.country }]"
                                     :placeholder="$t('Enter here')" /> -->
                                 <select id="country"
-                                    :class="['form-select', 'form-input', { 'is-invalid': formErrors.country }]"
+                                    :class="['form-select', 'form-input', 'h35px', { 'is-invalid': formErrors.country }]"
                                     v-model="formData.country" @change="getcities(formData.country)">
                                     <option selected value="">Country</option>
                                     <option value="Afghanistan">Afghanistan</option>
@@ -265,10 +265,10 @@
                             <div class="col-md-3">
                                 <label for="city" class="form-label">{{ $t('City') }}</label>
                                 <!-- <input v-model="formData.city" id="city" type="text"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.city }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.city }]"
                                     :placeholder="$t('Enter here')" /> -->
                                 <select id="city"
-                                    :class="['form-select', 'form-input', { 'is-invalid': formErrors.city }]"
+                                    :class="['form-select', 'form-input', 'h35px', { 'is-invalid': formErrors.city }]"
                                     v-model="formData.city">
                                     <option selected value="">City</option>
                                     <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
@@ -278,7 +278,7 @@
                             <div class="col-md-6">
                                 <label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
                                 <input v-model="formData.phone1" id="phone1" type="tel"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.phone1 }]"
+                                    :class="['form-control', 'form-input', 'h35px', 'h35px', { 'is-invalid': formErrors.phone1 }]"
                                     inputmode="numeric" pattern="[0-9]*" :placeholder="$t('Enter here')"
                                     @input="validatePhone1" />
                                 <div v-if="formErrors.phone1" class="text-danger">{{ formErrors.phone1 }}</div>
@@ -286,14 +286,14 @@
                             <div class="col-md-6">
                                 <label for="fax" class="form-label">{{ $t('Fax') }}</label>
                                 <input v-model="formData.fax" id="fax" type="tel"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.fax }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.fax }]"
                                     :placeholder="$t('Enter here')" @input="validateFax" />
                                 <div v-if="formErrors.fax" class="text-danger">{{ formErrors.fax }}</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
                                 <input v-model="formData.mobilePhone" id="mobilePhone" type="tel"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.mobilePhone }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.mobilePhone }]"
                                     :placeholder="$t('Enter here')" @input="validateMobilePhone" />
                                 <div v-if="formErrors.mobilePhone" class="text-danger">{{ formErrors.mobilePhone }}
                                 </div>
@@ -301,7 +301,7 @@
                             <div class="col-md-6">
                                 <label for="email" class="form-label">{{ $t('Email') }}</label>
                                 <input v-model="formData.email" id="email" type="email"
-                                    :class="['form-control', 'form-input', { 'is-invalid': formErrors.email }]"
+                                    :class="['form-control', 'form-input', 'h35px', { 'is-invalid': formErrors.email }]"
                                     :placeholder="$t('Enter here')" />
                                 <div v-if="formErrors.email" class="text-danger">{{ formErrors.email }}</div>
                             </div>
@@ -310,7 +310,7 @@
                                 <div class="input-group">
                                     <input :type="formData.showPassword ? 'text' : 'password'" id="password"
                                         v-model="formData.password"
-                                        :class="['form-control', 'form-input', 'formP', { 'is-invalid': formErrors.password }]"
+                                        :class="['form-control', 'form-input', 'h35px', 'formP', { 'is-invalid': formErrors.password }]"
                                         :placeholder="$t('Enter here')" />
                                     <span @click="togglePasswordVisibility2"
                                         :class="['input-group-text igt', , { 'isInvalid': formErrors.password }]">

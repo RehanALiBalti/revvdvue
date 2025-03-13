@@ -54,28 +54,28 @@
 									<div class="col-md-4">
 										<label for="name" class="form-label">{{ $t('Full Name') }}</label>
 										<input v-model="fullname" id="name" type="text" name="name"
-											class="form-control form-input" :placeholder="$t('Enter here')" required>
+											class="form-control form-input h35px" :placeholder="$t('Enter here')" required>
 									</div>
 									<div class="col-md-4">
 										<label for="name" class="form-label">{{ $t('Nick Name') }}</label>
 										<input v-model="name" id="name" type="text" name="name"
-											class="form-control form-input" :placeholder="$t('Enter here')" required>
+											class="form-control form-input h35px" :placeholder="$t('Enter here')" required>
 									</div>
 									<div class="col-md-4">
 										<label for="age" class="form-label">{{ $t('age') }}</label>
 										<input v-model="age" id="age" type="number" name="age"
-											class="form-control form-input" :placeholder="$t('Enter here')" required
+											class="form-control form-input h35px" :placeholder="$t('Enter here')" required
 											inputmode="numeric" pattern="[0-9]*">
 									</div>
 									<div class="col-md-4">
 										<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
 										<input v-model="email" id="email" type="email" name="email"
-											class="form-control form-input" :placeholder="$t('Enter here')" required>
+											class="form-control form-input h35px" :placeholder="$t('Enter here')" required>
 									</div>
 									<div class="col-md-4">
 										<label for="phone" class="form-label">{{ $t('phoneVerification') }}</label>
 										<input v-model="phone" id="phone" type="tel" name="phone"
-											class="form-control form-input" :placeholder="$t('+352000000000')">
+											class="form-control form-input h35px" :placeholder="$t('+352000000000')">
 										<!-- <div
 									class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
 									<div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
@@ -118,12 +118,12 @@
 										<label for="socialMedia" class="form-label">{{ $t('socialMediaOptional')
 										}}</label>
 										<input v-model="socialMedia" id="socialMedia" type="text" name="socialMedia"
-											class="form-control form-input" placeholder="Enter here">
+											class="form-control form-input h35px" placeholder="Enter here">
 									</div>
 									<div class="col-md-4">
 										<label for="country" class="form-label">Country</label>
 
-										<select id="country" class="form-select form-control form-input "
+										<select id="country" class="form-select form-control form-input h35px "
 											v-model="formData.country" @change="getcities(formData.country)">
 											<option selected value="">Country</option>
 											<option value="Afghanistan">Afghanistan</option>
@@ -345,7 +345,7 @@
 										<!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
 
 										<!-- City Select -->
-										<select id="city" class="form-select form-control form-input "
+										<select id="city" class="form-select form-control form-input h35px "
 											v-model="formData.city">
 											<option value="">City</option>
 											<option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
@@ -362,7 +362,7 @@
 										<div class="row g-3">
 											<div class="col-md-4">
 												<select v-model="preferedCar1"
-													class="form-select form-control form-input"
+													class="form-select form-control form-input h35px"
 													:placeholder="' Card Spec'">
 													<option value="">#1</option>
 													<option value="european">European</option>
@@ -373,7 +373,7 @@
 											</div>
 											<div class="col-md-4">
 												<select v-model="preferedCar2"
-													class="form-select form-control form-input"
+													class="form-select form-control form-input h35px"
 													:placeholder="' Card Spec'">
 													<option value="">#2</option>
 													<option value="european">European</option>
@@ -384,7 +384,7 @@
 											</div>
 											<div class="col-md-4">
 												<select v-model="preferedCar3"
-													class="form-select form-control form-input"
+													class="form-select form-control form-input h35px"
 													:placeholder="' Card Spec'">
 													<option value="">#3</option>
 													<option value="european">European</option>
@@ -416,7 +416,7 @@
 											<!-- Make Input -->
 											<div class="customSelect position-relative mb-2 z-5"
 												@blur="dropdown.isOpen = false">
-												<input type="text" class="form-select form-control form-input"
+												<input type="text" class="form-select form-control form-input h35px"
 													v-model="dropdown.make" :placeholder="$t(' Make')"
 													@click="toggleDropdown(index)" @input="filterMakeOptions(index);">
 												<ul v-show="dropdown.isOpen" class="options-list"
@@ -431,7 +431,7 @@
 											<!-- Model Input -->
 											<div class="customSelect position-relative mb-2 z-4"
 												@blur="dropdown.isOpenm = false">
-												<input type="text" class="form-select form-control form-input"
+												<input type="text" class="form-select form-control form-input h35px"
 													v-model="dropdown.model" :placeholder="$t(' Model')"
 													@click.stop="toggleDropdownm(index)"
 													@focus="dropdown.make === '' ? (dropdown.isOpenm = false) : null"
@@ -450,7 +450,7 @@
 											<!-- Production Year Input -->
 											<div class="customSelect position-relative mb-2 z-3"
 												@blur="dropdown.isOpeng = false">
-												<input type="text" class="form-select form-control form-input"
+												<input type="text" class="form-select form-control form-input h35px"
 													v-model="dropdown.year" :placeholder="$t(' Year')"
 													@input="GenfilterOption(index)" @click.stop="toggleOpeng(index)"
 													:disabled="dropdown.model === ''">
@@ -469,7 +469,7 @@
 											<!-- Card Spec Select -->
 											<div class="z-2">
 												<select v-model="dropdown.cardSpec"
-													class="form-select form-control form-input">
+													class="form-select form-control form-input h35px">
 													<option value=""> Car Spec</option>
 													<option value="Drag">Drag</option>
 													<option value="Street">Street</option>
@@ -638,42 +638,42 @@
 
 
 								<input v-model="formData.CompanyName" id="companyName mt-2" type="text"
-									class="form-control form-input" required />
+									class="form-control form-input h35px" required />
 							</div>
 							<div class="col-md-6">
 								<label for="street" class="form-label">{{ $t('Street') }}</label>
-								<input v-model="formData.street" id="street" type="text" class="form-control form-input"
+								<input v-model="formData.street" id="street" type="text" class="form-control form-input h35px"
 									required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="streetNo" class="form-label">No.</label>
 								<input v-model="formData.streetNo" id="streetNo" type="number"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="street2" class="form-label">{{ $t('Street') }} 2</label>
 								<input v-model="formData.street2" id="street2" type="text"
-									class="form-control form-input" :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="zipCode" class="form-label">{{ $t('ZipCode') }}</label>
 								<input v-model="formData.zipCode" id="zipCode" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')" />
 							</div>
 							<div class="col-md-3">
 								<label for="city" class="form-label">{{ $t('City') }}</label>
-								<!-- <input v-model="formData.city" id="city" type="text" class="form-control form-input"
+								<!-- <input v-model="formData.city" id="city" type="text" class="form-control form-input h35px"
 									required :placeholder="$t('Enter here')" /> -->
-								<select id="city" class="form-select form-control form-input " v-model="formData.city">
+								<select id="city" class="form-select form-control form-input h35px " v-model="formData.city">
 									<option value="">City</option>
 									<option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
 								</select>
 							</div>
 							<div class="col-md-6">
 								<label for="country" class="form-label">{{ $t('Country') }}</label>
-								<!-- <input v-model="formData.country" type="text" class="form-control form-input" required
+								<!-- <input v-model="formData.country" type="text" class="form-control form-input h35px" required
 									:placeholder="$t('Enter here')" /> -->
-								<select id="country" class="form-select form-control form-input "
+								<select id="country" class="form-select form-control form-input h35px "
 									v-model="formData.country" @change="getcities(formData.country)">
 									<option selected value="">Country</option>
 									<option value="Afghanistan">Afghanistan</option>
@@ -894,16 +894,16 @@
 								<label for="intlPrefix1" class="form-label">{{ $t('InternatPrefix1') }}</label>
 
 								<input v-model="formData.intlPrefix1" id="fax" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')" />
 							</div> -->
 							<!-- <div class="col-md-3">
 								<label for="prefix1" class="form-label">{{ $t('Prefix1') }}</label>
 								<input v-model="formData.prefix1" id="prefix1" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')" />
 							</div> -->
 							<div class="col-md-6">
 								<label for="phone1" class="form-label">{{ $t('Phone1') }}</label>
-								<input v-model="formData.phone1" id="phone1" type="tel" class="form-control form-input"
+								<input v-model="formData.phone1" id="phone1" type="tel" class="form-control form-input h35px"
 									required :placeholder="$t('Enter here')"
 									oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
 							</div>
@@ -911,16 +911,16 @@
 								<label for="intlPrefix2" class="form-label">{{ $t('InternatPrefix1') }}</label>
 
 								<input v-model="formData.intlPrefix2" id="intlPrefix2" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')" />
 							</div> -->
 							<!-- <div class="col-md-3">
 								<label for="prefix2" class="form-label">{{ $t('Prefix1') }}</label>
 								<input v-model="formData.prefix2" id="prefix2" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')" />
 							</div> -->
 							<div class="col-md-6">
 								<label for="fax" class="form-label">{{ $t('Fax') }}</label>
-								<input v-model="formData.fax" id="fax" type="tel" class="form-control form-input"
+								<input v-model="formData.fax" id="fax" type="tel" class="form-control form-input h35px"
 									required :placeholder="$t('Enter here')"
 									oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
 							</div>
@@ -928,22 +928,22 @@
 								<label for="intlPrefix3" class="form-label">{{ $t('InternatPrefix1') }}</label>
 
 								<input v-model="formData.intlPrefix3" id="fax" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')" />
 							</div> -->
 							<!-- <div class="col-md-3">
 								<label for="prefix3" class="form-label">{{ $t('Prefix1') }}</label>
 								<input v-model="formData.prefix3" id="prefix3" type="text"
-									class="form-control form-input" required :placeholder="$t('Enter here')" />
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')" />
 							</div> -->
 							<div class="col-md-6">
 								<label for="mobilePhone" class="form-label">{{ $t('MobilePhone') }}</label>
 								<input v-model="formData.mobilePhone" id="mobilePhone" type="tel"
-									class="form-control form-input" required :placeholder="$t('Enter here')"
+									class="form-control form-input h35px" required :placeholder="$t('Enter here')"
 									oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
 							</div>
 							<div class="col-md-6">
 								<label for="email" class="form-label">{{ $t('Email') }}</label>
-								<input v-model="formData.email" id="email" type="email" class="form-control form-input"
+								<input v-model="formData.email" id="email" type="email" class="form-control form-input h35px"
 									required :placeholder="$t('Enter here')" />
 								<input v-model="formData.role" id="h" type="text" class="form-control form-input d-none"
 									:placeholder="$t('Enter here')" value="dealer" />
@@ -1119,12 +1119,12 @@
 							<div class="col-md-12">
 								<label for="socialMedia" class="form-label">Old Password</label>
 								<input v-model="oldPassword" id="socialMedia" type="password" name="socialMedia"
-									class="form-control form-input" placeholder="Enter here">
+									class="form-control form-input h35px" placeholder="Enter here">
 							</div>
 							<div class="col-md-12">
 								<label for="socialMedia" class="form-label">New Password</label>
 								<input v-model="newPassword" id="socialMedia" type="password" name="socialMedia"
-									class="form-control form-input" placeholder="Enter here">
+									class="form-control form-input h35px" placeholder="Enter here">
 							</div>
 							<div class="col-md-12">
 								<div
@@ -1193,7 +1193,7 @@
 									<input v-model="countryCode" id="socialMedia" type="text" name="socialMedia"
 										class="form-control form-input w-25" placeholder="+92">
 									<input v-model="phoneVnum" id="socialMedia" type="tel" name="socialMedia"
-										class="form-control form-input" placeholder="3040348584">
+										class="form-control form-input h35px" placeholder="3040348584">
 								</div>
 							</div>
 
