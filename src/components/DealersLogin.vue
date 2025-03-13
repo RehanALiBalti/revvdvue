@@ -131,6 +131,9 @@
                                 <p id="errormsg"></p>
                             </div>
                             <div class="col-md-12">
+                                <div v-if="loading" class="d-flex justify-content-center ">
+                                    <div class="box"></div>
+                                </div>
                                 <div class="list-item-btn position-relative submit-btn-div">
                                     <span class="border-bottom-btn border-top-btn position-absolute">
                                         <img src="@/assets/images/Group12.png" class="img-border position-absolute"
@@ -208,6 +211,26 @@
             </div>
         </div>
     </div>
+    <!-- modal for show name already exits -->
+    <div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpenName === true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <span class="close-icon" @click="isModalOpenName = false">
+                        <i class="fas fa-times"></i>
+                    </span>
+
+                    <div class="mt-4 py-2">
+                        <h5 class="card-title"><span class="choose">Name Alredy Existed </span></h5>
+
+                        <p class="text-white">Please Try With Different Name</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
 // import axios from 'axios';
@@ -217,6 +240,8 @@ export default {
 
     data() {
         return {
+            isModalOpenName: false,
+            loading: false,
             isModalOpen: false,
             isModalOpenFail: false,
             errorMessage: "",
@@ -532,9 +557,10 @@ export default {
             if (this.isFormValid()) {
                 console.log("the form is valud")
                 try {
+                    console.log("in try")
                     // ✅ Use `apiClient` for the GET request
                     const response = await apiClient.get(`/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`);
-
+                    console.log("response", response)
                     if (response.data.count === 0) {
                         console.log("in if data.count==0 new nick name")
                         this.$store.dispatch("auth/handleSignUp2", this.formData)
@@ -549,6 +575,11 @@ export default {
                             .catch(error => {
                                 console.error("❌ Error during form submission:", error);
                             });
+                    }
+                    else {
+                        console.log("name exists")
+                        this.isModalOpenName = true;
+                        this.loading = false
                     }
                 } catch (error) {
                     console.error("❌ API Error:", error);
@@ -750,5 +781,24 @@ export default {
 
 .isInvalid {
     border-color: #7E2838 !important;
+}
+
+.box {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 6px solid;
+    border-color: #FF7A00 transparent;
+    animation: spin 1s infinite ease-out;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 </style>
