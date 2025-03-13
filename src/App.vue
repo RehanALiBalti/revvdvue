@@ -174,6 +174,9 @@ export default {
       localStorage.setItem('showVideo', 'true');
     }
     this.showVideo = storedShowVideo
+    setTimeout(() => {
+      localStorage.setItem('showVideo', 'true');
+    }, 2000);
 
 
     // If a value exists in local storage, parse it and update showVideo
