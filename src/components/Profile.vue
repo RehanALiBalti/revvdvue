@@ -3392,6 +3392,7 @@ export default {
 
 				if (response.data) {
 					const profileData = response.data;
+
 					if (this.role !== 'dealer') {
 						this.formData.country = profileData.country || "";
 						this.getcities(this.formData.country);
@@ -3400,6 +3401,7 @@ export default {
 					this.preferedCar1 = profileData.preferedCar1 || "";
 					this.preferedCar2 = profileData.preferedCar2 || "";
 					this.preferedCar3 = profileData.preferedCar3 || "";
+					this.secureUld = profileData.image
 
 					// Map cars data to dropdowns
 					this.dropdowns.forEach((dropdown, i) => {
