@@ -2101,7 +2101,13 @@ export default {
 			formData.append("age", this.age);
 			formData.append("email", this.email);
 
-			formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
+			// formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
+			if (typeof this.phone === "string") {
+				formData.append("phone", this.phone.replace(/[+\-()]/g, ""));
+			} else {
+				console.error("Phone number is undefined or not a string");
+				formData.append("phone", ""); // Append an empty string as a fallback
+			}
 			formData.append("socialMedia", this.socialMedia);
 
 			// New changed data

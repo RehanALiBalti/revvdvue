@@ -526,14 +526,17 @@ export default {
         //     }
         // },
         async submitForm() {
+            console.log("in submit form")
             this.validateForm();
 
             if (this.isFormValid()) {
+                console.log("the form is valud")
                 try {
                     // ✅ Use `apiClient` for the GET request
                     const response = await apiClient.get(`/users/nickname?nickname=${this.formData.name.trim().toLowerCase()}`);
 
                     if (response.data.count === 0) {
+                        console.log("in if data.count==0 new nick name")
                         this.$store.dispatch("auth/handleSignUp2", this.formData)
                             .then(data => {
                                 if (data.success === 1) {
