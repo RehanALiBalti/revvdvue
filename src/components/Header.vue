@@ -622,7 +622,7 @@ export default {
         localStorage.setItem('storgekey', "");
         localStorage.setItem('signupstatus', "");
         localStorage.setItem('firstTimeLogin', false);
-        localStorage.setItem('showVideo', 'true');
+        localStorage.setItem('showVideo', 'false');
 
         this.changeName("");
         //  this.changeProfileImage("");
