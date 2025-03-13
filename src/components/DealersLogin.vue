@@ -221,9 +221,9 @@
                     </span>
 
                     <div class="mt-4 py-2">
-                        <h5 class="card-title"><span class="choose">Name Alredy Existed </span></h5>
+                        <h5 class="card-title"><span class="choose">Company Name Alredy Existed </span></h5>
 
-                        <p class="text-white">Please Try With Different Name</p>
+                        <p class="text-white">Please Try With Different Company Name</p>
                     </div>
 
 
