@@ -111,6 +111,9 @@ export default {
         if (data.result.identities) {
           this.showVideo = "false"
         }
+        else {
+          this.showVideo = "true"
+        }
 
       } catch (error) {
 
