@@ -522,12 +522,12 @@
 												{{
 													$t("updateProfile") }}
 											</button>
-											<!-- <button
+											<button
 												class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
 												id="submit-button" :disabled="loading" v-if="loading">
 												{{
 													$t("updateProfile") }}
-											</button> -->
+											</button>
 
 											<span class="border-bottom-btn border-left-btn new-popup position-absolute">
 												<img src="@/assets/images/Group11engine.png"
@@ -2215,7 +2215,7 @@ export default {
 			// If the nickname has changed, check its availability
 			if (this.name !== this.initialNickname) {
 				console.log("Checking nickname availability for:", this.name);
-				this.loading = true;
+				// this.loading = true;
 
 				try {
 					// Use baseURL from httpCommon.js
@@ -2232,10 +2232,10 @@ export default {
 					} else {
 						console.log("Nickname already exists");
 						this.isModalOpenName = true;
-						this.loading = false;
+						// this.loading = false;
 					}
 				} catch (error) {
-					this.loading = false;
+					// this.loading = false;
 					console.error("Error during nickname check or form submission:", error);
 				}
 			} else {
@@ -2388,7 +2388,7 @@ export default {
 				const profiledata = await this.fetchproData();
 				return profiledata;
 			} catch (error) {
-				this.loading = false;
+				// this.loading = false;
 				console.error("Error during form submission:", error);
 			}
 		},

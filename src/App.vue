@@ -101,6 +101,22 @@ export default {
     };
   },
   methods: {
+    async fetchProfileData() {
+      try {
+        // console.log("Fetching profile data...");
+        const data = await this.$store.dispatch("auth/getprofiledata");
+        // console.log("Profile data:", data);
+
+        console.log("in app data", data.result)
+        if (data.result.identities) {
+          this.showVideo = "false"
+        }
+
+      } catch (error) {
+
+        console.error("Error fetching profile data prof page:", error);
+      }
+    },
     playVideo() {
       const videoElement = this.$refs.video;
 
@@ -168,6 +184,7 @@ export default {
     };
   },
   mounted() {
+    this.fetchProfileData()
     const storedShowVideo = localStorage.getItem('showVideo');
     if (storedShowVideo === null) {
       // If 'showVideo' does not exist, set it to 'true'
