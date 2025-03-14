@@ -89,7 +89,7 @@ export default {
   data() {
     return {
       // isLogin2: false,
-      showVideo: "true",
+      showVideo: "false",
       isTextShow: true,
       videoSrc,
       showStartButton: true, // Controls visibility of "Start Engine" button
@@ -185,6 +185,7 @@ export default {
   },
   mounted() {
     this.fetchProfileData()
+    this.showVideo = false
     const storedShowVideo = localStorage.getItem('showVideo');
     if (storedShowVideo === null) {
       // If 'showVideo' does not exist, set it to 'true'
