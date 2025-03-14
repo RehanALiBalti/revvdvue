@@ -2596,7 +2596,7 @@ export default {
 					},
 				});
 
-				this.loading = false;
+				// this.loading = false;
 				console.log("Form data submitted successfully dealer1:", response.data);
 
 				if (
@@ -2614,7 +2614,7 @@ export default {
 				const profiledata = await this.fetchproData();
 				return profiledata;
 			} catch (error) {
-				this.loading = false;
+				// this.loading = false;
 				console.error("Error submitting form:", error);
 			}
 		},
@@ -3348,6 +3348,7 @@ export default {
 
 
 		async updateUserAttributes() {
+			this.loading = true
 			const profiledata = await this.submitProfileForm();
 			console.log("cehck pro data", profiledata)
 			console.log(profiledata);
