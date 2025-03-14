@@ -173,7 +173,8 @@ export default {
       // If 'showVideo' does not exist, set it to 'true'
       localStorage.setItem('showVideo', 'true');
     }
-    this.showVideo = storedShowVideo
+    // this.showVideo = storedShowVideo
+    this.showVideo = true
     setTimeout(() => {
       localStorage.setItem('showVideo', 'true');
     }, 2000);
