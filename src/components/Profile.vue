@@ -67,7 +67,7 @@
 										<label for="age" class="form-label">{{ $t('age') }}</label>
 										<input v-model="age" id="age" type="number" name="age"
 											class="form-control form-input h35px" :placeholder="$t('Enter here')"
-											required inputmode="numeric" pattern="[0-9]*">
+											inputmode="numeric" pattern="[0-9]*">
 									</div>
 									<div class="col-md-4">
 										<label for="email" class="form-label">{{ $t('emailVerification') }}</label>
