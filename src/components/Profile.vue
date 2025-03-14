@@ -3687,9 +3687,9 @@ export default {
 	async mounted() {
 		this.retrieveMakes()
 
-
-		await this.fetchproData();
 		await this.fetchProfileData();
+		await this.fetchproData();
+
 		this.initialNickname = this.name
 		console.log("ini name", this.initialNickname)
 		this.setLogin("true");
