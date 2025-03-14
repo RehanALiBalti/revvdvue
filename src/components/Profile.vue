@@ -518,10 +518,17 @@
 											<!-- data-bs-toggle="modal" -->
 											<button type="submit"
 												class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
-												id="submit-button" :disabled="loading">
+												id="submit-button" :disabled="loading" v-if="!loading">
 												{{
 													$t("updateProfile") }}
 											</button>
+											<button
+												class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+												id="submit-button" :disabled="loading" v-if="loading">
+												{{
+													$t("updateProfile") }}
+											</button>
+
 											<span class="border-bottom-btn border-left-btn new-popup position-absolute">
 												<img src="@/assets/images/Group11engine.png"
 													class="img-border position-absolute" alt="" />
@@ -2208,7 +2215,7 @@ export default {
 			// If the nickname has changed, check its availability
 			if (this.name !== this.initialNickname) {
 				console.log("Checking nickname availability for:", this.name);
-				this.loading = true;
+				// this.loading = true;
 
 				try {
 					// Use baseURL from httpCommon.js
@@ -2225,10 +2232,10 @@ export default {
 					} else {
 						console.log("Nickname already exists");
 						this.isModalOpenName = true;
-						this.loading = false;
+						// this.loading = false;
 					}
 				} catch (error) {
-					this.loading = false;
+					// this.loading = false;
 					console.error("Error during nickname check or form submission:", error);
 				}
 			} else {
@@ -2362,7 +2369,7 @@ export default {
 					},
 				});
 
-				this.loading = false;
+				// this.loading = false;
 				console.log("Form data submitted successfully:", response.data);
 
 				if (
@@ -2381,7 +2388,7 @@ export default {
 				const profiledata = await this.fetchproData();
 				return profiledata;
 			} catch (error) {
-				this.loading = false;
+				// this.loading = false;
 				console.error("Error during form submission:", error);
 			}
 		},
@@ -3353,7 +3360,7 @@ export default {
 			console.log("cehck pro data", profiledata)
 			console.log(profiledata);
 			if (this.IsphonExists == false && this.isModalOpenName == false) {
-				this.loading = true
+
 				console.log("full name", this.fullname, "nick name", this.name)
 				const updatedProfile = {
 					fullname: this.fullname, // Correct the key to fullName if needed
@@ -3372,12 +3379,13 @@ export default {
 					const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
 					console.log(data, typeof data);
 					if (data === "SUCCESS") {
-						this.loading = false
+
 						this.isModalOpen = true;
 						this.$router.push({ name: 'HomeLanding' });
+						// this.loading = false
 					}
 				} catch (error) {
-					this.loading = false
+					// this.loading = false
 					console.error("Error updating user profile:", error);
 					// Handle error gracefully, e.g., display an error message to the user
 					this.errorMessage = error
@@ -3392,7 +3400,7 @@ export default {
 		,
 
 		async updateUserAttributesDealer() {
-			this.loading = true
+
 			const profiledata = await this.submitProfileFormDeler();
 			console.log(profiledata);
 			const updatedProfile = {
@@ -3440,7 +3448,7 @@ export default {
 				const data = await this.$store.dispatch("auth/handleProfile2", updatedProfile);
 				console.log(data, typeof data);
 				if (data === "SUCCESS") {
-					this.loading = false
+
 					this.isModalOpen = true;
 					this.changeName(this.formData.CompanyName)
 					this.$router.push({ name: 'HomeLanding' });
@@ -3542,7 +3550,7 @@ export default {
 
 
 			} catch (error) {
-				1
+
 				console.error("Error fetching profile data prof page:", error);
 			}
 		},
