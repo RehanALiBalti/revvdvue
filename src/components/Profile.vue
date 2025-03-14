@@ -3527,7 +3527,7 @@ export default {
 						this.socialMedia = this.UserData.website
 						this.phone = this.UserData.phone_number
 						this.age = this.UserData["custom:age"]
-						this.fullname = this.UserData.name
+						this.fullname = this.UserData["custom:fullname"]
 						if (this.UserData.picture) {
 							this.image = this.UserData.picture
 						}
