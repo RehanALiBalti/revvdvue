@@ -107,7 +107,7 @@ export default {
         const data = await this.$store.dispatch("auth/getprofiledata");
         // console.log("Profile data:", data);
 
-        console.log("in app data", data.result)
+        // console.log("in app data", data.result)
         if (data.result.identities) {
           this.showVideo = "false"
         }
@@ -117,7 +117,7 @@ export default {
 
       } catch (error) {
 
-        console.error("Error fetching profile data prof page:", error);
+        // console.error("Error fetching profile data prof page:", error);
       }
     },
     playVideo() {
@@ -127,12 +127,12 @@ export default {
         this.isTextShow = false;
         videoElement.play()
           .then(() => {
-            console.log("Video is playing");
+            // console.log("Video is playing");
             this.showStartButton = false; // Hide "Start Engine" button
           })
           .catch(error => console.error("Error playing video:", error));
       } else {
-        console.error("Video element not found.");
+        // console.error("Video element not found.");
       }
     },
 
@@ -148,7 +148,7 @@ export default {
     },
 
     videoEnded() {
-      console.log("Video ended s");
+      // console.log("Video ended s");
       // this.showVideo = false; // Set showVideo to false
       // localStorage.setItem('showVideo', 'false'); // Store showVideo in local storage
       this.$refs.loader.classList.remove("show"); // Remove "show" class when video ends
@@ -164,10 +164,26 @@ export default {
     },
     checkLoginStatus() {
 
-      console.log("login val", this.isLogin2)
-      console.log("Computed isLogin2:", this.isLogin2, typeof this.isLogin2);
+      // console.log("login val", this.isLogin2)
+      // console.log("Computed isLogin2:", this.isLogin2, typeof this.isLogin2);
 
     }
+  },
+  beforeCreate() {
+    console.log("before creatd")
+  },
+  created() {
+    console.log("in created")
+  },
+  beforeUpdate() {
+    console.log("before updaed")
+  },
+  updated() {
+    console.log("in updated")
+  },
+
+  unmounted() {
+    console.log("in unmount")
   },
   setup() {
     const { state: IsFooter, setShowFooter } = useShowFooter();
@@ -186,7 +202,11 @@ export default {
       isLogin2
     };
   },
+  beforeUnmount() {
+    console.log("before unmount")
+  },
   mounted() {
+    console.log("in mount")
     // this.fetchProfileData()
     // this.showVideo = "false"
     const storedShowVideo = localStorage.getItem('showVideo');
@@ -211,13 +231,13 @@ export default {
     // }
     this.checkLoginStatus()
     this.$nextTick(() => {
-      console.log("in necttick:", this.showVideo, "loader", this.$refs.loader);
+      // console.log("in necttick:", this.showVideo, "loader", this.$refs.loader);
       if (this.showVideo == 'true' || this.showVideo == true) {
-        console.log("in if show if true:", this.$refs.video);
+        // console.log("in if show if true:", this.$refs.video);
         if (this.$refs.video instanceof HTMLVideoElement) {
-          console.log("Video element is ready:", this.$refs.video);
+          // console.log("Video element is ready:", this.$refs.video);
         } else {
-          console.error("Video element is not properly referenced:", this.$refs.video);
+          // console.error("Video element is not properly referenced:", this.$refs.video);
         }
         this.$refs.loader.classList.add("show"); // Add 'show' class on page load
       }
@@ -252,6 +272,7 @@ export default {
     },
   }
   ,
+
 
   computed: {
     showFooterSect2() {
