@@ -3355,45 +3355,51 @@ export default {
 
 
 		async updateUserAttributes() {
-			this.loading = true
-			const profiledata = await this.submitProfileForm();
-			console.log("cehck pro data", profiledata)
-			console.log(profiledata);
-			if (this.IsphonExists == false && this.isModalOpenName == false) {
+			if (this.loading == false) {
+				this.loading = true
+				const profiledata = await this.submitProfileForm();
+				console.log("cehck pro data", profiledata)
+				console.log(profiledata);
+				if (this.IsphonExists == false && this.isModalOpenName == false) {
 
-				console.log("full name", this.fullname, "nick name", this.name)
-				const updatedProfile = {
-					fullname: this.fullname, // Correct the key to fullName if needed
-					name: this.name,
-					nickname: this.name,
-					email: this.email,
-					age: this.age,
-					phone: String(this.phone),
-					socialMedia: this.socialMedia,
-					image: this.image,
-				};
+					console.log("full name", this.fullname, "nick name", this.name)
+					const updatedProfile = {
+						fullname: this.fullname, // Correct the key to fullName if needed
+						name: this.name,
+						nickname: this.name,
+						email: this.email,
+						age: this.age,
+						phone: String(this.phone),
+						socialMedia: this.socialMedia,
+						image: this.image,
+					};
 
-				console.log("The profile data update", updatedProfile);
+					console.log("The profile data update", updatedProfile);
 
-				try {
-					const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
-					console.log(data, typeof data);
-					if (data === "SUCCESS") {
+					try {
+						const data = await this.$store.dispatch("auth/handleProfile", updatedProfile);
+						console.log(data, typeof data);
+						if (data === "SUCCESS") {
 
-						this.isModalOpen = true;
-						this.$router.push({ name: 'HomeLanding' });
+							this.isModalOpen = true;
+							this.$router.push({ name: 'HomeLanding' });
+							// this.loading = false
+						}
+					} catch (error) {
 						// this.loading = false
+						console.error("Error updating user profile:", error);
+						// Handle error gracefully, e.g., display an error message to the user
+						this.errorMessage = error
+						this.isModalOpenFail = true
 					}
-				} catch (error) {
-					// this.loading = false
-					console.error("Error updating user profile:", error);
-					// Handle error gracefully, e.g., display an error message to the user
-					this.errorMessage = error
-					this.isModalOpenFail = true
+
+
 				}
-
-
 			}
+			else {
+				console.log("no need to run");
+			}
+
 
 
 		}
