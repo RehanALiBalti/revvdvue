@@ -38,7 +38,7 @@ const actions = {
   async handleSignIn(context, { email, password }) {
     try {
       const result = await AuthService.login(email, password);
-      console.log("after calling input", result);
+      // console.log("after calling input", result);
 
       // Commit mutations or perform other actions if needed
       context.commit("setUser", result);
@@ -233,7 +233,7 @@ const actions = {
       check2,
     }
   ) {
-    console.log("yes", context);
+    // console.log("yes", context);
     try {
       const result1 = await AuthService.register2(
         name,
@@ -262,7 +262,7 @@ const actions = {
       const result = await AuthService.login(email, password);
       // Commit mutations or perform other actions if needed
       context.commit("setUser", result);
-      context.commit("loginSuccess", true, "User has been registered");
+      // context.commit("loginSuccess", true, "User has been registered");
 
       // Return the result to be accessed in the component
       return result;

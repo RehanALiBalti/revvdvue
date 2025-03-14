@@ -88,7 +88,7 @@ function setprofile(data) {
 
       Auth.currentAuthenticatedUser()
         .then((user) => {
-          console.log("authenuser", user);
+          // console.log("authenuser", user);
           console.log(user.signInUserSession.accessToken.jwtToken);
 
           Auth.updateUserAttributes(user, updatedAttributes)
@@ -102,7 +102,7 @@ function setprofile(data) {
                 /^InvalidParameterException:\s*/,
                 ""
               );
-              console.log("ttt", error, typeof error);
+              // console.log("ttt", error, typeof error);
               reject(cleanedErrorMessage);
             });
         })
@@ -110,7 +110,7 @@ function setprofile(data) {
           reject(error);
         });
     } catch (error) {
-      console.error("Error updating user attributes:", error);
+      // console.error("Error updating user attributes:", error);
       reject(error);
     }
   });
@@ -187,7 +187,7 @@ function setprofile(data) {
 // }
 
 function setprofile2(data) {
-  console.log("before request", data);
+  // console.log("before request", data);
 
   return new Promise((resolve, reject) => {
     try {
@@ -222,12 +222,12 @@ function setprofile2(data) {
         // Add other attributes you want to update
       };
 
-      console.log("update", updatedAttributes);
+      // console.log("update", updatedAttributes);
 
       Auth.currentAuthenticatedUser()
         .then((user) => {
-          console.log("authenuser", user);
-          console.log(user.signInUserSession.accessToken.jwtToken);
+          // console.log("authenuser", user);
+          // console.log(user.signInUserSession.accessToken.jwtToken);
 
           Auth.updateUserAttributes(user, updatedAttributes)
             .then((result) => {
@@ -247,17 +247,17 @@ function setprofile2(data) {
   });
 }
 function login(username, password) {
-  console.log("before request", password, username);
+  // console.log("before request", password, username);
   return new Promise((resolve, reject) => {
     // Call Auth.signUp
     Auth.signIn(username, password)
       .then((user) => {
-        console.log(
-          "Auth Service test11",
-          user,
-          user.CognitoUser,
-          user.attributes
-        );
+        // console.log(
+        //   "Auth Service test11",
+        //   user,
+        //   user.CognitoUser,
+        //   user.attributes
+        // );
         const username = user.username;
         const userDataKey = user.userDataKey;
         const signInUserSession = user.signInUserSession;
@@ -279,7 +279,7 @@ function login(username, password) {
       })
       .catch((error) => {
         const response = { success: 0, error: error.message };
-        console.log("Auth Service test22", error.message);
+        // console.log("Auth Service test22", error.message);
         reject(response);
       });
   });
@@ -364,7 +364,7 @@ function register(fullname, name, password, email, check1, check2) {
       // },
     })
       .then(({ user }) => {
-        console.log("Auth Service test11", user);
+        // console.log("Auth Service test11", user);
         // Auth.currentAuthenticatedUser()
         // .then((user) => {
         //   console.log("authenuser", user);
@@ -468,14 +468,14 @@ function register2(
       // },
     })
       .then(({ user }) => {
-        console.log("Auth Service test11", user);
+        // console.log("Auth Service test11", user);
 
         const response = { success: 1, result: user };
         resolve(response);
       })
       .catch((error) => {
-        console.log("Auth Service test33", error);
-        console.log("Auth Service test22", error.message);
+        // console.log("Auth Service test33", error);
+        // console.log("Auth Service test22", error.message);
         const response = { success: 0, error: error.message };
         reject(response);
       });
