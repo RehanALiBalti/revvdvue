@@ -1621,16 +1621,16 @@ export default {
 					if (result.data && result.data.states.length > 0) {
 						console.log("states ag countries", result.data);
 						this.cities = result.data.states.map(state => state.name); // Extract state names
-						this.loading = false;
+						// this.loading = false;
 					} else {
 						this.cities = [];
-						this.loading = false;
+						// this.loading = false;
 					}
 				})
 				.catch(error => {
 					console.log('error', error);
 					this.cities = [];  // Clear cities if an error occurs
-					this.loading = false;
+					// this.loading = false;
 				});
 		}
 		,
