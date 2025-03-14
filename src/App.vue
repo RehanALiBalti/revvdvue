@@ -239,10 +239,14 @@ export default {
 
         this.changeFooter(false);
         this.IsFooter = false
+        this.showVideo == true
+        localStorage.setItem('showVideo', 'true');
       } else {
 
         this.changeFooter(true);
         this.IsFooter = true
+        this.showVideo == true
+        localStorage.setItem('showVideo', 'true');
 
       }
     },
