@@ -171,19 +171,24 @@ export default {
   },
   beforeCreate() {
     console.log("before creatd")
+    console.log("in before created showvideo", this.showVideo)
   },
   created() {
     console.log("in created")
+    console.log("in  created showvideo", this.showVideo)
   },
   beforeUpdate() {
     console.log("before updaed")
+    console.log("in before update showvideo", this.showVideo)
   },
   updated() {
     console.log("in updated")
+    console.log("in update showvideo", this.showVideo)
   },
 
   unmounted() {
     console.log("in unmount")
+    console.log("in unmoount showvideo", this.showVideo)
   },
   setup() {
     const { state: IsFooter, setShowFooter } = useShowFooter();
@@ -207,6 +212,7 @@ export default {
   },
   mounted() {
     console.log("in mount")
+    console.log("in mount showvideo", this.showVideo)
     // this.fetchProfileData()
     // this.showVideo = "false"
     const storedShowVideo = localStorage.getItem('showVideo');
@@ -218,8 +224,9 @@ export default {
     // this.showVideo = true
     setTimeout(() => {
       localStorage.setItem('showVideo', 'true');
+      console.log("in mount after 2sec showvideo", this.showVideo)
     }, 2000);
-
+    console.log("in mount after fectching value from local storage showvideo", this.showVideo)
 
     // If a value exists in local storage, parse it and update showVideo
     // if (storedShowVideo !== null) {
