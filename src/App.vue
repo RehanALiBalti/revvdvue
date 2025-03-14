@@ -89,7 +89,7 @@ export default {
   data() {
     return {
       // isLogin2: false,
-      showVideo: "true",
+      showVideo: "false",
       isTextShow: true,
       videoSrc,
       showStartButton: true, // Controls visibility of "Start Engine" button
