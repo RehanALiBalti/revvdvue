@@ -186,7 +186,11 @@ export default {
       isLogin2
     };
   },
+  beforeUnmount() {
+    console.log("before unmount")
+  },
   mounted() {
+    console.log("in mount")
     // this.fetchProfileData()
     // this.showVideo = "false"
     const storedShowVideo = localStorage.getItem('showVideo');
@@ -252,6 +256,7 @@ export default {
     },
   }
   ,
+
 
   computed: {
     showFooterSect2() {
