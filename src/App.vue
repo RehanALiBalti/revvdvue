@@ -172,6 +172,13 @@ export default {
   beforeCreate() {
     console.log("before creatd")
     console.log("in before created showvideo", this.showVideo)
+    const storedShowVideo = localStorage.getItem('showVideo');
+    if (storedShowVideo === null) {
+      // If 'showVideo' does not exist, set it to 'true'
+      localStorage.setItem('showVideo', 'true');
+      console.log("shpw_video", localStorage.getItem('showVideo'))
+    }
+
   },
   created() {
     console.log("in created")
