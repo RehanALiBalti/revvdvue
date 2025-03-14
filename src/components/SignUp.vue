@@ -661,7 +661,13 @@ export default {
                 if (data.success == 1) {
                   localStorage.setItem('login', true);
                   localStorage.setItem('firstTimeLogin', true);
-                } else {
+                } else if (data.success === 0) {
+                  this.isModalOpenFail = true
+                  // this.errorMessage = data.error;
+                  this.errorMessage = 'Email Already Exists';
+                  this.loading = false
+                }
+                else {
                   this.isModalOpenFail = true;
                   this.errorMessage = data.error;
                   this.loading = false
