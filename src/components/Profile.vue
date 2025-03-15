@@ -8,18 +8,22 @@
 					<form id="subscribe-form" @submit.prevent="updateUserAttributes" v-if="role != 'dealer'">
 						<div class="user-profile-page">
 
-							<img :src="this.croppedImageUrl" height="150px" width="150px" @click="openFileInput"
-								v-if="this.croppedImageUrl" class="d-block mx-auto">
 
 							<!-- <img :src="getProfileImage(profileImageState.profileImage)" class="user-profile-page-img"
 								alt="Profile Image"
 								v-else-if="this.image != '' && this.image != null && this.image != undefined"
 								@click="openFileInput" /> -->
-							<img :src="profileImageState.profileImage" class="user-profile-page-img" alt="Profile Image"
-								v-else-if="profileImageState.profileImage != '' && profileImageState.profileImage != null && this.profileImageState.profileImage != undefined"
-								@click="openFileInput" />
+							<div v-if="profileImageState.profileImage !== '/images/Group888.png'">
+								<img :src="this.croppedImageUrl" height="150px" width="150px" @click="openFileInput"
+									v-if="this.croppedImageUrl" class="d-block mx-auto">
+
+								<img :src="profileImageState.profileImage" class="user-profile-page-img"
+									alt="Profile Image"
+									v-else-if="profileImageState.profileImage != '' && profileImageState.profileImage != null && this.profileImageState.profileImage != undefined"
+									@click="openFileInput" />
 
 
+							</div>
 							<div v-else>
 								<div v-if="this.croppedImageUrl">
 									<img :src="this.croppedImageUrl" height="150px" width="150px"
@@ -3673,7 +3677,7 @@ export default {
 					const imageUrl = `${this.image}`;
 					console.log("Profile Image URL:", imageUrl);
 
-					if (imageUrl !== "null" || imageUrl !== null) {
+					if ((imageUrl !== "null" && imageUrl !== null)) {
 						console.log("profile image is not null", imageUrl)
 						this.changeProfileImage(imageUrl);
 					}
