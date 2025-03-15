@@ -210,17 +210,17 @@
                                                             </a>
                                                         </div>
                                                         <p class="text-orange"
-                                                            style="font-size: 13px; text-align: start">Tell us your car
-                                                            story together</p>
+                                                            style="font-size: 13px; text-align: start">What’s the story
+                                                            behind your car?</p>
 
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 13px; text-align: start">If you could give
-                                                            advice to someone just starting their journey to modify
-                                                            their car, what would it be and why?
+                                                            style="font-size: 13px; text-align: start">What advise would
+                                                            you give to someone starting their journey as a car
+                                                            enthusiast?
 
                                                         </p>
                                                         <p class="text-white"
@@ -229,8 +229,8 @@
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 13px; text-align: start">
-                                                            Can you share with us any memorable stories or adventures
-                                                            you’ve had with your car that stands out the most?
+                                                            Tell us the wildest or most unforgettable moment you’ve had
+                                                            with your car
                                                         </p>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
@@ -238,9 +238,8 @@
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 13px; text-align: start"
-                                                            v-ifc="car.modifications">If you could give advice to
-                                                            someone just starting their journey to modify their car,
-                                                            what would it be and why?</p>
+                                                            v-ifc="car.modifications">Any awesome modifications or
+                                                            unique features you can share?</p>
                                                         <p class="text-white"
                                                             style="font-size: 13px; text-align: start">
                                                             {{ car.modifications }}
