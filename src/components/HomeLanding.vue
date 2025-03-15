@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -2261,7 +2261,13 @@ export default {
         this.image = profileData.image;
 
         // Update profile image
-        this.changeProfileImage(this.image);
+        // this.changeProfileImage(this.image);
+        // Check if the image is valid before updating
+        if (this.image && this.image !== "null") {
+          this.changeProfileImage(this.image);
+        } else {
+          console.log("Profile image is null or invalid, skipping update.");
+        }
 
         // Change name only if the user is not a dealer
         if (this.role !== "dealer") {
