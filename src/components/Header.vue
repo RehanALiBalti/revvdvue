@@ -616,7 +616,7 @@ export default {
         this.isLogin2 = "false";
         this.setLogin("false");
         localStorage.setItem("login", "false");
-        console.log("dsd", this.isLogin2)
+        console.log("dd", this.isLogin2)
         localStorage.setItem('login', "false");
         console.log("dsd", this.isLogin2)
         localStorage.setItem('storgekey', "");

@@ -170,7 +170,7 @@ export default {
     }
   },
   beforeCreate() {
-    console.log("before creatd")
+    console.log("before crw")
     console.log("in before created showvideo", this.showVideo)
     const storedShowVideo = localStorage.getItem('showVideo');
     if (storedShowVideo === null) {
