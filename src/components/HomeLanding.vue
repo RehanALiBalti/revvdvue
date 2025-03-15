@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -299,10 +299,10 @@
                 <div class="position-relative" v-if="this.loading == true" style="z-index:999">
                   <div class="box"></div>
                 </div>
-                <div class="col-md-3 p-0 p-md-1">
+                <div class="col-md-3 p-0 p-md-1 z-3">
 
                   <label for="storyType" class="form-label">Story Type</label>
-                  <select id="storyType" class="form-control form-select form-input h35px" v-model="selectedStoryType"
+                  <!-- <select id="storyType" class="form-control form-select form-input h35px" v-model="selectedStoryType"
                     required @change="handleName">
 
                     <option value="carEnthusiast">Car Enthusiast</option>
@@ -312,7 +312,20 @@
                     <option value="motorbikeEnthusiast">Motorbike Enthusiast</option>
                     <option value="automotivePhotographerast">Automotive Photographer</option>
 
-                  </select>
+                  </select> -->
+                  <v-select v-model="selectedStoryType" :options="storyTypes" placeholder="Select a Story Type"
+                    :filterable="true" @update:modelValue="handleName">
+                    <template #open-indicator>
+                      <img class="indicator_Image"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                        width="11px" />
+                    </template>
+                    <template #no-options>
+                      <span>No options available</span>
+                    </template>
+                  </v-select>
+
+
 
                 </div>
                 <div class="col-md-5 p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
@@ -635,11 +648,23 @@ v-model="formData.country"> -->
 
                     </ul>
                   </div> -->
-                  <v-select v-model="formData.model" :options="modelfilteredOptions" placeholder="Select a Model"
+                  <!-- <v-select v-model="formData.model" :options="modelfilteredOptions" placeholder="Select a Model"
                     :filterable="true" :readonly="formData.make === ''" @search:input="filterModelOptions"
                     @change="getModels" @select="selectOptionModel">
                     <template #open-indicator>
-                      <!-- Custom SVG Icon -->
+                    
+                      <img class="indicator_Image"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                        width="11px" />
+                    </template>
+                    <template #no-options>
+                      <span>No models available</span>
+                    </template>
+                  </v-select> -->
+                  <v-select v-model="formData.model" :options="modelfilteredOptions" placeholder="Select a Model"
+                    :filterable="true" :readonly="formData.make === ''" @update:modelValue="selectOptionModel"
+                    @search:input="debouncedFilterModelOptions" @click="handleModalFocus">
+                    <template #open-indicator>
                       <img class="indicator_Image"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
                         width="11px" />
@@ -648,6 +673,7 @@ v-model="formData.country"> -->
                       <span>No models available</span>
                     </template>
                   </v-select>
+
 
                 </div>
                 <div class="col-md-3  p-0 p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
@@ -1442,6 +1468,15 @@ export default {
   },
   data() {
     return {
+      storyTypes: [
+        { label: "Car Enthusiast", value: "carEnthusiast" },
+        { label: "Car Garage", value: "carGarage" },
+        // { label: "Car Modification/Tuning Shop", value: "carModificationShop" },
+        { label: "Car Modification", value: "carModificationShop" },
+        { label: "Car Club", value: "carClub" },
+        { label: "Motorbike Enthusiast", value: "motorbikeEnthusiast" },
+        { label: "Automotive Photographer", value: "automotivePhotographer" },
+      ],
       loading: false,
       isScrolling: false,
       instaIcon: instaIcon,
@@ -1585,6 +1620,13 @@ export default {
     };
   },
   methods: {
+
+    handleModalFocus() {
+      console.log("dsjdsj")
+      this.isDropDYear = false
+    },
+    // Debounce function
+
     adjustHeight() {
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea;
@@ -1952,21 +1994,22 @@ export default {
       this.ModalStoryFail = false
     },
     handleName() {
-
-      if (this.selectedStoryType == "carGarage") {
+      console.log("in handle name", this.selectedStoryType)
+      const selectedValue = this.selectedStoryType?.value;
+      if (selectedValue == "carGarage") {
         this.shopName = "Garage"
       }
 
-      else if (this.selectedStoryType == "carModificationShop") {
+      else if (selectedValue == "carModificationShop") {
         this.shopName = "shop"
       }
-      else if (this.selectedStoryType == "carClub") {
+      else if (selectedValue == "carClub") {
         this.shopName = "club"
       }
-      else if (this.selectedStoryType == "motorbikeEnthusiast") {
+      else if (selectedValue == "motorbikeEnthusiast") {
         this.shopName = "Motor Bike"
       }
-      else if (this.selectedStoryType == "automotivePhotographerast") {
+      else if (selectedValue == "automotivePhotographerast") {
         this.shopName = "Automotive Photography"
       }
 
@@ -2881,7 +2924,7 @@ export default {
     // }
     async SubmitStory() {
       console.log("submit story", this.formData);
-
+      console.log(this.selectedStoryType?.value)
       this.loading = true;
       let data = new FormData();
       let uploadedImageUrls = [];
@@ -2889,9 +2932,9 @@ export default {
       // **Validate Required Fields**
       let missingFields = [];
 
-      if (!this.selectedStoryType) missingFields.push("Story Type");
+      if (!this.selectedStoryType?.value) missingFields.push("Story Type");
 
-      if (this.selectedStoryType === "carEnthusiast") {
+      if (this.selectedStoryType?.value === "carEnthusiast") {
         if (!this.formData.make) missingFields.push("Make");
         if (!this.formData.model) missingFields.push("Model");
         if (!this.formData.year) missingFields.push("Year");
@@ -2951,11 +2994,11 @@ export default {
       console.log("uploadedImageUrls", uploadedImageUrls);
 
       // **Append Form Data**
-      data.append("story_type", this.selectedStoryType);
+      data.append("story_type", this.selectedStoryType?.value);
       data.append("user_name", this.formData.user_name);
       data.append("user_email", this.formData.user_email);
 
-      if (this.selectedStoryType === "carEnthusiast") {
+      if (this.selectedStoryType?.value === "carEnthusiast") {
         data.append("make", this.formData.make);
         data.append("model", this.formData.model);
         data.append("year", this.formData.year);
@@ -3071,23 +3114,35 @@ export default {
         this.makefilteredOptions = this.makes.filter(option => option.toLowerCase().includes(query));
       }
     },
-    filterModelOptions() {
-      console.log("in filter")
-      // this.selectedData = ""
-      this.formData.year = ""
+    // filterModelOptions() {
+    //   console.log("in filter")
+    //   // this.selectedData = ""
+    //   this.formData.year = ""
 
-      console.log(this.smodel);
-      const query = this.formData.model.toLowerCase();
+    //   console.log(this.smodel);
+    //   const query = this.formData.model.toLowerCase();
 
-      if (query === '') {
-        this.modelfilteredOptions = this.models;
-      } else {
+    //   if (query === '') {
+    //     this.modelfilteredOptions = this.models;
+    //   } else {
 
-        this.modelfilteredOptions = this.models.filter(option => option && option.model && option.model.toLowerCase().includes(query));
-        console.log("filter data", this.modelfilteredOptions)
+    //     this.modelfilteredOptions = this.models.filter(option => option && option.model && option.model.toLowerCase().includes(query));
+    //     console.log("filter data", this.modelfilteredOptions)
+    //   }
+    // },
+
+    filterModelOptions(searchText) {
+      if (!searchText) {
+        this.modelfilteredOptions = this.models.map(item => item.model);
+        return;
       }
-    },
 
+      const query = searchText.toLowerCase();
+      this.modelfilteredOptions = this.models
+        .filter(item => item.model.toLowerCase().includes(query))
+        .map(item => item.model);
+    }
+    ,
 
 
 
@@ -3109,16 +3164,34 @@ export default {
 
 
     },
-    selectOptionModel(option) {
-      console.log("opt", option)
-      this.formData.model = option;
+    // selectOptionModel(option) {
+    //   console.log("opt", option)
+    //   this.formData.model = option;
+    //   this.isOpenm = false;
+    //   this.isDropDModel = false;
+    //   this.getGenerations()
+
+
+
+    // },
+    selectOptionModel(selected) {
+      console.log("Selected Model:", selected);
+
+      // Ensure selected is valid
+      if (selected && typeof selected === 'string') {
+        this.formData.model = selected;
+      } else if (selected && selected.value) {
+        this.formData.model = selected.value;
+      }
+
+      // Reset dropdown states if needed
       this.isOpenm = false;
       this.isDropDModel = false;
-      this.getGenerations()
 
-
-
-    },
+      // Fetch generations based on selected model
+      this.getGenerations();
+    }
+    ,
     updateModels(value) {
       this.isDropDYear = false
       if (value) {
