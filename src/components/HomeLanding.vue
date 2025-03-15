@@ -1622,7 +1622,7 @@ export default {
   methods: {
 
     handleModalFocus() {
-      console.log("dsjdsj")
+
       this.isDropDYear = false
     },
     // Debounce function
@@ -1641,7 +1641,7 @@ export default {
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea2;
       if (textarea) {
-        console.log("working")
+
         textarea.style.height = "auto"; // Reset height
         textarea.style.height = textarea.scrollHeight + "px"; // Adjust height dynamically
       }
@@ -1658,7 +1658,7 @@ export default {
     }
     ,
     adjustHeight4() {
-      console.log("in adjustheight")
+
       const textarea = this.$refs.autoExpandTextarea4;
       if (textarea) {
         console.log("working")
