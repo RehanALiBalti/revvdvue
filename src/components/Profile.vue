@@ -2232,7 +2232,7 @@ export default {
 					} else {
 						console.log("Nickname already exists");
 						this.isModalOpenName = true;
-						// this.loading = false;
+						this.loading = false;
 					}
 				} catch (error) {
 					// this.loading = false;

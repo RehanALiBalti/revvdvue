@@ -688,7 +688,7 @@ video::-webkit-media-controls {
 }
 
 .form-control.input-control::placeholder {
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 400;
 	color: #ffffff;
 	font-family: "Gruppo", sans-serif;
@@ -1050,7 +1050,7 @@ textarea.form-control {
 .form-control::placeholder,
 .form-control:focus {
 	font-family: "Gruppo", sans-serif !important;
-	font-size: 14px !important;
+	font-size: 12px !important;
 	font-weight: 400 !important;
 	color: #fff !important;
 }
@@ -2337,7 +2337,7 @@ a:hover {
 	.form-control.input-control::placeholder,
 	.form-control::placeholder,
 	.form-select.form-control.form-input::placeholder {
-		font-size: 14px;
+		font-size: 12px;
 	}
 }
 
@@ -2951,7 +2951,7 @@ input::placeholder {
 
 
 .vs__selected {
-	font-size: 14px !important;
+	font-size: 12px !important;
 	color: #fff !important;
 	font-weight: 400 !important;
 	font-family: "Gruppo", sans-serif !important;
