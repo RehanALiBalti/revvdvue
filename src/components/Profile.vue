@@ -3662,7 +3662,10 @@ export default {
 					});
 
 					this.image = profileData.image;
-					this.name = profileData.nickname;
+					if (!this.socialSignIn) {
+						this.name = profileData.nickname;
+					}
+
 
 					// Construct image URL
 					// const imageUrl = `https://backend.revvdout.com//users/${this.image}`;
