@@ -316,7 +316,7 @@
                                                         </div>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start" v-if="car.story">
-                                                            Tell us your car story together
+                                                            What’s the story behind your car?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.story">
@@ -325,8 +325,7 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.advice">
-                                                            If you could give advice to someone just starting their
-                                                            journey to modify their car, what would it be and why?
+                                                            What advise would you give to someone starting their journey as a car enthusiast?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.advice">
@@ -336,8 +335,7 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
-                                                            Can you share with us any memorable stories or adventures
-                                                            you’ve had with your car that stands out the most?
+                                                            What advise would you give to someone starting their journey as a car enthusiast?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
@@ -346,8 +344,7 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.modifications">
-                                                            Can you tell us about any modifications you made to your car
-                                                            or any specific features ?
+                                                          Any awesome modifications or unique features you can share?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
@@ -356,8 +353,7 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
-                                                            Can you tell us about any modifications you made to your car
-                                                            or any specific features ?
+                                                          Any awesome modifications or unique features you can share?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
@@ -760,25 +756,19 @@
                                                             {{ car.story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">If you could give
-                                                            advice to someone just starting their journey to modify
-                                                            their car, what would it be and why?</p>
+                                                            style="font-size: 14px; text-align: start">What advise would you give to someone starting their journey as a car enthusiast?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Can you share
-                                                            with us any memorable stories or adventures you’ve had with
-                                                            your car that stands out the most?</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.memorable }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Can you tell us
-                                                            about any modifications you made to your car or any specific
-                                                            features ?</p>
+                                                            style="font-size: 14px; text-align: start">Any awesome modifications or unique features you can share?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.modifications }}
@@ -1770,16 +1760,13 @@
 
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Can you tell us
-                                                            any memorable stories or adventures you’ve had that stands
-                                                            out the most?</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us about
-                                                            your Garage</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
@@ -2490,16 +2477,13 @@
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Can you tell us
-                                                            any memorable stories or adventures you’ve had that stands
-                                                            out the most?</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us about
-                                                            your shop</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your shop story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
@@ -3201,16 +3185,13 @@
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Can you tell us
-                                                            any memorable stories or adventures you’ve had that stands
-                                                            out the most?</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us about
-                                                            your club</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your club story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
@@ -3917,16 +3898,13 @@
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Can you tell us
-                                                            any memorable stories or adventures you’ve had that stands
-                                                            out the most?</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us about
-                                                            your Garage</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
@@ -4632,16 +4610,13 @@
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Can you tell us
-                                                            any memorable stories or adventures you’ve had that stands
-                                                            out the most?</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us about
-                                                            your Garage</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
