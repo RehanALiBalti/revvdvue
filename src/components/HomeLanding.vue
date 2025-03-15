@@ -299,7 +299,7 @@
                 <div class="position-relative" v-if="this.loading == true" style="z-index:999">
                   <div class="box"></div>
                 </div>
-                <div class="col-md-3 p-0 p-md-1 z-3">
+                <div class="col-md-3 p-0 p-md-1 setype">
 
                   <label for="storyType" class="form-label">Story Type</label>
                   <!-- <select id="storyType" class="form-control form-select form-input h35px" v-model="selectedStoryType"
@@ -4761,5 +4761,10 @@ select::placeholder {
 
 .swiper-pagination {
   display: none !important;
+}
+
+.setype {
+  position: relative !important;
+  z-index: 9999 !important;
 }
 </style>
