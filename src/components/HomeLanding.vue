@@ -328,7 +328,8 @@
 
 
                 </div>
-                <div class="col-md-5 p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-5 p-0 p-md-1"
+                  v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
 
                   <label for="country" class="form-label">Country</label>
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter Country"
@@ -550,7 +551,8 @@ v-model="formData.country"> -->
                     <option value="Zimbabwe">Zimbabwe</option>
                   </select>
                 </div>
-                <div class="col-md-4 p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-4 p-0 p-md-1"
+                  v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
 
                   <label for="country" class="form-label">City</label>
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
@@ -563,7 +565,8 @@ v-model="formData.country"> -->
                 </div>
 
 
-                <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6  p-0 p-md-1"
+                  v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
                   <label for="storyHistory" class="form-label"> Tell us your {{ shopName }} story & how it all
                     started </label>
                   <textarea id="storyHistory" class="form-control form-input" rows="1"
@@ -571,28 +574,31 @@ v-model="formData.country"> -->
                     ref="autoExpandTextarea6" @input="adjustHeight6" @blur="resetHeight6"></textarea>
                 </div>
                 <div class="   col-md-6  p-0 p-md-1"
-                  v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                  v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
                   <label for="memorableStories" class="form-label">Any unforgettable memory, event or story you can
                     share with us? </label>
                   <textarea id="memorableStories" class="form-control form-input" rows="1"
                     placeholder="Share your memorable stories" v-model="formData.adventureStory"
                     ref="autoExpandTextarea5" @input="adjustHeight5" @blur="resetHeight5"></textarea>
                 </div>
-                <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6  p-0 p-md-1"
+                  v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
                   <label for="storyName" class="form-label">What is the name of your story that you would like to
                     choose? </label>
                   <textarea id="storyName" class="form-control form-input" placeholder="Enter Story Name"
                     v-model="formData.storyName" ref="autoExpandTextarea7" @input="adjustHeight7"
                     @blur="resetHeight7"></textarea>
                 </div>
-                <div class="col-md-6  p-0 p-md-1" v-show="selectedStoryType !== 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6  p-0 p-md-1"
+                  v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
                   <label for="link" class="form-label">Add Instagram or Website Link</label>
                   <input type="url" id="link" class="form-control h35px" placeholder="Enter Instagram or Website Link"
                     v-model="formData.url">
                 </div>
 
 
-                <div class="col-md-3 z-3 p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-3 z-3 p-0 p-md-1"
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <!-- 
                   <div class="customSelect position-relative" @blur="isOpen = false">
                     <label for="country" class="form-label">Make
@@ -628,7 +634,7 @@ v-model="formData.country"> -->
 
                 </div>
                 <div class="col-md-3  p-0 p-md-1  p-0 p-md-1" :class="{ 'z-2': isDropDModel, 'z-2': !isDropDModel }"
-                  v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Model
                   </label>
                   <!-- <div class="customSelect w-100 position-relative" @blur="isOpenm = false">
@@ -677,7 +683,7 @@ v-model="formData.country"> -->
 
                 </div>
                 <div class="col-md-3  p-0 p-md-1" :class="{ 'z-2': isDropDYear, 'z1o2': !isDropDYear }"
-                  v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label">Production Year Generation
                   </label>
                   <div class="customSelect w-100 position-relative">
@@ -715,14 +721,15 @@ v-model="formData.country"> -->
 
 
                 <div class="col-md-6 z1o d-flex flex-column  p-0 p-md-1"
-                  v-if="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  v-if="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="name" class="form-label"> What’s the story behind your car? </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
                     v-model="formData.story" rows="1" ref="autoExpandTextarea4" @input="adjustHeight4"
                     @blur="resetHeight4"></textarea>
 
                 </div>
-                <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6 z1o p-0 p-md-1"
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="name" class="form-label">Any awesome modifications or unique features you can share?
                   </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
@@ -730,7 +737,8 @@ v-model="formData.country"> -->
                     @blur="resetHeight3"></textarea>
 
                 </div>
-                <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6 z1o p-0 p-md-1"
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="email" class="form-label"> Tell us the wildest or most unforgettable moment you’ve had
                     with your car </label>
                   <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
@@ -740,7 +748,8 @@ v-model="formData.country"> -->
                   <!-- <p class="text-danger" v-if="!formData.email">{{ $t('enterEmailAddress') }}</p> -->
                   <!-- <p class="text-danger" v-else-if="!isEmailValid">Please enter a valid email address</p> -->
                 </div>
-                <div class="col-md-6 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-6 z1o p-0 p-md-1"
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="phone" class="form-label">What advise would you give to someone starting their journey
                     as a car enthusiast?</label>
                   <!-- <textarea id="message" class="form-control form-input " name="message" :placeholder="$t('Enter here')"
@@ -749,13 +758,15 @@ v-model="formData.country"> -->
                     v-model="formData.advice" rows="1" ref="autoExpandTextarea" @input="adjustHeight"
                     @blur="resetHeight"></textarea>
                 </div>
-                <div class="col-md-5 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-5 z1o p-0 p-md-1"
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="country" class="form-label"> What would your car story title be?
                   </label>
                   <input type="text" id="phone" name="phone" class="form-control form-input h35px"
                     placeholder="I.e.Check out SG’s C63 black series build. " v-model="formData.story_name" />
                 </div>
-                <div class="col-md-3 z1o p-0 p-md-1" v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                <div class="col-md-3 z1o p-0 p-md-1"
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="message" class="form-label ">Add Instagram link </label>
                   <input id="message" class="form-control form-input h35px" name="message"
                     :placeholder="$t('Enter here')" rows="1" v-model="formData.social_media" />
@@ -763,7 +774,7 @@ v-model="formData.country"> -->
                   <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
                 </div>
                 <div class="col-md-4  d-flex gap-1 align-items-center p-0 p-md-1"
-                  v-show="selectedStoryType == 'carEnthusiast' && selectedStoryType">
+                  v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <div>
                     <label for="city" class="form-label">Upload Pictures Max 8</label>
 
@@ -1550,7 +1561,8 @@ export default {
       shopName: "",
       ModalStorySucces: false,
       ModalStoryFail: false,
-      selectedStoryType: "carEnthusiast",
+      // selectedStoryType: "carEnthusiast",
+      selectedStoryType: { label: "Car Enthusiast", value: "carEnthusiast" },
       role: "",
       user: {
         email: ''
