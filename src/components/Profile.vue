@@ -3526,7 +3526,8 @@ export default {
 					}
 					console.log("socialsttus", social)
 					if (social === true) {
-						this.name = this.UserData.given_name
+						// this.name = this.UserData.given_name
+						this.name = this.UserData.nickname
 						this.changeName(this.name)
 						this.email = this.UserData.email
 
@@ -3660,7 +3661,7 @@ export default {
 							dropdown.cardSpec = profileData[`car${i}cardSpec`] || "";
 						}
 					});
-
+					console.log("signup_stauusss,", this.socialSignIn)
 					this.image = profileData.image;
 					if (!this.socialSignIn) {
 						this.name = profileData.nickname;
@@ -3672,7 +3673,9 @@ export default {
 					const imageUrl = `${this.image}`;
 					console.log("Profile Image URL:", imageUrl);
 
-					this.changeProfileImage(imageUrl);
+					if (imageUrl !== null) {
+						this.changeProfileImage(imageUrl);
+					}
 				}
 
 			} catch (error) {
