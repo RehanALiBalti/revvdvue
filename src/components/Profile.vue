@@ -3673,7 +3673,7 @@ export default {
 					const imageUrl = `${this.image}`;
 					console.log("Profile Image URL:", imageUrl);
 
-					if (imageUrl !== null) {
+					if (imageUrl !== "null") {
 						this.changeProfileImage(imageUrl);
 					}
 				}
