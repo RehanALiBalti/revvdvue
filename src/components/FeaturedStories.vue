@@ -335,7 +335,9 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
-                                                            What advise would you give to someone starting their journey as a car enthusiast?
+                                                            Tell us the wildest or most unforgettable moment you’ve had with your car
+
+
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
