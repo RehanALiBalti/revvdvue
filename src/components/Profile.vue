@@ -16,7 +16,7 @@
 								v-else-if="this.image != '' && this.image != null && this.image != undefined"
 								@click="openFileInput" /> -->
 							<img :src="profileImageState.profileImage" class="user-profile-page-img" alt="Profile Image"
-								v-else-if="this.image != '' && this.image != null && this.image != undefined"
+								v-else-if="profileImageState.profileImage != '' && profileImageState.profileImage != null && this.profileImageState.profileImage != undefined"
 								@click="openFileInput" />
 
 
@@ -3673,7 +3673,8 @@ export default {
 					const imageUrl = `${this.image}`;
 					console.log("Profile Image URL:", imageUrl);
 
-					if (imageUrl !== "null") {
+					if (imageUrl !== "null" || imageUrl !== null) {
+						console.log("profile image is not null", imageUrl)
 						this.changeProfileImage(imageUrl);
 					}
 				}
