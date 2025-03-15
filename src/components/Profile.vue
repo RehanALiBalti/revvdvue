@@ -3660,7 +3660,7 @@ export default {
 							dropdown.cardSpec = profileData[`car${i}cardSpec`] || "";
 						}
 					});
-
+					console.log("signup_stauusss,", this.socialSignIn)
 					this.image = profileData.image;
 					if (!this.socialSignIn) {
 						this.name = profileData.nickname;
