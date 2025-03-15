@@ -551,7 +551,7 @@ export default {
           // Construct and set profile image
           // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
           // console.log("User profile image:", imageUrl);
-          if (this.image !== null || this.image != 'null') {
+          if (this.image !== null && this.image !== 'null') {
             this.changeProfileImage(this.image);
           }
 
