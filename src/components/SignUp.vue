@@ -15,7 +15,7 @@
               <!-- <button class="btn google-btn">
                 <i class="fa-brands fa-facebook"></i>Facebook
               </button> -->
-              <button type="button" class="btn google-btn" @click="handleFacebookLogin">
+              <button type="button" class="btn google-btn d-none" @click="handleFacebookLogin">
                 <i class="fa-brands fa-facebook"></i> Facebook
               </button>
 
