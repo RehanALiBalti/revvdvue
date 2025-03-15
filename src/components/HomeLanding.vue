@@ -314,7 +314,7 @@
 
                   </select> -->
                   <v-select v-model="selectedStoryType" :options="storyTypes" placeholder="Select a Story Type"
-                    :filterable="true" @update:modelValue="handleName">
+                    :filterable="true" @update:modelValue="handleName" @blur="resetIfEmpty">
                     <template #open-indicator>
                       <img class="indicator_Image"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
@@ -1483,7 +1483,7 @@ export default {
         { label: "Car Enthusiast", value: "carEnthusiast" },
         { label: "Car Garage", value: "carGarage" },
         // { label: "Car Modification/Tuning Shop", value: "carModificationShop" },
-        { label: "Car Modification", value: "carModificationShop" },
+        { label: "Car Modification Shop", value: "carModificationShop" },
         { label: "Car Club", value: "carClub" },
         { label: "Motorbike Enthusiast", value: "motorbikeEnthusiast" },
         { label: "Automotive Photographer", value: "automotivePhotographer" },
@@ -1637,6 +1637,12 @@ export default {
 
       this.isDropDYear = false
     },
+    resetIfEmpty() {
+      if (!this.selectedStoryType) {
+        this.selectedStoryType = { label: "Car Enthusiast", value: "carEnthusiast" };
+      }
+    }
+    ,
     // Debounce function
 
     adjustHeight() {
@@ -3906,7 +3912,7 @@ textarea.form-control {
 }
 
 .customSelect input::placeholder {
-  font-size: 14px !important;
+  font-size: 12px !important;
 }
 
 input,
@@ -3916,7 +3922,7 @@ select {
 
 input,
 select::placeholder {
-  font-size: 14px !important;
+  font-size: 12px !important;
 }
 
 .selected-option {

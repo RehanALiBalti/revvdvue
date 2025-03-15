@@ -1,5 +1,5 @@
 <template>
-  <div class="loader  " ref="loader" v-show="showVideo == 'true' || showVideo === true">
+  <!-- <div class="loader  " ref="loader" v-show="showVideo == 'true' || showVideo === true">
     <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
       <source :src="videoSrc" type="video/mp4">
     </video>
@@ -39,7 +39,46 @@
       </h1>
 
     </div>
+  </div> -->
+  <div class="loader" ref="loader" v-show="showVideosession">
+    <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
+      <source :src="videoSrc" type="video/mp4">
+    </video>
+
+    <div class="d-flex justify-content-center">
+      <div class="btn-div-create-forum position-absolute" v-if="showStartButton">
+        <span class="border-bottom-btn border-top-btn position-absolute">
+          <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
+        </span>
+
+        <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
+          <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
+        </span>
+
+        <span
+          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
+          <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
+        </span>
+        <button class="sound-btn-on-video" @click="playVideo">
+          Start Engine
+        </button>
+
+        <span class="border-bottom-btn border-left-btn new-popup position-absolute">
+          <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
+        </span>
+        <span class="border-bottom-btn position-absolute">
+          <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
+        </span>
+      </div>
+    </div>
+
+    <div class="title-loader-div" v-show="isTextShow">
+      <h1 class="banner-title new-heading-loader">
+        Turn up the volume for better experience
+      </h1>
+    </div>
   </div>
+
   <div id="particlees">
     <!-- <vue-particles color="#dedede" particleOpacity="1" :particlesNumber="pNum" shapeType="circle" particleSize="4"
       linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
@@ -89,6 +128,7 @@ export default {
   data() {
     return {
       // isLogin2: false,
+      showVideosession: true,
       showVideo: "false",
       isTextShow: true,
       videoSrc,
@@ -151,7 +191,10 @@ export default {
       // console.log("Video ended s");
       // this.showVideo = false; // Set showVideo to false
       // localStorage.setItem('showVideo', 'false'); // Store showVideo in local storage
-      this.$refs.loader.classList.remove("show"); // Remove "show" class when video ends
+      this.showVideosession = false;
+      sessionStorage.setItem("videoPlayed", "true"); // Store flag in sessionStorage
+      this.$refs.loader.classList.remove("show"); // Remove "show" class when 
+      // video ends
     },
     changeLanguage() {
       this.$i18n.locale = this.selectedLanguage;
@@ -220,6 +263,9 @@ export default {
   mounted() {
     console.log("in mount")
     console.log("in mount showvideo", this.showVideo)
+    if (sessionStorage.getItem("videoPlayed")) {
+      this.showVideosession = false; // Hide the video
+    }
     // this.fetchProfileData()
     // this.showVideo = "false"
     const storedShowVideo = localStorage.getItem('showVideo');
@@ -244,18 +290,37 @@ export default {
     //   localStorage.setItem('showVideo', 'true');
     // }
     this.checkLoginStatus()
+    // this.$nextTick(() => {
+    //   // console.log("in necttick:", this.showVideo, "loader", this.$refs.loader);
+    //   if (this.showVideo == 'true' || this.showVideo == true) {
+    //     // console.log("in if show if true:", this.$refs.video);
+    //     if (this.$refs.video instanceof HTMLVideoElement) {
+    //       // console.log("Video element is ready:", this.$refs.video);
+    //     } else {
+    //       // console.error("Video element is not properly referenced:", this.$refs.video);
+    //     }
+    //     this.$refs.loader.classList.add("show"); // Add 'show' class on page load
+    //   }
+    // });
     this.$nextTick(() => {
-      // console.log("in necttick:", this.showVideo, "loader", this.$refs.loader);
-      if (this.showVideo == 'true' || this.showVideo == true) {
-        // console.log("in if show if true:", this.$refs.video);
-        if (this.$refs.video instanceof HTMLVideoElement) {
-          // console.log("Video element is ready:", this.$refs.video);
+      if (this.showVideosession) {
+        const videoElement = this.$refs.video;
+        const loaderElement = this.$refs.loader;
+
+        if (videoElement instanceof HTMLVideoElement) {
+          console.log("Video element is ready:", videoElement);
         } else {
-          // console.error("Video element is not properly referenced:", this.$refs.video);
+          console.error("Video element is not properly referenced:", videoElement);
         }
-        this.$refs.loader.classList.add("show"); // Add 'show' class on page load
+
+        if (loaderElement) {
+          loaderElement.classList.add("show"); // Add 'show' class on page load
+        } else {
+          console.error("Loader element is not properly referenced:", loaderElement);
+        }
       }
     });
+
 
     // Update pNum if needed on mounted
     this.pNum = this.isMobile() ? 100 : 120;
