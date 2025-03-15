@@ -19,7 +19,7 @@
 
 								<img :src="profileImageState.profileImage" class="user-profile-page-img"
 									alt="Profile Image"
-									v-else-if="profileImageState.profileImage != '' && profileImageState.profileImage != null && this.profileImageState.profileImage != undefined"
+									v-else-if="profileImageState.profileImage && profileImageState.profileImage != '' && profileImageState.profileImage != null && this.profileImageState.profileImage != undefined"
 									@click="openFileInput" />
 
 
