@@ -197,11 +197,14 @@
                                         <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1" v-if="car.make && car.model">
+                                        <!-- <h4 class="text-white mb-1" v-if="car.make && car.model">
                                             {{ car.make }}:{{ car.model }}
                                         </h4>
                                         <h4 class="text-white mb-1" v-else>
                                             {{ car.country }}:{{ car.city }}
+                                        </h4> -->
+                                        <h4 class="text-white mb-1">
+                                            {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
@@ -600,12 +603,27 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper> -->
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
 
                                                 <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
                                                     ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
                                                     : parsedImages(car.images))" :key="idx">
+
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+
+                                                </swiper-slide>
+
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+
+                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in ((parsedImages(car.images)?.length ?? 0) > 1
+                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
+                                                    : (parsedImages(car.images) ?? []))" :key="idx">
 
                                                     <div class="d-block">
                                                         <img :src="image" class="slider-img myCarListingCard-img"
@@ -623,7 +641,8 @@
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
-                                            {{ car.make }}:{{ car.model }}
+                                            <!-- {{ car.make }}:{{ car.model }} -->
+                                            {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
