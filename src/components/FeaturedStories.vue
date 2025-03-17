@@ -220,7 +220,7 @@
                                             <!-- <span v-if="car.advice">{{ car.advice }}</span> -->
                                             <span class="text-orange" v-if="activeTab == 0">What’s the story behind your
                                                 car? </span>
-                                            <span class="text-orange" v-if="activeTab == 1">Tell us your Garage story &
+                                            <span class="text-orange " v-if="activeTab == 1">Tell us your Garage story &
                                                 how it all started </span>
                                             <span class="text-orange" v-if="activeTab == 2">Tell us your shop story &
                                                 how
@@ -234,8 +234,8 @@
                                             <span class="text-orange" v-if="activeTab == 5">Tell us your Automotive
                                                 Photography story & how it all started</span>
                                             <br />
-                                            <span v-if="car.story">{{ car.story }}</span>
-                                            <span v-else>{{ car.story_history }}</span>
+                                            <span class="tranc" v-if="car.story">{{ car.story }}</span>
+                                            <span class="tranc" v-else>{{ car.story_history }}</span>
                                             <!-- <span v-else>{{ car.story_history }}</span> -->
                                             <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 @click="openModalFe">
@@ -679,7 +679,7 @@
                                             @click="openModal(index)">
                                             <span class="text-orange">What’s the story behind your car?</span>
                                             <br />
-                                            <span>{{ car.story }}</span>
+                                            <span class="tranc">{{ car.story }}</span>
 
                                             <!-- Conditionally show "view more" if car.story has 10 or more words -->
                                             <span class="view-more-a-tag ms-2" style="cursor: pointer"
@@ -932,7 +932,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1157,7 +1157,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1186,7 +1186,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1608,7 +1608,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1698,7 +1698,7 @@
                                             <span class="text-orange"> Tell us your Garage story & how it all
                                                 started</span>
                                             <br />
-                                            <span>{{ car.story_history }}</span>
+                                            <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
                                             <span class="view-more-a-tag ms-2" style="cursor: pointer"
@@ -1876,7 +1876,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2098,7 +2098,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2118,7 +2118,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2340,7 +2340,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2423,7 +2423,7 @@
                                             <span class="text-orange"> Tell us your shop story & how it all
                                                 started</span>
                                             <br />
-                                            <span>{{ car.story_history }}</span>
+                                            <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
                                             <span class="view-more-a-tag ms-2" style="cursor: pointer"
@@ -2602,7 +2602,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2824,7 +2824,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2844,7 +2844,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3066,7 +3066,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3146,7 +3146,7 @@
                                             <span class="text-orange"> Tell us your club story & how it all
                                                 started</span>
                                             <br />
-                                            <span>{{ car.story_history }}</span>
+                                            <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
                                             <span class="view-more-a-tag ms-2" style="cursor: pointer"
@@ -3319,7 +3319,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3541,7 +3541,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3561,7 +3561,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3783,7 +3783,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4040,7 +4040,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4262,7 +4262,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4282,7 +4282,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4504,7 +4504,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -6795,7 +6795,7 @@ form-select {
 }
 
 .tranc {
-    width: 300px !important;
+    /* width: 300px !important; */
     display: -webkit-box;
     /* Use WebKit for browser compatibility */
     -webkit-box-orient: vertical;
@@ -6806,7 +6806,7 @@ form-select {
     /* Hides the overflow text */
     text-overflow: ellipsis;
     /* Adds ellipsis (...) at the end */
-    max-height: 2.5em;
+    max-height: 1.9em;
     /* Ensures only two lines are shown (line-height * 2) */
     line-height: 1.5em;
     /* Set the desired line height */

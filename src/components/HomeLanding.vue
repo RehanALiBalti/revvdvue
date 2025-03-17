@@ -4803,6 +4803,13 @@ select::placeholder {
   bottom: 100px;
 }
 
+@media(max-width:768px) {
+  .scroll-d {
+    top: 55%
+  }
+
+}
+
 .chev-1,
 .chev-2 {
   opacity: 0;
