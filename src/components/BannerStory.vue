@@ -104,9 +104,14 @@
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <img :src="instaIcon" class="instaIcon" />
-                                            <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
+                                            <!-- <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
                                                 style="font-size: 14px" target="_blank" rel="noopener noreferrer">
                                                 @{{ car.user_name }}
+                                            </a> -->
+                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                target="_blank" rel="noopener noreferrer">
+                                                @{{ car.social_media }}
                                             </a>
                                         </li>
                                     </ul>
@@ -202,11 +207,17 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <a :href="car.social_media"
+                                                            <!-- <a :href="car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2 "
                                                                 style="font-size: 14px" target="_blank"
                                                                 rel="noopener noreferrer">
                                                                 @{{ car.user_name }}
+                                                            </a> -->
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @ {{ car.social_media }}
                                                             </a>
                                                         </div>
                                                         <p class="text-orange"

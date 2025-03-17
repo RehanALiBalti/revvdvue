@@ -209,9 +209,10 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
-                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
-                                                    {{ car.user_name }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2 " style="font-size: 14px"
+                                                    target="_blank" rel="noop@ener noreferrer">
+                                                    {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -221,11 +222,14 @@
                                                 car? </span>
                                             <span class="text-orange" v-if="activeTab == 1">Tell us your Garage story &
                                                 how it all started </span>
-                                            <span class="text-orange" v-if="activeTab == 2">Tell us your shop story & how
+                                            <span class="text-orange" v-if="activeTab == 2">Tell us your shop story &
+                                                how
                                                 it all started</span>
-                                            <span class="text-orange" v-if="activeTab == 3">Tell us your club story & how
+                                            <span class="text-orange" v-if="activeTab == 3">Tell us your club story &
+                                                how
                                                 it all started </span>
-                                            <span class="text-orange" v-if="activeTab == 4">Tell us your Motor Bike story
+                                            <span class="text-orange" v-if="activeTab == 4">Tell us your Motor Bike
+                                                story
                                                 & how it all started </span>
                                             <span class="text-orange" v-if="activeTab == 5">Tell us your Automotive
                                                 Photography story & how it all started</span>
@@ -233,7 +237,8 @@
                                             <span v-if="car.story">{{ car.story }}</span>
                                             <span v-else>{{ car.story_history }}</span>
                                             <!-- <span v-else>{{ car.story_history }}</span> -->
-                                            <span class="view-more-a-tag" style="cursor: pointer" @click="openModalFe">
+                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
+                                                @click="openModalFe">
                                                 {{ $t("viewMore") }}
                                             </span>
                                         </p>
@@ -322,12 +327,13 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <a :href="car.social_media"
-                                                                class="a-tag-name-user mt-2 mb-2 "
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
                                                                 rel="noopener noreferrer">
-                                                                @{{ car.user_name }}
+                                                                {{ car.social_media }}
                                                             </a>
+
                                                         </div>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start" v-if="car.story">
@@ -662,9 +668,10 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
-                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
-                                                    {{ car.user_name }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -675,7 +682,7 @@
                                             <span>{{ car.story }}</span>
 
                                             <!-- Conditionally show "view more" if car.story has 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story.split(' ').length >= 10" @click="openModal(index)">
                                                 {{ $t("viewMore") }}
                                             </span>
@@ -764,10 +771,12 @@
 
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                @{{ car.user_name }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us your car
@@ -802,7 +811,7 @@
 
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -1676,9 +1685,10 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
-                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
-                                                    {{ car.user_name }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -1691,7 +1701,7 @@
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
@@ -1781,10 +1791,12 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                @{{ car.user_name }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
 
 
@@ -1805,7 +1817,7 @@
                                                         </p>
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -2399,9 +2411,10 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
-                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
-                                                    {{ car.user_name }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -2413,7 +2426,7 @@
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
@@ -2505,10 +2518,12 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                @{{ car.user_name }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
 
                                                         <p class="text-orange"
@@ -2527,7 +2542,7 @@
                                                             {{ car.story_history }}
                                                         </p>
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -3119,9 +3134,10 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
-                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
-                                                    {{ car.user_name }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -3133,7 +3149,7 @@
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
@@ -3219,10 +3235,12 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                @{{ car.user_name }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
 
                                                         <p class="text-orange"
@@ -3242,7 +3260,7 @@
                                                         </p>
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -3833,9 +3851,10 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
-                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
-                                                    {{ car.user_name }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -3847,7 +3866,7 @@
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
@@ -3938,10 +3957,12 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                @{{ car.user_name }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
 
                                                         <p class="text-orange"
@@ -3960,7 +3981,7 @@
                                                             {{ car.story_history }}
                                                         </p>
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -4552,9 +4573,10 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
-                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
-                                                    {{ car.user_name }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    {{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -4566,7 +4588,7 @@
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
@@ -4656,10 +4678,12 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                @{{ car.user_name }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
 
                                                         <p class="text-orange"
@@ -4678,7 +4702,7 @@
                                                             {{ car.story_history }}
                                                         </p>
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>

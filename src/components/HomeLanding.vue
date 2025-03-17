@@ -208,7 +208,7 @@
                         </div>
                       </div>
                       <small class="car-content-link f14"><img :src="instaIcon" width="55px" />@{{
-                        bannerStories[0]?.user_name
+                        bannerStories[0]?.social_media
                       }}</small>
                       <p class="car-content-para my-1 p-0 fw-bolder ">What’s the story behind your car?
                       </p>
@@ -591,8 +591,8 @@ v-model="formData.country"> -->
                 </div>
                 <div class="col-md-6  p-0 p-md-1"
                   v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
-                  <label for="link" class="form-label">Add Instagram or Website Link</label>
-                  <input type="url" id="link" class="form-control h35px" placeholder="Enter Instagram or Website Link"
+                  <label for="link" class="form-label">Add Instagram Username</label>
+                  <input type="text" id="link" class="form-control h35px" placeholder="Enter Instagram or Website Link"
                     v-model="formData.url">
                 </div>
 
@@ -767,8 +767,8 @@ v-model="formData.country"> -->
                 </div>
                 <div class="col-md-3 z1o p-0 p-md-1"
                   v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
-                  <label for="message" class="form-label ">Add Instagram link </label>
-                  <input id="message" class="form-control form-input h35px" name="message"
+                  <label for="message" class="form-label ">Add Instagram Username </label>
+                  <input id="message" type="text" class="form-control form-input h35px" name="message"
                     :placeholder="$t('Enter here')" rows="1" v-model="formData.social_media" />
                   <!-- Error message for Message -->
                   <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
