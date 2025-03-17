@@ -1701,11 +1701,11 @@
                                             <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
                                 </div>
@@ -2426,11 +2426,11 @@
                                             <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
                                     class="d-none"
@@ -3149,11 +3149,11 @@
                                             <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
                                     class="d-none"
@@ -3866,11 +3866,11 @@
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
 
@@ -4588,11 +4588,11 @@
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag ms-2" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
                                 </div>
@@ -6806,7 +6806,7 @@ form-select {
     /* Hides the overflow text */
     text-overflow: ellipsis;
     /* Adds ellipsis (...) at the end */
-    max-height: 1.9em;
+    max-height: 1.8em;
     /* Ensures only two lines are shown (line-height * 2) */
     line-height: 1.5em;
     /* Set the desired line height */
