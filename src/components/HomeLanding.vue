@@ -207,10 +207,10 @@
                           </span>
                         </div>
                       </div>
-                      <small class="car-content-link f14"><img :src="instaIcon" width="55px" />Revvdout@{{
+                      <small class="car-content-link f14"><img :src="instaIcon" width="55px" />@{{
                         bannerStories[0]?.user_name
                       }}</small>
-                      <p class="car-content-para my-1 p-0 fw-bolder ">Tell us your car story togather
+                      <p class="car-content-para my-1 p-0 fw-bolder ">What’s the story behind your car?
                       </p>
                       <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob pt-0 mt-0"
                         v-if="bannerStories[0]?.story != ''">
@@ -1108,6 +1108,22 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div> About Us
       </button>
     </nav>
+
+    <div class="scroll-d">
+      <p class="s-one-b-one text-white">
+        <span>S</span>
+        <span>C</span>
+        <span>R</span>
+        <span>O</span>
+        <span>L</span>
+        <span>L</span>
+      </p>
+      <div class="d-flex flex-column main-chev">
+        <i class="fa-solid fa-chevron-down fs-2  chev-1"></i>
+        <i class="fa-solid fa-chevron-down   fs-2  chev-2"></i>
+      </div>
+
+    </div>
 
   </div>
 
@@ -2027,7 +2043,7 @@ export default {
       else if (selectedValue == "motorbikeEnthusiast") {
         this.shopName = "Motor Bike"
       }
-      else if (selectedValue == "automotivePhotographerast") {
+      else if (selectedValue == "automotivePhotographer") {
         this.shopName = "Automotive Photography"
       }
 
@@ -4778,5 +4794,90 @@ select::placeholder {
 .setype {
   position: relative !important;
   z-index: 9999 !important;
+}
+
+.scroll-d {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  bottom: 100px;
+}
+
+.chev-1,
+.chev-2 {
+  opacity: 0;
+  animation: fadeChev 2s infinite;
+  color: #f95f19
+}
+
+.chev-2 {
+  animation-delay: 1s;
+}
+
+@keyframes fadeChev {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Scroll Text Animation */
+.s-one-b-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.s-one-b-one span {
+  opacity: 0;
+  animation: fadeText 1s forwards;
+  font-size: 10px;
+}
+
+/* Add delay for each letter */
+.s-one-b-one span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.s-one-b-one span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.s-one-b-one span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.s-one-b-one span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.s-one-b-one span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+.s-one-b-one span:nth-child(6) {
+  animation-delay: 1s;
+}
+
+@keyframes fadeText {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

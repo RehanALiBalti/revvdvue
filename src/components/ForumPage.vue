@@ -213,7 +213,7 @@
                                     </div>
                                     <div class="like-community">
                                         <i class="fa-solid fa-eye"></i><span class="total-likes">{{ community.views
-                                            }}</span>
+                                        }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +310,7 @@
                     <span class="close-icon" @click="closeModelLogin" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fas fa-times"></i>
                     </span>
-                    <h5 class="card-title"><span class="choose"> Please Login Fisrt To Access This </span></h5>
+                    <h5 class="card-title"><span class="choose"> Please Login First To Access This </span></h5>
                 </div>
             </div>
         </div>

@@ -209,15 +209,30 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
+                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
+                                                    {{ car.user_name }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px">
-                                            <span v-if="car.advice">{{ car.advice }}</span>
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px">
+                                            <!-- <span v-if="car.advice">{{ car.advice }}</span> -->
+                                            <span class="text-orange" v-if="activeTab == 0">What’s the story behind your
+                                                car? </span>
+                                            <span class="text-orange" v-if="activeTab == 1">Tell us your Garage story &
+                                                how it all started </span>
+                                            <span class="text-orange" v-if="activeTab == 2">Tell us your shop story & how
+                                                it all started</span>
+                                            <span class="text-orange" v-if="activeTab == 3">Tell us your club story & how
+                                                it all started </span>
+                                            <span class="text-orange" v-if="activeTab == 4">Tell us your Motor Bike story
+                                                & how it all started </span>
+                                            <span class="text-orange" v-if="activeTab == 5">Tell us your Automotive
+                                                Photography story & how it all started</span>
+                                            <br />
+                                            <span v-if="car.story">{{ car.story }}</span>
                                             <span v-else>{{ car.story_history }}</span>
+                                            <!-- <span v-else>{{ car.story_history }}</span> -->
                                             <span class="view-more-a-tag" style="cursor: pointer" @click="openModalFe">
                                                 {{ $t("viewMore") }}
                                             </span>
@@ -308,10 +323,10 @@
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
                                                             <a :href="car.social_media"
-                                                                class="a-tag-name-user mt-2 mb-2 truncate"
+                                                                class="a-tag-name-user mt-2 mb-2 "
                                                                 style="font-size: 14px" target="_blank"
                                                                 rel="noopener noreferrer">
-                                                                {{ car.social_media }}
+                                                                @{{ car.user_name }}
                                                             </a>
                                                         </div>
                                                         <p class="text-orange"
@@ -325,7 +340,8 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.advice">
-                                                            What advise would you give to someone starting their journey as a car enthusiast?
+                                                            What advise would you give to someone starting their journey
+                                                            as a car enthusiast?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.advice">
@@ -335,7 +351,8 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
-                                                            Tell us the wildest or most unforgettable moment you’ve had with your car
+                                                            Tell us the wildest or most unforgettable moment you’ve had
+                                                            with your car
 
 
                                                         </p>
@@ -346,7 +363,7 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.modifications">
-                                                          Any awesome modifications or unique features you can share?
+                                                            Any awesome modifications or unique features you can share?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
@@ -355,7 +372,7 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
-                                                          Any awesome modifications or unique features you can share?
+                                                            Any awesome modifications or unique features you can share?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
@@ -638,21 +655,23 @@
                                         <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             <!-- {{ car.make }}:{{ car.model }} -->
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
+                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
+                                                    {{ car.user_name }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
                                             @click="openModal(index)">
+                                            <span class="text-orange">What’s the story behind your car?</span>
+                                            <br />
                                             <span>{{ car.story }}</span>
 
                                             <!-- Conditionally show "view more" if car.story has 10 or more words -->
@@ -745,9 +764,9 @@
 
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
                                                                 :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
+                                                                @{{ car.user_name }}
                                                             </router-link>
                                                         </div>
                                                         <p class="text-orange"
@@ -758,19 +777,24 @@
                                                             {{ car.story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">What advise would you give to someone starting their journey as a car enthusiast?</p>
+                                                            style="font-size: 14px; text-align: start">What advise would
+                                                            you give to someone starting their journey as a car
+                                                            enthusiast?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.advice }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the
+                                                            wildest or most unforgettable moment you’ve had with your
+                                                            car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.memorable }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Any awesome modifications or unique features you can share?</p>
+                                                            style="font-size: 14px; text-align: start">Any awesome
+                                                            modifications or unique features you can share?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.modifications }}
@@ -899,7 +923,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1124,7 +1148,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1153,7 +1177,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1575,7 +1599,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1646,21 +1670,24 @@
                                         <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
+                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
+                                                    {{ car.user_name }}
                                                 </a>
                                             </li>
                                         </ul>
 
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
+                                            <span class="text-orange"> Tell us your Garage story & how it all
+                                                started</span>
+                                            <br />
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
@@ -1754,21 +1781,24 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
                                                                 :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
+                                                                @{{ car.user_name }}
                                                             </router-link>
                                                         </div>
 
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the
+                                                            wildest or most unforgettable moment you’ve had with your
+                                                            car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            Garage story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
@@ -1834,7 +1864,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2056,7 +2086,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2076,7 +2106,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2298,7 +2328,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2363,20 +2393,23 @@
                                         <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
+                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
+                                                    {{ car.user_name }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
+                                            <span class="text-orange"> Tell us your shop story & how it all
+                                                started</span>
+                                            <br />
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
@@ -2472,20 +2505,23 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
                                                                 :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
+                                                                @{{ car.user_name }}
                                                             </router-link>
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the
+                                                            wildest or most unforgettable moment you’ve had with your
+                                                            car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your shop story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your shop
+                                                            story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
@@ -2551,7 +2587,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2773,7 +2809,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2793,7 +2829,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3015,7 +3051,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3077,20 +3113,23 @@
                                         <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
+                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
+                                                    {{ car.user_name }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
+                                            <span class="text-orange"> Tell us your club story & how it all
+                                                started</span>
+                                            <br />
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
@@ -3180,20 +3219,23 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
                                                                 :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
+                                                                @{{ car.user_name }}
                                                             </router-link>
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the
+                                                            wildest or most unforgettable moment you’ve had with your
+                                                            car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your club story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your club
+                                                            story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
@@ -3259,7 +3301,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3481,7 +3523,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3501,7 +3543,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3723,7 +3765,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3785,20 +3827,23 @@
                                         <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
+                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
+                                                    {{ car.user_name }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
+                                            <span class="text-orange">Tell us your Motor Bike story & how it all
+                                                started</span>
+                                            <br />
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
@@ -3893,20 +3938,23 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
                                                                 :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
+                                                                @{{ car.user_name }}
                                                             </router-link>
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the
+                                                            wildest or most unforgettable moment you’ve had with your
+                                                            car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            Garage story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
@@ -3971,7 +4019,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4193,7 +4241,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4213,7 +4261,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4435,7 +4483,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4498,20 +4546,23 @@
                                         <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
+                                                    style="font-size: 14px" target="_blank" rel="noop@ener noreferrer">
+                                                    {{ car.user_name }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
+                                            <span class="text-orange">Tell us your Automotive Photography story & how it
+                                                all started</span>
+                                            <br />
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
@@ -4605,20 +4656,23 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
+                                                            <router-link class="a-tag-name-user mt-2 mb-2 "
                                                                 :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
+                                                                @{{ car.user_name }}
                                                             </router-link>
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the
+                                                            wildest or most unforgettable moment you’ve had with your
+                                                            car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.adventure_story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            Garage story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
