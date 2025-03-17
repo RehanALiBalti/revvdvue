@@ -2201,9 +2201,17 @@ export default {
         console.log("Fetching profile data...");
         const data = await this.$store.dispatch("auth/getprofiledata");
         console.log("Profile data in heder:", data.result.sub);
-        console.log("Profile data in heder:", data.result);
+        console.log("Profile data in home:", data.result);
         this.sub = data.result.sub
         this.userAttributes = data.result
+        if(data.result.identities){
+          this.formData.user_name = data.result.name;
+        }
+        else{
+          this.formData.user_name = data.result.nickname;
+        }
+       
+        this.formData.user_email = data.result.email
         console.log("role d",);
         if (this.userAttributes['custom:Role'] == "dealer") {
           this.changeName(this.userAttributes['custom:companyName'])
@@ -2272,8 +2280,13 @@ export default {
         console.log("✅ Profile Response s:", profileData);
 
         // Update user data
-        this.formData.user_name = profileData.nickname;
+        if(profileData.nickname){
+          this.formData.user_name = profileData.nickname;
+        }
+       
+      if( profileData.email){
         this.formData.user_email = profileData.email
+      }
         this.image = profileData.image;
 
         // Update profile image
