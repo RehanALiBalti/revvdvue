@@ -216,7 +216,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px">
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px">
                                             <!-- <span v-if="car.advice">{{ car.advice }}</span> -->
                                             <span class="text-orange" v-if="activeTab == 0">What’s the story behind your
                                                 car? </span>
@@ -675,7 +675,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             @click="openModal(index)">
                                             <span class="text-orange">What’s the story behind your car?</span>
                                             <br />
@@ -1693,7 +1693,7 @@
                                             </li>
                                         </ul>
 
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span class="text-orange"> Tell us your Garage story & how it all
                                                 started</span>
@@ -2418,7 +2418,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span class="text-orange"> Tell us your shop story & how it all
                                                 started</span>
@@ -3141,7 +3141,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span class="text-orange"> Tell us your club story & how it all
                                                 started</span>
@@ -3858,7 +3858,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span class="text-orange">Tell us your Motor Bike story & how it all
                                                 started</span>
@@ -4580,7 +4580,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap " style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
                                             <span class="text-orange">Tell us your Automotive Photography story & how it
                                                 all started</span>

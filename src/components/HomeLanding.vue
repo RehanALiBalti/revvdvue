@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -216,6 +216,10 @@
                         v-if="bannerStories[0]?.story != ''">
                         {{ bannerStories[0]?.story }}
                       </p>
+                      <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob pt-0 mt-0" v-else>
+                        {{ bannerStories[0]?.story_history }}
+                      </p>
+
 
                       <!-- <p class="car-content-para">Can you share with us any memorable stories or adventures you’ve had with
                     your car that stands out the most?</p>
@@ -4833,7 +4837,7 @@ select::placeholder {
 .scroll-d {
   position: absolute;
   right: 20px;
-  top: 50%;
+  top: 60%;
   bottom: 100px;
 }
 
@@ -4920,5 +4924,9 @@ select::placeholder {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.main-chev {
+  margin-top: -21px
 }
 </style>
