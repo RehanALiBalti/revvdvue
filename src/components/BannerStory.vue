@@ -763,22 +763,43 @@ export default {
         //     console.error('Error fetching featured stories:', error);
         //   }
         // },
+        // async fetchBannerStories() {
+        //     try {
+        //         const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
+        //         const data = await response.json();
+        //         console.log("banner_response data", data);
+        //         if (data.success) {
+        //             const banner = data.banner;
+        //             console.log("banner data", banner);
+        //             // Parse the images field from JSON string to an array
+        //             banner.images = JSON.parse(banner.images);
+        //             this.bannerStories = [banner]; // Store the story in the bannerStories array
+        //         }
+        //     } catch (error) {
+        //         console.error('Error fetching banner stories:', error);
+        //     }
+        // },
         async fetchBannerStories() {
             try {
-                const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
-                const data = await response.json();
+                // Use the Axios instance to make the request
+                const response = await http.get('/stories/bannerstories'); // Use the relative path
+                const data = response.data; // Axios stores the response data in `data`
+
                 console.log("banner_response data", data);
+
                 if (data.success) {
+                    // Parse the images field from JSON string to an array
                     const banner = data.banner;
                     console.log("banner data", banner);
-                    // Parse the images field from JSON string to an array
-                    banner.images = JSON.parse(banner.images);
-                    this.bannerStories = [banner]; // Store the story in the bannerStories array
+                    banner.images = JSON.parse(banner.images); // Parse the images
+                    this.bannerStories = [banner]; // Store it in the featuredCars array
+                    console.log("banner data", this.bannerStories[0].images);
                 }
             } catch (error) {
                 console.error('Error fetching banner stories:', error);
             }
         },
+
 
         getImageUrl(image) {
             return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;

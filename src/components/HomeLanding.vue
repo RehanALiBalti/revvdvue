@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
+                        }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -2125,23 +2125,44 @@ export default {
         });
     }
     ,
+    // async fetchBannerStories() {
+    //   // previous link
+    //   // https://buzzwaretech.com/adminrev/api/bannerstores
+    //   try {
+    //     const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
+    //     const data = await response.json();
+    //     console.log("banner_response data", data)
+    //     if (data.success) {
+    //       // Parse the images field from JSON string to an array
+    //       const banner = data.banner;
+    //       console.log("banner data", banner)
+    //       banner.images = JSON.parse(banner.images); // Parse the images
+    //       this.bannerStories = [banner]; // Store it in the featuredCars array
+    //       console.log("banner data", this.bannerStories[0].images)
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching featured stories:', error);
+    //   }
+    // },
+
     async fetchBannerStories() {
-      // previous link
-      // https://buzzwaretech.com/adminrev/api/bannerstores
       try {
-        const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
-        const data = await response.json();
-        console.log("banner_response data", data)
+        // Use the Axios instance to make the request
+        const response = await http.get('/stories/bannerstories'); // Use the relative path
+        const data = response.data; // Axios stores the response data in `data`
+
+        console.log("banner_response data", data);
+
         if (data.success) {
           // Parse the images field from JSON string to an array
           const banner = data.banner;
-          console.log("banner data", banner)
+          console.log("banner data", banner);
           banner.images = JSON.parse(banner.images); // Parse the images
           this.bannerStories = [banner]; // Store it in the featuredCars array
-          console.log("banner data", this.bannerStories[0].images)
+          console.log("banner data", this.bannerStories[0].images);
         }
       } catch (error) {
-        console.error('Error fetching featured stories:', error);
+        console.error('Error fetching banner stories:', error);
       }
     },
 
@@ -2204,13 +2225,13 @@ export default {
         console.log("Profile data in home:", data.result);
         this.sub = data.result.sub
         this.userAttributes = data.result
-        if(data.result.identities){
+        if (data.result.identities) {
           this.formData.user_name = data.result.name;
         }
-        else{
+        else {
           this.formData.user_name = data.result.nickname;
         }
-       
+
         this.formData.user_email = data.result.email
         console.log("role d",);
         if (this.userAttributes['custom:Role'] == "dealer") {
@@ -2280,13 +2301,13 @@ export default {
         console.log("✅ Profile Response s:", profileData);
 
         // Update user data
-        if(profileData.nickname){
+        if (profileData.nickname) {
           this.formData.user_name = profileData.nickname;
         }
-       
-      if( profileData.email){
-        this.formData.user_email = profileData.email
-      }
+
+        if (profileData.email) {
+          this.formData.user_email = profileData.email
+        }
         this.image = profileData.image;
 
         // Update profile image
