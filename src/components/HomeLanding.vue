@@ -210,8 +210,32 @@
                       <small class="car-content-link f14"><img :src="instaIcon" width="55px" />@{{
                         bannerStories[0]?.social_media
                       }}</small>
-                      <p class="car-content-para my-1 p-0 fw-bolder ">What’s the story behind your car?
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-if="bannerStories[0]?.story_type == 'carEnthusiast'">What’s the story behind your car?
                       </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'carGarage'">Tell us your Garage story & how it all
+                        started
+                      </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'carModificationShop'">Tell us your shop story & how
+                        it
+                        all started
+                      </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'carClub'">Tell us your club story & how it all
+                        started
+                      </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'motorbikeEnthusiast'">Tell us your Motor Bike story
+                        &
+                        how it all started
+                      </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'automotivePhotographer'">Tell us your Automotive
+                        Photography story & how it all started
+                      </p>
+
                       <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob pt-0 mt-0"
                         v-if="bannerStories[0]?.story != ''">
                         {{ bannerStories[0]?.story }}
@@ -777,10 +801,10 @@ v-model="formData.country"> -->
                   <!-- Error message for Message -->
                   <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
                 </div>
-                <div class="col-md-4  d-flex gap-1 align-items-center p-0 p-md-1"
+                <div class="col-md-6  d-flex gap-1 align-items-center p-0 p-md-1"
                   v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <div>
-                    <label for="city" class="form-label">Upload Pictures Max 8</label>
+                    <label for="city" class="form-label">Upload Pictures Max 8(50mb max)</label>
 
                     <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
@@ -1116,11 +1140,11 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
     <div class="scroll-d">
       <p class="s-one-b-one text-white">
         <span>S</span>
-        <span>C</span>
-        <span>R</span>
-        <span>O</span>
-        <span>L</span>
-        <span>L</span>
+        <span>W</span>
+        <span>I</span>
+        <span>P</span>
+        <span>E</span>
+
       </p>
       <div class="d-flex flex-column main-chev">
         <i class="fa-solid fa-chevron-down fs-2  chev-1"></i>
@@ -4840,7 +4864,7 @@ select::placeholder {
 .scroll-d {
   position: absolute;
   right: 20px;
-  top: 60%;
+  top: 55%;
   bottom: 100px;
 }
 
@@ -4884,12 +4908,13 @@ select::placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
+  line-height: 18px;
 }
 
 .s-one-b-one span {
   opacity: 0;
   animation: fadeText 1s forwards;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 /* Add delay for each letter */
