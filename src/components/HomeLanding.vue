@@ -112,7 +112,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -320,8 +320,8 @@
             <!-- @submit.prevent="retrieveCommunities" -->
             <form id="subscribe-form" @submit.prevent="SubmitStory">
               <h2 class="form-title w-100 text-start">
-                <span class="form-span"> {{ $t('Share your story ') }}</span>
-                {{ $t('Now') }} !
+                <span class="form-span"> {{ $t('Sign up & Share your story ') }}</span>
+                {{ $t('Now!') }}
               </h2>
               <div class="row px-2">
                 <div class="position-relative" v-if="this.loading == true" style="z-index:999">
@@ -586,7 +586,8 @@ v-model="formData.country"> -->
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
 
                   <!-- City Select -->
-                  <select id="city" class="form-select form-control form-input h35px" v-model="formData.city">
+                  <select id="city" class="form-select form-control form-input h35px" v-model="formData.city"
+                    @change="checkLogin">
                     <option selected value="">City</option>
                     <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                   </select>
@@ -804,7 +805,7 @@ v-model="formData.country"> -->
                 <div class="col-md-6  d-flex gap-1 align-items-center p-0 p-md-1"
                   v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <div>
-                    <label for="city" class="form-label">Upload Pictures Max 8(50mb max)</label>
+                    <label for="city" class="form-label">Upload up to 8 pictures (max 50MB)</label>
 
                     <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
@@ -1676,6 +1677,32 @@ export default {
     };
   },
   methods: {
+    debounce(func, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+    },
+
+    // Use the debounce method to wrap checkLogin
+    checkLogin: function () {
+      console.log("in checklogin")
+      const debouncedCheckLogin = this.debounce(() => {
+        console.log("in debounce", this.isLogin)
+        if (this.isLogin == false || this.isLogin == 'false') {
+          console.log("in if debounce")
+          this.modalTitle = "Something went wrong";
+          this.modaldescription = "Please login first to submit the story";
+          this.ModalStoryFail = true;
+          return false;
+        }
+        return true;
+      }, 300);
+
+      return debouncedCheckLogin();
+    },
+
 
     handleModalFocus() {
 
@@ -1690,6 +1717,7 @@ export default {
     // Debounce function
 
     adjustHeight() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea;
       if (textarea) {
@@ -1700,6 +1728,7 @@ export default {
     }
     ,
     adjustHeight2() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea2;
       if (textarea) {
@@ -1710,6 +1739,7 @@ export default {
     }
     ,
     adjustHeight3() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea3;
       if (textarea) {
@@ -1721,6 +1751,7 @@ export default {
     ,
     adjustHeight4() {
 
+      this.checkLogin()
       const textarea = this.$refs.autoExpandTextarea4;
       if (textarea) {
         console.log("working")
@@ -1730,6 +1761,7 @@ export default {
     }
     ,
     adjustHeight5() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea5;
       if (textarea) {
@@ -1740,6 +1772,7 @@ export default {
     }
     ,
     adjustHeight6() {
+      this.checkLogin()
       console.log("in adjustheight")
 
       const textarea = this.$refs.autoExpandTextarea6;
@@ -1757,6 +1790,7 @@ export default {
 
     ,
     adjustHeight7() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea7;
       if (textarea) {
@@ -2116,6 +2150,7 @@ export default {
     // ,
     getcities() {
       this.loading = true;
+      this.checkLogin()
       if (!this.formData.country) return;  // Exit if no country is selected
 
       // Set up the headers and request body
@@ -3196,6 +3231,7 @@ export default {
 
     },
     GenfilterOption() {
+      this.checkLogin()
       const query = this.formData.year.toLowerCase();
       if (query === '') {
         this.GenfilteredOptions = this.dataGy;
@@ -3281,7 +3317,7 @@ export default {
     // },
     selectOptionModel(selected) {
       console.log("Selected Model:", selected);
-
+      this.checkLogin()
       // Ensure selected is valid
       if (selected && typeof selected === 'string') {
         this.formData.model = selected;
@@ -3299,6 +3335,7 @@ export default {
     ,
     updateModels(value) {
       this.isDropDYear = false
+      this.checkLogin()
       if (value) {
 
         this.productionYear = value.production_years;
@@ -3459,6 +3496,7 @@ export default {
     // },
     getModels() {
       console.log("get models");
+      this.checkLogin()
       this.formData.model = "",
         this.formData.year = "";
       this.smodel = "";
@@ -3701,7 +3739,7 @@ export default {
   },
 
   async mounted() {
-    this.adjustHeight();
+    // this.adjustHeight();
     this.resetHeight();
     this.resetHeight2();
     this.resetHeight3();
