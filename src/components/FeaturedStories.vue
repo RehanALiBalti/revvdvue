@@ -779,19 +779,18 @@
                                                             </a>
                                                         </div>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your car
-                                                            story together</p>
+                                                            style="font-size: 14px; text-align: start">What’s the story
+                                                            behind your car?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">What advise would
-                                                            you give to someone starting their journey as a car
-                                                            enthusiast?</p>
+                                                            style="font-size: 14px; text-align: start">Any awesome
+                                                            modifications or unique features you can share?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
-                                                            {{ car.advice }}
+                                                            {{ car.modifications }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us the
@@ -802,12 +801,15 @@
                                                             {{ car.memorable }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Any awesome
-                                                            modifications or unique features you can share?</p>
+                                                            style="font-size: 14px; text-align: start">What advise would
+                                                            you give to someone starting their journey as a car
+                                                            enthusiast?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
-                                                            {{ car.modifications }}
+                                                            {{ car.advice }}
                                                         </p>
+
+
 
 
                                                     </div>
@@ -932,7 +934,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1157,7 +1159,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1186,7 +1188,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1608,7 +1610,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1799,15 +1801,6 @@
                                                             </a>
                                                         </div>
 
-
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the
-                                                            wildest or most unforgettable moment you’ve had with your
-                                                            car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us your
                                                             Garage story & how it all started</p>
@@ -1815,6 +1808,14 @@
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
 
                                                     </div>
                                                     <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
@@ -1876,7 +1877,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2098,7 +2099,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2118,7 +2119,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2340,7 +2341,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2433,7 +2434,7 @@
                                             </span> -->
                                         </p>
                                     </div>
-                                    class="d-none"
+
                                 </div>
 
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
@@ -2525,15 +2526,6 @@
                                                                 @{{ car.social_media }}
                                                             </a>
                                                         </div>
-
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the
-                                                            wildest or most unforgettable moment you’ve had with your
-                                                            car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us your shop
                                                             story & how it all started</p>
@@ -2541,6 +2533,14 @@
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
                                                     </div>
                                                     <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
@@ -2602,7 +2602,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2824,7 +2824,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2844,7 +2844,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3066,7 +3066,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3156,7 +3156,7 @@
                                             </span> -->
                                         </p>
                                     </div>
-                                    class="d-none"
+
                                 </div>
 
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
@@ -3242,15 +3242,6 @@
                                                                 @{{ car.social_media }}
                                                             </a>
                                                         </div>
-
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the
-                                                            wildest or most unforgettable moment you’ve had with your
-                                                            car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us your club
                                                             story & how it all started</p>
@@ -3258,6 +3249,14 @@
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
 
                                                     </div>
                                                     <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
@@ -3319,7 +3318,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3541,7 +3540,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3561,7 +3560,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3783,7 +3782,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3964,22 +3963,22 @@
                                                                 @{{ car.social_media }}
                                                             </a>
                                                         </div>
-
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the
-                                                            wildest or most unforgettable moment you’ve had with your
-                                                            car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us your
-                                                            Garage story & how it all started</p>
+                                                            Motor Bike story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
                                                     </div>
                                                     <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
@@ -4040,7 +4039,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4262,7 +4261,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4282,7 +4281,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4504,7 +4503,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4685,22 +4684,21 @@
                                                                 @{{ car.social_media }}
                                                             </a>
                                                         </div>
-
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the
-                                                            wildest or most unforgettable moment you’ve had with your
-                                                            car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us your
-                                                            Garage story & how it all started</p>
+                                                            Automotive Photography story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
                                                     </div>
                                                     <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
