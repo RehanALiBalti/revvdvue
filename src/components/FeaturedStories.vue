@@ -5521,7 +5521,7 @@ export default {
                     await this.fetchFeaturedStoriesByType("motorbikeEnthusiast");
                     break;
                 case "Automotive Photographer":
-                    await this.fetchFeaturedStoriesByType("automotivePhotographerast");
+                    await this.fetchFeaturedStoriesByType("automotivePhotographer");
                     break;
                 default:
                     console.warn("Unknown tab name");
@@ -6295,7 +6295,7 @@ export default {
                         CarModificationTunningShop: "carModificationShop",
                         CarClub: "carClub",
                         MotorbikeEnthusiast: "motorbikeEnthusiast",
-                        AutomotivePhotographer: "automotivePhotographerast" // ✅ Fixed typo
+                        AutomotivePhotographer: "automotivePhotographer" // ✅ Fixed typo
                     };
 
                     // Reset the filtered and original stories
