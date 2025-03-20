@@ -212,7 +212,7 @@
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2 " style="font-size: 14px"
                                                     target="_blank" rel="noop@ener noreferrer">
-                                                    {{ car.social_media }}
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -331,7 +331,7 @@
                                                                 class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
                                                                 rel="noopener noreferrer">
-                                                                {{ car.social_media }}
+                                                                @{{ car.social_media }}
                                                             </a>
 
                                                         </div>
@@ -377,29 +377,30 @@
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history &&activeTab==1">
+                                                            v-if="car.story_history && activeTab == 1">
                                                             Tell us your Garage story & how it all started
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history &&activeTab==2">
+                                                            v-if="car.story_history && activeTab == 2">
                                                             Tell us your shop story & how it all started
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history &&activeTab==3">
+                                                            v-if="car.story_history && activeTab == 3">
                                                             Tell us your club story & how it all started
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history &&activeTab==4">
+                                                            v-if="car.story_history && activeTab == 4">
                                                             Tell us your Motor Bike story & how it all started
                                                         </p>
 
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history &&activeTab==5">
-                                                            Tell us your Automotive Photography story & how it all started
+                                                            v-if="car.story_history && activeTab == 5">
+                                                            Tell us your Automotive Photography story & how it all
+                                                            started
                                                         </p>
 
 
@@ -410,13 +411,14 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
-                                                            Any unforgettable memory, event or story you can share with us?
+                                                            Any unforgettable memory, event or story you can share with
+                                                            us?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
                                                             {{ car.adventure_story }}
                                                         </p>
-                                                       
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -704,7 +706,7 @@
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -967,7 +969,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1192,7 +1194,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1221,7 +1223,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1643,7 +1645,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1723,7 +1725,7 @@
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -1910,7 +1912,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2132,7 +2134,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2152,7 +2154,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2374,7 +2376,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2448,7 +2450,7 @@
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -2635,7 +2637,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2857,7 +2859,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2877,7 +2879,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3099,7 +3101,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3170,7 +3172,7 @@
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -3351,7 +3353,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3573,7 +3575,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3593,7 +3595,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3815,7 +3817,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3886,7 +3888,7 @@
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -4072,7 +4074,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4294,7 +4296,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4314,7 +4316,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4536,7 +4538,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4608,7 +4610,7 @@
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
