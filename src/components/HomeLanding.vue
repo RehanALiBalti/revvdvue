@@ -621,8 +621,9 @@ v-model="formData.country"> -->
                 <div class="col-md-6  p-0 p-md-1"
                   v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
                   <label for="link" class="form-label">Add Instagram Username</label>
-                  <input type="text" id="link" class="form-control h35px" placeholder="Enter Instagram or Website Link"
-                    v-model="formData.url">
+                  <input type="text" id="link" class="form-control h35px" placeholder="Enter Instagram username"
+                    v-model="formData.url" @input="validateUsername">
+                  <small v-if="error_url" class="text-danger">{{ error_url }}</small>
                 </div>
 
 
@@ -798,7 +799,9 @@ v-model="formData.country"> -->
                   v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <label for="message" class="form-label ">Add Instagram Username </label>
                   <input id="message" type="text" class="form-control form-input h35px" name="message"
-                    :placeholder="$t('Enter here')" rows="1" v-model="formData.social_media" />
+                    placeholder="Enter Instagram username" rows="1" v-model="formData.social_media"
+                    @input="validateUsernamesoc" />
+                  <small v-if="error_url2" class="text-danger">{{ error_url2 }}</small>
                   <!-- Error message for Message -->
                   <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
                 </div>
@@ -1645,6 +1648,8 @@ export default {
         generation: "",
         productionYears: "",
       },
+      error_url: "",
+      error_url2: "",
       formData: {
         make: "",
         model: "",
@@ -1677,6 +1682,31 @@ export default {
     };
   },
   methods: {
+    validateUsername() {
+      // Regex to detect URLs (http, https, www, or domains like .com)
+      const urlPattern = /(https?:\/\/|www\.)|(\.com|\.net|\.org|\.io|\.co)/i;
+
+      if (this.formData.url === '') {
+        this.error_url = 'Please enter a username';
+      } else if (urlPattern.test(this.formData.url)) {
+        this.error_url = 'Please enter only a username, not a link';
+      } else {
+        this.error_url = '';
+      }
+    },
+    validateUsernamesoc() {
+      // Regex to detect URLs (http, https, www, or domains like .com)
+      const urlPattern = /(https?:\/\/|www\.)|(\.com|\.net|\.org|\.io|\.co)/i;
+
+      if (this.formData.social_media === '') {
+        this.error_url2 = 'Please enter a username';
+      } else if (urlPattern.test(this.formData.social_media)) {
+        this.error_url2 = 'Please enter only a username, not a link';
+      } else {
+        this.error_url2 = '';
+      }
+    },
+
     debounce(func, delay) {
       let timeout;
       return function (...args) {
