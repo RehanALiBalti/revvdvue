@@ -131,7 +131,7 @@
                               :src="comment.userimage != 'undefined' || comment.userimage != 'null' ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
                             <img class="UsrImage"
-                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null ? '' + comment.userImage : dummyuserImage"
+                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null && comment.userImage !== 'null' ? '' + comment.userImage : dummyuserImage"
                               alt="" width="50px" />
 
                             <small class="uName">{{ comment.nickname }}</small>
@@ -196,7 +196,7 @@
                               :src="comment.userimage != 'undefined' || 'null' ? 'https://king-prawn-app-3rw3o.ondigitalocean.app/api/users/' + comment.userimage : dummyuserImage"
                               alt="" width="50px"> -->
                             <img class="UsrImage"
-                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null ? '' + comment.userImage : dummyuserImage"
+                              :src="comment.userImage && comment.userImage !== 'undefined' && comment.userImage !== null && comment.userImage !== 'null' ? '' + comment.userImage : dummyuserImage"
                               alt="" width="50px" />
                             <small class="uName">{{ comment.nickname }} </small>
                           </div>
@@ -2048,7 +2048,10 @@ export default {
 
         // Handle the response data
         console.log("New profile data:", response.data);
-        this.image = response.data[0]?.image || ''; // Handle potential undefined response
+        if (response.data[0].image !== null) {
+          this.image = response.data[0]?.image || ''; // Handle potential undefined response
+        }
+
 
       } catch (error) {
         console.error('Error making GET request:', error);
