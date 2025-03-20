@@ -377,13 +377,46 @@
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history &&activeTab==1">
+                                                            Tell us your Garage story & how it all started
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history &&activeTab==2">
+                                                            Tell us your shop story & how it all started
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history &&activeTab==3">
+                                                            Tell us your club story & how it all started
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history &&activeTab==4">
+                                                            Tell us your Motor Bike story & how it all started
+                                                        </p>
+
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history &&activeTab==5">
+                                                            Tell us your Automotive Photography story & how it all started
+                                                        </p>
+
+
+                                                        <p class="text-white" style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history">
+                                                            {{ car.story_history }}
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
-                                                            Any awesome modifications or unique features you can share?
+                                                            Any unforgettable memory, event or story you can share with us?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
                                                             {{ car.adventure_story }}
                                                         </p>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
