@@ -857,6 +857,17 @@ a {
 	min-height: 100vh;
 }
 
+@media only screen and (min-device-width: 820px) and (max-device-width: 1180px) {
+
+	/* Your CSS styles for iPad Air in portrait mode */
+	.fp-overflow {
+		width: 100% !important;
+		overflow: auto !important;
+
+	}
+
+}
+
 @media(max-width:768px) {
 	.fp-overflow {
 		width: 100% !important;
