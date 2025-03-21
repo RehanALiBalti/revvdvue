@@ -1860,7 +1860,7 @@ export default {
         console.log(response.data);
 
         // Check if response.liked is 0
-        if (response.data.liked === 0) {
+        if (response.data.liked === 1) {
           // Make another API call to /api/communities/likes
           const secondParams = new URLSearchParams();
           secondParams.append('id', this.pageId);
