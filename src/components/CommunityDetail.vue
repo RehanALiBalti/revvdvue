@@ -1876,7 +1876,7 @@ export default {
           const secondParams = new URLSearchParams();
           secondParams.append('id', this.pageId);
 
-          const secondResponse = await API.post('communities/dislike', secondParams, {
+          const secondResponse = await API.post('communities/dislikes', secondParams, {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             }
