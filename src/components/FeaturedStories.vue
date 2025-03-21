@@ -3233,7 +3233,7 @@
                                                                 <div class="d-block">
                                                                     <img :src="image"
                                                                         class="slider-img myCarListingCard-img"
-                                                                        alt="car" />
+                                                                        alt="car"  @click="openViewer(image, car.images)"  />
                                                                 </div>
 
                                                             </swiper-slide>
