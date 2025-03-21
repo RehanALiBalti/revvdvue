@@ -9,7 +9,7 @@
           <form id="subscribe-form" @submit.prevent="submitForm">
             <h2 class="form-title"> {{ $t('signIn') }}</h2>
             <div class="signIn-div my-5">
-              <button type="button" class="btn google-btn d-none" @click="handleGoogleLogin">
+              <button type="button" class="btn google-btn " @click="handleGoogleLogin">
                 <i class="fa-brands fa-google-plus-g"></i> Google
               </button>
               <!-- <div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout=""
