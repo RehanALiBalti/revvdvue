@@ -1812,6 +1812,33 @@ export default {
     //     console.error('Error making POST request:', error);
     //   }
     // }
+    // async addLike() {
+    //   this.loading = true;
+    //   console.log("id:", this.pageId, "type:", "community", "sub:", this.sub);
+
+    //   // Create URLSearchParams instance
+    //   const params = new URLSearchParams();
+    //   params.append('id', this.pageId);
+    //   params.append('type', "community");
+    //   params.append('sub', this.sub);
+
+    //   try {
+    //     // Use `http.post` from `http-common.js`
+    //     const response = await API.post('/likes/like', params, {
+    //       headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded'
+    //       }
+    //     });
+
+    //     console.log(response.data);
+    //     this.getLikesCount(); // Refresh likes count after successful like
+
+    //   } catch (error) {
+    //     console.error('Error making POST request:', error);
+    //   } finally {
+    //     this.loading = false; // Ensure loading state resets
+    //   }
+    // },
     async addLike() {
       this.loading = true;
       console.log("id:", this.pageId, "type:", "community", "sub:", this.sub);
@@ -1823,7 +1850,7 @@ export default {
       params.append('sub', this.sub);
 
       try {
-        // Use `http.post` from `http-common.js`
+        // Use http.post from http-common.js
         const response = await API.post('/likes/like', params, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -1831,6 +1858,22 @@ export default {
         });
 
         console.log(response.data);
+
+        // Check if response.liked is 0
+        if (response.data.liked === 0) {
+          // Make another API call to /api/communities/likes
+          const secondParams = new URLSearchParams();
+          secondParams.append('id', this.pageId);
+
+          const secondResponse = await API.post('communities/likes', secondParams, {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          });
+
+          console.log('Second API response:', secondResponse.data);
+        }
+
         this.getLikesCount(); // Refresh likes count after successful like
 
       } catch (error) {

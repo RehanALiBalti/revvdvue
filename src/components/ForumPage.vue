@@ -477,7 +477,12 @@ export default {
         //     }
         // },
         async getForumData() {
+            console.log("testda", this.make,
+                this.modal,
+                this.production_years,
+                this.specifications)
             try {
+
                 const response = await apiClient.get("/communities/filter", {
                     params: {
                         make: this.make,
