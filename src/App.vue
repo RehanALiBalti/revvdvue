@@ -40,7 +40,7 @@
 
     </div>
   </div> -->
-  <div class="loader" ref="loader" v-show="showVideosession">
+  <!-- <div class="loader" ref="loader" v-show="showVideosession">
     <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
       <source :src="videoSrc" type="video/mp4">
     </video>
@@ -77,7 +77,7 @@
         Turn up the volume for better experience
       </h1>
     </div>
-  </div>
+  </div> -->
 
   <div id="particlees">
     <!-- <vue-particles color="#dedede" particleOpacity="1" :particlesNumber="pNum" shapeType="circle" particleSize="4"

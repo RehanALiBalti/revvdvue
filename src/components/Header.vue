@@ -508,10 +508,13 @@ export default {
       try {
         console.log("Fetching profile data...");
         const data = await this.$store.dispatch("auth/getprofiledata");
-        console.log("Profile data in heder:", data.result.sub);
+        console.log("Profile data in heder:", data.result, data.result.sub);
         this.sub = data.result.sub
         this.userAttributes = data.result
+        if (data.result.nickname) {
+          this.changeName(data.result.nickname);
 
+        }
 
 
 
@@ -541,20 +544,22 @@ export default {
 
         const response = await http.get(`/users/sub`, { params: { sub: this.sub } });
 
-        console.log("Profile response:", response.data);
+        console.log("Profile response in hd:", response.data);
 
         // Update user data
-        if (response.data) {
+        if (response.data.nickname) {
+          console.log("inif", response.data.nickname)
           this.changeName(response.data.nickname);
-          this.image = response.data.image;
 
-          // Construct and set profile image
-          // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
-          // console.log("User profile image:", imageUrl);
-          if (this.image !== null && this.image !== 'null') {
-            this.changeProfileImage(this.image);
-          }
 
+        }
+        this.image = response.data.image;
+
+        // Construct and set profile image
+        // let imageUrl = "https://king-prawn-app-3rw3o.ondigitalocean.app/users/" + this.image;
+        // console.log("User profile image:", imageUrl);
+        if (this.image !== null && this.image !== 'null') {
+          this.changeProfileImage(this.image);
         }
 
       } catch (error) {
@@ -787,5 +792,26 @@ export default {
   }
 
 
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.navbar-toggler .icon img {
+  animation: pulse 1.5s infinite;
 }
 </style>

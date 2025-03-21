@@ -209,18 +209,38 @@
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2 " style="font-size: 14px"
+                                                    target="_blank" rel="noop@ener noreferrer">
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px">
-                                            <span v-if="car.advice">{{ car.advice }}</span>
-                                            <span v-else>{{ car.story_history }}</span>
-                                            <span class="view-more-a-tag" style="cursor: pointer" @click="openModalFe">
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px">
+                                            <!-- <span v-if="car.advice">{{ car.advice }}</span> -->
+                                            <span class="text-orange" v-if="activeTab == 0">What’s the story behind your
+                                                car? </span>
+                                            <span class="text-orange " v-if="activeTab == 1">Tell us your Garage story &
+                                                how it all started </span>
+                                            <span class="text-orange" v-if="activeTab == 2">Tell us your shop story &
+                                                how
+                                                it all started</span>
+                                            <span class="text-orange" v-if="activeTab == 3">Tell us your club story &
+                                                how
+                                                it all started </span>
+                                            <span class="text-orange" v-if="activeTab == 4">Tell us your Motorbike
+                                                story
+                                                & how it all started </span>
+                                            <span class="text-orange" v-if="activeTab == 5">Tell us your Automotive
+                                                Photography story & how it all started</span>
+                                            <br />
+                                            <span class="tranc" v-if="car.story">{{ car.story }}</span>
+                                            <span class="tranc" v-else>{{ car.story_history }}</span>
+                                            <!-- <span v-else>{{ car.story_history }}</span> -->
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
+                                                @click="openModalFe">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
 
@@ -307,12 +327,13 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <a :href="car.social_media"
-                                                                class="a-tag-name-user mt-2 mb-2 truncate"
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
                                                                 rel="noopener noreferrer">
-                                                                {{ car.social_media }}
+                                                                @{{ car.social_media }}
                                                             </a>
+
                                                         </div>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start" v-if="car.story">
@@ -325,7 +346,8 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.advice">
-                                                            What advise would you give to someone starting their journey as a car enthusiast?
+                                                            What advise would you give to someone starting their journey
+                                                            as a car enthusiast?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.advice">
@@ -335,7 +357,8 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
-                                                            Tell us the wildest or most unforgettable moment you’ve had with your car
+                                                            Tell us the wildest or most unforgettable moment you’ve had
+                                                            with your car
 
 
                                                         </p>
@@ -346,7 +369,7 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.modifications">
-                                                          Any awesome modifications or unique features you can share?
+                                                            Any awesome modifications or unique features you can share?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.memorable">
@@ -354,13 +377,48 @@
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history && activeTab == 1">
+                                                            Tell us your Garage story & how it all started
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history && activeTab == 2">
+                                                            Tell us your shop story & how it all started
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history && activeTab == 3">
+                                                            Tell us your club story & how it all started
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history && activeTab == 4">
+                                                            Tell us your Motorbike story & how it all started
+                                                        </p>
+
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history && activeTab == 5">
+                                                            Tell us your Automotive Photography story & how it all
+                                                            started
+                                                        </p>
+
+
+                                                        <p class="text-white" style="font-size: 14px; text-align: start"
+                                                            v-if="car.story_history">
+                                                            {{ car.story_history }}
+                                                        </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
-                                                          Any awesome modifications or unique features you can share?
+                                                            Any unforgettable memory, event or story you can share with
+                                                            us?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
                                                             v-if="car.adventure_story">
                                                             {{ car.adventure_story }}
                                                         </p>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -638,28 +696,31 @@
                                         <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             <!-- {{ car.make }}:{{ car.model }} -->
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             @click="openModal(index)">
-                                            <span>{{ car.story }}</span>
+                                            <span class="text-orange">What’s the story behind your car?</span>
+                                            <br />
+                                            <span class="tranc dd">{{ car.story }}</span>
 
                                             <!-- Conditionally show "view more" if car.story has 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story.split(' ').length >= 10" @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
                                 </div>
@@ -745,40 +806,49 @@
 
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your car
-                                                            story together</p>
+                                                            style="font-size: 14px; text-align: start">What’s the story
+                                                            behind your car?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">What advise would you give to someone starting their journey as a car enthusiast?</p>
+                                                            style="font-size: 14px; text-align: start">Any awesome
+                                                            modifications or unique features you can share?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
-                                                            {{ car.advice }}
+                                                            {{ car.modifications }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
+                                                            style="font-size: 14px; text-align: start">Tell us the
+                                                            wildest or most unforgettable moment you’ve had with your
+                                                            car</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.memorable }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Any awesome modifications or unique features you can share?</p>
+                                                            style="font-size: 14px; text-align: start">What advise would
+                                                            you give to someone starting their journey as a car
+                                                            enthusiast?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
-                                                            {{ car.modifications }}
+                                                            {{ car.advice }}
                                                         </p>
 
 
+
+
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -1646,29 +1716,33 @@
                                         <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
 
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
-                                            <span>{{ car.story_history }}</span>
+                                            <span class="text-orange"> Tell us your Garage story & how it all
+                                                started</span>
+                                            <br />
+                                            <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
                                 </div>
@@ -1754,28 +1828,32 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
 
-
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            Garage story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -2363,31 +2441,35 @@
                                         <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
-                                            <span>{{ car.story_history }}</span>
+                                            <span class="text-orange"> Tell us your shop story & how it all
+                                                started</span>
+                                            <br />
+                                            <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
-                                    class="d-none"
+
                                 </div>
 
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
@@ -2472,26 +2554,30 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
-
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your shop story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your shop
+                                                            story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -3077,31 +3163,35 @@
                                         <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
-                                            <span>{{ car.story_history }}</span>
+                                            <span class="text-orange"> Tell us your club story & how it all
+                                                started</span>
+                                            <br />
+                                            <span class="tranc">{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
-                                    class="d-none"
+
                                 </div>
 
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
@@ -3180,27 +3270,31 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
-
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your club story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your club
+                                                            story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -3785,28 +3879,32 @@
                                         <img :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
+                                            <span class="text-orange">Tell us your Motorbike story & how it all
+                                                started</span>
+                                            <br />
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
 
@@ -3893,26 +3991,31 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
-
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            Motorbike story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -4498,28 +4601,32 @@
                                         <img :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <h4 class="text-white mb-1 cp tranc" @click="openModal(index)">
+                                        <h4 class="text-white mb-1 " @click="openModal(index)">
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
                                                 <img :src="instaIcon" class="instaIcon" />
-                                                <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
-                                                    style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                    {{ car.social_media }}
+                                                <a :href="'https://www.instagram.com/' + car.social_media"
+                                                    class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                    target="_blank" rel="noopener noreferrer">
+                                                    @{{ car.social_media }}
                                                 </a>
                                             </li>
                                         </ul>
-                                        <p class="text-white mt-0 mb-0 w-75 text-wrap cp tranc" style="font-size: 14px"
+                                        <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
+                                            <span class="text-orange">Tell us your Automotive Photography story & how it
+                                                all started</span>
+                                            <br />
                                             <span>{{ car.story_history }}</span>
 
                                             <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <span class="view-more-a-tag" style="cursor: pointer"
+                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
                                                 v-if="car.story_history.split(' ').length >= 10"
                                                 @click="openModal(index)">
                                                 {{ $t("viewMore") }}
-                                            </span>
+                                            </span> -->
                                         </p>
                                     </div>
                                 </div>
@@ -4605,26 +4712,30 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <router-link class="a-tag-name-user mt-2 mb-2 truncate"
-                                                                :to="car.social_media" style="font-size: 14px">
-                                                                {{ car.social_media }}
-                                                            </router-link>
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @{{ car.social_media }}
+                                                            </a>
                                                         </div>
-
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us the wildest or most unforgettable moment you’ve had with your car</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 14px; text-align: start">
-                                                            {{ car.adventure_story }}
-                                                        </p>
-                                                        <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your Garage story & how it all started</p>
+                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            Automotive Photography story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
+                                                        <p class="text-orange"
+                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            memory, event or story you can share with us?</p>
+                                                        <p class="text-white"
+                                                            style="font-size: 14px; text-align: start">
+                                                            {{ car.adventure_story }}
+                                                        </p>
+
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
+                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
                   {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
                 </p> -->
                                                 </div>
@@ -5443,7 +5554,7 @@ export default {
                     await this.fetchFeaturedStoriesByType("motorbikeEnthusiast");
                     break;
                 case "Automotive Photographer":
-                    await this.fetchFeaturedStoriesByType("automotivePhotographerast");
+                    await this.fetchFeaturedStoriesByType("automotivePhotographer");
                     break;
                 default:
                     console.warn("Unknown tab name");
@@ -6217,7 +6328,7 @@ export default {
                         CarModificationTunningShop: "carModificationShop",
                         CarClub: "carClub",
                         MotorbikeEnthusiast: "motorbikeEnthusiast",
-                        AutomotivePhotographer: "automotivePhotographerast" // ✅ Fixed typo
+                        AutomotivePhotographer: "automotivePhotographer" // ✅ Fixed typo
                     };
 
                     // Reset the filtered and original stories
@@ -6717,7 +6828,7 @@ form-select {
 }
 
 .tranc {
-    width: 300px !important;
+    /* width: 300px !important; */
     display: -webkit-box;
     /* Use WebKit for browser compatibility */
     -webkit-box-orient: vertical;
@@ -6728,7 +6839,7 @@ form-select {
     /* Hides the overflow text */
     text-overflow: ellipsis;
     /* Adds ellipsis (...) at the end */
-    max-height: 2.5em;
+    max-height: 1.8em;
     /* Ensures only two lines are shown (line-height * 2) */
     line-height: 1.5em;
     /* Set the desired line height */

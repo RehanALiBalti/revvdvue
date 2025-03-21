@@ -207,15 +207,43 @@
                           </span>
                         </div>
                       </div>
-                      <small class="car-content-link f14"><img :src="instaIcon" width="55px" />Revvdout@{{
-                        bannerStories[0]?.user_name
+                      <small class="car-content-link f14"><img :src="instaIcon" width="55px" />@{{
+                        bannerStories[0]?.social_media
                       }}</small>
-                      <p class="car-content-para my-1 p-0 fw-bolder ">Tell us your car story togather
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-if="bannerStories[0]?.story_type == 'carEnthusiast'">What’s the story behind your car?
                       </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'carGarage'">Tell us your Garage story & how it all
+                        started
+                      </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'carModificationShop'">Tell us your shop story & how
+                        it
+                        all started
+                      </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'carClub'">Tell us your club story & how it all
+                        started
+                      </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'motorbikeEnthusiast'">Tell us your Motorbike story
+                        &
+                        how it all started
+                      </p>
+                      <p class="car-content-para my-1 p-0 fw-bolder "
+                        v-else-if="bannerStories[0]?.story_type == 'automotivePhotographer'">Tell us your Automotive
+                        Photography story & how it all started
+                      </p>
+
                       <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob pt-0 mt-0"
                         v-if="bannerStories[0]?.story != ''">
                         {{ bannerStories[0]?.story }}
                       </p>
+                      <p class="form-label tranc mb-1 mt-0 p-0 shortTextMob pt-0 mt-0" v-else>
+                        {{ bannerStories[0]?.story_history }}
+                      </p>
+
 
                       <!-- <p class="car-content-para">Can you share with us any memorable stories or adventures you’ve had with
                     your car that stands out the most?</p>
@@ -292,8 +320,8 @@
             <!-- @submit.prevent="retrieveCommunities" -->
             <form id="subscribe-form" @submit.prevent="SubmitStory">
               <h2 class="form-title w-100 text-start">
-                <span class="form-span"> {{ $t('Share your story ') }}</span>
-                {{ $t('Now') }} !
+                <span class="form-span"> {{ $t('Sign up & Share your story ') }}</span>
+                {{ $t('Now!') }}
               </h2>
               <div class="row px-2">
                 <div class="position-relative" v-if="this.loading == true" style="z-index:999">
@@ -558,7 +586,8 @@ v-model="formData.country"> -->
                   <!-- <input type="text" id="country" class="form-control" placeholder="Enter City" v-model="formData.city"> -->
 
                   <!-- City Select -->
-                  <select id="city" class="form-select form-control form-input h35px" v-model="formData.city">
+                  <select id="city" class="form-select form-control form-input h35px" v-model="formData.city"
+                    @change="checkLogin">
                     <option selected value="">City</option>
                     <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
                   </select>
@@ -591,9 +620,10 @@ v-model="formData.country"> -->
                 </div>
                 <div class="col-md-6  p-0 p-md-1"
                   v-show="selectedStoryType?.value !== 'carEnthusiast' && selectedStoryType">
-                  <label for="link" class="form-label">Add Instagram or Website Link</label>
-                  <input type="url" id="link" class="form-control h35px" placeholder="Enter Instagram or Website Link"
-                    v-model="formData.url">
+                  <label for="link" class="form-label">Add Instagram Username</label>
+                  <input type="text" id="link" class="form-control h35px" placeholder="Enter Instagram username"
+                    v-model="formData.url" @input="validateUsername">
+                  <small v-if="error_url" class="text-danger">{{ error_url }}</small>
                 </div>
 
 
@@ -767,16 +797,18 @@ v-model="formData.country"> -->
                 </div>
                 <div class="col-md-3 z1o p-0 p-md-1"
                   v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
-                  <label for="message" class="form-label ">Add Instagram link </label>
-                  <input id="message" class="form-control form-input h35px" name="message"
-                    :placeholder="$t('Enter here')" rows="1" v-model="formData.social_media" />
+                  <label for="message" class="form-label ">Add Instagram Username </label>
+                  <input id="message" type="text" class="form-control form-input h35px" name="message"
+                    placeholder="Enter Instagram username" rows="1" v-model="formData.social_media"
+                    @input="validateUsernamesoc" />
+                  <small v-if="error_url2" class="text-danger">{{ error_url2 }}</small>
                   <!-- Error message for Message -->
                   <!-- <p class="text-danger" v-if="!formData.message">{{ $t('enterMessage') }}.</p> -->
                 </div>
-                <div class="col-md-4  d-flex gap-1 align-items-center p-0 p-md-1"
+                <div class="col-md-6  d-flex gap-1 align-items-center p-0 p-md-1"
                   v-show="selectedStoryType?.value == 'carEnthusiast' && selectedStoryType">
                   <div>
-                    <label for="city" class="form-label">Upload Pictures Max 8</label>
+                    <label for="city" class="form-label">Upload up to 8 pictures (max 50MB)</label>
 
                     <!-- <input type="file" id="storyImages" name="storyImages" class="form-control form-input d-none"
 accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUpload" /> -->
@@ -1108,6 +1140,22 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div> About Us
       </button>
     </nav>
+
+    <div class="scroll-d">
+      <p class="s-one-b-one text-white">
+        <span>S</span>
+        <span>W</span>
+        <span>I</span>
+        <span>P</span>
+        <span>E</span>
+
+      </p>
+      <div class="d-flex flex-column main-chev">
+        <i class="fa-solid fa-chevron-down fs-2  chev-1"></i>
+        <i class="fa-solid fa-chevron-down   fs-2  chev-2"></i>
+      </div>
+
+    </div>
 
   </div>
 
@@ -1600,6 +1648,8 @@ export default {
         generation: "",
         productionYears: "",
       },
+      error_url: "",
+      error_url2: "",
       formData: {
         make: "",
         model: "",
@@ -1632,6 +1682,57 @@ export default {
     };
   },
   methods: {
+    validateUsername() {
+      // Regex to detect URLs (http, https, www, or domains like .com)
+      const urlPattern = /(https?:\/\/|www\.)|(\.com|\.net|\.org|\.io|\.co)/i;
+
+      if (this.formData.url === '') {
+        this.error_url = 'Please enter a username';
+      } else if (urlPattern.test(this.formData.url)) {
+        this.error_url = 'Please enter only a username, not a link';
+      } else {
+        this.error_url = '';
+      }
+    },
+    validateUsernamesoc() {
+      // Regex to detect URLs (http, https, www, or domains like .com)
+      const urlPattern = /(https?:\/\/|www\.)|(\.com|\.net|\.org|\.io|\.co)/i;
+
+      if (this.formData.social_media === '') {
+        this.error_url2 = 'Please enter a username';
+      } else if (urlPattern.test(this.formData.social_media)) {
+        this.error_url2 = 'Please enter only a username, not a link';
+      } else {
+        this.error_url2 = '';
+      }
+    },
+
+    debounce(func, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+    },
+
+    // Use the debounce method to wrap checkLogin
+    checkLogin: function () {
+      console.log("in checklogin")
+      const debouncedCheckLogin = this.debounce(() => {
+        console.log("in debounce", this.isLogin)
+        if (this.isLogin == false || this.isLogin == 'false') {
+          console.log("in if debounce")
+          this.modalTitle = "Something went wrong";
+          this.modaldescription = "Please login first to submit the story";
+          this.ModalStoryFail = true;
+          return false;
+        }
+        return true;
+      }, 300);
+
+      return debouncedCheckLogin();
+    },
+
 
     handleModalFocus() {
 
@@ -1646,6 +1747,7 @@ export default {
     // Debounce function
 
     adjustHeight() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea;
       if (textarea) {
@@ -1656,6 +1758,7 @@ export default {
     }
     ,
     adjustHeight2() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea2;
       if (textarea) {
@@ -1666,6 +1769,7 @@ export default {
     }
     ,
     adjustHeight3() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea3;
       if (textarea) {
@@ -1677,6 +1781,7 @@ export default {
     ,
     adjustHeight4() {
 
+      this.checkLogin()
       const textarea = this.$refs.autoExpandTextarea4;
       if (textarea) {
         console.log("working")
@@ -1686,6 +1791,7 @@ export default {
     }
     ,
     adjustHeight5() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea5;
       if (textarea) {
@@ -1696,6 +1802,7 @@ export default {
     }
     ,
     adjustHeight6() {
+      this.checkLogin()
       console.log("in adjustheight")
 
       const textarea = this.$refs.autoExpandTextarea6;
@@ -1713,6 +1820,7 @@ export default {
 
     ,
     adjustHeight7() {
+      this.checkLogin()
       console.log("in adjustheight")
       const textarea = this.$refs.autoExpandTextarea7;
       if (textarea) {
@@ -2027,7 +2135,7 @@ export default {
       else if (selectedValue == "motorbikeEnthusiast") {
         this.shopName = "Motor Bike"
       }
-      else if (selectedValue == "automotivePhotographerast") {
+      else if (selectedValue == "automotivePhotographer") {
         this.shopName = "Automotive Photography"
       }
 
@@ -2072,6 +2180,7 @@ export default {
     // ,
     getcities() {
       this.loading = true;
+      this.checkLogin()
       if (!this.formData.country) return;  // Exit if no country is selected
 
       // Set up the headers and request body
@@ -2109,23 +2218,44 @@ export default {
         });
     }
     ,
+    // async fetchBannerStories() {
+    //   // previous link
+    //   // https://buzzwaretech.com/adminrev/api/bannerstores
+    //   try {
+    //     const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
+    //     const data = await response.json();
+    //     console.log("banner_response data", data)
+    //     if (data.success) {
+    //       // Parse the images field from JSON string to an array
+    //       const banner = data.banner;
+    //       console.log("banner data", banner)
+    //       banner.images = JSON.parse(banner.images); // Parse the images
+    //       this.bannerStories = [banner]; // Store it in the featuredCars array
+    //       console.log("banner data", this.bannerStories[0].images)
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching featured stories:', error);
+    //   }
+    // },
+
     async fetchBannerStories() {
-      // previous link
-      // https://buzzwaretech.com/adminrev/api/bannerstores
       try {
-        const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
-        const data = await response.json();
-        console.log("banner_response data", data)
+        // Use the Axios instance to make the request
+        const response = await http.get('/stories/bannerstories'); // Use the relative path
+        const data = response.data; // Axios stores the response data in `data`
+
+        console.log("banner_response data", data);
+
         if (data.success) {
           // Parse the images field from JSON string to an array
           const banner = data.banner;
-          console.log("banner data", banner)
+          console.log("banner data", banner);
           banner.images = JSON.parse(banner.images); // Parse the images
           this.bannerStories = [banner]; // Store it in the featuredCars array
-          console.log("banner data", this.bannerStories[0].images)
+          console.log("banner data", this.bannerStories[0].images);
         }
       } catch (error) {
-        console.error('Error fetching featured stories:', error);
+        console.error('Error fetching banner stories:', error);
       }
     },
 
@@ -2185,9 +2315,17 @@ export default {
         console.log("Fetching profile data...");
         const data = await this.$store.dispatch("auth/getprofiledata");
         console.log("Profile data in heder:", data.result.sub);
-        console.log("Profile data in heder:", data.result);
+        console.log("Profile data in home:", data.result);
         this.sub = data.result.sub
         this.userAttributes = data.result
+        if (data.result.identities) {
+          this.formData.user_name = data.result.name;
+        }
+        else {
+          this.formData.user_name = data.result.nickname;
+        }
+
+        this.formData.user_email = data.result.email
         console.log("role d",);
         if (this.userAttributes['custom:Role'] == "dealer") {
           this.changeName(this.userAttributes['custom:companyName'])
@@ -2256,8 +2394,13 @@ export default {
         console.log("✅ Profile Response s:", profileData);
 
         // Update user data
-        this.formData.user_name = profileData.nickname;
-        this.formData.user_email = profileData.email
+        if (profileData.nickname) {
+          this.formData.user_name = profileData.nickname;
+        }
+
+        if (profileData.email) {
+          this.formData.user_email = profileData.email
+        }
         this.image = profileData.image;
 
         // Update profile image
@@ -2271,7 +2414,10 @@ export default {
 
         // Change name only if the user is not a dealer
         if (this.role !== "dealer") {
-          this.changeName(profileData.nickname);
+          if (profileData.nickname) {
+            this.changeName(profileData.nickname);
+          }
+
         }
 
         console.log("🖼️ User profile image updated:", this.image);
@@ -3061,6 +3207,7 @@ export default {
           this.resetForm();
           this.loading = false;
           this.ModalStorySucces = true;
+          this.fetchProfileData()
         } catch (error) {
           console.error("Error making post request:", error);
           this.modalTitle = "Something went wrong";
@@ -3115,6 +3262,7 @@ export default {
 
     },
     GenfilterOption() {
+      this.checkLogin()
       const query = this.formData.year.toLowerCase();
       if (query === '') {
         this.GenfilteredOptions = this.dataGy;
@@ -3200,7 +3348,7 @@ export default {
     // },
     selectOptionModel(selected) {
       console.log("Selected Model:", selected);
-
+      this.checkLogin()
       // Ensure selected is valid
       if (selected && typeof selected === 'string') {
         this.formData.model = selected;
@@ -3218,6 +3366,7 @@ export default {
     ,
     updateModels(value) {
       this.isDropDYear = false
+      this.checkLogin()
       if (value) {
 
         this.productionYear = value.production_years;
@@ -3378,6 +3527,7 @@ export default {
     // },
     getModels() {
       console.log("get models");
+      this.checkLogin()
       this.formData.model = "",
         this.formData.year = "";
       this.smodel = "";
@@ -3620,7 +3770,7 @@ export default {
   },
 
   async mounted() {
-    this.adjustHeight();
+    // this.adjustHeight();
     this.resetHeight();
     this.resetHeight2();
     this.resetHeight3();
@@ -4696,7 +4846,7 @@ select::placeholder {
 
 .form-label {
   margin-bottom: 0.2rem !important;
-  padding-top: 0.2rem !important;
+  padding-top: 0rem !important;
 }
 
 @media(max-width:768px) {
@@ -4778,5 +4928,102 @@ select::placeholder {
 .setype {
   position: relative !important;
   z-index: 9999 !important;
+}
+
+.scroll-d {
+  position: absolute;
+  right: 20px;
+  top: 55%;
+  bottom: 100px;
+}
+
+@media(max-width:768px) {
+  .scroll-d {
+    top: 55%
+  }
+
+}
+
+.chev-1,
+.chev-2 {
+  opacity: 0;
+  animation: fadeChev 2s infinite;
+  color: #f95f19
+}
+
+.chev-2 {
+  animation-delay: 1s;
+}
+
+@keyframes fadeChev {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Scroll Text Animation */
+.s-one-b-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 18px;
+}
+
+.s-one-b-one span {
+  opacity: 0;
+  animation: fadeText 1s forwards;
+  font-size: 14px;
+}
+
+/* Add delay for each letter */
+.s-one-b-one span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.s-one-b-one span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.s-one-b-one span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.s-one-b-one span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.s-one-b-one span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+.s-one-b-one span:nth-child(6) {
+  animation-delay: 1s;
+}
+
+@keyframes fadeText {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-chev {
+  margin-top: -21px
 }
 </style>

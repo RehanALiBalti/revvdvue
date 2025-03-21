@@ -104,9 +104,14 @@
                                     <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                         <li class="list-item-user mb-0 justify-content-start">
                                             <img :src="instaIcon" class="instaIcon" />
-                                            <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 truncate"
+                                            <!-- <a :href="car.social_media" class="a-tag-name-user mt-2 mb-2 "
                                                 style="font-size: 14px" target="_blank" rel="noopener noreferrer">
-                                                {{ car.social_media }}
+                                                @{{ car.user_name }}
+                                            </a> -->
+                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                target="_blank" rel="noopener noreferrer">
+                                                @{{ car.social_media }}
                                             </a>
                                         </li>
                                     </ul>
@@ -202,48 +207,164 @@
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
                                                             <img :src="instaIcon" class="instaIcon" />
-                                                            <a :href="car.social_media"
-                                                                class="a-tag-name-user mt-2 mb-2 truncate"
+                                                            <!-- <a :href="car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2 "
                                                                 style="font-size: 14px" target="_blank"
                                                                 rel="noopener noreferrer">
-                                                                {{ car.social_media }}
+                                                                @{{ car.user_name }}
+                                                            </a> -->
+                                                            <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                class="a-tag-name-user mt-2 mb-2"
+                                                                style="font-size: 14px" target="_blank"
+                                                                rel="noopener noreferrer">
+                                                                @ {{ car.social_media }}
                                                             </a>
                                                         </div>
-                                                        <p class="text-orange"
-                                                            style="font-size: 13px; text-align: start">What’s the story
-                                                            behind your car?</p>
+                                                        <div v-if="car.story_type == 'carEnthusiast'">
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">What’s the
+                                                                story
+                                                                behind your car?</p>
 
-                                                        <p class="text-white"
-                                                            style="font-size: 13px; text-align: start">
-                                                            {{ car.story }}
-                                                        </p>
-                                                        <p class="text-orange"
-                                                            style="font-size: 13px; text-align: start">What advise would
-                                                            you give to someone starting their journey as a car
-                                                            enthusiast?
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.story }}
+                                                            </p>
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start"
+                                                                v-ifc="car.modifications">Any awesome modifications or
+                                                                unique features you can share?</p>
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.modifications }}
+                                                            </p>
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">
+                                                                Tell us the wildest or most unforgettable moment you’ve
+                                                                had
+                                                                with your car
+                                                            </p>
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.memorable }}
+                                                            </p>
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">What advise
+                                                                would
+                                                                you give to someone starting their journey as a car
+                                                                enthusiast?
 
-                                                        </p>
-                                                        <p class="text-white"
-                                                            style="font-size: 13px; text-align: start">
-                                                            {{ car.advice }}
-                                                        </p>
-                                                        <p class="text-orange"
-                                                            style="font-size: 13px; text-align: start">
-                                                            Tell us the wildest or most unforgettable moment you’ve had
-                                                            with your car
-                                                        </p>
-                                                        <p class="text-white"
-                                                            style="font-size: 13px; text-align: start">
-                                                            {{ car.memorable }}
-                                                        </p>
-                                                        <p class="text-orange"
-                                                            style="font-size: 13px; text-align: start"
-                                                            v-ifc="car.modifications">Any awesome modifications or
-                                                            unique features you can share?</p>
-                                                        <p class="text-white"
-                                                            style="font-size: 13px; text-align: start">
-                                                            {{ car.modifications }}
-                                                        </p>
+                                                            </p>
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.advice }}
+                                                            </p>
+                                                        </div>
+
+                                                        <div v-else-if="car.story_type == 'carGarage'">
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Tell us your
+                                                                Garage story &
+                                                                how it all started </p>
+
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.story_history }}
+                                                            </p>
+
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Any
+                                                                unforgettable memory, event or story you can share with
+                                                                us? </p>
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.adventure_story }}
+                                                            </p>
+                                                        </div>
+
+                                                        <div v-else-if="car.story_type == 'carModificationShop'">
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Tell us your
+                                                                shop story &
+                                                                how
+                                                                it all started</p>
+
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.story_history }}
+                                                            </p>
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Any
+                                                                unforgettable memory, event or story you can share with
+                                                                us? </p>
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.adventure_story }}
+                                                            </p>
+
+                                                        </div>
+                                                        <div v-else-if="car.story_type == 'carClub'">
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Tell us your
+                                                                club story &
+                                                                how
+                                                                it all started</p>
+
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.story_history }}
+                                                            </p>
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Any
+                                                                unforgettable memory, event or story you can share with
+                                                                us? </p>
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.adventure_story }}
+                                                            </p>
+                                                        </div>
+                                                        <div v-else-if="car.story_type == 'motorbikeEnthusiast'">
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Tell us your
+                                                                Motorbike
+                                                                story
+                                                                & how it all started </p>
+
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.story_history }}
+                                                            </p>
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Any
+                                                                unforgettable memory, event or story you can share with
+                                                                us? </p>
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.adventure_story }}
+                                                            </p>
+
+                                                        </div>
+
+                                                        <div v-else-if="car.story_type == 'automotivePhotographer'">
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Tell us your
+                                                                Automotive
+                                                                Photography story & how it all started </p>
+
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.story_history }}
+                                                            </p>
+                                                            <p class="text-orange"
+                                                                style="font-size: 13px; text-align: start">Any
+                                                                unforgettable memory, event or story you can share with
+                                                                us? </p>
+                                                            <p class="text-white"
+                                                                style="font-size: 13px; text-align: start">
+                                                                {{ car.adventure_story }}
+                                                            </p>
+                                                        </div>
+
 
                                                     </div>
                                                     <!-- <p class="view-more-a-tag" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
@@ -752,22 +873,43 @@ export default {
         //     console.error('Error fetching featured stories:', error);
         //   }
         // },
+        // async fetchBannerStories() {
+        //     try {
+        //         const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
+        //         const data = await response.json();
+        //         console.log("banner_response data", data);
+        //         if (data.success) {
+        //             const banner = data.banner;
+        //             console.log("banner data", banner);
+        //             // Parse the images field from JSON string to an array
+        //             banner.images = JSON.parse(banner.images);
+        //             this.bannerStories = [banner]; // Store the story in the bannerStories array
+        //         }
+        //     } catch (error) {
+        //         console.error('Error fetching banner stories:', error);
+        //     }
+        // },
         async fetchBannerStories() {
             try {
-                const response = await fetch('https://backend.revvdout.com/api/stories/bannerstories');
-                const data = await response.json();
+                // Use the Axios instance to make the request
+                const response = await http.get('/stories/bannerstories'); // Use the relative path
+                const data = response.data; // Axios stores the response data in `data`
+
                 console.log("banner_response data", data);
+
                 if (data.success) {
+                    // Parse the images field from JSON string to an array
                     const banner = data.banner;
                     console.log("banner data", banner);
-                    // Parse the images field from JSON string to an array
-                    banner.images = JSON.parse(banner.images);
-                    this.bannerStories = [banner]; // Store the story in the bannerStories array
+                    banner.images = JSON.parse(banner.images); // Parse the images
+                    this.bannerStories = [banner]; // Store it in the featuredCars array
+                    console.log("banner data", this.bannerStories[0].images);
                 }
             } catch (error) {
                 console.error('Error fetching banner stories:', error);
             }
         },
+
 
         getImageUrl(image) {
             return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
