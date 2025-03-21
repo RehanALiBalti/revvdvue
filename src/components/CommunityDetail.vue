@@ -1872,6 +1872,17 @@ export default {
           });
 
           console.log('Second API response:', secondResponse.data);
+        } else {
+          const secondParams = new URLSearchParams();
+          secondParams.append('id', this.pageId);
+
+          const secondResponse = await API.post('communities/dislike', secondParams, {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          });
+
+          console.log('Second API response:', secondResponse.data);
         }
 
         this.getLikesCount(); // Refresh likes count after successful like
