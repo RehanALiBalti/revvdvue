@@ -326,7 +326,7 @@
                                                         <div v-else-if="car.story_type == 'motorbikeEnthusiast'">
                                                             <p class="text-orange"
                                                                 style="font-size: 13px; text-align: start">Tell us your
-                                                                Motor Bike
+                                                                Motorbike
                                                                 story
                                                                 & how it all started </p>
 

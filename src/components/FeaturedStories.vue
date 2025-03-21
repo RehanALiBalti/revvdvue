@@ -228,7 +228,7 @@
                                             <span class="text-orange" v-if="activeTab == 3">Tell us your club story &
                                                 how
                                                 it all started </span>
-                                            <span class="text-orange" v-if="activeTab == 4">Tell us your Motor Bike
+                                            <span class="text-orange" v-if="activeTab == 4">Tell us your Motorbike
                                                 story
                                                 & how it all started </span>
                                             <span class="text-orange" v-if="activeTab == 5">Tell us your Automotive
@@ -393,7 +393,7 @@
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
                                                             v-if="car.story_history && activeTab == 4">
-                                                            Tell us your Motor Bike story & how it all started
+                                                            Tell us your Motorbike story & how it all started
                                                         </p>
 
                                                         <p class="text-orange"
@@ -3894,7 +3894,7 @@
                                         </ul>
                                         <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px"
                                             v-if="car.story_history" @click="openModal(index)">
-                                            <span class="text-orange">Tell us your Motor Bike story & how it all
+                                            <span class="text-orange">Tell us your Motorbike story & how it all
                                                 started</span>
                                             <br />
                                             <span>{{ car.story_history }}</span>
@@ -4000,7 +4000,7 @@
                                                         </div>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start">Tell us your
-                                                            Motor Bike story & how it all started</p>
+                                                            Motorbike story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
