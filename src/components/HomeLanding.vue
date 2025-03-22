@@ -1066,7 +1066,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
       <!-- Custom Navigation -->
 
     </full-page>
-    <nav class="custom-navigation c-nav d-none d-md-block ">
+    <nav class="custom-navigation c-nav d-none d-lg-block ">
       <button class="position-relative pbutton d-flex align-items-start gap-2 my-3"
         :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
         <div class="d-flex flex-column gap-1">
@@ -1103,7 +1103,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
         </div> About Us
       </button>
     </nav>
-    <nav class="custom-navigation c-nav d-block d-md-none  ">
+    <nav class="custom-navigation c-nav d-block d-lg-none  ">
       <button class="position-relative pbutton d-flex align-items-start gap-2 my-3"
         :class="{ active: activeSection === 'home' }" @click="goToSection('home')">
         <div class="d-flex flex-column gap-1">
@@ -1912,7 +1912,7 @@ export default {
     //   }
     // },
     goToSection(anchor) {
-      console.log("anchor", anchor)
+      console.log("anchor_s", anchor)
       this.$refs.fullpage.api.moveTo(anchor);
       // console.log("anchor Index", this.fullpageOptions.anchors.indexOf(anchor))
       // this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) + 1);
