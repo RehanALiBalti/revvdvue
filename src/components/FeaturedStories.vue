@@ -119,7 +119,7 @@
                 </div>
                 <!-- offcanvas end -->
                 <div class="d-none d-md-flex" v-for="(tab, index) in tabs" :key="index" :class="[
-                    'col-6 col-md-2 my-2 my-md-1',
+                    'col-6 col-md-3 col-lg-2 my-2 my-md-1',
                     { 'active-tab': activeTab === index },
                 ]" @click="handleTabClick(index, tab.name)">
                     <div class="btn-div-create-forum position-relative" :class="[
