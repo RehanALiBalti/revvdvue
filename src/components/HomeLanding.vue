@@ -1569,7 +1569,8 @@ export default {
 
         fitToSection: true,
         fitToSectionDelay: 1200,
-        touchSensitivity: 3,
+        // touchSensitivity: 3,
+        touchSensitivity: 1,
         bigSectionsDestination: 'top',
         easingcss3: 'ease-in-out',
         anchors: ['home', 'featured', 'shareStory', 'aboutUs'],
