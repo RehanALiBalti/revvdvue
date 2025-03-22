@@ -3939,6 +3939,17 @@ textarea.form-control {
   height: 36px !important;
 }
 
+@media only screen and (min-device-width: 820px) and (max-device-width: 1180px) {
+
+  /* Your CSS styles for iPad Air in portrait mode */
+  .topN37 {
+    top: -29px;
+    cursor: pointer;
+    height: 36px !important;
+  }
+
+}
+
 .topN37 .signup-btnli {
   height: 36px !important;
 }
