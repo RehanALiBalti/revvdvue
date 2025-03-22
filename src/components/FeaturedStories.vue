@@ -162,7 +162,7 @@
                         <div class="row">
                             <div v-for="(car, index) in featuredStories" :key="index"
                                 :class="isModalOpenFe ? 'z-2' : 'z-0'">
-                                <div class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1" @click="openModalFe">
+                                <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1" @click="openModalFe">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
                                             <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
@@ -645,7 +645,7 @@
                             </div>
                             <div v-for="(car, index) in this.filteredStories.CarEnthusiast" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
-                                <div class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1"
+                                <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                     @click="openModal(index)">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
@@ -1681,7 +1681,7 @@
                             <div class="" v-for="(car, index) in this.filteredStories.CarGarage" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
-                                    class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
+                                    class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
                                             <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
@@ -2404,7 +2404,7 @@
                                 .CarModificationTunningShop" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
-                                    class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
+                                    class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
                                             <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
@@ -3128,7 +3128,7 @@
                             <div class="" v-for="(car, index) in this.filteredStories.CarClub" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
-                                    class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
+                                    class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
                                             <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
@@ -3844,7 +3844,7 @@
                             <div class="" v-for="(car, index) in this.filteredStories.MotorbikeEnthusiast" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
-                                    class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
+                                    class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
                                             <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
@@ -4566,7 +4566,7 @@
                                 .AutomotivePhotographer" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
-                                    class="card-sorting-content px-3 px-md-1 py-2 col-md-12 p-1">
+                                    class="card-sorting-content px-3 px-md-3 px-pg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
                                             <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
