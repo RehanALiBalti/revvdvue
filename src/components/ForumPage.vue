@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-12 mt-1">
                     <div class="row align-items-center">
-                        <div class="col-md-2 ">
+                        <div class="col-lg-2 ">
                             <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0">
                                 <span class="border-bottom-btn border-top-btn position-absolute">
                                     <img src="@/assets/images/Group12.png" class="img-border position-absolute"
@@ -44,7 +44,7 @@
 
 
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4">
                             <nav aria-label="breadcrumb" class="nav-breadcrumb">
                                 <ol class="breadcrumb">
                                     <li v-if="make" class="breadcrumb-item fh2">
@@ -63,13 +63,13 @@
                                 </ol>
                             </nav>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4">
                             <input type="text" name="" id="" class="form-control " placeholder="search" v-model="search"
                                 @input="applyFilter">
 
                         </div>
 
-                        <div class="col-md-2 ">
+                        <div class="col-lg-2 my-2">
                             <div class="list-item-btn position-relative submit-btn-div ms-auto mt-2 mt-md-0"
                                 v-if="isLogin == true">
                                 <span class="border-bottom-btn border-top-btn position-absolute">

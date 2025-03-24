@@ -878,6 +878,17 @@ a {
 
 }
 
+@media(max-width:812px) {
+	.fp-overflow {
+		width: 100% !important;
+		overflow: auto !important;
+		font-size: 45px;
+
+	}
+
+
+}
+
 .fp-overflow:first-of-type {
 	/* display: flex !important;
 	flex-direction: column !important;

@@ -178,7 +178,7 @@
                                             </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
-
+                                                <!-- 
                                                 <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
                                                     ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
                                                     : parsedImages(car.images))" :key="idx">
@@ -188,7 +188,15 @@
                                                             alt="car" />
                                                     </div>
 
+                                                </swiper-slide> -->
+                                                <swiper-slide class="swiper-no-shadow"
+                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
                                                 </swiper-slide>
+
 
                                             </swiper>
 
@@ -276,7 +284,7 @@
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper> -->
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -296,7 +304,26 @@
 
                                                             </swiper-slide>
 
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :slidesPerView="1" :loop="true"
+                                                            :loopedSlides="car.images.length"
+                                                            :pagination="{ clickable: true }" :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                :key="idx">
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+                                                            </swiper-slide>
                                                         </swiper>
+
 
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -675,7 +702,7 @@
                                                 </swiper-slide>
 
                                             </swiper> -->
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
 
                                                 <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in ((parsedImages(car.images)?.length ?? 0) > 1
@@ -689,7 +716,19 @@
 
                                                 </swiper-slide>
 
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" :slidesPerView="1" :spaceBetween="10" :loop="true"
+                                                :loopedSlides="car.images.length" class="mySwiper swiper-no-shadow">
+                                                <swiper-slide class="swiper-no-shadow"
+                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+                                                </swiper-slide>
                                             </swiper>
+
 
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
@@ -756,7 +795,7 @@
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper> -->
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -776,7 +815,27 @@
 
                                                             </swiper-slide>
 
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :loop="true"
+                                                            :loopedSlides="car.images.length" :slidesPerView="1"
+                                                            :spaceBetween="10" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                :key="idx">
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+                                                            </swiper-slide>
                                                         </swiper>
+
 
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -970,7 +1029,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1195,7 +1254,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1224,7 +1283,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1646,7 +1705,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1695,7 +1754,7 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper> -->
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
 
                                                 <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
@@ -1709,7 +1768,19 @@
 
                                                 </swiper-slide>
 
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
+                                                :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow">
+                                                <swiper-slide class="swiper-no-shadow"
+                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+                                                </swiper-slide>
                                             </swiper>
+
 
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
@@ -1777,7 +1848,7 @@
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper> -->
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -1797,7 +1868,27 @@
 
                                                             </swiper-slide>
 
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :loop="true"
+                                                            :loopedSlides="car.images.length" :slidesPerView="1"
+                                                            :spaceBetween="10" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                :key="idx">
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+                                                            </swiper-slide>
                                                         </swiper>
+
 
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -1913,7 +2004,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2135,7 +2226,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2155,7 +2246,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2377,7 +2468,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2420,7 +2511,7 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper> -->
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
 
                                                 <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
@@ -2434,7 +2525,19 @@
 
                                                 </swiper-slide>
 
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
+                                                :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow">
+                                                <swiper-slide class="swiper-no-shadow"
+                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+                                                </swiper-slide>
                                             </swiper>
+
 
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
@@ -2502,7 +2605,7 @@
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper> -->
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -2522,7 +2625,27 @@
 
                                                             </swiper-slide>
 
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :loop="true"
+                                                            :loopedSlides="car.images.length"
+                                                            :pagination="{ clickable: true }" :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev'
+                                                            }" :slidesPerView="1" :spaceBetween="10"
+                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                :key="idx">
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+                                                            </swiper-slide>
                                                         </swiper>
+
 
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -2638,7 +2761,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2860,7 +2983,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2880,7 +3003,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3102,7 +3225,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3142,10 +3265,10 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper> -->
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow"> -->
 
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
+                                            <!-- <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
                                                     ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
                                                     : parsedImages(car.images))" :key="idx">
 
@@ -3156,6 +3279,21 @@
 
                                                 </swiper-slide>
 
+                                            </swiper> -->
+
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
+                                                :pagination="{ clickable: true }" :navigation="{
+                                                    nextEl: '.custom-next',
+                                                    prevEl: '.custom-prev'
+                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow">
+                                                <swiper-slide class="swiper-no-shadow"
+                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+                                                </swiper-slide>
                                             </swiper>
 
                                             <span class="swiper-notification" aria-live="assertive"
@@ -3224,7 +3362,7 @@
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper> -->
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
 
                                                             <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
@@ -3240,6 +3378,25 @@
 
                                                             </swiper-slide>
 
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :loop="true"
+                                                            :loopedSlides="car.images.length"
+                                                            :pagination="{ clickable: true }" :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev'
+                                                            }" :slidesPerView="1" :spaceBetween="10"
+                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                :key="idx">
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+                                                            </swiper-slide>
                                                         </swiper>
 
                                                         <span class="swiper-notification" aria-live="assertive"
@@ -3355,7 +3512,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3577,7 +3734,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3597,7 +3754,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3819,7 +3976,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3859,7 +4016,7 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper> -->
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
 
                                                 <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
@@ -3873,7 +4030,23 @@
 
                                                 </swiper-slide>
 
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
+                                                :pagination="{ clickable: true }" :navigation="{
+                                                    nextEl: '.custom-next',
+                                                    prevEl: '.custom-prev'
+                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow">
+                                                <swiper-slide class="swiper-no-shadow"
+                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+                                                </swiper-slide>
                                             </swiper>
+                                         
+
 
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
@@ -3941,7 +4114,7 @@
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper> -->
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -3961,6 +4134,25 @@
 
                                                             </swiper-slide>
 
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :loop="true"
+                                                            :loopedSlides="car.images.length"
+                                                            :pagination="{ clickable: true }" :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev'
+                                                            }" :slidesPerView="1" :spaceBetween="10"
+                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                :key="idx">
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+                                                            </swiper-slide>
                                                         </swiper>
 
                                                         <span class="swiper-notification" aria-live="assertive"
@@ -4076,7 +4268,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4298,7 +4490,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4318,7 +4510,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                        }}</label>
+                                    }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4540,7 +4732,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                        }}</label>
+                                    }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4581,7 +4773,7 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper> -->
-                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow">
 
                                                 <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
@@ -4595,6 +4787,20 @@
 
                                                 </swiper-slide>
 
+                                            </swiper> -->
+                                            <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
+                                                :pagination="{ clickable: true }" :navigation="{
+                                                    nextEl: '.custom-next',
+                                                    prevEl: '.custom-prev'
+                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow">
+                                                <swiper-slide class="swiper-no-shadow"
+                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    <div class="d-block">
+                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                            alt="car" />
+                                                    </div>
+                                                </swiper-slide>
                                             </swiper>
 
                                             <span class="swiper-notification" aria-live="assertive"
@@ -4662,7 +4868,7 @@
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper> -->
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -4682,7 +4888,28 @@
 
                                                             </swiper-slide>
 
+
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :initialSlide="1" :loop="true"
+                                                            :loopedSlides="car.images.length"
+                                                            :pagination="{ clickable: true }" :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev'
+                                                            }" :slidesPerView="1" :spaceBetween="10"
+                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                :key="idx">
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+                                                            </swiper-slide>
                                                         </swiper>
+
 
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -5231,6 +5458,13 @@ export default {
         this.fetchCarEnthusiastStories();
     },
     methods: {
+        reorderedImages(images) {
+            let parsed = this.parsedImages(images);
+            if (parsed.length > 1) {
+                return [parsed[parsed.length - 1], parsed[0], parsed[1], ...parsed.slice(2, parsed.length - 1)];
+            }
+            return parsed;
+        },
         // getImageUrl(image) {
         //     return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
         // },
