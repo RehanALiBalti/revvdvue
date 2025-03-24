@@ -155,7 +155,7 @@
                                                                 </div>
                                                             </swiper-slide>
                                                         </swiper> -->
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :pagination="{ clickable: true }"
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
@@ -175,7 +175,30 @@
 
                                                             </swiper-slide>
 
+                                                        </swiper> -->
+                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                            :loop="true" :loopedSlides="car.images.length"
+                                                            :initialSlide="1" :pagination="{ clickable: true }"
+                                                            :navigation="{
+                                                                nextEl: '.custom-next',
+                                                                prevEl: '.custom-prev',
+                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+
+                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
+                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                :key="idx">
+
+                                                                <div class="d-block">
+                                                                    <img :src="image"
+                                                                        class="slider-img myCarListingCard-img modalswipperImage"
+                                                                        alt="car"
+                                                                        @click="openViewer(image, car.images)" />
+                                                                </div>
+
+                                                            </swiper-slide>
+
                                                         </swiper>
+
 
                                                         <span class="swiper-notification" aria-live="assertive"
                                                             aria-atomic="true"></span>
@@ -819,6 +842,35 @@ export default {
         };
     },
     computed: {
+        // reorderedImages() {
+        //     return (images) => {
+        //         const parsed = this.parsedImages(images);
+        //         if (parsed.length > 1) {
+        //             return [
+        //                 parsed[1], // Second image first
+        //                 parsed[parsed.length - 1], // Last image second
+        //                 parsed[0], // First image now third
+        //                 ...parsed.slice(2, parsed.length - 1) // Rest unchanged
+        //             ];
+        //         }
+        //         return parsed;
+        //     }
+        // },
+        reorderedImages() {
+            return (images) => {
+                let parsed = this.parsedImages(images);
+                if (parsed.length > 1) {
+                    return [
+                        parsed[parsed.length - 1], // Last image moves to first
+                        parsed[0], // First image moves to second
+                        parsed[1], // Second image moves to third
+                        ...parsed.slice(2, parsed.length - 1) // Rest remain the same
+                    ];
+                }
+                return parsed;
+            };
+        }
+        ,
         totalPages() {
             return Math.ceil(this.cars.length / this.pageSize);
         },
