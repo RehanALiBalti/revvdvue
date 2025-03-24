@@ -129,7 +129,7 @@
                           </div>
                         </swiper-slide>
                       </swiper> -->
-                      <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
+                      <!-- <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
                         :initialSlide="1" :navigation="{
                           nextEl: '.custom-next',
                           prevEl: '.custom-prev',
@@ -146,7 +146,21 @@
 
                         </swiper-slide>
 
+                      </swiper> -->
+                      <swiper v-if="bannerStories?.[0]?.images" :effect="'cards'" :grabCursor="true" :modules="modules"
+                        :initialSlide="1" :loop="true" :navigation="{
+                          nextEl: '.custom-next',
+                          prevEl: '.custom-prev',
+                        }" class="mySwiper swiper-no-shadow modalswipper">
+                        <swiper-slide v-for="(image, idx) in reorderedImages" :key="idx"
+                          class="swiper-no-shadow modalswippersh">
+                          <div class="d-block">
+                            <img :src="image" class="slider-img myCarListingCard-img modalswipperImage"
+                              :alt="`Car image #${idx + 1}`" />
+                          </div>
+                        </swiper-slide>
                       </swiper>
+
 
                       <div class="list-item-btn position-relative w-fit libtn" style="width:fit-contet !important"
                         v-if="isMobile == false">
@@ -3822,6 +3836,13 @@ export default {
 
   },
   computed: {
+    reorderedImages() {
+      let images = this.bannerStories?.[0]?.images ?? [];
+      if (images.length > 1) {
+        return [images[1], images[0], ...images.slice(2)]; // First becomes second, second becomes first
+      }
+      return images; // If only 1 or no images, return as is
+    },
     convertedImages() {
       return this.formData.storyImages.map((image) => {
         if (image instanceof File) {
@@ -3948,6 +3969,14 @@ textarea.form-control {
     cursor: pointer;
     height: 36px !important;
   }
+
+}
+
+@media(max-width:816px) {
+  .topN37 {
+    top: -29px
+  }
+
 
 }
 
