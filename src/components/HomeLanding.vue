@@ -31,30 +31,55 @@
             </div>
 
 
-            <div class="list-item-btn position-relative w-fit libtn mt-2" style="width:fit-contet !important">
-              <span class="border-bottom-btn border-top-btn position-absolute">
-                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-              </span>
+            <div class="d-flex gap-3 flex-wrap">
+              <div class="list-item-btn position-relative w-fit libtn mt-2" style="width:fit-contet !important">
+                <span class="border-bottom-btn border-top-btn position-absolute">
+                  <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                </span>
 
-              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-              </span>
+                <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                  <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                </span>
 
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-              </span>
-              <router-link to="/offer" class="signin-btnli">
-                {{ $t('startEngine') }}
-              </router-link>
-              <span class="border-bottom-btn border-left-btn position-absolute">
-                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-              </span>
-              <span class="border-bottom-btn position-absolute">
-                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-              </span>
+                <span
+                  class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                  <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                </span>
+                <router-link to="/offer" class="signin-btnli">
+                  {{ $t('startEngine') }}
+                </router-link>
+                <span class="border-bottom-btn border-left-btn position-absolute">
+                  <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                </span>
+                <span class="border-bottom-btn position-absolute">
+                  <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                </span>
+              </div>
+              <div class="list-item-btn position-relative w-fit libtn mt-2" style="width:fit-contet !important">
+                <span class="border-bottom-btn border-top-btn position-absolute">
+                  <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                </span>
+
+                <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                  <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                </span>
+
+                <span
+                  class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                  <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                </span>
+                <router-link to="/stories" class="signin-btnli">
+                  {{ $t('View all stories') }}
+                </router-link>
+                <span class="border-bottom-btn border-left-btn position-absolute">
+                  <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                </span>
+                <span class="border-bottom-btn position-absolute">
+                  <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                </span>
+              </div>
+
             </div>
-
           </div>
         </div>
 
@@ -176,8 +201,8 @@
                           class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                           <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                         </span>
-                        <router-link to="/stories" class="signin-btnli viewStoryBtn">
-                          {{ $t('View all stories') }}
+                        <router-link to="/banner" class="signin-btnli viewStoryBtn">
+                          {{ $t('Read more...') }}
                         </router-link>
                         <span class="border-bottom-btn border-left-btn position-absolute">
                           <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
