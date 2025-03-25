@@ -160,7 +160,7 @@
                 <div class="col-md-12 px-0">
                     <div class="col-md-12 px-4">
                         <div class="row">
-                            <div v-for="(car, index) in featuredStories" :key="index"
+                            <div v-for="(car, index) in featuredStories || []" :key="index"
                                 :class="isModalOpenFe ? 'z-2' : 'z-0'">
                                 <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                     @click="openModalFe">
@@ -177,7 +177,8 @@
                                                 </swiper-slide>
                                             </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow"
+                                                v-if="car.images && car.images.length">
                                                 <!-- 
                                                 <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
                                                     ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
@@ -190,7 +191,8 @@
 
                                                 </swiper-slide> -->
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    :key="idx">
                                                     <div class="d-block">
                                                         <img :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
@@ -311,9 +313,10 @@
                                                             :pagination="{ clickable: true }" :navigation="{
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+                                                            }" class="mySwiper swiper-no-shadow modalswipper"
+                                                            v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img :src="image"
@@ -668,10 +671,10 @@
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <div v-for="(car, index) in this.filteredStories.CarEnthusiast" :key="index"
+                            <div v-for="(car, index) in this.filteredStories?.CarEnthusiast || []" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                     @click="openModal(index)">
@@ -719,9 +722,11 @@
                                             </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :slidesPerView="1" :spaceBetween="10" :loop="true"
-                                                :loopedSlides="car.images.length" class="mySwiper swiper-no-shadow">
+                                                :loopedSlides="car.images.length" class="mySwiper swiper-no-shadow"
+                                                v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    :key="idx">
                                                     <div class="d-block">
                                                         <img :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
@@ -823,9 +828,10 @@
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+                                                            }" class="mySwiper swiper-no-shadow modalswipper"
+                                                            v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img :src="image"
@@ -973,7 +979,7 @@
                                     <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
                                 </a>
                             </li>
-                            <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber">
+                            <li class="page-item" v-for="pageNumber in totalPages || []" :key="pageNumber">
                                 <a class="page-link" href="#" @click.prevent="goToPage(pageNumber)"
                                     :class="{ active: pageNumber === currentPage }">{{ pageNumber }}</a>
                             </li>
@@ -1029,7 +1035,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1254,7 +1260,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1283,7 +1289,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1705,7 +1711,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1735,10 +1741,10 @@
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <div class="" v-for="(car, index) in this.filteredStories.CarGarage" :key="index"
+                            <div class="" v-for="(car, index) in this.filteredStories?.CarGarage || []" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
@@ -1771,9 +1777,11 @@
                                             </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
-                                                :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow">
+                                                :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow"
+                                                v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    :key="idx">
                                                     <div class="d-block">
                                                         <img :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
@@ -1876,9 +1884,10 @@
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+                                                            }" class="mySwiper swiper-no-shadow modalswipper"
+                                                            v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img :src="image"
@@ -2004,7 +2013,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2226,7 +2235,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2246,7 +2255,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2468,7 +2477,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2489,12 +2498,11 @@
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <div class="" v-for="(car, index) in this.filteredStories
-                                .CarModificationTunningShop" :key="index"
-                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
+                            <div class="" v-for="(car, index) in this.filteredStories?.CarModificationTunningShop || []"
+                                :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
@@ -2528,9 +2536,11 @@
                                             </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
-                                                :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow">
+                                                :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow"
+                                                v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    :key="idx">
                                                     <div class="d-block">
                                                         <img :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
@@ -2633,9 +2643,10 @@
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev'
                                                             }" :slidesPerView="1" :spaceBetween="10"
-                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            class="mySwiper swiper-no-shadow modalswipper"
+                                                            v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img :src="image"
@@ -2761,7 +2772,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2983,7 +2994,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3003,7 +3014,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3225,7 +3236,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3246,10 +3257,10 @@
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <div class="" v-for="(car, index) in this.filteredStories.CarClub" :key="index"
+                            <div class="" v-for="(car, index) in this.filteredStories?.CarClub || []" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
@@ -3286,9 +3297,11 @@
                                                 :pagination="{ clickable: true }" :navigation="{
                                                     nextEl: '.custom-next',
                                                     prevEl: '.custom-prev'
-                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow">
+                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow"
+                                                v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    :key="idx">
                                                     <div class="d-block">
                                                         <img :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
@@ -3386,9 +3399,10 @@
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev'
                                                             }" :slidesPerView="1" :spaceBetween="10"
-                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            class="mySwiper swiper-no-shadow modalswipper"
+                                                            v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img :src="image"
@@ -3512,7 +3526,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3734,7 +3748,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3754,7 +3768,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3976,7 +3990,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3996,12 +4010,12 @@
                         <!-- Container for the Viewer.js to manage image viewing -->
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                         </div>
                         <div class="row">
-                            <div class="" v-for="(car, index) in this.filteredStories.MotorbikeEnthusiast" :key="index"
-                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
+                            <div class="" v-for="(car, index) in this.filteredStories?.MotorbikeEnthusiast || []"
+                                :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
@@ -4036,16 +4050,18 @@
                                                 :pagination="{ clickable: true }" :navigation="{
                                                     nextEl: '.custom-next',
                                                     prevEl: '.custom-prev'
-                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow">
+                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow"
+                                                v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    :key="idx">
                                                     <div class="d-block">
                                                         <img :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
-                                         
+
 
 
                                             <span class="swiper-notification" aria-live="assertive"
@@ -4142,9 +4158,10 @@
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev'
                                                             }" :slidesPerView="1" :spaceBetween="10"
-                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            class="mySwiper swiper-no-shadow modalswipper"
+                                                            v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img :src="image"
@@ -4268,7 +4285,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4490,7 +4507,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4510,7 +4527,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4732,7 +4749,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4752,13 +4769,12 @@
                         <!-- Container for the Viewer.js to manage image viewing -->
                         <div class="imageBig" ref="viewerContainer" style="display: none">
                             <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages)" :key="idx" />
+                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                         </div>
                         <div class="row">
-                            <div class="" v-for="(car, index) in this.filteredStories
-                                .AutomotivePhotographer" :key="index"
-                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
+                            <div class="" v-for="(car, index) in this.filteredStories?.AutomotivePhotographer || []"
+                                :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-pg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
@@ -4793,9 +4809,11 @@
                                                 :pagination="{ clickable: true }" :navigation="{
                                                     nextEl: '.custom-next',
                                                     prevEl: '.custom-prev'
-                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow">
+                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow"
+                                                v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images)" :key="idx">
+                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    :key="idx">
                                                     <div class="d-block">
                                                         <img :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
@@ -4897,9 +4915,10 @@
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev'
                                                             }" :slidesPerView="1" :spaceBetween="10"
-                                                            class="mySwiper swiper-no-shadow modalswipper">
+                                                            class="mySwiper swiper-no-shadow modalswipper"
+                                                            v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images)"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img :src="image"
@@ -5459,7 +5478,7 @@ export default {
     },
     methods: {
         reorderedImages(images) {
-            let parsed = this.parsedImages(images);
+            let parsed = this.parsedImages(images) || [];
             if (parsed.length > 1) {
                 return [parsed[parsed.length - 1], parsed[0], parsed[1], ...parsed.slice(2, parsed.length - 1)];
             }
@@ -6491,7 +6510,8 @@ export default {
         },
         parsedImages(images) {
             try {
-                return typeof images === "string" ? JSON.parse(images) : images;
+                // return typeof images === "string" ? JSON.parse(images) : images;
+                return typeof images === "string" ? JSON.parse(images) : (images || []);
             } catch (e) {
                 console.error("Error parsing images", e);
                 return [];

@@ -367,6 +367,7 @@
 .slider-img.myCarListingCard-img {
 	height: 260px;
 	object-fit: cover;
+	object-position: center;
 }
 
 .slider-img.myCarListingCard-img,
