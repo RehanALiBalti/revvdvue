@@ -1058,7 +1058,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1283,7 +1283,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1312,7 +1312,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1734,7 +1734,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1754,10 +1754,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-image-div my-4">
-                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
-                                alt="Image" />
-                        </div>
+
                     </div>
 
                     <div class="col-md-9 px-4">
@@ -2044,7 +2041,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2266,7 +2263,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2286,7 +2283,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2508,7 +2505,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2519,10 +2516,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-image-div my-4">
-                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
-                                alt="Image" />
-                        </div>
+
                     </div>
 
                     <div class="col-md-9 px-4">
@@ -2811,7 +2805,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3033,7 +3027,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3053,7 +3047,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3275,7 +3269,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3286,10 +3280,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-image-div my-4">
-                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
-                                alt="Image" />
-                        </div>
+
                     </div>
 
                     <div class="col-md-9 px-4">
@@ -3573,7 +3564,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3795,7 +3786,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3815,7 +3806,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -4037,7 +4028,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4048,10 +4039,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-image-div my-4">
-                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
-                                alt="Image" />
-                        </div>
+
                     </div>
 
                     <div class="col-md-9 px-4">
@@ -4340,7 +4328,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4562,7 +4550,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4582,7 +4570,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4804,7 +4792,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4815,10 +4803,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-image-div my-4">
-                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
-                                alt="Image" />
-                        </div>
+
                     </div>
 
                     <div class="col-md-9 px-4">
