@@ -1722,6 +1722,17 @@ export default {
     };
   },
   methods: {
+    scrollToHash() {
+      this.$nextTick(() => {
+        const hash = window.location.hash;
+        if (hash === "#shareStory") {
+          const element = document.getElementById("shareStory");
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
+    },
     validateUsername() {
       // Regex to detect URLs (http, https, www, or domains like .com)
       const urlPattern = /(https?:\/\/|www\.)|(\.com|\.net|\.org|\.io|\.co)/i;
@@ -3363,7 +3374,12 @@ export default {
     // this.getprofile()
     //this.fetchProfileData()
     // this.checkIfGoogleOrFacebookUser()
-    this.$router.push({ hash: '#home' });
+    const hash = window.location.hash;
+
+    if (hash !== "#shareStory") {
+      this.$router.push({ hash: '#home' });
+    }
+
 
 
 
@@ -3397,9 +3413,10 @@ export default {
     this.resetHeight5();
     this.resetHeight6();
     this.resetHeight7();
-    if (!this.$route.hash || this.$route.hash !== '#home') {
-      this.$router.push({ hash: '#home' });
-    }
+    // if (!this.$route.hash || this.$route.hash !== '#home') {
+    //   this.$router.push({ hash: '#home' });
+    // }
+
     console.log("anchors", this.fullpageOptions.anchors)
     this.isMobile = this.checkDevice()
 
@@ -3410,14 +3427,14 @@ export default {
 
 
     }
-    this.moveToSection("home");
+    // this.moveToSection("home");
     // alert("noti push")
-    this.$router.push({ hash: '#home' });
+    // this.$router.push({ hash: '#home' });
     this.createObserver();
     this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
 
-
+    this.scrollToHash();
     window.addEventListener('storage', this.handleStorageChange);
     this.retrieveCars();
     // this.retrieveALLCommunities();
@@ -3428,7 +3445,7 @@ export default {
     await this.fetchProfileData()
     await this.fetchproData()
 
-    this.$router.push({ hash: '#home' });
+    // this.$router.push({ hash: '#home' });
     this.fetchBannerStories()
 
   },
