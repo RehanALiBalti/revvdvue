@@ -14,21 +14,21 @@
                         },
                     ]">
                         <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img :src="getImage(tab.img1, index)" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab.img1, index)" class="img-border position-absolute" alt="" />
                         </span>
                         <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img :src="getImage(tab.img2, index)" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab.img2, index)" class="img-border position-absolute" alt="" />
                         </span>
                         <span
                             class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img :src="getImage(tab.img3, index)" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab.img3, index)" class="img-border position-absolute" alt="" />
                         </span>
                         <span class="signin-btnli">{{ tab.name }}</span>
                         <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img :src="getImage(tab.img4, index)" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab.img4, index)" class="img-border position-absolute" alt="" />
                         </span>
                         <span class="border-bottom-btn position-absolute">
-                            <img :src="getImage(tab.img5, index)" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab.img5, index)" class="img-border position-absolute" alt="" />
                         </span>
                     </div>
                 </div> -->
@@ -38,16 +38,19 @@
                 <div class="col-md-12 d-block d-md-none">
                     <div class="list-item-btn position-relative submit-btn-div m-0">
                         <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" src="@/assets/images/Group12.png" class="img-border position-absolute"
+                                alt="" />
                         </span>
 
                         <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" src="@/assets/images/Path467.png" class="img-border position-absolute"
+                                alt="" />
                         </span>
 
                         <span
                             class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" src="@/assets/images/Path465.png" class="img-border position-absolute"
+                                alt="" />
                         </span>
                         <button type="submit" class="signin-btnli btn-filter " id="submit-button"
                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
@@ -55,10 +58,12 @@
                             {{ $t('Category') }}
                         </button>
                         <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" src="@/assets/images/Group11.png" class="img-border position-absolute"
+                                alt="" />
                         </span>
                         <span class="border-bottom-btn position-absolute">
-                            <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" src="@/assets/images/Path473.png" class="img-border position-absolute"
+                                alt="" />
                         </span>
                     </div>
                 </div>
@@ -85,31 +90,31 @@
                                     },
                                 ]">
                                     <span class="border-bottom-btn border-top-btn position-absolute">
-                                        <img :src="getImage(tab, index, 'img1')" class="img-border position-absolute"
-                                            alt="" />
+                                        <img loading="lazy" :src="getImage(tab, index, 'img1')"
+                                            class="img-border position-absolute" alt="" />
                                     </span>
                                     <span
                                         class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                                        <img :src="getImage(tab, index, 'img2')" class="img-border position-absolute"
-                                            alt="" />
+                                        <img loading="lazy" :src="getImage(tab, index, 'img2')"
+                                            class="img-border position-absolute" alt="" />
                                     </span>
                                     <span
                                         class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                                        <img :src="getImage(tab, index, 'img3')" class="img-border position-absolute"
-                                            alt="" />
+                                        <img loading="lazy" :src="getImage(tab, index, 'img3')"
+                                            class="img-border position-absolute" alt="" />
                                     </span>
                                     <span class="signin-btnli" data-bs-dismiss="offcanvas">
                                         {{ tab.name }}
                                     </span>
 
                                     <span class="border-bottom-btn border-left-btn position-absolute">
-                                        <img :src="getImage(tab, index, 'img4')" class="img-border position-absolute"
-                                            alt="" />
+                                        <img loading="lazy" :src="getImage(tab, index, 'img4')"
+                                            class="img-border position-absolute" alt="" />
                                     </span>
 
                                     <span class="border-bottom-btn position-absolute">
-                                        <img :src="getImage(tab, index, 'img5')" class="img-border position-absolute"
-                                            alt="" />
+                                        <img loading="lazy" :src="getImage(tab, index, 'img5')"
+                                            class="img-border position-absolute" alt="" />
                                     </span>
                                 </div>
                             </div>
@@ -130,14 +135,17 @@
                         },
                     ]">
                         <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img :src="getImage(tab, index, 'img1')" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab, index, 'img1')" class="img-border position-absolute"
+                                alt="" />
                         </span>
                         <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img :src="getImage(tab, index, 'img2')" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab, index, 'img2')" class="img-border position-absolute"
+                                alt="" />
                         </span>
                         <span
                             class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img :src="getImage(tab, index, 'img3')" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab, index, 'img3')" class="img-border position-absolute"
+                                alt="" />
                         </span>
                         <span class="signin-btnli text-center" v-if="tab.name == 'Car Modification/Tunning Shop'"> Car
                             Modification/Tunning <br /> Shop
@@ -147,10 +155,12 @@
                             {{ tab.name }}
                         </span>
                         <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img :src="getImage(tab, index, 'img4')" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab, index, 'img4')" class="img-border position-absolute"
+                                alt="" />
                         </span>
                         <span class="border-bottom-btn position-absolute">
-                            <img :src="getImage(tab, index, 'img5')" class="img-border position-absolute" alt="" />
+                            <img loading="lazy" :src="getImage(tab, index, 'img5')" class="img-border position-absolute"
+                                alt="" />
                         </span>
                     </div>
                 </div>
@@ -171,7 +181,7 @@
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image
+                                                        <img loading="lazy" :src="image
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
@@ -185,7 +195,7 @@
                                                     : parsedImages(car.images))" :key="idx">
 
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
 
@@ -194,8 +204,8 @@
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
+                                                        <img loading="lazy" :src="image"
+                                                            class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
 
@@ -205,7 +215,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" class="d-none" alt="" />
+                                        <img loading="lazy" :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
                                         <!-- <h4 class="text-white mb-1" v-if="car.make && car.model">
@@ -219,7 +229,7 @@
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
-                                                <img :src="instaIcon" class="instaIcon" />
+                                                <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2 " style="font-size: 14px"
                                                     target="_blank" rel="noop@ener noreferrer">
@@ -278,7 +288,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image
+                                                                    <img loading="lazy" :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -298,7 +308,7 @@
                                                                 : parsedImages(car.images))" :key="idx">
 
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -319,7 +329,7 @@
                                                                 v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -334,10 +344,10 @@
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
                                                         :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
-                                                            <img :src="prevIcon" alt="" />
+                                                            <img loading="lazy" :src="prevIcon" alt="" />
                                                         </button>
                                                         <button class="custom-next btn">
-                                                            <img :src="nextIcon" alt="" />
+                                                            <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
                                                     <!-- <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
@@ -350,14 +360,15 @@
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" class="d-none" alt="" />
+                                                                <img loading="lazy" :src="iconford" class="d-none"
+                                                                    alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
-                                                            <img :src="instaIcon" class="instaIcon" />
+                                                            <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                             <a :href="'https://www.instagram.com/' + car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
@@ -475,16 +486,19 @@
 
                         <div class="list-item-btn position-relative submit-btn-div mx-0 mt-0 mb-2 d-none d-md-none">
                             <span class="border-bottom-btn border-top-btn position-absolute">
-                                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group12.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path467.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span
                                 class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path465.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <button type="submit" class="signin-btnli btn-filter " id="submit-button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
@@ -492,10 +506,12 @@
                                 {{ $t('Filters') }}
                             </button>
                             <span class="border-bottom-btn border-left-btn position-absolute">
-                                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group11.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <span class="border-bottom-btn position-absolute">
-                                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path473.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                         </div>
 
@@ -663,15 +679,16 @@
                             </div>
                         </div>
                         <!-- <div class="filter-image-div my-4">
-                            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
                         </div> -->
                     </div>
                     <div class="col-md-9 px-4">
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
+                                <img loading="lazy" :src="currentImage" alt="Current Image for Viewing" />
+                                <img loading="lazy" :src="image"
+                                    v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
                             <div v-for="(car, index) in this.filteredStories?.CarEnthusiast || []" :key="index"
@@ -685,7 +702,7 @@
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image
+                                                        <img loading="lazy" :src="image
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
@@ -698,7 +715,7 @@
                                                     : parsedImages(car.images))" :key="idx">
 
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
 
@@ -713,7 +730,7 @@
                                                     : (parsedImages(car.images) ?? []))" :key="idx">
 
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
 
@@ -728,8 +745,8 @@
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
+                                                        <img loading="lazy" :src="image"
+                                                            class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
@@ -738,7 +755,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" class="d-none" alt="" />
+                                        <img loading="lazy" :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 " @click="openModal(index)">
@@ -747,7 +764,7 @@
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
-                                                <img :src="instaIcon" class="instaIcon" />
+                                                <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
@@ -792,7 +809,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image
+                                                                    <img loading="lazy" :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -812,7 +829,7 @@
                                                                 : parsedImages(car.images))" :key="idx">
 
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -834,7 +851,7 @@
                                                                 v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -849,10 +866,10 @@
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
                                                         :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
-                                                            <img :src="prevIcon" alt="" />
+                                                            <img loading="lazy" :src="prevIcon" alt="" />
                                                         </button>
                                                         <button class="custom-next btn">
-                                                            <img :src="nextIcon" alt="" />
+                                                            <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
@@ -863,7 +880,8 @@
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" class="d-none" alt="" />
+                                                                <img loading="lazy" :src="iconford" class="d-none"
+                                                                    alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
@@ -871,7 +889,7 @@
                                                         </div>
 
                                                         <div class="d-flex align-items-center text-white mt-2">
-                                                            <img :src="instaIcon" class="instaIcon" />
+                                                            <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                             <a :href="'https://www.instagram.com/' + car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
@@ -944,7 +962,7 @@
                                                                 <router-link class="d-block"
                                                                     :to="`/carListing${index + 1}`">
                                                                     <h1 class="text-white">{{ image }}</h1>
-                                                                    <img :src=" image
+                                                                    <img loading="lazy" :src=" image
                                                                         " class="slider-img myCarListingCard-img"
                                                                         alt="car" />
                                                                 </router-link>
@@ -1003,16 +1021,19 @@
                     <div class="col-md-3">
                         <div class="list-item-btn position-relative submit-btn-div mx-0 mt-0 mb-2 d-none d-md-none">
                             <span class="border-bottom-btn border-top-btn position-absolute">
-                                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group12.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path467.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span
                                 class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path465.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <button type="submit" class="signin-btnli btn-filter " id="submit-button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false"
@@ -1020,10 +1041,12 @@
                                 {{ $t('Filters') }}
                             </button>
                             <span class="border-bottom-btn border-left-btn position-absolute">
-                                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group11.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <span class="border-bottom-btn position-absolute">
-                                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path473.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                         </div>
 
@@ -1732,7 +1755,8 @@
                             </div>
                         </div>
                         <div class="filter-image-div my-4">
-                            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
+                                alt="Image" />
                         </div>
                     </div>
 
@@ -1740,8 +1764,9 @@
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
+                                <img loading="lazy" :src="currentImage" alt="Current Image for Viewing" />
+                                <img loading="lazy" :src="image"
+                                    v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories?.CarGarage || []" :key="index"
@@ -1755,7 +1780,7 @@
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image
+                                                        <img loading="lazy" :src="image
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
@@ -1768,7 +1793,7 @@
                                                     : parsedImages(car.images))" :key="idx">
 
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
 
@@ -1783,8 +1808,8 @@
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
+                                                        <img loading="lazy" :src="image"
+                                                            class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
@@ -1793,7 +1818,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" class="d-none" alt="" />
+                                        <img loading="lazy" :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 " @click="openModal(index)">
@@ -1801,7 +1826,7 @@
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
-                                                <img :src="instaIcon" class="instaIcon" />
+                                                <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
@@ -1848,7 +1873,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image
+                                                                    <img loading="lazy" :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -1868,7 +1893,7 @@
                                                                 : parsedImages(car.images))" :key="idx">
 
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -1890,7 +1915,7 @@
                                                                 v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -1905,10 +1930,10 @@
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
                                                         :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
-                                                            <img :src="prevIcon" alt="" />
+                                                            <img loading="lazy" :src="prevIcon" alt="" />
                                                         </button>
                                                         <button class="custom-next btn">
-                                                            <img :src="nextIcon" alt="" />
+                                                            <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
@@ -1921,14 +1946,15 @@
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" class="d-none" alt="" />
+                                                                <img loading="lazy" :src="iconford" class="d-none"
+                                                                    alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
-                                                            <img :src="instaIcon" class="instaIcon" />
+                                                            <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                             <a :href="'https://www.instagram.com/' + car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
@@ -1981,16 +2007,19 @@
                     <div class="col-md-3">
                         <div class="list-item-btn position-relative submit-btn-div mx-0 mt-0 mb-2 d-none d-md-none">
                             <span class="border-bottom-btn border-top-btn position-absolute">
-                                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group12.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path467.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span
                                 class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path465.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <button type="submit" class="signin-btnli btn-filter " id="submit-button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false"
@@ -1998,10 +2027,12 @@
                                 {{ $t('Filters') }}
                             </button>
                             <span class="border-bottom-btn border-left-btn position-absolute">
-                                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group11.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <span class="border-bottom-btn position-absolute">
-                                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path473.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                         </div>
 
@@ -2489,7 +2520,8 @@
                             </div>
                         </div>
                         <div class="filter-image-div my-4">
-                            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
+                                alt="Image" />
                         </div>
                     </div>
 
@@ -2497,8 +2529,9 @@
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
+                                <img loading="lazy" :src="currentImage" alt="Current Image for Viewing" />
+                                <img loading="lazy" :src="image"
+                                    v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories?.CarModificationTunningShop || []"
@@ -2514,7 +2547,7 @@
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image
+                                                        <img loading="lazy" :src="image
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
@@ -2527,7 +2560,7 @@
                                                     : parsedImages(car.images))" :key="idx">
 
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
 
@@ -2542,8 +2575,8 @@
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
+                                                        <img loading="lazy" :src="image"
+                                                            class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
@@ -2552,7 +2585,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" class="d-none" />
+                                        <img loading="lazy" :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 " @click="openModal(index)">
@@ -2560,7 +2593,7 @@
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
-                                                <img :src="instaIcon" class="instaIcon" />
+                                                <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
@@ -2607,7 +2640,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image
+                                                                    <img loading="lazy" :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -2627,7 +2660,7 @@
                                                                 : parsedImages(car.images))" :key="idx">
 
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -2649,7 +2682,7 @@
                                                                 v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -2665,10 +2698,10 @@
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
                                                         :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
-                                                            <img :src="prevIcon" alt="" />
+                                                            <img loading="lazy" :src="prevIcon" alt="" />
                                                         </button>
                                                         <button class="custom-next btn">
-                                                            <img :src="nextIcon" alt="" />
+                                                            <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
@@ -2681,14 +2714,15 @@
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" class="d-none" alt="" />
+                                                                <img loading="lazy" :src="iconford" class="d-none"
+                                                                    alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
-                                                            <img :src="instaIcon" class="instaIcon" />
+                                                            <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                             <a :href="'https://www.instagram.com/' + car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
@@ -2740,16 +2774,19 @@
                     <div class="col-md-3">
                         <div class="list-item-btn position-relative submit-btn-div mx-0 mt-0 mb-2 d-none d-md-none">
                             <span class="border-bottom-btn border-top-btn position-absolute">
-                                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group12.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path467.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span
                                 class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path465.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <button type="submit" class="signin-btnli btn-filter " id="submit-button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false"
@@ -2757,10 +2794,12 @@
                                 {{ $t('Filters') }}
                             </button>
                             <span class="border-bottom-btn border-left-btn position-absolute">
-                                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group11.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <span class="border-bottom-btn position-absolute">
-                                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path473.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                         </div>
 
@@ -3248,7 +3287,8 @@
                             </div>
                         </div>
                         <div class="filter-image-div my-4">
-                            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
+                                alt="Image" />
                         </div>
                     </div>
 
@@ -3256,8 +3296,9 @@
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
-                                <img :src="currentImage" alt="Current Image for Viewing" />
-                                <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
+                                <img loading="lazy" :src="currentImage" alt="Current Image for Viewing" />
+                                <img loading="lazy" :src="image"
+                                    v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
                             <div class="" v-for="(car, index) in this.filteredStories?.CarClub || []" :key="index"
@@ -3271,7 +3312,7 @@
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image
+                                                        <img loading="lazy" :src="image
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
@@ -3284,7 +3325,7 @@
                                                     : parsedImages(car.images))" :key="idx">
 
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
 
@@ -3303,8 +3344,8 @@
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
+                                                        <img loading="lazy" :src="image"
+                                                            class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
@@ -3312,7 +3353,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" class="d-none" />
+                                        <img loading="lazy" :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 " @click="openModal(index)">
@@ -3320,7 +3361,7 @@
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
-                                                <img :src="instaIcon" class="instaIcon" />
+                                                <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
@@ -3367,7 +3408,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image
+                                                                    <img loading="lazy" :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -3383,7 +3424,7 @@
                                                                 : parsedImages(car.images))" :key="idx">
 
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -3405,7 +3446,7 @@
                                                                 v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -3419,10 +3460,10 @@
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
                                                         :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
-                                                            <img :src="prevIcon" alt="" />
+                                                            <img loading="lazy" :src="prevIcon" alt="" />
                                                         </button>
                                                         <button class="custom-next btn">
-                                                            <img :src="nextIcon" alt="" />
+                                                            <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
@@ -3435,14 +3476,15 @@
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" class="d-none" alt="" />
+                                                                <img loading="lazy" :src="iconford" class="d-none"
+                                                                    alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
-                                                            <img :src="instaIcon" class="instaIcon" />
+                                                            <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                             <a :href="'https://www.instagram.com/' + car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
@@ -3494,16 +3536,19 @@
                     <div class="col-md-3">
                         <div class="list-item-btn position-relative submit-btn-div mx-0 mt-0 mb-2 d-none d-md-none">
                             <span class="border-bottom-btn border-top-btn position-absolute">
-                                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group12.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path467.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span
                                 class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path465.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <button type="submit" class="signin-btnli btn-filter " id="submit-button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseExample5" aria-expanded="false"
@@ -3511,10 +3556,12 @@
                                 {{ $t('Filters') }}
                             </button>
                             <span class="border-bottom-btn border-left-btn position-absolute">
-                                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group11.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <span class="border-bottom-btn position-absolute">
-                                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path473.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                         </div>
 
@@ -4002,15 +4049,17 @@
                             </div>
                         </div>
                         <div class="filter-image-div my-4">
-                            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
+                                alt="Image" />
                         </div>
                     </div>
 
                     <div class="col-md-9 px-4">
                         <!-- Container for the Viewer.js to manage image viewing -->
                         <div class="imageBig" ref="viewerContainer" style="display: none">
-                            <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
+                            <img loading="lazy" :src="currentImage" alt="Current Image for Viewing" />
+                            <img loading="lazy" :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []"
+                                :key="idx" />
 
                         </div>
                         <div class="row">
@@ -4025,7 +4074,7 @@
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image
+                                                        <img loading="lazy" :src="image
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
@@ -4038,7 +4087,7 @@
                                                     : parsedImages(car.images))" :key="idx">
 
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
 
@@ -4056,8 +4105,8 @@
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
+                                                        <img loading="lazy" :src="image"
+                                                            class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
@@ -4067,7 +4116,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" alt="" class="d-none" />
+                                        <img loading="lazy" :src="iconford" alt="" class="d-none" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 " @click="openModal(index)">
@@ -4075,7 +4124,7 @@
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
-                                                <img :src="instaIcon" class="instaIcon" />
+                                                <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
@@ -4122,7 +4171,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image
+                                                                    <img loading="lazy" :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -4142,7 +4191,7 @@
                                                                 : parsedImages(car.images))" :key="idx">
 
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -4164,7 +4213,7 @@
                                                                 v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -4178,10 +4227,10 @@
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
                                                         :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
-                                                            <img :src="prevIcon" alt="" />
+                                                            <img loading="lazy" :src="prevIcon" alt="" />
                                                         </button>
                                                         <button class="custom-next btn">
-                                                            <img :src="nextIcon" alt="" />
+                                                            <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
@@ -4194,14 +4243,15 @@
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" class="d-none" alt="" />
+                                                                <img loading="lazy" :src="iconford" class="d-none"
+                                                                    alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
-                                                            <img :src="instaIcon" class="instaIcon" />
+                                                            <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                             <a :href="'https://www.instagram.com/' + car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
@@ -4253,16 +4303,19 @@
                     <div class="col-md-3">
                         <div class="list-item-btn position-relative submit-btn-div mx-0 mt-0 mb-2 d-none d-md-none">
                             <span class="border-bottom-btn border-top-btn position-absolute">
-                                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group12.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path467.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
 
                             <span
                                 class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path465.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <button type="submit" class="signin-btnli btn-filter " id="submit-button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseExample6" aria-expanded="false"
@@ -4270,10 +4323,12 @@
                                 {{ $t('Filters') }}
                             </button>
                             <span class="border-bottom-btn border-left-btn position-absolute">
-                                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Group11.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                             <span class="border-bottom-btn position-absolute">
-                                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                                <img loading="lazy" src="@/assets/images/Path473.png"
+                                    class="img-border position-absolute" alt="" />
                             </span>
                         </div>
 
@@ -4761,15 +4816,17 @@
                             </div>
                         </div>
                         <div class="filter-image-div my-4">
-                            <img src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
+                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image"
+                                alt="Image" />
                         </div>
                     </div>
 
                     <div class="col-md-9 px-4">
                         <!-- Container for the Viewer.js to manage image viewing -->
                         <div class="imageBig" ref="viewerContainer" style="display: none">
-                            <img :src="currentImage" alt="Current Image for Viewing" />
-                            <img :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
+                            <img loading="lazy" :src="currentImage" alt="Current Image for Viewing" />
+                            <img loading="lazy" :src="image" v-for="(image, idx) in parsedImages(viewerImages) || []"
+                                :key="idx" />
 
                         </div>
                         <div class="row">
@@ -4784,7 +4841,7 @@
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in parsedImages(car.images)" :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image
+                                                        <img loading="lazy" :src="image
                                                             " class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
@@ -4797,7 +4854,7 @@
                                                     : parsedImages(car.images))" :key="idx">
 
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
+                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
                                                             alt="car" />
                                                     </div>
 
@@ -4815,8 +4872,8 @@
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
                                                     <div class="d-block">
-                                                        <img :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
+                                                        <img loading="lazy" :src="image"
+                                                            class="slider-img myCarListingCard-img" alt="car" />
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
@@ -4824,7 +4881,7 @@
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
-                                        <img :src="iconford" class="d-none" alt="" />
+                                        <img loading="lazy" :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 " @click="openModal(index)">
@@ -4832,7 +4889,7 @@
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
                                             <li class="list-item-user mb-0 justify-content-start">
-                                                <img :src="instaIcon" class="instaIcon" />
+                                                <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                 <a :href="'https://www.instagram.com/' + car.social_media"
                                                     class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
                                                     target="_blank" rel="noopener noreferrer">
@@ -4878,7 +4935,7 @@
                                                                 v-for="(image, idx) in parsedImages(car.images)"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image
+                                                                    <img loading="lazy" :src="image
                                                                         "
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
@@ -4898,7 +4955,7 @@
                                                                 : parsedImages(car.images))" :key="idx">
 
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -4921,7 +4978,7 @@
                                                                 v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
-                                                                    <img :src="image"
+                                                                    <img loading="lazy" :src="image"
                                                                         class="slider-img myCarListingCard-img modalswipperImage"
                                                                         alt="car"
                                                                         @click="openViewer(image, car.images)" />
@@ -4936,10 +4993,10 @@
                                                     <div class="custom-swiper-navigation gap-8 justify-content-center"
                                                         :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
                                                         <button class="custom-prev btn">
-                                                            <img :src="prevIcon" alt="" />
+                                                            <img loading="lazy" :src="prevIcon" alt="" />
                                                         </button>
                                                         <button class="custom-next btn">
-                                                            <img :src="nextIcon" alt="" />
+                                                            <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
@@ -4952,14 +5009,15 @@
                                                         <div
                                                             class="mt-2 d-flex justify-content-between align-items-center mb-2">
                                                             <div class="d-flex align-items-center gap-2">
-                                                                <img :src="iconford" class="d-none" alt="" />
+                                                                <img loading="lazy" :src="iconford" class="d-none"
+                                                                    alt="" />
                                                                 <h3 class="m-0 text-white fontsiz">
                                                                     {{ car.story_name }}
                                                                 </h3>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center text-white mt-2">
-                                                            <img :src="instaIcon" class="instaIcon" />
+                                                            <img loading="lazy" :src="instaIcon" class="instaIcon" />
                                                             <a :href="'https://www.instagram.com/' + car.social_media"
                                                                 class="a-tag-name-user mt-2 mb-2"
                                                                 style="font-size: 14px" target="_blank"
@@ -7022,7 +7080,7 @@ form-select {
     transition: opacity 0.3s ease-in-out;
     /* height: 150px;
     overflow-y: auto; */
-    margin-top:7rem !important;
+    margin-top: 7rem !important;
 }
 
 .opacity-05 {

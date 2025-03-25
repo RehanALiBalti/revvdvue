@@ -882,8 +882,22 @@ a {
 	.fp-overflow {
 		width: 100% !important;
 		overflow: auto !important;
-		font-size: 45px;
+		/* font-size: 45px; */
 
+	}
+
+	.main-title {
+		font-size: 45px;
+	}
+
+
+}
+
+@media(max-width:816px) {
+
+
+	.main-title {
+		font-size: 45px !important;
 	}
 
 
