@@ -137,7 +137,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
+                        }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -235,8 +235,8 @@
                             class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                             <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                           </span>
-                          <router-link to="/stories" class="signin-btnli viewStoryBtn">
-                            {{ $t('view all stories') }}
+                          <router-link to="/banner" class="signin-btnli viewStoryBtn">
+                            {{ $t('Read more...') }}
                           </router-link>
                           <span class="border-bottom-btn border-left-btn position-absolute">
                             <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
