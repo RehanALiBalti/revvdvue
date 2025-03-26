@@ -101,7 +101,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Featured Story
+            </div> Cover Story
           </button>
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -110,7 +110,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Share Your Story Now
+            </div> Share Your Story
           </button>
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -136,8 +136,8 @@
 
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
-                    <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
+                    <h5 class="h5-title text-capitalize mb-2">{{ $t('Cover') }} <span class="coloror">{{ $t('Story')
+                        }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -325,7 +325,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Featured Story
+            </div> Cover Story
           </button>
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -334,7 +334,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Share Your Story Now
+            </div> Share Your Story
           </button>
           <button class="position-relative d-flex align-items-start gap-2"
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -990,7 +990,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
                 <span class="progress"></span>
                 <span class="progress"></span> -->
-              </div> Featured Story
+              </div> Cover Story
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -999,7 +999,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
                 <span class="progress"></span>
                 <span class="progress"></span> -->
-              </div> Share Your Story Now
+              </div> Share Your Story
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -1074,7 +1074,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-              </div> Featured Story
+              </div> Cover Story
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -1083,7 +1083,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-              </div> Share Your Story Now
+              </div> Share Your Story
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -1122,7 +1122,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Featured Story
+        </div> Cover Story
       </button>
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -1131,7 +1131,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Share Your Story Now
+        </div> Share Your Story
       </button>
 
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
@@ -1159,7 +1159,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Featured Story
+        </div> Cover Story
       </button>
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'shareStory' }" @click="goToSectionshare('shareStory')">
@@ -1168,7 +1168,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Share Your Story Now
+        </div> Share Your Story
       </button>
 
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
