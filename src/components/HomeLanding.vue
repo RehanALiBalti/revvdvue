@@ -31,30 +31,55 @@
             </div>
 
 
-            <div class="list-item-btn position-relative w-fit libtn mt-2" style="width:fit-contet !important">
-              <span class="border-bottom-btn border-top-btn position-absolute">
-                <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
-              </span>
+            <div class="d-flex gap-3 flex-wrap">
+              <div class="list-item-btn position-relative w-fit libtn mt-2" style="width:fit-contet !important">
+                <span class="border-bottom-btn border-top-btn position-absolute">
+                  <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                </span>
 
-              <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
-              </span>
+                <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                  <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                </span>
 
-              <span
-                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
-              </span>
-              <router-link to="/offer" class="signin-btnli">
-                {{ $t('startEngine') }}
-              </router-link>
-              <span class="border-bottom-btn border-left-btn position-absolute">
-                <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
-              </span>
-              <span class="border-bottom-btn position-absolute">
-                <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
-              </span>
+                <span
+                  class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                  <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                </span>
+                <router-link to="/offer" class="signin-btnli">
+                  {{ $t('startEngine') }}
+                </router-link>
+                <span class="border-bottom-btn border-left-btn position-absolute">
+                  <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                </span>
+                <span class="border-bottom-btn position-absolute">
+                  <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                </span>
+              </div>
+              <div class="list-item-btn position-relative w-fit libtn mt-2" style="width:fit-contet !important">
+                <span class="border-bottom-btn border-top-btn position-absolute">
+                  <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                </span>
+
+                <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                  <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                </span>
+
+                <span
+                  class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                  <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                </span>
+                <router-link to="/stories" class="signin-btnli">
+                  {{ $t('View all stories') }}
+                </router-link>
+                <span class="border-bottom-btn border-left-btn position-absolute">
+                  <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                </span>
+                <span class="border-bottom-btn position-absolute">
+                  <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                </span>
+              </div>
+
             </div>
-
           </div>
         </div>
 
@@ -76,7 +101,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Featured Story
+            </div> Cover Story
           </button>
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -85,7 +110,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Share Your Story Now
+            </div> Share Your Story
           </button>
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -111,8 +136,8 @@
 
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
-                    <h5 class="h5-title text-capitalize mb-2">{{ $t('Featured') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
+                    <h5 class="h5-title text-capitalize mb-2">{{ $t('Cover') }} <span class="coloror">{{ $t('Story')
+                        }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -176,8 +201,8 @@
                           class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                           <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                         </span>
-                        <router-link to="/stories" class="signin-btnli viewStoryBtn">
-                          {{ $t('View all stories') }}
+                        <router-link to="/banner" class="signin-btnli viewStoryBtn">
+                          {{ $t('Read more..') }}
                         </router-link>
                         <span class="border-bottom-btn border-left-btn position-absolute">
                           <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
@@ -210,8 +235,8 @@
                             class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
                             <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                           </span>
-                          <router-link to="/stories" class="signin-btnli viewStoryBtn">
-                            {{ $t('view all stories') }}
+                          <router-link to="/banner" class="signin-btnli viewStoryBtn">
+                            {{ $t('Read more..') }}
                           </router-link>
                           <span class="border-bottom-btn border-left-btn position-absolute">
                             <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
@@ -300,7 +325,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Featured Story
+            </div> Cover Story
           </button>
           <button class="position-relative  d-flex align-items-start gap-2 my-2"
             :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -309,7 +334,7 @@
               <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-            </div> Share Your Story Now
+            </div> Share Your Story
           </button>
           <button class="position-relative d-flex align-items-start gap-2"
             :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -965,7 +990,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
                 <span class="progress"></span>
                 <span class="progress"></span> -->
-              </div> Featured Story
+              </div> Cover Story
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -974,7 +999,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
                 <span class="progress"></span>
                 <span class="progress"></span> -->
-              </div> Share Your Story Now
+              </div> Share Your Story
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -1049,7 +1074,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-              </div> Featured Story
+              </div> Cover Story
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -1058,7 +1083,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
                 <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-              </div> Share Your Story Now
+              </div> Share Your Story
             </button>
             <button class="position-relative d-flex align-items-start gap-2 my-2 "
               :class="{ active: activeSection === 'aboutUs' }" @click="goToSection('aboutUs')">
@@ -1097,7 +1122,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Featured Story
+        </div> Cover Story
       </button>
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'shareStory' }" @click="goToSection('shareStory')">
@@ -1106,7 +1131,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Share Your Story Now
+        </div> Share Your Story
       </button>
 
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
@@ -1134,7 +1159,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Featured Story
+        </div> Cover Story
       </button>
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
         :class="{ active: activeSection === 'shareStory' }" @click="goToSectionshare('shareStory')">
@@ -1143,7 +1168,7 @@ accept=".jpg,.png" multiple v-on:change="validateFiles" @change="handleFileUploa
           <!-- <span class="progress"></span>
               <span class="progress"></span>
               <span class="progress"></span> -->
-        </div> Share Your Story Now
+        </div> Share Your Story
       </button>
 
       <button class="position-relative  d-flex align-items-start gap-2 my-3 "
@@ -1697,6 +1722,17 @@ export default {
     };
   },
   methods: {
+    scrollToHash() {
+      this.$nextTick(() => {
+        const hash = window.location.hash;
+        if (hash === "#shareStory") {
+          const element = document.getElementById("shareStory");
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
+    },
     validateUsername() {
       // Regex to detect URLs (http, https, www, or domains like .com)
       const urlPattern = /(https?:\/\/|www\.)|(\.com|\.net|\.org|\.io|\.co)/i;
@@ -2542,571 +2578,8 @@ export default {
       this.formData.storyImages = storyImages;
       console.log("sotry images", this.formData.storyImages)
     },
-    // async convertAndAppendImages() {
-    //   const storyImagesWithUrls = await Promise.all(
-    //     this.croppedImages.map(async (blob, index) => {
-    //       const response = await fetch(blob.url); // Fetch the Blob URL
-    //       const fileBlob = await response.blob(); // Get the Blob
-    //       const file = new File([fileBlob], `image-${index}.png`, { type: fileBlob.type });
 
-    //       // Construct the URL
-    //       const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file.name}`;
-
-    //       // return { file, url: fullImagePath };
-    //       return { url: fullImagePath };
-    //     })
-    //   );
-
-    //   // Replace the original array with objects containing File and URL
-    //   this.formData.storyImages = storyImagesWithUrls;
-    //   console.log("Story images with URLs:", this.formData.storyImages);
-    // },
-
-    // async SubmitStory() {
-    //   console.log("submit story", this.formData);
-
-    //   // Create a new FormData object
-    //   let data = new FormData();
-    //   await this.convertAndAppendImages();
-
-
-    //   // Always append common data
-    //   data.append('story_type', this.selectedStoryType);
-    //   data.append('user_name', this.formData.user_name);
-    //   // data.append('user_name', "danish");
-    //   data.append('user_email', this.formData.user_email);
-    //   console.log("uanme", this.formData.user_name)
-
-
-
-    //   // data.append('user_email', "danish250ahmad@gmail.com");
-
-    //   // Conditionally append based on StoryType
-    //   if (this.selectedStoryType === 'carEnthusiast') {
-    //     // Append carEnthusiast related data
-    //     data.append('make', this.formData.make);
-    //     // data.append('make', "Audi");
-    //     data.append('model', this.formData.model);
-    //     // data.append('model', "100");
-    //     data.append('year', this.formData.year);
-    //     // data.append('year', "2007");
-    //     data.append('modifications', this.formData.modifications);
-    //     data.append('memorable', this.formData.memorable);
-    //     data.append('advice', this.formData.advice);
-    //     data.append('story', this.formData.story);
-    //     data.append('story_name', this.formData.story_name);
-    //     data.append('social_media', this.formData.social_media);
-    //   } else {
-    //     // Append non-carEnthusiast related data
-    //     data.append('country', this.formData.country);
-    //     data.append('city', this.formData.city);
-    //     data.append('story_history', this.formData.storyHistory);
-    //     data.append('adventure_story', this.formData.adventureStory);
-    //     data.append('story_name', this.formData.storyName);
-    //     data.append('social_media', this.formData.url);
-    //   }
-
-
-
-    //   // Append images (if any)
-    //   this.formData.storyImages.forEach((file) => {
-    //     data.append('storyImages', file);
-    //   });
-    //   // this.formData.storyImages.forEach((file) => {
-    //   //   const fullImagePath = `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${file}`;
-    //   //   data.append('storyImages', fullImagePath); // Append the full URL
-    //   // });
-
-    //   if (this.isLogin == 'true' || this.isLogin == true) {
-
-    //     console.log("the condition is true and form submit")
-
-    //     // Send POST request using Axios
-    //     axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories', data, {
-    //       headers: {
-    //         'Content-Type': 'multipart/form-data'
-    //       }
-    //     })
-    //       .then(response => {
-    //         // Handle success
-    //         console.log('Post request successful:', response.data);
-    //         this.ModalStorySucces = true
-    //         // Handle success actions here
-    //       })
-    //       .catch(error => {
-    //         // Handle error
-    //         console.error('Error making post request:', error);
-    //         // Handle error actions here
-
-    //         this.modalTitle = "Something went wrong"
-    //         this.modaldescription = "Plese try after sometime"
-    //         this.ModalStoryFail = true;
-    //       });
-    //   }
-    //   else {
-    //     console.log("false please login ")
-    //     this.modalTitle = "Something went wrong"
-    //     this.modaldescription = "Plese login first to submit story"
-    //     this.ModalStoryFail = true
-    //   }
-
-
-    // }
-    // real working
-    // async SubmitStory() {
-    //   console.log("submit story", this.formData);
-
-    //   // Create a new FormData object
-    //   let data = new FormData();
-
-    //   // Array to store uploaded image URLs
-    //   let uploadedImageUrls = [];
-
-    //   // Upload images one by one and collect URLs
-    //   for (const file of this.formData.storyImages) {
-    //     let formData = new FormData();
-    //     formData.append('file', file);
-
-    //     try {
-    //       const response = await axios.post(
-    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
-    //         formData,
-    //         { headers: { 'Content-Type': 'multipart/form-data' } }
-    //       );
-
-    //       if (response.data && response.data.secureUld) {
-
-    //         console.log("images_sty", response.data.secureUld)
-    //         uploadedImageUrls.push(response.data.secureUld);
-    //       }
-    //     } catch (error) {
-    //       console.error("Error uploading image:", error);
-    //       this.modalTitle = "Something went wrong";
-    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
-    //       this.ModalStoryFail = true;
-    //       return; // Stop execution if an image upload fails
-    //     }
-    //   }
-
-    //   console.log("uploadedImageUrls", uploadedImageUrls)
-    //   // Always append common data
-    //   data.append('story_type', this.selectedStoryType);
-    //   data.append('user_name', this.formData.user_name);
-    //   data.append('user_email', this.formData.user_email);
-
-    //   // Append specific fields based on the selected story type
-    //   if (this.selectedStoryType === 'carEnthusiast') {
-    //     data.append('make', this.formData.make);
-    //     data.append('model', this.formData.model);
-    //     data.append('year', this.formData.year);
-    //     data.append('modifications', this.formData.modifications);
-    //     data.append('memorable', this.formData.memorable);
-    //     data.append('advice', this.formData.advice);
-    //     data.append('story', this.formData.story);
-    //     data.append('story_name', this.formData.story_name);
-    //     data.append('social_media', this.formData.social_media);
-    //   } else {
-    //     data.append('country', this.formData.country);
-    //     data.append('city', this.formData.city);
-    //     data.append('story_history', this.formData.storyHistory);
-    //     data.append('adventure_story', this.formData.adventureStory);
-    //     data.append('story_name', this.formData.storyName);
-    //     data.append('social_media', this.formData.url);
-    //   }
-
-    //   // Append uploaded image URLs
-    //   /*
-    //   uploadedImageUrls.forEach(url => {
-    //     console.log("Imagesurl", url)
-    //     data.append('storyImages', url); // Send URL instead of file
-    //   });
-    //   */
-    //   if (uploadedImageUrls.length > 0) {
-
-    //     data.append("images", JSON.stringify(uploadedImageUrls));
-    //   }
-    //   for (let [key, value] of data.entries()) {
-    //     console.log(key, value);
-    //   }
-
-
-    //   if (this.isLogin == 'true' || this.isLogin == true) {
-    //     console.log("the condition is true and form submit");
-
-    //     try {
-    //       const response = await axios.post(
-    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories',
-    //         data,
-    //         { headers: { 'Content-Type': 'multipart/form-data' } }
-    //       );
-
-    //       console.log('Post request successful:', response.data);
-    //       this.ModalStorySucces = true;
-    //     } catch (error) {
-    //       console.error('Error making post request:', error);
-    //       this.modalTitle = "Something went wrong";
-    //       this.modaldescription = "Please try again later.";
-    //       this.ModalStoryFail = true;
-    //     }
-    //   } else {
-    //     console.log("false please login");
-    //     this.modalTitle = "Something went wrong";
-    //     this.modaldescription = "Please login first to submit the story";
-    //     this.ModalStoryFail = true;
-    //   }
-    // }
-    // latest working submit story before link update
-    // async SubmitStory() {
-    //   console.log("submit story", this.formData);
-    //   this.loading = true;
-    //   // Create a new FormData object to store the form data
-    //   let data = new FormData();
-
-    //   // Array to store uploaded image URLs
-    //   let uploadedImageUrls = [];
-
-    //   // Upload images one by one and collect URLs
-    //   // for (const file of this.formData.storyImages) {
-    //   //   let formData = new FormData();
-    //   //   formData.append('file', file);
-
-    //   //   try {
-    //   //     const response = await axios.post(
-    //   //       'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
-    //   //       formData,
-    //   //       { headers: { 'Content-Type': 'multipart/form-data' } }
-    //   //     );
-
-    //   //     if (response.data && response.data.secureUld) {
-    //   //       console.log("Image uploaded:", response.data.secureUld);
-    //   //       uploadedImageUrls.push(response.data.secureUld); // Add the uploaded URL to the array
-    //   //     }
-    //   //   } catch (error) {
-    //   //     console.error("Error uploading image:", error);
-    //   //     this.modalTitle = "Something went wrong";
-    //   //     this.modaldescription = "Failed to upload one or more images. Please try again.";
-    //   //     this.ModalStoryFail = true;
-    //   //     return; // Stop execution if an image upload fails
-    //   //   }
-    //   // }
-    //   for (let i = 0; i < this.formData.storyImages.length; i++) {
-    //     console.log("sto_image", this.formData.storyImages[i])
-    //     const file = this.formData.storyImages[i];
-    //     console.log("file" + i, file, file.name);
-    //     const formData = new FormData();
-    //     formData.append(`file`, file); // Use a unique key for each file
-
-
-    //     try {
-    //       const response = await axios.post(
-    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/common/uploadS3',
-    //         formData,
-    //         { headers: { 'Content-Type': 'multipart/form-data' } }
-    //       );
-
-    //       if (response.data && response.data.secureUld) {
-    //         console.log("response data", response.data)
-    //         console.log("Image uploaded:", response.data.secureUld);
-    //         uploadedImageUrls.push(response.data.secureUld);
-    //       }
-    //     } catch (error) {
-    //       console.error("Error uploading image:", error);
-    //       this.modalTitle = "Something went wrong";
-    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
-    //       this.ModalStoryFail = true;
-    //       return;
-    //     }
-
-    //   }
-    //   console.log("uploadedImageUrls", uploadedImageUrls);
-
-    //   // Always append common data
-    //   data.append('story_type', this.selectedStoryType);
-    //   data.append('user_name', this.formData.user_name);
-    //   data.append('user_email', this.formData.user_email);
-
-    //   // Append specific fields based on the selected story type
-    //   if (this.selectedStoryType === 'carEnthusiast') {
-    //     data.append('make', this.formData.make);
-    //     data.append('model', this.formData.model);
-    //     data.append('year', this.formData.year);
-    //     data.append('modifications', this.formData.modifications);
-    //     data.append('memorable', this.formData.memorable);
-    //     data.append('advice', this.formData.advice);
-    //     data.append('story', this.formData.story);
-    //     data.append('story_name', this.formData.story_name);
-    //     data.append('social_media', this.formData.social_media);
-    //   } else {
-    //     data.append('country', this.formData.country);
-    //     data.append('city', this.formData.city);
-    //     data.append('story_history', this.formData.storyHistory);
-    //     data.append('adventure_story', this.formData.adventureStory);
-    //     data.append('story_name', this.formData.storyName);
-    //     data.append('social_media', this.formData.url);
-    //   }
-
-    //   // Append uploaded image URLs
-    //   if (uploadedImageUrls.length > 0) {
-    //     data.append("images", JSON.stringify(uploadedImageUrls)); // Send image URLs as a JSON string
-    //   }
-
-    //   // Log form data entries for debugging
-    //   for (let [key, value] of data.entries()) {
-    //     console.log(key, value);
-    //   }
-
-    //   // Check if the user is logged in before proceeding
-    //   if (this.isLogin === true || this.isLogin === 'true') {
-    //     console.log("User is logged in, submitting form");
-
-    //     try {
-    //       const response = await axios.post(
-    //         'https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories',
-    //         data,
-    //         { headers: { 'Content-Type': 'multipart/form-data' } }
-    //       );
-
-    //       console.log('Post request successful:', response.data);
-    //       this.resetForm();
-    //       this.loading = false
-    //       this.ModalStorySucces = true; // Show success modal
-    //     } catch (error) {
-    //       console.error('Error making post request:', error);
-    //       this.modalTitle = "Something went wrong";
-    //       this.modaldescription = "Please try again later.";
-    //       this.ModalStoryFail = true; // Show failure modal
-    //     }
-    //   } else {
-    //     console.log("User not logged in. Please login first.");
-    //     this.modalTitle = "Something went wrong";
-    //     this.modaldescription = "Please login first to submit the story";
-    //     this.ModalStoryFail = true; // Show failure modal
-    //   }
-
-
-    // },
-    // async SubmitStory() {
-    //   console.log("submit story", this.formData);
-    //   this.loading = true;
-    //   let data = new FormData();
-    //   let uploadedImageUrls = [];
-
-    //   for (let i = 0; i < this.formData.storyImages.length; i++) {
-    //     console.log("sto_image", this.formData.storyImages[i]);
-    //     const file = this.formData.storyImages[i];
-    //     console.log("file" + i, file, file.name);
-    //     const formData = new FormData();
-    //     formData.append("file", file);
-
-    //     try {
-    //       const response = await http.post("/common/uploadS3", formData, {
-    //         headers: { "Content-Type": "multipart/form-data" },
-    //       });
-
-    //       if (response.data && response.data.secureUld) {
-    //         console.log("response data", response.data);
-    //         console.log("Image uploaded:", response.data.secureUld);
-    //         uploadedImageUrls.push(response.data.secureUld);
-    //       }
-    //     } catch (error) {
-    //       console.error("Error uploading image:", error);
-    //       this.modalTitle = "Something went wrong";
-    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
-    //       this.ModalStoryFail = true;
-    //       return;
-    //     }
-    //   }
-
-    //   console.log("uploadedImageUrls", uploadedImageUrls);
-
-    //   data.append("story_type", this.selectedStoryType);
-    //   data.append("user_name", this.formData.user_name);
-    //   data.append("user_email", this.formData.user_email);
-
-    //   if (this.selectedStoryType === "carEnthusiast") {
-    //     data.append("make", this.formData.make);
-    //     data.append("model", this.formData.model);
-    //     data.append("year", this.formData.year);
-    //     data.append("modifications", this.formData.modifications);
-    //     data.append("memorable", this.formData.memorable);
-    //     data.append("advice", this.formData.advice);
-    //     data.append("story", this.formData.story);
-    //     data.append("story_name", this.formData.story_name);
-    //     data.append("social_media", this.formData.social_media);
-    //   } else {
-    //     data.append("country", this.formData.country);
-    //     data.append("city", this.formData.city);
-    //     data.append("story_history", this.formData.storyHistory);
-    //     data.append("adventure_story", this.formData.adventureStory);
-    //     data.append("story_name", this.formData.storyName);
-    //     data.append("social_media", this.formData.url);
-    //   }
-
-    //   if (uploadedImageUrls.length > 0) {
-    //     data.append("images", JSON.stringify(uploadedImageUrls));
-    //   }
-
-    //   for (let [key, value] of data.entries()) {
-    //     console.log(key, value);
-    //   }
-
-    //   if (this.isLogin === true || this.isLogin === "true") {
-    //     console.log("User is logged in, submitting form");
-
-    //     try {
-    //       const response = await http.post("/stories", data, {
-    //         headers: { "Content-Type": "multipart/form-data" },
-    //       });
-
-    //       console.log("Post request successful:", response.data);
-    //       this.resetForm();
-    //       this.loading = false;
-    //       this.ModalStorySucces = true;
-    //     } catch (error) {
-    //       console.error("Error making post request:", error);
-    //       this.modalTitle = "Something went wrong";
-    //       this.modaldescription = "Please try again later.";
-    //       this.ModalStoryFail = true;
-    //       this.loading = false;
-    //     }
-    //   } else {
-    //     console.log("User not logged in. Please login first.");
-    //     this.modalTitle = "Something went wrong";
-    //     this.modaldescription = "Please login first to submit the story";
-    //     this.ModalStoryFail = true;
-    //     this.loading = false;
-    //   }
-    // },
-    // async SubmitStory() {
-    //   console.log("submit story", this.formData);
-
-    //   this.loading = true;
-    //   let data = new FormData();
-
-    //   let uploadedImageUrls = [];
-
-    //   // **Validate Required Fields**
-    //   let missingFields = [];
-
-    //   if (!this.selectedStoryType) missingFields.push("Story Type");
-    //   // if (!this.formData.user_name) missingFields.push("User Name");
-    //   // if (!this.formData.user_email) missingFields.push("User Email");
-
-    //   if (this.selectedStoryType === "carEnthusiast") {
-    //     if (!this.formData.make) missingFields.push("Make");
-    //     if (!this.formData.model) missingFields.push("Model");
-    //     if (!this.formData.year) missingFields.push("Year");
-    //     if (!this.formData.modifications) missingFields.push("Modifications");
-    //     if (!this.formData.memorable) missingFields.push("Memorable Moment");
-    //     if (!this.formData.advice) missingFields.push("Advice");
-    //     if (!this.formData.story) missingFields.push("Story");
-    //     if (!this.formData.story_name) missingFields.push("Story Name");
-    //   } else {
-    //     if (!this.formData.country) missingFields.push("Country");
-    //     if (!this.formData.city) missingFields.push("City");
-    //     if (!this.formData.storyHistory) missingFields.push("Story History");
-    //     if (!this.formData.adventureStory) missingFields.push("Adventure Story");
-    //     if (!this.formData.storyName) missingFields.push("Story Name");
-    //   }
-
-    //   // **Show error modal if any required field is missing**
-    //   if (missingFields.length > 0) {
-    //     this.modalTitle = "Missing Required Fields";
-    //     this.modaldescription = `Please fill in the following required fields:\n\n- ${missingFields.join("\n- ")}`;
-    //     this.ModalStoryFail = true;
-    //     this.loading = false;
-    //     return;
-    //   }
-
-    //   // **Handle Image Uploads**
-    //   for (let i = 0; i < this.formData.storyImages.length; i++) {
-    //     console.log("sto_image", this.formData.storyImages[i]);
-    //     const file = this.formData.storyImages[i];
-    //     console.log("file" + i, file, file.name);
-    //     const formData = new FormData();
-    //     formData.append("file", file);
-
-    //     try {
-    //       const response = await http.post("/common/uploadS3", formData, {
-    //         headers: { "Content-Type": "multipart/form-data" },
-    //       });
-
-    //       if (response.data && response.data.secureUld) {
-    //         console.log("response data", response.data);
-    //         console.log("Image uploaded:", response.data.secureUld);
-    //         uploadedImageUrls.push(response.data.secureUld);
-    //       }
-    //     } catch (error) {
-    //       console.error("Error uploading image:", error);
-    //       this.modalTitle = "Something went wrong";
-    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
-    //       this.ModalStoryFail = true;
-    //       this.loading = false;
-    //       return;
-    //     }
-    //   }
-
-    //   console.log("uploadedImageUrls", uploadedImageUrls);
-
-    //   // **Append Form Data**
-    //   data.append("story_type", this.selectedStoryType);
-    //   data.append("user_name", this.formData.user_name);
-    //   data.append("user_email", this.formData.user_email);
-
-    //   if (this.selectedStoryType === "carEnthusiast") {
-    //     data.append("make", this.formData.make);
-    //     data.append("model", this.formData.model);
-    //     data.append("year", this.formData.year);
-    //     data.append("modifications", this.formData.modifications);
-    //     data.append("memorable", this.formData.memorable);
-    //     data.append("advice", this.formData.advice);
-    //     data.append("story", this.formData.story);
-    //     data.append("story_name", this.formData.story_name);
-    //     data.append("social_media", this.formData.social_media || ""); // Optional field
-    //   } else {
-    //     data.append("country", this.formData.country);
-    //     data.append("city", this.formData.city);
-    //     data.append("story_history", this.formData.storyHistory);
-    //     data.append("adventure_story", this.formData.adventureStory);
-    //     data.append("story_name", this.formData.storyName);
-    //     data.append("social_media", this.formData.url || ""); // Optional field
-    //   }
-
-    //   if (uploadedImageUrls.length > 0) {
-    //     data.append("images", JSON.stringify(uploadedImageUrls));
-    //   }
-
-    //   for (let [key, value] of data.entries()) {
-    //     console.log(key, value);
-    //   }
-
-    //   if (this.isLogin === true || this.isLogin === "true") {
-    //     console.log("User is logged in, submitting form");
-
-    //     try {
-    //       const response = await http.post("/stories", data, {
-    //         headers: { "Content-Type": "multipart/form-data" },
-    //       });
-
-    //       console.log("Post request successful:", response.data);
-    //       this.resetForm();
-    //       this.loading = false;
-    //       this.ModalStorySucces = true;
-    //     } catch (error) {
-    //       console.error("Error making post request:", error);
-    //       this.modalTitle = "Something went wrong";
-    //       this.modaldescription = "Please try again later.";
-    //       this.ModalStoryFail = true;
-    //       this.loading = false;
-    //     }
-    //   } else {
-    //     console.log("User not logged in. Please login first.");
-    //     this.modalTitle = "Something went wrong";
-    //     this.modaldescription = "Please login first to submit the story";
-    //     this.ModalStoryFail = true;
-    //     this.loading = false;
-    //   }
-    // }
+    // latest working 
     async SubmitStory() {
       console.log("submit story", this.formData);
       console.log(this.selectedStoryType?.value)
@@ -3237,9 +2710,151 @@ export default {
         this.ModalStoryFail = true;
         this.loading = false;
       }
-    }
+    },
 
-    ,
+    // for emoji testing
+    // async SubmitStory() {
+    //   console.log("submit story", this.formData);
+    //   console.log(this.selectedStoryType?.value);
+    //   this.loading = true;
+
+    //   // Create new FormData with proper encoding support
+    //   let data = new FormData();
+    //   let uploadedImageUrls = [];
+
+    //   // Validate Required Fields
+    //   let missingFields = [];
+
+    //   if (!this.selectedStoryType?.value) missingFields.push("Story Type");
+
+    //   if (this.selectedStoryType?.value === "carEnthusiast") {
+    //     if (!this.formData.make) missingFields.push("Make");
+    //     if (!this.formData.model) missingFields.push("Model");
+    //     if (!this.formData.year) missingFields.push("Year");
+    //     if (!this.formData.modifications) missingFields.push("Modifications");
+    //     if (!this.formData.memorable) missingFields.push("Memorable Moment");
+    //     if (!this.formData.advice) missingFields.push("Advice");
+    //     if (!this.formData.story) missingFields.push("Story");
+    //     if (!this.formData.story_name) missingFields.push("Story Name");
+    //   } else {
+    //     if (!this.formData.country) missingFields.push("Country");
+    //     if (!this.formData.city) missingFields.push("City");
+    //     if (!this.formData.storyHistory) missingFields.push("Story History");
+    //     if (!this.formData.adventureStory) missingFields.push("Adventure Story");
+    //     if (!this.formData.storyName) missingFields.push("Story Name");
+    //   }
+
+    //   if (missingFields.length > 0) {
+    //     this.modalTitle = "Missing Required Fields";
+    //     this.modaldescription = `Please fill in the following required fields:\n\n- ${missingFields.join("\n- ")}`;
+    //     this.ModalStoryFail = true;
+    //     this.loading = false;
+    //     return;
+    //   }
+
+    //   // Handle Image Uploads
+    //   this.formData.storyImages = this.uploadedFiles.map(fileObj => fileObj.file);
+
+    //   for (let i = 0; i < this.formData.storyImages.length; i++) {
+    //     const file = this.formData.storyImages[i];
+    //     const imageFormData = new FormData();
+    //     imageFormData.append("file", file);
+
+    //     try {
+    //       const response = await http.post("/common/uploadS3", imageFormData, {
+    //         headers: {
+    //           "Content-Type": "multipart/form-data; charset=UTF-8"
+    //         },
+    //       });
+
+    //       if (response.data?.s3Url) {
+    //         uploadedImageUrls.push(response.data.s3Url);
+    //       }
+    //     } catch (error) {
+    //       console.error("Error uploading image:", error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = "Failed to upload one or more images. Please try again.";
+    //       this.ModalStoryFail = true;
+    //       this.loading = false;
+    //       return;
+    //     }
+    //   }
+
+    //   // Helper function to properly append text data with emoji support
+    //   const appendTextWithEncoding = (formData, key, value) => {
+    //     if (typeof value === 'string') {
+    //       // Create a Blob with proper encoding
+    //       const blob = new Blob([value], { type: 'text/plain;charset=utf-8' });
+    //       formData.append(key, blob);
+    //     } else {
+    //       formData.append(key, value);
+    //     }
+    //   };
+
+    //   // Append Form Data with proper encoding
+    //   appendTextWithEncoding(data, "story_type", this.selectedStoryType?.value);
+    //   appendTextWithEncoding(data, "user_name", this.formData.user_name);
+    //   appendTextWithEncoding(data, "user_email", this.formData.user_email);
+
+    //   if (this.selectedStoryType?.value === "carEnthusiast") {
+    //     appendTextWithEncoding(data, "make", this.formData.make);
+    //     appendTextWithEncoding(data, "model", this.formData.model);
+    //     appendTextWithEncoding(data, "year", this.formData.year);
+    //     appendTextWithEncoding(data, "modifications", this.formData.modifications);
+    //     appendTextWithEncoding(data, "memorable", this.formData.memorable);
+    //     appendTextWithEncoding(data, "advice", this.formData.advice);
+    //     appendTextWithEncoding(data, "story", this.formData.story);
+    //     appendTextWithEncoding(data, "story_name", this.formData.story_name);
+    //     appendTextWithEncoding(data, "social_media", this.formData.social_media || "");
+    //   } else {
+    //     appendTextWithEncoding(data, "country", this.formData.country);
+    //     appendTextWithEncoding(data, "city", this.formData.city);
+    //     appendTextWithEncoding(data, "story_history", this.formData.storyHistory);
+    //     appendTextWithEncoding(data, "adventure_story", this.formData.adventureStory);
+    //     appendTextWithEncoding(data, "story_name", this.formData.storyName);
+    //     appendTextWithEncoding(data, "social_media", this.formData.url || "");
+    //   }
+
+    //   if (uploadedImageUrls.length > 0) {
+    //     // Stringify URLs with proper encoding
+    //     const encodedUrls = uploadedImageUrls.map(url => encodeURIComponent(url));
+    //     appendTextWithEncoding(data, "images", JSON.stringify(encodedUrls));
+    //   }
+
+    //   // Log form data for debugging
+    //   for (let [key, value] of data.entries()) {
+    //     console.log(key, typeof value === 'string' ? value : value instanceof Blob ? '[Blob]' : value);
+    //   }
+
+    //   if (this.isLogin === true || this.isLogin === "true") {
+    //     try {
+    //       const response = await http.post("/stories", data, {
+    //         headers: {
+    //           "Content-Type": "multipart/form-data; charset=UTF-8",
+    //           "Accept": "application/json; charset=utf-8"
+    //         },
+    //       });
+
+    //       console.log("Post request successful:", response.data);
+    //       this.resetForm();
+    //       this.loading = false;
+    //       this.ModalStorySucces = true;
+    //       this.fetchProfileData();
+    //     } catch (error) {
+    //       console.error("Error making post request:", error);
+    //       this.modalTitle = "Something went wrong";
+    //       this.modaldescription = error.response?.data?.message || "Please try again later.";
+    //       this.ModalStoryFail = true;
+    //       this.loading = false;
+    //     }
+    //   } else {
+    //     this.modalTitle = "Authentication Required";
+    //     this.modaldescription = "Please login first to submit the story";
+    //     this.ModalStoryFail = true;
+    //     this.loading = false;
+    //   }
+    // },
+
     resetForm() {
       this.formData = {
 
@@ -3759,7 +3374,12 @@ export default {
     // this.getprofile()
     //this.fetchProfileData()
     // this.checkIfGoogleOrFacebookUser()
-    this.$router.push({ hash: '#home' });
+    const hash = window.location.hash;
+
+    if (hash !== "#shareStory") {
+      this.$router.push({ hash: '#home' });
+    }
+
 
 
 
@@ -3793,9 +3413,10 @@ export default {
     this.resetHeight5();
     this.resetHeight6();
     this.resetHeight7();
-    if (!this.$route.hash || this.$route.hash !== '#home') {
-      this.$router.push({ hash: '#home' });
-    }
+    // if (!this.$route.hash || this.$route.hash !== '#home') {
+    //   this.$router.push({ hash: '#home' });
+    // }
+
     console.log("anchors", this.fullpageOptions.anchors)
     this.isMobile = this.checkDevice()
 
@@ -3806,14 +3427,14 @@ export default {
 
 
     }
-    this.moveToSection("home");
+    // this.moveToSection("home");
     // alert("noti push")
-    this.$router.push({ hash: '#home' });
+    // this.$router.push({ hash: '#home' });
     this.createObserver();
     this.setLogin(localStorage.getItem('login'))
     console.log("hahahahhahahahahha", this.isLogin);
 
-
+    this.scrollToHash();
     window.addEventListener('storage', this.handleStorageChange);
     this.retrieveCars();
     // this.retrieveALLCommunities();
@@ -3824,7 +3445,7 @@ export default {
     await this.fetchProfileData()
     await this.fetchproData()
 
-    this.$router.push({ hash: '#home' });
+    // this.$router.push({ hash: '#home' });
     this.fetchBannerStories()
 
   },
@@ -3982,7 +3603,11 @@ textarea.form-control {
 
 @media(max-width:768px) {
   .topN37 {
+
+
+
     top: -39px
+
   }
 
 
