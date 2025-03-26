@@ -3,36 +3,7 @@
         <div class="container">
             <!-- Tabs -->
             <div class="row mb-2">
-                <!-- <div v-for="(tab, index) in tabs" :key="index"
-                    :class="['col-6 col-md-2 my-2 my-md-1', { 'active-tab': activeTab === index }]"
-                    @click="handleTabClick(index, tab.name)">
-                    <div class="btn-div-create-forum position-relative" :class="[
-                        'w-100',
-                        {
-                            'btn-active': activeTab === index,
-                            'btn-inactive': activeTab !== index,
-                        },
-                    ]">
-                        <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img1, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img2, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span
-                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img3, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="signin-btnli">{{ tab.name }}</span>
-                        <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img4, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="border-bottom-btn position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img5, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                    </div>
-                </div> -->
-                <!-- offcanvas -->
+
 
 
                 <div class="col-md-12 d-block d-md-none">
@@ -176,30 +147,11 @@
                                     @click="openModalFe">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
+
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow"
                                                 v-if="car.images && car.images.length">
-                                                <!-- 
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
 
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide> -->
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
@@ -218,12 +170,7 @@
                                         <img loading="lazy" :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <!-- <h4 class="text-white mb-1" v-if="car.make && car.model">
-                                            {{ car.make }}:{{ car.model }}
-                                        </h4>
-                                        <h4 class="text-white mb-1" v-else>
-                                            {{ car.country }}:{{ car.city }}
-                                        </h4> -->
+
                                         <h4 class="text-white mb-1">
                                             {{ car.story_name }}
                                         </h4>
@@ -257,11 +204,7 @@
                                             <br />
                                             <span class="tranc" v-if="car.story">{{ car.story }}</span>
                                             <span class="tranc" v-else>{{ car.story_history }}</span>
-                                            <!-- <span v-else>{{ car.story_history }}</span> -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                @click="openModalFe">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
 
@@ -278,45 +221,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :slidesPerView="1" :loop="true"
                                                             :loopedSlides="car.images.length"
@@ -350,11 +255,7 @@
                                                             <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <!-- <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
-                                                        <button class="btn btn-danger" @click="toggleOverlayOpacity">
-                                                            <span class=""><i class="fa-solid fa-xmark"></i></span>
-                                                        </button>
-                                                    </div> -->
+
                                                     <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
@@ -476,7 +377,7 @@
             <!-- Tab Content -->
             <div v-if="activeTab === 0" :class="isModalOpenFe ? 'z-0 position-relative ' : ''"
                 style="overflow-x:hiddens">
-                <div class="row fixheight">
+                <div class="row">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search"
                             v-model="search" @input="applyFiltercarSearch" />
@@ -587,7 +488,7 @@
                                                     v-if="GenfilteredOptions.length > 0">
                                                     <li v-for="(value, index) in GenfilteredOptions" :key="index"
                                                         @click="updateModels(value), (this.isOpeng = false)">
-                                                        <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+
                                                         {{ value.production_years.split(" ")[0] }}
                                                         <span v-if="value.production_years.split(' ')[1]">({{
                                                             value.production_years.split(" ")[1] }})</span>
@@ -667,7 +568,7 @@
                                         <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                                             <li v-for="(value, index) in GenfilteredOptions" :key="index"
                                                 @click="updateModels(value), (this.isOpeng = false)">
-                                                <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+
                                                 {{ value.production_years.split(" ")[0] }}
                                                 <span v-if="value.production_years.split(' ')[1]">({{
                                                     value.production_years.split(" ")[1] }})</span>
@@ -678,9 +579,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="filter-image-div my-4">
-                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
-                        </div> -->
+
                     </div>
                     <div class="col-md-9 px-4">
                         <div class="row">
@@ -697,46 +596,7 @@
                                     @click="openModal(index)">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
 
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in ((parsedImages(car.images)?.length ?? 0) > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : (parsedImages(car.images) ?? []))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :slidesPerView="1" :spaceBetween="10" :loop="true"
                                                 :loopedSlides="car.images.length" class="mySwiper swiper-no-shadow"
@@ -778,11 +638,7 @@
                                             <br />
                                             <span class="tranc dd">{{ car.story }}</span>
 
-                                            <!-- Conditionally show "view more" if car.story has 10 or more words -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                v-if="car.story.split(' ').length >= 10" @click="openModal(index)">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
                                 </div>
@@ -799,45 +655,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :loop="true"
                                                             :loopedSlides="car.images.length" :slidesPerView="1"
@@ -932,9 +750,7 @@
 
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
-                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p> -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -942,47 +758,7 @@
                                 </div>
                             </div>
 
-                            <!-- Modal -->
-                            <!-- <div class="modal show d-block" tabindex="-1" role="dialog"
-                                    v-if="isModalOpen && activeCarIndex === index">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body text-center">
-                                                <span class="close-icon" @click="modalClose">
-                                                    <i class="fas fa-times"></i>
-                                                </span>
 
-                                                <div class="mt-4 py-2">
-                                                    <div class="swiper-container myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
-
-                                                            <swiper-slide class="swiper-no-shadow"
-                                                                v-for="(image, idx) in car.images" :key="idx">
-                                                                <router-link class="d-block"
-                                                                    :to="`/carListing${index + 1}`">
-                                                                    <h1 class="text-white">{{ image }}</h1>
-                                                                    <img loading="lazy" :src=" image
-                                                                        " class="slider-img myCarListingCard-img"
-                                                                        alt="car" />
-                                                                </router-link>
-                                                            </swiper-slide>
-                                                        </swiper>
-                                                        <span class="swiper-notification" aria-live="assertive"
-                                                            aria-atomic="true"></span>
-                                                    </div>
-                                                    <p class="card-title text-white">
-                                                        {{ car.story_name }} <span></span>
-                                                        {{ car.story_type }}
-                                                    </p>
-                                                    <p class="text-white">{{ car.advice }}</p>
-                                                    <p class="text-white">{{ car.modifications }}</p>
-                                                    <p class="text-white">{{ car.memorable }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                         </div>
 
                         <!-- end template -->
@@ -1013,7 +789,7 @@
             </div>
 
             <div v-else-if="activeTab === 1" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
-                <div class="row fixheight">
+                <div class="row">
                     <div class="col-md-12 mb-2 m-0">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterCarGarageSearch" />
@@ -1058,7 +834,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1283,15 +1059,8 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
-                                            <!-- <select id="city" class="form-select form-control form-input filter-select"
-                                        v-model="selectedCity"
-                                        @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
-                                        <option value="">Any</option>
-                                        <option value="Petite">Petite</option>
-                                        <option value="2-Litre">2-Litre</option>
-                                    
-                                    </select> -->
+                                            }}</label>
+
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilter(selectedCountry, selectedCity)">
@@ -1312,207 +1081,8 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
-                                    <!-- <select id="country" class="form-select form-control form-input filter-select"
-                                        v-model="selectedCountry"
-                                        @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
-                                       <option selected value="">Country</option>
-							<option value="Afghanistan">Afghanistan</option>
-							<option value="Albania">Albania</option>
-							<option value="Algeria">Algeria</option>
-							<option value="Andorra">Andorra</option>
-							<option value="Angola">Angola</option>
-							<option value="Antigua and Barbuda">Antigua and Barbuda</option>
-							<option value="Argentina">Argentina</option>
-							<option value="Armenia">Armenia</option>
-							<option value="Australia">Australia</option>
-							<option value="Austria">Austria</option>
-							<option value="Azerbaijan">Azerbaijan</option>
-							<option value="Bahamas">Bahamas</option>
-							<option value="Bahrain">Bahrain</option>
-							<option value="Bangladesh">Bangladesh</option>
-							<option value="Barbados">Barbados</option>
-							<option value="Belarus">Belarus</option>
-							<option value="Belgium">Belgium</option>
-							<option value="Belize">Belize</option>
-							<option value="Benin">Benin</option>
-							<option value="Bhutan">Bhutan</option>
-							<option value="Bolivia">Bolivia</option>
-							<option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-							<option value="Botswana">Botswana</option>
-							<option value="Brazil">Brazil</option>
-							<option value="Brunei">Brunei</option>
-							<option value="Bulgaria">Bulgaria</option>
-							<option value="Burkina Faso">Burkina Faso</option>
-							<option value="Burundi">Burundi</option>
-							<option value="Cabo Verde">Cabo Verde</option>
-							<option value="Cambodia">Cambodia</option>
-							<option value="Cameroon">Cameroon</option>
-							<option value="Canada">Canada</option>
-							<option value="Central African Republic">Central African Republic</option>
-							<option value="Chad">Chad</option>
-							<option value="Chile">Chile</option>
-							<option value="China">China</option>
-							<option value="Colombia">Colombia</option>
-							<option value="Comoros">Comoros</option>
-							<option value="Congo">Congo</option>
-							<option value="Costa Rica">Costa Rica</option>
-							<option value="Croatia">Croatia</option>
-							<option value="Cuba">Cuba</option>
-							<option value="Cyprus">Cyprus</option>
-							<option value="Czech Republic">Czech Republic</option>
-							<option value="Denmark">Denmark</option>
-							<option value="Djibouti">Djibouti</option>
-							<option value="Dominica">Dominica</option>
-							<option value="Dominican Republic">Dominican Republic</option>
-							<option value="Ecuador">Ecuador</option>
-							<option value="Egypt">Egypt</option>
-							<option value="El Salvador">El Salvador</option>
-							<option value="Equatorial Guinea">Equatorial Guinea</option>
-							<option value="Eritrea">Eritrea</option>
-							<option value="Estonia">Estonia</option>
-							<option value="Eswatini">Eswatini</option>
-							<option value="Ethiopia">Ethiopia</option>
-							<option value="Fiji">Fiji</option>
-							<option value="Finland">Finland</option>
-							<option value="France">France</option>
-							<option value="Gabon">Gabon</option>
-							<option value="Gambia">Gambia</option>
-							<option value="Georgia">Georgia</option>
-							<option value="Germany">Germany</option>
-							<option value="Ghana">Ghana</option>
-							<option value="Greece">Greece</option>
-							<option value="Grenada">Grenada</option>
-							<option value="Guatemala">Guatemala</option>
-							<option value="Guinea">Guinea</option>
-							<option value="Guinea-Bissau">Guinea-Bissau</option>
-							<option value="Guyana">Guyana</option>
-							<option value="Haiti">Haiti</option>
-							<option value="Honduras">Honduras</option>
-							<option value="Hungary">Hungary</option>
-							<option value="Iceland">Iceland</option>
-							<option value="India">India</option>
-							<option value="Indonesia">Indonesia</option>
-							<option value="Iran">Iran</option>
-							<option value="Iraq">Iraq</option>
-							<option value="Ireland">Ireland</option>
-							<option value="Israel">Israel</option>
-							<option value="Italy">Italy</option>
-							<option value="Jamaica">Jamaica</option>
-							<option value="Japan">Japan</option>
-							<option value="Jordan">Jordan</option>
-							<option value="Kazakhstan">Kazakhstan</option>
-							<option value="Kenya">Kenya</option>
-							<option value="Kiribati">Kiribati</option>
-							<option value="Korea, North">Korea, North</option>
-							<option value="Korea, South">Korea, South</option>
-							<option value="Kosovo">Kosovo</option>
-							<option value="Kuwait">Kuwait</option>
-							<option value="Kyrgyzstan">Kyrgyzstan</option>
-							<option value="Laos">Laos</option>
-							<option value="Latvia">Latvia</option>
-							<option value="Lebanon">Lebanon</option>
-							<option value="Lesotho">Lesotho</option>
-							<option value="Liberia">Liberia</option>
-							<option value="Libya">Libya</option>
-							<option value="Liechtenstein">Liechtenstein</option>
-							<option value="Lithuania">Lithuania</option>
-							<option value="Luxembourg">Luxembourg</option>
-							<option value="Madagascar">Madagascar</option>
-							<option value="Malawi">Malawi</option>
-							<option value="Malaysia">Malaysia</option>
-							<option value="Maldives">Maldives</option>
-							<option value="Mali">Mali</option>
-							<option value="Malta">Malta</option>
-							<option value="Marshall Islands">Marshall Islands</option>
-							<option value="Mauritania">Mauritania</option>
-							<option value="Mauritius">Mauritius</option>
-							<option value="Mexico">Mexico</option>
-							<option value="Micronesia">Micronesia</option>
-							<option value="Moldova">Moldova</option>
-							<option value="Monaco">Monaco</option>
-							<option value="Mongolia">Mongolia</option>
-							<option value="Montenegro">Montenegro</option>
-							<option value="Morocco">Morocco</option>
-							<option value="Mozambique">Mozambique</option>
-							<option value="Myanmar">Myanmar</option>
-							<option value="Namibia">Namibia</option>
-							<option value="Nauru">Nauru</option>
-							<option value="Nepal">Nepal</option>
-							<option value="Netherlands">Netherlands</option>
-							<option value="New Zealand">New Zealand</option>
-							<option value="Nicaragua">Nicaragua</option>
-							<option value="Niger">Niger</option>
-							<option value="Nigeria">Nigeria</option>
-							<option value="North Macedonia">North Macedonia</option>
-							<option value="Norway">Norway</option>
-							<option value="Oman">Oman</option>
-							<option value="Pakistan">Pakistan</option>
-							<option value="Palau">Palau</option>
-							<option value="Panama">Panama</option>
-							<option value="Papua New Guinea">Papua New Guinea</option>
-							<option value="Paraguay">Paraguay</option>
-							<option value="Peru">Peru</option>
-							<option value="Philippines">Philippines</option>
-							<option value="Poland">Poland</option>
-							<option value="Portugal">Portugal</option>
-							<option value="Qatar">Qatar</option>
-							<option value="Romania">Romania</option>
-							<option value="Russia">Russia</option>
-							<option value="Rwanda">Rwanda</option>
-							<option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-							<option value="Saint Lucia">Saint Lucia</option>
-							<option value="Saint Vincent and the Grenadines">Saint Vincent and the
-								Grenadines</option>
-							<option value="Samoa">Samoa</option>
-							<option value="San Marino">San Marino</option>
-							<option value="Sao Tome and Principe">Sao Tome and Principe</option>
-							<option value="Saudi Arabia">Saudi Arabia</option>
-							<option value="Senegal">Senegal</option>
-							<option value="Serbia">Serbia</option>
-							<option value="Seychelles">Seychelles</option>
-							<option value="Sierra Leone">Sierra Leone</option>
-							<option value="Singapore">Singapore</option>
-							<option value="Slovakia">Slovakia</option>
-							<option value="Slovenia">Slovenia</option>
-							<option value="Solomon Islands">Solomon Islands</option>
-							<option value="Somalia">Somalia</option>
-							<option value="South Africa">South Africa</option>
-							<option value="South Sudan">South Sudan</option>
-							<option value="Spain">Spain</option>
-							<option value="Sri Lanka">Sri Lanka</option>
-							<option value="Sudan">Sudan</option>
-							<option value="Suriname">Suriname</option>
-							<option value="Sweden">Sweden</option>
-							<option value="Switzerland">Switzerland</option>
-							<option value="Syria">Syria</option>
-							<option value="Taiwan">Taiwan</option>
-							<option value="Tajikistan">Tajikistan</option>
-							<option value="Tanzania">Tanzania</option>
-							<option value="Thailand">Thailand</option>
-							<option value="Timor-Leste">Timor-Leste</option>
-							<option value="Togo">Togo</option>
-							<option value="Tonga">Tonga</option>
-							<option value="Trinidad and Tobago">Trinidad and Tobago</option>
-							<option value="Tunisia">Tunisia</option>
-							<option value="Turkey">Turkey</option>
-							<option value="Turkmenistan">Turkmenistan</option>
-							<option value="Tuvalu">Tuvalu</option>
-							<option value="Uganda">Uganda</option>
-							<option value="Ukraine">Ukraine</option>
-							<option value="United Arab Emirates">United Arab Emirates</option>
-							<option value="United Kingdom">United Kingdom</option>
-							<option value="United States">United States</option>
-							<option value="Uruguay">Uruguay</option>
-							<option value="Uzbekistan">Uzbekistan</option>
-							<option value="Vanuatu">Vanuatu</option>
-							<option value="Vatican City">Vatican City</option>
-							<option value="Venezuela">Venezuela</option>
-							<option value="Vietnam">Vietnam</option>
-							<option value="Yemen">Yemen</option>
-							<option value="Zambia">Zambia</option>
-							<option value="Zimbabwe">Zimbabwe</option>
-                                    </select> -->
+                                        }}</label>
+
                                     <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry" @change="applyFilter(selectedCountry, selectedCity)">
                                         <option selected value="">Country</option>
@@ -1734,15 +1304,8 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
-                                    <!-- <select id="city" class="form-select form-control form-input filter-select"
-                                        v-model="selectedCity"
-                                        @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
-                                        <option value="">Any</option>
-                                        <option value="Petite">Petite</option>
-                                        <option value="2-Litre">2-Litre</option>
-                                    
-                                    </select> -->
+                                        }}</label>
+
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilter(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -1772,31 +1335,7 @@
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
 
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
                                                 :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow"
@@ -1839,12 +1378,7 @@
                                             <br />
                                             <span class="tranc">{{ car.story_history }}</span>
 
-                                            <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                v-if="car.story_history.split(' ').length >= 10"
-                                                @click="openModal(index)">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
                                 </div>
@@ -1860,45 +1394,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :loop="true"
                                                             :loopedSlides="car.images.length" :slidesPerView="1"
@@ -1934,9 +1430,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
-                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                </span></button> -->
+
                                                     </div>
                                                     <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
@@ -1977,9 +1471,7 @@
 
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
-                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p> -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -1996,7 +1488,7 @@
             </div>
             <div v-else-if="activeTab === 2" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here Car Modification/Tuning Shop Content -->
-                <div class="row fixheight">
+                <div class="row">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterCarModificationTunningShopSearch" />
@@ -2041,7 +1533,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2263,7 +1755,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2283,7 +1775,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2505,7 +1997,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2534,33 +2026,7 @@
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
 
-
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
                                                 :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow"
@@ -2602,12 +2068,7 @@
                                             <br />
                                             <span class="tranc">{{ car.story_history }}</span>
 
-                                            <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                v-if="car.story_history.split(' ').length >= 10"
-                                                @click="openModal(index)">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
 
@@ -2624,45 +2085,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :loop="true"
                                                             :loopedSlides="car.images.length"
@@ -2699,9 +2122,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
-                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                </span></button> -->
+
                                                     </div>
                                                     <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
@@ -2740,9 +2161,7 @@
                                                         </p>
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
-                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p> -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -2760,7 +2179,7 @@
             <div v-else-if="activeTab === 3" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here -->
 
-                <div class="row fixheight">
+                <div class="row">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterCarClubSearch" />
@@ -2805,7 +2224,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3027,7 +2446,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3047,7 +2466,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3269,7 +2688,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3298,31 +2717,7 @@
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow"> -->
 
-                                            <!-- <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
 
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
@@ -3367,12 +2762,7 @@
                                             <br />
                                             <span class="tranc">{{ car.story_history }}</span>
 
-                                            <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                v-if="car.story_history.split(' ').length >= 10"
-                                                @click="openModal(index)">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
 
@@ -3389,41 +2779,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
 
-                                                            <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :loop="true"
                                                             :loopedSlides="car.images.length"
@@ -3458,9 +2814,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
-                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                </span></button> -->
+
                                                     </div>
                                                     <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
@@ -3500,9 +2854,7 @@
 
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
-                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p> -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -3519,7 +2871,7 @@
             </div>
             <div v-else-if="activeTab === 4" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here Motorbike Enthusiast Content -->
-                <div class="row fixheight">
+                <div class="row">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterMotorbikeEnthusiastSearch" />
@@ -3564,7 +2916,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3786,7 +3138,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3806,7 +3158,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -4028,7 +3380,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4057,31 +3409,7 @@
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
 
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
                                                 :pagination="{ clickable: true }" :navigation="{
@@ -4127,12 +3455,7 @@
                                             <br />
                                             <span class="tranc">{{ car.story_history }}</span>
 
-                                            <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                v-if="car.story_history.split(' ').length >= 10"
-                                                @click="openModal(index)">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
 
@@ -4149,45 +3472,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :loop="true"
                                                             :loopedSlides="car.images.length"
@@ -4222,9 +3507,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
-                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                </span></button> -->
+
                                                     </div>
                                                     <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
@@ -4264,9 +3547,7 @@
                                                         </p>
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
-                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p> -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -4283,7 +3564,7 @@
             </div>
             <div v-else-if="activeTab === 5" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here -->
-                <div class="row fixheight">
+                <div class="row">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterAutomotivePhotographerSearch" />
@@ -4328,7 +3609,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4550,7 +3831,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4570,7 +3851,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4792,7 +4073,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4821,31 +4102,7 @@
                                     class="card-sorting-content px-3 px-md-3 px-pg-1 py-2 col-md-12 p-1">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
 
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
                                                 :pagination="{ clickable: true }" :navigation="{
@@ -4889,12 +4146,7 @@
                                             <br />
                                             <span class="tranc">{{ car.story_history }}</span>
 
-                                            <!-- Conditionally show "view more" if there are 10 or more words -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                v-if="car.story_history.split(' ').length >= 10"
-                                                @click="openModal(index)">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
                                 </div>
@@ -4910,46 +4162,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :loop="true"
                                                             :loopedSlides="car.images.length"
@@ -4985,9 +4198,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
-                                                        <!-- <button class="btn btn-danger " @click='toggleOverlayOpacity'><span class="" >
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                </span></button> -->
+
                                                     </div>
                                                     <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
@@ -5026,9 +4237,7 @@
                                                         </p>
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
-                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p> -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -5059,9 +4268,9 @@ import icon1 from "@/assets/images/IconAwesome-user-alt.png";
 import icon2 from "@/assets/images/engine.png";
 import icon3 from "@/assets/images/Iconmaterial-email.png";
 import instaIcon from "@/assets/images/ins.png";
-// import 'swiper/css/effect-cards';
+
 import { EffectCards } from "swiper/modules";
-//Import swiper js
+
 import img1 from "@/assets/images/Group12white.png";
 import img2 from "@/assets/images/Path467white.png";
 import img3 from "@/assets/images/Path465white.png";
@@ -5076,17 +4285,13 @@ import actimg5 from "@/assets/images/Path473.png";
 import iconford from "@/assets/images/Imagefordlogo13.png";
 import nextIcon from "@/assets/images/next.png";
 import prevIcon from "@/assets/images/prev.png";
-//Import Swiper styles
-// import "swiper/swiper-bundle.css";
+
 import { Swiper, SwiperSlide } from "swiper/vue";
-// import axios from "axios";
+
 import CarDataService from "@/services/CarDataService";
 import CommunityDataService from "@/services/CommunityDataService";
 import { Pagination, Navigation } from "swiper/modules";
-//Import Swiper modules
-// import { Pagination, Navigation } from 'swiper';
-// Install Swiper modules
-// Swiper.use([Pagination, Navigation])
+
 import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 import FooterSect from "./FooterSect";
@@ -5496,25 +4701,7 @@ export default {
     mounted() {
         this.retrieveCars();
 
-        // Initialize Swiper
-        // this.swiper = new Swiper(".myCarListingCard-swiper-container", {
-        //     // Optional parameters
-        //     effect: "cards",
-        //     slidesPerView: 1,
-        //     spaceBetween: 10,
-        //     loop: true,
-        //     // If you need pagination
-        //     pagination: {
-        //         el: ".swiper-pagination",
-        //         clickable: true,
-        //     },
 
-        //     // Navigation arrows
-        //     navigation: {
-        //         nextEl: ".swiper-button-next",
-        //         prevEl: ".swiper-button-prev",
-        //     },
-        // });
         this.fetchStories();
         // this.fetchFeaturedStories()
         this.fetchCarEnthusiastStories();
@@ -5527,157 +4714,11 @@ export default {
             }
             return parsed;
         },
-        // getImageUrl(image) {
-        //     return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
-        // },
+
         getImageUrl(image) {
             return `${http.defaults.baseURL.replace("/api", "")}/stories/${image}`;
         },
-        // openViewer(image) {
-        //   console.log("in open viewer", image);
-        //   this.isOverlayTransparent = true;
-        //   this.currentImage = this.getImageUrl(image); // Set current image URL
 
-        //   const viewerElement = this.$refs.viewerContainer; // Reference the container
-        //   if (viewerElement) {
-        //     // Destroy any previous instance if it exists to prevent duplication
-        //     if (this.viewerInstance) {
-        //       this.viewerInstance.destroy();
-        //     }
-
-        //     // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-        //     this.$nextTick(() => {
-        //       this.viewerInstance = new Viewer(viewerElement, {
-        //         inline: false, // Set to false for popup mode
-        //         zoomable: true, // Enable zooming functionality
-        //         movable: true, // Enable panning (dragging the image)
-        //         minScale: 1, // Prevent zooming out below 100%
-        //         maxScale: 3, // Limit zoom to 3x
-        //         viewed() {
-        //           // Optional: You can perform actions when the image is viewed
-        //           console.log("Image viewed");
-        //         },
-        //         toolbar: true, // Disable the default toolbar
-        //         zoomOnWheel: true, // Allow zooming with mouse wheel
-        //         fullscreen: false, // Disable fullscreen mode
-        //         title: false, // Disable image title display
-        //         navbar: false, // Disable the navigation bar
-        //         tooltip: false, // Disable tooltips for image actions
-        //         minX: 100, // Minimum X coordinate for panning
-        //         maxX: 200, // Maximum X coordinate
-        //         minY: 0, // Minimum Y coordinate
-        //         maxY: 300, // Maximum Y coordinate
-        //       });
-
-        //       // Show the viewer for the current image
-        //       this.viewerInstance.show();
-        //     });
-        //   }
-        // },
-        // openViewer(image, carimages) {
-        //     console.log("in open viewer", image);
-        //     console.log("car  images", carimages);
-        //     this.isOverlayTransparent = true;
-        //     this.currentImage = this.getImageUrl(image); // Set current image URL
-
-        //     const viewerElement = this.$refs.viewerContainer; // Reference the container
-        //     if (viewerElement) {
-        //         // Destroy any previous instance if it exists to prevent duplication
-        //         if (this.viewerInstance) {
-        //             this.viewerInstance.destroy();
-        //         }
-
-        //         // Create a new array of images, placing the clicked image first
-        //         const images = this.parsedImages(carimages);
-        //         const currentImageUrl = this.getImageUrl(image);
-
-        //         // Create a new array with the clicked image first
-        //         const imageOrder = [currentImageUrl, ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl)];
-
-        //         // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-        //         this.$nextTick(() => {
-        //             this.viewerInstance = new Viewer(viewerElement, {
-        //                 inline: false, // Set to false for popup mode
-        //                 zoomable: true, // Enable zooming functionality
-        //                 movable: true, // Enable panning (dragging the image)
-        //                 minScale: 1, // Prevent zooming out below 100%
-        //                 maxScale: 3, // Limit zoom to 3x
-        //                 viewed() {
-        //                     // Optional: You can perform actions when the image is viewed
-        //                     console.log("Image viewed");
-        //                 },
-        //                 toolbar: true, // Disable the default toolbar
-        //                 zoomOnWheel: true, // Allow zooming with mouse wheel
-        //                 fullscreen: false, // Disable fullscreen mode
-        //                 title: false, // Disable image title display
-        //                 navbar: false, // Disable the navigation bar
-        //                 tooltip: false, // Disable tooltips for image actions
-        //                 minX: 100, // Minimum X coordinate for panning
-        //                 maxX: 200, // Maximum X coordinate
-        //                 minY: 0, // Minimum Y coordinate
-        //                 maxY: 300, // Maximum Y coordinate
-        //             });
-
-        //             // Show the viewer for the current image
-        //             this.viewerInstance.show();
-
-        //             // Add images to the viewer
-        //             this.viewerInstance.addImage(imageOrder);
-        //         });
-        //     }
-        // }
-        // openViewer(image, carimages) {
-        //     console.log("in open viewer", image);
-        //     this.isOverlayTransparent = true;
-        //     this.currentImage = this.getImageUrl(image); // Set current image URL
-
-        //     const viewerElement = this.$refs.viewerContainer; // Reference the container
-        //     if (viewerElement) {
-        //         // Destroy any previous instance if it exists to prevent duplication
-        //         if (this.viewerInstance) {
-        //             this.viewerInstance.destroy();
-        //         }
-
-        //         // Create a new array of images, placing the clicked image first
-        //         const images = this.parsedImages(carimages);
-        //         const currentImageUrl = this.getImageUrl(image);
-
-        //         // Create a new array with the clicked image first
-        //         const imageOrder = [currentImageUrl, ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl)];
-
-        //         // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-        //         this.$nextTick(() => {
-        //             this.viewerInstance = new Viewer(viewerElement, {
-        //                 inline: false, // Set to false for popup mode
-        //                 zoomable: true, // Enable zooming functionality
-        //                 movable: true, // Enable panning (dragging the image)
-        //                 minScale: 1, // Prevent zooming out below 100%
-        //                 maxScale: 3, // Limit zoom to 3x
-        //                 viewed() {
-        //                     // Optional: You can perform actions when the image is viewed
-        //                     console.log("Image viewed");
-        //                 },
-        //                 toolbar: true, // Show the default toolbar
-        //                 zoomOnWheel: true, // Allow zooming with mouse wheel
-        //                 fullscreen: false, // Disable fullscreen mode
-        //                 title: false, // Disable image title display
-        //                 navbar: false, // Disable the navigation bar
-        //                 tooltip: false, // Disable tooltips for image actions
-        //             });
-
-        //             // Now manually add images to the viewer by modifying its data
-        //             this.viewerInstance._images = imageOrder.map(url => {
-        //                 return {
-        //                     src: url,
-        //                     thumb: url // You can change this to a thumbnail if you have one
-        //                 };
-        //             });
-
-        //             // Show the viewer for the current image
-        //             this.viewerInstance.show();
-        //         });
-        //     }
-        // }
         openViewer(image, carImages) {
             this.viewerImages = carImages
             console.log("in open viewer", image);
@@ -5758,43 +4799,6 @@ export default {
                 return tab[imgType];
             }
         },
-        // getcities(country) {
-        //     console.log("in  citeis");
-        //     if (!country) return; // Exit if no country is selected
-
-        //     // Set up the headers and request body
-        //     const myHeaders = new Headers();
-        //     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-        //     const urlencoded = new URLSearchParams();
-        //     urlencoded.append("country", country);
-
-        //     const requestOptions = {
-        //         method: "POST",
-        //         headers: myHeaders,
-        //         body: urlencoded,
-        //         redirect: "follow",
-        //     };
-
-        //     // Fetch cities based on the selected country
-        //     fetch(
-        //         "https://countriesnow.space/api/v0.1/countries/cities",
-        //         requestOptions
-        //     )
-        //         .then((response) => response.json()) // Convert response to JSON
-        //         .then((result) => {
-        //             if (result.data && result.data.length > 0) {
-        //                 this.cities = result.data; // Update cities array with the result
-        //                 console.log(this.cities);
-        //             } else {
-        //                 this.cities = []; // Clear cities if no data is found
-        //             }
-        //         })
-        //         .catch((error) => {
-        //             console.log("error", error);
-        //             this.cities = []; // Clear cities if an error occurs
-        //         });
-        // },
         getcities(country) {
             this.loading = true;
             if (!country) return;  // Exit if no country is selected
@@ -5859,71 +4863,6 @@ export default {
                     break;
             }
         },
-        // async fetchFeaturedStories() {
-        //     try {
-        //         const response = await fetch('https://buzzwaretech.com/adminrev/api/featurestores');
-        //         const data = await response.json();
-
-        //         if (data.success) {
-        //             // Parse the images field from JSON string to an array
-        //             const featured = data.featured;
-        //             featured.images = JSON.parse(featured.images); // Parse the images
-        //             this.featuredStories = [featured]; // Store it in the featuredCars array
-        //         }
-        //     } catch (error) {
-        //         console.error('Error fetching featured stories:', error);
-        //     }
-        // },
-        // async fetchFeaturedStoriesByType(storyType) {
-        //     try {
-        //         const response = await fetch(
-        //             `https://buzzwaretech.com/adminrev/api/featurestores/${storyType}`
-        //         );
-        //         const data = await response.json();
-
-        //         if (data.success) {
-        //             const featured = data.featured;
-        //             featured.images = JSON.parse(featured.images); // Parse the images
-        //             this.featuredStories = [featured]; // Store it in the featuredStories array
-        //         }
-        //     } catch (error) {
-        //         console.error(
-        //             `Error fetching featured stories for ${storyType}:`,
-        //             error
-        //         );
-        //     }
-        // },
-
-        // async fetchFeaturedStoriesByType(storyType) {
-        //     console.log(storyType)
-        //     try {
-
-        //         const response = await fetch(
-        //             `https://backend.revvdout.com/api/stories/featurestores/${storyType}`
-        //         );
-        //         const data = await response.json();
-
-        //         console.log("API Response:", data); // Debugging
-
-        //         if (data.success && data.banner) {
-        //             const featured = data.banner;
-        //             featured.images = featured.images ? JSON.parse(featured.images) : []; // Ensure valid JSON parsing
-        //             this.featuredStories = [featured]; // Store it in the featuredStories array
-        //         } else {
-        //             console.warn(`No featured stories found for ${storyType}`);
-        //             this.featuredStories = []; // Reset if no data
-        //             console.log("in else", this.featuredStories)
-        //         }
-        //     } catch (error) {
-
-        //         this.featuredStories = []; // Reset if no data
-        //         console.error(
-        //             `Error fetching featured stories for ${storyType}:`,
-        //             error
-        //         );
-        //         console.log("in error", this.featuredStories)
-        //     }
-        // }
         async fetchFeaturedStoriesByType(storyType) {
             console.log(storyType);
             try {
@@ -6096,37 +5035,7 @@ export default {
             }
         },
 
-        // getGenerations() {
-        //     // console.log('in generation', "make", this.make, "modal", this.smodel);
-        //     this.formData.year = "";
-        //     CarDataService.getGenerations(this.formData.make, this.formData.model)
-        //         .then((response) => {
-        //             const data = response.data;
-        //             console.log("data is", data);
-        //             this.dataGy = data;
 
-        //             this.GenfilteredOptions = data.filter((item) => {
-        //                 return (
-        //                     item.generation !== "" &&
-        //                     item.generation !== "-" &&
-        //                     item.generation !== "??" &&
-        //                     item.generation !== "?"
-        //                 );
-        //             });
-
-        //             this.generations = [
-        //                 ...new Set(this.GenfilteredOptions.map((item) => item.generation)),
-        //             ];
-        //             this.productionYears = [
-        //                 ...new Set(
-        //                     this.GenfilteredOptions.map((item) => item.production_years)
-        //                 ),
-        //             ];
-        //         })
-        //         .catch((e) => {
-        //             console.log(e);
-        //         });
-        // },
         getGenerations() {
             // Reset year selection
             this.formData.year = "";
@@ -6234,23 +5143,7 @@ export default {
             this.isModalOpen = true;
         },
 
-        // applyFilter(selectedCountry, selectedCity, filterobj) {
-        //     // Logic to filter carGarage based on selectedCountry and selectedCity
-        //     console.log("filterobj", filterobj)
-        //     // Example filter logic:
-        //     const filteredCars = filterobj.filter(car => {
-        //         const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
-        //         const matchesCity = selectedCity ? car.city === selectedCity : true;
-        //         return matchesCountry && matchesCity;
-        //     });
 
-        //     // Update the filteredCars list or perform any other action with the filtered data
-        //     console.log('Filtered Cars:', filteredCars);
-
-        //     // You can assign this.filteredCars or perform any further operations
-        //     filterobj = filteredCars;
-        //     console.log("after filter", filterobj)
-        // },
 
         applyFilterCarGarageSearch() {
             console.log("in apply filter story");
@@ -6561,60 +5454,7 @@ export default {
             }
         },
 
-        //before link updating its working
 
-        // fetchStories() {
-        //     axios
-        //         .get("https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories")
-        //         .then((response) => {
-        //             console.log("stories", response.data);
-        //             const stories = response.data;
-
-        //             // Filter stories by their type and assign them to respective objects
-        //             this.filteredStories.CarEnthusiast = stories.filter(
-        //                 (story) => story.story_type === "carEnthusiast"
-        //             );
-        //             this.filteredStories.CarGarage = stories.filter(
-        //                 (story) => story.story_type === "carGarage"
-        //             );
-        //             this.filteredStories.CarModificationTunningShop = stories.filter(
-        //                 (story) => story.story_type === "carModificationShop"
-        //             );
-        //             this.filteredStories.CarClub = stories.filter(
-        //                 (story) => story.story_type === "carClub"
-        //             );
-        //             this.filteredStories.MotorbikeEnthusiast = stories.filter(
-        //                 (story) => story.story_type === "motorbikeEnthusiast"
-        //             );
-        //             this.filteredStories.AutomotivePhotographer = stories.filter(
-        //                 (story) => story.story_type === "automotivePhotographerast"
-        //             );
-
-        //             console.log("Filtered stories:", this.filteredStories);
-        //             // this.originalCars = this.filteredStories
-        //             this.originalCars.CarEnthusiast = stories.filter(
-        //                 (story) => story.story_type === "carEnthusiast"
-        //             );
-        //             this.originalCars.CarGarage = stories.filter(
-        //                 (story) => story.story_type === "carGarage"
-        //             );
-        //             this.originalCars.CarModificationTunningShop = stories.filter(
-        //                 (story) => story.story_type === "carModificationShop"
-        //             );
-        //             this.originalCars.CarClub = stories.filter(
-        //                 (story) => story.story_type === "carClub"
-        //             );
-        //             this.originalCars.MotorbikeEnthusiast = stories.filter(
-        //                 (story) => story.story_type === "motorbikeEnthusiast"
-        //             );
-        //             this.originalCars.AutomotivePhotographer = stories.filter(
-        //                 (story) => story.story_type === "automotivePhotographerast"
-        //             );
-        //         })
-        //         .catch((error) => {
-        //             console.error("Error fetching stories:", error);
-        //         });
-        // },
         fetchStories() {
             API.get("/stories") // ✅ Use the pre-configured base URL
                 .then((response) => {
@@ -6670,11 +5510,7 @@ export default {
             this.activeCarIndex = null; // Reset the active car index
             this.showFooter = true;
         },
-        // getImage(imagePath, index) {
-        //     return this.activeTab === index
-        //         ? imagePath.replace("white", "")
-        //         : imagePath;
-        // },
+
         goToPage(pageNumber) {
             if (pageNumber >= 1 && pageNumber <= this.totalPages) {
                 this.currentPage = pageNumber;
@@ -6721,60 +5557,7 @@ export default {
     /* border: 1px solid #010101 !important; */
 }
 
-/* .swiper {
-    width: 240px;
-    height: 240px;
-}
 
-.swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.swiper-slide:nth-child(1n) {
-    background-color: rgb(206, 17, 17);
-}
-
-.swiper-slide:nth-child(2n) {
-    background-color: rgb(0, 140, 255);
-}
-
-.swiper-slide:nth-child(3n) {
-    background-color: rgb(10, 184, 111);
-}
-
-.swiper-slide:nth-child(4n) {
-    background-color: rgb(211, 122, 7);
-}
-
-.swiper-slide:nth-child(5n) {
-    background-color: rgb(118, 163, 12);
-}
-
-.swiper-slide:nth-child(6n) {
-    background-color: rgb(180, 10, 47);
-}
-
-.swiper-slide:nth-child(7n) {
-    background-color: rgb(35, 99, 19);
-}
-
-.swiper-slide:nth-child(8n) {
-    background-color: rgb(0, 68, 255);
-}
-
-.swiper-slide:nth-child(9n) {
-    background-color: rgb(218, 12, 218);
-}
-
-.swiper-slide:nth-child(10n) {
-    background-color: rgb(54, 94, 77);
-} */
 .z-0 {
     z-index: 0 !important;
 }
@@ -7206,10 +5989,5 @@ form-select {
 .custom-swiper-navigation {
     position: relative;
     top: 6rem
-}
-
-.fixheight {
-    height: 500px;
-    overflow: auto;
 }
 </style>
