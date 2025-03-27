@@ -476,7 +476,7 @@
             <!-- Tab Content -->
             <div v-if="activeTab === 0" :class="isModalOpenFe ? 'z-0 position-relative ' : ''"
                 style="overflow-x:hiddens">
-                <div class="row fixheight">
+                <div class="row ">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search"
                             v-model="search" @input="applyFiltercarSearch" />
@@ -691,52 +691,13 @@
                                     v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <div v-for="(car, index) in this.filteredStories?.CarEnthusiast || []" :key="index"
+                            <!-- <div v-for="(car, index) in this.filteredStories?.CarEnthusiast || []" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                     @click="openModal(index)">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
 
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in ((parsedImages(car.images)?.length ?? 0) > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : (parsedImages(car.images) ?? []))" :key="idx">
-
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide>
-
-                                            </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :slidesPerView="1" :spaceBetween="10" :loop="true"
                                                 :loopedSlides="car.images.length" class="mySwiper swiper-no-shadow"
@@ -759,7 +720,7 @@
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 " @click="openModal(index)">
-                                            <!-- {{ car.make }}:{{ car.model }} -->
+
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
@@ -778,16 +739,12 @@
                                             <br />
                                             <span class="tranc dd">{{ car.story }}</span>
 
-                                            <!-- Conditionally show "view more" if car.story has 10 or more words -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                v-if="car.story.split(' ').length >= 10" @click="openModal(index)">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
                                 </div>
 
-                                <!-- Modal -->
+
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
                                     v-if="isModalOpen && activeCarIndex === index">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -799,45 +756,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :loop="true"
                                                             :loopedSlides="car.images.length" :slidesPerView="1"
@@ -932,57 +851,169 @@
 
 
                                                     </div>
-                                                    <!-- <p class="view-more-a-tag ms-2" style="cursor: pointer" @click="showMore[index] = !showMore[index]">
-                  {{ showMore[index] ? $t("showLess") : $t("viewMore") }}
-                </p> -->
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+                            <div class="car-stories-container">
+                                <RecycleScroller class="scroller" ref="scroller"
+                                    :items="filteredStories?.CarEnthusiast || []" :item-size="150" :min-item-size="120"
+                                    :buffer="800" key-field="id" v-slot="{ item: car, index }" page-mode
+                                    @update="handleScrollUpdate" @resize="handleScrollerResize">
+                                    <div :class="['car-story-item', { 'full-card': !isScrolling, 'z-2': isModalOpen && activeCarIndex === index }]"
+                                        :style="{ height: isScrolling ? '300px' : 'auto' }">
 
-                            <!-- Modal -->
-                            <!-- <div class="modal show d-block" tabindex="-1" role="dialog"
-                                    v-if="isModalOpen && activeCarIndex === index">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body text-center">
-                                                <span class="close-icon" @click="modalClose">
-                                                    <i class="fas fa-times"></i>
-                                                </span>
+                                        <!-- Card Content -->
+                                        <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
+                                            @click="openModal(index)">
+                                            <div class="main-slider weekly-slider align-items-center">
+                                                <div class="swiper-container myCarListingCard-swiper-container">
+                                                    <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        :initialSlide="1" :slidesPerView="1" :spaceBetween="10"
+                                                        :loop="true" :loopedSlides="car.images.length"
+                                                        class="mySwiper swiper-no-shadow"
+                                                        v-if="car.images && car.images.length">
+                                                        <swiper-slide class="swiper-no-shadow"
+                                                            v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                            :key="idx">
+                                                            <div class="d-block">
+                                                                <img loading="lazy" :src="image"
+                                                                    class="slider-img myCarListingCard-img" alt="car"
+                                                                    width="300" height="200" />
+                                                            </div>
+                                                        </swiper-slide>
+                                                    </swiper>
+                                                    <span class="swiper-notification" aria-live="assertive"
+                                                        aria-atomic="true"></span>
+                                                </div>
+                                                <img loading="lazy" :src="iconford" class="d-none" alt="" />
+                                            </div>
 
-                                                <div class="mt-4 py-2">
-                                                    <div class="swiper-container myCarListingCard-swiper-container">
-                                                        <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" class="mySwiper swiper-no-shadow">
+                                            <div class="card-content-car">
+                                                <h4 class="text-white mb-1" @click="openModal(index)">
+                                                    {{ car.story_name }}
+                                                </h4>
+                                                <ul
+                                                    class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
+                                                    <li class="list-item-user mb-0 justify-content-start">
+                                                        <img loading="lazy" :src="instaIcon" class="instaIcon"
+                                                            width="20" height="20" />
+                                                        <a :href="'https://www.instagram.com/' + car.social_media"
+                                                            class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
+                                                            target="_blank" rel="noopener noreferrer">
+                                                            @{{ car.social_media }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <p class="text-white mt-0 mb-0 text-wrap" style="font-size: 14px"
+                                                    @click="openModal(index)">
+                                                    <span class="text-orange">What's the story behind your
+                                                        car?</span>
+                                                    <br />
+                                                    <span class="tranc dd">{{ car.story }}</span>
+                                                </p>
+                                            </div>
+                                        </div>
 
-                                                            <swiper-slide class="swiper-no-shadow"
-                                                                v-for="(image, idx) in car.images" :key="idx">
-                                                                <router-link class="d-block"
-                                                                    :to="`/carListing${index + 1}`">
-                                                                    <h1 class="text-white">{{ image }}</h1>
-                                                                    <img loading="lazy" :src=" image
-                                                                        " class="slider-img myCarListingCard-img"
-                                                                        alt="car" />
-                                                                </router-link>
-                                                            </swiper-slide>
-                                                        </swiper>
-                                                        <span class="swiper-notification" aria-live="assertive"
-                                                            aria-atomic="true"></span>
+                                        <!-- Modal -->
+                                        <div class="modal show d-block" tabindex="-1" role="dialog"
+                                            v-if="isModalOpen && activeCarIndex === index" v-once>
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                        <span class="close-icon" @click="modalClose">
+                                                            <i class="fas fa-times"></i>
+                                                        </span>
+
+                                                        <div class="mt-4 py-2">
+                                                            <div class="myCarListingCard-swiper-container">
+                                                                <swiper :effect="'cards'" :grabCursor="true"
+                                                                    :modules="modules" :initialSlide="1" :loop="true"
+                                                                    :loopedSlides="car.images.length" :slidesPerView="1"
+                                                                    :spaceBetween="10" :pagination="{ clickable: true }"
+                                                                    :navigation="{
+                                                                        nextEl: '.custom-next',
+                                                                        prevEl: '.custom-prev',
+                                                                    }" class="mySwiper swiper-no-shadow modalswipper"
+                                                                    v-if="car.images && car.images.length">
+                                                                    <swiper-slide
+                                                                        class="swiper-no-shadow modalswippersh"
+                                                                        v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                                        :key="idx">
+                                                                        <div class="d-block">
+                                                                            <img loading="lazy" :src="image"
+                                                                                class="slider-img myCarListingCard-img modalswipperImage"
+                                                                                alt="car"
+                                                                                @click="openViewer(image, car.images)"
+                                                                                width="500" height="300" />
+                                                                        </div>
+                                                                    </swiper-slide>
+                                                                </swiper>
+                                                                <span class="swiper-notification" aria-live="assertive"
+                                                                    aria-atomic="true"></span>
+                                                            </div>
+
+                                                            <div
+                                                                class="custom-swiper-navigation gap-8 justify-content-center d-flex">
+                                                                <button class="custom-prev btn">
+                                                                    <img loading="lazy" :src="prevIcon" alt="Previous"
+                                                                        width="30" height="30" />
+                                                                </button>
+                                                                <button class="custom-next btn">
+                                                                    <img loading="lazy" :src="nextIcon" alt="Next"
+                                                                        width="30" height="30" />
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="overlay mt-5"
+                                                                :class="{ '': isOverlayTransparent }"
+                                                                @click="toggleOverlayOpacity">
+                                                                <div
+                                                                    class="mt-2 d-flex justify-content-between align-items-center mb-2">
+                                                                    <div class="d-flex align-items-center gap-2">
+                                                                        <img loading="lazy" :src="iconford"
+                                                                            class="d-none" alt="" />
+                                                                        <h3 class="m-0 text-white fontsiz">
+                                                                            {{ car.story_name }}
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="d-flex align-items-center text-white mt-2">
+                                                                    <img loading="lazy" :src="instaIcon"
+                                                                        class="instaIcon" width="20" height="20" />
+                                                                    <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                        class="a-tag-name-user mt-2 mb-2"
+                                                                        style="font-size: 14px" target="_blank"
+                                                                        rel="noopener noreferrer">
+                                                                        @{{ car.social_media }}
+                                                                    </a>
+                                                                </div>
+
+                                                                <!-- Rest of your modal content -->
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start">
+                                                                    What's the story behind your car?
+                                                                </p>
+                                                                <p class="text-white"
+                                                                    style="font-size: 14px; text-align: start">
+                                                                    {{ car.story }}
+                                                                </p>
+                                                                <!-- ... other modal sections ... -->
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <p class="card-title text-white">
-                                                        {{ car.story_name }} <span></span>
-                                                        {{ car.story_type }}
-                                                    </p>
-                                                    <p class="text-white">{{ car.advice }}</p>
-                                                    <p class="text-white">{{ car.modifications }}</p>
-                                                    <p class="text-white">{{ car.memorable }}</p>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                </div> -->
+                                </RecycleScroller>
+                            </div>
+
                         </div>
 
                         <!-- end template -->
@@ -1013,7 +1044,7 @@
             </div>
 
             <div v-else-if="activeTab === 1" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
-                <div class="row fixheight">
+                <div class="row ">
                     <div class="col-md-12 mb-2 m-0">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterCarGarageSearch" />
@@ -1058,7 +1089,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1283,7 +1314,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1961,14 +1992,16 @@
                                                         </div>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            style="font-size: 14px; text-align: start">Tell us
+                                                            your
                                                             Garage story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            style="font-size: 14px; text-align: start">Any
+                                                            unforgettable
                                                             memory, event or story you can share with us?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
@@ -1996,7 +2029,7 @@
             </div>
             <div v-else-if="activeTab === 2" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here Car Modification/Tuning Shop Content -->
-                <div class="row fixheight">
+                <div class="row ">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterCarModificationTunningShopSearch" />
@@ -2725,14 +2758,16 @@
                                                             </a>
                                                         </div>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your shop
+                                                            style="font-size: 14px; text-align: start">Tell us
+                                                            your shop
                                                             story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            style="font-size: 14px; text-align: start">Any
+                                                            unforgettable
                                                             memory, event or story you can share with us?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
@@ -2760,7 +2795,7 @@
             <div v-else-if="activeTab === 3" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here -->
 
-                <div class="row fixheight">
+                <div class="row ">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterCarClubSearch" />
@@ -2805,7 +2840,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3027,7 +3062,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3484,14 +3519,16 @@
                                                             </a>
                                                         </div>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your club
+                                                            style="font-size: 14px; text-align: start">Tell us
+                                                            your club
                                                             story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            style="font-size: 14px; text-align: start">Any
+                                                            unforgettable
                                                             memory, event or story you can share with us?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
@@ -3519,7 +3556,7 @@
             </div>
             <div v-else-if="activeTab === 4" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here Motorbike Enthusiast Content -->
-                <div class="row fixheight">
+                <div class="row ">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterMotorbikeEnthusiastSearch" />
@@ -4248,7 +4285,8 @@
                                                             </a>
                                                         </div>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            style="font-size: 14px; text-align: start">Tell us
+                                                            your
                                                             Motorbike story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
@@ -4256,7 +4294,8 @@
                                                         </p>
 
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            style="font-size: 14px; text-align: start">Any
+                                                            unforgettable
                                                             memory, event or story you can share with us?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
@@ -4283,7 +4322,7 @@
             </div>
             <div v-else-if="activeTab === 5" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here -->
-                <div class="row fixheight">
+                <div class="row ">
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
                             @input="applyFilterAutomotivePhotographerSearch" />
@@ -4328,7 +4367,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                                }}</label>
+                                            }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4550,7 +4589,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                                }}</label>
+                                            }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -5011,14 +5050,16 @@
                                                             </a>
                                                         </div>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Tell us your
+                                                            style="font-size: 14px; text-align: start">Tell us
+                                                            your
                                                             Automotive Photography story & how it all started</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
                                                             {{ car.story_history }}
                                                         </p>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start">Any unforgettable
+                                                            style="font-size: 14px; text-align: start">Any
+                                                            unforgettable
                                                             memory, event or story you can share with us?</p>
                                                         <p class="text-white"
                                                             style="font-size: 14px; text-align: start">
@@ -5091,12 +5132,16 @@ import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 import FooterSect from "./FooterSect";
 import http from "@/http-common";
+import { RecycleScroller } from 'vue3-virtual-scroller'
+import 'vue3-virtual-scroller/dist/vue3-virtual-scroller.css'
 export default {
     name: "FeaturedStories",
     components: {
         Swiper,
         SwiperSlide,
-        FooterSect
+        FooterSect,
+        RecycleScroller
+
     },
     setup() {
         return {
@@ -5105,6 +5150,11 @@ export default {
     },
     data() {
         return {
+            // extra data for recycle scroller
+            visibleRange: { start: 0, end: 0 },
+            itemHeights: {},
+            //end extra data for recycle scroller
+
             showFooter: true,
             isModalOpenFe: false,
             showMore: {},
@@ -5484,6 +5534,12 @@ export default {
         };
     },
     computed: {
+        // extra for recycle scroller
+        calculateItemSize() {
+            // Return average or default size
+            return 150 // Adjust based on your typical card height
+        },
+        // extra for recycle scroller
         totalPages() {
             return Math.ceil(this.cars.length / this.pageSize);
         },
@@ -5494,6 +5550,13 @@ export default {
         },
     },
     mounted() {
+
+        // for recycle scrolbar
+
+        this.calculateInitialHeights()
+        window.addEventListener('resize', this.handleResize)
+        // endrecycle scrollbr
+
         this.retrieveCars();
 
         // Initialize Swiper
@@ -5519,7 +5582,64 @@ export default {
         // this.fetchFeaturedStories()
         this.fetchCarEnthusiastStories();
     },
+    // for recycle scrollbar
+    beforeUnmount() {
+        window.removeEventListener('resize', this.handleResize)
+    },
+    // end for recycle scrollbar
     methods: {
+
+        // extra metods for recycle scrller
+        handleScrollUpdate(startIndex, endIndex) {
+            this.visibleRange = { start: startIndex, end: endIndex }
+            this.updateItemHeights()
+        },
+        handleScrollerResize() {
+            // Use the correct method name based on your version:
+
+            // For vue-virtual-scroller@next (Vue 3):
+            this.$refs.scroller?.$forceUpdate()
+
+            // For vue3-virtual-scroller:
+            // this.$refs.scroller?.updateVisibleItems()
+
+            // Alternative that works with most versions:
+            if (this.$refs.scroller) {
+                if (typeof this.$refs.scroller.reset === 'function') {
+                    this.$refs.scroller.reset()
+                } else if (typeof this.$refs.scroller.$forceUpdate === 'function') {
+                    this.$refs.scroller.$forceUpdate()
+                } else if (typeof this.$refs.scroller.updateVisibleItems === 'function') {
+                    this.$refs.scroller.updateVisibleItems()
+                }
+            }
+        },
+        calculateInitialHeights() {
+            // Set initial heights based on your card structure
+            const defaultHeight = 450 // Your average card height
+            this.filteredStories?.CarEnthusiast?.forEach((_, index) => {
+                this.itemHeights[index] = defaultHeight
+            })
+        },
+        updateItemHeights() {
+            // Update heights for visible items
+            requestAnimationFrame(() => {
+                const items = this.$refs.items
+                if (!items) return
+
+                Array.isArray(items) ? items : [items].forEach(el => {
+                    const index = parseInt(el.dataset.index)
+                    if (index >= this.visibleRange.start && index <= this.visibleRange.end) {
+                        this.itemHeights[index] = el.clientHeight
+                    }
+                })
+            })
+        },
+        handleResize() {
+            // this.$refs.scroller.reset()
+            this.updateItemHeights()
+        },
+        // end extrra for recycle scroller
         reorderedImages(images) {
             let parsed = this.parsedImages(images) || [];
             if (parsed.length > 1) {
@@ -7211,5 +7331,50 @@ form-select {
 .fixheight {
     height: 500px;
     overflow: auto;
+}
+
+/* extrea css for recycle scroller */
+.car-stories-container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.scroller {
+    height: 100%;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.car-story-item {
+    margin-bottom: 16px;
+    transition: height 0.2s ease;
+}
+
+.card-placeholder {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+.full-card {
+    /* Your existing card styles */
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Force hardware acceleration */
+.swiper-slide {
+    transform: translateZ(0);
 }
 </style>
