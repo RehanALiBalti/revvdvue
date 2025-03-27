@@ -591,7 +591,7 @@
 
                             </div>
                             <div v-for="(car, index) in this.filteredStories?.carEnthusiast || []" :key="index"
-                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'"  >
+                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'"   v-memo="[car.id, car.story_name, car.images?.[0]]">
                                 <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                     @click="openModal(index)">
                                     <div class="main-slider weekly-slider align-items-center">
