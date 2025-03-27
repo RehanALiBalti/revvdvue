@@ -764,7 +764,7 @@
 
                         <!-- end template -->
                     </div>
-
+                    <div v-if="isLoading" class="loading">Loading...</div>
                     <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
                         <ul class="pagination">
                             <li class="page-item" :class="{ disabled: currentPage === 1 }">
