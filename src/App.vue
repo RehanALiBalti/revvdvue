@@ -86,7 +86,7 @@
     <vue-particles color="#dedede" particleOpacity="1" :particlesNumber="pNum" shapeType="circle" particleSize="4"
       linesColor="#dedede" linesWidth="1" lineLinked="true" moveSpeed="3" hoverEffect="true" hoverMode="grab"
       clickEffect="true" clickMode="push"
-      v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy' && $route.path !== '/cookies' && $route.path !== '/map' && $route.path !== '/map2' && $route.path !== '/map3'" />
+      v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy' && $route.path !== '/cookies' && $route.path !== '/map' && $route.path !== '/map2' && $route.path !== '/map3' && $route.path !== '/newstories'" />
 
   </div>
   <div class="min-h-80vh ">
