@@ -1,5 +1,5 @@
 <template>
-    <section class="community-section height-control-scroll">
+    <section class="community-section height-control-scroll" data-scroll-container>
         <div class="container">
             <!-- Tabs -->
             <div class="row mb-2">
@@ -377,7 +377,7 @@
             <!-- Tab Content -->
             <div v-if="activeTab === 0" :class="isModalOpenFe ? 'z-0 position-relative ' : ''"
                 style="overflow-x:hiddens">
-                <div class="row">
+                <div class="row" data-scroll-section>
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search"
                             v-model="search" @input="applyFiltercarSearch" />
@@ -764,7 +764,7 @@
 
                         <!-- end template -->
                     </div>
-                    <div v-if="isLoading" class="loading fs-1 text-white text-center">Loading...</div>
+                    <div v-if="isLoading" class="loading fs-1 text-white">Loading...</div>
                     <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
                         <ul class="pagination">
                             <li class="page-item" :class="{ disabled: currentPage === 1 }">
@@ -834,6 +834,7 @@ import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 import FooterSect from "./FooterSect";
 import http from "@/http-common";
+import LocomotiveScroll from 'locomotive-scroll';
 export default {
     name: "FeaturedStories",
     components: {
@@ -1247,6 +1248,10 @@ export default {
         },
     },
     mounted() {
+        this.scroll = new LocomotiveScroll({
+            el: document.querySelector("[data-scroll-container]"),
+            smooth: true
+        });
         this.retrieveCars();
 
 
@@ -1254,6 +1259,9 @@ export default {
         window.addEventListener('scroll', this.handleScroll);
         // this.fetchFeaturedStories()
         this.fetchCarEnthusiastStories();
+    },
+    beforeUnmount() {
+        this.scroll.destroy(); // Clean up when component is destroyed
     },
     methods: {
         reorderedImages(images) {
