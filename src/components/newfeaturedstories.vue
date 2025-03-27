@@ -1,5 +1,5 @@
 <template>
-    <section class="community-section">
+    <section class="community-section height-control-scroll">
         <div class="container">
             <!-- Tabs -->
             <div class="row mb-2">
@@ -2625,5 +2625,10 @@ form-select {
     will-change: transform;
     backface-visibility: hidden;
     perspective: 1000px;
+}
+
+.height-control-scroll {
+    height: 100vh;
+    overflow: auto
 }
 </style>
