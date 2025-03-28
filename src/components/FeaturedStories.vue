@@ -1,38 +1,9 @@
 <template>
-    <section class="community-section">
+    <section class="community-section height-control-scroll" data-scroll-container>
         <div class="container">
             <!-- Tabs -->
             <div class="row mb-2">
-                <!-- <div v-for="(tab, index) in tabs" :key="index"
-                    :class="['col-6 col-md-2 my-2 my-md-1', { 'active-tab': activeTab === index }]"
-                    @click="handleTabClick(index, tab.name)">
-                    <div class="btn-div-create-forum position-relative" :class="[
-                        'w-100',
-                        {
-                            'btn-active': activeTab === index,
-                            'btn-inactive': activeTab !== index,
-                        },
-                    ]">
-                        <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img1, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img2, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span
-                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img3, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="signin-btnli">{{ tab.name }}</span>
-                        <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img4, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="border-bottom-btn position-absolute">
-                            <img loading="lazy" :src="getImage(tab.img5, index)" class="img-border position-absolute" alt="" />
-                        </span>
-                    </div>
-                </div> -->
-                <!-- offcanvas -->
+
 
 
                 <div class="col-md-12 d-block d-md-none">
@@ -176,30 +147,11 @@
                                     @click="openModalFe">
                                     <div class="main-slider weekly-slider align-items-center">
                                         <div class="swiper-container myCarListingCard-swiper-container">
-                                            <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow">
-                                                <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in parsedImages(car.images)" :key="idx">
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image
-                                                            " class="slider-img myCarListingCard-img" alt="car" />
-                                                    </div>
-                                                </swiper-slide>
-                                            </swiper> -->
+
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow"
                                                 v-if="car.images && car.images.length">
-                                                <!-- 
-                                                <swiper-slide class="swiper-no-shadow" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                    ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                    : parsedImages(car.images))" :key="idx">
 
-                                                    <div class="d-block">
-                                                        <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
-                                                            alt="car" />
-                                                    </div>
-
-                                                </swiper-slide> -->
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
                                                     :key="idx">
@@ -218,12 +170,7 @@
                                         <img loading="lazy" :src="iconford" class="d-none" alt="" />
                                     </div>
                                     <div class="card-content-car">
-                                        <!-- <h4 class="text-white mb-1" v-if="car.make && car.model">
-                                            {{ car.make }}:{{ car.model }}
-                                        </h4>
-                                        <h4 class="text-white mb-1" v-else>
-                                            {{ car.country }}:{{ car.city }}
-                                        </h4> -->
+
                                         <h4 class="text-white mb-1">
                                             {{ car.story_name }}
                                         </h4>
@@ -257,11 +204,7 @@
                                             <br />
                                             <span class="tranc" v-if="car.story">{{ car.story }}</span>
                                             <span class="tranc" v-else>{{ car.story_history }}</span>
-                                            <!-- <span v-else>{{ car.story_history }}</span> -->
-                                            <!-- <span class="view-more-a-tag ms-2" style="cursor: pointer"
-                                                @click="openModalFe">
-                                                {{ $t("viewMore") }}
-                                            </span> -->
+
                                         </p>
                                     </div>
 
@@ -278,45 +221,7 @@
 
                                                 <div class="mt-4 py-2">
                                                     <div class="myCarListingCard-swiper-container">
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in parsedImages(car.images)"
-                                                                :key="idx">
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image
-                                                                        "
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-                                                            </swiper-slide>
-                                                        </swiper> -->
-                                                        <!-- <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                            :initialSlide="1" :pagination="{ clickable: true }"
-                                                            :navigation="{
-                                                                nextEl: '.custom-next',
-                                                                prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
 
-                                                            <swiper-slide class="swiper-no-shadow modalswippersh" v-for="(image, idx) in (parsedImages(car.images).length > 1
-                                                                ? [parsedImages(car.images)[1], parsedImages(car.images)[0], ...parsedImages(car.images).slice(2)]
-                                                                : parsedImages(car.images))" :key="idx">
-
-                                                                <div class="d-block">
-                                                                    <img loading="lazy" :src="image"
-                                                                        class="slider-img myCarListingCard-img modalswipperImage"
-                                                                        alt="car"
-                                                                        @click="openViewer(image, car.images)" />
-                                                                </div>
-
-                                                            </swiper-slide>
-
-                                                        </swiper> -->
                                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                             :initialSlide="1" :slidesPerView="1" :loop="true"
                                                             :loopedSlides="car.images.length"
@@ -350,11 +255,7 @@
                                                             <img loading="lazy" :src="nextIcon" alt="" />
                                                         </button>
                                                     </div>
-                                                    <!-- <div class="d-flex justify-content-end" v-if="isOverlayTransparent">
-                                                        <button class="btn btn-danger" @click="toggleOverlayOpacity">
-                                                            <span class=""><i class="fa-solid fa-xmark"></i></span>
-                                                        </button>
-                                                    </div> -->
+
                                                     <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
                                                         @click="toggleOverlayOpacity">
                                                         <div
@@ -476,7 +377,7 @@
             <!-- Tab Content -->
             <div v-if="activeTab === 0" :class="isModalOpenFe ? 'z-0 position-relative ' : ''"
                 style="overflow-x:hiddens">
-                <div class="row ">
+                <div class="row" data-scroll-section>
                     <div class="col-md-12 mb-2">
                         <input type="text" class="form-control formSearch mb-2 mb-2" placeholder="search"
                             v-model="search" @input="applyFiltercarSearch" />
@@ -587,7 +488,7 @@
                                                     v-if="GenfilteredOptions.length > 0">
                                                     <li v-for="(value, index) in GenfilteredOptions" :key="index"
                                                         @click="updateModels(value), (this.isOpeng = false)">
-                                                        <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+
                                                         {{ value.production_years.split(" ")[0] }}
                                                         <span v-if="value.production_years.split(' ')[1]">({{
                                                             value.production_years.split(" ")[1] }})</span>
@@ -667,7 +568,7 @@
                                         <ul v-show="isOpeng" class="options-list" v-if="GenfilteredOptions.length > 0">
                                             <li v-for="(value, index) in GenfilteredOptions" :key="index"
                                                 @click="updateModels(value), (this.isOpeng = false)">
-                                                <!-- {{ value.production_years.split(' ')[0] }} ({{ value.production_years.split(' ')[1] }}) -->
+
                                                 {{ value.production_years.split(" ")[0] }}
                                                 <span v-if="value.production_years.split(' ')[1]">({{
                                                     value.production_years.split(" ")[1] }})</span>
@@ -678,12 +579,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="filter-image-div my-4">
-                            <img loading="lazy" src="@/assets/images/Image18.png" class="img-fluid filter-image" alt="Image" />
-                        </div> -->
+
                     </div>
                     <div class="col-md-9 px-4">
-                        <div class="row">
+                        <div class="row stories-container">
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
                                 <img loading="lazy" :src="currentImage" alt="Current Image for Viewing" />
@@ -691,8 +590,9 @@
                                     v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <!-- <div v-for="(car, index) in this.filteredStories?.CarEnthusiast || []" :key="index"
-                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
+                            <div v-for="(car, index) in this.filteredStories?.carEnthusiast || []" :key="index"
+                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'"
+                                v-memo="[car.id, car.story_name, car.images?.[0]]">
                                 <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                     @click="openModal(index)">
                                     <div class="main-slider weekly-slider align-items-center">
@@ -720,7 +620,7 @@
                                     </div>
                                     <div class="card-content-car">
                                         <h4 class="text-white mb-1 " @click="openModal(index)">
-
+                                            <!-- {{ car.make }}:{{ car.model }} -->
                                             {{ car.story_name }}
                                         </h4>
                                         <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
@@ -744,7 +644,7 @@
                                     </div>
                                 </div>
 
-
+                                <!-- Modal -->
                                 <div class="modal show d-block" tabindex="-1" role="dialog"
                                     v-if="isModalOpen && activeCarIndex === index">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -857,162 +757,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
-                            <div class="car-stories-container">
-                                <RecycleScroller class="scroller" ref="scroller"
-                                    :items="filteredStories?.CarEnthusiast || []" :item-size="150" :min-item-size="120"
-                                    :buffer="800" key-field="id" v-slot="{ item: car, index }" page-mode
-                                    @update="handleScrollUpdate" @resize="handleScrollerResize">
-                                    <div :class="['car-story-item', { 'full-card': !isScrolling, 'z-2': isModalOpen && activeCarIndex === index }]"
-                                        :style="{ height: isScrolling ? '300px' : 'auto' }">
-
-                                        <!-- Card Content -->
-                                        <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
-                                            @click="openModal(index)">
-                                            <div class="main-slider weekly-slider align-items-center">
-                                                <div class="swiper-container myCarListingCard-swiper-container">
-                                                    <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                        :initialSlide="1" :slidesPerView="1" :spaceBetween="10"
-                                                        :loop="true" :loopedSlides="car.images.length"
-                                                        class="mySwiper swiper-no-shadow"
-                                                        v-if="car.images && car.images.length">
-                                                        <swiper-slide class="swiper-no-shadow"
-                                                            v-for="(image, idx) in reorderedImages(car.images) || []"
-                                                            :key="idx">
-                                                            <div class="d-block">
-                                                                <img loading="lazy" :src="image"
-                                                                    class="slider-img myCarListingCard-img" alt="car"
-                                                                    width="300" height="200" />
-                                                            </div>
-                                                        </swiper-slide>
-                                                    </swiper>
-                                                    <span class="swiper-notification" aria-live="assertive"
-                                                        aria-atomic="true"></span>
-                                                </div>
-                                                <img loading="lazy" :src="iconford" class="d-none" alt="" />
-                                            </div>
-
-                                            <div class="card-content-car">
-                                                <h4 class="text-white mb-1" @click="openModal(index)">
-                                                    {{ car.story_name }}
-                                                </h4>
-                                                <ul
-                                                    class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
-                                                    <li class="list-item-user mb-0 justify-content-start">
-                                                        <img loading="lazy" :src="instaIcon" class="instaIcon"
-                                                            width="20" height="20" />
-                                                        <a :href="'https://www.instagram.com/' + car.social_media"
-                                                            class="a-tag-name-user mt-2 mb-2" style="font-size: 14px"
-                                                            target="_blank" rel="noopener noreferrer">
-                                                            @{{ car.social_media }}
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                                <p class="text-white mt-0 mb-0 text-wrap" style="font-size: 14px"
-                                                    @click="openModal(index)">
-                                                    <span class="text-orange">What's the story behind your
-                                                        car?</span>
-                                                    <br />
-                                                    <span class="tranc dd">{{ car.story }}</span>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- Modal -->
-                                        <div class="modal show d-block" tabindex="-1" role="dialog"
-                                            v-if="isModalOpen && activeCarIndex === index" v-once>
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body text-center">
-                                                        <span class="close-icon" @click="modalClose">
-                                                            <i class="fas fa-times"></i>
-                                                        </span>
-
-                                                        <div class="mt-4 py-2">
-                                                            <div class="myCarListingCard-swiper-container">
-                                                                <swiper :effect="'cards'" :grabCursor="true"
-                                                                    :modules="modules" :initialSlide="1" :loop="true"
-                                                                    :loopedSlides="car.images.length" :slidesPerView="1"
-                                                                    :spaceBetween="10" :pagination="{ clickable: true }"
-                                                                    :navigation="{
-                                                                        nextEl: '.custom-next',
-                                                                        prevEl: '.custom-prev',
-                                                                    }" class="mySwiper swiper-no-shadow modalswipper"
-                                                                    v-if="car.images && car.images.length">
-                                                                    <swiper-slide
-                                                                        class="swiper-no-shadow modalswippersh"
-                                                                        v-for="(image, idx) in reorderedImages(car.images) || []"
-                                                                        :key="idx">
-                                                                        <div class="d-block">
-                                                                            <img loading="lazy" :src="image"
-                                                                                class="slider-img myCarListingCard-img modalswipperImage"
-                                                                                alt="car"
-                                                                                @click="openViewer(image, car.images)"
-                                                                                width="500" height="300" />
-                                                                        </div>
-                                                                    </swiper-slide>
-                                                                </swiper>
-                                                                <span class="swiper-notification" aria-live="assertive"
-                                                                    aria-atomic="true"></span>
-                                                            </div>
-
-                                                            <div
-                                                                class="custom-swiper-navigation gap-8 justify-content-center d-flex">
-                                                                <button class="custom-prev btn">
-                                                                    <img loading="lazy" :src="prevIcon" alt="Previous"
-                                                                        width="30" height="30" />
-                                                                </button>
-                                                                <button class="custom-next btn">
-                                                                    <img loading="lazy" :src="nextIcon" alt="Next"
-                                                                        width="30" height="30" />
-                                                                </button>
-                                                            </div>
-
-                                                            <div class="overlay mt-5"
-                                                                :class="{ '': isOverlayTransparent }"
-                                                                @click="toggleOverlayOpacity">
-                                                                <div
-                                                                    class="mt-2 d-flex justify-content-between align-items-center mb-2">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img loading="lazy" :src="iconford"
-                                                                            class="d-none" alt="" />
-                                                                        <h3 class="m-0 text-white fontsiz">
-                                                                            {{ car.story_name }}
-                                                                        </h3>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="d-flex align-items-center text-white mt-2">
-                                                                    <img loading="lazy" :src="instaIcon"
-                                                                        class="instaIcon" width="20" height="20" />
-                                                                    <a :href="'https://www.instagram.com/' + car.social_media"
-                                                                        class="a-tag-name-user mt-2 mb-2"
-                                                                        style="font-size: 14px" target="_blank"
-                                                                        rel="noopener noreferrer">
-                                                                        @{{ car.social_media }}
-                                                                    </a>
-                                                                </div>
-
-                                                                <!-- Rest of your modal content -->
-                                                                <p class="text-orange"
-                                                                    style="font-size: 14px; text-align: start">
-                                                                    What's the story behind your car?
-                                                                </p>
-                                                                <p class="text-white"
-                                                                    style="font-size: 14px; text-align: start">
-                                                                    {{ car.story }}
-                                                                </p>
-                                                                <!-- ... other modal sections ... -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </RecycleScroller>
                             </div>
+
 
                         </div>
 
@@ -1042,7 +788,6 @@
                     </nav>
                 </div>
             </div>
-
             <div v-else-if="activeTab === 1" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <div class="row ">
                     <div class="col-md-12 mb-2 m-0">
@@ -1797,7 +1542,7 @@
                                     v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <div class="" v-for="(car, index) in this.filteredStories?.CarGarage || []" :key="index"
+                            <div class="" v-for="(car, index) in this.filteredStories?.carGarage || []" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
@@ -2561,7 +2306,7 @@
                                     v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <div class="" v-for="(car, index) in this.filteredStories?.CarModificationTunningShop || []"
+                            <div class="" v-for="(car, index) in this.filteredStories?.carModificationShop || []"
                                 :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
@@ -3327,7 +3072,7 @@
                                     v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
-                            <div class="" v-for="(car, index) in this.filteredStories?.CarClub || []" :key="index"
+                            <div class="" v-for="(car, index) in this.filteredStories?.carClub || []" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
@@ -4088,7 +3833,7 @@
 
                         </div>
                         <div class="row">
-                            <div class="" v-for="(car, index) in this.filteredStories?.MotorbikeEnthusiast || []"
+                            <div class="" v-for="(car, index) in this.filteredStories?.motorbikeEnthusiast || []"
                                 :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1">
@@ -4854,7 +4599,7 @@
 
                         </div>
                         <div class="row">
-                            <div class="" v-for="(car, index) in this.filteredStories?.AutomotivePhotographer || []"
+                            <div class="" v-for="(car, index) in this.filteredStories?.automotivePhotographer || []"
                                 :key="index" :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
                                 <div @click="openModal(index)"
                                     class="card-sorting-content px-3 px-md-3 px-pg-1 py-2 col-md-12 p-1">
@@ -5084,6 +4829,8 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
         <FooterSect v-if='showFooter' />
     </section>
@@ -5100,9 +4847,9 @@ import icon1 from "@/assets/images/IconAwesome-user-alt.png";
 import icon2 from "@/assets/images/engine.png";
 import icon3 from "@/assets/images/Iconmaterial-email.png";
 import instaIcon from "@/assets/images/ins.png";
-// import 'swiper/css/effect-cards';
+
 import { EffectCards } from "swiper/modules";
-//Import swiper js
+
 import img1 from "@/assets/images/Group12white.png";
 import img2 from "@/assets/images/Path467white.png";
 import img3 from "@/assets/images/Path465white.png";
@@ -5117,31 +4864,24 @@ import actimg5 from "@/assets/images/Path473.png";
 import iconford from "@/assets/images/Imagefordlogo13.png";
 import nextIcon from "@/assets/images/next.png";
 import prevIcon from "@/assets/images/prev.png";
-//Import Swiper styles
-// import "swiper/swiper-bundle.css";
+
 import { Swiper, SwiperSlide } from "swiper/vue";
-// import axios from "axios";
+
 import CarDataService from "@/services/CarDataService";
 import CommunityDataService from "@/services/CommunityDataService";
 import { Pagination, Navigation } from "swiper/modules";
-//Import Swiper modules
-// import { Pagination, Navigation } from 'swiper';
-// Install Swiper modules
-// Swiper.use([Pagination, Navigation])
+
 import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 import FooterSect from "./FooterSect";
 import http from "@/http-common";
-import { RecycleScroller } from 'vue3-virtual-scroller'
-import 'vue3-virtual-scroller/dist/vue3-virtual-scroller.css'
+import LocomotiveScroll from 'locomotive-scroll';
 export default {
     name: "FeaturedStories",
     components: {
         Swiper,
         SwiperSlide,
-        FooterSect,
-        RecycleScroller
-
+        FooterSect
     },
     setup() {
         return {
@@ -5150,11 +4890,15 @@ export default {
     },
     data() {
         return {
-            // extra data for recycle scroller
-            visibleRange: { start: 0, end: 0 },
-            itemHeights: {},
-            //end extra data for recycle scroller
-
+            pagination: {
+                currentPage: 0,
+                totalPages: 1,
+                totalItems: 0,
+                limit: 100            // Items per page
+            },
+            isLoading: false,
+            isFetching: false,
+            hasMore: true,
             showFooter: true,
             isModalOpenFe: false,
             showMore: {},
@@ -5532,17 +5276,12 @@ export default {
                 AutomotivePhotographer: [],
             },
         };
+
     },
     computed: {
-        // extra for recycle scroller
-        calculateItemSize() {
-            // Return average or default size
-            return 150 // Adjust based on your typical card height
-        },
-        // extra for recycle scroller
-        totalPages() {
-            return Math.ceil(this.cars.length / this.pageSize);
-        },
+        // totalPages() {
+        //     return Math.ceil(this.cars.length / this.pageSize);
+        // },
         paginatedCars() {
             const startIndex = (this.currentPage - 1) * this.pageSize;
             const endIndex = startIndex + this.pageSize;
@@ -5550,96 +5289,67 @@ export default {
         },
     },
     mounted() {
-
-        // for recycle scrolbar
-
-        this.calculateInitialHeights()
-        window.addEventListener('resize', this.handleResize)
-        // endrecycle scrollbr
-
+        this.scroll = new LocomotiveScroll({
+            el: document.querySelector("[data-scroll-container]"),
+            smooth: true
+        });
         this.retrieveCars();
 
-        // Initialize Swiper
-        // this.swiper = new Swiper(".myCarListingCard-swiper-container", {
-        //     // Optional parameters
-        //     effect: "cards",
-        //     slidesPerView: 1,
-        //     spaceBetween: 10,
-        //     loop: true,
-        //     // If you need pagination
-        //     pagination: {
-        //         el: ".swiper-pagination",
-        //         clickable: true,
-        //     },
 
-        //     // Navigation arrows
-        //     navigation: {
-        //         nextEl: ".swiper-button-next",
-        //         prevEl: ".swiper-button-prev",
-        //     },
-        // });
         this.fetchStories();
+        window.addEventListener('scroll', this.handleScroll);
         // this.fetchFeaturedStories()
         this.fetchCarEnthusiastStories();
     },
-    // for recycle scrollbar
     beforeUnmount() {
-        window.removeEventListener('resize', this.handleResize)
+        this.scroll.destroy(); // Clean up when component is destroyed
     },
-    // end for recycle scrollbar
     methods: {
+        async fetchStoriesByName(storyType) {
+            console.log(storyType)
+            // const nextPage = this.pagination.currentPage + 1;
+            console.log(`Fetching stories for: ${storyType}`);
 
-        // extra metods for recycle scrller
-        handleScrollUpdate(startIndex, endIndex) {
-            this.visibleRange = { start: startIndex, end: endIndex }
-            this.updateItemHeights()
-        },
-        handleScrollerResize() {
-            // Use the correct method name based on your version:
+            try {
+                console.log(`/stories/${storyType}?page=1&limit=${this.pagination.limit}`)
+                const response = await API.get(`/stories/${storyType}?page=1&limit=${this.pagination.limit}`); // Fetch stories dynamically
+                console.log("📖 Stories fetched:", response.data);
 
-            // For vue-virtual-scroller@next (Vue 3):
-            this.$refs.scroller?.$forceUpdate()
 
-            // For vue3-virtual-scroller:
-            // this.$refs.scroller?.updateVisibleItems()
+                const allstoriesresponse = response.data;
+                const storyTypes = {
+                    "carEnthusiast": "carEnthusiast",
+                    "carGarage": "carGarage",
+                    "carModificationShop": "carModificationShop",
+                    "carClub": "carClub",
+                    "motorbikeEnthusiast": "motorbikeEnthusiast",
+                    "automotivePhotographer": "automotivePhotographer",
+                };
+                const stories = allstoriesresponse.data;
 
-            // Alternative that works with most versions:
-            if (this.$refs.scroller) {
-                if (typeof this.$refs.scroller.reset === 'function') {
-                    this.$refs.scroller.reset()
-                } else if (typeof this.$refs.scroller.$forceUpdate === 'function') {
-                    this.$refs.scroller.$forceUpdate()
-                } else if (typeof this.$refs.scroller.updateVisibleItems === 'function') {
-                    this.$refs.scroller.updateVisibleItems()
-                }
+                console.log("only story", stories, storyTypes)
+                const filtered = stories.filter((story) => {
+                    console.log("Story Type:", story.story_type);
+                    console.log("Expected Type:", storyTypes[story.story_type]);
+                    return story.story_type === storyTypes[story.story_type];
+                });
+                console.log("myfilter", filtered);
+
+                // Reset only the selected category instead of all
+                //     if (storyType in storyTypes) {
+                this.filteredStories[storyTypes[storyType]] = stories.filter(
+                    (story) => story.story_type === storyTypes[story.story_type]
+                );
+                this.originalCars[storyTypes[storyType]] = [...this.filteredStories[storyTypes[storyType]]];
+
+                console.log("✅ Updated Filtered Stories:", this.filteredStories[storyTypes[storyType]]);
+                ////   } else {
+                //   console.warn(`⚠️ No matching story type found for $/{storyType}`);
+                //}
+            } catch (error) {
+                console.error("❌ Error fetching stories:", error);
             }
         },
-        calculateInitialHeights() {
-            // Set initial heights based on your card structure
-            const defaultHeight = 450 // Your average card height
-            this.filteredStories?.CarEnthusiast?.forEach((_, index) => {
-                this.itemHeights[index] = defaultHeight
-            })
-        },
-        updateItemHeights() {
-            // Update heights for visible items
-            requestAnimationFrame(() => {
-                const items = this.$refs.items
-                if (!items) return
-
-                Array.isArray(items) ? items : [items].forEach(el => {
-                    const index = parseInt(el.dataset.index)
-                    if (index >= this.visibleRange.start && index <= this.visibleRange.end) {
-                        this.itemHeights[index] = el.clientHeight
-                    }
-                })
-            })
-        },
-        handleResize() {
-            // this.$refs.scroller.reset()
-            this.updateItemHeights()
-        },
-        // end extrra for recycle scroller
         reorderedImages(images) {
             let parsed = this.parsedImages(images) || [];
             if (parsed.length > 1) {
@@ -5647,157 +5357,11 @@ export default {
             }
             return parsed;
         },
-        // getImageUrl(image) {
-        //     return `https://king-prawn-app-3rw3o.ondigitalocean.app/stories/${image}`;
-        // },
+
         getImageUrl(image) {
             return `${http.defaults.baseURL.replace("/api", "")}/stories/${image}`;
         },
-        // openViewer(image) {
-        //   console.log("in open viewer", image);
-        //   this.isOverlayTransparent = true;
-        //   this.currentImage = this.getImageUrl(image); // Set current image URL
 
-        //   const viewerElement = this.$refs.viewerContainer; // Reference the container
-        //   if (viewerElement) {
-        //     // Destroy any previous instance if it exists to prevent duplication
-        //     if (this.viewerInstance) {
-        //       this.viewerInstance.destroy();
-        //     }
-
-        //     // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-        //     this.$nextTick(() => {
-        //       this.viewerInstance = new Viewer(viewerElement, {
-        //         inline: false, // Set to false for popup mode
-        //         zoomable: true, // Enable zooming functionality
-        //         movable: true, // Enable panning (dragging the image)
-        //         minScale: 1, // Prevent zooming out below 100%
-        //         maxScale: 3, // Limit zoom to 3x
-        //         viewed() {
-        //           // Optional: You can perform actions when the image is viewed
-        //           console.log("Image viewed");
-        //         },
-        //         toolbar: true, // Disable the default toolbar
-        //         zoomOnWheel: true, // Allow zooming with mouse wheel
-        //         fullscreen: false, // Disable fullscreen mode
-        //         title: false, // Disable image title display
-        //         navbar: false, // Disable the navigation bar
-        //         tooltip: false, // Disable tooltips for image actions
-        //         minX: 100, // Minimum X coordinate for panning
-        //         maxX: 200, // Maximum X coordinate
-        //         minY: 0, // Minimum Y coordinate
-        //         maxY: 300, // Maximum Y coordinate
-        //       });
-
-        //       // Show the viewer for the current image
-        //       this.viewerInstance.show();
-        //     });
-        //   }
-        // },
-        // openViewer(image, carimages) {
-        //     console.log("in open viewer", image);
-        //     console.log("car  images", carimages);
-        //     this.isOverlayTransparent = true;
-        //     this.currentImage = this.getImageUrl(image); // Set current image URL
-
-        //     const viewerElement = this.$refs.viewerContainer; // Reference the container
-        //     if (viewerElement) {
-        //         // Destroy any previous instance if it exists to prevent duplication
-        //         if (this.viewerInstance) {
-        //             this.viewerInstance.destroy();
-        //         }
-
-        //         // Create a new array of images, placing the clicked image first
-        //         const images = this.parsedImages(carimages);
-        //         const currentImageUrl = this.getImageUrl(image);
-
-        //         // Create a new array with the clicked image first
-        //         const imageOrder = [currentImageUrl, ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl)];
-
-        //         // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-        //         this.$nextTick(() => {
-        //             this.viewerInstance = new Viewer(viewerElement, {
-        //                 inline: false, // Set to false for popup mode
-        //                 zoomable: true, // Enable zooming functionality
-        //                 movable: true, // Enable panning (dragging the image)
-        //                 minScale: 1, // Prevent zooming out below 100%
-        //                 maxScale: 3, // Limit zoom to 3x
-        //                 viewed() {
-        //                     // Optional: You can perform actions when the image is viewed
-        //                     console.log("Image viewed");
-        //                 },
-        //                 toolbar: true, // Disable the default toolbar
-        //                 zoomOnWheel: true, // Allow zooming with mouse wheel
-        //                 fullscreen: false, // Disable fullscreen mode
-        //                 title: false, // Disable image title display
-        //                 navbar: false, // Disable the navigation bar
-        //                 tooltip: false, // Disable tooltips for image actions
-        //                 minX: 100, // Minimum X coordinate for panning
-        //                 maxX: 200, // Maximum X coordinate
-        //                 minY: 0, // Minimum Y coordinate
-        //                 maxY: 300, // Maximum Y coordinate
-        //             });
-
-        //             // Show the viewer for the current image
-        //             this.viewerInstance.show();
-
-        //             // Add images to the viewer
-        //             this.viewerInstance.addImage(imageOrder);
-        //         });
-        //     }
-        // }
-        // openViewer(image, carimages) {
-        //     console.log("in open viewer", image);
-        //     this.isOverlayTransparent = true;
-        //     this.currentImage = this.getImageUrl(image); // Set current image URL
-
-        //     const viewerElement = this.$refs.viewerContainer; // Reference the container
-        //     if (viewerElement) {
-        //         // Destroy any previous instance if it exists to prevent duplication
-        //         if (this.viewerInstance) {
-        //             this.viewerInstance.destroy();
-        //         }
-
-        //         // Create a new array of images, placing the clicked image first
-        //         const images = this.parsedImages(carimages);
-        //         const currentImageUrl = this.getImageUrl(image);
-
-        //         // Create a new array with the clicked image first
-        //         const imageOrder = [currentImageUrl, ...images.map(img => this.getImageUrl(img)).filter(imgUrl => imgUrl !== currentImageUrl)];
-
-        //         // Use Vue's nextTick to ensure DOM is updated before initializing Viewer.js
-        //         this.$nextTick(() => {
-        //             this.viewerInstance = new Viewer(viewerElement, {
-        //                 inline: false, // Set to false for popup mode
-        //                 zoomable: true, // Enable zooming functionality
-        //                 movable: true, // Enable panning (dragging the image)
-        //                 minScale: 1, // Prevent zooming out below 100%
-        //                 maxScale: 3, // Limit zoom to 3x
-        //                 viewed() {
-        //                     // Optional: You can perform actions when the image is viewed
-        //                     console.log("Image viewed");
-        //                 },
-        //                 toolbar: true, // Show the default toolbar
-        //                 zoomOnWheel: true, // Allow zooming with mouse wheel
-        //                 fullscreen: false, // Disable fullscreen mode
-        //                 title: false, // Disable image title display
-        //                 navbar: false, // Disable the navigation bar
-        //                 tooltip: false, // Disable tooltips for image actions
-        //             });
-
-        //             // Now manually add images to the viewer by modifying its data
-        //             this.viewerInstance._images = imageOrder.map(url => {
-        //                 return {
-        //                     src: url,
-        //                     thumb: url // You can change this to a thumbnail if you have one
-        //                 };
-        //             });
-
-        //             // Show the viewer for the current image
-        //             this.viewerInstance.show();
-        //         });
-        //     }
-        // }
         openViewer(image, carImages) {
             this.viewerImages = carImages
             console.log("in open viewer", image);
@@ -5878,43 +5442,6 @@ export default {
                 return tab[imgType];
             }
         },
-        // getcities(country) {
-        //     console.log("in  citeis");
-        //     if (!country) return; // Exit if no country is selected
-
-        //     // Set up the headers and request body
-        //     const myHeaders = new Headers();
-        //     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-        //     const urlencoded = new URLSearchParams();
-        //     urlencoded.append("country", country);
-
-        //     const requestOptions = {
-        //         method: "POST",
-        //         headers: myHeaders,
-        //         body: urlencoded,
-        //         redirect: "follow",
-        //     };
-
-        //     // Fetch cities based on the selected country
-        //     fetch(
-        //         "https://countriesnow.space/api/v0.1/countries/cities",
-        //         requestOptions
-        //     )
-        //         .then((response) => response.json()) // Convert response to JSON
-        //         .then((result) => {
-        //             if (result.data && result.data.length > 0) {
-        //                 this.cities = result.data; // Update cities array with the result
-        //                 console.log(this.cities);
-        //             } else {
-        //                 this.cities = []; // Clear cities if no data is found
-        //             }
-        //         })
-        //         .catch((error) => {
-        //             console.log("error", error);
-        //             this.cities = []; // Clear cities if an error occurs
-        //         });
-        // },
         getcities(country) {
             this.loading = true;
             if (!country) return;  // Exit if no country is selected
@@ -5954,97 +5481,39 @@ export default {
                 });
         },
         async handleTabClick(index, tabName) {
-          
+            console.log('in handletabclick')
+
             this.activeTab = index; // Set the active tab
             switch (tabName) {
                 case "Car Enthusiast":
                     await this.fetchFeaturedStoriesByType("carEnthusiast");
+                    await this.fetchStoriesByName('carEnthusiast');
                     break;
                 case "Car Garage":
                     await this.fetchFeaturedStoriesByType("carGarage");
+                    await this.fetchStoriesByName('carGarage');
                     break;
                 case "Car Modification/Tunning Shop":
                     await this.fetchFeaturedStoriesByType("carModificationShop");
+                    await this.fetchStoriesByName('carModificationShop');
                     break;
                 case "Car Club":
                     await this.fetchFeaturedStoriesByType("carClub");
+                    await this.fetchStoriesByName('carClub');
                     break;
                 case "Motorbike Enthusiast":
                     await this.fetchFeaturedStoriesByType("motorbikeEnthusiast");
+                    await this.fetchStoriesByName('motorbikeEnthusiast');
                     break;
                 case "Automotive Photographer":
                     await this.fetchFeaturedStoriesByType("automotivePhotographer");
+                    await this.fetchStoriesByName('automotivePhotographer');
                     break;
                 default:
                     console.warn("Unknown tab name");
                     break;
             }
         },
-        // async fetchFeaturedStories() {
-        //     try {
-        //         const response = await fetch('https://buzzwaretech.com/adminrev/api/featurestores');
-        //         const data = await response.json();
-
-        //         if (data.success) {
-        //             // Parse the images field from JSON string to an array
-        //             const featured = data.featured;
-        //             featured.images = JSON.parse(featured.images); // Parse the images
-        //             this.featuredStories = [featured]; // Store it in the featuredCars array
-        //         }
-        //     } catch (error) {
-        //         console.error('Error fetching featured stories:', error);
-        //     }
-        // },
-        // async fetchFeaturedStoriesByType(storyType) {
-        //     try {
-        //         const response = await fetch(
-        //             `https://buzzwaretech.com/adminrev/api/featurestores/${storyType}`
-        //         );
-        //         const data = await response.json();
-
-        //         if (data.success) {
-        //             const featured = data.featured;
-        //             featured.images = JSON.parse(featured.images); // Parse the images
-        //             this.featuredStories = [featured]; // Store it in the featuredStories array
-        //         }
-        //     } catch (error) {
-        //         console.error(
-        //             `Error fetching featured stories for ${storyType}:`,
-        //             error
-        //         );
-        //     }
-        // },
-
-        // async fetchFeaturedStoriesByType(storyType) {
-        //     console.log(storyType)
-        //     try {
-
-        //         const response = await fetch(
-        //             `https://backend.revvdout.com/api/stories/featurestores/${storyType}`
-        //         );
-        //         const data = await response.json();
-
-        //         console.log("API Response:", data); // Debugging
-
-        //         if (data.success && data.banner) {
-        //             const featured = data.banner;
-        //             featured.images = featured.images ? JSON.parse(featured.images) : []; // Ensure valid JSON parsing
-        //             this.featuredStories = [featured]; // Store it in the featuredStories array
-        //         } else {
-        //             console.warn(`No featured stories found for ${storyType}`);
-        //             this.featuredStories = []; // Reset if no data
-        //             console.log("in else", this.featuredStories)
-        //         }
-        //     } catch (error) {
-
-        //         this.featuredStories = []; // Reset if no data
-        //         console.error(
-        //             `Error fetching featured stories for ${storyType}:`,
-        //             error
-        //         );
-        //         console.log("in error", this.featuredStories)
-        //     }
-        // }
         async fetchFeaturedStoriesByType(storyType) {
             console.log(storyType);
             try {
@@ -6068,6 +5537,8 @@ export default {
                 console.log("in error", this.featuredStories);
             }
         }
+
+
         ,
         async fetchCarEnthusiastStories() {
             await this.fetchFeaturedStoriesByType("carEnthusiast");
@@ -6217,37 +5688,7 @@ export default {
             }
         },
 
-        // getGenerations() {
-        //     // console.log('in generation', "make", this.make, "modal", this.smodel);
-        //     this.formData.year = "";
-        //     CarDataService.getGenerations(this.formData.make, this.formData.model)
-        //         .then((response) => {
-        //             const data = response.data;
-        //             console.log("data is", data);
-        //             this.dataGy = data;
 
-        //             this.GenfilteredOptions = data.filter((item) => {
-        //                 return (
-        //                     item.generation !== "" &&
-        //                     item.generation !== "-" &&
-        //                     item.generation !== "??" &&
-        //                     item.generation !== "?"
-        //                 );
-        //             });
-
-        //             this.generations = [
-        //                 ...new Set(this.GenfilteredOptions.map((item) => item.generation)),
-        //             ];
-        //             this.productionYears = [
-        //                 ...new Set(
-        //                     this.GenfilteredOptions.map((item) => item.production_years)
-        //                 ),
-        //             ];
-        //         })
-        //         .catch((e) => {
-        //             console.log(e);
-        //         });
-        // },
         getGenerations() {
             // Reset year selection
             this.formData.year = "";
@@ -6355,33 +5796,18 @@ export default {
             this.isModalOpen = true;
         },
 
-        // applyFilter(selectedCountry, selectedCity, filterobj) {
-        //     // Logic to filter carGarage based on selectedCountry and selectedCity
-        //     console.log("filterobj", filterobj)
-        //     // Example filter logic:
-        //     const filteredCars = filterobj.filter(car => {
-        //         const matchesCountry = selectedCountry ? car.country === selectedCountry : true;
-        //         const matchesCity = selectedCity ? car.city === selectedCity : true;
-        //         return matchesCountry && matchesCity;
-        //     });
 
-        //     // Update the filteredCars list or perform any other action with the filtered data
-        //     console.log('Filtered Cars:', filteredCars);
-
-        //     // You can assign this.filteredCars or perform any further operations
-        //     filterobj = filteredCars;
-        //     console.log("after filter", filterobj)
-        // },
 
         applyFilterCarGarageSearch() {
             console.log("in apply filter story");
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.carGarage = this.originalCars.carGarage
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarGarage.filter(
+                const filteredStories = this.filteredStories.carGarage.filter(
                     (story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.story_name
@@ -6391,7 +5817,7 @@ export default {
                 );
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.CarGarage = filteredStories;
+                this.filteredStories.carGarage = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -6402,11 +5828,12 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.carModificationShop = this.originalCars.carModificationShop
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
                 const filteredStories =
-                    this.filteredStories.CarModificationTunningShop.filter((story) => {
+                    this.filteredStories.carModificationShop.filter((story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.story_name
                             .toLowerCase()
@@ -6414,7 +5841,7 @@ export default {
                     });
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.CarModificationTunningShop = filteredStories;
+                this.filteredStories.carModificationShop = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -6426,10 +5853,11 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.carClub = this.originalCars.carClub
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarClub.filter((story) => {
+                const filteredStories = this.filteredStories.carClub.filter((story) => {
                     // Filter based on story name (case-insensitive search)
                     return story.story_name
                         .toLowerCase()
@@ -6437,7 +5865,7 @@ export default {
                 });
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.CarClub = filteredStories;
+                this.filteredStories.carClub = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -6448,10 +5876,11 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.motorbikeEnthusiast = this.originalCars.motorbikeEnthusiast
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.MotorbikeEnthusiast.filter(
+                const filteredStories = this.filteredStories.motorbikeEnthusiast.filter(
                     (story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.story_name
@@ -6461,7 +5890,7 @@ export default {
                 );
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.MotorbikeEnthusiast = filteredStories;
+                this.filteredStories.motorbikeEnthusiast = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -6473,11 +5902,12 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.automotivePhotographer = this.originalCars.automotivePhotographer
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
                 const filteredStories =
-                    this.filteredStories.AutomotivePhotographer.filter((story) => {
+                    this.filteredStories.automotivePhotographer.filter((story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.story_name
                             .toLowerCase()
@@ -6485,7 +5915,7 @@ export default {
                     });
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.AutomotivePhotographer = filteredStories;
+                this.filteredStories.automotivePhotographer = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -6497,10 +5927,12 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                console.log("mno")
+                this.filteredStories.carEnthusiast = this.originalCars.carEnthusiast
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarEnthusiast.filter(
+                const filteredStories = this.filteredStories.carEnthusiast.filter(
                     (story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.make.toLowerCase().includes(this.search.toLowerCase());
@@ -6508,7 +5940,7 @@ export default {
                 );
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.CarEnthusiast = filteredStories;
+                this.filteredStories.carEnthusiast = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -6523,12 +5955,16 @@ export default {
                 this.formData.model = ""
                 this.formData.year = ""
                 console.log("in if make")
+                this.filteredStories.carEnthusiast = this.originalCars.carEnthusiast;
+                this.fetchStories();
             }
             if (!this.formData.make && !this.formData.model && !this.formData.year) {
+                this.filteredStories.carEnthusiast = this.originalCars.carEnthusiast;
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
-                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.CarEnthusiast.filter(
+                console.log("year mus", this.formData.year)
+                this.filteredStories.carEnthusiast = this.originalCars.carEnthusiast;
+                const filteredCars = this.filteredStories.carEnthusiast.filter(
                     (car) => {
                         const matchesMake = this.formData.make
                             ? car.make === this.formData.make
@@ -6545,11 +5981,11 @@ export default {
                 );
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.CarEnthusiast = filteredCars;
+                this.filteredStories.carEnthusiast = filteredCars;
 
-                console.log("Filtered Cars:", this.filteredStories.CarEnthusiast);
+                console.log("Filtered Cars:", this.filteredStories.carEnthusiast);
 
-                console.log("origional Cars:", this.originalCars.CarEnthusiast);
+                console.log("origional Cars:", this.originalCars.carEnthusiast);
             }
         },
         applyFilter(selectedCountry, selectedCity) {
@@ -6558,10 +5994,11 @@ export default {
             this.getcities(selectedCountry);
 
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.carGarage = this.originalCars.carGarage
                 this.fetchStories();
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.CarGarage.filter((car) => {
+                const filteredCars = this.filteredStories.carGarage.filter((car) => {
                     const matchesCountry = selectedCountry
                         ? car.country === selectedCountry
                         : true;
@@ -6570,11 +6007,11 @@ export default {
                 });
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.CarGarage = filteredCars;
+                this.filteredStories.carGarage = filteredCars;
 
-                console.log("Filtered Cars:", this.filteredStories.CarGarage);
+                console.log("Filtered Cars:", this.filteredStories.carGarage);
 
-                console.log("origional Cars:", this.originalCars.CarGarage);
+                console.log("origional Cars:", this.originalCars.carGarage);
             }
         },
         applyFilterShop(selectedCountry, selectedCity) {
@@ -6583,10 +6020,11 @@ export default {
             console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.carModificationShop = this.originalCars.carModificationShop
                 this.fetchStories();
             } else {
                 const filteredCars =
-                    this.filteredStories.CarModificationTunningShop.filter((car) => {
+                    this.filteredStories.carModificationShop.filter((car) => {
                         const matchesCountry = selectedCountry
                             ? car.country === selectedCountry
                             : true;
@@ -6595,16 +6033,16 @@ export default {
                     });
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.CarModificationTunningShop = filteredCars;
+                this.filteredStories.carModificationShop = filteredCars;
 
                 console.log(
                     "Filtered Cars:",
-                    this.filteredStories.CarModificationTunningShop
+                    this.filteredStories.carModificationShop
                 );
 
                 console.log(
                     "origional Cars:",
-                    this.originalCars.CarModificationTunningShop
+                    this.originalCars.carModificationShop
                 );
             }
         },
@@ -6613,10 +6051,11 @@ export default {
             this.getcities(selectedCountry);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.carClub = this.originalCars.carClub
                 this.fetchStories();
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.CarClub.filter((car) => {
+                const filteredCars = this.filteredStories.carClub.filter((car) => {
                     const matchesCountry = selectedCountry
                         ? car.country === selectedCountry
                         : true;
@@ -6625,7 +6064,7 @@ export default {
                 });
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.CarClub = filteredCars;
+                this.filteredStories.carClub = filteredCars;
             }
         },
         applyFilterBike(selectedCountry, selectedCity) {
@@ -6633,10 +6072,11 @@ export default {
             this.getcities(selectedCountry);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.motorbikeEnthusiast = this.originalCars.motorbikeEnthusiast
                 this.fetchStories();
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.MotorbikeEnthusiast.filter(
+                const filteredCars = this.filteredStories.motorbikeEnthusiast.filter(
                     (car) => {
                         const matchesCountry = selectedCountry
                             ? car.country === selectedCountry
@@ -6647,7 +6087,7 @@ export default {
                 );
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.MotorbikeEnthusiast = filteredCars;
+                this.filteredStories.motorbikeEnthusiast = filteredCars;
             }
         },
         applyFilterAuto(selectedCountry, selectedCity) {
@@ -6655,10 +6095,11 @@ export default {
             this.getcities(selectedCountry);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.automotivePhotographer = this.originalCars.automotivePhotographer
                 this.fetchStories();
             } else {
-                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.AutomotivePhotographer.filter(
+                this.filteredStories.automotivePhotographer = this.originalCars.automotivePhotographer;
+                const filteredCars = this.filteredStories.automotivePhotographer.filter(
                     (car) => {
                         const matchesCountry = selectedCountry
                             ? car.country === selectedCountry
@@ -6669,7 +6110,7 @@ export default {
                 );
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.AutomotivePhotographer = filteredCars;
+                this.filteredStories.automotivePhotographer = filteredCars;
             }
         },
         parsedImages(images) {
@@ -6682,94 +6123,121 @@ export default {
             }
         },
 
-        //before link updating its working
 
         // fetchStories() {
-        //     axios
-        //         .get("https://king-prawn-app-3rw3o.ondigitalocean.app/api/stories")
+        //     API.get("/stories") // ✅ Use the pre-configured base URL
         //         .then((response) => {
-        //             console.log("stories", response.data);
+        //             console.log("📖 Stories fetched:", response.data);
+
         //             const stories = response.data;
+        //             const storyTypes = {
+        //                 CarEnthusiast: "carEnthusiast",
+        //                 CarGarage: "carGarage",
+        //                 CarModificationTunningShop: "carModificationShop",
+        //                 CarClub: "carClub",
+        //                 MotorbikeEnthusiast: "motorbikeEnthusiast",
+        //                 AutomotivePhotographer: "automotivePhotographer" // ✅ Fixed typo
+        //             };
 
-        //             // Filter stories by their type and assign them to respective objects
-        //             this.filteredStories.CarEnthusiast = stories.filter(
-        //                 (story) => story.story_type === "carEnthusiast"
-        //             );
-        //             this.filteredStories.CarGarage = stories.filter(
-        //                 (story) => story.story_type === "carGarage"
-        //             );
-        //             this.filteredStories.CarModificationTunningShop = stories.filter(
-        //                 (story) => story.story_type === "carModificationShop"
-        //             );
-        //             this.filteredStories.CarClub = stories.filter(
-        //                 (story) => story.story_type === "carClub"
-        //             );
-        //             this.filteredStories.MotorbikeEnthusiast = stories.filter(
-        //                 (story) => story.story_type === "motorbikeEnthusiast"
-        //             );
-        //             this.filteredStories.AutomotivePhotographer = stories.filter(
-        //                 (story) => story.story_type === "automotivePhotographerast"
-        //             );
+        //             // Reset the filtered and original stories
+        //             this.filteredStories = {};
+        //             this.originalCars = {};
 
-        //             console.log("Filtered stories:", this.filteredStories);
-        //             // this.originalCars = this.filteredStories
-        //             this.originalCars.CarEnthusiast = stories.filter(
-        //                 (story) => story.story_type === "carEnthusiast"
-        //             );
-        //             this.originalCars.CarGarage = stories.filter(
-        //                 (story) => story.story_type === "carGarage"
-        //             );
-        //             this.originalCars.CarModificationTunningShop = stories.filter(
-        //                 (story) => story.story_type === "carModificationShop"
-        //             );
-        //             this.originalCars.CarClub = stories.filter(
-        //                 (story) => story.story_type === "carClub"
-        //             );
-        //             this.originalCars.MotorbikeEnthusiast = stories.filter(
-        //                 (story) => story.story_type === "motorbikeEnthusiast"
-        //             );
-        //             this.originalCars.AutomotivePhotographer = stories.filter(
-        //                 (story) => story.story_type === "automotivePhotographerast"
-        //             );
+        //             // Assign filtered stories dynamically
+        //             Object.keys(storyTypes).forEach((key) => {
+        //                 this.filteredStories[key] = stories.filter(
+        //                     (story) => story.story_type === storyTypes[key]
+        //                 );
+        //                 this.originalCars[key] = [...this.filteredStories[key]];
+        //             });
+
+        //             console.log("✅ Filtered Stories:", this.filteredStories);
         //         })
         //         .catch((error) => {
-        //             console.error("Error fetching stories:", error);
+        //             console.error("❌ Error fetching stories:", error);
         //         });
         // },
-        fetchStories() {
-            API.get("/stories") // ✅ Use the pre-configured base URL
-                .then((response) => {
-                    console.log("📖 Stories fetched:", response.data);
+        // fetchStories(storyType = "carEnthusiast", page = 1, limit = 3) {
+        //     API.get(`/stories/${storyType}?page=${page}&limit=${limit}`)
+        //         .then((response) => {
+        //             console.log("📖 Stories fetched:", response.data);
 
-                    const stories = response.data;
-                    const storyTypes = {
-                        CarEnthusiast: "carEnthusiast",
-                        CarGarage: "carGarage",
-                        CarModificationTunningShop: "carModificationShop",
-                        CarClub: "carClub",
-                        MotorbikeEnthusiast: "motorbikeEnthusiast",
-                        AutomotivePhotographer: "automotivePhotographer" // ✅ Fixed typo
-                    };
+        //             const { data, totalItems, totalPages, currentPage } = response.data;
 
-                    // Reset the filtered and original stories
-                    this.filteredStories = {};
-                    this.originalCars = {};
+        //             // Store the fetched stories
+        //             this.filteredStories[storyType] = data;
+        //             this.originalCars[storyType] = [...data];
 
-                    // Assign filtered stories dynamically
-                    Object.keys(storyTypes).forEach((key) => {
-                        this.filteredStories[key] = stories.filter(
-                            (story) => story.story_type === storyTypes[key]
-                        );
-                        this.originalCars[key] = [...this.filteredStories[key]];
-                    });
+        //             // Store pagination details if needed
+        //             this.pagination = {
+        //                 totalItems,
+        //                 totalPages,
+        //                 currentPage,
+        //             };
 
-                    console.log("✅ Filtered Stories:", this.filteredStories);
-                })
-                .catch((error) => {
-                    console.error("❌ Error fetching stories:", error);
-                });
+        //             console.log("✅ Filtered Stories:", this.filteredStories);
+        //         })
+        //         .catch((error) => {
+        //             console.error("❌ Error fetching stories:", error);
+        //         });
+        // }
+        async fetchStories() {
+            console.log("in ft")
+            // Don't fetch if already loading or no more pages
+            //  if (this.isFetching || !this.hasMore) return;
+
+            this.isFetching = true;
+            this.isLoading = true;
+
+            try {
+                const nextPage = this.pagination.currentPage + 1;
+                const response = await API.get(`/stories/carEnthusiast?page=${nextPage}&limit=${this.pagination.limit}`);
+
+                const { data, totalItems, totalPages, currentPage } = response.data;
+
+                // Update stories array - APPEND instead of REPLACE
+                if (!this.filteredStories['carEnthusiast']) {
+                    this.filteredStories['carEnthusiast'] = [];
+                }
+                this.filteredStories['carEnthusiast'] = [...this.filteredStories['carEnthusiast'], ...data];
+
+                // Same for originalCars
+                if (!this.originalCars['carEnthusiast']) {
+                    this.originalCars['carEnthusiast'] = [];
+                }
+                this.originalCars['carEnthusiast'] = [...this.originalCars['carEnthusiast'], ...data];
+
+                console.log("ntst", this.filteredStories['carEnthusiast'])
+
+                // Update pagination info
+                this.pagination = {
+                    currentPage,
+                    totalPages,
+                    totalItems,
+                    limit: this.pagination.limit
+                };
+
+                // Check if there are more pages
+                this.hasMore = currentPage < totalPages;
+
+            } catch (error) {
+                console.error("Error fetching stories:", error);
+            } finally {
+                this.isFetching = false;
+                this.isLoading = false;
+            }
         },
-       
+        // Handle scroll event
+        handleScroll() {
+            // Check if we're near the bottom (within 100px)
+            const scrollPosition = window.innerHeight + window.scrollY;
+            const bottomThreshold = document.body.offsetHeight - 100;
+
+            if (scrollPosition >= bottomThreshold && !this.isLoading) {
+                this.fetchStories();
+            }
+        }
+        ,
         openModal(index) {
             console.log("Modal opened for car index:", index);
             this.activeCarIndex = index; // Set the active index to the clicked car
@@ -6792,11 +6260,7 @@ export default {
             this.activeCarIndex = null; // Reset the active car index
             this.showFooter = true;
         },
-        // getImage(imagePath, index) {
-        //     return this.activeTab === index
-        //         ? imagePath.replace("white", "")
-        //         : imagePath;
-        // },
+
         goToPage(pageNumber) {
             if (pageNumber >= 1 && pageNumber <= this.totalPages) {
                 this.currentPage = pageNumber;
@@ -6843,60 +6307,7 @@ export default {
     /* border: 1px solid #010101 !important; */
 }
 
-/* .swiper {
-    width: 240px;
-    height: 240px;
-}
 
-.swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.swiper-slide:nth-child(1n) {
-    background-color: rgb(206, 17, 17);
-}
-
-.swiper-slide:nth-child(2n) {
-    background-color: rgb(0, 140, 255);
-}
-
-.swiper-slide:nth-child(3n) {
-    background-color: rgb(10, 184, 111);
-}
-
-.swiper-slide:nth-child(4n) {
-    background-color: rgb(211, 122, 7);
-}
-
-.swiper-slide:nth-child(5n) {
-    background-color: rgb(118, 163, 12);
-}
-
-.swiper-slide:nth-child(6n) {
-    background-color: rgb(180, 10, 47);
-}
-
-.swiper-slide:nth-child(7n) {
-    background-color: rgb(35, 99, 19);
-}
-
-.swiper-slide:nth-child(8n) {
-    background-color: rgb(0, 68, 255);
-}
-
-.swiper-slide:nth-child(9n) {
-    background-color: rgb(218, 12, 218);
-}
-
-.swiper-slide:nth-child(10n) {
-    background-color: rgb(54, 94, 77);
-} */
 .z-0 {
     z-index: 0 !important;
 }
@@ -7330,53 +6741,14 @@ form-select {
     top: 6rem
 }
 
-.fixheight {
-    height: 500px;
-    overflow: auto;
-}
-
-/* extrea css for recycle scroller */
-.car-stories-container {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.scroller {
-    height: 100%;
+.stories-container {
     will-change: transform;
     backface-visibility: hidden;
-    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
-.car-story-item {
-    margin-bottom: 16px;
-    transition: height 0.2s ease;
-}
-
-.card-placeholder {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    border-radius: 8px;
-}
-
-.full-card {
-    /* Your existing card styles */
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: 200% 0;
-    }
-
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/* Force hardware acceleration */
-.swiper-slide {
-    transform: translateZ(0);
+.height-control-scroll {
+    height: 100vh;
+    overflow: auto
 }
 </style>

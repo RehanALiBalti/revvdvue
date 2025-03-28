@@ -764,7 +764,7 @@
 
                         <!-- end template -->
                     </div>
-                    <div v-if="isLoading" class="loading fs-1 text-white">Loading...</div>
+
                     <nav class="float-end my-4 community-pagination d-none" aria-label="Page navigation">
                         <ul class="pagination">
                             <li class="page-item" :class="{ disabled: currentPage === 1 }">
@@ -834,7 +834,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1059,7 +1059,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1088,7 +1088,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1510,7 +1510,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1819,7 +1819,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2041,7 +2041,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2061,7 +2061,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2283,7 +2283,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2585,7 +2585,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2807,7 +2807,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2827,7 +2827,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3049,7 +3049,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3346,7 +3346,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3568,7 +3568,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3588,7 +3588,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3810,7 +3810,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4112,7 +4112,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4334,7 +4334,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4354,7 +4354,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4576,7 +4576,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -5803,10 +5803,11 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.carGarage = this.originalCars.carGarage
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarGarage.filter(
+                const filteredStories = this.filteredStories.carGarage.filter(
                     (story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.story_name
@@ -5816,7 +5817,7 @@ export default {
                 );
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.CarGarage = filteredStories;
+                this.filteredStories.carGarage = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -5827,11 +5828,12 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.carModificationShop = this.originalCars.carModificationShop
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
                 const filteredStories =
-                    this.filteredStories.CarModificationTunningShop.filter((story) => {
+                    this.filteredStories.carModificationShop.filter((story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.story_name
                             .toLowerCase()
@@ -5839,7 +5841,7 @@ export default {
                     });
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.CarModificationTunningShop = filteredStories;
+                this.filteredStories.carModificationShop = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -5851,10 +5853,11 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.carClub = this.originalCars.carClub
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarClub.filter((story) => {
+                const filteredStories = this.filteredStories.carClub.filter((story) => {
                     // Filter based on story name (case-insensitive search)
                     return story.story_name
                         .toLowerCase()
@@ -5862,7 +5865,7 @@ export default {
                 });
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.CarClub = filteredStories;
+                this.filteredStories.carClub = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -5873,10 +5876,11 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.motorbikeEnthusiast = this.originalCars.motorbikeEnthusiast
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.MotorbikeEnthusiast.filter(
+                const filteredStories = this.filteredStories.motorbikeEnthusiast.filter(
                     (story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.story_name
@@ -5886,7 +5890,7 @@ export default {
                 );
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.MotorbikeEnthusiast = filteredStories;
+                this.filteredStories.motorbikeEnthusiast = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -5898,11 +5902,12 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                this.filteredStories.automotivePhotographer = this.originalCars.automotivePhotographer
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
                 const filteredStories =
-                    this.filteredStories.AutomotivePhotographer.filter((story) => {
+                    this.filteredStories.automotivePhotographer.filter((story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.story_name
                             .toLowerCase()
@@ -5910,7 +5915,7 @@ export default {
                     });
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.AutomotivePhotographer = filteredStories;
+                this.filteredStories.automotivePhotographer = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -5922,10 +5927,12 @@ export default {
 
             // Logic to filter stories based on the search input
             if (!this.search) {
+                console.log("mno")
+                this.filteredStories.carEnthusiast = this.originalCars.carEnthusiast
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
                 // Make a copy of the original stories before filtering
-                const filteredStories = this.filteredStories.CarEnthusiast.filter(
+                const filteredStories = this.filteredStories.carEnthusiast.filter(
                     (story) => {
                         // Filter based on story name (case-insensitive search)
                         return story.make.toLowerCase().includes(this.search.toLowerCase());
@@ -5933,7 +5940,7 @@ export default {
                 );
 
                 // Update the filteredStories list, triggering reactivity
-                this.filteredStories.CarEnthusiast = filteredStories;
+                this.filteredStories.carEnthusiast = filteredStories;
 
                 console.log("Filtered Stories:", this.filteredStories);
                 console.log("Original Stories:", this.originalStories);
@@ -5948,11 +5955,14 @@ export default {
                 this.formData.model = ""
                 this.formData.year = ""
                 console.log("in if make")
+                this.filteredStories.carEnthusiast = this.originalCars.carEnthusiast;
                 this.fetchStories();
             }
             if (!this.formData.make && !this.formData.model && !this.formData.year) {
+                this.filteredStories.carEnthusiast = this.originalCars.carEnthusiast;
                 this.fetchStories(); // Fetch original data if no filters are applied
             } else {
+                console.log("year mus", this.formData.year)
                 this.filteredStories.carEnthusiast = this.originalCars.carEnthusiast;
                 const filteredCars = this.filteredStories.carEnthusiast.filter(
                     (car) => {
@@ -5984,10 +5994,11 @@ export default {
             this.getcities(selectedCountry);
 
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.carGarage = this.originalCars.carGarage
                 this.fetchStories();
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.CarGarage.filter((car) => {
+                const filteredCars = this.filteredStories.carGarage.filter((car) => {
                     const matchesCountry = selectedCountry
                         ? car.country === selectedCountry
                         : true;
@@ -5996,11 +6007,11 @@ export default {
                 });
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.CarGarage = filteredCars;
+                this.filteredStories.carGarage = filteredCars;
 
-                console.log("Filtered Cars:", this.filteredStories.CarGarage);
+                console.log("Filtered Cars:", this.filteredStories.carGarage);
 
-                console.log("origional Cars:", this.originalCars.CarGarage);
+                console.log("origional Cars:", this.originalCars.carGarage);
             }
         },
         applyFilterShop(selectedCountry, selectedCity) {
@@ -6009,10 +6020,11 @@ export default {
             console.log(selectedCountry, selectedCity);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.carModificationShop = this.originalCars.carModificationShop
                 this.fetchStories();
             } else {
                 const filteredCars =
-                    this.filteredStories.CarModificationTunningShop.filter((car) => {
+                    this.filteredStories.carModificationShop.filter((car) => {
                         const matchesCountry = selectedCountry
                             ? car.country === selectedCountry
                             : true;
@@ -6021,16 +6033,16 @@ export default {
                     });
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.CarModificationTunningShop = filteredCars;
+                this.filteredStories.carModificationShop = filteredCars;
 
                 console.log(
                     "Filtered Cars:",
-                    this.filteredStories.CarModificationTunningShop
+                    this.filteredStories.carModificationShop
                 );
 
                 console.log(
                     "origional Cars:",
-                    this.originalCars.CarModificationTunningShop
+                    this.originalCars.carModificationShop
                 );
             }
         },
@@ -6039,10 +6051,11 @@ export default {
             this.getcities(selectedCountry);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.carClub = this.originalCars.carClub
                 this.fetchStories();
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.CarClub.filter((car) => {
+                const filteredCars = this.filteredStories.carClub.filter((car) => {
                     const matchesCountry = selectedCountry
                         ? car.country === selectedCountry
                         : true;
@@ -6051,7 +6064,7 @@ export default {
                 });
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.CarClub = filteredCars;
+                this.filteredStories.carClub = filteredCars;
             }
         },
         applyFilterBike(selectedCountry, selectedCity) {
@@ -6059,10 +6072,11 @@ export default {
             this.getcities(selectedCountry);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.motorbikeEnthusiast = this.originalCars.motorbikeEnthusiast
                 this.fetchStories();
             } else {
                 this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.MotorbikeEnthusiast.filter(
+                const filteredCars = this.filteredStories.motorbikeEnthusiast.filter(
                     (car) => {
                         const matchesCountry = selectedCountry
                             ? car.country === selectedCountry
@@ -6073,7 +6087,7 @@ export default {
                 );
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.MotorbikeEnthusiast = filteredCars;
+                this.filteredStories.motorbikeEnthusiast = filteredCars;
             }
         },
         applyFilterAuto(selectedCountry, selectedCity) {
@@ -6081,10 +6095,11 @@ export default {
             this.getcities(selectedCountry);
             // Logic to filter carGarage based on selectedCountry and selectedCity
             if (selectedCity == "" && selectedCountry == "") {
+                this.filteredStories.automotivePhotographer = this.originalCars.automotivePhotographer
                 this.fetchStories();
             } else {
-                this.filteredStories.CarEnthusiast = this.originalCars.CarEnthusiast;
-                const filteredCars = this.filteredStories.AutomotivePhotographer.filter(
+                this.filteredStories.automotivePhotographer = this.originalCars.automotivePhotographer;
+                const filteredCars = this.filteredStories.automotivePhotographer.filter(
                     (car) => {
                         const matchesCountry = selectedCountry
                             ? car.country === selectedCountry
@@ -6095,7 +6110,7 @@ export default {
                 );
 
                 // Update the filteredCars list, triggering reactivity
-                this.filteredStories.AutomotivePhotographer = filteredCars;
+                this.filteredStories.automotivePhotographer = filteredCars;
             }
         },
         parsedImages(images) {
@@ -6169,7 +6184,7 @@ export default {
         async fetchStories() {
             console.log("in ft")
             // Don't fetch if already loading or no more pages
-            if (this.isFetching || !this.hasMore) return;
+            //  if (this.isFetching || !this.hasMore) return;
 
             this.isFetching = true;
             this.isLoading = true;
