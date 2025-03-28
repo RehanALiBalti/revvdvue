@@ -40,7 +40,19 @@ import buyCar3 from "./components/buyCar3.vue";
 import buyCar4 from "./components/buyCar4.vue";
 import sellCar from "./components/sellCar.vue";
 import carDetails from "./components/carDetails.vue";
+import newfeaturedstories from "./components/newfeaturedstories.vue";
+import TestStories from "./components/TestStories.vue";
 const routes = [
+  {
+    name: "newfeaturedstories",
+    component: newfeaturedstories,
+    path: "/newstories",
+  },
+  {
+    name: "TestStories",
+    component: TestStories,
+    path: "/test",
+  },
   {
     name: "HomeLanding",
     component: HomeLanding,
