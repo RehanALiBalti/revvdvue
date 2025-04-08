@@ -231,7 +231,7 @@
                                                             }" class="mySwiper swiper-no-shadow modalswipper"
                                                             v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img loading="lazy" :src="image"
@@ -666,7 +666,7 @@
                                                             }" class="mySwiper swiper-no-shadow modalswipper"
                                                             v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img loading="lazy" :src="image"
@@ -834,7 +834,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1059,7 +1059,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1088,7 +1088,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1510,7 +1510,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1685,7 +1685,7 @@
                                                             }" class="mySwiper swiper-no-shadow modalswipper"
                                                             v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img loading="lazy" :src="image"
@@ -1819,7 +1819,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2041,7 +2041,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2061,7 +2061,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2283,7 +2283,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2451,7 +2451,7 @@
                                                             class="mySwiper swiper-no-shadow modalswipper"
                                                             v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img loading="lazy" :src="image"
@@ -2585,7 +2585,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2807,7 +2807,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2827,7 +2827,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3049,7 +3049,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3214,7 +3214,7 @@
                                                             class="mySwiper swiper-no-shadow modalswipper"
                                                             v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img loading="lazy" :src="image"
@@ -3346,7 +3346,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3568,7 +3568,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3588,7 +3588,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3810,7 +3810,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3980,7 +3980,7 @@
                                                             class="mySwiper swiper-no-shadow modalswipper"
                                                             v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img loading="lazy" :src="image"
@@ -4112,7 +4112,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4334,7 +4334,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4354,7 +4354,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4576,7 +4576,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4744,7 +4744,7 @@
                                                             class="mySwiper swiper-no-shadow modalswipper"
                                                             v-if="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                                v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
                                                                 <div class="d-block">
                                                                     <img loading="lazy" :src="image"
