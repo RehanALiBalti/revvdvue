@@ -602,7 +602,7 @@
                                                 :loopedSlides="car.images.length" class="mySwiper swiper-no-shadow"
                                                 v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
                                                     :key="idx">
                                                     <div class="d-block">
                                                         <img loading="lazy" :src="image"

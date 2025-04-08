@@ -158,7 +158,7 @@
                                             @click="openModalFe">
                                             <div class="main-slider weekly-slider align-items-center">
                                                 <div class="swiper-container myCarListingCard-swiper-container">
-
+<!-- 
                                                     <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                         :initialSlide="1" class="mySwiper swiper-no-shadow"
                                                         v-show="car.images && car.images.length">
@@ -173,7 +173,7 @@
                                                         </swiper-slide>
 
 
-                                                    </swiper>
+                                                    </swiper> -->
 
                                                     <span class="swiper-notification" aria-live="assertive"
                                                         aria-atomic="true"></span>
@@ -642,7 +642,7 @@
                             </div>
                             <div v-else>
                                 <div v-for="(car, index) in this.filteredStories?.carEnthusiast || []" :key="index"
-                                    :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'" v-memo="[index]">
+                                    :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'" v-memo="[index]" v-once>
                                     <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                         @click="openModal(index)">
                                         <div class="main-slider weekly-slider align-items-center">
@@ -650,6 +650,7 @@
 
                                                 <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                     :initialSlide="1" :slidesPerView="1" :spaceBetween="10" :loop="true"
+                                                    :virtual="false"
                                                     :loopedSlides="car.images.length" class="mySwiper swiper-no-shadow"
                                                     v-if="car.images && car.images.length">
                                                     <swiper-slide class="swiper-no-shadow"
@@ -662,7 +663,13 @@
                                                     </swiper-slide>
                                                 </swiper>
 
-
+                                                <!-- <div  v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                :key="idx">
+                                                <keep-alive>
+                                                <img loading="lazy" :src="image"
+                                                class="slider-img myCarListingCard-img" alt="car" />
+                                                </keep-alive>
+                                                </div> -->
                                                 <span class="swiper-notification" aria-live="assertive"
                                                     aria-atomic="true"></span>
                                             </div>
@@ -5432,13 +5439,40 @@ export default {
                 this.loadingst = false
             }
         },
-        reorderedImages(images) {
-            let parsed = this.parsedImages(images) || [];
-            if (parsed.length > 1) {
-                return [parsed[parsed.length - 1], parsed[0], parsed[1], ...parsed.slice(2, parsed.length - 1)];
-            }
-            return parsed;
-        },
+        // reorderedImages(images) {
+        //     let parsed = this.parsedImages(images) || [];
+        //     if (parsed.length > 1) {
+        //         return [parsed[parsed.length - 1], parsed[0], parsed[1], ...parsed.slice(2, parsed.length - 1)];
+        //     }
+        //     return parsed;
+        // },
+        async reorderedImages(images) {
+    let parsed = this.parsedImages(images) || [];
+
+    const compressImage = (url, quality = 0.3, scale = 0.5) => {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = () => {
+                const canvas = document.createElement("canvas");
+                canvas.width = img.width * scale;
+                canvas.height = img.height * scale;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                resolve(canvas.toDataURL("image/jpeg", quality));
+            };
+            img.src = url;
+        });
+    };
+
+    const compressed = await Promise.all(parsed.map(img => compressImage(img)));
+
+    if (compressed.length > 1) {
+        return [compressed[compressed.length - 1], compressed[0], compressed[1], ...compressed.slice(2, compressed.length - 1)];
+    }
+    return compressed;
+}
+,
 
         getImageUrl(image) {
             return `${http.defaults.baseURL.replace("/api", "")}/stories/${image}`;
