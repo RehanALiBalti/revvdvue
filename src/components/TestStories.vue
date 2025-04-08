@@ -5447,7 +5447,7 @@ export default {
             return parsed;
         },
 
-,
+
 
         getImageUrl(image) {
             return `${http.defaults.baseURL.replace("/api", "")}/stories/${image}`;
