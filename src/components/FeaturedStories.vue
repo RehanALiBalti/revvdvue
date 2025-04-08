@@ -6246,7 +6246,15 @@ export default {
             this.activeCarIndex = index;
 
             this.isModalOpen = true;
+            const element = document.querySelector('.height-control-scroll');
+      if (element) {
+        element.scrollTo({
+          top: 0,
+          behavior: 'smooth', // Smooth scroll effect
+        });
+    }
             console.log("active car index", this.activeCarIndex)
+         
         },
         openModalFe() {
             this.isModalOpenFe = true;
