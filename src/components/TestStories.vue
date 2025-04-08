@@ -1,5 +1,5 @@
 <template>
-    <section class="community-section height-control-scroll" data-scroll-container>
+    <section class="community-section " data-scroll-container >
         <div class="container">
             <!-- Tabs -->
             <div class="row mb-2">
@@ -141,7 +141,17 @@
                 <div class="col-md-12 px-0">
                     <div class="col-md-12 px-4">
                         <div class="row">
-                            <div v-for="(car, index) in featuredStories || []" :key="index"
+                         
+                            <div v-if="loading">
+      <div v-for="n in 3" :key="n" class="mb-4">
+        <SkeletonLoader width="100%" height="200px" borderRadius="12px" />
+        <SkeletonLoader width="60%" height="20px" class="mt-2" />
+        <SkeletonLoader width="80%" height="16px" class="mt-1" />
+        <SkeletonLoader width="40%" height="16px" class="mt-1" />
+      </div>
+    </div>
+                            <div v-else>
+                                <div v-for="(car, index) in featuredStories || []" :key="index"
                                 :class="isModalOpenFe ? 'z-2' : 'z-0'">
                                 <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                     @click="openModalFe">
@@ -150,7 +160,7 @@
 
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" class="mySwiper swiper-no-shadow"
-                                                v-if="car.images && car.images.length">
+                                                v-show="car.images && car.images.length">
 
                                                 <swiper-slide class="swiper-no-shadow"
                                                     v-for="(image, idx) in reorderedImages(car.images) || []"
@@ -186,24 +196,24 @@
                                         </ul>
                                         <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px">
                                             <!-- <span v-if="car.advice">{{ car.advice }}</span> -->
-                                            <span class="text-orange" v-if="activeTab == 0">What’s the story behind your
+                                            <span class="text-orange" v-show="activeTab == 0">What’s the story behind your
                                                 car? </span>
-                                            <span class="text-orange " v-if="activeTab == 1">Tell us your Garage story &
+                                            <span class="text-orange " v-show="activeTab == 1">Tell us your Garage story &
                                                 how it all started </span>
-                                            <span class="text-orange" v-if="activeTab == 2">Tell us your shop story &
+                                            <span class="text-orange" v-show="activeTab == 2">Tell us your shop story &
                                                 how
                                                 it all started</span>
-                                            <span class="text-orange" v-if="activeTab == 3">Tell us your club story &
+                                            <span class="text-orange" v-show="activeTab == 3">Tell us your club story &
                                                 how
                                                 it all started </span>
-                                            <span class="text-orange" v-if="activeTab == 4">Tell us your Motorbike
+                                            <span class="text-orange" v-show="activeTab == 4">Tell us your Motorbike
                                                 story
                                                 & how it all started </span>
-                                            <span class="text-orange" v-if="activeTab == 5">Tell us your Automotive
+                                            <span class="text-orange" v-show="activeTab == 5">Tell us your Automotive
                                                 Photography story & how it all started</span>
                                             <br />
-                                            <span class="tranc" v-if="car.story">{{ car.story }}</span>
-                                            <span class="tranc" v-else>{{ car.story_history }}</span>
+                                            <span class="tranc" v-show="car.story">{{ car.story }}</span>
+                                            <span class="tranc" v-show="car.story_history">{{ car.story_history }}</span>
 
                                         </p>
                                     </div>
@@ -229,7 +239,7 @@
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev',
                                                             }" class="mySwiper swiper-no-shadow modalswipper"
-                                                            v-if="car.images && car.images.length">
+                                                            v-show="car.images && car.images.length">
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
                                                                 v-for="(image, idx) in reorderedImages(car.images) || []"
                                                                 :key="idx">
@@ -279,86 +289,86 @@
 
                                                         </div>
                                                         <p class="text-orange"
-                                                            style="font-size: 14px; text-align: start" v-if="car.story">
+                                                            style="font-size: 14px; text-align: start" v-show="car.story">
                                                             What’s the story behind your car?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
-                                                            v-if="car.story">
+                                                            v-show="car.story">
                                                             {{ car.story }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.advice">
+                                                            v-show="car.advice">
                                                             What advise would you give to someone starting their journey
                                                             as a car enthusiast?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
-                                                            v-if="car.advice">
+                                                            v-show="car.advice">
                                                             {{ car.advice }}
                                                         </p>
 
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.memorable">
+                                                            v-show="car.memorable">
                                                             Tell us the wildest or most unforgettable moment you’ve had
                                                             with your car
 
 
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
-                                                            v-if="car.memorable">
+                                                            v-show="car.memorable">
                                                             {{ car.memorable }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.modifications">
+                                                            v-show="car.modifications">
                                                             Any awesome modifications or unique features you can share?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
-                                                            v-if="car.memorable">
+                                                            v-show="car.memorable">
                                                             {{ car.modifications }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history && activeTab == 1">
+                                                            v-show="car.story_history && activeTab == 1">
                                                             Tell us your Garage story & how it all started
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history && activeTab == 2">
+                                                            v-show="car.story_history && activeTab == 2">
                                                             Tell us your shop story & how it all started
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history && activeTab == 3">
+                                                            v-show="car.story_history && activeTab == 3">
                                                             Tell us your club story & how it all started
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history && activeTab == 4">
+                                                            v-show="car.story_history && activeTab == 4">
                                                             Tell us your Motorbike story & how it all started
                                                         </p>
 
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history && activeTab == 5">
+                                                            v-show="car.story_history && activeTab == 5">
                                                             Tell us your Automotive Photography story & how it all
                                                             started
                                                         </p>
 
 
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
-                                                            v-if="car.story_history">
+                                                            v-show="car.story_history">
                                                             {{ car.story_history }}
                                                         </p>
                                                         <p class="text-orange"
                                                             style="font-size: 14px; text-align: start"
-                                                            v-if="car.adventure_story">
+                                                            v-show="car.adventure_story">
                                                             Any unforgettable memory, event or story you can share with
                                                             us?
                                                         </p>
                                                         <p class="text-white" style="font-size: 14px; text-align: start"
-                                                            v-if="car.adventure_story">
+                                                            v-show="car.adventure_story">
                                                             {{ car.adventure_story }}
                                                         </p>
 
@@ -369,13 +379,14 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Tab Content -->
-            <div v-if="activeTab === 0" :class="isModalOpenFe ? 'z-0 position-relative ' : ''"
+            <div v-show="activeTab === 0" :class="isModalOpenFe ? 'z-0 position-relative ' : ''"
                 style="overflow-x:hiddens">
                 <div class="row">
                     <div class="col-md-12 mb-2">
@@ -581,7 +592,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-9 px-4">
+                    <div class="col-md-9 px-4 scroll-container "  >
                         <div class="row">
                             <!-- Container for the Viewer.js to manage image viewing -->
                             <div class="imageBig" ref="viewerContainer" style="display: none">
@@ -590,8 +601,18 @@
                                     v-for="(image, idx) in parsedImages(viewerImages) || []" :key="idx" />
 
                             </div>
+
+                            <div v-if="isScrolling">
+      <div v-for="n in this.filteredStories?.carEnthusiast.length" :key="n" class="mb-4">
+        <SkeletonLoader width="100%" height="200px" borderRadius="12px" />
+        <SkeletonLoader width="60%" height="20px" class="mt-2" />
+        <SkeletonLoader width="80%" height="16px" class="mt-1" />
+        <SkeletonLoader width="40%" height="16px" class="mt-1" />
+      </div>
+    </div>
+                          <div v-else>
                             <div v-for="(car, index) in this.filteredStories?.carEnthusiast || []" :key="index"
-                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'">
+                                :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'" v-memo="[index]"> 
                                 <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
                                     @click="openModal(index)">
                                     <div class="main-slider weekly-slider align-items-center">
@@ -758,6 +779,7 @@
                                 </div>
                             </div>
 
+                          </div>
 
                         </div>
 
@@ -788,7 +810,7 @@
                     </nav>
                 </div>
             </div>
-            <div v-else-if="activeTab === 1" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
+            <div v-show="activeTab === 1" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <div class="row ">
                     <div class="col-md-12 mb-2 m-0">
                         <input type="text" class="form-control formSearch mb-2" placeholder="search" v-model="search"
@@ -1772,7 +1794,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="activeTab === 2" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
+            <div v-show="activeTab === 2" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here Car Modification/Tuning Shop Content -->
                 <div class="row ">
                     <div class="col-md-12 mb-2">
@@ -2537,7 +2559,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="activeTab === 3" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
+            <div v-show="activeTab === 3" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here -->
 
                 <div class="row ">
@@ -3299,7 +3321,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="activeTab === 4" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
+            <div v-show="activeTab === 4" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here Motorbike Enthusiast Content -->
                 <div class="row ">
                     <div class="col-md-12 mb-2">
@@ -4065,7 +4087,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else-if="activeTab === 5" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
+            <div v-show="activeTab === 5" :class="isModalOpenFe ? 'z-0 position-relative ' : ''">
                 <!-- Add content here -->
                 <div class="row ">
                     <div class="col-md-12 mb-2">
@@ -4876,9 +4898,13 @@ import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 import FooterSect from "./FooterSect";
 import http from "@/http-common";
 import LocomotiveScroll from 'locomotive-scroll';
+import { SkeletonLoader } from "vue3-loading-skeleton"
+import "vue3-loading-skeleton/dist/style.css"
+
 export default {
     name: "FeaturedStories",
     components: {
+        SkeletonLoader,
         Swiper,
         SwiperSlide,
         FooterSect
@@ -4890,6 +4916,10 @@ export default {
     },
     data() {
         return {
+            isScrolling: false,
+            scrollTimeout: null,
+            loadingst:true,
+            loading: true,
             pagination: {
                 currentPage: 0,
                 totalPages: 1,
@@ -5293,6 +5323,7 @@ export default {
             el: document.querySelector("[data-scroll-container]"),
             smooth: true
         });
+        window.addEventListener("scroll", this.handleScroll)
         this.retrieveCars();
 
 
@@ -5303,10 +5334,24 @@ export default {
     },
     beforeUnmount() {
         this.scroll.destroy(); // Clean up when component is destroyed
+        window.removeEventListener("scroll", this.handleScroll)
     },
     methods: {
+        handleScroll() {
+      // Show skeleton on scroll
+      this.isScrolling = true
+
+      // Clear previous timer
+      clearTimeout(this.scrollTimeout)
+
+      // Hide skeleton after 300ms of scroll inactivity
+      this.scrollTimeout = setTimeout(() => {
+        this.isScrolling = false
+      }, 800)
+    },
         async fetchStoriesByName(storyType) {
             console.log(storyType)
+           this.loadingst=true
             // const nextPage = this.pagination.currentPage + 1;
             console.log(`Fetching stories for: ${storyType}`);
 
@@ -5346,8 +5391,10 @@ export default {
                 ////   } else {
                 //   console.warn(`⚠️ No matching story type found for $/{storyType}`);
                 //}
+                this.loadingst=false
             } catch (error) {
                 console.error("❌ Error fetching stories:", error);
+                this.loadingst=false
             }
         },
         reorderedImages(images) {
@@ -5515,6 +5562,7 @@ export default {
             }
         },
         async fetchFeaturedStoriesByType(storyType) {
+            this.loading=true
             console.log(storyType);
             try {
                 const response = await http.get(`/stories/featurestores/${storyType}`);
@@ -5526,15 +5574,18 @@ export default {
                     const featured = data.banner;
                     featured.images = featured.images ? JSON.parse(featured.images) : []; // Ensure valid JSON parsing
                     this.featuredStories = [featured]; // Store it in the featuredStories array
+                    this.loading=false
                 } else {
                     console.warn(`No featured stories found for ${storyType}`);
                     this.featuredStories = []; // Reset if no data
                     console.log("in else", this.featuredStories);
+                    this.loading=false
                 }
             } catch (error) {
                 this.featuredStories = []; // Reset if no data
                 console.error(`Error fetching featured stories for ${storyType}:`, error);
                 console.log("in error", this.featuredStories);
+                this.loading=false
             }
         }
 
@@ -6188,6 +6239,7 @@ export default {
 
             this.isFetching = true;
             this.isLoading = true;
+            this.loadingst=true
 
             try {
                 const nextPage = this.pagination.currentPage + 1;
@@ -6219,25 +6271,28 @@ export default {
 
                 // Check if there are more pages
                 this.hasMore = currentPage < totalPages;
+                this.loadingst=false
 
             } catch (error) {
                 console.error("Error fetching stories:", error);
+                this.loadingst=false
             } finally {
                 this.isFetching = false;
                 this.isLoading = false;
+                this.loadingst=false
             }
         },
         // Handle scroll event
-        handleScroll() {
-            // Check if we're near the bottom (within 100px)
-            const scrollPosition = window.innerHeight + window.scrollY;
-            const bottomThreshold = document.body.offsetHeight - 100;
+        // handleScroll() {
+        //     // Check if we're near the bottom (within 100px)
+        //     const scrollPosition = window.innerHeight + window.scrollY;
+        //     const bottomThreshold = document.body.offsetHeight - 100;
 
-            if (scrollPosition >= bottomThreshold && !this.isLoading) {
-                this.fetchStories();
-            }
-        }
-        ,
+        //     if (scrollPosition >= bottomThreshold && !this.isLoading) {
+        //         this.fetchStories();
+        //     }
+        // }
+        
         openModal(index) {
             console.log("Modal opened for car index:", index);
             this.activeCarIndex = index; // Set the active index to the clicked car
@@ -6278,6 +6333,12 @@ export default {
 </script>
 
 <style scoped>
+.scroll-container {
+  /* height: 600px; */
+  overflow-y: auto;
+  padding: 20px;
+}
+
 .csicon {
     background: none !important;
     border: none !important;
