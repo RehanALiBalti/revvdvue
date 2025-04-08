@@ -5439,39 +5439,14 @@ export default {
                 this.loadingst = false
             }
         },
-        // reorderedImages(images) {
-        //     let parsed = this.parsedImages(images) || [];
-        //     if (parsed.length > 1) {
-        //         return [parsed[parsed.length - 1], parsed[0], parsed[1], ...parsed.slice(2, parsed.length - 1)];
-        //     }
-        //     return parsed;
-        // },
-        async reorderedImages(images) {
-    let parsed = this.parsedImages(images) || [];
+        reorderedImages(images) {
+            let parsed = this.parsedImages(images) || [];
+            if (parsed.length > 1) {
+                return [parsed[parsed.length - 1], parsed[0], parsed[1], ...parsed.slice(2, parsed.length - 1)];
+            }
+            return parsed;
+        },
 
-    const compressImage = (url, quality = 0.3, scale = 0.5) => {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.crossOrigin = "anonymous";
-            img.onload = () => {
-                const canvas = document.createElement("canvas");
-                canvas.width = img.width * scale;
-                canvas.height = img.height * scale;
-                const ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                resolve(canvas.toDataURL("image/jpeg", quality));
-            };
-            img.src = url;
-        });
-    };
-
-    const compressed = await Promise.all(parsed.map(img => compressImage(img)));
-
-    if (compressed.length > 1) {
-        return [compressed[compressed.length - 1], compressed[0], compressed[1], ...compressed.slice(2, compressed.length - 1)];
-    }
-    return compressed;
-}
 ,
 
         getImageUrl(image) {
