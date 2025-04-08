@@ -151,252 +151,264 @@
                                 </div>
                             </div>
                             <div v-else>
-                                <div v-for="(car, index) in featuredStories || []" :key="index"
-                                    :class="isModalOpenFe ? 'z-2' : 'z-0'">
-                                    <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
-                                        @click="openModalFe">
-                                        <div class="main-slider weekly-slider align-items-center">
-                                            <div class="swiper-container myCarListingCard-swiper-container">
+                                <keep-alive>
+                                    <div v-for="(car, index) in featuredStories || []" :key="index"
+                                        :class="isModalOpenFe ? 'z-2' : 'z-0'">
+                                        <div class="card-sorting-content px-3 px-md-3 px-lg-1 py-2 col-md-12 p-1"
+                                            @click="openModalFe">
+                                            <div class="main-slider weekly-slider align-items-center">
+                                                <div class="swiper-container myCarListingCard-swiper-container">
 
-                                                <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                    :initialSlide="1" class="mySwiper swiper-no-shadow"
-                                                    v-show="car.images && car.images.length">
+                                                    <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
+                                                        :initialSlide="1" class="mySwiper swiper-no-shadow"
+                                                        v-show="car.images && car.images.length">
 
-                                                    <swiper-slide class="swiper-no-shadow"
-                                                        v-for="(image, idx) in reorderedImages(car.images) || []"
-                                                        :key="idx">
-                                                        <div class="d-block">
-                                                            <img loading="lazy" :src="image"
-                                                                class="slider-img myCarListingCard-img" alt="car" />
-                                                        </div>
-                                                    </swiper-slide>
+                                                        <swiper-slide class="swiper-no-shadow"
+                                                            v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                            :key="idx">
+                                                            <div class="d-block">
+                                                                <img loading="lazy" :src="image"
+                                                                    class="slider-img myCarListingCard-img" alt="car" />
+                                                            </div>
+                                                        </swiper-slide>
 
 
-                                                </swiper>
+                                                    </swiper>
 
-                                                <span class="swiper-notification" aria-live="assertive"
-                                                    aria-atomic="true"></span>
+                                                    <span class="swiper-notification" aria-live="assertive"
+                                                        aria-atomic="true"></span>
+                                                </div>
+                                                <img loading="lazy" :src="iconford" class="d-none" alt="" />
                                             </div>
-                                            <img loading="lazy" :src="iconford" class="d-none" alt="" />
+                                            <div class="card-content-car">
+
+                                                <h4 class="text-white mb-1">
+                                                    {{ car.story_name }}
+                                                </h4>
+                                                <ul
+                                                    class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
+                                                    <li class="list-item-user mb-0 justify-content-start">
+                                                        <img loading="lazy" :src="instaIcon" class="instaIcon" />
+                                                        <a :href="'https://www.instagram.com/' + car.social_media"
+                                                            class="a-tag-name-user mt-2 mb-2 " style="font-size: 14px"
+                                                            target="_blank" rel="noop@ener noreferrer">
+                                                            @{{ car.social_media }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px">
+                                                    <!-- <span v-if="car.advice">{{ car.advice }}</span> -->
+                                                    <span class="text-orange" v-show="activeTab == 0">What’s the story
+                                                        behind your
+                                                        car? </span>
+                                                    <span class="text-orange " v-show="activeTab == 1">Tell us your
+                                                        Garage
+                                                        story &
+                                                        how it all started </span>
+                                                    <span class="text-orange" v-show="activeTab == 2">Tell us your shop
+                                                        story &
+                                                        how
+                                                        it all started</span>
+                                                    <span class="text-orange" v-show="activeTab == 3">Tell us your club
+                                                        story &
+                                                        how
+                                                        it all started </span>
+                                                    <span class="text-orange" v-show="activeTab == 4">Tell us your
+                                                        Motorbike
+                                                        story
+                                                        & how it all started </span>
+                                                    <span class="text-orange" v-show="activeTab == 5">Tell us your
+                                                        Automotive
+                                                        Photography story & how it all started</span>
+                                                    <br />
+                                                    <span class="tranc" v-show="car.story">{{ car.story }}</span>
+                                                    <span class="tranc" v-show="car.story_history">{{ car.story_history
+                                                        }}</span>
+
+                                                </p>
+                                            </div>
+
+
                                         </div>
-                                        <div class="card-content-car">
+                                        <!-- Modal -->
+                                        <div class="modal show d-block" tabindex="-1" role="dialog"
+                                            v-if="isModalOpenFe">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                        <span class="close-icon" @click="modalCloseFe">
+                                                            <i class="fas fa-times"></i>
+                                                        </span>
 
-                                            <h4 class="text-white mb-1">
-                                                {{ car.story_name }}
-                                            </h4>
-                                            <ul class="user-details-car myCarListingCard-user-details-car mb-1 mt-0">
-                                                <li class="list-item-user mb-0 justify-content-start">
-                                                    <img loading="lazy" :src="instaIcon" class="instaIcon" />
-                                                    <a :href="'https://www.instagram.com/' + car.social_media"
-                                                        class="a-tag-name-user mt-2 mb-2 " style="font-size: 14px"
-                                                        target="_blank" rel="noop@ener noreferrer">
-                                                        @{{ car.social_media }}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <p class="text-white mt-0 mb-0  text-wrap " style="font-size: 14px">
-                                                <!-- <span v-if="car.advice">{{ car.advice }}</span> -->
-                                                <span class="text-orange" v-show="activeTab == 0">What’s the story
-                                                    behind your
-                                                    car? </span>
-                                                <span class="text-orange " v-show="activeTab == 1">Tell us your Garage
-                                                    story &
-                                                    how it all started </span>
-                                                <span class="text-orange" v-show="activeTab == 2">Tell us your shop
-                                                    story &
-                                                    how
-                                                    it all started</span>
-                                                <span class="text-orange" v-show="activeTab == 3">Tell us your club
-                                                    story &
-                                                    how
-                                                    it all started </span>
-                                                <span class="text-orange" v-show="activeTab == 4">Tell us your Motorbike
-                                                    story
-                                                    & how it all started </span>
-                                                <span class="text-orange" v-show="activeTab == 5">Tell us your
-                                                    Automotive
-                                                    Photography story & how it all started</span>
-                                                <br />
-                                                <span class="tranc" v-show="car.story">{{ car.story }}</span>
-                                                <span class="tranc" v-show="car.story_history">{{ car.story_history
-                                                    }}</span>
+                                                        <div class="mt-4 py-2">
+                                                            <div class="myCarListingCard-swiper-container">
 
-                                            </p>
-                                        </div>
+                                                                <swiper :effect="'cards'" :grabCursor="true"
+                                                                    :modules="modules" :initialSlide="1"
+                                                                    :slidesPerView="1" :loop="true"
+                                                                    :loopedSlides="car.images.length"
+                                                                    :pagination="{ clickable: true }" :navigation="{
+                                                                        nextEl: '.custom-next',
+                                                                        prevEl: '.custom-prev',
+                                                                    }" class="mySwiper swiper-no-shadow modalswipper"
+                                                                    v-show="car.images && car.images.length">
+                                                                    <swiper-slide
+                                                                        class="swiper-no-shadow modalswippersh"
+                                                                        v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                                        :key="idx">
+                                                                        <div class="d-block">
+                                                                            <img loading="lazy" :src="image"
+                                                                                class="slider-img myCarListingCard-img modalswipperImage"
+                                                                                alt="car"
+                                                                                @click="openViewer(image, car.images)" />
+                                                                        </div>
+                                                                    </swiper-slide>
+                                                                </swiper>
 
 
-                                    </div>
-                                    <!-- Modal -->
-                                    <div class="modal show d-block" tabindex="-1" role="dialog" v-if="isModalOpenFe">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-body text-center">
-                                                    <span class="close-icon" @click="modalCloseFe">
-                                                        <i class="fas fa-times"></i>
-                                                    </span>
+                                                                <span class="swiper-notification" aria-live="assertive"
+                                                                    aria-atomic="true"></span>
+                                                            </div>
+                                                            <div class="custom-swiper-navigation gap-8 justify-content-center"
+                                                                :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
+                                                                <button class="custom-prev btn">
+                                                                    <img loading="lazy" :src="prevIcon" alt="" />
+                                                                </button>
+                                                                <button class="custom-next btn">
+                                                                    <img loading="lazy" :src="nextIcon" alt="" />
+                                                                </button>
+                                                            </div>
 
-                                                    <div class="mt-4 py-2">
-                                                        <div class="myCarListingCard-swiper-container">
-
-                                                            <swiper :effect="'cards'" :grabCursor="true"
-                                                                :modules="modules" :initialSlide="1" :slidesPerView="1"
-                                                                :loop="true" :loopedSlides="car.images.length"
-                                                                :pagination="{ clickable: true }" :navigation="{
-                                                                    nextEl: '.custom-next',
-                                                                    prevEl: '.custom-prev',
-                                                                }" class="mySwiper swiper-no-shadow modalswipper"
-                                                                v-show="car.images && car.images.length">
-                                                                <swiper-slide class="swiper-no-shadow modalswippersh"
-                                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
-                                                                    :key="idx">
-                                                                    <div class="d-block">
-                                                                        <img loading="lazy" :src="image"
-                                                                            class="slider-img myCarListingCard-img modalswipperImage"
-                                                                            alt="car"
-                                                                            @click="openViewer(image, car.images)" />
+                                                            <div class="overlay mt-5"
+                                                                :class="{ '': isOverlayTransparent }"
+                                                                @click="toggleOverlayOpacity">
+                                                                <div
+                                                                    class="mt-2 d-flex justify-content-between align-items-center mb-2">
+                                                                    <div class="d-flex align-items-center gap-2">
+                                                                        <img loading="lazy" :src="iconford"
+                                                                            class="d-none" alt="" />
+                                                                        <h3 class="m-0 text-white fontsiz">
+                                                                            {{ car.story_name }}
+                                                                        </h3>
                                                                     </div>
-                                                                </swiper-slide>
-                                                            </swiper>
-
-
-                                                            <span class="swiper-notification" aria-live="assertive"
-                                                                aria-atomic="true"></span>
-                                                        </div>
-                                                        <div class="custom-swiper-navigation gap-8 justify-content-center"
-                                                            :class="isOverlayTransparent ? 'd-flex' : 'd-flex'">
-                                                            <button class="custom-prev btn">
-                                                                <img loading="lazy" :src="prevIcon" alt="" />
-                                                            </button>
-                                                            <button class="custom-next btn">
-                                                                <img loading="lazy" :src="nextIcon" alt="" />
-                                                            </button>
-                                                        </div>
-
-                                                        <div class="overlay mt-5" :class="{ '': isOverlayTransparent }"
-                                                            @click="toggleOverlayOpacity">
-                                                            <div
-                                                                class="mt-2 d-flex justify-content-between align-items-center mb-2">
-                                                                <div class="d-flex align-items-center gap-2">
-                                                                    <img loading="lazy" :src="iconford" class="d-none"
-                                                                        alt="" />
-                                                                    <h3 class="m-0 text-white fontsiz">
-                                                                        {{ car.story_name }}
-                                                                    </h3>
                                                                 </div>
-                                                            </div>
-                                                            <div class="d-flex align-items-center text-white mt-2">
-                                                                <img loading="lazy" :src="instaIcon"
-                                                                    class="instaIcon" />
-                                                                <a :href="'https://www.instagram.com/' + car.social_media"
-                                                                    class="a-tag-name-user mt-2 mb-2"
-                                                                    style="font-size: 14px" target="_blank"
-                                                                    rel="noopener noreferrer">
-                                                                    @{{ car.social_media }}
-                                                                </a>
+                                                                <div class="d-flex align-items-center text-white mt-2">
+                                                                    <img loading="lazy" :src="instaIcon"
+                                                                        class="instaIcon" />
+                                                                    <a :href="'https://www.instagram.com/' + car.social_media"
+                                                                        class="a-tag-name-user mt-2 mb-2"
+                                                                        style="font-size: 14px" target="_blank"
+                                                                        rel="noopener noreferrer">
+                                                                        @{{ car.social_media }}
+                                                                    </a>
+
+                                                                </div>
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.story">
+                                                                    What’s the story behind your car?
+                                                                </p>
+                                                                <p class="text-white"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.story">
+                                                                    {{ car.story }}
+                                                                </p>
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.advice">
+                                                                    What advise would you give to someone starting their
+                                                                    journey
+                                                                    as a car enthusiast?
+                                                                </p>
+                                                                <p class="text-white"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.advice">
+                                                                    {{ car.advice }}
+                                                                </p>
+
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.memorable">
+                                                                    Tell us the wildest or most unforgettable moment
+                                                                    you’ve
+                                                                    had
+                                                                    with your car
+
+
+                                                                </p>
+                                                                <p class="text-white"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.memorable">
+                                                                    {{ car.memorable }}
+                                                                </p>
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.modifications">
+                                                                    Any awesome modifications or unique features you can
+                                                                    share?
+                                                                </p>
+                                                                <p class="text-white"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.memorable">
+                                                                    {{ car.modifications }}
+                                                                </p>
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.story_history && activeTab == 1">
+                                                                    Tell us your Garage story & how it all started
+                                                                </p>
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.story_history && activeTab == 2">
+                                                                    Tell us your shop story & how it all started
+                                                                </p>
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.story_history && activeTab == 3">
+                                                                    Tell us your club story & how it all started
+                                                                </p>
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.story_history && activeTab == 4">
+                                                                    Tell us your Motorbike story & how it all started
+                                                                </p>
+
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.story_history && activeTab == 5">
+                                                                    Tell us your Automotive Photography story & how it
+                                                                    all
+                                                                    started
+                                                                </p>
+
+
+                                                                <p class="text-white"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.story_history">
+                                                                    {{ car.story_history }}
+                                                                </p>
+                                                                <p class="text-orange"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.adventure_story">
+                                                                    Any unforgettable memory, event or story you can
+                                                                    share
+                                                                    with
+                                                                    us?
+                                                                </p>
+                                                                <p class="text-white"
+                                                                    style="font-size: 14px; text-align: start"
+                                                                    v-show="car.adventure_story">
+                                                                    {{ car.adventure_story }}
+                                                                </p>
 
                                                             </div>
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.story">
-                                                                What’s the story behind your car?
-                                                            </p>
-                                                            <p class="text-white"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.story">
-                                                                {{ car.story }}
-                                                            </p>
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.advice">
-                                                                What advise would you give to someone starting their
-                                                                journey
-                                                                as a car enthusiast?
-                                                            </p>
-                                                            <p class="text-white"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.advice">
-                                                                {{ car.advice }}
-                                                            </p>
-
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.memorable">
-                                                                Tell us the wildest or most unforgettable moment you’ve
-                                                                had
-                                                                with your car
-
-
-                                                            </p>
-                                                            <p class="text-white"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.memorable">
-                                                                {{ car.memorable }}
-                                                            </p>
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.modifications">
-                                                                Any awesome modifications or unique features you can
-                                                                share?
-                                                            </p>
-                                                            <p class="text-white"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.memorable">
-                                                                {{ car.modifications }}
-                                                            </p>
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.story_history && activeTab == 1">
-                                                                Tell us your Garage story & how it all started
-                                                            </p>
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.story_history && activeTab == 2">
-                                                                Tell us your shop story & how it all started
-                                                            </p>
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.story_history && activeTab == 3">
-                                                                Tell us your club story & how it all started
-                                                            </p>
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.story_history && activeTab == 4">
-                                                                Tell us your Motorbike story & how it all started
-                                                            </p>
-
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.story_history && activeTab == 5">
-                                                                Tell us your Automotive Photography story & how it all
-                                                                started
-                                                            </p>
-
-
-                                                            <p class="text-white"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.story_history">
-                                                                {{ car.story_history }}
-                                                            </p>
-                                                            <p class="text-orange"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.adventure_story">
-                                                                Any unforgettable memory, event or story you can share
-                                                                with
-                                                                us?
-                                                            </p>
-                                                            <p class="text-white"
-                                                                style="font-size: 14px; text-align: start"
-                                                                v-show="car.adventure_story">
-                                                                {{ car.adventure_story }}
-                                                            </p>
-
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </keep-alive>
                             </div>
                         </div>
                     </div>
@@ -620,7 +632,7 @@
 
                             </div>
 
-                            <div v-if="isScrolling">
+                            <div v-if="loadingst">
                                 <div v-for="n in 3" :key="n" class="mb-4">
                                     <SkeletonLoader width="100%" height="200px" borderRadius="12px" />
                                     <SkeletonLoader width="60%" height="20px" class="mt-2" />
@@ -879,7 +891,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1104,7 +1116,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1133,7 +1145,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1555,7 +1567,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1864,7 +1876,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2086,7 +2098,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2106,7 +2118,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2328,7 +2340,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2630,7 +2642,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2852,7 +2864,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2872,7 +2884,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3094,7 +3106,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3391,7 +3403,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3613,7 +3625,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3633,7 +3645,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3855,7 +3867,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4157,7 +4169,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4379,7 +4391,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4399,7 +4411,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4621,7 +4633,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
