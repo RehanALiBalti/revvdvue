@@ -97,11 +97,11 @@
     <HeaderItem
       v-if="$route.path !== '/' && $route.path !== '/termofservice' && $route.path !== '/privacypolicy' && $route.path !== '/cookies'" />
 
-    <keep-alive>
+    <!-- <keep-alive>
       <router-view v-if="$route.meta.keepAlive" />
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive" />
-    <!-- <router-view /> -->
+    <router-view v-if="!$route.meta.keepAlive" /> -->
+    <router-view />
 
   </div>
   <div v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy'">
