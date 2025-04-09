@@ -137,7 +137,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Cover') }} <span class="coloror">{{ $t('Story')
-                        }}</span></h5>
+                    }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -1963,7 +1963,12 @@ export default {
     // },
     goToSection(anchor) {
       console.log("anchor_s", anchor)
-      this.$refs.fullpage.api.moveTo(anchor);
+      if (this.$refs.fullpage && this.$refs.fullpage.api) {
+        this.$refs.fullpage.api.moveTo(anchor);
+      } else {
+        console.warn('Fullpage ref is not ready yet.');
+      }
+      // this.$refs.fullpage.api.moveTo(anchor);
       // console.log("anchor Index", this.fullpageOptions.anchors.indexOf(anchor))
       // this.$refs.fullpage.api.moveTo(this.fullpageOptions.anchors.indexOf(anchor) + 1);
       // Navigate to section by anchor
@@ -3447,7 +3452,11 @@ export default {
 
     // this.$router.push({ hash: '#home' });
     this.fetchBannerStories()
-
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.fullpageOptionsReady = true;
+      }, 100); // Delay ensures DOM is fully loaded
+    });
   },
 
   beforeUnmount() {
@@ -3607,7 +3616,6 @@ textarea.form-control {
 
 
     top: -39px
-
   }
 
 

@@ -5340,12 +5340,12 @@ export default {
 
 
         this.fetchStories();
-        window.addEventListener('scroll', this.handleScroll);
+        // window.addEventListener('scroll', this.handleScroll);
         // this.fetchFeaturedStories()
         this.fetchCarEnthusiastStories();
     },
     beforeUnmount() {
-        this.scroll.destroy(); // Clean up when component is destroyed
+        // this.scroll.destroy(); // Clean up when component is destroyed
     },
     methods: {
         async fetchStoriesByName(storyType) {
