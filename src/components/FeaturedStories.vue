@@ -1,5 +1,5 @@
 <template>
-    <section class="community-section height-control-scroll" data-scroll-container>
+    <section class="community-section " data-scroll-container>
         <div class="container">
             <!-- Tabs -->
             <div class="row mb-2">
@@ -149,11 +149,11 @@
                                         <div class="swiper-container myCarListingCard-swiper-container">
 
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
-                                                :initialSlide="1" class="mySwiper swiper-no-shadow"
+                                                :initialSlide="1" class="mySwiper swiper-no-shadow d-none d-md-block"
                                                 v-if="car.images && car.images.length">
 
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
                                                     :key="idx">
                                                     <div class="d-block">
                                                         <img loading="lazy" :src="image"
@@ -163,7 +163,12 @@
 
 
                                             </swiper>
-
+                                            <div class="swiper-slide d-block d-md-none"
+                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                :key="idx">
+                                                <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
+                                                    alt="car" />
+                                            </div>
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -599,10 +604,11 @@
 
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :slidesPerView="1" :spaceBetween="10" :loop="true"
-                                                :loopedSlides="car.images.length" class="mySwiper swiper-no-shadow"
+                                                :loopedSlides="car.images.length"
+                                                class="mySwiper swiper-no-shadow d-none d-md-block"
                                                 v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
                                                     :key="idx">
                                                     <div class="d-block">
                                                         <img loading="lazy" :src="image"
@@ -610,6 +616,12 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
+                                            <div class="swiper-slide d-block d-md-none"
+                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                :key="idx">
+                                                <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
+                                                    alt="car" />
+                                            </div>
 
 
                                             <span class="swiper-notification" aria-live="assertive"
@@ -834,7 +846,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
 
                                             <select id="country"
                                                 class="form-select form-control form-input filter-select"
@@ -1059,7 +1071,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1088,7 +1100,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="country" class="form-select form-control form-input filter-select"
                                         v-model="selectedCountry"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1510,7 +1522,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <!-- <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity"
                                         @change="applyFilter(selectedCountry, selectedCity, this.filteredStories.CarGarage)">
@@ -1575,10 +1587,11 @@
                                             </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
-                                                :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow"
+                                                :slidesPerView="1" :spaceBetween="10"
+                                                class="mySwiper swiper-no-shadow d-none d-md-block"
                                                 v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
                                                     :key="idx">
                                                     <div class="d-block">
                                                         <img loading="lazy" :src="image"
@@ -1586,7 +1599,12 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
-
+                                            <div class="swiper-slide d-block d-md-none"
+                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                :key="idx">
+                                                <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
+                                                    alt="car" />
+                                            </div>
 
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
@@ -1819,7 +1837,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2041,7 +2059,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2061,7 +2079,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterShop(selectedCountry, selectedCity)">
@@ -2283,7 +2301,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterShop(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -2341,10 +2359,11 @@
                                             </swiper> -->
                                             <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                                 :initialSlide="1" :loop="true" :loopedSlides="car.images.length"
-                                                :slidesPerView="1" :spaceBetween="10" class="mySwiper swiper-no-shadow"
+                                                :slidesPerView="1" :spaceBetween="10"
+                                                class="mySwiper swiper-no-shadow d-none d-md-block"
                                                 v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
                                                     :key="idx">
                                                     <div class="d-block">
                                                         <img loading="lazy" :src="image"
@@ -2353,6 +2372,12 @@
                                                 </swiper-slide>
                                             </swiper>
 
+                                            <div class="swiper-slide d-block d-md-none"
+                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                :key="idx">
+                                                <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
+                                                    alt="car" />
+                                            </div>
 
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
@@ -2585,7 +2610,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2807,7 +2832,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -2827,7 +2852,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterClub(selectedCountry, selectedCity)">
@@ -3049,7 +3074,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterClub(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3109,10 +3134,11 @@
                                                 :pagination="{ clickable: true }" :navigation="{
                                                     nextEl: '.custom-next',
                                                     prevEl: '.custom-prev'
-                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow"
+                                                }" :slidesPerView="1"
+                                                class="mySwiper swiper-no-shadow d-none d-md-block"
                                                 v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
                                                     :key="idx">
                                                     <div class="d-block">
                                                         <img loading="lazy" :src="image"
@@ -3120,7 +3146,12 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
-
+                                            <div class="swiper-slide d-block d-md-none"
+                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                :key="idx">
+                                                <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
+                                                    alt="car" />
+                                            </div>
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -3346,7 +3377,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3568,7 +3599,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3588,7 +3619,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterBike(selectedCountry, selectedCity)">
@@ -3810,7 +3841,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterBike(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -3869,10 +3900,11 @@
                                                 :pagination="{ clickable: true }" :navigation="{
                                                     nextEl: '.custom-next',
                                                     prevEl: '.custom-prev'
-                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow"
+                                                }" :slidesPerView="1"
+                                                class="mySwiper swiper-no-shadow d-none d-md-block"
                                                 v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
                                                     :key="idx">
                                                     <div class="d-block">
                                                         <img loading="lazy" :src="image"
@@ -3881,7 +3913,12 @@
                                                 </swiper-slide>
                                             </swiper>
 
-
+                                            <div class="swiper-slide d-block d-md-none"
+                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                :key="idx">
+                                                <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
+                                                    alt="car" />
+                                            </div>
 
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
@@ -4112,7 +4149,7 @@
                                         <div class="col-12">
                                             <label for="country" class="form-label filter-label">{{
                                                 $t("Country")
-                                            }}</label>
+                                                }}</label>
                                             <select v-model="selectedCountry" id="country"
                                                 class="form-select form-control form-input filter-select"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4334,7 +4371,7 @@
                                         <div class="col-12">
                                             <label for="city" class="form-label filter-label">{{
                                                 $t("City")
-                                            }}</label>
+                                                }}</label>
                                             <select id="city" class="form-select form-control form-input filter-select"
                                                 v-model="selectedCity"
                                                 @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4354,7 +4391,7 @@
                                 <div class="col-12">
                                     <label for="country" class="form-label filter-label">{{
                                         $t("Country")
-                                    }}</label>
+                                        }}</label>
                                     <select v-model="selectedCountry" id="country"
                                         class="form-select form-control form-input filter-select"
                                         @change="applyFilterAuto(selectedCountry, selectedCity)">
@@ -4576,7 +4613,7 @@
                                 <div class="col-12">
                                     <label for="city" class="form-label filter-label">{{
                                         $t("City")
-                                    }}</label>
+                                        }}</label>
                                     <select id="city" class="form-select form-control form-input filter-select"
                                         v-model="selectedCity" @change="applyFilterAuto(selectedCountry, selectedCity)">
                                         <option selected value="">City</option>
@@ -4635,10 +4672,11 @@
                                                 :pagination="{ clickable: true }" :navigation="{
                                                     nextEl: '.custom-next',
                                                     prevEl: '.custom-prev'
-                                                }" :slidesPerView="1" class="mySwiper swiper-no-shadow"
+                                                }" :slidesPerView="1"
+                                                class="mySwiper swiper-no-shadow d-none d-md-block"
                                                 v-if="car.images && car.images.length">
                                                 <swiper-slide class="swiper-no-shadow"
-                                                    v-for="(image, idx) in reorderedImages(car.images) || []"
+                                                    v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
                                                     :key="idx">
                                                     <div class="d-block">
                                                         <img loading="lazy" :src="image"
@@ -4646,7 +4684,12 @@
                                                     </div>
                                                 </swiper-slide>
                                             </swiper>
-
+                                            <div class="swiper-slide d-block d-md-none"
+                                                v-for="(image, idx) in reorderedImages(car.images).slice(0, 1) || []"
+                                                :key="idx">
+                                                <img loading="lazy" :src="image" class="slider-img myCarListingCard-img"
+                                                    alt="car" />
+                                            </div>
                                             <span class="swiper-notification" aria-live="assertive"
                                                 aria-atomic="true"></span>
                                         </div>
@@ -4875,7 +4918,7 @@ import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 import FooterSect from "./FooterSect";
 import http from "@/http-common";
-import LocomotiveScroll from 'locomotive-scroll';
+// import LocomotiveScroll from 'locomotive-scroll';
 export default {
     name: "FeaturedStories",
     components: {
@@ -5289,10 +5332,10 @@ export default {
         },
     },
     mounted() {
-        this.scroll = new LocomotiveScroll({
-            el: document.querySelector("[data-scroll-container]"),
-            smooth: true
-        });
+        // this.scroll = new LocomotiveScroll({
+        //     el: document.querySelector("[data-scroll-container]"),
+        //     smooth: true
+        // });
         this.retrieveCars();
 
 
@@ -6246,7 +6289,15 @@ export default {
             this.activeCarIndex = index;
 
             this.isModalOpen = true;
+            // const element = document.querySelector('.height-control-scroll');
+            // if (element) {
+            //     element.scrollTo({
+            //         top: 0,
+            //         behavior: 'smooth', // Smooth scroll effect
+            //     });
+            // }
             console.log("active car index", this.activeCarIndex)
+
         },
         openModalFe() {
             this.isModalOpenFe = true;

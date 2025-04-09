@@ -271,6 +271,7 @@ const routes = [
     path: "/stories",
     name: "FeaturedStories",
     component: FeaturedStories,
+    meta: { keepAlive: true },
   },
   {
     path: "/buy",
