@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div id="map"></div>
+    <div class="bgmap">
+        <!-- <div id="map"></div> -->
 
         <div class="row">
             <div class="col-md">
@@ -20,7 +20,7 @@
                                         your
                                         chosen regions</label>
 
-                                    <select id="country" class="form-select  h35px fsel" v-model="country">
+                                    <!-- <select id="country" class="form-select  h35px fsel" v-model="country">
                                         <option selected value="">Selet Country</option>
                                         <option value="Afghanistan">Afghanistan</option>
                                         <option value="Albania">Albania</option>
@@ -234,7 +234,15 @@
                                         <option value="Yemen">Yemen</option>
                                         <option value="Zambia">Zambia</option>
                                         <option value="Zimbabwe">Zimbabwe</option>
-                                    </select>
+                                    </select> -->
+                                    <multiselect v-model="selectedCountries" :options="countries" :multiple="true"
+                                        :close-on-select="false" placeholder="Select up to 3 countries" label="name"
+                                        track-by="name" @select="onSelect" @remove="onRemove"
+                                        class="form-select  h35px fsel">
+                                    </multiselect>
+                                    <small v-if="selectedCountries.length >= 3" style="color: red;">
+                                        You can select up to 3 countries only.
+                                    </small>
 
                                     <div class="col-md-12">
                                         <div
@@ -289,63 +297,120 @@
 </template>
 
 <script>
-import mapboxgl from 'mapbox-gl';
+// import mapboxgl from 'mapbox-gl';
 
+import Multiselect from 'vue-multiselect';
+// import mapimage from "../assets/images/bgmap.png"
 
 export default {
     name: 'MapComponent3',
+    components: { Multiselect },
     data() {
         return {
+
             ModalStoryFail: true,
             country: "",
+            selectedCountries: [],
+            // countries: [
+            //     'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola',
+            //     'Antigua and Barbuda', 'Argentina', 'Armenia', 'Australia', 'Austria',
+            //     'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados',
+            //     'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia',
+            //     'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria',
+            //     'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon',
+            //     'Canada', 'Central African Republic', 'Chad', 'Chile', 'China',
+            //     'Colombia', 'Comoros', 'Congo', 'Costa Rica', 'Croatia', 'Cuba',
+            //     'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominica',
+            //     'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea',
+            //     'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Fiji', 'Finland',
+            //     'France', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece',
+            //     'Grenada', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti',
+            //     'Honduras', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq',
+            //     'Ireland', 'Israel', 'Italy', 'Jamaica', 'Japan', 'Jordan',
+            //     'Kazakhstan', 'Kenya', 'Kiribati', 'Korea, North', 'Korea, South',
+            //     'Kosovo', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho',
+            //     'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Madagascar',
+            //     'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Marshall Islands',
+            //     'Mauritania', 'Mauritius', 'Mexico', 'Micronesia', 'Moldova', 'Monaco',
+            //     'Mongolia', 'Montenegro', 'Morocco', 'Mozambique', 'Myanmar', 'Namibia',
+            //     'Nauru', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger',
+            //     'Nigeria', 'North Macedonia', 'Norway', 'Oman', 'Pakistan', 'Palau',
+            //     'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines',
+            //     'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda',
+            //     'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent and the Grenadines',
+            //     'Samoa', 'San Marino', 'Sao Tome and Principe', 'Saudi Arabia',
+            //     'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore',
+            //     'Slovakia', 'Slovenia', 'Solomon Islands', 'Somalia', 'South Africa',
+            //     'South Sudan', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 'Sweden',
+            //     'Switzerland', 'Syria', 'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand',
+            //     'Timor-Leste', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey'
+            // ]
+            countries: [
+                { name: 'Pakistan' },
+                { name: 'India' },
+                { name: 'USA' },
+                { name: 'UK' },
+                { name: 'Germany' },
+                { name: 'France' }
+            ]
         }
     },
-
-    mounted() {
-        mapboxgl.accessToken =
-            "pk.eyJ1IjoiZGFuaXNoMjUwIiwiYSI6ImNsc3lxb3E0MjBnYTcycXJvYjUzcWxyc2sifQ.BTgJLfSCkp9R4ItQTxSVng";
-        const map = new mapboxgl.Map({
-            container: "map",
-            style: "mapbox://styles/danish250/clsyqxkw400dp01me77n3ay9f",
-            center: [-88.137343, 35.137451],
-            zoom: 1,
-            maxZoom: 10,
-        });
-
-        map.on("load", () => {
-            const layers = map.getStyle().layers;
-
-            map.setPaintProperty("water", "fill-color", "#000B1C");
-
-
-            let firstSymbolId;
-            for (const layer of layers) {
-                if (layer.type === "symbol") {
-                    firstSymbolId = layer.id;
-                    break;
-                }
+    methods: {
+        onSelect() {
+            if (this.selectedCountries.length > 3) {
+                // Prevent adding more than 3
+                this.selectedCountries.pop(); // Remove the last added
+                alert('You can only select up to 3 countries.');
             }
-
-            map.addSource("urban-areas", {
-                type: "geojson",
-                data: "https://docs.mapbox.com/mapbox-gl-js/assets/ne_50m_urban_areas.geojson",
-            });
-            map.addLayer(
-                {
-                    id: "urban-areas-fill",
-                    type: "fill",
-                    source: "urban-areas",
-                    paint: {
-                        "fill-pattern": "custom-pattern", // Use a custom pattern
-                        "fill-opacity": 1,
-                    },
-                },
-
-                firstSymbolId
-            );
+        },
 
 
-        });
+    },
+    mounted() {
+        // mapboxgl.accessToken =
+        //     "pk.eyJ1IjoiZGFuaXNoMjUwIiwiYSI6ImNsc3lxb3E0MjBnYTcycXJvYjUzcWxyc2sifQ.BTgJLfSCkp9R4ItQTxSVng";
+        // const map = new mapboxgl.Map({
+        //     container: "map",
+        //     style: "mapbox://styles/danish250/clsyqxkw400dp01me77n3ay9f",
+        //     center: [-88.137343, 35.137451],
+        //     zoom: 1,
+        //     maxZoom: 10,
+        // });
+
+        // map.on("load", () => {
+        //     const layers = map.getStyle().layers;
+
+        //     map.setPaintProperty("water", "fill-color", "#000B1C");
+
+
+        //     let firstSymbolId;
+        //     for (const layer of layers) {
+        //         if (layer.type === "symbol") {
+        //             firstSymbolId = layer.id;
+        //             break;
+        //         }
+        //     }
+
+        //     map.addSource("urban-areas", {
+        //         type: "geojson",
+        //         data: "https://docs.mapbox.com/mapbox-gl-js/assets/ne_50m_urban_areas.geojson",
+        //     });
+        //     map.addLayer(
+        //         {
+        //             id: "urban-areas-fill",
+        //             type: "fill",
+        //             source: "urban-areas",
+        //             paint: {
+        //                 "fill-pattern": "custom-pattern", // Use a custom pattern
+        //                 "fill-opacity": 1,
+        //             },
+        //         },
+
+        //         firstSymbolId
+        //     );
+
+
+        // });
 
 
 
@@ -357,6 +422,14 @@ export default {
 </script>
 
 <style scoped>
+@import "vue-multiselect/dist/vue-multiselect.min.css";
+
+.bgmap {
+    background: url("../assets/images/bgmap.png");
+    height: 100vh;
+    background-size: cover
+}
+
 #map {
     height: 500px;
     width: 100%;
@@ -409,5 +482,10 @@ export default {
     border: 1px solid #FF7A00 !important;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC") !important;
     background-size: 10px 6px !important;
+    background-color: transparent;
+}
+
+::v-deep .multiselect__select {
+    display: none;
 }
 </style>
