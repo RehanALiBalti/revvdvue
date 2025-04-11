@@ -35,10 +35,13 @@
         </div>
         <div id="map" class="d-none"></div>
         <div style="overflow:auto ; position:relative">
-            <img :src="mapImage" />
-            <img :src="usa" class="usa" @click="IsModal = !IsModal" />
-            <img :src="eurp" class="eurp" @click="IsModal = !IsModal" />
-            <img :src="japn" class="japn" @click="IsModal = !IsModal" />
+            <img class="img-fluid" :src="mapImage" />
+            <img :src="usa" class="usa d-none d-md-block" @click="IsModal = !IsModal" />
+            <img :src="eurp" class="eurp d-none d-md-block" @click="IsModal = !IsModal" />
+            <img :src="japn" class="japn d-none d-md-block" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="dotusa d-block d-md-none" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="doteurp d-block d-md-none" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="dotjapn d-block d-md-none" @click="IsModal = !IsModal" />
 
         </div>
         <div class="row" v-show="IsModal">
@@ -146,6 +149,7 @@ import mapImage from "../assets/images/bgmap.png"
 import usa from "../assets/images/usa.png"
 import japn from "../assets/images/japn.png"
 import eurp from "../assets/images/eurp.png"
+import dotm from "../assets/images/dotm.png"
 
 import "vue-select/dist/vue-select.css";
 
@@ -153,6 +157,7 @@ export default {
     name: 'MapComponent2',
     data() {
         return {
+            dotm,
             usa,
             japn,
             eurp,
@@ -412,5 +417,25 @@ export default {
 .swpipwcon {
     max-width: 566px !important;
     height: 340px !important
+}
+
+.dotusa {
+
+    position: absolute;
+    top: 48px;
+    left: 45px;
+}
+
+.doteurp {
+    position: absolute;
+    top: 27px;
+    left: 178px;
+
+}
+
+.dotjapn {
+    position: absolute;
+    top: 42px;
+    left: 297px;
 }
 </style>
