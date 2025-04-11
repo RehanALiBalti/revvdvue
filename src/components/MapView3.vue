@@ -407,7 +407,7 @@ export default {
 @media(max-width:768px) {
     .modalPos {
         width: 90%;
-        top: 40%;
+        top: 60%;
         margin-bottom: 1rem;
 
     }
