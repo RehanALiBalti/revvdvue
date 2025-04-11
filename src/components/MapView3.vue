@@ -33,7 +33,14 @@
 
             </div>
         </div>
-        <div id="map"></div>
+        <div id="map" class="d-none"></div>
+        <div style="overflow:auto ; position:relative">
+            <img :src="mapImage" />
+            <img :src="usa" class="usa" @click="IsModal = !IsModal" />
+            <img :src="eurp" class="eurp" @click="IsModal = !IsModal" />
+            <img :src="japn" class="japn" @click="IsModal = !IsModal" />
+
+        </div>
         <div class="row" v-show="IsModal">
             <div class="col-md-12">
                 <div class="modal-dialog modal-xxl modalPos">
@@ -135,6 +142,10 @@ import logo1 from "../assets/images/cars_logos/60.png"
 import logo2 from "../assets/images/cars_logos/56.png"
 import logo3 from "../assets/images/cars_logos/1.png"
 import logo4 from "../assets/images/cars_logos/3.png"
+import mapImage from "../assets/images/bgmap.png"
+import usa from "../assets/images/usa.png"
+import japn from "../assets/images/japn.png"
+import eurp from "../assets/images/eurp.png"
 
 import "vue-select/dist/vue-select.css";
 
@@ -142,6 +153,10 @@ export default {
     name: 'MapComponent2',
     data() {
         return {
+            usa,
+            japn,
+            eurp,
+            mapImage,
             IsModal: false,
             country: "",
             logo1: logo1,
@@ -276,6 +291,24 @@ export default {
 }
 </script>
 <style scoped>
+.usa {
+    position: absolute;
+    top: 247px;
+    left: 238px;
+}
+
+.eurp {
+    top: 156px;
+    position: absolute;
+    left: 931px;
+}
+
+.japn {
+    position: absolute;
+    top: 240px;
+    left: 1579px;
+}
+
 .swiper-slide {
     color: #ffff;
     margin-top: 2rem;
@@ -369,7 +402,7 @@ export default {
 @media(max-width:768px) {
     .modalPos {
         width: 90%;
-        top: 30%;
+        top: 40%;
         margin-bottom: 1rem;
 
     }

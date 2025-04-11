@@ -30,7 +30,14 @@
 
             </div>
         </div>
-        <div id="map"></div>
+        <div id="map" class="d-none"></div>
+        <div style="overflow:auto ; position:relative">
+            <img :src="mapImage" />
+            <img :src="usa" class="usa" @click="IsModal = !IsModal" />
+            <img :src="eurp" class="eurp" @click="IsModal = !IsModal" />
+            <img :src="japn" class="japn" @click="IsModal = !IsModal" />
+
+        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -244,6 +251,10 @@ import logo1 from "../assets/images/cars_logos/60.png"
 import logo2 from "../assets/images/cars_logos/56.png"
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
+import mapImage from "../assets/images/bgmap.png"
+import usa from "../assets/images/usa.png"
+import japn from "../assets/images/japn.png"
+import eurp from "../assets/images/eurp.png"
 export default {
     name: 'MapComponent3',
     components: {
@@ -251,6 +262,10 @@ export default {
     },
     data() {
         return {
+            mapImage,
+            usa,
+            japn,
+            eurp,
             ModalStoryFail: true,
             country: "",
             logo1: logo1,
