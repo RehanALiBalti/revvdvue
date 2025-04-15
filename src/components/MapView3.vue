@@ -35,13 +35,13 @@
         </div>
         <div id="map" class="d-none"></div>
         <div style="overflow:auto ; position:relative">
-            <img class="img-fluid" :src="mapImage" />
-            <img :src="usa" class="usa d-none d-md-block" @click="IsModal = !IsModal" />
-            <img :src="eurp" class="eurp d-none d-md-block" @click="IsModal = !IsModal" />
-            <img :src="japn" class="japn d-none d-md-block" @click="IsModal = !IsModal" />
-            <img :src="dotm" class="dotusa d-block d-md-none" @click="IsModal = !IsModal" />
-            <img :src="dotm" class="doteurp d-block d-md-none" @click="IsModal = !IsModal" />
-            <img :src="dotm" class="dotjapn d-block d-md-none" @click="IsModal = !IsModal" />
+            <img class="img-lg-100" :src="mapImage" />
+            <img :src="usa" class="usa  d-md-block" @click="IsModal = !IsModal" />
+            <img :src="eurp" class="eurp  d-md-block" @click="IsModal = !IsModal" />
+            <img :src="japn" class="japn  d-md-block" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="dotusa d-none d-md-none" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="doteurp d-none d-md-none" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="dotjapn d-none d-md-none" @click="IsModal = !IsModal" />
 
         </div>
         <div class="row" v-show="IsModal">
@@ -298,20 +298,22 @@ export default {
 <style scoped>
 .usa {
     position: absolute;
-    top: 247px;
-    left: 238px;
+    top: 159px;
+    left: 189px;
+
 }
 
 .eurp {
-    top: 156px;
+    top: 109px;
     position: absolute;
-    left: 931px;
+    left: 698px;
 }
 
 .japn {
     position: absolute;
-    top: 240px;
-    left: 1579px;
+    top: 220px;
+    left: 1230px;
+    width: 120px;
 }
 
 .swiper-slide {
@@ -437,5 +439,32 @@ export default {
     position: absolute;
     top: 42px;
     left: 297px;
+}
+
+@media(max-width:768px) {
+    .usa {
+        top: 232px;
+        left: 271px;
+
+    }
+
+    .eurp {
+        left: 973px;
+    }
+
+    .japn {
+        top: 238px;
+        left: 1567px;
+        width: unset;
+
+    }
+}
+
+@media(min-width:993px) {
+    .img-lg-100 {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto
+    }
 }
 </style>
