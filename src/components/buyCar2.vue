@@ -47,42 +47,33 @@
 
                                     <div class="swiper-container swpipwcon">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <p class="fontC2">USA</p>
-                                                <img class="" :src="logo1" width="250px" />
+                                            <div class="swiper-slide" v-for="(car, index) in cars" :key="index">
+                                                <p class="fontC2">{{ car.country }}</p>
+                                                <!-- <img :src="car.logo" width="250px"/> -->
+                                                <img :src="car.logo" width="145px" height="145px" />
+
+                                                <!-- Checkbox with max 3 selection logic -->
+                                                <div class="d-flex align-items-center gap-2 mt-2">
+                                                    <input type="checkbox" :id="'car-' + index" :value="car.name"
+                                                        v-model="selectedCars"
+                                                        :disabled="selectedCars.length >= 3 && !selectedCars.includes(car.name)" />
+                                                    <label :for="'car-' + index">{{ car.name }}</label>
+                                                </div>
 
                                                 <div
                                                     class="border-orange d-flex justify-content-between align-items-center p-2">
-                                                    <button class=" swiperbutton swiper-prev">
+                                                    <button class="swiperbutton swiper-prev">
                                                         <i class="fa-solid fa-chevron-left"></i>
                                                     </button>
-                                                    MG
-                                                    <button class=" swiperbutton swiper-next">
+                                                    {{ car.name }}
+                                                    <button class="swiperbutton swiper-next">
                                                         <i class="fa-solid fa-chevron-right"></i>
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="swiper-slide">
-                                                <p class="fontC2"> Germany</p>
-                                                <img class="" :src="logo2" width="250px" />
-
-                                                <div
-                                                    class="border-orange d-flex justify-content-between align-items-center p-2">
-                                                    <button class=" swiperbutton swiper-prev">
-                                                        <i class="fa-solid fa-chevron-left"></i>
-                                                    </button>
-                                                    Mercedes
-                                                    <button class=" swiperbutton swiper-next">
-                                                        <i class="fa-solid fa-chevron-right"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-
                                         </div>
-
-                                        <!-- Add Navigation -->
-
                                     </div>
+
                                     <div class="col-md-12">
                                         <div
                                             class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
@@ -141,6 +132,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import 'swiper/swiper-bundle.css';
 import logo1 from "../assets/images/cars_logos/60.png"
 import logo2 from "../assets/images/cars_logos/56.png"
+import logo3 from "../assets/images/cars_logos/1.png"
+import logo4 from "../assets/images/cars_logos/3.png"
 
 import "vue-select/dist/vue-select.css";
 export default {
@@ -155,8 +148,18 @@ export default {
             formData: {
                 make: "",
                 model: ""
-            }
+            },
+            selectedCars: [],
+            cars: [
+                { name: 'MG', country: 'USA', logo: logo1 },
+                { name: 'Mercedes', country: 'Germany', logo: logo2 },
+                { name: 'Alfaromeo', country: 'USA', logo: logo3 },
+                { name: 'bmw', country: 'Germany', logo: logo4 },
+                // Add more if needed
+            ],
+
         }
+
     },
 
     mounted() {
@@ -329,7 +332,7 @@ export default {
 }
 
 .swpipwcon {
-    max-width: 562px !important;
-    height: 300px !important
+    max-width: 566px !important;
+    height: 340px !important
 }
 </style>

@@ -127,7 +127,7 @@
                                 <!-- Modal -->
                                 <div class="modal show d-block" tabindex="-1" role="dialog" v-if="isModalBannerOpen">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
+                                        <div class="modal-content mc-swp">
                                             <div class="modal-body text-center">
                                                 <router-link to="/stories">
                                                     <span class="close-icon">
@@ -182,7 +182,8 @@
                                                             :navigation="{
                                                                 nextEl: '.custom-next',
                                                                 prevEl: '.custom-prev',
-                                                            }" class="mySwiper swiper-no-shadow modalswipper">
+                                                            }" class="mySwiper swiper-no-shadow modalswipper"
+                                                            @swiper="onSwiper">
 
                                                             <swiper-slide class="swiper-no-shadow modalswippersh"
                                                                 v-for="(image, idx) in reorderedImages(car.images)"
@@ -448,6 +449,7 @@ import { Pagination, Navigation } from "swiper/modules";
 // import { Pagination, Navigation } from 'swiper';
 // Install Swiper modules
 // Swiper.use([Pagination, Navigation])
+
 import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css"; // Import the Viewer.js CSS
 export default {
@@ -879,8 +881,10 @@ export default {
             const endIndex = startIndex + this.pageSize;
             return this.cars.slice(startIndex, endIndex);
         },
+
     },
     mounted() {
+
         this.retrieveCars();
 
         // Initialize Swiper
@@ -908,6 +912,13 @@ export default {
         this.fetchBannerStories()
     },
     methods: {
+        onSwiper(swiper) {
+            const paginationEl = swiper.pagination.el
+            if (paginationEl) {
+                paginationEl.classList.add('my-custom-pagination-class')
+                paginationEl.style.setProperty('top', '103%', 'important')
+            }
+        },
 
         //     async fetchBannerStories() {
         //   try {
@@ -2340,6 +2351,13 @@ form-select {
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
     background: #f95f19 !important;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+    top: 103% !important;
 }
 
 .swiper-horizontal>.swiper-pagination-bullets,

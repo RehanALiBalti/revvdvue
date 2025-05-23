@@ -390,4 +390,8 @@ export default {
 
 
 }
+
+.my-custom-pagination-class {
+  top: 103% !important
+}
 </style>

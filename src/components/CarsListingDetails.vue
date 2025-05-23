@@ -737,4 +737,8 @@ export default {
 .swiper-button-next.content-next {
   bottom: 104px !important;
 }
+
+.car-details-content {
+  justify-content: space-between !important
+}
 </style>

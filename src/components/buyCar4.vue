@@ -30,7 +30,24 @@
 
             </div>
         </div>
-        <div id="map"></div>
+        <div id="map" class="d-none"></div>
+        <!-- <div style="overflow:auto ; position:relative">
+            <img :src="mapImage" />
+            <img :src="usa" class="usa" @click="IsModal = !IsModal" />
+            <img :src="eurp" class="eurp" @click="IsModal = !IsModal" />
+            <img :src="japn" class="japn" @click="IsModal = !IsModal" />
+
+        </div> -->
+        <div style="overflow:auto ; position:relative">
+            <img class="img-lg-100" :src="mapImage" />
+            <img :src="usa" class="usa  d-md-block" @click="IsModal = !IsModal" />
+            <img :src="eurp" class="eurp  d-md-block" @click="IsModal = !IsModal" />
+            <img :src="japn" class="japn  d-md-block" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="dotusa d-none d-md-none" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="doteurp d-none d-md-none" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="dotjapn d-none d-md-none" @click="IsModal = !IsModal" />
+
+        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -128,105 +145,107 @@
                 </div>
             </div>
         </div>
-        <div class="row posrel">
-            <div class="col-md-4 my-2">
-                <div class="modal-dialog ">
-                    <div class="modal-content px-3 py-2">
-                        <p class="text-white text-center mb-2">MG</p>
-                        <v-select v-model="formData.make" class="my-2 fsel" :options="makefilteredOptions"
-                            placeholder="Select a Make" :filterable="true">
-                            <template #open-indicator>
-                                <!-- Custom SVG Icon -->
-                                <img class="indicator_Image"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
-                                    width="11px" />
-                            </template>
-                            <template #no-options>
-                                <span>No options available</span>
-                            </template>
-                        </v-select>
-                        <v-select v-model="formData.model" class="my-2 fsel" :options="modelfilteredOptions"
-                            placeholder="Select a Model" :filterable="true" :readonly="formData.make === ''">
-                            <template #open-indicator>
-                                <!-- Custom SVG Icon -->
-                                <img class="indicator_Image"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
-                                    width="11px" />
-                            </template>
-                            <template #no-options>
-                                <span>No models available</span>
-                            </template>
-                        </v-select>
+        <div class="container-fluid">
+            <div class="row posrel">
+                <div class="col-md-4 my-2">
+                    <div class="modal-dialog ">
+                        <div class="modal-content px-3 py-2">
+                            <p class="text-white text-center mb-2">MG</p>
+                            <v-select v-model="formData.make" class="my-2 fsel" :options="makefilteredOptions"
+                                placeholder="Select a Make" :filterable="true">
+                                <template #open-indicator>
+                                    <!-- Custom SVG Icon -->
+                                    <img class="indicator_Image"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                                        width="11px" />
+                                </template>
+                                <template #no-options>
+                                    <span>No options available</span>
+                                </template>
+                            </v-select>
+                            <v-select v-model="formData.model" class="my-2 fsel" :options="modelfilteredOptions"
+                                placeholder="Select a Model" :filterable="true" :readonly="formData.make === ''">
+                                <template #open-indicator>
+                                    <!-- Custom SVG Icon -->
+                                    <img class="indicator_Image"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                                        width="11px" />
+                                </template>
+                                <template #no-options>
+                                    <span>No models available</span>
+                                </template>
+                            </v-select>
+                        </div>
+
+
                     </div>
-
-
                 </div>
-            </div>
-            <div class="col-md-4 my-2">
-                <div class="modal-dialog ">
-                    <div class="modal-content px-3 py-2">
-                        <p class="text-white text-center mb-2">NIssan</p>
-                        <v-select v-model="formData.make" class="my-2 fsel" :options="makefilteredOptions"
-                            placeholder="Select a Make" :filterable="true">
-                            <template #open-indicator>
-                                <!-- Custom SVG Icon -->
-                                <img class="indicator_Image"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
-                                    width="11px" />
-                            </template>
-                            <template #no-options>
-                                <span>No options available</span>
-                            </template>
-                        </v-select>
-                        <v-select v-model="formData.model" class="my-2 fsel" :options="modelfilteredOptions"
-                            placeholder="Select a Model" :filterable="true" :readonly="formData.make === ''">
-                            <template #open-indicator>
-                                <!-- Custom SVG Icon -->
-                                <img class="indicator_Image"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
-                                    width="11px" />
-                            </template>
-                            <template #no-options>
-                                <span>No models available</span>
-                            </template>
-                        </v-select>
+                <div class="col-md-4 my-2">
+                    <div class="modal-dialog ">
+                        <div class="modal-content px-3 py-2">
+                            <p class="text-white text-center mb-2">NIssan</p>
+                            <v-select v-model="formData.make" class="my-2 fsel" :options="makefilteredOptions"
+                                placeholder="Select a Make" :filterable="true">
+                                <template #open-indicator>
+                                    <!-- Custom SVG Icon -->
+                                    <img class="indicator_Image"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                                        width="11px" />
+                                </template>
+                                <template #no-options>
+                                    <span>No options available</span>
+                                </template>
+                            </v-select>
+                            <v-select v-model="formData.model" class="my-2 fsel" :options="modelfilteredOptions"
+                                placeholder="Select a Model" :filterable="true" :readonly="formData.make === ''">
+                                <template #open-indicator>
+                                    <!-- Custom SVG Icon -->
+                                    <img class="indicator_Image"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                                        width="11px" />
+                                </template>
+                                <template #no-options>
+                                    <span>No models available</span>
+                                </template>
+                            </v-select>
+                        </div>
+
+
                     </div>
-
-
                 </div>
-            </div>
-            <div class="col-md-4 my-2">
-                <div class="modal-dialog ">
-                    <div class="modal-content px-3 py-2">
-                        <p class="text-white text-center mb-2">Mercedes
-                        </p>
-                        <v-select v-model="formData.make" class="my-2 fsel" :options="makefilteredOptions"
-                            placeholder="Select a Make" :filterable="true">
-                            <template #open-indicator>
-                                <!-- Custom SVG Icon -->
-                                <img class="indicator_Image"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
-                                    width="11px" />
-                            </template>
-                            <template #no-options>
-                                <span>No options available</span>
-                            </template>
-                        </v-select>
-                        <v-select v-model="formData.model" class="my-2 fsel" :options="modelfilteredOptions"
-                            placeholder="Select a Model" :filterable="true" :readonly="formData.make === ''">
-                            <template #open-indicator>
-                                <!-- Custom SVG Icon -->
-                                <img class="indicator_Image"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
-                                    width="11px" />
-                            </template>
-                            <template #no-options>
-                                <span>No models available</span>
-                            </template>
-                        </v-select>
+                <div class="col-md-4 my-2">
+                    <div class="modal-dialog ">
+                        <div class="modal-content px-3 py-2">
+                            <p class="text-white text-center mb-2">Mercedes
+                            </p>
+                            <v-select v-model="formData.make" class="my-2 fsel" :options="makefilteredOptions"
+                                placeholder="Select a Make" :filterable="true">
+                                <template #open-indicator>
+                                    <!-- Custom SVG Icon -->
+                                    <img class="indicator_Image"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                                        width="11px" />
+                                </template>
+                                <template #no-options>
+                                    <span>No options available</span>
+                                </template>
+                            </v-select>
+                            <v-select v-model="formData.model" class="my-2 fsel" :options="modelfilteredOptions"
+                                placeholder="Select a Model" :filterable="true" :readonly="formData.make === ''">
+                                <template #open-indicator>
+                                    <!-- Custom SVG Icon -->
+                                    <img class="indicator_Image"
+                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC"
+                                        width="11px" />
+                                </template>
+                                <template #no-options>
+                                    <span>No models available</span>
+                                </template>
+                            </v-select>
+                        </div>
+
+
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -244,6 +263,10 @@ import logo1 from "../assets/images/cars_logos/60.png"
 import logo2 from "../assets/images/cars_logos/56.png"
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
+import mapImage from "../assets/images/bgmap.png"
+import usa from "../assets/images/usa.png"
+import japn from "../assets/images/japn.png"
+import eurp from "../assets/images/eurp.png"
 export default {
     name: 'MapComponent3',
     components: {
@@ -251,6 +274,10 @@ export default {
     },
     data() {
         return {
+            mapImage,
+            usa,
+            japn,
+            eurp,
             ModalStoryFail: true,
             country: "",
             logo1: logo1,
@@ -438,6 +465,74 @@ export default {
 
 .posrel {
     position: relative;
-    top: -150px;
+    /* top: -489px; */
+    top: -319px;
+}
+
+.usa {
+    position: absolute;
+    top: 159px;
+    left: 189px;
+
+}
+
+.eurp {
+    top: 109px;
+    position: absolute;
+    left: 698px;
+}
+
+.japn {
+    position: absolute;
+    top: 220px;
+    left: 1230px;
+    width: 120px;
+}
+
+.dotusa {
+
+    position: absolute;
+    top: 48px;
+    left: 45px;
+}
+
+.doteurp {
+    position: absolute;
+    top: 27px;
+    left: 178px;
+
+}
+
+.dotjapn {
+    position: absolute;
+    top: 42px;
+    left: 297px;
+}
+
+@media(max-width:768px) {
+    .usa {
+        top: 232px;
+        left: 271px;
+
+    }
+
+    .eurp {
+        left: 973px;
+    }
+
+    .japn {
+        top: 238px;
+        left: 1567px;
+        width: unset;
+
+    }
+}
+
+@media(min-width:993px) {
+    .img-lg-100 {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto
+    }
 }
 </style>
