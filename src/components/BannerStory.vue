@@ -77,7 +77,7 @@
                                 v-for="(car, index) in bannerStories" :key="index"
                                 :class="isModalOpen && activeCarIndex === index ? 'z-2' : 'z-0'"
                                 @click="openModal(index)">
-                                <div class="main-slider weekly-slider align-items-center">
+                                <div class="main-slider weekly-slider align-items-center  d-none">
                                     <div class="swiper-container myCarListingCard-swiper-container">
                                         <swiper :effect="'cards'" :grabCursor="true" :modules="modules"
                                             :initialSlide="1" class="mySwiper swiper-no-shadow">
@@ -94,7 +94,7 @@
                                     </div>
                                     <img :src="iconford" lass="d-none" alt="" />
                                 </div>
-                                <div class="card-content-car">
+                                <div class="card-content-car  d-none">
                                     <h4 class="text-white mb-1" v-if="car.make && car.model">
                                         {{ car.make }}:{{ car.model }}
                                     </h4>
