@@ -3019,3 +3019,7 @@ input::placeholder {
 .f-v-sel .vs__selected {
 	background-color: #f95f19 !important;
 }
+
+.my-custom-pagination-class {
+	top: 103% !important
+}

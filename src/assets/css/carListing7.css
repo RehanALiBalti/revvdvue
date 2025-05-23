@@ -88,6 +88,7 @@
 	/* transform: rotate(-7deg); */
 }
 
+
 .swiper-pagination-bullet {
 	width: 10px;
 	height: 10px;
@@ -350,4 +351,8 @@
 	.text-content-slide {
 		top: 0;
 	}
+}
+
+.my-custom-pagination-class {
+	top: 103% !important;
 }

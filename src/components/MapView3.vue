@@ -85,6 +85,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- selected cars -->
+                                    <div>
+                                        <span v-for="(car, index) in selectedCars" :key="index">
+                                            {{ car }}
+                                        </span>
+                                    </div>
 
                                     <div class="col-md-12">
                                         <div
@@ -338,7 +344,7 @@ export default {
 
 .modalPos {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%
