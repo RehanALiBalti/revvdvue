@@ -35,12 +35,22 @@
                       </h2>
                       <img :src="car.logo" alt="Logo" class="car-logo" width="100px" />
                     </div>
-                    <div class="car-details-content d-flex justify-content-evenly gap-2 flex-wrap">
-                      <div class=" " v-for="(detail, i) in car.page1" :key="i">
-                        <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value }}</p>
-                        <!-- <p class="map-para overview-para-list"></p> -->
+                    <div class="car-details-content row gap-0">
+                      <div class="col-md-12">
+                        <div class="row g-1">
+                          <div class="col-md-6 " v-for="(detail, i) in car.page1" :key="i">
+                            <div class="">
+                              <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value
+                              }}
+                              </p>
+                            </div>
+
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+
                   </div>
                 </div>
 
@@ -48,11 +58,18 @@
                   <!-- Page 2 - Engine & Performance -->
                   <div class="text-content-slide">
                     <h2 class="card-title-h2 koenigsegg-title">Performance & Engine</h2>
-                    <div class="car-details-content d-flex justify-content-evenly gap-2 flex-wrap">
-                      <div class="" v-for="(detail, i) in car.page2" :key="i">
-                        <!-- <p class="map-para overview-par-list coloor">{{ detail.label }}:</p>
-                        <p class="map-para overview-para-list">{{ detail.value }}</p> -->
-                        <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value }}</p>
+                    <div class="car-details-content row gap-0">
+                      <div class="col-md-12">
+                        <div class="row g-1">
+                          <div class="col-md-6 " v-for="(detail, i) in car.page2" :key="i">
+                            <div class="">
+                              <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value
+                              }}
+                              </p>
+                            </div>
+
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -62,11 +79,24 @@
                   <!-- Page 3 - Ownership & Location -->
                   <div class="text-content-slide">
                     <h2 class="card-title-h2 koenigsegg-title">Ownership & Location</h2>
-                    <div class="car-details-content  d-flex justify-content-evenly gap-2 flex-wrap">
+                    <!-- <div class="car-details-content  d-flex justify-content-evenly gap-2 flex-wrap">
                       <div class="" v-for="(detail, i) in car.page3" :key="i">
-                        <!-- <p class="map-para overview-para-list coloor">{{ detail.label }}:</p>
-                        <p class="map-para overview-para-list">{{ detail.value }}</p> -->
+                      
                         <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value }}</p>
+                      </div>
+                    </div> -->
+                    <div class="car-details-content row gap-0">
+                      <div class="col-md-12">
+                        <div class="row g-1">
+                          <div class="col-md-6 " v-for="(detail, i) in car.page3" :key="i">
+                            <div class="">
+                              <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value
+                              }}
+                              </p>
+                            </div>
+
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -644,8 +674,13 @@ export default {
 <style scoped>
 .swiper-button-prev:after,
 .swiper-button-next:after {
-  font-size: 12px !important;
-  color: #fff !important
+  font-size: 14px !important;
+  color: #f95f19 !important;
+  font-weight: 700 !important;
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: #0000005f;
+
 }
 
 .swiper-button-prev {
@@ -654,8 +689,12 @@ export default {
 
 .content-swiper-container>.content-next:after,
 .content-prev:after {
-  font-size: 12px !important;
-  color: #000 !important;
+  font-size: 18px !important;
+  color: #f95f19 !important;
+  font-weight: 700 !important;
+  background: #00000046;
+  padding: 0.6rem;
+  border-radius: 8px
 }
 
 .content-swiper-container>.content-next {
@@ -741,6 +780,22 @@ export default {
 }
 
 .car-details-content {
-  /* justify-content: space-between !important */
+  justify-content: center !important
+}
+
+.koenigsegg-title {
+  font-size: 30px;
+  margin-bottom: 3rem
+}
+
+.car-details-content p {
+  font-size: 18px;
+  /* white-space: nowrap; */
+  margin-bottom: 6px;
+  text-align: end;
+}
+
+.skew-div {
+  margin-bottom: 2.5rem
 }
 </style>
