@@ -267,7 +267,7 @@
 }
 
 .skew-div {
-	transform: rotate(-3deg) skew(-10deg, 0);
+	/* transform: rotate(-3deg) skew(-10deg, 0); */
 }
 
 @media (min-width: 992px) and (max-width: 1300px) {
