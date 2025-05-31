@@ -86,8 +86,9 @@
                                         </div>
                                     </div>
                                     <!-- selected cars -->
-                                    <div>
-                                        <span v-for="(car, index) in selectedCars" :key="index">
+                                    <div class="d-flex align-items-center gap-2 px-2 justify-content-center flex-wrap">
+                                        <span class="badge badge-orange" v-for="(car, index) in selectedCars"
+                                            :key="index">
                                             {{ car }}
                                         </span>
                                     </div>
@@ -335,6 +336,10 @@ export default {
 
 .fontC span {
     color: #FF7A00;
+}
+
+.badge-orange {
+    background: #FF7A00
 }
 
 #map {

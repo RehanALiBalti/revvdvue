@@ -35,10 +35,10 @@
                       </h2>
                       <img :src="car.logo" alt="Logo" class="car-logo" width="100px" />
                     </div>
-                    <div class="car-details-content row">
-                      <div class="model-list-content col-md-4" v-for="(detail, i) in car.page1" :key="i">
-                        <p class="map-para overview-para-list coloor">{{ detail.label }}:</p>
-                        <p class="map-para overview-para-list">{{ detail.value }}</p>
+                    <div class="car-details-content d-flex justify-content-evenly gap-2 flex-wrap">
+                      <div class=" " v-for="(detail, i) in car.page1" :key="i">
+                        <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value }}</p>
+                        <!-- <p class="map-para overview-para-list"></p> -->
                       </div>
                     </div>
                   </div>
@@ -47,11 +47,12 @@
                 <div class="swiper-slide" v-for="(car, index) in cars" :key="'p2-' + index">
                   <!-- Page 2 - Engine & Performance -->
                   <div class="text-content-slide">
-                    <h2 class="card-title-h2">Performance & Engine</h2>
-                    <div class="car-details-content row">
-                      <div class="model-list-content col-md-4" v-for="(detail, i) in car.page2" :key="i">
-                        <p class="map-para overview-par-list coloor">{{ detail.label }}:</p>
-                        <p class="map-para overview-para-list">{{ detail.value }}</p>
+                    <h2 class="card-title-h2 koenigsegg-title">Performance & Engine</h2>
+                    <div class="car-details-content d-flex justify-content-evenly gap-2 flex-wrap">
+                      <div class="" v-for="(detail, i) in car.page2" :key="i">
+                        <!-- <p class="map-para overview-par-list coloor">{{ detail.label }}:</p>
+                        <p class="map-para overview-para-list">{{ detail.value }}</p> -->
+                        <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value }}</p>
                       </div>
                     </div>
                   </div>
@@ -60,11 +61,12 @@
                 <div class="swiper-slide" v-for="(car, index) in cars" :key="'p3-' + index">
                   <!-- Page 3 - Ownership & Location -->
                   <div class="text-content-slide">
-                    <h2 class="card-title-h2">Ownership & Location</h2>
-                    <div class="car-details-content row">
-                      <div class="model-list-content col-md-4" v-for="(detail, i) in car.page3" :key="i">
-                        <p class="map-para overview-para-list coloor">{{ detail.label }}:</p>
-                        <p class="map-para overview-para-list">{{ detail.value }}</p>
+                    <h2 class="card-title-h2 koenigsegg-title">Ownership & Location</h2>
+                    <div class="car-details-content  d-flex justify-content-evenly gap-2 flex-wrap">
+                      <div class="" v-for="(detail, i) in car.page3" :key="i">
+                        <!-- <p class="map-para overview-para-list coloor">{{ detail.label }}:</p>
+                        <p class="map-para overview-para-list">{{ detail.value }}</p> -->
+                        <p class="text-white "><span class="fw-bolder">{{ detail.label }}:</span> {{ detail.value }}</p>
                       </div>
                     </div>
                   </div>
@@ -739,6 +741,6 @@ export default {
 }
 
 .car-details-content {
-  justify-content: space-between !important
+  /* justify-content: space-between !important */
 }
 </style>
