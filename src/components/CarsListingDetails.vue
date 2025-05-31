@@ -28,7 +28,7 @@
                 <div class="swiper-slide" v-for="(car, index) in cars" :key="index">
                   <!-- Page 1 - Car Basic Info -->
                   <div class="text-content-slide">
-                    <div class="skew-div">
+                    <div class="sd">
                       <h2 class="card-title-h2 koenigsegg-title">
                         {{ car.make }} {{ car.model }}
 
@@ -795,7 +795,11 @@ export default {
   text-align: end;
 }
 
-.skew-div {
+/* .skew-div {
+  margin-bottom: 2.5rem
+} */
+
+.sd {
   margin-bottom: 2.5rem
 }
 </style>
