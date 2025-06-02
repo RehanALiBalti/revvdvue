@@ -189,7 +189,7 @@
                                 <img :src="badge" width="25px" />
                               </div>
                             </div>
-                            <div>
+                            <div class="card-m-h">
                               <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                               <div class="row my-1">
                                 <div class="col-12 col-md-4">
@@ -271,7 +271,7 @@
                                 <img :src="badge" width="25px" />
                               </div>
                             </div>
-                            <div>
+                            <div class="card-m-h">
                               <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                               <div class="row my-1">
                                 <div class="col-12 col-md-4">
@@ -353,7 +353,7 @@
                                 <img :src="badge" width="25px" />
                               </div>
                             </div>
-                            <div>
+                            <div class="card-m-h">
                               <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                               <div class="row my-1">
                                 <div class="col-12 col-md-4">
@@ -801,5 +801,34 @@ export default {
 
 .sd {
   margin-bottom: 2.5rem
+}
+
+@media(max-width:768px) {
+  .swiper-button-prev.content-prev {
+    left: 0 !important;
+  }
+
+  .swiper-button-next.content-next {
+    right: 0 !important;
+  }
+
+  .btn-link {
+    top: 0px !important;
+    right: 0px
+  }
+
+  .text-content-slide {
+    height: 360px !important;
+    overflow: auto;
+  }
+
+  .car-details-content p {
+    text-align: center;
+  }
+
+  .card-m-h {
+    height: 200px;
+    overflow: auto;
+  }
 }
 </style>

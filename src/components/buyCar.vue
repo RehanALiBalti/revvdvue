@@ -443,6 +443,17 @@ export default {
     width: 60%
 }
 
+@media(max-width:768px) {
+    .modalPos {
+
+        width: 100%
+    }
+
+    .multiselect {
+        width: 80% !important;
+    }
+}
+
 .modal {
     background: none;
 }

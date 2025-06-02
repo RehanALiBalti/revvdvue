@@ -65,7 +65,7 @@
                                                 <img :src="car.logo" width="145px" height="145px" />
 
                                                 <!-- Checkbox with max 3 selection logic -->
-                                                <div class="d-flex align-items-center gap-2 mt-2">
+                                                <div class="d-flex align-items-center gap-2 mt-2 ms-1 ms-md-0">
                                                     <input type="checkbox" :id="'car-' + index" :value="car.name"
                                                         v-model="selectedCars"
                                                         :disabled="selectedCars.length >= 3 && !selectedCars.includes(car.name)" />
@@ -420,7 +420,7 @@ export default {
 @media(max-width:768px) {
     .modalPos {
         width: 90%;
-        top: 60%;
+        top: 40%;
         margin-bottom: 1rem;
 
     }
