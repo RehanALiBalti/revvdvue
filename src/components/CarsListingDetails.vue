@@ -29,11 +29,11 @@
                   <!-- Page 1 - Car Basic Info -->
                   <div class="text-content-slide">
                     <div class="sd">
-                      <h2 class="card-title-h2 koenigsegg-title">
+                      <h2 class="card-title-h2 koenigsegg-title mb-0">
                         {{ car.make }} {{ car.model }}
 
                       </h2>
-                      <img :src="car.logo" alt="Logo" class="car-logo" width="100px" />
+                      <!-- <img :src="car.logo" alt="Logo" class="car-logo" width="100px" /> -->
                     </div>
                     <div class="car-details-content row gap-0">
                       <div class="col-md-12">
@@ -800,7 +800,8 @@ export default {
 } */
 
 .sd {
-  margin-bottom: 2.5rem
+  /* margin-bottom: 2.5rem */
+  margin-bottom: 1rem
 }
 
 @media(max-width:768px) {
