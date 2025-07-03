@@ -19,7 +19,7 @@
             <div class="swiper-pagination"></div>
           </div>
         </div>
-        <div class="col-md-7 position-relative">
+        <div class="col-md-7 position-relative text-wall-effect">
           <router-link to="/cardetails"> <button class="btn btn-link"> <i
                 class="fa-solid fa-arrow-up-right-from-square"></i></button></router-link>
           <div class="container h-100">
@@ -830,5 +830,17 @@ export default {
     height: 200px;
     overflow: auto;
   }
+}
+
+.text-wall-effect {
+  transform: rotateY(-25deg);
+  transform-origin: left center;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px 40px;
+  border-radius: 10px;
+  transform-origin: left center;
+  /* backdrop-filter: blur(3px); */
+  /* Optional for glass effect */
+  transition: all 0.3s ease;
 }
 </style>
