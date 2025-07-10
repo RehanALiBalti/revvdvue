@@ -13,7 +13,7 @@
                             <div class="thank-you-pop row justify-content-center">
 
                                 <div class="col-md-8">
-                                    <p class="fontC mb-0 mt-3">Pick your <span>playgroungd</span></p>
+                                    <p class="fontC mb-0 mt-3">Pick your <span>playground</span></p>
                                     <label for="country" class="form-label mb-4 mt-0 pt-0">Select countries to browse
                                         car
                                         markets in
@@ -238,7 +238,7 @@
                                     <multiselect v-model="selectedCountries" :options="countries" :multiple="true"
                                         :close-on-select="false" placeholder="Select up to 3 countries" label="name"
                                         track-by="name" @select="onSelect" @remove="onRemove"
-                                        class="form-select  h35px fsel">
+                                        class="form-select  h30px fsel">
                                     </multiselect>
                                     <small v-if="selectedCountries.length >= 3" style="color: red;">
                                         You can select up to 3 countries only.
@@ -422,6 +422,18 @@ export default {
 </script>
 
 <style scoped>
+.h30px {
+    height: 25px !important
+}
+
+.multiselect {
+    min-height: 25px !important;
+}
+
+.multiselect__tags {
+    min-height: 25px !important;
+}
+
 @import "vue-multiselect/dist/vue-multiselect.min.css";
 
 .bgmap {
@@ -499,4 +511,10 @@ export default {
 ::v-deep .multiselect__select {
     display: none;
 }
+
+
+/* Override selected option background and text color */
+
+
+/* Change checkmark (✔) to orange circle tick */
 </style>

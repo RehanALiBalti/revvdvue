@@ -95,7 +95,7 @@
 
                                     <div class="col-md-12">
                                         <div
-                                            class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                                            class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto mt-0">
                                             <div
                                                 class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                                                 <span class="border-bottom-btn border-top-btn position-absolute">

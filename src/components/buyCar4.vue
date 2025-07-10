@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-md-3">
-                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto mt-0">
                     <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                             <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
@@ -66,10 +66,10 @@
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide">
                                                 <p class="fontC2">USA</p>
-                                                <img class="" :src="logo1" width="250px" />
+                                                <img class="mb-2" :src="logo1" width="250px" />
 
                                                 <div
-                                                    class="border-orange d-flex justify-content-between align-items-center p-2">
+                                                    class="border-orange d-flex justify-content-between align-items-center p-2 mt-4">
                                                     <button class=" swiperbutton swiper-prev">
                                                         <i class="fa-solid fa-chevron-left"></i>
                                                     </button>
@@ -81,10 +81,10 @@
                                             </div>
                                             <div class="swiper-slide">
                                                 <p class="fontC2"> Germany</p>
-                                                <img class="" :src="logo2" width="250px" height="150px" />
+                                                <img class="mb-2" :src="logo2" width="250px" height="150px" />
 
                                                 <div
-                                                    class="border-orange d-flex justify-content-between align-items-center p-2">
+                                                    class="border-orange d-flex justify-content-between align-items-center p-2 mt-4">
                                                     <button class=" swiperbutton swiper-prev">
                                                         <i class="fa-solid fa-chevron-left"></i>
                                                     </button>
@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div
-                                            class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                                            class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto mt-0">
                                             <div
                                                 class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                                                 <span class="border-bottom-btn border-top-btn position-absolute">
@@ -460,13 +460,13 @@ export default {
 
 .swpipwcon {
     max-width: 562px !important;
-    height: 280px !important
+    height: 340px !important
 }
 
 .posrel {
     position: relative;
     /* top: -489px; */
-    top: -319px;
+    top: -290px;
 }
 
 .usa {

@@ -3023,3 +3023,51 @@ input::placeholder {
 .my-custom-pagination-class {
 	top: 103% !important
 }
+
+
+.multiselect__option--selected::after {
+	content: "\2713" !important;
+	/* Unicode check mark */
+	color: #ff7f00 !important;
+	border: 2px solid #ff7f00;
+	border-radius: 50%;
+	/* padding: 2px 5px; */
+	margin-right: 10px;
+	height: 20px;
+	width: 20px;
+	aspect-ratio: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 !important;
+}
+
+.multiselect__option--selected {
+	background: transparent !important;
+	/* light orange bg */
+	color: #ff7f00 !important;
+}
+
+/* Hovered item */
+.multiselect__option--highlight {
+	background-color: transparent !important;
+	color: #ff7f00 !important;
+}
+
+/* Hovered item with checkmark */
+.multiselect__option--highlight::after {
+	content: "\2713" !important;
+	color: #ff7f00 !important;
+	border: 2px solid #ff7f00;
+	border-radius: 50%;
+	padding: 1px 5px;
+	margin-right: 10px;
+	height: 20px;
+	width: 20px;
+	aspect-ratio: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 !important;
+	background-color: transparent !important;
+}

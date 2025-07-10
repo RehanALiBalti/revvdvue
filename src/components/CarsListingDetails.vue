@@ -15,7 +15,7 @@
               <!-- Add more slides as needed -->
             </div>
             <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="swiper-button-next sb-next"></div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
@@ -843,5 +843,9 @@ export default {
   /* backdrop-filter: blur(3px); */
   /* Optional for glass effect */
   transition: all 0.3s ease;
+}
+
+.sb-next {
+  right: 3% !important
 }
 </style>
