@@ -62,7 +62,7 @@
                                             <div class="swiper-slide" v-for="(car, index) in cars" :key="index">
                                                 <p class="fontC2">{{ car.country }}</p>
                                                 <!-- <img :src="car.logo" width="250px"/> -->
-                                                <img :src="car.logo" width="200px" height="150px" />
+                                                <img :src="car.logo" width="250px" height="150px" />
 
                                                 <!-- Checkbox with max 3 selection logic -->
                                                 <div class="d-flex align-items-center gap-2 mt-2 ms-1 ms-md-0">
@@ -150,7 +150,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import 'swiper/swiper-bundle.css';
 import logo1 from "../assets/images/cars_logos/60.png"
 import logo2 from "../assets/images/cars_logos/56.png"
-// import logo3 from "../assets/images/cars_logos/1.png"
+import logo3 from "../assets/images/cars_logos/21.png"
 // import logo4 from "../assets/images/cars_logos/3.png"
 import mapImage from "../assets/images/bgmap.png"
 import usa from "../assets/images/usa.png"
@@ -182,7 +182,7 @@ export default {
                 { name: 'MG', country: 'USA', logo: logo1 },
                 { name: 'Mercedes', country: 'Germany', logo: logo2 },
 
-                // { name: 'bmw', country: 'Germany', logo: logo4 },
+                { name: 'bmw', country: 'Germany', logo: logo3 },
                 // Add more if needed
             ],
 
