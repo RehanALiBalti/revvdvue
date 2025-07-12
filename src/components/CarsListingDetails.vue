@@ -4,7 +4,7 @@
       <div class="row h-100">
         <div class="col-md-5">
 
-          <div class="swiper-container swiper-width">
+          <div class="swiper-container swiper-width px-3">
             <div class="swiper-wrapper position-relative" ref="viewerContainer">
               <div v-for="(image, index) in images" :key="index" class="swiper-slide swiper-adjustment">
                 <img :src="require(`@/assets/images/${image}`)" class="slider-img car-image-slider2" alt="car"
@@ -874,6 +874,6 @@ export default {
 }
 
 .sb-next {
-  right: -4% !important
+  right: 0% !important
 }
 </style>
