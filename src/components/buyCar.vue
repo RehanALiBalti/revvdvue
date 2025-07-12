@@ -439,7 +439,8 @@ export default {
 .bgmap {
     background: url("../assets/images/bgmap.png");
     height: 100vh;
-    background-size: cover
+    background-size: cover;
+    position: relative;
 }
 
 #map {

@@ -1,5 +1,5 @@
 <template>
-  <section class="banner-section-car-listing mb-5">
+  <section class="banner-section-car-listing">
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-5">
@@ -14,8 +14,8 @@
 
               <!-- Add more slides as needed -->
             </div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next sb-next"></div>
+            <div class="swiper-button-prev swiper1-prev"></div>
+            <div class="swiper-button-next sb-next swiper1-next"></div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
@@ -125,8 +125,8 @@
                       </div>
 
 
-                      <label>
-                        <input class="" type="checkbox" v-model="form.terms" />
+                      <label class="text-align-start">
+                        <input class="form-check-input border-0" type="checkbox" v-model="form.terms" />
                         Accept Terms & Conditions
                       </label>
                       <div class="col-md-12">
@@ -149,7 +149,8 @@
                                 alt="" />
                             </span>
                             <!-- data-bs-toggle="modal" -->
-                            <button type="submit" class="signin-btnli Start Engine load-more-btn proceed-btn width-set"
+                            <button type="submit"
+                              class="signin-btnli Start Engine load-more-btn proceed-btn width-set bg-orang"
                               id="submit-button">
                               Submit
                             </button>
@@ -517,13 +518,20 @@
 </template>
 <script>
 // Import swiper js
-import Swiper from "swiper";
+// import Swiper from "swiper";
 
 //Import Swiper styles
 import "swiper/swiper-bundle.css";
 
 //Import Swiper modules
-import { Pagination, Navigation } from "swiper/modules";
+// import { Pagination, Navigation } from "swiper/modules";
+
+import { Swiper } from 'swiper';  // Core Swiper
+import { EffectCube, Navigation, Pagination } from 'swiper/modules';  // Cube Effect + Extras
+import 'swiper/css';  // Core CSS
+import 'swiper/css/effect-cube';  // Cube Effect CSS
+import 'swiper/css/navigation';  // Navigation CSS
+import 'swiper/css/pagination';  // Pagination CSS
 import logo1 from "../assets/images/cars_logos/26.png"
 import carlogo1 from "../assets/images/cars_logos/26.png"
 import Image2 from "@/assets/images/d722fc518c6127ea183d184e5dc715e3.png";
@@ -541,7 +549,7 @@ import badge from "../assets/images/icons/badge.png"
 import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css";
 // Install Swiper modules
-Swiper.use([Pagination, Navigation]);
+Swiper.use([Pagination, Navigation, EffectCube]);
 
 export default {
   name: "CarsListingDetails",
@@ -628,24 +636,28 @@ export default {
       navbar: false, // Disable the navigation bar
       tooltip: false, // Disable tooltips for image actions
     });
+
+
     this.$nextTick(() => {
-      // Initialize Swiper
       new Swiper(".swiper-container.swiper-width", {
-        slidesPerView: 1,
-        spaceBetween: 10,
+        modules: [EffectCube, Navigation, Pagination],  // Add EffectCube
+        effect: 'cube',  // Enable Cube Effect
+        cubeEffect: {
+          shadow: true,  // Enable shadow
+          slideShadows: true,  // Show slide shadows
+          shadowOffset: 20,  // Shadow offset
+          shadowScale: 0.94,  // Shadow scale
+        },
         loop: true,
         pagination: {
-          el: ".swiper-pagination",
+          el: ".swiper1-pagination",
           clickable: true,
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: ".swiper1-next",
+          prevEl: ".swiper1-prev",
         },
       });
-    });
-
-    this.$nextTick(() => {
       // Initialize Swiper
       new Swiper(".swiper-container.content-swiper-container", {
         slidesPerView: 1,
@@ -675,26 +687,26 @@ export default {
 .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 14px !important;
-  color: #f95f19 !important;
+  color: #000 !important;
   font-weight: 700 !important;
   padding: 0.6rem;
-  border-radius: 8px;
-  background: #0000005f;
+  border-radius: 0px;
+  background: #fff;
 
 }
 
 .swiper-button-prev {
-  left: 54px
+  /* left: 54px */
 }
 
 .content-swiper-container>.content-next:after,
 .content-prev:after {
   font-size: 18px !important;
-  color: #f95f19 !important;
+  color: #000 !important;
   font-weight: 700 !important;
-  background: #00000046;
+  background: #fff;
   padding: 0.6rem;
-  border-radius: 8px
+  border-radius: 0px
 }
 
 .content-swiper-container>.content-next {
@@ -761,6 +773,18 @@ export default {
   left: -2px
 }
 
+.bg-orang {
+  /* background: #f96019aa */
+  background: #fff;
+  color: #000;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+.proceed-div img {
+  display: none
+}
+
 .card-bg {
   background-color: #031726cd !important;
   border-radius: 10px !important;
@@ -768,6 +792,10 @@ export default {
 
 .z-5 {
   z-index: 5;
+}
+
+.text-align-start {
+  text-align: start
 }
 
 .h5-title span {
@@ -846,6 +874,6 @@ export default {
 }
 
 .sb-next {
-  right: 3% !important
+  right: -4% !important
 }
 </style>

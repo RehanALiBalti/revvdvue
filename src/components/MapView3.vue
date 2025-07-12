@@ -34,14 +34,14 @@
             </div>
         </div>
         <div id="map" class="d-none"></div>
-        <div style="overflow:auto ; position:relative">
+        <div class="flex-lg-screen" style="overflow:auto ; position:relative">
             <img class="img-lg-100" :src="mapImage" />
-            <img :src="usa" class="usa  d-md-block" @click="IsModal = !IsModal" />
-            <img :src="eurp" class="eurp  d-md-block" @click="IsModal = !IsModal" />
-            <img :src="japn" class="japn  d-md-block" @click="IsModal = !IsModal" />
-            <img :src="dotm" class="dotusa d-none d-md-none" @click="IsModal = !IsModal" />
-            <img :src="dotm" class="doteurp d-none d-md-none" @click="IsModal = !IsModal" />
-            <img :src="dotm" class="dotjapn d-none d-md-none" @click="IsModal = !IsModal" />
+            <img :src="usa" class="usa  d-md-block cursor-pointer" @click="IsModal = !IsModal" />
+            <img :src="eurp" class="eurp  d-md-block cursor-pointer" @click="IsModal = !IsModal" />
+            <img :src="japn" class="japn  d-md-block cursor-pointer" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="dotusa d-none d-md-none cursor-pointer" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="doteurp d-none d-md-none cursor-pointer" @click="IsModal = !IsModal" />
+            <img :src="dotm" class="dotjapn d-none d-md-none cursor-pointer" @click="IsModal = !IsModal" />
 
         </div>
         <div class="row" v-show="IsModal">
@@ -62,12 +62,12 @@
                                             <div class="swiper-slide" v-for="(car, index) in cars" :key="index">
                                                 <p class="fontC2">{{ car.country }}</p>
                                                 <!-- <img :src="car.logo" width="250px"/> -->
-                                                <img :src="car.logo" width="145px" height="145px" />
+                                                <img :src="car.logo" width="200px" height="150px" />
 
                                                 <!-- Checkbox with max 3 selection logic -->
                                                 <div class="d-flex align-items-center gap-2 mt-2 ms-1 ms-md-0">
-                                                    <input type="checkbox" :id="'car-' + index" :value="car.name"
-                                                        v-model="selectedCars"
+                                                    <input type="checkbox" class="form-check-input mb-2 border-0"
+                                                        :id="'car-' + index" :value="car.name" v-model="selectedCars"
                                                         :disabled="selectedCars.length >= 3 && !selectedCars.includes(car.name)" />
                                                     <label :for="'car-' + index">{{ car.name }}</label>
                                                 </div>
@@ -87,7 +87,7 @@
                                     </div>
                                     <!-- selected cars -->
                                     <div class="d-flex align-items-center gap-2 px-2 justify-content-center flex-wrap">
-                                        <span class="badge badge-orange" v-for="(car, index) in selectedCars"
+                                        <span class="badge badge-orange mb-3" v-for="(car, index) in selectedCars"
                                             :key="index">
                                             {{ car }}
                                         </span>
@@ -150,8 +150,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import 'swiper/swiper-bundle.css';
 import logo1 from "../assets/images/cars_logos/60.png"
 import logo2 from "../assets/images/cars_logos/56.png"
-import logo3 from "../assets/images/cars_logos/1.png"
-import logo4 from "../assets/images/cars_logos/3.png"
+// import logo3 from "../assets/images/cars_logos/1.png"
+// import logo4 from "../assets/images/cars_logos/3.png"
 import mapImage from "../assets/images/bgmap.png"
 import usa from "../assets/images/usa.png"
 import japn from "../assets/images/japn.png"
@@ -181,8 +181,8 @@ export default {
             cars: [
                 { name: 'MG', country: 'USA', logo: logo1 },
                 { name: 'Mercedes', country: 'Germany', logo: logo2 },
-                { name: 'Alfaromeo', country: 'USA', logo: logo3 },
-                { name: 'bmw', country: 'Germany', logo: logo4 },
+
+                // { name: 'bmw', country: 'Germany', logo: logo4 },
                 // Add more if needed
             ],
 
@@ -305,22 +305,31 @@ export default {
 <style scoped>
 .usa {
     position: absolute;
-    top: 159px;
-    left: 189px;
+    /* top: 159px;
+    left: 189px; */
+    top: 142px;
+    left: 338px;
+    width: 160px;
 
 }
 
 .eurp {
-    top: 109px;
+    /* top: 109px;
     position: absolute;
-    left: 698px;
+    left: 698px; */
+    top: 95px;
+    position: absolute;
+    left: 710px;
+    width: 160px;
+
 }
 
 .japn {
     position: absolute;
-    top: 220px;
-    left: 1230px;
-    width: 120px;
+    top: 144px;
+    left: 1143px;
+    width: 160px;
+
 }
 
 .swiper-slide {
@@ -452,6 +461,10 @@ export default {
     left: 297px;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 @media(max-width:768px) {
     .usa {
         top: 232px;
@@ -473,9 +486,16 @@ export default {
 
 @media(min-width:993px) {
     .img-lg-100 {
-        max-width: 100% !important;
-        width: 100% !important;
+        /* max-width: 100% !important;
+        width: 100% !important; */
+        max-width: 80% !important;
+        width: 80% !important;
         height: auto
+    }
+
+    .flex-lg-screen {
+        display: flex;
+        justify-content: center
     }
 }
 </style>
