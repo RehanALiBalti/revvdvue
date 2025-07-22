@@ -19,17 +19,17 @@
             <div class="swiper-pagination"></div>
           </div>
         </div>
-        <div class="col-md-7 position-relative ">
+        <div class="col-md-7 position-relative text-wall-effect">
           <router-link to="/cardetails"> <button class="btn btn-link"> <i
                 class="fa-solid fa-arrow-up-right-from-square"></i></button></router-link>
           <div class="container h-100">
             <div class="swiper-container content-swiper-container position-relative">
               <div class="swiper-wrapper">
-                <div class="swiper-slide tilt-sp" v-for="(car, index) in cars" :key="index">
+                <div class="swiper-slide" v-for="(car, index) in cars" :key="index">
                   <!-- Page 1 - Car Basic Info -->
                   <div class="text-content-slide">
                     <div class="sd">
-                      <h2 class="card-title-h2 koenigsegg-title ">
+                      <h2 class="card-title-h2 koenigsegg-title mb-0">
                         {{ car.make }} {{ car.model }}
 
                       </h2>
@@ -54,7 +54,7 @@
                   </div>
                 </div>
 
-                <div class="swiper-slide tilt-sp" v-for="(car, index) in cars" :key="'p2-' + index">
+                <div class="swiper-slide" v-for="(car, index) in cars" :key="'p2-' + index">
                   <!-- Page 2 - Engine & Performance -->
                   <div class="text-content-slide">
                     <h2 class="card-title-h2 koenigsegg-title">Performance & Engine</h2>
@@ -75,7 +75,7 @@
                   </div>
                 </div>
 
-                <div class="swiper-slide tilt-sp" v-for="(car, index) in cars" :key="'p3-' + index">
+                <div class="swiper-slide" v-for="(car, index) in cars" :key="'p3-' + index">
                   <!-- Page 3 - Ownership & Location -->
                   <div class="text-content-slide">
                     <h2 class="card-title-h2 koenigsegg-title">Ownership & Location</h2>
@@ -102,7 +102,7 @@
                   </div>
                 </div>
 
-                <div class="swiper-slide tilt-sp">
+                <div class="swiper-slide">
                   <!-- Page 4 - Inquiry Form -->
                   <div class="text-content-slide">
                     <h2 class="card-title-h2">Make an Enquiry</h2>
@@ -169,7 +169,7 @@
                     </form>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp">
+                <div class="swiper-slide swiper-adjustment">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="card card-bg my-2 ">
@@ -181,7 +181,7 @@
                             <img class="w-100" :src="Image2" height="130px" width="150px" />
                           </div>
                           <div class="col-6 col-md-1 align-self-center ">
-                            <!-- <img class="img-fluid" :src="carlogo1" /> -->
+                            <img class="img-fluid" :src="carlogo1" />
                           </div>
                           <div class="col-12 col-md-8">
                             <div class="d-flex justify-content-end">
@@ -194,7 +194,7 @@
                               <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                               <div class="row my-1">
                                 <div class="col-12 col-md-4">
-                                  <p class="car-sec-text"> Price:<span>$</span> 250,000 </p>
+                                  <p class="car-sec-text"> Price: 250,000 <span>$</span></p>
                                 </div>
                                 <div class="col-12 col-md-4">
                                   <p class="car-sec-text"> Year: 2020</p>
@@ -251,7 +251,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp">
+                <div class="swiper-slide swiper-adjustment">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="card card-bg my-2 ">
@@ -263,7 +263,7 @@
                             <img class="w-100" :src="Image2" height="130px" width="150px" />
                           </div>
                           <div class="col-6 col-md-1 align-self-center ">
-                            <!-- <img class="img-fluid" :src="carlogo1" /> -->
+                            <img class="img-fluid" :src="carlogo1" />
                           </div>
                           <div class="col-12 col-md-8">
                             <div class="d-flex justify-content-end">
@@ -276,7 +276,7 @@
                               <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                               <div class="row my-1">
                                 <div class="col-12 col-md-4">
-                                  <p class="car-sec-text"> Price:<span>$</span> 250,000 </p>
+                                  <p class="car-sec-text"> Price: 250,000 <span>$</span></p>
                                 </div>
                                 <div class="col-12 col-md-4">
                                   <p class="car-sec-text"> Year: 2020</p>
@@ -333,7 +333,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp">
+                <div class="swiper-slide swiper-adjustment">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="card card-bg my-2 ">
@@ -345,7 +345,7 @@
                             <img class="w-100" :src="Image2" height="130px" width="150px" />
                           </div>
                           <div class="col-6 col-md-1 align-self-center ">
-                            <!-- <img class="img-fluid" :src="carlogo1" /> -->
+                            <img class="img-fluid" :src="carlogo1" />
                           </div>
                           <div class="col-12 col-md-8">
                             <div class="d-flex justify-content-end">
@@ -358,7 +358,7 @@
                               <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                               <div class="row my-1">
                                 <div class="col-12 col-md-4">
-                                  <p class="car-sec-text"> Price:<span>$</span> 250,000 </p>
+                                  <p class="car-sec-text"> Price: 250,000 <span>$</span></p>
                                 </div>
                                 <div class="col-12 col-md-4">
                                   <p class="car-sec-text"> Year: 2020</p>
@@ -643,12 +643,11 @@ export default {
         modules: [EffectCube, Navigation, Pagination],  // Add EffectCube
         effect: 'cube',  // Enable Cube Effect
         cubeEffect: {
-          shadow: false,  // Enable shadow
+          shadow: true,  // Enable shadow
           slideShadows: true,  // Show slide shadows
           shadowOffset: 20,  // Shadow offset
           shadowScale: 0.94,  // Shadow scale
         },
-
         loop: true,
         pagination: {
           el: ".swiper1-pagination",
@@ -688,18 +687,12 @@ export default {
 .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 14px !important;
-  color: #fff !important;
+  color: #000 !important;
   font-weight: 700 !important;
   padding: 0.6rem;
   border-radius: 0px;
-  background: #f95f19;
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center
+  background: #fff;
+
 }
 
 .swiper-button-prev {
@@ -709,18 +702,11 @@ export default {
 .content-swiper-container>.content-next:after,
 .content-prev:after {
   font-size: 18px !important;
-  color: #fff !important;
+  color: #000 !important;
   font-weight: 700 !important;
-  /* background: #fff; */
+  background: #fff;
   padding: 0.6rem;
-  background: #f95f19;
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center
+  border-radius: 0px
 }
 
 .content-swiper-container>.content-next {
@@ -889,9 +875,5 @@ export default {
 
 .sb-next {
   right: 0% !important
-}
-
-.tilt-sp {
-  transform: rotateY(25deg) skewY(-361deg);
 }
 </style>

@@ -25,6 +25,7 @@
     "cropperjs": "^1.6.2",
     "element-plus": "^2.6.3",
     "fullpage.js": "^4.0.30",
+    "html2pdf.js": "^0.10.3",
     "https": "^1.0.0",
     "https-browserify": "^1.0.0",
     "interactjs": "^1.10.27",
