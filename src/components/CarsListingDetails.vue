@@ -527,9 +527,9 @@ import "swiper/swiper-bundle.css";
 // import { Pagination, Navigation } from "swiper/modules";
 
 import { Swiper } from 'swiper';  // Core Swiper
-import { EffectCube, Navigation, Pagination } from 'swiper/modules';  // Cube Effect + Extras
+import { EffectFade, Navigation, Pagination } from 'swiper/modules';  // Cube Effect + Extras
 import 'swiper/css';  // Core CSS
-import 'swiper/css/effect-cube';  // Cube Effect CSS
+import 'swiper/css/effect-fade';  // Cube Effect CSS
 import 'swiper/css/navigation';  // Navigation CSS
 import 'swiper/css/pagination';  // Pagination CSS
 import logo1 from "../assets/images/cars_logos/26.png"
@@ -549,7 +549,7 @@ import badge from "../assets/images/icons/badge.png"
 import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css";
 // Install Swiper modules
-Swiper.use([Pagination, Navigation, EffectCube]);
+Swiper.use([Pagination, Navigation, EffectFade]);
 
 export default {
   name: "CarsListingDetails",
@@ -639,24 +639,20 @@ export default {
 
 
     this.$nextTick(() => {
-      new Swiper(".swiper-container.swiper-width", {
-        modules: [EffectCube, Navigation, Pagination],  // Add EffectCube
-        effect: 'cube',  // Enable Cube Effect
-        cubeEffect: {
-          shadow: false,  // Enable shadow
-          slideShadows: true,  // Show slide shadows
-          shadowOffset: 20,  // Shadow offset
-          shadowScale: 0.94,  // Shadow scale
+      new Swiper('.swiper-container.swiper-width', {
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true,
         },
-
         loop: true,
-        pagination: {
-          el: ".swiper1-pagination",
-          clickable: true,
-        },
+        speed: 1000, // Custom duration (ms)
         navigation: {
-          nextEl: ".swiper1-next",
-          prevEl: ".swiper1-prev",
+          nextEl: '.swiper1-next',
+          prevEl: '.swiper1-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
         },
       });
       // Initialize Swiper
@@ -888,7 +884,14 @@ export default {
 }
 
 .sb-next {
-  right: 0% !important
+  /* right: 0% !important */
+  right: 10% !important;
+  top: 87%;
+}
+
+.swiper1-prev {
+  top: 97% !important;
+  left: 21% !important;
 }
 
 .tilt-sp {
