@@ -28,11 +28,12 @@
                 <div class="swiper-slide tilt-sp" v-for="(car, index) in cars" :key="index">
                   <!-- Page 1 - Car Basic Info -->
                   <div class="text-content-slide">
-                    <div class="sd">
-                      <h2 class="card-title-h2 koenigsegg-title ">
+                    <div class="sd d-flex gap-2 align-items-center justify-content-center">
+                      <h2 class="card-title-h2 koenigsegg-title mb-0  ">
                         {{ car.make }} {{ car.model }}
 
                       </h2>
+                      <button class="btn btn-sm btn-secondary">Save</button>
                       <!-- <img :src="car.logo" alt="Logo" class="car-logo" width="100px" /> -->
                     </div>
                     <div class="car-details-content row gap-0">
@@ -535,6 +536,8 @@ import 'swiper/css/pagination';  // Pagination CSS
 import logo1 from "../assets/images/cars_logos/26.png"
 import carlogo1 from "../assets/images/cars_logos/26.png"
 import Image2 from "@/assets/images/d722fc518c6127ea183d184e5dc715e3.png";
+// import Imagec from "@/assets/images/cx2.png";
+
 import meter from "../assets/images/icons/meter.png"
 import date from "../assets/images/icons/date.png"
 import dollar from "../assets/images/icons/dollar.png"
@@ -570,9 +573,9 @@ export default {
       badge,
       images: [
         "10_2021_koenigsegg_jesko.png",
+        "cx2.png",
         "10_2021_koenigsegg_jesko.png",
-        "10_2021_koenigsegg_jesko.png",
-        "10_2021_koenigsegg_jesko.png",
+        "cx2.png",
       ],
       form: {
         name: "",

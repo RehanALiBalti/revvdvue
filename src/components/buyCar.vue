@@ -237,8 +237,16 @@
                                     </select> -->
                                     <multiselect v-model="selectedCountries" :options="countries" :multiple="true"
                                         :close-on-select="false" placeholder="Select up to 3 countries" label="name"
-                                        track-by="name" @select="onSelect" @remove="onRemove"
+                                        ref="countrySelect" track-by="name" @select="onSelect" @remove="onRemove"
                                         class="form-select  h30px fsel">
+                                        <!-- Custom close button inside the dropdown -->
+                                        <template #afterList>
+                                            <div style="text-align: right; padding: 5px 10px;">
+                                                <button type="button" class="btn btn-sm btn-cls" @click="closeDropdown">
+                                                    × Close
+                                                </button>
+                                            </div>
+                                        </template>
                                     </multiselect>
                                     <small v-if="selectedCountries.length >= 3" style="color: red;">
                                         You can select up to 3 countries only.
@@ -356,6 +364,9 @@ export default {
         }
     },
     methods: {
+        closeDropdown() {
+            this.$refs.countrySelect.deactivate(); // Closes the dropdown
+        },
         onSelect() {
             if (this.selectedCountries.length > 3) {
                 // Prevent adding more than 3
@@ -423,11 +434,11 @@ export default {
 
 <style scoped>
 .h30px {
-    height: 25px !important
+    /* height: 25px !important */
 }
 
 .multiselect {
-    min-height: 25px !important;
+    /* min-height: 25px !important; */
 }
 
 .multiselect__tags {
@@ -500,6 +511,12 @@ export default {
 
 .fontC span {
     color: #FF7A00;
+}
+
+.btn-cls {
+    color: #FF7A00;
+    border: 0px;
+
 }
 
 .fsel {

@@ -13,6 +13,9 @@
                 <div class="col-md-12">
                     <img :src="logo1" width="150px" />
                 </div>
+                <div class="col-md-12">
+                    <img :src="car" width="150px" />
+                </div>
                 <div class="col-6 col-md-3">
                     <label class="form-label">Car Make:</label>
                     <p class="form-value">{{ carMake }}</p>
@@ -109,10 +112,12 @@
 
 <script>
 import logo1 from "../assets/images/cars_logos/26.png"
+import car from "../assets/images/4image.png"
 import html2pdf from "html2pdf.js";
 export default {
     data() {
         return {
+            car,
             logo1,
             carMake: "Toyota",
             carModel: "Corolla",
