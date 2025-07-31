@@ -238,16 +238,16 @@
                                     <multiselect v-model="selectedCountries" :options="countries" :multiple="true"
                                         :close-on-select="false" placeholder="Select up to 3 countries" label="name"
                                         ref="countrySelect" track-by="name" @select="onSelect" @remove="onRemove"
-                                        class="form-select  h30px fsel">
-                                        <!-- Custom close button inside the dropdown -->
+                                        class="fsel ">
                                         <template #afterList>
-                                            <div style="text-align: right; padding: 5px 10px;">
+                                            <div style="text-align: right;">
                                                 <button type="button" class="btn btn-sm btn-cls" @click="closeDropdown">
-                                                    × Close
+                                                    ×
                                                 </button>
                                             </div>
                                         </template>
                                     </multiselect>
+
                                     <small v-if="selectedCountries.length >= 3" style="color: red;">
                                         You can select up to 3 countries only.
                                     </small>
@@ -437,12 +437,19 @@ export default {
     /* height: 25px !important */
 }
 
+.multiselect.fsel.multiselect--active {
+    /* height: auto !important; */
+    /* overflow: visible; */
+}
+
 .multiselect {
     /* min-height: 25px !important; */
 }
 
 .multiselect__tags {
-    min-height: 25px !important;
+    /* min-height: 25px !important; */
+    display: flex;
+    align-items: end;
 }
 
 @import "vue-multiselect/dist/vue-multiselect.min.css";
@@ -524,6 +531,9 @@ export default {
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAMCAYAAACA0IaCAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAADiSURBVChTjZIBEcIwDEVbBeAAHAAOOgk4YA7ACShgFlDAHAAOkAAKxv9cwqWl3dq7XbMk/+03nR+GYe6cu+Lharz3L4knN2jXou2h23ok7kisRMm4CmhANMN1IuyJYGFsTALlNDdolkZ3IYxWezyzGqAZC3W6HgiC51sByDk0dnAF0JsOOesvbATYoamVul6UdURQQA9H434wEQTserP6nQ7BQfJF0B9MgDvsZ3s8xPxd9NZYihxpb+TMHDkH1HIWlHVWAdzojBL38czSIm4vddgCxBlmV/aYtlOAR+T2YyBqPrkMZFSDhkgfAAAAAElFTkSuQmCC") !important;
     background-size: 10px 6px !important;
     background-color: transparent;
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    padding: 10px
 }
 
 ::v-deep .multiselect__select {

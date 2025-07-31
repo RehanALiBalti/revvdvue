@@ -247,7 +247,8 @@
 .swiper-button-next.content-next {
 	/* top: 61%; */
 	/* right: 44%; */
-	right: 21%;
+	/* right: 21%; */
+	right: 46%;
 	/* transform: translate(-50%, -50%); */
 	z-index: 999;
 }

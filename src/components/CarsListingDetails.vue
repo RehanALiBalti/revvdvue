@@ -22,18 +22,19 @@
         <div class="col-md-7 position-relative ">
           <router-link to="/cardetails"> <button class="btn btn-link"> <i
                 class="fa-solid fa-arrow-up-right-from-square"></i></button></router-link>
+          <button class="btn btn-sm  btn-link2"> <i class="fa-solid fa-save"></i></button>
           <div class="container h-100">
             <div class="swiper-container content-swiper-container position-relative">
               <div class="swiper-wrapper">
                 <div class="swiper-slide tilt-sp" v-for="(car, index) in cars" :key="index">
                   <!-- Page 1 - Car Basic Info -->
                   <div class="text-content-slide">
-                    <div class="sd d-flex gap-2 align-items-center justify-content-center">
+                    <div class="sd d-flex gap-2 align-items-center justify-content-start">
                       <h2 class="card-title-h2 koenigsegg-title mb-0  ">
                         {{ car.make }} {{ car.model }}
 
                       </h2>
-                      <button class="btn btn-sm btn-secondary">Save</button>
+
                       <!-- <img :src="car.logo" alt="Logo" class="car-logo" width="100px" /> -->
                     </div>
                     <div class="car-details-content row gap-0">
@@ -107,7 +108,7 @@
                   <!-- Page 4 - Inquiry Form -->
                   <div class="text-content-slide">
                     <h2 class="card-title-h2">Make an Enquiry</h2>
-                    <form @submit.prevent="submitInquiry" class="row g-2">
+                    <form @submit.prevent="submitInquiry" class="row g-2 me-3">
                       <div class="col-md-6">
                         <input class="form-control form-Input h35px" type="text" v-model="form.name" placeholder="Name"
                           required />
@@ -172,7 +173,7 @@
                 </div>
                 <div class="swiper-slide swiper-adjustment tilt-sp">
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-11">
                       <div class="card card-bg my-2 ">
                         <div class="d-flex justify-content-start w-100 position-relative z-5">
                           <div class="badgecar">Premium</div>
@@ -254,7 +255,7 @@
                 </div>
                 <div class="swiper-slide swiper-adjustment tilt-sp">
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-11">
                       <div class="card card-bg my-2 ">
                         <div class="d-flex justify-content-start w-100 position-relative z-5">
                           <div class="badgecar">Premium</div>
@@ -336,7 +337,7 @@
                 </div>
                 <div class="swiper-slide swiper-adjustment tilt-sp">
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-11">
                       <div class="card card-bg my-2 ">
                         <div class="d-flex justify-content-start w-100 position-relative z-5">
                           <div class="badgecar">Premium</div>
@@ -724,10 +725,16 @@ export default {
 
 .content-swiper-container>.content-next {
   left: unset !important;
+  top: 77%;
+
 }
 
 .content-swiper-container>.content-prev {
-  left: 276px !important;
+  /* left: 276px !important; */
+  /* left: 162px !important; */
+  left: 265px !important;
+  top: 76%;
+
 }
 
 .coloor {
@@ -742,6 +749,15 @@ export default {
   position: absolute;
   right: 63px;
   top: 150px;
+  color: #f95f19 !important;
+  font-size: 20px;
+  z-index: 999;
+}
+
+.btn-link2 {
+  position: absolute;
+  right: 110px;
+  top: 155px;
   color: #f95f19 !important;
   font-size: 20px;
   z-index: 999;
@@ -826,14 +842,15 @@ export default {
 
 .koenigsegg-title {
   font-size: 30px;
-  margin-bottom: 3rem
+  margin-bottom: 3px;
+  text-align: start;
 }
 
 .car-details-content p {
   font-size: 18px;
   /* white-space: nowrap; */
   margin-bottom: 6px;
-  text-align: end;
+  text-align: start;
 }
 
 /* .skew-div {
@@ -888,16 +905,19 @@ export default {
 
 .sb-next {
   /* right: 0% !important */
-  right: 10% !important;
-  top: 87%;
+  right: 26% !important;
+  top: 90%;
 }
 
 .swiper1-prev {
-  top: 97% !important;
-  left: 21% !important;
+  top: 92% !important;
+  left: 52% !important;
 }
 
 .tilt-sp {
-  transform: rotateY(25deg) skewY(-361deg);
+  /* transform: rotateY(25deg) skewY(-361deg); */
+  transform: perspective(800px) rotateY(-20deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 </style>
