@@ -104,7 +104,7 @@
                   </div>
                 </div>
 
-                <div class="swiper-slide tilt-sp">
+                <div class="swiper-slide tilt-sp2">
                   <!-- Page 4 - Inquiry Form -->
                   <div class="text-content-slide">
                     <h2 class="card-title-h2">Make an Enquiry</h2>
@@ -171,7 +171,7 @@
                     </form>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp">
+                <div class="swiper-slide swiper-adjustment tilt-sp2">
                   <div class="row">
                     <div class="col-md-11">
                       <div class="card card-bg my-2 ">
@@ -253,7 +253,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp">
+                <div class="swiper-slide swiper-adjustment tilt-sp2">
                   <div class="row">
                     <div class="col-md-11">
                       <div class="card card-bg my-2 ">
@@ -335,7 +335,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp">
+                <div class="swiper-slide swiper-adjustment tilt-sp2">
                   <div class="row">
                     <div class="col-md-11">
                       <div class="card card-bg my-2 ">
@@ -725,7 +725,7 @@ export default {
 
 .content-swiper-container>.content-next {
   left: unset !important;
-  top: 77%;
+  top: 76.7%;
 
 }
 
@@ -917,6 +917,15 @@ export default {
 .tilt-sp {
   /* transform: rotateY(25deg) skewY(-361deg); */
   transform: perspective(800px) rotateY(-20deg);
+  /* transform: perspective(800px) rotateY(-15deg); */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.tilt-sp2 {
+  /* transform: rotateY(25deg) skewY(-361deg); */
+  /* transform: perspective(800px) rotateY(-20deg); */
+  transform: perspective(800px) rotateY(-15deg);
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }
