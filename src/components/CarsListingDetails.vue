@@ -844,6 +844,8 @@ export default {
   font-size: 30px;
   margin-bottom: 3px;
   text-align: start;
+  position:relative;
+  left:-1px
 }
 
 .car-details-content p {
