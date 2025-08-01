@@ -22,7 +22,9 @@
         <div class="col-md-7 position-relative ">
           <router-link to="/cardetails"> <button class="btn btn-link"> <i
                 class="fa-solid fa-arrow-up-right-from-square"></i></button></router-link>
-          <button class="btn btn-sm  btn-link2"> <i class="fa-solid fa-save"></i></button>
+          <button class="btn btn-sm btn-link2" @click="isActive = !isActive">
+            <i class="fa-solid fa-save" :class="{ active: isActive }"></i>
+          </button>
           <div class="container h-100">
             <div class="swiper-container content-swiper-container position-relative">
               <div class="swiper-wrapper">
@@ -559,6 +561,7 @@ export default {
   name: "CarsListingDetails",
   data() {
     return {
+      isActive: false,
       viewer: null,
       carlogo1,
       meter,
@@ -685,6 +688,16 @@ export default {
 </script>
 
 <style scoped>
+.fa-save {
+  color: rgb(170, 169, 169);
+  transition: color 0.3s ease;
+}
+
+.fa-save.active {
+  color: #f95f19;
+  ;
+}
+
 .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 14px !important;
@@ -761,6 +774,7 @@ export default {
   color: #f95f19 !important;
   font-size: 20px;
   z-index: 999;
+  border: none !important
 }
 
 .car-sec-text {
@@ -844,8 +858,8 @@ export default {
   font-size: 30px;
   margin-bottom: 3px;
   text-align: start;
-  position:relative;
-  left:-1px
+  position: relative;
+  left: -1px
 }
 
 .car-details-content p {
