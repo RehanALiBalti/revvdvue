@@ -738,7 +738,7 @@ export default {
 
 .content-swiper-container>.content-next {
   left: unset !important;
-  top: 77%;
+  top: 76%;
 
 }
 
