@@ -12,7 +12,7 @@
         <!-- PDF Content -->
         <div id="pdf-content">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 d-none">
                     <img :src="logo1" width="150px" />
                 </div>
                 <div class="col-md-12">
