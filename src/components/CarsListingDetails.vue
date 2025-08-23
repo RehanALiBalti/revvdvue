@@ -867,7 +867,7 @@ export default {
 }
 
 .car-details-content p {
-  font-size: 22px;
+  font-size: 19px;
   /* white-space: nowrap; */
   margin-bottom: 3px;
   text-align: start;
