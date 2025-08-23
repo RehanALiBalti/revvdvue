@@ -4,8 +4,8 @@
       <div class="row h-100">
         <div class="col-md-5">
 
-          <div class="swiper-container swiper-width px-3">
-            <div class="swiper-wrapper position-relative" ref="viewerContainer">
+          <div class="swiper-container swiper-width px-3 sp-con-top">
+            <div class="swiper-wrapper position-relative swp-top" ref="viewerContainer">
               <div v-for="(image, index) in images" :key="index" class="swiper-slide swiper-adjustment">
                 <img :src="require(`@/assets/images/${image}`)" class="slider-img car-image-slider2" alt="car"
                   @click="openViewer(index)" />
@@ -173,7 +173,7 @@
                     </form>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp2">
+                <div class="swiper-slide swiper-adjustment tilt-sp3">
                   <div class="row">
                     <div class="col-md-11">
                       <div class="card card-bg my-2 ">
@@ -255,7 +255,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp2">
+                <div class="swiper-slide swiper-adjustment tilt-sp3">
                   <div class="row">
                     <div class="col-md-11">
                       <div class="card card-bg my-2 ">
@@ -337,7 +337,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide swiper-adjustment tilt-sp2">
+                <div class="swiper-slide swiper-adjustment tilt-sp3">
                   <div class="row">
                     <div class="col-md-11">
                       <div class="card card-bg my-2 ">
@@ -561,6 +561,7 @@ export default {
   name: "CarsListingDetails",
   data() {
     return {
+
       isActive: false,
       viewer: null,
       carlogo1,
@@ -622,6 +623,7 @@ export default {
     };
   },
   mounted() {
+
     this.viewer = new Viewer(this.$refs.viewerContainer, {
 
       toolbar: {
@@ -679,10 +681,12 @@ export default {
     });
 
   },
+
   methods: {
     openViewer(index) {
       this.viewer.view(index); // Open the clicked image in full size
     },
+
   },
 };
 </script>
@@ -855,7 +859,7 @@ export default {
 }
 
 .koenigsegg-title {
-  font-size: 30px;
+  font-size: 38px;
   margin-bottom: 3px;
   text-align: start;
   position: relative;
@@ -863,9 +867,9 @@ export default {
 }
 
 .car-details-content p {
-  font-size: 18px;
+  font-size: 22px;
   /* white-space: nowrap; */
-  margin-bottom: 6px;
+  margin-bottom: 3px;
   text-align: start;
 }
 
@@ -938,10 +942,46 @@ export default {
   backface-visibility: hidden;
 }
 
+@media(min-width:1367px) {
+
+  .tilt-sp {
+    transform: perspective(800px) rotateY(-7deg) !important;
+    /* transform: perspective(800px) rotateY(-15deg); */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .sp-con-top {
+    top: 12rem !important;
+  }
+}
+
+@media screen and (min-width: 1280px) and (min-height: 897px) {
+
+  .tilt-sp {
+    transform: perspective(800px) rotateY(-7deg) !important;
+    /* transform: perspective(800px) rotateY(-15deg); */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .sp-con-top {
+    top: 12rem !important;
+  }
+}
+
 .tilt-sp2 {
   /* transform: rotateY(25deg) skewY(-361deg); */
   /* transform: perspective(800px) rotateY(-20deg); */
   transform: perspective(800px) rotateY(-15deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.tilt-sp3 {
+  /* transform: rotateY(25deg) skewY(-361deg); */
+  /* transform: perspective(800px) rotateY(-20deg); */
+  transform: perspective(800px) rotateY(-10deg);
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }

@@ -7,6 +7,54 @@
 	background-size: cover;
 }
 
+@media(min-width:1367px) {
+	.banner-section-car-listing {
+		height: 100vh !important;
+
+	}
+
+	.tilt-sp {
+		transform: perspective(800px) rotateY(-7deg);
+		/* transform: perspective(800px) rotateY(-15deg); */
+		transform-style: preserve-3d;
+		backface-visibility: hidden;
+	}
+
+	.swiper-wrapper {
+		/* top: 7rem */
+	}
+
+	.text-content-slide {
+		top: 17rem !important;
+	}
+
+
+}
+
+@media screen and (min-width: 1280px) and (min-height: 897px) {
+	.banner-section-car-listing {
+		height: 100vh !important;
+
+	}
+
+	.tilt-sp {
+		transform: perspective(800px) rotateY(-7deg);
+		/* transform: perspective(800px) rotateY(-15deg); */
+		transform-style: preserve-3d;
+		backface-visibility: hidden;
+	}
+
+	.swiper-wrapper {
+		/* top: 7rem */
+	}
+
+	.text-content-slide {
+		top: 17rem !important;
+	}
+
+
+}
+
 .swiper-container.swiper-width {
 	max-width: 515px;
 	position: relative;
