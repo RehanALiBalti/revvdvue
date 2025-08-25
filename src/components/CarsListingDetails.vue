@@ -624,8 +624,8 @@ export default {
     };
   },
   mounted() {
-    this.updateSize(); // set initial size
-    window.addEventListener("resize", this.updateSize);
+    // this.updateSize(); // set initial size
+    // window.addEventListener("resize", this.updateSize);
 
     this.viewer = new Viewer(this.$refs.viewerContainer, {
 
