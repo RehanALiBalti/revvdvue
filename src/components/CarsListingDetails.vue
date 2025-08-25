@@ -33,7 +33,7 @@
                   <div class="text-content-slide">
                     <div class="sd d-flex gap-2 align-items-center justify-content-start">
                       <h2 class="card-title-h2 koenigsegg-title mb-0  ">
-                        {{ car.make }} {{ car.model }}
+                        {{ car.make }} {{ car.model }} <p>Viewport: {{ width }} × {{ height }}</p>
 
                       </h2>
 
@@ -561,7 +561,8 @@ export default {
   name: "CarsListingDetails",
   data() {
     return {
-
+      width: 0,
+      height: 0,
       isActive: false,
       viewer: null,
       carlogo1,
@@ -623,6 +624,8 @@ export default {
     };
   },
   mounted() {
+    this.updateSize(); // set initial size
+    window.addEventListener("resize", this.updateSize);
 
     this.viewer = new Viewer(this.$refs.viewerContainer, {
 
@@ -683,10 +686,18 @@ export default {
   },
 
   methods: {
+    updateSize() {
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+    },
     openViewer(index) {
       this.viewer.view(index); // Open the clicked image in full size
     },
 
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.updateSize);
   },
 };
 </script>
