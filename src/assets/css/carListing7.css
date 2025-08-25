@@ -7,7 +7,7 @@
 	background-size: cover;
 }
 
-@media(min-width:1367px) {
+@media(min-width:1400px) {
 	.banner-section-car-listing {
 		height: 100vh !important;
 

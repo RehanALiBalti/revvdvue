@@ -942,7 +942,7 @@ export default {
   backface-visibility: hidden;
 }
 
-@media(min-width:1367px) {
+@media(min-width:1400px) {
 
   .tilt-sp {
     transform: perspective(800px) rotateY(-7deg) !important;
