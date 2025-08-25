@@ -33,10 +33,10 @@
                   <div class="text-content-slide">
                     <div class="sd d-flex gap-2 align-items-center justify-content-start">
                       <h2 class="card-title-h2 koenigsegg-title mb-0  ">
-                        {{ car.make }} {{ car.model }} <p>Viewport: {{ width }} × {{ height }}</p>
+                        {{ car.make }} {{ car.model }}
 
                       </h2>
-
+                      <!-- <p>Viewport: {{ width }} × {{ height }}</p> -->
                       <!-- <img :src="car.logo" alt="Logo" class="car-logo" width="100px" /> -->
                     </div>
                     <div class="car-details-content row gap-0">
@@ -561,8 +561,8 @@ export default {
   name: "CarsListingDetails",
   data() {
     return {
-      width: 0,
-      height: 0,
+      // width: 0,
+      // height: 0,
       isActive: false,
       viewer: null,
       carlogo1,
@@ -686,19 +686,19 @@ export default {
   },
 
   methods: {
-    updateSize() {
-      this.width = window.innerWidth;
-      this.height = window.innerHeight;
-    },
+    // updateSize() {
+    //   this.width = window.innerWidth;
+    //   this.height = window.innerHeight;
+    // },
     openViewer(index) {
       this.viewer.view(index); // Open the clicked image in full size
     },
 
   },
 
-  beforeUnmount() {
-    window.removeEventListener("resize", this.updateSize);
-  },
+  // beforeUnmount() {
+  //   window.removeEventListener("resize", this.updateSize);
+  // },
 };
 </script>
 
@@ -953,7 +953,7 @@ export default {
   backface-visibility: hidden;
 }
 
-@media(min-width:1400px) {
+@media(min-width:1440px) {
 
   .tilt-sp {
     transform: perspective(800px) rotateY(-7deg) !important;
