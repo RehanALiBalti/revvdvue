@@ -4653,7 +4653,7 @@ select::placeholder {
   }
 }
 
-@media(min-width:1905px) {
+@media(min-width:1886px) {
   .scroll-d {
     top: 65%
   }
