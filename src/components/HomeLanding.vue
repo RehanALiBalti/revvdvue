@@ -137,7 +137,7 @@
                 <router-link class="carContent row align-items-center" to="/banner" style="cursor:pointer">
                   <div class="col-md-5">
                     <h5 class="h5-title text-capitalize mb-2">{{ $t('Cover') }} <span class="coloror">{{ $t('Story')
-                    }}</span></h5>
+                        }}</span></h5>
                     <div class="">
                       <!-- <img :src="'https://king-prawn-app-3rw3o.ondigitalocean.app/stories/' + bannerStories[0].images[0]"
                       class="img-fluid" alt="car" v-if="bannerStories[0]?.images.length > 0" /> -->
@@ -4645,21 +4645,21 @@ select::placeholder {
 /* Exact match for your current viewport */
 @media screen and (min-width: 1905px) and (min-height: 957px) {
   .scroll-d {
-    top: 65%
+    top: 70%
   }
 
   .c-nav {
-    top: 65%
+    top: 70%
   }
 }
 
 @media(min-width:1866px) {
   .scroll-d {
-    top: 65%
+    top: 70%
   }
 
   .c-nav {
-    top: 65%
+    top: 70%
   }
 
 
