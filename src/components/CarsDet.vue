@@ -27,9 +27,12 @@
                 </div>
                 <div class="col-md-7">
                     <div class="d-flex justify-content-end">
-                        <div class="d-flex gap-2">
-                            <img :src="badge" width="20px" alt="">
-                            <img :src="share" width="20px" alt="">
+                        <div class="d-flex gap-3">
+                            <img :src="badge" width="25px" height="25px" alt="">
+                            <img :src="share" width="25px" height="25px" alt="">
+                            <router-link to="/cardetails">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-white"></i>
+                            </router-link>
                         </div>
                     </div>
 
@@ -161,7 +164,7 @@
                         </SwiperSlide>
                         <SwiperSlide>
                             <div class="px-5">
-                                <h2 class="card-title-h2">Make an Enquiry</h2>
+                                <h2 class="card-title-h2 fot-1 text-black">Make an Enquiry </h2>
                                 <form @submit.prevent="submitInquiry" class="row g-2 me-3">
                                     <div class="col-md-6">
                                         <input class="form-control form-Input h35px" type="text" v-model="form.name"
