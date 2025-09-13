@@ -42,6 +42,7 @@ import sellCar from "./components/sellCar.vue";
 import carDetails from "./components/carDetails.vue";
 import newfeaturedstories from "./components/newfeaturedstories.vue";
 import TestStories from "./components/TestStories.vue";
+import CarsDet from "./components/CarsDet.vue";
 const routes = [
   {
     name: "newfeaturedstories",
@@ -52,6 +53,11 @@ const routes = [
     name: "TestStories",
     component: TestStories,
     path: "/test",
+  },
+  {
+    name: "CarDet",
+    component: CarsDet,
+    path: "/carDet",
   },
   {
     name: "HomeLanding",
