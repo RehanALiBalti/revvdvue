@@ -25,14 +25,17 @@
 
                     </Swiper>
                 </div>
-                <div class="col-md-7">
-                    <div class="d-flex justify-content-end">
-                        <div class="d-flex gap-3">
-                            <img :src="badge" width="25px" height="25px" alt="">
-                            <img :src="share" width="25px" height="25px" alt="">
-                            <router-link to="/cardetails">
-                                <i class="fa-solid fa-arrow-up-right-from-square text-white"></i>
-                            </router-link>
+                <div class="col-md-7 ">
+                    <div class="position-relative">
+                        <div class="d-flex justify-content-end position-absolute top-0 w-100">
+                            <div class="d-flex gap-3 align-items-center">
+                                <router-link to="/cardetails">
+                                    <img :src="sicon" width="35px" alt="">
+                                </router-link>
+                                <img :src="badge" width="25px" alt="">
+                                <!-- <img :src="share" width="25px" height="25px" alt=""> -->
+
+                            </div>
                         </div>
                     </div>
 
@@ -48,7 +51,7 @@
                                 <div class="w-75">
 
                                     <p class="text-center fot-1">Mercedes C63s AMG</p>
-                                    <div class="d-flex justify-content-between mb-2">
+                                    <div class="d-flex justify-content-between mb-3">
                                         <p class="fot-3">Price: 250,000 $</p>
                                         <p class="fot-3">Year: 2020</p>
                                         <p class="fot-3"><img :src="date" width="30px" />13.02.2025</p>
@@ -56,13 +59,13 @@
                                     <div class="px-2">
                                         <div class="row">
                                             <div class="col-4">
-                                                <div class="d-flex align-items-center gap-2">
+                                                <div class="d-flex align-items-center gap-2 my-2">
                                                     <span class="icon"><img :src="meter" /></span>
                                                     <p class="fot-2">700 HP</p>
                                                 </div>
                                             </div>
                                             <div class="col-4">
-                                                <div class="d-flex align-items-center gap-2">
+                                                <div class="d-flex align-items-center gap-2 my-2">
                                                     <span class="icon"><img :src="meter" /></span>
                                                     <p class="fot-2">Automatic</p>
                                                 </div>
@@ -109,13 +112,13 @@
                                 <div class="w-75">
 
                                     <p class="text-center fot-1">Mercedes C63s AMG</p>
-                                    <div class="d-flex justify-content-between mb-2">
+                                    <div class="d-flex justify-content-between mb-3">
                                         <p class="fot-3">Engine: V8</p>
                                         <p class="fot-3">Capacity: 4L</p>
                                         <p class="fot-3">US Version</p>
                                     </div>
                                     <div class="px-2">
-                                        <div class="row">
+                                        <div class="row my-2">
                                             <div class="col-4">
                                                 <div class="d-flex align-items-center gap-2">
                                                     <span class="icon"><img :src="meter" /></span>
@@ -123,9 +126,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-4">
-                                                <div class="d-flex align-items-center gap-2">
+                                                <div class="d-flex align-items-center gap-2 ">
                                                     <span class="icon"><img :src="meter" /></span>
-                                                    <p class="fot-2">RWD</p>
+                                                    <p class="fot-2">RWD</p>fa-arrow-up-right-from-square text-w
                                                 </div>
                                             </div>
                                             <div class="col-4">
@@ -234,7 +237,7 @@
                         </SwiperSlide>
                         <SwiperSlide>
                             <div class="row justify-content-center">
-                                <div class="col-md-10">
+                                <div class="col-md-10 mt-4">
                                     <div class="card card-bg my-2 ">
                                         <div class="d-flex justify-content-start w-100 position-relative z-5">
                                             <div class="badgecar">Premium</div>
@@ -339,6 +342,7 @@ import date from "../assets/images/icons/date.png"
 import gasoline from "../assets/images/icons/gasoline.png"
 
 import gear from "../assets/images/icons/gear.png"
+import sicon from "../assets/images/icons/linkimg.png"
 import location from "../assets/images/icons/location.png"
 import race from "../assets/images/icons/race.png"
 import road from "../assets/images/icons/road.png"
