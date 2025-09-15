@@ -433,13 +433,13 @@ const form = reactive({
   top: -10px
 }
 
-@media screen and (width: 1435px) and (min-height: 678) {
+@media screen and (width: 1435px) and (min-height: 678px) {
   .top-icons {
     top: -40px
   }
 }
 
-@media screen and (width: 1905x) and (min-height:957) {
+@media screen and (width: 1905px) and (min-height:957px) {
   .top-icons {
     top: -90px
   }
