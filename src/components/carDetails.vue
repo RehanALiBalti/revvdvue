@@ -16,6 +16,7 @@
 
             <!-- Headline row -->
             <div class="row text-center mb-4">
+
                 <div class="col-md-4">
                     <h2 class="make"><span class="text-orange">{{ carDetails.make }}</span> {{ carDetails.model }}</h2>
                 </div>

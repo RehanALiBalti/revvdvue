@@ -2,7 +2,7 @@
   <div class="banner-section-car-listing2 d-flex justify-content-center align-items-center">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-1"></div>
+        <div class="w-5"></div>
         <div class="col-md-4">
 
           <Swiper :modules="[Navigation, EffectFade]" effect="fade" :fadeEffect="{ crossFade: true }"
@@ -10,7 +10,7 @@
               0: { slidesPerView: 1 },
               768: { slidesPerView: 1 },
               1200: { slidesPerView: 1 }
-            }" navigation class="mySwiper h-100">
+            }" navigation :loop="true" class="mySwiper h-100">
             <!-- ✅ Slide 1 -->
             <SwiperSlide>
 
@@ -50,7 +50,7 @@
             0: { slidesPerView: 1 },
             768: { slidesPerView: 1 },
             1200: { slidesPerView: 1 }
-          }" navigation class="mySwiper h-100">
+          }" navigation :loop="true" class="mySwiper h-100">
             <!-- ✅ Slide 1 -->
             <SwiperSlide>
 
@@ -202,34 +202,31 @@
                     <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
                       <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                         <span class="border-bottom-btn border-top-btn position-absolute">
-                          <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
+                          <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                          <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
                         </span>
 
                         <span
-                          class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-                          <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
+                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                          <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
                         </span>
-
-                        <span
-                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-                          <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
-                        </span>
-                        <!-- data-bs-toggle="modal" -->
-                        <button type="submit"
-                          class="signin-btnli Start Engine load-more-btn proceed-btn width-set bg-orang"
-                          id="submit-button">
+                        <button class="signin-btnli signup-btnli border-0">
                           Submit
                         </button>
-                        <span class="border-bottom-btn border-left-btn new-popup position-absolute">
-                          <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
+                        <span class="border-bottom-btn border-left-btn position-absolute">
+                          <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
                         </span>
                         <span class="border-bottom-btn position-absolute">
-                          <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
+                          <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
                         </span>
                       </div>
                     </div>
-
                   </div>
+
+
                 </form>
               </div>
             </SwiperSlide>
@@ -359,6 +356,11 @@ const form = reactive({
 
 </script>
 <style scoped>
+.w-5 {
+
+  width: 5%
+}
+
 .img-car {
   width: 100%;
   height: 90%;
@@ -368,10 +370,12 @@ const form = reactive({
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
   color: #fff !important;
+  font-size: 35px !important
 }
 
 .swiper-button-prev:after {
   color: #fff !important;
+  font-size: 35px !important
 }
 
 .icon img {
@@ -379,17 +383,17 @@ const form = reactive({
 }
 
 .fot-1 {
-  font-size: 28px;
+  font-size: 34px;
 }
 
 .fot-2 {
-  font-size: 18px;
+  font-size: 22px;
   margin-bottom: 0;
   line-height: normal
 }
 
 .fot-3 {
-  font-size: 22px;
+  font-size: 25px;
   margin-bottom: 0
 }
 
@@ -443,5 +447,9 @@ const form = reactive({
   .top-icons {
     top: -90px
   }
+}
+
+.signin-btnli.signup-btnli {
+  background-color: rgb(112 112 112 / 80%);
 }
 </style>
