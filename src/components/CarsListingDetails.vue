@@ -135,7 +135,7 @@
                       <div class="col-4">
                         <div class="d-flex align-items-center gap-2 ">
                           <span class="icon"><img :src="meter" /></span>
-                          <p class="fot-2">RWD</p>fa-arrow-up-right-from-square text-w
+                          <p class="fot-2">RWD</p>
                         </div>
                       </div>
                       <div class="col-4">
