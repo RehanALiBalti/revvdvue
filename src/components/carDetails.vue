@@ -110,6 +110,32 @@ export default {
         //             element.style.color = originalColor;
         //         });
         // },
+        // downloadPDF() {
+        //     const element = document.getElementById("pdf-content");
+        //     const originalBg = element.style.backgroundColor;
+        //     const originalColor = element.style.color;
+
+        //     element.style.backgroundColor = "#000";
+        //     element.style.color = "#fff";
+
+        //     const options = {
+        //         margin: 0,                                      // ✅ no extra white margin
+        //         filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
+        //         image: { type: "jpeg", quality: 0.98 },
+        //         html2canvas: { scale: 1, backgroundColor: "#000" },
+        //         jsPDF: { unit: "px", format: [element.scrollWidth, element.scrollHeight], orientation: "portrait" },
+
+        //     };
+
+        //     html2pdf()
+        //         .set(options)
+        //         .from(element)
+        //         .save()
+        //         .then(() => {
+        //             element.style.backgroundColor = originalBg;
+        //             element.style.color = originalColor;
+        //         });
+        // }
         downloadPDF() {
             const element = document.getElementById("pdf-content");
             const originalBg = element.style.backgroundColor;
@@ -119,12 +145,12 @@ export default {
             element.style.color = "#fff";
 
             const options = {
-                margin: 0,                                      // ✅ no extra white margin
+                margin: 0,   // no white frame
                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
                 image: { type: "jpeg", quality: 0.98 },
-                html2canvas: { scale: 1, backgroundColor: "#000" },
-                jsPDF: { unit: "px", format: [element.scrollWidth, element.scrollHeight], orientation: "portrait" },
-
+                // capture at high DPI so text stays sharp
+                html2canvas: { scale: 2, backgroundColor: "#000", useCORS: true },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
             };
 
             html2pdf()
@@ -136,6 +162,7 @@ export default {
                     element.style.color = originalColor;
                 });
         }
+
 
     },
 
