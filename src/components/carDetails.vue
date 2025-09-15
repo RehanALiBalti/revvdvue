@@ -85,6 +85,31 @@ export default {
         };
     },
     methods: {
+        // downloadPDF() {
+        //     const element = document.getElementById("pdf-content");
+        //     const originalBg = element.style.backgroundColor;
+        //     const originalColor = element.style.color;
+
+        //     element.style.backgroundColor = "#000";
+        //     element.style.color = "#fff";
+
+        //     const options = {
+        //         margin: 0.5,
+        //         filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
+        //         image: { type: "jpeg", quality: 0.98 },
+        //         html2canvas: { scale: 2, backgroundColor: "#000" },
+        //         jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+        //     };
+
+        //     html2pdf()
+        //         .set(options)
+        //         .from(element)
+        //         .save()
+        //         .then(() => {
+        //             element.style.backgroundColor = originalBg;
+        //             element.style.color = originalColor;
+        //         });
+        // },
         downloadPDF() {
             const element = document.getElementById("pdf-content");
             const originalBg = element.style.backgroundColor;
@@ -94,11 +119,12 @@ export default {
             element.style.color = "#fff";
 
             const options = {
-                margin: 0.5,
+                margin: 0,                                      // ✅ no extra white margin
                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
                 image: { type: "jpeg", quality: 0.98 },
-                html2canvas: { scale: 2, backgroundColor: "#000" },
-                jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+                html2canvas: { scale: 1, backgroundColor: "#000" },
+                jsPDF: { unit: "px", format: [element.scrollWidth, element.scrollHeight], orientation: "portrait" },
+
             };
 
             html2pdf()
@@ -109,8 +135,10 @@ export default {
                     element.style.backgroundColor = originalBg;
                     element.style.color = originalColor;
                 });
-        },
+        }
+
     },
+
 };
 </script>
 
@@ -144,5 +172,15 @@ export default {
 
 .text-orange {
     color: #FB6F19;
+}
+
+.car-img {
+    width: 130px
+}
+
+@media(max-width:768px) {
+    .car-img {
+        width: 130px
+    }
 }
 </style>

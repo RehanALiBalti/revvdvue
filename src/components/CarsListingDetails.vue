@@ -2,7 +2,8 @@
   <div class="banner-section-car-listing2 d-flex justify-content-center align-items-center">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
 
           <Swiper :modules="[Navigation, EffectFade]" effect="fade" :fadeEffect="{ crossFade: true }"
             :space-between="20" :breakpoints="{
@@ -13,13 +14,19 @@
             <!-- ✅ Slide 1 -->
             <SwiperSlide>
 
-              <img class="img-car" src="../assets/images/im1.png" alt="" />
+              <div class="siwpe-image w-100 h-100 d-flex justify-content-center align-items-center">
+                <img class="img-car" src="../assets/images/im1.png" alt="" />
+              </div>
 
             </SwiperSlide>
 
             <!-- ✅ Slide 2 – put completely different details here -->
             <SwiperSlide>
-              <img class="img-car" src="../assets/images/im1.png" alt="" />
+
+              <div class="siwpe-image w-100 h-100 d-flex justify-content-center align-items-center">
+                <img class="img-car" src="../assets/images/im1.png" alt="" />
+              </div>
+
             </SwiperSlide>
 
 
@@ -27,7 +34,7 @@
         </div>
         <div class="col-md-7 ">
           <div class="position-relative">
-            <div class="d-flex justify-content-end position-absolute top-0 w-100">
+            <div class="d-flex justify-content-end position-absolute top-icons w-100">
               <div class="d-flex gap-3 align-items-center">
                 <router-link to="/cardetails">
                   <img :src="sicon" width="35px" alt="">
@@ -54,7 +61,7 @@
                   <div class="d-flex justify-content-between mb-3">
                     <p class="fot-3">Price: 250,000 $</p>
                     <p class="fot-3">Year: 2020</p>
-                    <p class="fot-3"><img :src="date" width="30px" />13.02.2025</p>
+                    <p class="fot-3"><img :src="date" width="30px" class="me-2" />13.02.2025</p>
                   </div>
                   <div class="px-2">
                     <div class="row">
@@ -66,12 +73,12 @@
                       </div>
                       <div class="col-4">
                         <div class="d-flex align-items-center gap-2 my-2">
-                          <span class="icon"><img :src="meter" /></span>
+                          <span class="icon"><img :src="gear" /></span>
                           <p class="fot-2">Automatic</p>
                         </div>
                       </div>
                       <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
+                        <div class="d-flex align-items-center gap-2 my-2">
                           <span class="icon"><img :src="race" /></span>
                           <p class="fot-2">Street</p>
                         </div>
@@ -354,7 +361,7 @@ const form = reactive({
 <style scoped>
 .img-car {
   width: 100%;
-  height: auto;
+  height: 90%;
   border: 5px solid #000
 }
 
@@ -368,21 +375,21 @@ const form = reactive({
 }
 
 .icon img {
-  width: 20px
+  width: 25px
 }
 
 .fot-1 {
-  font-size: 25px;
+  font-size: 28px;
 }
 
 .fot-2 {
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 0;
   line-height: normal
 }
 
 .fot-3 {
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 0
 }
 
@@ -420,5 +427,9 @@ const form = reactive({
   margin: 0;
   font-size: 14px;
   text-align: start;
+}
+
+.top-icons {
+  top: -10px
 }
 </style>
