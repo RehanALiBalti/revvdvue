@@ -3082,11 +3082,12 @@ input::placeholder {
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
 	color: #fff !important;
+	font-size: 35px !important;
 }
 
 /* style the default arrows */
 .swiper-button-prev:after,
 .swiper-button-next:after {
 	color: #fff;
-	font-size: 18px;
+	font-size: 35px !important;
 }
