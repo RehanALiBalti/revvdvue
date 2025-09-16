@@ -26,8 +26,9 @@
             <!-- ✅ Slide 1 -->
             <SwiperSlide>
 
-              <div class="siwpe-image w-100 h-100 d-flex justify-content-center align-items-center">
+              <div class="siwpe-image w-100 h-100 ">
                 <img class="img-car" src="../assets/images/im1.png" alt="" />
+                <div class="telev"></div>
               </div>
 
             </SwiperSlide>
@@ -35,7 +36,7 @@
             <!-- ✅ Slide 2 – put completely different details here -->
             <SwiperSlide>
 
-              <div class="siwpe-image w-100 h-100 d-flex justify-content-center align-items-center">
+              <div class="siwpe-image w-100 h-100">
                 <img class="img-car" src="../assets/images/im1.png" alt="" />
               </div>
 
@@ -58,13 +59,19 @@
             <SwiperSlide>
 
               <div class="h-100 w-100 d-flex align-items-center justify-content-center">
-                <div class="w-75">
+                <div class="w-100">
 
                   <p class="text-center fot-1">Mercedes C63s AMG</p>
-                  <div class="d-flex justify-content-between mb-3">
-                    <p class="fot-3">Price: 250,000 $</p>
-                    <p class="fot-3">Year: 2020</p>
-                    <p class="fot-3"><img :src="date" width="30px" class="me-2" />13.02.2025</p>
+                  <div class="row mb-3">
+                    <div class="col-4">
+                      <p class="fot-3">Price: 250,000 $</p>
+                    </div>
+                    <div class="col-4">
+                      <p class="fot-3">Year: 2020</p>
+                    </div>
+                    <div class="col-4">
+                      <p class="fot-3"><img :src="date" width="30px" class="me-2" />13.02.2025</p>
+                    </div>
                   </div>
                   <div class="px-2">
                     <div class="row">
@@ -365,11 +372,19 @@ const form = reactive({
   width: 5%
 }
 
+.siwpe-image {
+  display: flex;
+  align-items: flex-end
+}
+
 .img-car {
   width: 100%;
-  height: 90%;
+  height: 85%;
   border: 5px solid #000;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  position: relative;
+  bottom: 11%;
+
 }
 
 .swiper-button-next:after,
@@ -388,18 +403,19 @@ const form = reactive({
 }
 
 .fot-1 {
-  font-size: 34px;
+  font-size: 30px;
 }
 
 .fot-2 {
-  font-size: 22px;
+  font-size: 15px;
   margin-bottom: 0;
   line-height: normal
 }
 
 .fot-3 {
-  font-size: 25px;
-  margin-bottom: 0
+  font-size: 19px;
+  margin-bottom: 0;
+  text-align: start;
 }
 
 .card-bg {
@@ -469,5 +485,16 @@ const form = reactive({
 .positionAbsoulte {
 
   position: absolute
+}
+
+.telev {
+  background: #000;
+  height: 10%;
+  width: 15%;
+  border-radius: 50%;
+  position: absolute;
+  left: 45%;
+  bottom: 9%;
+  z-index: -1;
 }
 </style>
