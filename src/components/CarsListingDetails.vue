@@ -3,6 +3,16 @@
     <img class="img-100" :src="imageBg">
     <div class="container-fluid positionAbsoulte">
       <div class="row">
+        <div class="d-flex justify-content-end position-absolute top-icons w-100">
+          <div class="d-flex gap-3 align-items-center">
+            <router-link to="/cardetails">
+              <img :src="sicon" width="35px" alt="">
+            </router-link>
+            <img :src="badge" width="25px" alt="">
+            <!-- <img :src="share" width="25px" height="25px" alt=""> -->
+
+          </div>
+        </div>
         <div class="w-5"></div>
         <div class="col-md-4">
 
@@ -35,16 +45,7 @@
         </div>
         <div class="col-md-7 ">
           <div class="position-relative">
-            <div class="d-flex justify-content-end position-absolute top-icons w-100">
-              <div class="d-flex gap-3 align-items-center">
-                <router-link to="/cardetails">
-                  <img :src="sicon" width="35px" alt="">
-                </router-link>
-                <img :src="badge" width="25px" alt="">
-                <!-- <img :src="share" width="25px" height="25px" alt=""> -->
 
-              </div>
-            </div>
           </div>
 
           <Swiper :modules="[Navigation]" :space-between="20" :breakpoints="{
