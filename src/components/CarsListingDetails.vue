@@ -493,7 +493,11 @@ const form = reactive({
 
   .custom-s-next,
   .custom-s-prev {
-    top: 66%
+    top: 62%
+  }
+
+  .mt8 {
+    margin-top: 8%
   }
 }
 
@@ -506,6 +510,10 @@ const form = reactive({
   .custom-s-next,
   .custom-s-prev {
     top: 66%
+  }
+
+  .mt8 {
+    margin-top: 8%
   }
 }
 
