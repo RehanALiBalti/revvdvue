@@ -439,18 +439,21 @@ const form = reactive({
 }
 
 .top-icons {
-  top: 21%
+  top: 21%;
+  right: 1%
 }
 
 @media screen and (width: 1435px) and (min-height: 678px) {
   .top-icons {
-    top: 21%
+    top: 21%;
+    right: 1%
   }
 }
 
 @media screen and (width: 1905px) and (min-height:957px) {
   .top-icons {
-    top: 21%
+    top: 21%;
+    right: 1%
   }
 }
 
