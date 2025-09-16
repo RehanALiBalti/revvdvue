@@ -1,18 +1,19 @@
 <template>
-  <div class="banner-section-car-listi d-flex justify-content-center align-items-center">
+  <div class="banner-section-car-listi d-flex justify-content-center align-items-center position-relative">
     <img class="img-100" :src="imageBg">
+    <div class="d-flex justify-content-end position-absolute top-icons w-100">
+      <div class="d-flex gap-3 align-items-center">
+        <router-link to="/cardetails">
+          <img :src="sicon" width="35px" alt="">
+        </router-link>
+        <img :src="badge" width="25px" alt="">
+        <!-- <img :src="share" width="25px" height="25px" alt=""> -->
+
+      </div>
+    </div>
     <div class="container-fluid positionAbsoulte">
       <div class="row">
-        <div class="d-flex justify-content-end position-absolute top-icons w-100">
-          <div class="d-flex gap-3 align-items-center">
-            <router-link to="/cardetails">
-              <img :src="sicon" width="35px" alt="">
-            </router-link>
-            <img :src="badge" width="25px" alt="">
-            <!-- <img :src="share" width="25px" height="25px" alt=""> -->
 
-          </div>
-        </div>
         <div class="w-5"></div>
         <div class="col-md-4">
 
@@ -438,18 +439,18 @@ const form = reactive({
 }
 
 .top-icons {
-  top: -40px
+  top: 21%
 }
 
 @media screen and (width: 1435px) and (min-height: 678px) {
   .top-icons {
-    top: -40px
+    top: 21%
   }
 }
 
 @media screen and (width: 1905px) and (min-height:957px) {
   .top-icons {
-    top: -90px
+    top: 21%
   }
 }
 
