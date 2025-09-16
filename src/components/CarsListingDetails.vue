@@ -1,6 +1,7 @@
 <template>
-  <div class="banner-section-car-listing2 d-flex justify-content-center align-items-center">
-    <div class="container-fluid">
+  <div class="banner-section-car-listi d-flex justify-content-center align-items-center">
+    <img class="img-100" :src="imageBg">
+    <div class="container-fluid position-absolte">
       <div class="row">
         <div class="w-5"></div>
         <div class="col-md-4">
@@ -333,6 +334,7 @@ import "swiper/css/effect-fade";
 import Image2 from "@/assets/images/d722fc518c6127ea183d184e5dc715e3.png";
 import meter from "../assets/images/icons/meter.png"
 import date from "../assets/images/icons/date.png"
+import imageBg from "../assets/images/11212.png"
 // import dollar from "../assets/images/icons/dollar.png"
 import gasoline from "../assets/images/icons/gasoline.png"
 
@@ -364,7 +366,8 @@ const form = reactive({
 .img-car {
   width: 100%;
   height: 90%;
-  border: 5px solid #000
+  border: 5px solid #000;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 
 .swiper-button-next:after,
@@ -451,5 +454,10 @@ const form = reactive({
 
 .signin-btnli.signup-btnli {
   background-color: rgb(112 112 112 / 80%);
+}
+
+.img-100 {
+  width: 100%;
+  height: 100%;
 }
 </style>
