@@ -110,8 +110,16 @@
 	left: 1%;
 }
 
+.custom-s-prev {
+	left: 1% !important
+}
+
 .swiper-button-next {
 	right: 5%;
+}
+
+.custom-s-next {
+	right: 0% !important;
 }
 
 .swiper-button-next:after,

@@ -47,284 +47,295 @@
         </div>
         <div class="col-md-7 ">
           <div class="position-relative">
+            <Swiper :modules="[Navigation]" :space-between="20" :breakpoints="{
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 1 },
+              1200: { slidesPerView: 1 }
+            }" :navigation="{
+              nextEl: '.swiper-button-next.custom-s-next',
+              prevEl: '.swiper-button-prev.custom-s-prev'
+            }" :loop="true" class="mySwiper h-100">
+              <!-- ✅ Slide 1 -->
+              <SwiperSlide>
 
+                <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-left:6rem">
+                  <div class="w-100 mt8">
+
+                    <p class="text-center fot-1">Mercedes C63s AMG</p>
+                    <div class="row mb-3">
+                      <div class="col-4">
+                        <p class="fot-3">Price: 250,000 $</p>
+                      </div>
+                      <div class="col-4">
+                        <p class="fot-3">Year: 2020</p>
+                      </div>
+                      <div class="col-4">
+                        <p class="fot-3"><img :src="date" width="30px" class="me-2" />13.02.2025</p>
+                      </div>
+                    </div>
+                    <div class="px-2">
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2 my-2">
+                            <span class="icon"><img :src="meter" /></span>
+                            <p class="fot-2">700 HP</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2 my-2">
+                            <span class="icon"><img :src="gear" /></span>
+                            <p class="fot-2">Automatic</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2 my-2">
+                            <span class="icon"><img :src="race" /></span>
+                            <p class="fot-2">Street</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between flex-wrap my-2 row">
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon">
+                              <img :src="road" />
+                            </span>
+                            <p class="fot-2">30,000 Km</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon"><img :src="gasoline" /></span>
+                            <p class="fot-2">Gasoline</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon"><img :src="gear" /></span>
+                            <p class="fot-2">Black</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </SwiperSlide>
+
+              <!-- ✅ Slide 2 – put completely different details here -->
+              <SwiperSlide>
+
+                <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-left:6rem">
+                  <div class="w-100 mt8">
+
+                    <p class="text-center fot-1">Mercedes C63s AMG</p>
+                    <div class="row mb-3">
+                      <div class="col-4">
+                        <p class="fot-3">Engine: V8</p>
+                      </div>
+                      <div class="col-4">
+                        <p class="fot-3">Capacity: 4L</p>
+                      </div>
+                      <div class="col-4">
+                        <p class="fot-3">US Version</p>
+                      </div>
+                    </div>
+                    <div class="px-2">
+                      <div class="row my-2">
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon"><img :src="meter" /></span>
+                            <p class="fot-2">1000 Nm</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2 ">
+                            <span class="icon"><img :src="meter" /></span>
+                            <p class="fot-2">RWD</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon"><img :src="race" /></span>
+                            <p class="fot-2">Germany</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between flex-wrap my-2 row">
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon">
+                              <img :src="road" />
+                            </span>
+                            <p class="fot-2">2 Owners</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon"><img :src="gasoline" /></span>
+                            <p class="fot-2">L Hand drive</p>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="icon"><img :src="gear" /></span>
+                            <p class="fot-2">Berlin</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </SwiperSlide>
+              <SwiperSlide>
+                <div class="px-5">
+                  <h2 class="card-title-h2 fot-1 text-black">Make an Enquiry </h2>
+                  <form @submit.prevent="submitInquiry" class="row g-2 me-3">
+                    <div class="col-md-6">
+                      <input class="form-control form-Input h35px" type="text" v-model="form.name" placeholder="Name"
+                        required />
+                    </div>
+                    <div class="col-md-6">
+                      <input class="form-control form-Input h35px" type="email" v-model="form.email" placeholder="Email"
+                        required />
+                    </div>
+                    <div class="col-md-6">
+                      <input class="form-control form-Input h35px" type="tel" v-model="form.phone" placeholder="Phone"
+                        required />
+                    </div>
+                    <div class="col-md-12">
+                      <textarea class="form-control form-Input h35px" v-model="form.message"
+                        placeholder="Message"></textarea>
+                    </div>
+
+
+                    <label class="text-align-start">
+                      <input class="form-check-input border-0 me-2" type="checkbox" v-model="form.terms" />
+                      Accept Terms & Conditions
+                    </label>
+                    <div class="col-md-12">
+                      <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                        <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+                          <span class="border-bottom-btn border-top-btn position-absolute">
+                            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+                          </span>
+
+                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+                          </span>
+
+                          <span
+                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+                          </span>
+                          <button class="signin-btnli signup-btnli border-0">
+                            Submit
+                          </button>
+                          <span class="border-bottom-btn border-left-btn position-absolute">
+                            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+                          </span>
+                          <span class="border-bottom-btn position-absolute">
+                            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </form>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div class="row justify-content-center">
+                  <div class="col-md-10 mt-4">
+                    <div class="card card-bg my-2 ">
+                      <div class="d-flex justify-content-start w-100 position-relative z-5">
+                        <div class="badgecar">Premium</div>
+                      </div>
+                      <div class="row mx-1 my-3">
+                        <div class="col-6 col-md-3 align-self-center">
+                          <img class="w-100" :src="Image2" height="130px" width="150px" />
+                        </div>
+                        <div class="col-6 col-md-1 align-self-center ">
+                          <!-- <img class="img-fluid" :src="carlogo1" /> -->
+                        </div>
+                        <div class="col-12 col-md-8">
+                          <div class="d-flex justify-content-end">
+                            <div class="d-flex align-items-center gap-2">
+                              <img :src="share" width="25px" />
+                              <img :src="badge" width="25px" />
+                            </div>
+                          </div>
+                          <div class="card-m-h">
+                            <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
+                            <div class="row my-1">
+                              <div class="col-12 col-md-4">
+                                <p class="car-sec-text"> Price:<span>$</span> 250,000 </p>
+                              </div>
+                              <div class="col-12 col-md-4">
+                                <p class="car-sec-text"> Year: 2020</p>
+                              </div>
+                              <div class="col-12 col-md-4">
+                                <div class="d-flex gap-2 align-items-center">
+                                  <img :src="date" width="30px" />
+                                  <p class="car-sec-text"> 13.02.2025</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row my-1">
+                              <div class="col-12 col-md-4 my-1">
+                                <div class="d-flex align-items-center gap-2">
+                                  <img :src="meter" width="25px" />
+                                  <p class="car-sec-text2"> 700 HP</p>
+                                </div>
+                              </div>
+                              <div class="col-12 col-md-4 my-1">
+                                <div class="d-flex align-items-center gap-2">
+                                  <img :src="gear" width="25px" />
+                                  <p class="car-sec-text2"> Automatic</p>
+                                </div>
+                              </div>
+                              <div class="col-12 col-md-4 my-1">
+                                <div class="d-flex align-items-center gap-2">
+                                  <img :src="race" width="25px" />
+                                  <p class="car-sec-text2"> 13.02.Street</p>
+                                </div>
+                              </div>
+                              <div class="col-12 col-md-4 my-1">
+                                <div class="d-flex align-items-center gap-2">
+                                  <img :src="road" width="25px" />
+                                  <p class="car-sec-text2">30,000 Km </p>
+                                </div>
+                              </div>
+                              <div class="col-12 col-md-4 my-1">
+                                <div class="d-flex align-items-center gap-2">
+                                  <img :src="gasoline" width="25px" />
+                                  <p class="car-sec-text2"> Gasoline</p>
+                                </div>
+                              </div>
+                              <div class="col-12 col-md-4 my-1">
+                                <div class="d-flex align-items-center gap-2">
+                                  <img :src="location" width="20px" />
+                                  <p class="car-sec-text2"> Berlin</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+
+
+            </Swiper>
+            <div class="swiper-button-next custom-s-next"></div>
+            <div class="swiper-button-prev custom-s-prev"></div>
           </div>
 
-          <Swiper :modules="[Navigation]" :space-between="20" :breakpoints="{
-            0: { slidesPerView: 1 },
-            768: { slidesPerView: 1 },
-            1200: { slidesPerView: 1 }
-          }" navigation :loop="true" class="mySwiper h-100">
-            <!-- ✅ Slide 1 -->
-            <SwiperSlide>
 
-              <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-left:6rem">
-                <div class="w-100">
-
-                  <p class="text-center fot-1">Mercedes C63s AMG</p>
-                  <div class="row mb-3">
-                    <div class="col-4">
-                      <p class="fot-3">Price: 250,000 $</p>
-                    </div>
-                    <div class="col-4">
-                      <p class="fot-3">Year: 2020</p>
-                    </div>
-                    <div class="col-4">
-                      <p class="fot-3"><img :src="date" width="30px" class="me-2" />13.02.2025</p>
-                    </div>
-                  </div>
-                  <div class="px-2">
-                    <div class="row">
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2 my-2">
-                          <span class="icon"><img :src="meter" /></span>
-                          <p class="fot-2">700 HP</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2 my-2">
-                          <span class="icon"><img :src="gear" /></span>
-                          <p class="fot-2">Automatic</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2 my-2">
-                          <span class="icon"><img :src="race" /></span>
-                          <p class="fot-2">Street</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-between flex-wrap my-2 row">
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
-                          <span class="icon">
-                            <img :src="road" />
-                          </span>
-                          <p class="fot-2">30,000 Km</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
-                          <span class="icon"><img :src="gasoline" /></span>
-                          <p class="fot-2">Gasoline</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
-                          <span class="icon"><img :src="gear" /></span>
-                          <p class="fot-2">Black</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </SwiperSlide>
-
-            <!-- ✅ Slide 2 – put completely different details here -->
-            <SwiperSlide>
-
-              <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-let:6rem">
-                <div class="w-75">
-
-                  <p class="text-center fot-1">Mercedes C63s AMG</p>
-                  <div class="d-flex justify-content-between mb-3">
-                    <p class="fot-3">Engine: V8</p>
-                    <p class="fot-3">Capacity: 4L</p>
-                    <p class="fot-3">US Version</p>
-                  </div>
-                  <div class="px-2">
-                    <div class="row my-2">
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
-                          <span class="icon"><img :src="meter" /></span>
-                          <p class="fot-2">1000 Nm</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2 ">
-                          <span class="icon"><img :src="meter" /></span>
-                          <p class="fot-2">RWD</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
-                          <span class="icon"><img :src="race" /></span>
-                          <p class="fot-2">Germany</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-between flex-wrap my-2 row">
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
-                          <span class="icon">
-                            <img :src="road" />
-                          </span>
-                          <p class="fot-2">2 Owners</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
-                          <span class="icon"><img :src="gasoline" /></span>
-                          <p class="fot-2">L Hand drive</p>
-                        </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="d-flex align-items-center gap-2">
-                          <span class="icon"><img :src="gear" /></span>
-                          <p class="fot-2">Berlin</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </SwiperSlide>
-            <SwiperSlide>
-              <div class="px-5">
-                <h2 class="card-title-h2 fot-1 text-black">Make an Enquiry </h2>
-                <form @submit.prevent="submitInquiry" class="row g-2 me-3">
-                  <div class="col-md-6">
-                    <input class="form-control form-Input h35px" type="text" v-model="form.name" placeholder="Name"
-                      required />
-                  </div>
-                  <div class="col-md-6">
-                    <input class="form-control form-Input h35px" type="email" v-model="form.email" placeholder="Email"
-                      required />
-                  </div>
-                  <div class="col-md-6">
-                    <input class="form-control form-Input h35px" type="tel" v-model="form.phone" placeholder="Phone"
-                      required />
-                  </div>
-                  <div class="col-md-12">
-                    <textarea class="form-control form-Input h35px" v-model="form.message"
-                      placeholder="Message"></textarea>
-                  </div>
-
-
-                  <label class="text-align-start">
-                    <input class="form-check-input border-0 me-2" type="checkbox" v-model="form.terms" />
-                    Accept Terms & Conditions
-                  </label>
-                  <div class="col-md-12">
-                    <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
-                      <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-                        <span class="border-bottom-btn border-top-btn position-absolute">
-                          <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-                        </span>
-
-                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                          <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-                        </span>
-
-                        <span
-                          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                          <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-                        </span>
-                        <button class="signin-btnli signup-btnli border-0">
-                          Submit
-                        </button>
-                        <span class="border-bottom-btn border-left-btn position-absolute">
-                          <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-                        </span>
-                        <span class="border-bottom-btn position-absolute">
-                          <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-
-                </form>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div class="row justify-content-center">
-                <div class="col-md-10 mt-4">
-                  <div class="card card-bg my-2 ">
-                    <div class="d-flex justify-content-start w-100 position-relative z-5">
-                      <div class="badgecar">Premium</div>
-                    </div>
-                    <div class="row mx-1 my-3">
-                      <div class="col-6 col-md-3 align-self-center">
-                        <img class="w-100" :src="Image2" height="130px" width="150px" />
-                      </div>
-                      <div class="col-6 col-md-1 align-self-center ">
-                        <!-- <img class="img-fluid" :src="carlogo1" /> -->
-                      </div>
-                      <div class="col-12 col-md-8">
-                        <div class="d-flex justify-content-end">
-                          <div class="d-flex align-items-center gap-2">
-                            <img :src="share" width="25px" />
-                            <img :src="badge" width="25px" />
-                          </div>
-                        </div>
-                        <div class="card-m-h">
-                          <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
-                          <div class="row my-1">
-                            <div class="col-12 col-md-4">
-                              <p class="car-sec-text"> Price:<span>$</span> 250,000 </p>
-                            </div>
-                            <div class="col-12 col-md-4">
-                              <p class="car-sec-text"> Year: 2020</p>
-                            </div>
-                            <div class="col-12 col-md-4">
-                              <div class="d-flex gap-2 align-items-center">
-                                <img :src="date" width="30px" />
-                                <p class="car-sec-text"> 13.02.2025</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row my-1">
-                            <div class="col-12 col-md-4 my-1">
-                              <div class="d-flex align-items-center gap-2">
-                                <img :src="meter" width="25px" />
-                                <p class="car-sec-text2"> 700 HP</p>
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-4 my-1">
-                              <div class="d-flex align-items-center gap-2">
-                                <img :src="gear" width="25px" />
-                                <p class="car-sec-text2"> Automatic</p>
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-4 my-1">
-                              <div class="d-flex align-items-center gap-2">
-                                <img :src="race" width="25px" />
-                                <p class="car-sec-text2"> 13.02.Street</p>
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-4 my-1">
-                              <div class="d-flex align-items-center gap-2">
-                                <img :src="road" width="25px" />
-                                <p class="car-sec-text2">30,000 Km </p>
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-4 my-1">
-                              <div class="d-flex align-items-center gap-2">
-                                <img :src="gasoline" width="25px" />
-                                <p class="car-sec-text2"> Gasoline</p>
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-4 my-1">
-                              <div class="d-flex align-items-center gap-2">
-                                <img :src="location" width="20px" />
-                                <p class="car-sec-text2"> Berlin</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-
-
-          </Swiper>
         </div>
       </div>
     </div>
@@ -399,7 +410,7 @@ const form = reactive({
 }
 
 .swiper-button-prev {
-  left: 8% !important;
+  left: 0 !important;
 }
 
 .swiper-button-next {
@@ -415,7 +426,7 @@ const form = reactive({
 }
 
 .fot-2 {
-  font-size: 15px;
+  font-size: 17px;
   margin-bottom: 0;
   line-height: normal
 }
@@ -504,5 +515,9 @@ const form = reactive({
   left: 45%;
   bottom: 9%;
   z-index: -1;
+}
+
+.mt8 {
+  margin-top: 8%
 }
 </style>
