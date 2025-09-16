@@ -518,7 +518,7 @@ const form = reactive({
 }
 
 .signin-btnli.signup-btnli {
-  background-color: rgb(112 112 112 / 80%);
+  background-color: #000814;
 }
 
 .img-100 {
