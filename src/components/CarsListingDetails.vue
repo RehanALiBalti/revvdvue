@@ -210,7 +210,7 @@
                     </div>
 
 
-                    <label class="text-align-start">
+                    <label class="text-align-start d-flex align-items-center">
                       <input class="form-check-input border-0 me-2" type="checkbox" v-model="form.terms" />
                       Accept Terms & Conditions
                     </label>
@@ -523,7 +523,7 @@ const form = reactive({
 
 .img-100 {
   width: 100%;
-  height: 100%;
+  height: 91vh;
 }
 
 .positionAbsoulte {
