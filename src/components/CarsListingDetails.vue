@@ -490,6 +490,23 @@ const form = reactive({
     top: 21%;
     right: 1%
   }
+
+  .custom-s-next,
+  .custom-s-prev {
+    top: 66%
+  }
+}
+
+@media screen and (width: 1866px) and (min-height:919px) {
+  .top-icons {
+    top: 21%;
+    right: 1%
+  }
+
+  .custom-s-next,
+  .custom-s-prev {
+    top: 66%
+  }
 }
 
 .signin-btnli.signup-btnli {
