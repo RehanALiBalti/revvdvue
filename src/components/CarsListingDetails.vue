@@ -535,6 +535,6 @@ const form = reactive({
 }
 
 .mt8 {
-  margin-top: 8%
+  margin-top: 6%
 }
 </style>
