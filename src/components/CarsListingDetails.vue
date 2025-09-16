@@ -1,7 +1,7 @@
 <template>
   <div class="banner-section-car-listi d-flex justify-content-center align-items-center">
     <img class="img-100" :src="imageBg">
-    <div class="container-fluid position-absolte">
+    <div class="container-fluid position-absoulte">
       <div class="row">
         <div class="w-5"></div>
         <div class="col-md-4">
