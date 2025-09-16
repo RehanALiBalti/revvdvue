@@ -58,7 +58,7 @@
             <!-- ✅ Slide 1 -->
             <SwiperSlide>
 
-              <div class="h-100 w-100 d-flex align-items-center justify-content-center">
+              <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-left:6rem">
                 <div class="w-100">
 
                   <p class="text-center fot-1">Mercedes C63s AMG</p>
@@ -125,7 +125,7 @@
             <!-- ✅ Slide 2 – put completely different details here -->
             <SwiperSlide>
 
-              <div class="h-100 w-100 d-flex align-items-center justify-content-center">
+              <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-let:6rem">
                 <div class="w-75">
 
                   <p class="text-center fot-1">Mercedes C63s AMG</p>
@@ -398,6 +398,14 @@ const form = reactive({
   font-size: 35px !important
 }
 
+.swiper-button-prev {
+  left: 8% !important;
+}
+
+.swiper-button-next {
+  right: 0% !important;
+}
+
 .icon img {
   width: 25px
 }
@@ -413,7 +421,7 @@ const form = reactive({
 }
 
 .fot-3 {
-  font-size: 19px;
+  font-size: 22px;
   margin-bottom: 0;
   text-align: start;
 }
