@@ -114,31 +114,68 @@ export default {
         //             element.style.color = originalColor;
         //         });
         // }
+        // downloadPDF() {
+        //     const element = document.getElementById("pdf-content");
+
+        //     // save current styles so we can restore them
+        //     const originalBg = element.style.backgroundImage;
+        //     const originalColor = element.style.color;
+
+        //     // ✅ set your own background image
+        //     element.style.backgroundImage = `url(${particlesBg})`;
+        //     element.style.backgroundSize = 'cover';     // cover the whole area
+        //     element.style.backgroundPosition = 'center';// center the image
+        //     element.style.color = '#fff';               // keep text readable if needed
+
+        //     const options = {
+        //         margin: 0,
+        //         filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
+        //         image: { type: "jpeg", quality: 0.98 },
+        //         html2canvas: { scale: 2, useCORS: true },
+        //         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        //     };
+
+        //     html2pdf().set(options).from(element).save().then(() => {
+        //         // restore original styles
+        //         element.style.backgroundImage = originalBg;
+        //         element.style.color = originalColor;
+        //     });
+        // }
+
+
         downloadPDF() {
-            const element = document.getElementById("pdf-content");
+            const dataBlock = document.getElementById("pdf-content");
 
-            // save current styles so we can restore them
-            const originalBg = element.style.backgroundImage;
-            const originalColor = element.style.color;
+            // ✅ create a temporary full-page wrapper
+            const wrapper = document.createElement("div");
+            wrapper.style.width = "210mm";          // A4 width
+            wrapper.style.height = "297mm";          // A4 height
+            wrapper.style.backgroundImage = `url(${particlesBg})`;
+            wrapper.style.backgroundSize = "cover";
+            wrapper.style.backgroundPosition = "center";
+            wrapper.style.backgroundRepeat = "no-repeat";
+            wrapper.style.color = "#fff";
+            wrapper.style.padding = "20mm"; // optional inner padding
+            wrapper.style.boxSizing = "border-box";
 
-            // ✅ set your own background image
-            element.style.backgroundImage = `url(${particlesBg})`;
-            element.style.backgroundSize = 'cover';     // cover the whole area
-            element.style.backgroundPosition = 'center';// center the image
-            element.style.color = '#fff';               // keep text readable if needed
+            // copy the current pdf-content into the wrapper
+            wrapper.innerHTML = dataBlock.innerHTML;
+
+            // put it in the DOM so html2canvas can “see” it
+            document.body.appendChild(wrapper);
 
             const options = {
                 margin: 0,
                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
                 image: { type: "jpeg", quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                html2canvas: { scale: 1.3, useCORS: true },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+                pagebreak: { mode: ['avoid-all'] }  // ✅ prevent auto page breaks
             };
 
-            html2pdf().set(options).from(element).save().then(() => {
-                // restore original styles
-                element.style.backgroundImage = originalBg;
-                element.style.color = originalColor;
+            html2pdf().set(options).from(wrapper).save().then(() => {
+                // 🧹 clean up so your webpage stays unchanged
+                document.body.removeChild(wrapper);
             });
         }
 
