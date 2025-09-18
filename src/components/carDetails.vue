@@ -50,6 +50,7 @@ import html2pdf from "html2pdf.js";
 import carFront from "@/assets/images/94c8d99e3eceee3f64597db010958594.png";
 import carCenter from "@/assets/images/94c8d99e3eceee3f64597db010958594.png";
 import carSide from "@/assets/images/94c8d99e3eceee3f64597db010958594.png";
+import particlesBg from "@/assets/images/particles-bg.png";
 
 export default {
     data() {
@@ -86,6 +87,7 @@ export default {
         };
     },
     methods: {
+
         // downloadPDF() {
         //     const element = document.getElementById("pdf-content");
         //     const originalBg = element.style.backgroundColor;
@@ -95,37 +97,12 @@ export default {
         //     element.style.color = "#fff";
 
         //     const options = {
-        //         margin: 0.5,
+        //         margin: 0,   // no white frame
         //         filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
         //         image: { type: "jpeg", quality: 0.98 },
-        //         html2canvas: { scale: 2, backgroundColor: "#000" },
-        //         jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-        //     };
-
-        //     html2pdf()
-        //         .set(options)
-        //         .from(element)
-        //         .save()
-        //         .then(() => {
-        //             element.style.backgroundColor = originalBg;
-        //             element.style.color = originalColor;
-        //         });
-        // },
-        // downloadPDF() {
-        //     const element = document.getElementById("pdf-content");
-        //     const originalBg = element.style.backgroundColor;
-        //     const originalColor = element.style.color;
-
-        //     element.style.backgroundColor = "#000";
-        //     element.style.color = "#fff";
-
-        //     const options = {
-        //         margin: 0,                                      // ✅ no extra white margin
-        //         filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
-        //         image: { type: "jpeg", quality: 0.98 },
-        //         html2canvas: { scale: 1, backgroundColor: "#000" },
-        //         jsPDF: { unit: "px", format: [element.scrollWidth, element.scrollHeight], orientation: "portrait" },
-
+        //         // capture at high DPI so text stays sharp
+        //         html2canvas: { scale: 2, backgroundColor: "#000", useCORS: true },
+        //         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
         //     };
 
         //     html2pdf()
@@ -139,29 +116,30 @@ export default {
         // }
         downloadPDF() {
             const element = document.getElementById("pdf-content");
-            const originalBg = element.style.backgroundColor;
+
+            // save current styles so we can restore them
+            const originalBg = element.style.backgroundImage;
             const originalColor = element.style.color;
 
-            element.style.backgroundColor = "#000";
-            element.style.color = "#fff";
+            // ✅ set your own background image
+            element.style.backgroundImage = `url(${particlesBg})`;
+            element.style.backgroundSize = 'cover';     // cover the whole area
+            element.style.backgroundPosition = 'center';// center the image
+            element.style.color = '#fff';               // keep text readable if needed
 
             const options = {
-                margin: 0,   // no white frame
+                margin: 0,
                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
                 image: { type: "jpeg", quality: 0.98 },
-                // capture at high DPI so text stays sharp
-                html2canvas: { scale: 2, backgroundColor: "#000", useCORS: true },
+                html2canvas: { scale: 2, useCORS: true },
                 jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
             };
 
-            html2pdf()
-                .set(options)
-                .from(element)
-                .save()
-                .then(() => {
-                    element.style.backgroundColor = originalBg;
-                    element.style.color = originalColor;
-                });
+            html2pdf().set(options).from(element).save().then(() => {
+                // restore original styles
+                element.style.backgroundImage = originalBg;
+                element.style.color = originalColor;
+            });
         }
 
 
