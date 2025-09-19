@@ -66,21 +66,31 @@ export default {
             },
             infoLeft: {
                 "Build Type": "Sedan",
-                "Transmission Type": "Automatic",
-                "Engine Capacity": "3.5L",
-                "Country": "USA",
                 "Fuel Type": "Petrol",
-                "Horsepower": "168 HP",
-                "Drive Train": "AWD",
-                "City": "Los Angeles",
-            },
-            infoRight: {
                 "Category": "Saloon",
                 "Colour": "Black",
-                "Engine Configuration": "V8",
-                "Previous Owners": "1",
+                "Transmission Type": "Automatic",
+                "Horsepower": "168 HP",
                 "Torque": "200 Nm",
+                "Engine Configuration": "V8",
+
+            },
+            infoRight: {
+
+
+                "Engine Capacity": "3.5L",
+
+                "Drive Train": "AWD",
                 "Transmission": "Manual",
+
+                "Previous Owners": "1",
+                "Country": "USA",
+
+
+
+                "City": "Los Angeles",
+
+
                 "Car Version": "2021",
                 "Drive Side": "Left-Hand Drive",
             },
