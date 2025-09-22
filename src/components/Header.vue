@@ -814,4 +814,8 @@ export default {
 .navbar-toggler .icon img {
   animation: pulse 1.5s infinite;
 }
+
+#particles-js {
+  z-index: -1
+}
 </style>

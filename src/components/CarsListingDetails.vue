@@ -217,25 +217,25 @@
                         <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
                           <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                             <span class="border-bottom-btn border-top-btn position-absolute">
-                              <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+                              <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
                             </span>
 
                             <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                              <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+                              <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
                             </span>
 
                             <span
                               class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                              <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+                              <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
                             </span>
-                            <button class="signin-btnli signup-btnli border-0">
+                            <button class="signin-btnli  border-0">
                               Submit
                             </button>
                             <span class="border-bottom-btn border-left-btn position-absolute">
-                              <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+                              <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
                             </span>
                             <span class="border-bottom-btn position-absolute">
-                              <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+                              <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                             </span>
                           </div>
                         </div>
