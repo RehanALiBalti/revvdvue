@@ -307,8 +307,8 @@ export default {
     position: absolute;
     /* top: 159px;
     left: 189px; */
-    top: 142px;
-    left: 338px;
+    top: 26%;
+    left: 26%;
     width: 160px;
 
 }
@@ -317,19 +317,28 @@ export default {
     /* top: 109px;
     position: absolute;
     left: 698px; */
-    top: 95px;
+    top: 16%;
     position: absolute;
-    left: 710px;
+    left: 55%;
     width: 160px;
 
 }
 
 .japn {
     position: absolute;
-    top: 144px;
-    left: 1143px;
+    top: 26%;
+    right: 4%;
     width: 160px;
 
+}
+
+@media(min-width:1900px) {
+    .japn {
+        top: 29%;
+        right: 6%;
+
+
+    }
 }
 
 .swiper-slide {
