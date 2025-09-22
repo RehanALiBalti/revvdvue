@@ -38,6 +38,7 @@
 
               <div class="siwpe-image w-100 h-100">
                 <img class="img-car" src="../assets/images/im1.png" alt="" />
+                <div class="telev"></div>
               </div>
 
             </SwiperSlide>
@@ -46,15 +47,12 @@
           </Swiper>
         </div>
         <div class="col-md-7 ">
-          <div class="position-relative">
+          <div class="position-relative h-100">
             <Swiper :modules="[Navigation]" :space-between="20" :breakpoints="{
               0: { slidesPerView: 1 },
               768: { slidesPerView: 1 },
               1200: { slidesPerView: 1 }
-            }" :navigation="{
-              nextEl: '.swiper-button-next.custom-s-next',
-              prevEl: '.swiper-button-prev.custom-s-prev'
-            }" :loop="true" class="mySwiper h-100">
+            }" navigation :loop="true" class="mySwiper h-100">
               <!-- ✅ Slide 1 -->
               <SwiperSlide>
 
@@ -189,65 +187,67 @@
 
               </SwiperSlide>
               <SwiperSlide>
-                <div class="px-5">
-                  <h2 class="card-title-h2 fot-1 text-black">Make an Enquiry </h2>
-                  <form @submit.prevent="submitInquiry" class="row g-2 me-3">
-                    <div class="col-md-6">
-                      <input class="form-control form-Input h35px" type="text" v-model="form.name" placeholder="Name"
-                        required />
-                    </div>
-                    <div class="col-md-6">
-                      <input class="form-control form-Input h35px" type="email" v-model="form.email" placeholder="Email"
-                        required />
-                    </div>
-                    <div class="col-md-6">
-                      <input class="form-control form-Input h35px" type="tel" v-model="form.phone" placeholder="Phone"
-                        required />
-                    </div>
-                    <div class="col-md-12">
-                      <textarea class="form-control form-Input h35px" v-model="form.message"
-                        placeholder="Message"></textarea>
-                    </div>
+                <div class="d-flex justify-content-center align-items-center h-100">
+                  <div class="px-5">
+                    <h2 class="card-title-h2 fot-1 text-black">Make an Enquiry </h2>
+                    <form @submit.prevent="submitInquiry" class="row g-2 me-3">
+                      <div class="col-md-6">
+                        <input class="form-control form-Input h35px" type="text" v-model="form.name" placeholder="Name"
+                          required />
+                      </div>
+                      <div class="col-md-6">
+                        <input class="form-control form-Input h35px" type="email" v-model="form.email"
+                          placeholder="Email" required />
+                      </div>
+                      <div class="col-md-6">
+                        <input class="form-control form-Input h35px" type="tel" v-model="form.phone" placeholder="Phone"
+                          required />
+                      </div>
+                      <div class="col-md-12">
+                        <textarea class="form-control form-Input h35px" v-model="form.message"
+                          placeholder="Message"></textarea>
+                      </div>
 
 
-                    <label class="text-align-start d-flex align-items-center">
-                      <input class="form-check-input border-0 me-2" type="checkbox" v-model="form.terms" />
-                      Accept Terms & Conditions
-                    </label>
-                    <div class="col-md-12">
-                      <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
-                        <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
-                          <span class="border-bottom-btn border-top-btn position-absolute">
-                            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-                          </span>
+                      <label class="text-align-start d-flex align-items-center">
+                        <input class="form-check-input border-0 me-2" type="checkbox" v-model="form.terms" />
+                        Accept Terms & Conditions
+                      </label>
+                      <div class="col-md-12">
+                        <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                          <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+                            <span class="border-bottom-btn border-top-btn position-absolute">
+                              <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+                            </span>
 
-                          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-                            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-                          </span>
+                            <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                              <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+                            </span>
 
-                          <span
-                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-                            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <button class="signin-btnli signup-btnli border-0">
-                            Submit
-                          </button>
-                          <span class="border-bottom-btn border-left-btn position-absolute">
-                            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-                          </span>
-                          <span class="border-bottom-btn position-absolute">
-                            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-                          </span>
+                            <span
+                              class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                              <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+                            </span>
+                            <button class="signin-btnli signup-btnli border-0">
+                              Submit
+                            </button>
+                            <span class="border-bottom-btn border-left-btn position-absolute">
+                              <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+                            </span>
+                            <span class="border-bottom-btn position-absolute">
+                              <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
 
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center align-items-center h-100">
                   <div class="col-md-10 mt-4">
                     <div class="card card-bg my-2 ">
                       <div class="d-flex justify-content-start w-100 position-relative z-5">
@@ -331,8 +331,8 @@
 
 
             </Swiper>
-            <div class="swiper-button-next custom-s-next"></div>
-            <div class="swiper-button-prev custom-s-prev"></div>
+            <!-- <div class="swiper-button-next custom-s-next"></div>
+            <div class="swiper-button-prev custom-s-prev"></div> -->
           </div>
 
 
@@ -497,11 +497,28 @@ const form = reactive({
   }
 
   .mt8 {
-    margin-top: 8%
+    /* margin-top: 8% */
   }
+
+  .fot-1 {
+    font-size: 42px;
+  }
+
+  .fot-2 {
+    font-size: 29px;
+    margin-bottom: 0;
+    line-height: normal
+  }
+
+  .fot-3 {
+    font-size: 35px;
+    margin-bottom: 0;
+    text-align: start;
+  }
+
 }
 
-@media screen and (width: 1866px) and (min-height:919px) {
+@media screen and (min-width: 1866px) and (min-height:919px) {
   .top-icons {
     top: 20%;
     right: 1%
@@ -513,7 +530,23 @@ const form = reactive({
   }
 
   .mt8 {
-    margin-top: 8%
+    /* margin-top: 8% */
+  }
+
+  .fot-1 {
+    font-size: 42px;
+  }
+
+  .fot-2 {
+    font-size: 29px;
+    margin-bottom: 0;
+    line-height: normal
+  }
+
+  .fot-3 {
+    font-size: 35px;
+    margin-bottom: 0;
+    text-align: start;
   }
 }
 
@@ -543,6 +576,6 @@ const form = reactive({
 }
 
 .mt8 {
-  margin-top: 6%
+  /* margin-top: 6% */
 }
 </style>

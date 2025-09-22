@@ -230,7 +230,7 @@ video::-webkit-media-controls {
 
 .header {
 	height: 95px;
-	background-color: #000814;
+	background-color: #030f22eb;
 	width: 100%;
 }
 
@@ -3090,4 +3090,11 @@ input::placeholder {
 .swiper-button-next:after {
 	color: #fff;
 	font-size: 35px !important;
+}
+
+.multiselect__tags-wrap {
+	display: flex !important;
+
+
+	flex-shrink: 1;
 }
