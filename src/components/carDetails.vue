@@ -216,20 +216,42 @@ export default {
         downloadPDF() {
             const dataBlock = document.getElementById("pdf-content");
 
-            // ✅ create a temporary full-page wrapper for the background
+            // ✅ create a temporary full-page wrapper
             const wrapper = document.createElement("div");
-            wrapper.style.width = "297mm";          // A4 width in landscape
-            wrapper.style.height = "210mm";         // A4 height in landscape
+            wrapper.style.width = "297mm";   // A4 landscape
+            wrapper.style.height = "210mm";
             wrapper.style.backgroundImage = `url(${particlesBg})`;
             wrapper.style.backgroundSize = "cover";
             wrapper.style.backgroundPosition = "center";
             wrapper.style.backgroundRepeat = "no-repeat";
             wrapper.style.color = "#fff";
-            wrapper.style.padding = "20mm";         // optional inner padding
+            wrapper.style.padding = "20mm";
             wrapper.style.boxSizing = "border-box";
 
-            // copy the current pdf-content into the wrapper
+            // copy current pdf-content into the wrapper
             wrapper.innerHTML = dataBlock.innerHTML;
+
+            // ✅ Inject PDF-only CSS so the downloaded PDF uses fixed font sizes
+            const pdfStyle = document.createElement("style");
+            pdfStyle.innerHTML = `
+        /* --- PDF-specific styles --- */
+        .label {
+            font-weight: 600;
+            font-size: 0.9rem !important;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 0;
+        }
+        .value {
+            font-weight: 700;
+            font-size: 1.1rem !important;
+            color: #FB6F19;
+        }
+        h2 {
+            font-size: 2rem !important;
+        }
+    `;
+            wrapper.appendChild(pdfStyle);
 
             // put it in the DOM so html2canvas can “see” it
             document.body.appendChild(wrapper);
@@ -238,16 +260,9 @@ export default {
                 margin: 0,
                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
                 image: { type: "jpeg", quality: 0.98 },
-                html2canvas: {
-                    scale: 2,        // ✅ increase DPI for sharper PDF
-                    useCORS: true
-                },
-                jsPDF: {
-                    unit: "mm",
-                    format: "a4",
-                    orientation: "landscape"   // ✅ landscape mode
-                },
-                pagebreak: { mode: ['avoid-all'] }  // prevent auto page breaks
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+                pagebreak: { mode: ['avoid-all'] }
             };
 
             html2pdf()
@@ -255,7 +270,7 @@ export default {
                 .from(wrapper)
                 .save()
                 .then(() => {
-                    // 🧹 clean up so your webpage stays unchanged
+                    // 🧹 remove the temporary DOM elements
                     document.body.removeChild(wrapper);
                 });
         }
@@ -329,7 +344,7 @@ export default {
     }
 
     .car-img {
-        width: 270px
+        width: 180px
     }
 }
 </style>

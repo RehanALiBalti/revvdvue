@@ -279,7 +279,7 @@
                               </div>
                               <div class="col-12 col-md-4">
                                 <div class="d-flex gap-2 align-items-center">
-                                  <img :src="date" width="30px" />
+                                  <img :src="date" width="25px" />
                                   <p class="car-sec-text"> 13.02.2025</p>
                                 </div>
                               </div>

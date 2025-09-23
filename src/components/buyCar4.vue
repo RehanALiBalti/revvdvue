@@ -1,8 +1,9 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-3">
-                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto mt-0">
+            <div class="col-md-3 position-relative zi-5">
+                <div
+                    class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto mt-0 position-absolute zi-5">
                     <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                         <span class="border-bottom-btn border-top-btn position-absolute">
                             <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
@@ -145,7 +146,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid position-relative">
             <div class="row posrel">
                 <div class="col-md-4 my-2">
                     <div class="modal-dialog ">
@@ -380,7 +381,7 @@ export default {
 
 .modalPos {
     position: absolute;
-    top: 32%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%
@@ -464,9 +465,19 @@ export default {
 }
 
 .posrel {
-    position: relative;
+    position: absolute;
+    width: 100%;
     /* top: -489px; */
-    top: -290px;
+    top: -230px;
+}
+
+@media screen and (min-width: 1800px) {
+    .posrel {
+        position: absolute;
+        width: 100%;
+        /* top: -489px; */
+        top: -350px;
+    }
 }
 
 .usa {
@@ -534,5 +545,9 @@ export default {
         width: 100% !important;
         height: auto
     }
+}
+
+.zi-5 {
+    z-index: 9
 }
 </style>

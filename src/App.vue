@@ -105,7 +105,7 @@
 
   </div>
   <div
-    v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy' && $route.path !== '/carslistingdetails'">
+    v-if="$route.path !== '/termofservice' && $route.path !== '/privacypolicy' && $route.path !== '/carslistingdetails' && $route.path !== '/buy4' && $route.path !== '/buy'">
     <FooterSect v-if="IsFooter == true" />
     <FooterSect2 v-if="showFooterSect2" v-show="showF" />
   </div>
