@@ -48,11 +48,12 @@
         </div>
         <div class="col-md-7 ">
           <div class="position-relative h-100">
-            <Swiper :modules="[Navigation]" :space-between="20" :breakpoints="{
-              0: { slidesPerView: 1 },
-              768: { slidesPerView: 1 },
-              1200: { slidesPerView: 1 }
-            }" navigation :loop="true" class="mySwiper h-100">
+            <Swiper :modules="[Navigation, EffectFade]" effect="fade" :fadeEffect="{ crossFade: true }"
+              :space-between="20" :breakpoints="{
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 1 },
+                1200: { slidesPerView: 1 }
+              }" navigation :loop="true" class="mySwiper h-100">
               <!-- ✅ Slide 1 -->
               <SwiperSlide>
 

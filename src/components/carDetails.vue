@@ -1,8 +1,33 @@
 <template>
-    <div class="container py-4">
+    <div class="container-fluid py-4">
         <!-- Download Button -->
-        <div class="text-end mb-3 position-relative z-5">
-            <button class="btn btn-primary" @click="downloadPDF">Download as PDF</button>
+        <div class="text-end mb-3 position-relative z-5 d-flex justify-content-end">
+
+            <div class="load-more-info w-fit d-flex justify-content-start align-items-center mb-4 ">
+                <div class="list-item-btn position-relative load-more-div proceed-div ">
+                    <span class="border-bottom-btn border-top-btn position-absolute">
+                        <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
+                    </span>
+
+                    <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                        <img src="@/assets/images/Path467.png" class="img-border position-absolute" alt="" />
+                    </span>
+
+                    <span
+                        class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                        <img src="@/assets/images/Path465.png" class="img-border position-absolute" alt="" />
+                    </span>
+                    <button class="signin-btnli  border-0" @click="downloadPDF">
+                        Download PDF
+                    </button>
+                    <span class="border-bottom-btn border-left-btn position-absolute">
+                        <img src="@/assets/images/Group11.png" class="img-border position-absolute" alt="" />
+                    </span>
+                    <span class="border-bottom-btn position-absolute">
+                        <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
+                    </span>
+                </div>
+            </div>
         </div>
 
         <!-- PDF Content -->
@@ -153,19 +178,54 @@ export default {
         // }
 
 
+        // downloadPDF() {
+        //     const dataBlock = document.getElementById("pdf-content");
+
+        //     // ✅ create a temporary full-page wrapper
+        //     const wrapper = document.createElement("div");
+        //     wrapper.style.width = "210mm";          // A4 width
+        //     wrapper.style.height = "297mm";          // A4 height
+        //     wrapper.style.backgroundImage = `url(${particlesBg})`;
+        //     wrapper.style.backgroundSize = "cover";
+        //     wrapper.style.backgroundPosition = "center";
+        //     wrapper.style.backgroundRepeat = "no-repeat";
+        //     wrapper.style.color = "#fff";
+        //     wrapper.style.padding = "20mm"; // optional inner padding
+        //     wrapper.style.boxSizing = "border-box";
+
+        //     // copy the current pdf-content into the wrapper
+        //     wrapper.innerHTML = dataBlock.innerHTML;
+
+        //     // put it in the DOM so html2canvas can “see” it
+        //     document.body.appendChild(wrapper);
+
+        //     const options = {
+        //         margin: 0,
+        //         filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
+        //         image: { type: "jpeg", quality: 0.98 },
+        //         html2canvas: { scale: 1.3, useCORS: true },
+        //         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        //         pagebreak: { mode: ['avoid-all'] }  // ✅ prevent auto page breaks
+        //     };
+
+        //     html2pdf().set(options).from(wrapper).save().then(() => {
+        //         // 🧹 clean up so your webpage stays unchanged
+        //         document.body.removeChild(wrapper);
+        //     });
+        // }
         downloadPDF() {
             const dataBlock = document.getElementById("pdf-content");
 
-            // ✅ create a temporary full-page wrapper
+            // ✅ create a temporary full-page wrapper for the background
             const wrapper = document.createElement("div");
-            wrapper.style.width = "210mm";          // A4 width
-            wrapper.style.height = "297mm";          // A4 height
+            wrapper.style.width = "297mm";          // A4 width in landscape
+            wrapper.style.height = "210mm";         // A4 height in landscape
             wrapper.style.backgroundImage = `url(${particlesBg})`;
             wrapper.style.backgroundSize = "cover";
             wrapper.style.backgroundPosition = "center";
             wrapper.style.backgroundRepeat = "no-repeat";
             wrapper.style.color = "#fff";
-            wrapper.style.padding = "20mm"; // optional inner padding
+            wrapper.style.padding = "20mm";         // optional inner padding
             wrapper.style.boxSizing = "border-box";
 
             // copy the current pdf-content into the wrapper
@@ -178,16 +238,28 @@ export default {
                 margin: 0,
                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
                 image: { type: "jpeg", quality: 0.98 },
-                html2canvas: { scale: 1.3, useCORS: true },
-                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-                pagebreak: { mode: ['avoid-all'] }  // ✅ prevent auto page breaks
+                html2canvas: {
+                    scale: 2,        // ✅ increase DPI for sharper PDF
+                    useCORS: true
+                },
+                jsPDF: {
+                    unit: "mm",
+                    format: "a4",
+                    orientation: "landscape"   // ✅ landscape mode
+                },
+                pagebreak: { mode: ['avoid-all'] }  // prevent auto page breaks
             };
 
-            html2pdf().set(options).from(wrapper).save().then(() => {
-                // 🧹 clean up so your webpage stays unchanged
-                document.body.removeChild(wrapper);
-            });
+            html2pdf()
+                .set(options)
+                .from(wrapper)
+                .save()
+                .then(() => {
+                    // 🧹 clean up so your webpage stays unchanged
+                    document.body.removeChild(wrapper);
+                });
         }
+
 
 
     },
@@ -234,6 +306,30 @@ export default {
 @media(max-width:768px) {
     .car-img {
         width: 130px
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .label {
+        font-weight: 600;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        color: #fff;
+        margin-bottom: 0;
+    }
+
+    .value {
+        font-weight: 700;
+        font-size: 2rem;
+        color: #FB6F19;
+    }
+
+    h2 {
+        font-size: 3rem
+    }
+
+    .car-img {
+        width: 270px
     }
 }
 </style>
