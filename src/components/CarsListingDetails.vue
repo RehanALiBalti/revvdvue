@@ -63,7 +63,7 @@
                     <p class="text-center fot-1">Mercedes C63s AMG</p>
                     <div class="row mb-3">
                       <div class="col-4">
-                        <p class="fot-3">Price: 250,000 $</p>
+                        <p class="fot-3 ">Price: 250,000 $</p>
                       </div>
                       <div class="col-4">
                         <p class="fot-3">Year: 2020</p>
@@ -271,10 +271,10 @@
                           <div class="card-m-h">
                             <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                             <div class="row my-1">
-                              <div class="col-12 col-md-5">
-                                <p class="car-sec-text"> Price: 250,000 <span>$</span> </p>
+                              <div class="col-12 col-md-4">
+                                <p class="car-sec-text f-size-15"> Price: 250,000 <span>$</span> </p>
                               </div>
-                              <div class="col-12 col-md-3">
+                              <div class="col-12 col-md-4">
                                 <p class="car-sec-text f-now"> Year: 2020</p>
                               </div>
                               <div class="col-12 col-md-4">
@@ -592,5 +592,9 @@ const form = reactive({
 .f-now {
 
   white-space: nowrap
+}
+
+.f-size-15 {
+  font-size: 15px !important;
 }
 </style>
