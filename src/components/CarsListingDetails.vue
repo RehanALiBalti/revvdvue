@@ -424,7 +424,7 @@ const form = reactive({
 }
 
 .icon img {
-  width: 25px
+  width: 30px
 }
 
 .fot-1 {
