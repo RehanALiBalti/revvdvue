@@ -72,9 +72,9 @@
 import html2pdf from "html2pdf.js";
 
 // Replace these imports with your own car images
-import carFront from "@/assets/images/94c8d99e3eceee3f64597db010958594.png";
-import carCenter from "@/assets/images/94c8d99e3eceee3f64597db010958594.png";
-import carSide from "@/assets/images/94c8d99e3eceee3f64597db010958594.png";
+import carFront from "@/assets/images/c.png";
+import carCenter from "@/assets/images/c.png";
+import carSide from "@/assets/images/c.png";
 import particlesBg from "@/assets/images/particles-bg.png";
 
 export default {
