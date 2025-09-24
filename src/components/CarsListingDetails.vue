@@ -317,7 +317,7 @@
                               </div>
                               <div class="col-12 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
-                                  <img :src="location" width="20px" />
+                                  <img :src="location" width="30px" />
                                   <p class="car-sec-text2"> Berlin</p>
                                 </div>
                               </div>
