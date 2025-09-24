@@ -6,8 +6,8 @@
         <router-link to="/cardetails">
           <img :src="sicon" width="35px" alt="">
         </router-link>
-        <img :src="badge" width="25px" alt="">
-        <!-- <img :src="share" width="25px" height="25px" alt=""> -->
+        <img :src="badge" width="30px" alt="">
+        <!-- <img :src="share" width="30px" height="25px" alt=""> -->
 
       </div>
     </div>
@@ -258,28 +258,28 @@
                         <div class="col-6 col-md-3 align-self-center">
                           <img class="w-100" :src="Image2" height="130px" width="150px" />
                         </div>
-                        <div class="col-6 col-md-1 align-self-center ">
+                        <div class="col-6 col-md-1 align-self-center d-none">
                           <!-- <img class="img-fluid" :src="carlogo1" /> -->
                         </div>
                         <div class="col-12 col-md-8">
                           <div class="d-flex justify-content-end">
                             <div class="d-flex align-items-center gap-2">
-                              <img :src="share" width="25px" />
-                              <img :src="badge" width="25px" />
+                              <img :src="share" width="30px" />
+                              <img :src="badge" width="30px" />
                             </div>
                           </div>
                           <div class="card-m-h">
                             <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                             <div class="row my-1">
-                              <div class="col-12 col-md-4">
-                                <p class="car-sec-text"> Price:<span>$</span> 250,000 </p>
+                              <div class="col-12 col-md-5">
+                                <p class="car-sec-text"> Price: 250,000 <span>$</span> </p>
                               </div>
-                              <div class="col-12 col-md-4">
-                                <p class="car-sec-text"> Year: 2020</p>
+                              <div class="col-12 col-md-3">
+                                <p class="car-sec-text" style="white-space:no-wrap"> Year: 2020</p>
                               </div>
                               <div class="col-12 col-md-4">
                                 <div class="d-flex gap-2 align-items-center">
-                                  <img :src="date" width="25px" />
+                                  <img :src="date" width="30px" />
                                   <p class="car-sec-text"> 13.02.2025</p>
                                 </div>
                               </div>
@@ -287,31 +287,31 @@
                             <div class="row my-1">
                               <div class="col-12 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
-                                  <img :src="meter" width="25px" />
+                                  <img :src="meter" width="30px" />
                                   <p class="car-sec-text2"> 700 HP</p>
                                 </div>
                               </div>
                               <div class="col-12 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
-                                  <img :src="gear" width="25px" />
+                                  <img :src="gear" width="30px" />
                                   <p class="car-sec-text2"> Automatic</p>
                                 </div>
                               </div>
                               <div class="col-12 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
-                                  <img :src="race" width="25px" />
+                                  <img :src="race" width="30px" />
                                   <p class="car-sec-text2"> 13.02.Street</p>
                                 </div>
                               </div>
                               <div class="col-12 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
-                                  <img :src="road" width="25px" />
+                                  <img :src="road" width="30px" />
                                   <p class="car-sec-text2">30,000 Km </p>
                                 </div>
                               </div>
                               <div class="col-12 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
-                                  <img :src="gasoline" width="25px" />
+                                  <img :src="gasoline" width="30px" />
                                   <p class="car-sec-text2"> Gasoline</p>
                                 </div>
                               </div>
@@ -456,6 +456,10 @@ const form = reactive({
   padding-block: 0.6rem;
   position: absolute;
   left: -2px
+}
+
+.car-sec-text span {
+  color: #f95f19;
 }
 
 .car-title {
