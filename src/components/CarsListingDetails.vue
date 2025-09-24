@@ -261,7 +261,7 @@
                         <div class="col-6 col-md-1 align-self-center d-none">
                           <!-- <img class="img-fluid" :src="carlogo1" /> -->
                         </div>
-                        <div class="col-12 col-md-8">
+                        <div class="col-12 col-md-9">
                           <div class="d-flex justify-content-end">
                             <div class="d-flex align-items-center gap-2">
                               <img :src="share" width="30px" />
@@ -275,7 +275,7 @@
                                 <p class="car-sec-text"> Price: 250,000 <span>$</span> </p>
                               </div>
                               <div class="col-12 col-md-3">
-                                <p class="car-sec-text" style="white-space:no-wrap"> Year: 2020</p>
+                                <p class="car-sec-text f-now"> Year: 2020</p>
                               </div>
                               <div class="col-12 col-md-4">
                                 <div class="d-flex gap-2 align-items-center">
@@ -587,5 +587,10 @@ const form = reactive({
 
 .mt8 {
   /* margin-top: 6% */
+}
+
+.f-now {
+
+  white-space: nowrap
 }
 </style>
