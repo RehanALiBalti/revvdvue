@@ -110,7 +110,7 @@
                         </div>
                         <div class="col-4">
                           <div class="d-flex align-items-center gap-2">
-                            <span class="icon"><img :src="gear" /></span>
+                            <span class="icon"><img :src="pnt" /></span>
                             <p class="fot-2">Black</p>
                           </div>
                         </div>
@@ -149,13 +149,13 @@
                         </div>
                         <div class="col-4">
                           <div class="d-flex align-items-center gap-2 ">
-                            <span class="icon"><img :src="meter" /></span>
+                            <span class="icon"><img :src="rwd" /></span>
                             <p class="fot-2">RWD</p>
                           </div>
                         </div>
                         <div class="col-4">
                           <div class="d-flex align-items-center gap-2">
-                            <span class="icon"><img :src="race" /></span>
+                            <span class="icon"><img :src="ger" /></span>
                             <p class="fot-2">Germany</p>
                           </div>
                         </div>
@@ -164,20 +164,20 @@
                         <div class="col-4">
                           <div class="d-flex align-items-center gap-2">
                             <span class="icon">
-                              <img :src="road" />
+                              <img :src="own" />
                             </span>
                             <p class="fot-2">2 Owners</p>
                           </div>
                         </div>
                         <div class="col-4">
                           <div class="d-flex align-items-center gap-2">
-                            <span class="icon"><img :src="gasoline" /></span>
+                            <span class="icon"><img :src="drv" /></span>
                             <p class="fot-2">L Hand drive</p>
                           </div>
                         </div>
                         <div class="col-4">
                           <div class="d-flex align-items-center gap-2">
-                            <span class="icon"><img :src="gear" /></span>
+                            <span class="icon"><img :src="location" width="20px" /></span>
                             <p class="fot-2">Berlin</p>
                           </div>
                         </div>
@@ -367,6 +367,11 @@ import road from "../assets/images/icons/road.png"
 import share from "../assets/images/icons/share.png"
 import badge from "../assets/images/icons/badge.png"
 // import badge from "../assets/images/icons/badge.png"
+import ger from "../assets/images/icons/ger.png"
+import drv from "../assets/images/icons/drv.png"
+import rwd from "../assets/images/icons/rwd.png"
+import pnt from "../assets/images/icons/pnt.png"
+import own from "../assets/images/icons/own.png"
 import { reactive } from "vue";
 
 const form = reactive({
