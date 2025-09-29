@@ -60,7 +60,7 @@
                 <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-left:6rem">
                   <div class="w-100 mt8">
 
-                    <p class="text-center fot-1">Mercedes C63s AMG</p>
+                    <p class="text-center fot-1 me6">Mercedes C63s AMG</p>
                     <div class="row mb-3">
                       <div class="col-4">
                         <p class="fot-3 ">Price: 250,000 $</p>
@@ -120,14 +120,15 @@
                 </div>
 
               </SwiperSlide>
-
-              <!-- ✅ Slide 2 – put completely different details here -->
+              <!-- ✅ Slide 2 -->
               <SwiperSlide>
 
                 <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-left:6rem">
                   <div class="w-100 mt8">
 
-                    <p class="text-center fot-1">Mercedes C63s AMG</p>
+                    <p class="text-center fot-1 me6">Mercedes C63s AMG</p>
+
+                    <!-- ✅ 3-column row (no nested row) -->
                     <div class="row mb-3">
                       <div class="col-4">
                         <p class="fot-3">Engine: V8</p>
@@ -139,33 +140,35 @@
                         <p class="fot-3">US Version</p>
                       </div>
                     </div>
+
                     <div class="px-2">
-                      <div class="row my-2">
+                      <!-- ✅ First spec row -->
+                      <div class="row">
                         <div class="col-4">
-                          <div class="d-flex align-items-center gap-2">
+                          <div class="d-flex align-items-center gap-2 my-2">
                             <span class="icon"><img :src="meter" /></span>
                             <p class="fot-2">1000 Nm</p>
                           </div>
                         </div>
                         <div class="col-4">
-                          <div class="d-flex align-items-center gap-2 ">
+                          <div class="d-flex align-items-center gap-2 my-2">
                             <span class="icon"><img :src="rwd" /></span>
                             <p class="fot-2">RWD</p>
                           </div>
                         </div>
                         <div class="col-4">
-                          <div class="d-flex align-items-center gap-2">
+                          <div class="d-flex align-items-center gap-2 my-2">
                             <span class="icon"><img :src="ger" /></span>
                             <p class="fot-2">Germany</p>
                           </div>
                         </div>
                       </div>
+
+                      <!-- ✅ Second spec row -->
                       <div class="d-flex justify-content-between flex-wrap my-2 row">
                         <div class="col-4">
                           <div class="d-flex align-items-center gap-2">
-                            <span class="icon">
-                              <img :src="own" />
-                            </span>
+                            <span class="icon"><img :src="own" /></span>
                             <p class="fot-2">2 Owners</p>
                           </div>
                         </div>
@@ -183,14 +186,18 @@
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
 
               </SwiperSlide>
+
+
+
               <SwiperSlide>
                 <div class="d-flex justify-content-center align-items-center h-100">
                   <div class="px-5">
-                    <h2 class="card-title-h2 fot-1 text-black">Make an Enquiry </h2>
+                    <h2 class="card-title-h2 fot-1 text-black me6">Make an Enquiry </h2>
                     <form @submit.prevent="submitInquiry" class="row g-2 me-3">
                       <div class="col-md-6">
                         <input class="form-control form-Input h35px" type="text" v-model="form.name" placeholder="Name"
@@ -429,6 +436,10 @@ const form = reactive({
 
 .fot-1 {
   font-size: 30px;
+}
+
+.me6 {
+  margin-right: 6rem
 }
 
 .fot-2 {
