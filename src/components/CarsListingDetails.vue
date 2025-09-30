@@ -222,7 +222,7 @@
                         Accept Terms & Conditions
                       </label>
                       <div class="col-md-12">
-                        <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                        <!-- <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
                           <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
                             <span class="border-bottom-btn border-top-btn position-absolute">
                               <img src="@/assets/images/Group12.png" class="img-border position-absolute" alt="" />
@@ -246,7 +246,8 @@
                               <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                             </span>
                           </div>
-                        </div>
+                        </div> -->
+                        <button class="btn border-0  outline-0"><img :src="sbtn" width="120px" /></button>
                       </div>
 
 
@@ -379,6 +380,7 @@ import drv from "../assets/images/icons/drv.png"
 import rwd from "../assets/images/icons/rwd.png"
 import pnt from "../assets/images/icons/pnt.png"
 import own from "../assets/images/icons/own.png"
+import sbtn from "../assets/images/sbtn.png"
 import { reactive } from "vue";
 
 const form = reactive({
