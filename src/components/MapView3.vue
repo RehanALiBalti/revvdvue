@@ -69,7 +69,7 @@
                                                     <input type="checkbox" class="form-check-input mb-2 border-0"
                                                         :id="'car-' + index" :value="car.name" v-model="selectedCars"
                                                         :disabled="selectedCars.length >= 3 && !selectedCars.includes(car.name)" />
-                                                    <label :for="'car-' + index">{{ car.name }}</label>
+                                                    <!-- <label :for="'car-' + index">{{ car.name }}</label> -->
                                                 </div>
 
                                                 <div
