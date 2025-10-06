@@ -534,9 +534,11 @@ export default {
 
 @media(min-width:1900px) {
     .japn {
-        top: 29%;
-        right: 6%;
-
+        /* top: 29%;
+        right: 6%; */
+        top: 31%;
+        right: 1%;
+        width: 138px;
 
     }
 }
