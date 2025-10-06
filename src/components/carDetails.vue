@@ -33,17 +33,22 @@
         <!-- PDF Content -->
         <div id="pdf-content" class="pdf-section text-white p-4">
             <!-- Top images -->
-            <div class="d-flex justify-content-center gap-4 mb-4 flex-wrap">
+            <!-- <div class="d-flex justify-content-center gap-4 mb-4 flex-wrap">
+                <img :src="carFront" class="car-img" alt="car front" />
+                <img :src="carCenter" class="car-img" alt="car center" />
+                <img :src="carSide" class="car-img" alt="car side" />
+            </div> -->
+            <div ref="imagesContainer" class="d-flex justify-content-center gap-4 mb-4 flex-wrap">
                 <img :src="carFront" class="car-img" alt="car front" />
                 <img :src="carCenter" class="car-img" alt="car center" />
                 <img :src="carSide" class="car-img" alt="car side" />
             </div>
-
             <!-- Headline row -->
             <div class="row text-center mb-4">
 
                 <div class="col-md-4">
-                    <h2 class="make"><span class="text-orange">{{ carDetails.make }}</span> {{ carDetails.model }}</h2>
+                    <h2 class="make"><span class="text-orange">{{ carDetails.make }}</span> {{ carDetails.model }}
+                    </h2>
                 </div>
                 <div class="col-md-4">
                     <h2 class="km text-whote">15000 <span class="text-orange">km</span></h2>
@@ -76,10 +81,13 @@ import carFront from "@/assets/images/c.png";
 import carCenter from "@/assets/images/c.png";
 import carSide from "@/assets/images/c.png";
 import particlesBg from "@/assets/images/particles-bg.png";
+import Viewer from "viewerjs";
+import "viewerjs/dist/viewer.css";
 
 export default {
     data() {
         return {
+            viewer: null,
             carFront,
             carCenter,
             carSide,
@@ -274,61 +282,422 @@ export default {
         //                 document.body.removeChild(wrapper);
         //             });
         //     }
+        //     downloadPDF() {
+        //         const dataBlock = document.getElementById("pdf-content");
+
+        //         // Absolute or data-URL of the background image
+        //         // make sure particlesBg is a full URL or base64 string
+        //         const bgUrl = particlesBg;
+
+        //         // Create the temporary wrapper
+        //         const wrapper = document.createElement("div");
+        //         wrapper.style.width = "297mm";      // A4 landscape
+        //         wrapper.style.height = "210mm";
+        //         wrapper.style.color = "#fff";
+        //         wrapper.style.padding = "20mm";
+        //         wrapper.style.boxSizing = "border-box";
+        //         wrapper.style.position = "relative";   // needed if we use absolute children
+
+        //         // Copy current pdf-content into the wrapper
+        //         wrapper.innerHTML = dataBlock.innerHTML;
+
+        //         // --- Add the background as a real <img> so html2canvas reliably captures it
+        //         const bgImg = new Image();
+        //         bgImg.src = bgUrl;
+        //         bgImg.crossOrigin = "anonymous";       // allow CORS if remote image
+        //         bgImg.style.position = "absolute";
+        //         bgImg.style.top = 0;
+        //         bgImg.style.left = 0;
+        //         bgImg.style.width = "100%";
+        //         bgImg.style.height = "100%";
+        //         bgImg.style.objectFit = "cover";
+        //         bgImg.style.zIndex = "-1";
+        //         wrapper.insertBefore(bgImg, wrapper.firstChild);
+
+        //         // --- Inject PDF-only CSS globally so html2canvas can read it
+        //         const pdfStyle = document.createElement("style");
+        //         pdfStyle.textContent = `
+        //     /* --- PDF-specific styles --- */
+        //     .label {
+        //         font-weight: 600;
+        //         font-size: 0.9rem !important;
+        //         text-transform: uppercase;
+        //         color: #fff;
+        //         margin-bottom: 0;
+        //     }
+        //     .value {
+        //         font-weight: 700;
+        //         font-size: 1.1rem !important;
+        //         color: #FB6F19;
+        //     }
+        //     h2 {
+        //         font-size: 2rem !important;
+        //     }
+        // `;
+        //         document.head.appendChild(pdfStyle);
+
+        //         // --- Wait until background image is loaded
+        //         bgImg.onload = () => {
+        //             document.body.appendChild(wrapper);
+
+        //             const options = {
+        //                 margin: 0,
+        //                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
+        //                 image: { type: "jpeg", quality: 0.98 },
+        //                 html2canvas: { scale: 2, useCORS: true },
+        //                 jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+        //                 pagebreak: { mode: ["avoid-all"] }
+        //             };
+
+        //             html2pdf()
+        //                 .set(options)
+        //                 .from(wrapper)
+        //                 .save()
+        //                 .then(() => {
+        //                     document.body.removeChild(wrapper);   // 🧹 clean up
+        //                     document.head.removeChild(pdfStyle);  // optional cleanup
+        //                 });
+        //         };
+        //     }
+
+        //     downloadPDF() {
+        //         const dataBlock = document.getElementById("pdf-content");
+
+        //         // show loader
+        //         const loader = document.createElement("div");
+        //         loader.id = "pdf-loader";
+        //         loader.innerHTML = `<div class="pdf-spinner"></div><p>Generating PDF...</p>`;
+        //         Object.assign(loader.style, {
+        //             position: "fixed",
+        //             top: "0",
+        //             left: "0",
+        //             width: "100%",
+        //             height: "100%",
+        //             background: "rgba(0,0,0,0.6)",
+        //             color: "#fff",
+        //             display: "flex",
+        //             flexDirection: "column",
+        //             alignItems: "center",
+        //             justifyContent: "center",
+        //             zIndex: "9999",
+        //             fontSize: "1.2rem"
+        //         });
+        //         document.body.appendChild(loader);
+
+        //         // Absolute or data-URL of the background image
+        //         const bgUrl = particlesBg;
+
+        //         // Create the temporary wrapper
+        //         const wrapper = document.createElement("div");
+        //         wrapper.style.width = "297mm";      // A4 landscape
+        //         wrapper.style.height = "210mm";
+        //         wrapper.style.color = "#fff";
+        //         wrapper.style.padding = "20mm";
+        //         wrapper.style.boxSizing = "border-box";
+        //         wrapper.style.position = "relative";   // needed if we use absolute children
+
+        //         // Copy current pdf-content into the wrapper
+        //         wrapper.innerHTML = dataBlock.innerHTML;
+
+        //         // --- Add the background as a real <img> so html2canvas reliably captures it
+        //         const bgImg = new Image();
+        //         bgImg.src = bgUrl;
+        //         bgImg.crossOrigin = "anonymous";       // allow CORS if remote image
+        //         bgImg.style.position = "absolute";
+        //         bgImg.style.top = 0;
+        //         bgImg.style.left = 0;
+        //         bgImg.style.width = "100%";
+        //         bgImg.style.height = "100%";
+        //         bgImg.style.objectFit = "cover";
+        //         bgImg.style.zIndex = "-1";
+        //         wrapper.insertBefore(bgImg, wrapper.firstChild);
+
+        //         // --- Inject PDF-only CSS globally so html2canvas can read it
+        //         const pdfStyle = document.createElement("style");
+        //         pdfStyle.textContent = `
+        // /* --- PDF-specific styles --- */
+        // .label {
+        //     font-weight: 600;
+        //     font-size: 0.9rem !important;
+        //     text-transform: uppercase;
+        //     color: #fff;
+        //     margin-bottom: 0;
+        // }
+        // .value {
+        //     font-weight: 700;
+        //     font-size: 1.1rem !important;
+        //     color: #FB6F19;
+        // }
+        // h2 {
+        //     font-size: 2rem !important;
+        // }
+        // .pdf-spinner {
+        //     border: 6px solid #f3f3f3;
+        //     border-top: 6px solid #FB6F19;
+        //     border-radius: 50%;
+        //     width: 50px;
+        //     height: 50px;
+        //     animation: spin 1s linear infinite;
+        //     margin-bottom: 10px;
+        // }
+        // @keyframes spin {
+        //     0% { transform: rotate(0deg); }
+        //     100% { transform: rotate(360deg); }
+        // }
+        // `;
+        //         document.head.appendChild(pdfStyle);
+
+        //         // --- Wait until background image is loaded
+        //         bgImg.onload = () => {
+        //             document.body.appendChild(wrapper);
+
+        //             const options = {
+        //                 margin: 0,
+        //                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
+        //                 image: { type: "jpeg", quality: 0.98 },
+        //                 html2canvas: { scale: 2, useCORS: true },
+        //                 jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+        //                 pagebreak: { mode: ["avoid-all"] }
+        //             };
+
+        //             html2pdf()
+        //                 .set(options)
+        //                 .from(wrapper)
+        //                 .save()
+        //                 .then(() => {
+        //                     document.body.removeChild(wrapper);   // 🧹 clean up
+        //                     document.head.removeChild(pdfStyle);  // optional cleanup
+        //                     document.body.removeChild(loader);    // hide loader
+        //                 })
+        //                 .catch(() => {
+        //                     document.body.removeChild(loader);    // hide loader even if error
+        //                 });
+        //         };
+        //     }
+        //         downloadPDF() {
+        //             const dataBlock = document.getElementById("pdf-content");
+        //             const bgUrl = particlesBg; // background image (absolute or base64)
+
+        //             // --- Create loader overlay ---
+        //             const loader = document.createElement("div");
+        //             loader.id = "pdf-loader";
+        //             loader.innerHTML = `
+        //     <div class="pdf-spinner"></div>
+        //     <p>Generating PDF...</p>
+        //   `;
+        //             Object.assign(loader.style, {
+        //                 position: "fixed",
+        //                 top: "0",
+        //                 left: "0",
+        //                 width: "100%",
+        //                 height: "100%",
+        //                 background: "rgba(0,0,0,0.6)",
+        //                 color: "#fff",
+        //                 display: "flex",
+        //                 flexDirection: "column",
+        //                 alignItems: "center",
+        //                 justifyContent: "center",
+        //                 zIndex: "9999",
+        //                 fontSize: "1.2rem",
+        //             });
+        //             document.body.appendChild(loader);
+
+        //             // --- Create wrapper (PDF page container) ---
+        //             const wrapper = document.createElement("div");
+        //             Object.assign(wrapper.style, {
+        //                 width: "297mm", // A4 landscape width
+        //                 height: "210mm",
+        //                 color: "#fff",
+        //                 padding: "20mm",
+        //                 boxSizing: "border-box",
+        //                 position: "relative",
+        //             });
+
+        //             // Copy current pdf-content
+        //             wrapper.innerHTML = dataBlock.innerHTML;
+
+        //             // --- Add background image layer ---
+        //             const bgImg = new Image();
+        //             bgImg.src = bgUrl;
+        //             bgImg.crossOrigin = "anonymous"; // for remote image
+        //             Object.assign(bgImg.style, {
+        //                 position: "absolute",
+        //                 top: 0,
+        //                 left: 0,
+        //                 width: "100%",
+        //                 height: "100%",
+        //                 objectFit: "cover",
+        //                 zIndex: "-1",
+        //             });
+        //             wrapper.insertBefore(bgImg, wrapper.firstChild);
+
+        //             // --- Inject temporary PDF-only styles ---
+        //             const pdfStyle = document.createElement("style");
+        //             pdfStyle.id = "pdf-temp-style";
+        //             pdfStyle.textContent = `
+        //     /* PDF-specific font and spinner styles */
+        //     #pdf-content .label {
+        //       font-weight: 600;
+        //       font-size: 0.9rem !important;
+        //       text-transform: uppercase;
+        //       color: #fff;
+        //       margin-bottom: 0;
+        //     }
+        //     #pdf-content .value {
+        //       font-weight: 700;
+        //       font-size: 1.1rem !important;
+        //       color: #FB6F19;
+        //     }
+        //     #pdf-content h2 {
+        //       font-size: 2rem !important;
+        //     }
+        //     .pdf-spinner {
+        //       border: 6px solid #f3f3f3;
+        //       border-top: 6px solid #FB6F19;
+        //       border-radius: 50%;
+        //       width: 50px;
+        //       height: 50px;
+        //       animation: spin 1s linear infinite;
+        //       margin-bottom: 10px;
+        //     }
+        //     @keyframes spin {
+        //       0% { transform: rotate(0deg); }
+        //       100% { transform: rotate(360deg); }
+        //     }
+        //   `;
+        //             document.head.appendChild(pdfStyle);
+
+        //             // --- Generate PDF after background loads ---
+        //             bgImg.onload = () => {
+        //                 document.body.appendChild(wrapper);
+
+        //                 const options = {
+        //                     margin: 0,
+        //                     filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
+        //                     image: { type: "jpeg", quality: 0.98 },
+        //                     html2canvas: { scale: 2, useCORS: true },
+        //                     jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+        //                     pagebreak: { mode: ["avoid-all"] },
+        //                 };
+
+        //                 html2pdf()
+        //                     .set(options)
+        //                     .from(wrapper)
+        //                     .save()
+        //                     .then(() => {
+        //                         // 🧹 Cleanup after PDF download
+        //                         document.body.removeChild(wrapper);
+        //                         document.head.removeChild(pdfStyle);
+        //                         document.body.removeChild(loader);
+        //                     })
+        //                     .catch(() => {
+        //                         // Remove loader even if error
+        //                         document.body.removeChild(loader);
+        //                     });
+        //             };
+        //         }
         downloadPDF() {
             const dataBlock = document.getElementById("pdf-content");
+            const bgUrl = particlesBg; // background image (absolute or base64)
 
-            // Absolute or data-URL of the background image
-            // make sure particlesBg is a full URL or base64 string
-            const bgUrl = particlesBg;
+            // --- Create loader overlay ---
+            const loader = document.createElement("div");
+            loader.id = "pdf-loader";
+            loader.innerHTML = `
+        <div class="pdf-spinner"></div>
+        <p>Generating PDF...</p>
+    `;
+            Object.assign(loader.style, {
+                position: "fixed",
+                top: "0",
+                left: "0",
+                width: "100%",
+                height: "100%",
+                // background: "rgba(0,0,0,0.6)",
+                background: "#000",
+                color: "#fff",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: "9999",
+                fontSize: "1.2rem",
+            });
+            document.body.appendChild(loader);
 
-            // Create the temporary wrapper
+            // --- Create wrapper (PDF page container) ---
             const wrapper = document.createElement("div");
-            wrapper.style.width = "297mm";      // A4 landscape
-            wrapper.style.height = "210mm";
-            wrapper.style.color = "#fff";
-            wrapper.style.padding = "20mm";
-            wrapper.style.boxSizing = "border-box";
-            wrapper.style.position = "relative";   // needed if we use absolute children
+            Object.assign(wrapper.style, {
+                width: "297mm", // A4 landscape width
+                height: "210mm",
+                color: "#fff",
+                padding: "20mm",
+                boxSizing: "border-box",
+                position: "relative",
+            });
 
-            // Copy current pdf-content into the wrapper
+            // Copy current pdf-content
             wrapper.innerHTML = dataBlock.innerHTML;
 
-            // --- Add the background as a real <img> so html2canvas reliably captures it
+            // --- Add background image layer ---
             const bgImg = new Image();
             bgImg.src = bgUrl;
-            bgImg.crossOrigin = "anonymous";       // allow CORS if remote image
-            bgImg.style.position = "absolute";
-            bgImg.style.top = 0;
-            bgImg.style.left = 0;
-            bgImg.style.width = "100%";
-            bgImg.style.height = "100%";
-            bgImg.style.objectFit = "cover";
-            bgImg.style.zIndex = "-1";
+            bgImg.crossOrigin = "anonymous"; // for remote image
+            Object.assign(bgImg.style, {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                zIndex: "-1",
+            });
             wrapper.insertBefore(bgImg, wrapper.firstChild);
 
-            // --- Inject PDF-only CSS globally so html2canvas can read it
+            // --- Inject temporary PDF-only styles ---
             const pdfStyle = document.createElement("style");
+            pdfStyle.id = "pdf-temp-style";
             pdfStyle.textContent = `
-        /* --- PDF-specific styles --- */
-        .label {
-            font-weight: 600;
+       
+
+        #pdf-content .label {
+            font-weight: 600 !important;
             font-size: 0.9rem !important;
             text-transform: uppercase;
-            color: #fff;
+            color: #fff !important;
             margin-bottom: 0;
         }
-        .value {
-            font-weight: 700;
+
+        #pdf-content .value {
+            font-weight: 700 !important;
             font-size: 1.1rem !important;
-            color: #FB6F19;
+            color: #FB6F19 !important;
         }
-        h2 {
+
+        #pdf-content h2 {
             font-size: 2rem !important;
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        /* Spinner styles */
+        .pdf-spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #FB6F19;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     `;
             document.head.appendChild(pdfStyle);
 
-            // --- Wait until background image is loaded
+            // --- Generate PDF after background loads ---
             bgImg.onload = () => {
                 document.body.appendChild(wrapper);
 
@@ -338,7 +707,7 @@ export default {
                     image: { type: "jpeg", quality: 0.98 },
                     html2canvas: { scale: 2, useCORS: true },
                     jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
-                    pagebreak: { mode: ["avoid-all"] }
+                    pagebreak: { mode: ["avoid-all"] },
                 };
 
                 html2pdf()
@@ -346,15 +715,39 @@ export default {
                     .from(wrapper)
                     .save()
                     .then(() => {
-                        document.body.removeChild(wrapper);   // 🧹 clean up
-                        document.head.removeChild(pdfStyle);  // optional cleanup
+                        // 🧹 Cleanup after PDF download
+                        document.body.removeChild(wrapper);
+                        document.head.removeChild(pdfStyle);
+                        document.body.removeChild(loader);
+                    })
+                    .catch(() => {
+                        // Remove loader even if error
+                        document.body.removeChild(loader);
+                        document.head.removeChild(pdfStyle);
                     });
             };
         }
 
 
 
-
+    },
+    mounted() {
+        // Initialize Viewer.js on the container
+        this.viewer = new Viewer(this.$refs.imagesContainer, {
+            navbar: false,   // hide thumbnails
+            title: false,    // hide image title
+            toolbar: {
+                prev: true,    // show "previous" button
+                next: true,    // show "next" button
+            },
+        });
+    },
+    beforeUnmount() {
+        // Destroy the viewer instance when component is destroyed
+        if (this.viewer) {
+            this.viewer.destroy();
+            this.viewer = null;
+        }
     },
 
 };

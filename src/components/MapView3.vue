@@ -307,8 +307,8 @@ export default {
     position: absolute;
     /* top: 159px;
     left: 189px; */
-    top: 26%;
-    left: 26%;
+    top: 25%;
+    left: 21%;
     width: 160px;
 
 }
@@ -326,9 +326,12 @@ export default {
 
 .japn {
     position: absolute;
-    top: 26%;
+    /* top: 26%;
     right: 4%;
-    width: 160px;
+    width: 160px; */
+    top: 31%;
+    right: 0%;
+    width: 99px;
 
 }
 
@@ -495,11 +498,10 @@ export default {
 
 @media(min-width:993px) {
     .img-lg-100 {
-        /* max-width: 100% !important;
-        width: 100% !important; */
-        max-width: 80% !important;
-        width: 80% !important;
-        height: auto
+        max-width: 100% !important;
+        width: 100% !important;
+        /* width: 80% !important;
+        height: auto */
     }
 
     .flex-lg-screen {
