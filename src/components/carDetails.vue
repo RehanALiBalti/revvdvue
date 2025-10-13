@@ -730,9 +730,9 @@ export default {
 
         async downloadPDF() {
             const dataBlock = document.getElementById("pdf-content");
-            const bgUrl = particlesBg; // background image (can be URL or import)
+            const bgUrl = particlesBg; // background image (can be remote or local)
 
-            // --- Loader overlay ---
+            // --- 🌀 Create loader overlay ---
             const loader = document.createElement("div");
             loader.id = "pdf-loader";
             loader.innerHTML = `
@@ -756,8 +756,8 @@ export default {
             });
             document.body.appendChild(loader);
 
-            // --- Temporary PDF wrapper ---
-            const wrapper = document.createElement("div");
+            // --- 📄 Clone the pdf-content node (preserves id + styles) ---
+            const wrapper = dataBlock.cloneNode(true);
             Object.assign(wrapper.style, {
                 width: "297mm", // A4 landscape
                 height: "210mm",
@@ -767,45 +767,8 @@ export default {
                 position: "relative",
                 overflow: "hidden",
             });
-            wrapper.innerHTML = dataBlock.innerHTML;
 
-            // --- Inject PDF-only styles ---
-            const pdfStyle = document.createElement("style");
-            pdfStyle.id = "pdf-temp-style";
-            pdfStyle.textContent = `
-    #pdf-content .label {
-      font-weight: 600 !important;
-      font-size: 0.9rem !important;
-      text-transform: uppercase;
-      color: #fff !important;
-      margin-bottom: 0;
-    }
-    #pdf-content .value {
-      font-weight: 700 !important;
-      font-size: 1.1rem !important;
-      color: #FB6F19 !important;
-    }
-    #pdf-content h2 {
-      font-size: 2rem !important;
-      font-family: 'Montserrat', sans-serif !important;
-    }
-    .pdf-spinner {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #FB6F19;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-      margin-bottom: 10px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  `;
-            document.head.appendChild(pdfStyle);
-
-            // --- Helper: convert background to base64 safely ---
+            // --- 🌄 Convert background to base64 safely ---
             const getBase64Image = (url) =>
                 new Promise((resolve) => {
                     const img = new Image();
@@ -818,18 +781,19 @@ export default {
                             const ctx = canvas.getContext("2d");
                             ctx.drawImage(this, 0, 0);
                             resolve(canvas.toDataURL("image/png"));
-                        } catch {
-                            resolve(url); // fallback to original URL
+                        } catch (err) {
+                            console.warn("Base64 conversion failed, using original URL.");
+                            resolve(url);
                         }
                     };
-                    img.onerror = () => resolve(url); // fallback
+                    img.onerror = () => resolve(url); // fallback to original
                     img.src = url;
                 });
-
 
             try {
                 const safeBg = await getBase64Image(bgUrl);
 
+                // --- 🌄 Add converted background image ---
                 const bgImg = new Image();
                 bgImg.src = safeBg;
                 Object.assign(bgImg.style, {
@@ -843,8 +807,54 @@ export default {
                 });
                 wrapper.insertBefore(bgImg, wrapper.firstChild);
 
+                // --- 🎨 Inject temporary PDF-only CSS ---
+                const pdfStyle = document.createElement("style");
+                pdfStyle.id = "pdf-temp-style";
+                pdfStyle.textContent = `
+      #pdf-content .label {
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+        text-transform: uppercase;
+        color: #fff !important;
+        margin-bottom: 0;
+      }
+      #pdf-content .value {
+        font-weight: 700 !important;
+        font-size: 1.1rem !important;
+        color: #FB6F19 !important;
+      }
+      #pdf-content h2 {
+        font-size: 2rem !important;
+        font-family: 'Montserrat', sans-serif !important;
+      }
+      .pdf-spinner {
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #FB6F19;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin-bottom: 10px;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+                document.head.appendChild(pdfStyle);
+
+                // --- 🧠 Wait until background loads ---
+                const waitForImage = (img) =>
+                    new Promise((resolve) => {
+                        if (img.complete) resolve();
+                        else img.onload = resolve;
+                        img.onerror = resolve;
+                    });
+
+                await waitForImage(bgImg);
                 document.body.appendChild(wrapper);
 
+                // --- ⚙️ html2pdf options ---
                 const options = {
                     margin: 0,
                     filename: `${this.carDetails?.make || "Car"} - ${this.carDetails?.model || "Details"}.pdf`,
@@ -854,16 +864,16 @@ export default {
                     pagebreak: { mode: ["avoid-all"] },
                 };
 
+                // --- 💾 Generate & save PDF ---
                 await html2pdf().set(options).from(wrapper).save();
             } catch (error) {
                 console.error("PDF generation failed:", error);
                 alert("Failed to generate PDF. Please try again.");
             } finally {
-                // --- Cleanup everything ---
-
-                if (document.body.contains(wrapper)) document.body.removeChild(wrapper);
-                if (document.head.contains(pdfStyle)) document.head.removeChild(pdfStyle);
-                if (document.body.contains(loader)) document.body.removeChild(loader);
+                // --- 🧹 Cleanup everything ---
+                [wrapper, loader, document.getElementById("pdf-temp-style")].forEach((el) => {
+                    if (el && el.parentNode) el.parentNode.removeChild(el);
+                });
             }
         }
 
