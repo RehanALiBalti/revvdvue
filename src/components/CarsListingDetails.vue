@@ -16,36 +16,32 @@
 
         <div class="w-5"></div>
         <div class="col-md-4">
+          <div id="image-gallery">
+            <Swiper :modules="[Navigation, EffectFade]" effect="fade" :fadeEffect="{ crossFade: true }"
+              :space-between="20" :breakpoints="{
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 1 },
+                1200: { slidesPerView: 1 }
+              }" navigation :loop="true" class="mySwiper h-100">
+              <!-- ✅ Slide 1 -->
+              <SwiperSlide>
+                <div class="siwpe-image w-100 h-100">
+                  <img class="img-car" src="@/assets/images/im1.png" alt="Image 1" />
+                  <div class="telev"></div>
+                </div>
+              </SwiperSlide>
 
-          <Swiper :modules="[Navigation, EffectFade]" effect="fade" :fadeEffect="{ crossFade: true }"
-            :space-between="20" :breakpoints="{
-              0: { slidesPerView: 1 },
-              768: { slidesPerView: 1 },
-              1200: { slidesPerView: 1 }
-            }" navigation :loop="true" class="mySwiper h-100">
-            <!-- ✅ Slide 1 -->
-            <SwiperSlide>
-
-              <div class="siwpe-image w-100 h-100 ">
-                <img class="img-car" src="../assets/images/im1.png" alt="" />
-                <div class="telev"></div>
-              </div>
-
-            </SwiperSlide>
-
-            <!-- ✅ Slide 2 – put completely different details here -->
-            <SwiperSlide>
-
-              <div class="siwpe-image w-100 h-100">
-                <img class="img-car" src="../assets/images/im1.png" alt="" />
-                <div class="telev"></div>
-              </div>
-
-            </SwiperSlide>
-
-
-          </Swiper>
+              <!-- ✅ Slide 2 -->
+              <SwiperSlide>
+                <div class="siwpe-image w-100 h-100">
+                  <img class="img-car" src="@/assets/images/im1.png" alt="Image 2" />
+                  <div class="telev"></div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </div>
+
         <div class="col-md-7 ">
           <div class="position-relative h-100">
             <Swiper :modules="[Navigation, EffectFade]" effect="fade" :fadeEffect="{ crossFade: true }"
@@ -382,7 +378,40 @@ import pnt from "../assets/images/icons/pnt.png"
 import own from "../assets/images/icons/own.png"
 import sbtn from "../assets/images/sbtn.png"
 import { reactive } from "vue";
+import { onMounted } from "vue";
+import Viewer from "viewerjs";
+import "viewerjs/dist/viewer.css";
+onMounted(() => {
+  const gallery = document.getElementById("image-gallery");
+  if (gallery) {
+    const viewer = new Viewer(gallery, {
+      toolbar: {
+        zoomIn: 0,
+        zoomOut: 0,
+        oneToOne: 0,
+        reset: 0,
+        prev: 1,
+        play: 0,
+        next: 1,
+        rotateLeft: 0,
+        rotateRight: 0,
+        flipHorizontal: 0,
+        flipVertical: 0,
+      },
+      navbar: false,
+      title: false,
+      tooltip: false,
+      movable: false,
+      zoomable: false,
+      scalable: false,
+      fullscreen: false,
+      transition: true,
+    });
 
+    // Mark as used to silence ESLint
+    console.log("Viewer initialized:", viewer);
+  }
+});
 const form = reactive({
   name: "",
   email: "",
