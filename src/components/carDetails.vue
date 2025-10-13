@@ -596,159 +596,301 @@ export default {
         //                     });
         //             };
         //         }
-        downloadPDF() {
-            const dataBlock = document.getElementById("pdf-content");
-            const bgUrl = particlesBg; // background image (absolute or base64)
+        //     downloadPDF() {
+        //         const dataBlock = document.getElementById("pdf-content");
+        //         const bgUrl = particlesBg; // background image (absolute or base64)
 
-            // --- Create loader overlay ---
-            const loader = document.createElement("div");
-            loader.id = "pdf-loader";
-            loader.innerHTML = `
-        <div class="pdf-spinner"></div>
-        <p>Generating PDF...</p>
-    `;
-            Object.assign(loader.style, {
-                position: "fixed",
-                top: "0",
-                left: "0",
-                width: "100%",
-                height: "100%",
-                // background: "rgba(0,0,0,0.6)",
-                background: "#000",
-                color: "#fff",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                zIndex: "9999",
-                fontSize: "1.2rem",
-            });
-            document.body.appendChild(loader);
+        //         // --- Create loader overlay ---
+        //         const loader = document.createElement("div");
+        //         loader.id = "pdf-loader";
+        //         loader.innerHTML = `
+        //     <div class="pdf-spinner"></div>
+        //     <p>Generating PDF...</p>
+        // `;
+        //         Object.assign(loader.style, {
+        //             position: "fixed",
+        //             top: "0",
+        //             left: "0",
+        //             width: "100%",
+        //             height: "100%",
+        //             // background: "rgba(0,0,0,0.6)",
+        //             background: "#000",
+        //             color: "#fff",
+        //             display: "flex",
+        //             flexDirection: "column",
+        //             alignItems: "center",
+        //             justifyContent: "center",
+        //             zIndex: "9999",
+        //             fontSize: "1.2rem",
+        //         });
+        //         document.body.appendChild(loader);
 
-            // --- Create wrapper (PDF page container) ---
-            const wrapper = document.createElement("div");
-            Object.assign(wrapper.style, {
-                width: "297mm", // A4 landscape width
-                height: "210mm",
-                color: "#fff",
-                padding: "20mm",
-                boxSizing: "border-box",
-                position: "relative",
-            });
+        //         // --- Create wrapper (PDF page container) ---
+        //         const wrapper = document.createElement("div");
+        //         Object.assign(wrapper.style, {
+        //             width: "297mm", // A4 landscape width
+        //             height: "210mm",
+        //             color: "#fff",
+        //             padding: "20mm",
+        //             boxSizing: "border-box",
+        //             position: "relative",
+        //         });
 
-            // Copy current pdf-content
-            wrapper.innerHTML = dataBlock.innerHTML;
+        //         // Copy current pdf-content
+        //         wrapper.innerHTML = dataBlock.innerHTML;
 
-            // --- Add background image layer ---
-            const bgImg = new Image();
-            bgImg.src = bgUrl;
-            bgImg.crossOrigin = "anonymous"; // for remote image
-            Object.assign(bgImg.style, {
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                zIndex: "-1",
-            });
-            wrapper.insertBefore(bgImg, wrapper.firstChild);
+        //         // --- Add background image layer ---
+        //         const bgImg = new Image();
+        //         bgImg.src = bgUrl;
+        //         bgImg.crossOrigin = "anonymous"; // for remote image
+        //         Object.assign(bgImg.style, {
+        //             position: "absolute",
+        //             top: 0,
+        //             left: 0,
+        //             width: "100%",
+        //             height: "100%",
+        //             objectFit: "cover",
+        //             zIndex: "-1",
+        //         });
+        //         wrapper.insertBefore(bgImg, wrapper.firstChild);
 
-            // --- Inject temporary PDF-only styles ---
-            const pdfStyle = document.createElement("style");
-            pdfStyle.id = "pdf-temp-style";
-            pdfStyle.textContent = `
-       
+        //         // --- Inject temporary PDF-only styles ---
+        //         const pdfStyle = document.createElement("style");
+        //         pdfStyle.id = "pdf-temp-style";
+        //         pdfStyle.textContent = `
 
-        #pdf-content .label {
-            font-weight: 600 !important;
-            font-size: 0.9rem !important;
-            text-transform: uppercase;
-            color: #fff !important;
-            margin-bottom: 0;
-        }
 
-        #pdf-content .value {
-            font-weight: 700 !important;
-            font-size: 1.1rem !important;
-            color: #FB6F19 !important;
-        }
+        //     #pdf-content .label {
+        //         font-weight: 600 !important;
+        //         font-size: 0.9rem !important;
+        //         text-transform: uppercase;
+        //         color: #fff !important;
+        //         margin-bottom: 0;
+        //     }
 
-        #pdf-content h2 {
-            font-size: 2rem !important;
-            font-family: 'Montserrat', sans-serif !important;
-        }
+        //     #pdf-content .value {
+        //         font-weight: 700 !important;
+        //         font-size: 1.1rem !important;
+        //         color: #FB6F19 !important;
+        //     }
 
-        /* Spinner styles */
-        .pdf-spinner {
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid #FB6F19;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 10px;
-        }
+        //     #pdf-content h2 {
+        //         font-size: 2rem !important;
+        //         font-family: 'Montserrat', sans-serif !important;
+        //     }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    `;
-            document.head.appendChild(pdfStyle);
+        //     /* Spinner styles */
+        //     .pdf-spinner {
+        //         border: 6px solid #f3f3f3;
+        //         border-top: 6px solid #FB6F19;
+        //         border-radius: 50%;
+        //         width: 50px;
+        //         height: 50px;
+        //         animation: spin 1s linear infinite;
+        //         margin-bottom: 10px;
+        //     }
 
-            // --- Generate PDF after background loads ---
-            bgImg.onload = () => {
-                document.body.appendChild(wrapper);
+        //     @keyframes spin {
+        //         0% { transform: rotate(0deg); }
+        //         100% { transform: rotate(360deg); }
+        //     }
+        // `;
+        //         document.head.appendChild(pdfStyle);
 
-                const options = {
-                    margin: 0,
-                    filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
-                    image: { type: "jpeg", quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true },
-                    jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
-                    pagebreak: { mode: ["avoid-all"] },
-                };
+        //         // --- Generate PDF after background loads ---
+        //         bgImg.onload = () => {
+        //             document.body.appendChild(wrapper);
 
-                html2pdf()
-                    .set(options)
-                    .from(wrapper)
-                    .save()
-                    .then(() => {
-                        // 🧹 Cleanup after PDF download
-                        document.body.removeChild(wrapper);
-                        document.head.removeChild(pdfStyle);
-                        document.body.removeChild(loader);
-                    })
-                    .catch(() => {
-                        // Remove loader even if error
-                        document.body.removeChild(loader);
-                        document.head.removeChild(pdfStyle);
-                    });
+        //             const options = {
+        //                 margin: 0,
+        //                 filename: `${this.carDetails.make} - ${this.carDetails.model} - details.pdf`,
+        //                 image: { type: "jpeg", quality: 0.98 },
+        //                 html2canvas: { scale: 2, useCORS: true },
+        //                 jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+        //                 pagebreak: { mode: ["avoid-all"] },
+        //             };
+
+        //             html2pdf()
+        //                 .set(options)
+        //                 .from(wrapper)
+        //                 .save()
+        //                 .then(() => {
+        //                     // 🧹 Cleanup after PDF download
+        //                     document.body.removeChild(wrapper);
+        //                     document.head.removeChild(pdfStyle);
+        //                     document.body.removeChild(loader);
+        //                 })
+        //                 .catch(() => {
+        //                     // Remove loader even if error
+        //                     document.body.removeChild(loader);
+        //                     document.head.removeChild(pdfStyle);
+        //                 });
+        //         };
+        //     }
+
+        async function downloadPDF() {
+    const dataBlock = document.getElementById("pdf-content");
+    const bgUrl = particlesBg; // background image (can be URL or import)
+
+    // --- Loader overlay ---
+    const loader = document.createElement("div");
+    loader.id = "pdf-loader";
+    loader.innerHTML = `
+    <div class="pdf-spinner"></div>
+    <p>Generating PDF...</p>
+  `;
+    Object.assign(loader.style, {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "#000",
+        color: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: "9999",
+        fontSize: "1.2rem",
+    });
+    document.body.appendChild(loader);
+
+    // --- Temporary PDF wrapper ---
+    const wrapper = document.createElement("div");
+    Object.assign(wrapper.style, {
+        width: "297mm", // A4 landscape
+        height: "210mm",
+        color: "#fff",
+        padding: "20mm",
+        boxSizing: "border-box",
+        position: "relative",
+        overflow: "hidden",
+    });
+    wrapper.innerHTML = dataBlock.innerHTML;
+
+    // --- Inject PDF-only styles ---
+    const pdfStyle = document.createElement("style");
+    pdfStyle.id = "pdf-temp-style";
+    pdfStyle.textContent = `
+    #pdf-content .label {
+      font-weight: 600 !important;
+      font-size: 0.9rem !important;
+      text-transform: uppercase;
+      color: #fff !important;
+      margin-bottom: 0;
+    }
+    #pdf-content .value {
+      font-weight: 700 !important;
+      font-size: 1.1rem !important;
+      color: #FB6F19 !important;
+    }
+    #pdf-content h2 {
+      font-size: 2rem !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    .pdf-spinner {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #FB6F19;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  `;
+    document.head.appendChild(pdfStyle);
+
+    // --- Helper: convert background to base64 safely ---
+    const getBase64Image = (url) =>
+        new Promise((resolve) => {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = function () {
+                try {
+                    const canvas = document.createElement("canvas");
+                    canvas.width = this.width;
+                    canvas.height = this.height;
+                    const ctx = canvas.getContext("2d");
+                    ctx.drawImage(this, 0, 0);
+                    resolve(canvas.toDataURL("image/png"));
+                } catch {
+                    resolve(url); // fallback to original URL
+                }
             };
-        }
-
-
-
-    },
-    mounted() {
-        // Initialize Viewer.js on the container
-        this.viewer = new Viewer(this.$refs.imagesContainer, {
-            navbar: false,   // hide thumbnails
-            title: false,    // hide image title
-            toolbar: {
-                prev: true,    // show "previous" button
-                next: true,    // show "next" button
-            },
+            img.onerror = () => resolve(url); // fallback
+            img.src = url;
         });
+
+    // --- Hide videos to avoid tainting ---
+    const videos = Array.from(document.querySelectorAll("video"));
+    videos.forEach((v) => (v.style.display = "none"));
+
+    try {
+        const safeBg = await getBase64Image(bgUrl);
+
+        const bgImg = new Image();
+        bgImg.src = safeBg;
+        Object.assign(bgImg.style, {
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: "-1",
+        });
+        wrapper.insertBefore(bgImg, wrapper.firstChild);
+
+        document.body.appendChild(wrapper);
+
+        const options = {
+            margin: 0,
+            filename: `${this.carDetails?.make || "Car"} - ${this.carDetails?.model || "Details"}.pdf`,
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+            pagebreak: { mode: ["avoid-all"] },
+        };
+
+        await html2pdf().set(options).from(wrapper).save();
+    } catch (error) {
+        console.error("PDF generation failed:", error);
+        alert("Failed to generate PDF. Please try again.");
+    } finally {
+        // --- Cleanup everything ---
+        videos.forEach((v) => (v.style.display = "")); // restore
+        if (document.body.contains(wrapper)) document.body.removeChild(wrapper);
+        if (document.head.contains(pdfStyle)) document.head.removeChild(pdfStyle);
+        if (document.body.contains(loader)) document.body.removeChild(loader);
+    }
+}
+
+
+
     },
-    beforeUnmount() {
-        // Destroy the viewer instance when component is destroyed
-        if (this.viewer) {
-            this.viewer.destroy();
-            this.viewer = null;
-        }
-    },
+mounted() {
+    // Initialize Viewer.js on the container
+    this.viewer = new Viewer(this.$refs.imagesContainer, {
+        navbar: false,   // hide thumbnails
+        title: false,    // hide image title
+        toolbar: {
+            prev: true,    // show "previous" button
+            next: true,    // show "next" button
+        },
+    });
+},
+beforeUnmount() {
+    // Destroy the viewer instance when component is destroyed
+    if (this.viewer) {
+        this.viewer.destroy();
+        this.viewer = null;
+    }
+},
 
 };
 </script>
