@@ -728,7 +728,7 @@ export default {
         //         };
         //     }
 
-        downloadPDF() {
+        async downloadPDF() {
             const dataBlock = document.getElementById("pdf-content");
             const bgUrl = particlesBg; // background image (can be URL or import)
 
