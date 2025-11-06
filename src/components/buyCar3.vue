@@ -22,7 +22,7 @@
                         <option value="Price ascending"> Price ascending </option>
                         <option value="Price descending">Price descending </option>
                         <option value="Milage ascending ">Milage ascending </option>
-                        <option value="Milage ascending"> Milage ascending </option>
+
                         <option value="Milage descending">Milage descending</option>
 
                         <option value="	Power ascending">Power ascending</option>
@@ -90,16 +90,20 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 my-1">
-                                        <select id="models" class="form-select form-control  filter-select fsel">
+                                        <!-- <select id="models" class="form-select form-control  filter-select fsel">
                                             <option value="" selected>Min</option>
 
-                                        </select>
+                                        </select> -->
+                                        <input type="text" class="form-select form-control  filter-select fsel"
+                                            placeholder="Min" />
                                     </div>
                                     <div class="col-md-4 my-1">
-                                        <select id="models" class="form-select form-control  filter-select fsel">
+                                        <!-- <select id="models" class="form-select form-control  filter-select fsel">
                                             <option value="" selected>Max</option>
 
-                                        </select>
+                                        </select> -->
+                                        <input type="text" class="form-select form-control  filter-select fsel"
+                                            placeholder="Max" />
                                     </div>
                                 </div>
                             </div>
@@ -111,16 +115,16 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 my-1">
-                                        <select id="models" class="form-select form-control  filter-select fsel">
-                                            <option value="" selected>Min</option>
-
-                                        </select>
+                                        <input type="text" class="form-select form-control  filter-select fsel"
+                                            placeholder="Min" />
                                     </div>
                                     <div class="col-md-4 my-1">
-                                        <select id="models" class="form-select form-control  filter-select fsel">
+                                        <!-- <select id="models" class="form-select form-control  filter-select fsel">
                                             <option value="" selected>Max</option>
 
-                                        </select>
+                                        </select> -->
+                                        <input type="text" class="form-select form-control  filter-select fsel"
+                                            placeholder="Max" />
                                     </div>
                                 </div>
                             </div>
@@ -187,14 +191,70 @@
                         <!-- Advanced Filters (Hidden by Default) -->
                         <div v-if="showAdvanced" class="col-12 mt-3">
                             <div class="row">
-                                <div v-for="(filter, index) in advancedFilters" :key="index" class="col-12 my-1">
+                                <!-- <div v-for="(filter, index) in advancedFilters" :key="index" class="col-12 my-1">
                                     <select v-model="selectedAdvanced[filter.key]"
                                         class="form-select form-control filter-select fsel">
                                         <option selected>{{ filter.label }}</option>
                                         <option v-for="option in filter.options" :key="option" :value="option">{{ option
-                                        }}</option>
+                                            }}</option>
                                     </select>
+                                </div> -->
+                                <div v-for="(filter, index) in advancedFilters" :key="index" class="col-12 my-1">
+                                    <div v-if="filter.key === 'horsepower'">
+
+                                        <div class="row g-1">
+                                            <div class="col-md-4 my-1">
+                                                <div class="b-white">
+                                                    HP
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 my-1">
+                                                <input type="text" class="form-select form-control  filter-select fsel"
+                                                    placeholder="Min" />
+                                            </div>
+                                            <div class="col-md-4 my-1">
+                                                <!-- <select id="models" class="form-select form-control  filter-select fsel">
+                                            <option value="" selected>Max</option>
+
+                                        </select> -->
+                                                <input type="text" class="form-select form-control  filter-select fsel"
+                                                    placeholder="Max" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-else-if="filter.key === 'torque'">
+
+                                        <div class="row g-1">
+                                            <div class="col-md-4 my-1">
+                                                <div class="b-white">
+                                                    Torque
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 my-1">
+                                                <input type="text" class="form-select form-control  filter-select fsel"
+                                                    placeholder="Min" />
+                                            </div>
+                                            <div class="col-md-4 my-1">
+                                                <!-- <select id="models" class="form-select form-control  filter-select fsel">
+                                            <option value="" selected>Max</option>
+
+                                        </select> -->
+                                                <input type="text" class="form-select form-control  filter-select fsel"
+                                                    placeholder="Max" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-else>
+                                        <select v-model="selectedAdvanced[filter.key]"
+                                            class="form-select form-control filter-select fsel">
+                                            <option disabled selected>{{ filter.label }}</option>
+                                            <option v-for="option in filter.options" :key="option" :value="option">
+                                                {{ option }}
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -623,10 +683,10 @@ export default {
                 { key: "engineCapacity", label: "Engine Capacity (L)", options: ["1.0", "1.5", "2.0", "3.0", "4.0"] },
                 { key: "horsepower", label: "Horsepower (HP)", options: ["100", "200", "300", "400"] },
                 { key: "torque", label: "Torque (NM)", options: ["150", "250", "350", "450"] },
-                { key: "modificationType", label: "Type of Modification", options: ["Body Kit", "Performance", "Tuning"] },
+                { key: "modificationType", label: "Type of Modification", options: ["Cosmetic", "Performance", "BOth"] },
                 { key: "driveTrain", label: "Drive Train", options: ["FWD", "RWD", "AWD", "4WD"] },
                 { key: "transmission", label: "Transmission", options: ["Manual", "Automatic", "CVT"] },
-                { key: "color", label: "Color", options: ["Red", "Blue", "Black", "White"] },
+                // { key: "color", label: "Color", options: ["Red", "Blue", "Black", "White"] },
                 { key: "buildType", label: "Build Type", options: ["Sedan", "SUV", "Truck", "Coupe"] },
                 { key: "fuelType", label: "Fuel Type", options: ["Petrol", "Diesel", "Electric", "Hybrid"] },
                 { key: "category", label: "Category", options: ["Luxury", "Sports", "Classic", "Economy"] },

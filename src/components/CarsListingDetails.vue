@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-end position-absolute top-icons w-100">
       <div class="d-flex gap-3 align-items-center">
         <router-link to="/cardetails">
-          <img :src="sicon" width="35px" alt="">
+          <img :src="sicon" width="40px" alt="">
         </router-link>
         <img :src="badge" width="30px" alt="">
         <!-- <img :src="share" width="30px" height="25px" alt=""> -->
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="container-fluid positionAbsoulte">
-      <div class="row">
+      <div class="row align-items-center">
 
         <div class="w-5"></div>
         <div class="col-md-4">
@@ -53,64 +53,68 @@
               <!-- ✅ Slide 1 -->
               <SwiperSlide>
 
-                <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-left:6rem">
+                <div class="h-100 w-100 d-flex align-items-center justify-content-center pad-6" style="">
                   <div class="w-100 mt8">
 
                     <p class="text-center fot-1 me6">Mercedes C63s AMG</p>
                     <div class="row mb-3">
-                      <div class="col-4">
-                        <p class="fot-3 ">Price: 250,000 $</p>
+                      <div class="col-6 col-md-4">
+                        <p class="fot-3 text-nowrap">Price: 250,000 $</p>
                       </div>
-                      <div class="col-4">
+                      <div class="col-6 col-md-4">
                         <p class="fot-3">Year: 2020</p>
                       </div>
-                      <div class="col-4">
-                        <p class="fot-3"><img :src="date" width="30px" class="me-2" />13.02.2025</p>
+                      <div class="col-md-4">
+                        <p class="fot-3"><img :src="date" width="30px" class="me-2">13/02/2025</p>
                       </div>
                     </div>
                     <div class="px-2">
                       <div class="row">
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2 my-2">
+                        <div class="col-6 col-md-4">
+                          <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 my-2">
                             <span class="icon"><img :src="meter" /></span>
                             <p class="fot-2">700 HP</p>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2 my-2">
+                        <div class="col-6 col-md-4">
+                          <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 my-2">
                             <span class="icon"><img :src="gear" /></span>
                             <p class="fot-2">Automatic</p>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2 my-2">
+                        <div class="col-6 col-md-4">
+                          <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 my-2">
                             <span class="icon"><img :src="race" /></span>
                             <p class="fot-2">Street</p>
                           </div>
                         </div>
                       </div>
                       <div class="d-flex justify-content-between flex-wrap my-2 row">
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2">
+                        <div class="col-6 col-md-4">
+                          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
                             <span class="icon">
                               <img :src="road" />
                             </span>
                             <p class="fot-2">30,000 Km</p>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2">
+                        <div class="col-6 col-md-4">
+                          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
                             <span class="icon"><img :src="gasoline" /></span>
                             <p class="fot-2">Gasoline</p>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2">
+                        <div class="col-6 col-md-4">
+                          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
                             <span class="icon"><img :src="pnt" /></span>
                             <p class="fot-2">Black</p>
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -119,20 +123,20 @@
               <!-- ✅ Slide 2 -->
               <SwiperSlide>
 
-                <div class="h-100 w-100 d-flex align-items-center justify-content-center" style="padding-left:6rem">
+                <div class="h-100 w-100 d-flex align-items-center justify-content-center pad-6" style="">
                   <div class="w-100 mt8">
 
                     <p class="text-center fot-1 me6">Mercedes C63s AMG</p>
 
                     <!-- ✅ 3-column row (no nested row) -->
                     <div class="row mb-3">
-                      <div class="col-4">
+                      <div class="col-md-4">
                         <p class="fot-3">Engine: V8</p>
                       </div>
-                      <div class="col-4">
+                      <div class="col-md-4">
                         <p class="fot-3">Capacity: 4L</p>
                       </div>
-                      <div class="col-4">
+                      <div class="col-md-4">
                         <p class="fot-3">US Version</p>
                       </div>
                     </div>
@@ -140,20 +144,23 @@
                     <div class="px-2">
                       <!-- ✅ First spec row -->
                       <div class="row">
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2 my-2">
+                        <div class="col-12 col-md-4">
+                          <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 my-2">
                             <span class="icon"><img :src="meter" /></span>
                             <p class="fot-2">1000 Nm</p>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2 my-2">
+                        <div class="col-12 col-md-4">
+                          <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 my-2">
                             <span class="icon"><img :src="rwd" /></span>
                             <p class="fot-2">RWD</p>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2 my-2">
+                        <div class="col-12 col-md-4">
+                          <div
+                            class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 my-2">
                             <span class="icon"><img :src="ger" /></span>
                             <p class="fot-2">Germany</p>
                           </div>
@@ -162,20 +169,20 @@
 
                       <!-- ✅ Second spec row -->
                       <div class="d-flex justify-content-between flex-wrap my-2 row">
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2">
+                        <div class="col-12 col-md-4">
+                          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
                             <span class="icon"><img :src="own" /></span>
                             <p class="fot-2">2 Owners</p>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2">
+                        <div class="col-12 col-md-4">
+                          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
                             <span class="icon"><img :src="drv" /></span>
                             <p class="fot-2">L Hand drive</p>
                           </div>
                         </div>
-                        <div class="col-4">
-                          <div class="d-flex align-items-center gap-2">
+                        <div class="col-12 col-md-4">
+                          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
                             <span class="icon"><img :src="location" width="20px" /></span>
                             <p class="fot-2">Berlin</p>
                           </div>
@@ -275,13 +282,13 @@
                           <div class="card-m-h">
                             <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                             <div class="row my-1">
-                              <div class="col-12 col-md-4">
+                              <div class="col-4 col-md-4">
                                 <p class="car-sec-text f-size-15"> Price: 250,000 <span>$</span> </p>
                               </div>
-                              <div class="col-12 col-md-4">
+                              <div class="col-4 col-md-4">
                                 <p class="car-sec-text f-now"> Year: 2020</p>
                               </div>
-                              <div class="col-12 col-md-4">
+                              <div class="col-4 col-md-4">
                                 <div class="d-flex gap-2 align-items-center">
                                   <img :src="date" width="30px" />
                                   <p class="car-sec-text"> 13.02.2025</p>
@@ -289,37 +296,37 @@
                               </div>
                             </div>
                             <div class="row my-1">
-                              <div class="col-12 col-md-4 my-1">
+                              <div class="col-4 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
                                   <img :src="meter" width="30px" />
                                   <p class="car-sec-text2"> 700 HP</p>
                                 </div>
                               </div>
-                              <div class="col-12 col-md-4 my-1">
+                              <div class="col-4 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
                                   <img :src="gear" width="30px" />
                                   <p class="car-sec-text2"> Automatic</p>
                                 </div>
                               </div>
-                              <div class="col-12 col-md-4 my-1">
+                              <div class="col-4 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
                                   <img :src="race" width="30px" />
                                   <p class="car-sec-text2"> 13.02.Street</p>
                                 </div>
                               </div>
-                              <div class="col-12 col-md-4 my-1">
+                              <div class="col-4 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
                                   <img :src="road" width="30px" />
                                   <p class="car-sec-text2">30,000 Km </p>
                                 </div>
                               </div>
-                              <div class="col-12 col-md-4 my-1">
+                              <div class="col-4 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
                                   <img :src="gasoline" width="30px" />
                                   <p class="car-sec-text2"> Gasoline</p>
                                 </div>
                               </div>
-                              <div class="col-12 col-md-4 my-1">
+                              <div class="col-4 col-md-4 my-1">
                                 <div class="d-flex align-items-center gap-2">
                                   <img :src="location" width="30px" />
                                   <p class="car-sec-text2"> Berlin</p>
@@ -638,5 +645,28 @@ const form = reactive({
 
 .f-size-15 {
   font-size: 15px !important;
+}
+
+.pad-6 {
+  padding-left: 6rem;
+}
+
+@media(max-width:768px) {
+  .pad-6 {
+    padding-left: 1rem
+  }
+
+  .me6 {
+    margin-right: 0
+  }
+
+  .fot-3 {
+    text-align: center;
+  }
+
+  .img-100 {
+    object-fit: cover;
+    height: 100vh
+  }
 }
 </style>
