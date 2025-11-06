@@ -504,7 +504,8 @@ const form = reactive({
   padding-inline: 1rem;
   padding-block: 0.6rem;
   position: absolute;
-  left: -2px
+  left: -2px;
+  top: -1px !important
 }
 
 .car-sec-text span {
