@@ -1037,10 +1037,10 @@ export default {
 }
 
 select {
-    -webkit-appearance: none;
+    -webkit-appearance: none !important;
     /* Removes Safari/Chrome default arrow */
-    -moz-appearance: none;
+    -moz-appearance: none !important;
     /* Removes Firefox default arrow */
-    appearance: none;
+    appearance: none !important;
 }
 </style>
