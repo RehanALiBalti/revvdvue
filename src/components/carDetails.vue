@@ -1,8 +1,42 @@
 <template>
     <div class="container-fluid py-4">
         <!-- Download Button -->
-        <div class="text-end mb-3 position-relative z-5 d-flex justify-content-end">
+        <div class="row">
 
+        </div>
+        <div class="text-end mb-3 position-relative z-5 d-flex justify-content-between">
+            <div class="col-md-3">
+                <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 mx-auto">
+                    <div class="list-item-btn position-relative load-more-div proceed-div mx-auto">
+                        <span class="border-bottom-btn border-top-btn position-absolute">
+                            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+                        </span>
+
+                        <span
+                            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <!-- <router-link to="/map3" class="signin-btnli signup-btnli">
+                            Back To Map
+                        </router-link> -->
+                        <button @click="$router.go(-1)" class="signin-btnli signup-btnli">
+                            Back
+                        </button>
+
+                        <span class="border-bottom-btn border-left-btn position-absolute">
+                            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+                        </span>
+                        <span class="border-bottom-btn position-absolute">
+                            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+                        </span>
+                    </div>
+                </div>
+
+            </div>
             <div class="load-more-info w-fit d-flex justify-content-start align-items-center mb-4 ">
                 <div class="list-item-btn position-relative load-more-div proceed-div ">
                     <span class="border-bottom-btn border-top-btn position-absolute">

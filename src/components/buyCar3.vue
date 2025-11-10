@@ -15,7 +15,44 @@
                     <p class="h5-title  ms-1 mb-2">Explore <spn>cars</spn> for <span> sale</span></p>
                 </div>
             </div>
-            <div class="row justify-content-end">
+            <div class="row justify-content-between akign-items-end">
+                <div class="col-md-3">
+                    <div class="load-more-info w-100 d-flex justify-content-start align-items-center mb-4 me-auto">
+                        <div class="list-item-btn position-relative load-more-div proceed-div me-auto">
+                            <span class="border-bottom-btn border-top-btn position-absolute">
+                                <img src="@/assets/images/Group12white.png" class="img-border position-absolute"
+                                    alt="" />
+                            </span>
+
+                            <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+                                <img src="@/assets/images/Path467white.png" class="img-border position-absolute"
+                                    alt="" />
+                            </span>
+
+                            <span
+                                class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+                                <img src="@/assets/images/Path465white.png" class="img-border position-absolute"
+                                    alt="" />
+                            </span>
+                            <!-- <router-link to="/map3" class="signin-btnli signup-btnli">
+                            Back To Map
+                        </router-link> -->
+                            <button @click="$router.go(-1)" class="signin-btnli signup-btnli">
+                                Back
+                            </button>
+
+                            <span class="border-bottom-btn border-left-btn position-absolute">
+                                <img src="@/assets/images/Group11white.png" class="img-border position-absolute"
+                                    alt="" />
+                            </span>
+                            <span class="border-bottom-btn position-absolute">
+                                <img src="@/assets/images/Path473white.png" class="img-border position-absolute"
+                                    alt="" />
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="col-6 col-md-2 ">
                     <select id="bodyType" class="form-select form-control  filter-select fsel mb-2">
                         <option value="" selected>Sort</option>
@@ -687,8 +724,8 @@ export default {
                 { key: "driveTrain", label: "Drive Train", options: ["FWD", "RWD", "AWD", "4WD"] },
                 { key: "transmission", label: "Transmission", options: ["Manual", "Automatic", "CVT"] },
                 // { key: "color", label: "Color", options: ["Red", "Blue", "Black", "White"] },
-                { key: "buildType", label: "Build Type", options: ["Sedan", "SUV", "Truck", "Coupe"] },
-                { key: "fuelType", label: "Fuel Type", options: ["Petrol", "Diesel", "Electric", "Hybrid"] },
+                { key: "buildType", label: "Build Type", options: ["Sedan", "Suv", "Truck", "Coupe", "convertible"] },
+                { key: "fuelType", label: "Fuel Type", options: ["Ethanol", "Methanol"] },
                 { key: "category", label: "Category", options: ["Luxury", "Sports", "Classic", "Economy"] },
                 { key: "previousOwners", label: "Previous Owners", options: ["1", "2", "3+", "First Owner"] },
                 { key: "carVersion", label: "Car Version", options: ["Standard", "Limited Edition", "Performance"] },
