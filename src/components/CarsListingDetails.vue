@@ -65,7 +65,7 @@
                         <p class="fot-3">Year: 2020</p>
                       </div>
                       <div class="col-md-4">
-                        <p class="fot-3"><img :src="date" width="30px" class="me-2">13/02/2025</p>
+                        <p class="fot-3"><img :src="date" width="30px" class="me-2">13.02.2025</p>
                       </div>
                     </div>
                     <div class="px-2">

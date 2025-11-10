@@ -131,7 +131,7 @@
                                             <option value="" selected>Min</option>
 
                                         </select> -->
-                                        <input type="text" class="form-select form-control  filter-select fsel"
+                                        <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Min" />
                                     </div>
                                     <div class="col-md-4 my-1">
@@ -139,7 +139,7 @@
                                             <option value="" selected>Max</option>
 
                                         </select> -->
-                                        <input type="text" class="form-select form-control  filter-select fsel"
+                                        <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Max" />
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 my-1">
-                                        <input type="text" class="form-select form-control  filter-select fsel"
+                                        <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Min" />
                                     </div>
                                     <div class="col-md-4 my-1">
@@ -160,7 +160,7 @@
                                             <option value="" selected>Max</option>
 
                                         </select> -->
-                                        <input type="text" class="form-select form-control  filter-select fsel"
+                                        <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Max" />
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4 my-1">
-                                                <input type="text" class="form-select form-control  filter-select fsel"
+                                                <input type="text" class=" form-control  filter-select fsel"
                                                     placeholder="Min" />
                                             </div>
                                             <div class="col-md-4 my-1">
@@ -254,7 +254,7 @@
                                             <option value="" selected>Max</option>
 
                                         </select> -->
-                                                <input type="text" class="form-select form-control  filter-select fsel"
+                                                <input type="text" class=" form-control  filter-select fsel"
                                                     placeholder="Max" />
                                             </div>
                                         </div>
@@ -268,7 +268,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4 my-1">
-                                                <input type="text" class="form-select form-control  filter-select fsel"
+                                                <input type="text" class=" form-control  filter-select fsel"
                                                     placeholder="Min" />
                                             </div>
                                             <div class="col-md-4 my-1">
@@ -276,7 +276,7 @@
                                             <option value="" selected>Max</option>
 
                                         </select> -->
-                                                <input type="text" class="form-select form-control  filter-select fsel"
+                                                <input type="text" class=" form-control  filter-select fsel"
                                                     placeholder="Max" />
                                             </div>
                                         </div>
@@ -725,7 +725,7 @@ export default {
                 { key: "transmission", label: "Transmission", options: ["Manual", "Automatic", "CVT"] },
                 // { key: "color", label: "Color", options: ["Red", "Blue", "Black", "White"] },
                 { key: "buildType", label: "Build Type", options: ["Sedan", "Suv", "Truck", "Coupe", "convertible"] },
-                { key: "fuelType", label: "Fuel Type", options: ["Ethanol", "Methanol"] },
+                { key: "fuelType", label: "Fuel Type", options: ["Petrol", "Diesel", "Electric", "Hybrid", "Ethanol", "Methanol"] },
                 { key: "category", label: "Category", options: ["Luxury", "Sports", "Classic", "Economy"] },
                 { key: "previousOwners", label: "Previous Owners", options: ["1", "2", "3+", "First Owner"] },
                 { key: "carVersion", label: "Car Version", options: ["Standard", "Limited Edition", "Performance"] },
@@ -1034,5 +1034,13 @@ export default {
 
 .h5-title span {
     color: #f95f19
+}
+
+select {
+    -webkit-appearance: none;
+    /* Removes Safari/Chrome default arrow */
+    -moz-appearance: none;
+    /* Removes Firefox default arrow */
+    appearance: none;
 }
 </style>
