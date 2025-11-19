@@ -88,36 +88,35 @@
 
                         <div class="row">
                             <div class="col-12 my-1">
-                                <!-- <label for="models" class="form-label filter-label">{{ $t('make') }}</label> -->
-                                <select id="models" class="form-select form-control  filter-select fsel">
+                                <select v-model="formData.make" @change="loadModels"
+                                    class="form-select form-control filter-select fsel">
                                     <option value="">Make</option>
-                                    <option value="AC">AC</option>
-                                </select>
-                            </div>
-                            <div class="col-12 my-1">
-                                <!-- <label for="models" class="form-label filter-label">{{ $t('models') }}</label> -->
-                                <select id="models" class="form-select form-control  filter-select fsel">
-                                    <option value="">Model</option>
-                                    <option value="Petite">Petite</option>
-                                    <option value="2-Litre">2-Litre</option>
-                                    <option value="Greyhound">Greyhound</option>
-                                    <option value="Ace">Ace</option>
-                                    <option value="Cobra">Cobra</option>
-                                    <option value="3000ME">3000ME</option>
-                                    <option value="Aceca">Aceca</option>
-                                    <option value="Frua">Frua</option>
-                                    <option value="Brooklands Ace">Brooklands Ace</option>
-                                    <option value="Ace V8">Ace V8</option>
-                                    <option value="Aceca">Aceca</option>
+                                    <option v-for="make in makes" :key="make" :value="make">
+                                        {{ make }}
+                                    </option>
                                 </select>
                             </div>
 
                             <div class="col-12 my-1">
-                                <!-- <label for="bodyType" class="form-label filter-label">{{ $t('Year') }}</label> -->
-                                <select id="bodyType" class="form-select form-control  filter-select fsel">
-                                    <option value="" selected>Year</option>
+                                <select v-model="formData.model" @change="loadYears"
+                                    class="form-select form-control filter-select fsel">
+                                    <option value="">Model</option>
+                                    <option v-for="model in models" :key="model" :value="model">
+                                        {{ model }}
+                                    </option>
                                 </select>
                             </div>
+
+                            <div class="col-12 my-1">
+                                <select v-model="formData.year" class="form-select form-control filter-select fsel">
+                                    <option value="">Year</option>
+                                    <option v-for="year in productionYears" :key="year" :value="year">
+                                        {{ year }}
+                                    </option>
+                                </select>
+
+                            </div>
+
 
                             <div class="col-12 my-2 ">
                                 <div class="row g-1">
@@ -167,20 +166,15 @@
                             </div>
                             <div class="col-12 my-1">
                                 <!-- <label for="seats" class="form-label filter-label">{{ $t('City') }}</label> -->
-                                <select id="seats" class="form-select form-control  filter-select fsel ">
-                                    <option value="">city</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United Kingdom">United Kingdom</option>
+                                <select id="city" v-model="formData.city"
+                                    class="form-select form-control filter-select fsel">
+                                    <option value="">City</option>
+                                    <option v-for="city in cities" :key="city" :value="city">
+                                        {{ city }}
+                                    </option>
                                 </select>
+
+
                             </div>
                         </div>
                         <!-- Show Advanced Filters Button -->
@@ -228,15 +222,8 @@
                         <!-- Advanced Filters (Hidden by Default) -->
                         <div v-if="showAdvanced" class="col-12 mt-3">
                             <div class="row">
+
                                 <!-- <div v-for="(filter, index) in advancedFilters" :key="index" class="col-12 my-1">
-                                    <select v-model="selectedAdvanced[filter.key]"
-                                        class="form-select form-control filter-select fsel">
-                                        <option selected>{{ filter.label }}</option>
-                                        <option v-for="option in filter.options" :key="option" :value="option">{{ option
-                                            }}</option>
-                                    </select>
-                                </div> -->
-                                <div v-for="(filter, index) in advancedFilters" :key="index" class="col-12 my-1">
                                     <div v-if="filter.key === 'horsepower'">
 
                                         <div class="row g-1">
@@ -250,14 +237,15 @@
                                                     placeholder="Min" />
                                             </div>
                                             <div class="col-md-4 my-1">
-                                                <!-- <select id="models" class="form-select form-control  filter-select fsel">
-                                            <option value="" selected>Max</option>
-
-                                        </select> -->
+                                              
                                                 <input type="text" class=" form-control  filter-select fsel"
                                                     placeholder="Max" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-12" v-if="filter.key === 'engineCapacity'">
+                                        <input type="text" class=" form-control  filter-select fsel"
+                                            placeholder="Engine Capacity" />
                                     </div>
                                     <div v-else-if="filter.key === 'torque'">
 
@@ -272,10 +260,7 @@
                                                     placeholder="Min" />
                                             </div>
                                             <div class="col-md-4 my-1">
-                                                <!-- <select id="models" class="form-select form-control  filter-select fsel">
-                                            <option value="" selected>Max</option>
-
-                                        </select> -->
+                                              
                                                 <input type="text" class=" form-control  filter-select fsel"
                                                     placeholder="Max" />
                                             </div>
@@ -290,6 +275,60 @@
                                             </option>
                                         </select>
                                     </div>
+                                </div> -->
+                                <div v-for="(filter, index) in advancedFilters" :key="index" class="col-12 my-1">
+
+                                    <!-- HORSEPOWER -->
+                                    <div v-if="filter.key === 'horsepower'">
+                                        <div class="row g-1">
+                                            <div class="col-md-4 my-1">
+                                                <div class="b-white">HP</div>
+                                            </div>
+                                            <div class="col-md-4 my-1">
+                                                <input type="text" class="form-control filter-select fsel"
+                                                    placeholder="Min" />
+                                            </div>
+                                            <div class="col-md-4 my-1">
+                                                <input type="text" class="form-control filter-select fsel"
+                                                    placeholder="Max" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ENGINE CAPACITY -->
+                                    <div v-else-if="filter.key === 'engineCapacity'">
+                                        <input type="text" class="form-control filter-select fsel"
+                                            placeholder="Engine Capacity" />
+                                    </div>
+
+                                    <!-- TORQUE -->
+                                    <div v-else-if="filter.key === 'torque'">
+                                        <div class="row g-1">
+                                            <div class="col-md-4 my-1">
+                                                <div class="b-white">Torque</div>
+                                            </div>
+                                            <div class="col-md-4 my-1">
+                                                <input type="text" class="form-control filter-select fsel"
+                                                    placeholder="Min" />
+                                            </div>
+                                            <div class="col-md-4 my-1">
+                                                <input type="text" class="form-control filter-select fsel"
+                                                    placeholder="Max" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- DEFAULT SELECT -->
+                                    <div v-else>
+                                        <select v-model="selectedAdvanced[filter.key]"
+                                            class="form-select form-control filter-select fsel">
+                                            <option disabled selected>{{ filter.label }}</option>
+                                            <option v-for="option in filter.options" :key="option" :value="option">
+                                                {{ option }}
+                                            </option>
+                                        </select>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -450,6 +489,8 @@ import badge from "../assets/images/icons/badge.png"
 //Import Swiper styles
 // import "swiper/swiper-bundle.css";
 
+import CarDataService from "../services/CarDataService";
+// import CommunityDataService from "../services/CommunityDataService";
 import 'swiper/css/effect-cards';
 import { EffectCards } from 'swiper/modules';
 //Import swiper js
@@ -477,6 +518,7 @@ export default {
     },
     data() {
         return {
+            productionYears: "",
             currentPage: 1,
             pageSize: 5, // Number of items per page
             swiper: null,
@@ -502,7 +544,9 @@ export default {
             selectedCity: "",
             showAdvanced: false,
             selectedAdvanced: {},
-
+            makes: [],
+            models: [],
+            years: [],
             cars: [
                 {
                     title: "Koenigsegg agera one",
@@ -715,22 +759,232 @@ export default {
                     ],
                 },
             ],
+            formData: {
+                city: "",
+                make: "",
+                model: "",
+                year: ""
+
+
+            },
+
+            cities: [],
             advancedFilters: [
-                { key: "engineConfig", label: "Engine Configuration", options: ["V6", "V8", "Inline-4", "W12"] },
-                { key: "engineCapacity", label: "Engine Capacity (L)", options: ["1.0", "1.5", "2.0", "3.0", "4.0"] },
+                { key: "engineConfig", label: "Engine Configuration", options: ["3l", "4l", "5l", "6l", "v6", "v8", "v10", "v12", "w8", "w12", "w16", "2 rotor", "3 rotor", "4 rotor", "Flat 4", "Flat 6"] },
+                { key: "engineCapacity", label: "Engine Capacity (L)", options: ["3l", "4l", "5l", "6l", "v6", "v8", "v10", "v12", "w8", "w12", "w16", "2 rotor", "3 rotor", "4 rotor", "Flat 4", "Flat 6"] },
                 { key: "horsepower", label: "Horsepower (HP)", options: ["100", "200", "300", "400"] },
                 { key: "torque", label: "Torque (NM)", options: ["150", "250", "350", "450"] },
-                { key: "modificationType", label: "Type of Modification", options: ["Cosmetic", "Performance", "BOth"] },
+                { key: "modificationType", label: "Type of Modification", options: ["Cosmetic", "Performance", "Both"] },
                 { key: "driveTrain", label: "Drive Train", options: ["FWD", "RWD", "AWD", "4WD"] },
-                { key: "transmission", label: "Transmission", options: ["Manual", "Automatic", "CVT"] },
+                { key: "transmission", label: "Transmission", options: ["Manual", "Automatic", "Sequential"] },
                 // { key: "color", label: "Color", options: ["Red", "Blue", "Black", "White"] },
-                { key: "buildType", label: "Build Type", options: ["Sedan", "Suv", "Truck", "Coupe", "convertible"] },
+                { key: "buildType", label: "Build Type", options: ["Drag", "Street", "show/stance", "Drift", "Track", "Of road", "Restroration", "Daily Driver", "Luxury tuning", "Hot rod", "Sleeper"] },
                 { key: "fuelType", label: "Fuel Type", options: ["Petrol", "Diesel", "Electric", "Hybrid", "Ethanol", "Methanol"] },
-                { key: "category", label: "Category", options: ["Luxury", "Sports", "Classic", "Economy"] },
+                { key: "category", label: "Category", options: ["Saloon", "hatchback", "estate", "SUV", "Coupe", "Convertible"] },
                 { key: "previousOwners", label: "Previous Owners", options: ["1", "2", "3+", "First Owner"] },
-                { key: "carVersion", label: "Car Version", options: ["Standard", "Limited Edition", "Performance"] },
+                { key: "carVersion", label: "Car Version", options: ["EU", "USA", "GP"] },
                 { key: "steering", label: "Right/Left-Hand Drive", options: ["Left-Hand Drive", "Right-Hand Drive"] },
-                { key: "country", label: "Country", options: ["USA", "UK", "Germany", "Japan"] }
+                {
+                    key: "country",
+                    label: "Country",
+                    options: [
+                        "Afghanistan",
+                        "Albania",
+                        "Algeria",
+                        "Andorra",
+                        "Angola",
+                        "Antigua and Barbuda",
+                        "Argentina",
+                        "Armenia",
+                        "Australia",
+                        "Austria",
+                        "Azerbaijan",
+                        "Bahamas",
+                        "Bahrain",
+                        "Bangladesh",
+                        "Barbados",
+                        "Belarus",
+                        "Belgium",
+                        "Belize",
+                        "Benin",
+                        "Bhutan",
+                        "Bolivia",
+                        "Bosnia and Herzegovina",
+                        "Botswana",
+                        "Brazil",
+                        "Brunei",
+                        "Bulgaria",
+                        "Burkina Faso",
+                        "Burundi",
+                        "Cabo Verde",
+                        "Cambodia",
+                        "Cameroon",
+                        "Canada",
+                        "Central African Republic",
+                        "Chad",
+                        "Chile",
+                        "China",
+                        "Colombia",
+                        "Comoros",
+                        "Congo",
+                        "Costa Rica",
+                        "Croatia",
+                        "Cuba",
+                        "Cyprus",
+                        "Czech Republic",
+                        "Denmark",
+                        "Djibouti",
+                        "Dominica",
+                        "Dominican Republic",
+                        "Ecuador",
+                        "Egypt",
+                        "El Salvador",
+                        "Equatorial Guinea",
+                        "Eritrea",
+                        "Estonia",
+                        "Eswatini",
+                        "Ethiopia",
+                        "Fiji",
+                        "Finland",
+                        "France",
+                        "Gabon",
+                        "Gambia",
+                        "Georgia",
+                        "Germany",
+                        "Ghana",
+                        "Greece",
+                        "Grenada",
+                        "Guatemala",
+                        "Guinea",
+                        "Guinea-Bissau",
+                        "Guyana",
+                        "Haiti",
+                        "Honduras",
+                        "Hungary",
+                        "Iceland",
+                        "India",
+                        "Indonesia",
+                        "Iran",
+                        "Iraq",
+                        "Ireland",
+                        "Israel",
+                        "Italy",
+                        "Jamaica",
+                        "Japan",
+                        "Jordan",
+                        "Kazakhstan",
+                        "Kenya",
+                        "Kiribati",
+                        "Korea, North",
+                        "Korea, South",
+                        "Kosovo",
+                        "Kuwait",
+                        "Kyrgyzstan",
+                        "Laos",
+                        "Latvia",
+                        "Lebanon",
+                        "Lesotho",
+                        "Liberia",
+                        "Libya",
+                        "Liechtenstein",
+                        "Lithuania",
+                        "Luxembourg",
+                        "Madagascar",
+                        "Malawi",
+                        "Malaysia",
+                        "Maldives",
+                        "Mali",
+                        "Malta",
+                        "Marshall Islands",
+                        "Mauritania",
+                        "Mauritius",
+                        "Mexico",
+                        "Micronesia",
+                        "Moldova",
+                        "Monaco",
+                        "Mongolia",
+                        "Montenegro",
+                        "Morocco",
+                        "Mozambique",
+                        "Myanmar",
+                        "Namibia",
+                        "Nauru",
+                        "Nepal",
+                        "Netherlands",
+                        "New Zealand",
+                        "Nicaragua",
+                        "Niger",
+                        "Nigeria",
+                        "North Macedonia",
+                        "Norway",
+                        "Oman",
+                        "Pakistan",
+                        "Palau",
+                        "Panama",
+                        "Papua New Guinea",
+                        "Paraguay",
+                        "Peru",
+                        "Philippines",
+                        "Poland",
+                        "Portugal",
+                        "Qatar",
+                        "Romania",
+                        "Russia",
+                        "Rwanda",
+                        "Saint Kitts and Nevis",
+                        "Saint Lucia",
+                        "Saint Vincent and the Grenadines",
+                        "Samoa",
+                        "San Marino",
+                        "Sao Tome and Principe",
+                        "Saudi Arabia",
+                        "Senegal",
+                        "Serbia",
+                        "Seychelles",
+                        "Sierra Leone",
+                        "Singapore",
+                        "Slovakia",
+                        "Slovenia",
+                        "Solomon Islands",
+                        "Somalia",
+                        "South Africa",
+                        "South Sudan",
+                        "Spain",
+                        "Sri Lanka",
+                        "Sudan",
+                        "Suriname",
+                        "Sweden",
+                        "Switzerland",
+                        "Syria",
+                        "Taiwan",
+                        "Tajikistan",
+                        "Tanzania",
+                        "Thailand",
+                        "Timor-Leste",
+                        "Togo",
+                        "Tonga",
+                        "Trinidad and Tobago",
+                        "Tunisia",
+                        "Turkey",
+                        "Turkmenistan",
+                        "Tuvalu",
+                        "Uganda",
+                        "Ukraine",
+                        "United Arab Emirates",
+                        "United Kingdom",
+                        "United States",
+                        "Uruguay",
+                        "Uzbekistan",
+                        "Vanuatu",
+                        "Vatican City",
+                        "Venezuela",
+                        "Vietnam",
+                        "Yemen",
+                        "Zambia",
+                        "Zimbabwe"
+                    ]
+                }
+
             ]
         };
     },
@@ -764,6 +1018,8 @@ export default {
         //         prevEl: ".swiper-button-prev",
         //     },
         // });
+        this.getAllCities();
+        this.loadMakes();
 
     },
     created() {
@@ -773,6 +1029,119 @@ export default {
         });
     },
     methods: {
+        loadMakes() {
+            this.makes = [];
+            this.models = [];
+            this.years = [];
+
+            CarDataService.getAll()
+                .then(response => {
+                    this.makes = [...new Set(response.data.map(item => item.make))];
+                })
+                .catch(err => console.log(err));
+        }
+        ,
+        loadModels() {
+            console.log("Make changed → load models");
+
+            this.formData.model = "";
+            this.formData.year = "";
+
+            this.models = [];
+            this.years = [];
+
+            if (!this.formData.make) return;
+
+            CarDataService.getModels(this.formData.make)
+                .then(response => {
+                    this.models = response.data.map(item => item.model);
+                })
+                .catch(err => console.log(err));
+        }
+        ,
+        // loadYears() {
+        //     console.log("generation changed → load years");
+
+        //     this.formData.year = "";
+        //     this.productionYears = [];
+
+
+
+        //     CarDataService.getGenerations(this.formData.make, this.formData.model)
+        //         .then((response) => {
+        //             const data = response.data;
+
+        //             console.log("all generations & years:", data);
+
+        //             // Filter valid generation entries
+        //             const valid = data.filter(item => {
+        //                 return (
+        //                     item.generation &&
+        //                     item.generation !== "-" &&
+        //                     item.generation !== "??" &&
+        //                     item.generation !== "?"
+        //                 );
+        //             });
+
+        //             // Filter only entries matching selected generation
+        //             const filteredByGeneration = valid.filter(
+        //                 item => item.generation === this.formData.generation
+        //             );
+
+        //             // Extract production years
+        //             this.productionYears = [
+        //                 ...new Set(filteredByGeneration.map(item => item.production_years))
+        //             ];
+
+        //             console.log("years:", this.productionYears);
+        //         })
+        //         .catch((err) => console.log(err));
+        // }
+        loadYears() {
+            console.log("generation changed → load years");
+
+            this.formData.year = "";
+            this.productionYears = [];
+
+            CarDataService.getGenerations(this.formData.make, this.formData.model)
+                .then((response) => {
+                    const data = response.data;
+
+                    console.log("all generations & years:", data);
+
+                    // Filter valid production year entries
+                    const valid = data.filter(item =>
+                        item.production_years &&
+                        item.production_years !== "-" &&
+                        item.production_years !== "??" &&
+                        item.production_years !== "?"
+                    );
+
+                    let filtered;
+
+                    // If API returns generation → filter by it
+                    if (data[0]?.generation) {
+                        filtered = valid.filter(
+                            item => item.generation === this.formData.generation
+                        );
+                    }
+                    // If NO generation → use all valid rows
+                    else {
+                        filtered = valid;
+                    }
+
+                    // Extract unique production years
+                    this.productionYears = [
+                        ...new Set(filtered.map(item => item.production_years))
+                    ];
+
+                    console.log("years:", this.productionYears);
+                })
+                .catch((err) => console.log(err));
+        }
+        ,
+
+
         toggleAdvancedFilters() {
             this.showAdvanced = !this.showAdvanced;
         },
@@ -786,6 +1155,41 @@ export default {
                 this.currentPage++;
             }
         },
+        getAllCities() {
+            this.loading = true;
+
+            fetch("https://countriesnow.space/api/v0.1/countries/states")
+                .then(res => res.json())
+                .then(result => {
+
+
+                    if (result.data && result.data.length > 0) {
+
+                        // Extract all states from all countries
+                        const allStates = [];
+
+                        result.data.forEach(country => {
+                            if (country.states && country.states.length > 0) {
+                                country.states.forEach(state => {
+                                    allStates.push(state.name);
+
+                                });
+                            }
+                        });
+
+                        this.cities = allStates; // now list of 10,000+ states
+                    } else {
+                        this.cities = [];
+                    }
+
+                    this.loading = false;
+                })
+                .catch(err => {
+                    console.error("State API Error:", err);
+                    this.cities = [];
+                    this.loading = false;
+                });
+        }
 
     }
 
