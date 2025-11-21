@@ -26,7 +26,7 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <label for="name" class="form-label">Full Name</label>
+                <label for="name" class="form-label">Kindly Full Name</label>
                 <input id="name" type="text" v-model="formData.fullname" class="form-control form-input"
                   :placeholder="$t('Enter here')" />
                 <div v-if="formErrors.fullname" class="text-danger f14">
@@ -270,11 +270,11 @@
 </template>
 <script>
 // import axios from 'axios';
-import { mapActions } from 'vuex';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
-import { Auth, Hub } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
+import { Auth, Hub } from 'aws-amplify';
+import { mapActions } from 'vuex';
 
 // import Multiselect from 'vue-multiselect'
 import http from "@/http-common"; // Import Axios instance

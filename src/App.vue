@@ -1,45 +1,4 @@
 <template>
-  <!-- <div class="loader  " ref="loader" v-show="showVideo == 'true' || showVideo === true">
-    <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
-      <source :src="videoSrc" type="video/mp4">
-    </video>
-
-    <div class="d-flex justify-content-center">
-      <div class="btn-div-create-forum position-absolute" v-if="showStartButton">
-        <span class="border-bottom-btn border-top-btn position-absolute">
-          <img src="@/assets/images/Group12engine.png" class="img-border position-absolute" alt="" />
-        </span>
-
-        <span class="border-bottom-btn border-top-btn border-right-radius popup-right position-absolute">
-          <img src="@/assets/images/Path467engine.png" class="img-border position-absolute" alt="" />
-        </span>
-
-        <span
-          class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius popup-right-bottom position-absolute">
-          <img src="@/assets/images/Path465engine.png" class="img-border position-absolute" alt="" />
-        </span>
-        <button class="sound-btn-on-video" @click="playVideo">
-          Start Engine
-        </button>
-
-
-        <span class="border-bottom-btn border-left-btn new-popup position-absolute">
-          <img src="@/assets/images/Group11engine.png" class="img-border position-absolute" alt="" />
-        </span>
-        <span class="border-bottom-btn position-absolute">
-          <img src="@/assets/images/Path473engine.png" class="img-border position-absolute" alt="" />
-        </span>
-      </div>
-    </div>
-    <div class="title-loader-div" v-show="isTextShow">
-      <h1 class="banner-title new-heading-loader">
-        Turn up the volume for better experience
-
-
-      </h1>
-
-    </div>
-  </div> -->
   <div class="loader" ref="loader" v-show="showVideosession">
     <video id="myVideo" class="video-loader" playsinline ref="video" @ended="videoEnded">
       <source :src="videoSrc" type="video/mp4">
@@ -113,14 +72,14 @@
 </template>
 
 <script>
+import FooterSect from '@/components/FooterSect';
+import FooterSect2 from '@/components/FooterSect2';
 import HeaderItem from '@/components/Header.vue';
-import FooterSect from '@/components/FooterSect'
-import FooterSect2 from '@/components/FooterSect2'
-import { useI18n } from 'vue-i18n';
 import { useShowFooter } from '@/composables/showFooter';
-import videoSrc from "./assets/images/landv.mp4"
-import { useIslogin } from "@/composables/uselogin"
+import { useIslogin } from "@/composables/uselogin";
 import { computed } from "vue";
+import { useI18n } from 'vue-i18n';
+import videoSrc from "./assets/images/landv.mp4";
 const { state } = useIslogin();
 export default {
 

@@ -12,18 +12,9 @@
               <button type="button" class="btn google-btn " @click="handleGoogleLogin">
                 <i class="fa-brands fa-google-plus-g"></i> Google
               </button>
-              <!-- <div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout=""
-                data-auto-logout-link="false" data-use-continue-as="false"></div> -->
-              <!-- <button class="btn google-btn">
-                <i class="fa-brands fa-facebook"></i>Facebook
-              </button> -->
               <button type="button" class="btn google-btn d-none" @click="handleFacebookLogin">
                 <i class="fa-brands fa-facebook"></i> Facebook
               </button>
-
-              <!-- <button class="btn google-btn">
-                <i class="fa-brands fa-apple"></i>Apple
-              </button> -->
 
             </div>
             <div class="row">
@@ -87,12 +78,7 @@
                     <img src="@/assets/images/Path473.png" class="img-border position-absolute" alt="" />
                   </span>
                 </div>
-                <!-- <div class="d-flex justify-content-center align-items-center">
-                  <router-link to="/dealerlogin" class="termsService">{{ $t('GoToDealerLogin') }}</router-link>
-                </div> -->
-                <!-- <div class="d-flex justify-content-end align-items-center">
-                  <router-link to="/forget" class="termsService">Forgot Password?</router-link>
-                </div> -->
+                
               </div>
             </div>
           </form>
@@ -127,8 +113,8 @@
 <script>
 import http from "@/http-common"; // Adjust the path if needed // Adjust path if needed
 
-import { Auth, Hub } from 'aws-amplify';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
+import { Auth, Hub } from 'aws-amplify';
 import { mapActions } from 'vuex';
 // import OurCommunity from './OurCommunity.vue';
 export default {
@@ -189,63 +175,11 @@ export default {
 
 
       }
-
-
-      /*
-      switch (event) {
-        case "signIn":
-          console.log("signIn data: " + JSON.stringify(data));
-          this.signedIn = true;
-          this.username = data.username;
-          alert(data.username)
- 
-          break;
-        case "signOut":
-          this.signedIn = false;
-          this.username = null;
-          break;
-      }*/
     });
   },
   methods: {
     ...mapActions(['signup']),
-    // working before link change
-    // async submitProfileForm() {
-    //   try {
-    //     this.loading = true
-    //     // Make a POST request to the API endpoint
-    //     // const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users', { email: this.formData.email });
-    //     const response = await axios.post('https://king-prawn-app-3rw3o.ondigitalocean.app/api/users',
-    //       { email: this.formData.email },
-    //       {
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //           Accept: "*/*",
-    //         }
-    //       }
-    //     );
-
-    //     // Handle success response
-    //     console.log('Form data submitted successfully:', response.data[0]);
-    //     // const { email, name, role } = response.data;
-    //     const email = response.data[0].email
-    //     const name = response.data[0].name
-    //     const role = response.data[0].role
-    //     // this.$store.signup({ email, name, role });
-    //     console.log("data", { email, name, role })
-    //     await this.$store.dispatch('auth/signup', { email, name, role });
-
-    //     this.loading = false
-
-    //     // You can perform further actions here, such as redirecting the user or showing a success message
-    //   } catch (error) {
-    //     // Handle error
-    //     console.error('Error submitting form data:', error);
-    //     this.loading = false
-
-    //     // You can show an error message to the user or handle the error in any other appropriate way
-    //   }
-    // },
+   
     async submitProfileForm() {
       try {
         this.loading = true;

@@ -1067,17 +1067,15 @@
 					<span class="close-icon" @click="isModalOpen = false">
 						<i class="fas fa-times"></i>
 					</span>
-
 					<div class="mt-4 py-2">
 						<h5 class="card-title"><span class="choose">Success!</span></h5>
 						<p class="text-white">User profile has been successfully updated!</p>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- modal fail -->
 	<div class="modal show d-block" tabindex="-1" role="dialog" id="carShopFilter" v-if="isModalOpenFail === true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -1341,18 +1339,18 @@
 <script>
 
 // import axios from 'axios';
-import { Auth } from 'aws-amplify';
 import { useProfileImage } from '@/composables/useProfileImage';
 import { useProfileName } from '@/composables/useProfileName';
-import { useIslogin } from "@/composables/uselogin"
+import { useIslogin } from "@/composables/uselogin";
+import { Auth } from 'aws-amplify';
 import { computed } from "vue";
 const { state, setIslogin } = useIslogin();
 // import VueDraggableResizable from 'vue-draggable-resizable';
-import '../../node_modules/vue-draggable-resizable/dist/style.css';
+import http from "@/http-common";
+import CarDataService from '@/services/CarDataService';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
-import CarDataService from '@/services/CarDataService';
-import http from "@/http-common";
+import '../../node_modules/vue-draggable-resizable/dist/style.css';
 // import Multiselect from 'vue-multiselect'
 // import VueAvatarCropper from 'vue-avatar-cropper';
 export default {
