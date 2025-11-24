@@ -461,26 +461,26 @@
 
 <script>
 
+import Image3 from "@/assets/images/20210412111611_Ford_Territory_front.png";
+import Image5 from "@/assets/images/36346b90e9ed41209ec6b093b61c21ef.png";
 import Image1 from "@/assets/images/4image.png";
 import Image2 from "@/assets/images/d722fc518c6127ea183d184e5dc715e3.png";
-import Image3 from "@/assets/images/20210412111611_Ford_Territory_front.png";
-import Image4 from "@/assets/images/images1.png";
-import Image5 from "@/assets/images/36346b90e9ed41209ec6b093b61c21ef.png";
-import icon1 from "@/assets/images/IconAwesome-user-alt.png";
 import icon2 from "@/assets/images/engine.png";
+import icon1 from "@/assets/images/IconAwesome-user-alt.png";
 import icon3 from "@/assets/images/Iconmaterial-email.png";
-import carlogo1 from "../assets/images/cars_logos/26.png"
-import meter from "../assets/images/icons/meter.png"
-import date from "../assets/images/icons/date.png"
-import dollar from "../assets/images/icons/dollar.png"
-import gasoline from "../assets/images/icons/gasoline.png"
+import Image4 from "@/assets/images/images1.png";
+import carlogo1 from "../assets/images/cars_logos/26.png";
+import date from "../assets/images/icons/date.png";
+import dollar from "../assets/images/icons/dollar.png";
+import gasoline from "../assets/images/icons/gasoline.png";
+import meter from "../assets/images/icons/meter.png";
 
-import gear from "../assets/images/icons/gear.png"
-import location from "../assets/images/icons/location.png"
-import race from "../assets/images/icons/race.png"
-import road from "../assets/images/icons/road.png"
-import share from "../assets/images/icons/share.png"
-import badge from "../assets/images/icons/badge.png"
+import badge from "../assets/images/icons/badge.png";
+import gear from "../assets/images/icons/gear.png";
+import location from "../assets/images/icons/location.png";
+import race from "../assets/images/icons/race.png";
+import road from "../assets/images/icons/road.png";
+import share from "../assets/images/icons/share.png";
 
 // import 'swiper/css/effect-cards';
 
@@ -499,7 +499,7 @@ import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 
 //Import Swiper modules
-import { Pagination, Navigation } from 'swiper';
+import { Navigation, Pagination } from 'swiper';
 // Install Swiper modules
 Swiper.use([Pagination, Navigation])
 
@@ -775,12 +775,12 @@ export default {
                 { key: "horsepower", label: "Horsepower (HP)", options: ["100", "200", "300", "400"] },
                 { key: "torque", label: "Torque (NM)", options: ["150", "250", "350", "450"] },
                 { key: "modificationType", label: "Type of Modification", options: ["Cosmetic", "Performance", "Both"] },
-                { key: "driveTrain", label: "Drive Train", options: ["FWD", "RWD", "AWD", "4WD"] },
+                { key: "driveTrain", label: "Drive Train", options: ["FWD", "RWD", "AWD", "4WD", "4X4"] },
                 { key: "transmission", label: "Transmission", options: ["Manual", "Automatic", "Sequential"] },
                 // { key: "color", label: "Color", options: ["Red", "Blue", "Black", "White"] },
-                { key: "buildType", label: "Build Type", options: ["Drag", "Street", "show/stance", "Drift", "Track", "Of road", "Restroration", "Daily Driver", "Luxury tuning", "Hot rod", "Sleeper"] },
+                { key: "buildType", label: "Build Type", options: ["Drag", "Street", "show/stance", "Drift", "Track", "Off-Road", "Restroration", "Daily Driver", "Luxury tuning", "Hot rod", "Sleeper"] },
                 { key: "fuelType", label: "Fuel Type", options: ["Petrol", "Diesel", "Electric", "Hybrid", "Ethanol", "Methanol"] },
-                { key: "category", label: "Category", options: ["Saloon", "hatchback", "estate", "SUV", "Coupe", "Convertible"] },
+                { key: "category", label: "Category", options: ["Saloon", "Hatchback", "Estate", "SUV", "Coupe", "Convertible"] },
                 { key: "previousOwners", label: "Previous Owners", options: ["1", "2", "3+", "First Owner"] },
                 { key: "carVersion", label: "Car Version", options: ["EU", "USA", "GP"] },
                 { key: "steering", label: "Right/Left-Hand Drive", options: ["Left-Hand Drive", "Right-Hand Drive"] },

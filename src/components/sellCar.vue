@@ -545,7 +545,7 @@ export default {
             driveTrains: ['RWD', 'FWD', 'AWD', '4x4'],
             transmissions: ['Manual', 'Automatic', 'Sequential'],
             colors: ['Red', 'Blue', 'Black', 'White', 'Silver', 'Green'],
-            buildTypes: ['Drag', 'Street', 'Show/stance', 'Drift', 'Track', 'Off road', 'Restoration', 'Daily driver', 'Luxury tuning', 'Hot rod', 'Sleeper'],
+            buildTypes: ['Drag', 'Street', 'Show/stance', 'Drift', 'Track', 'Off-Road', 'Restoration', 'Daily driver', 'Luxury tuning', 'Hot rod', 'Sleeper'],
             fuelTypes: ['Petrol', 'Diesel', 'Ethanol', 'Methanol', 'Hybrid', 'Electric'],
             categories: ['Saloon', 'Hatchback', 'Estate', 'SUV', 'Coupe', 'Convertible'],
             carVersions: ['EU', 'USA', 'GP'],

@@ -1,7 +1,38 @@
 <template>
   <div class="banner-section-car-listi d-flex justify-content-center align-items-center position-relative">
     <img class="img-100" :src="imageBg">
-    <div class="d-flex justify-content-end position-absolute top-icons w-100">
+
+    <div class="d-flex position-absolute top-icons w-100 justify-content-between p-5">
+
+      <div class="load-more-info justify-content-around align-items-center" style="margin: 0;margin-top: -36px;">
+        <div class="list-item-btn position-relative load-more-div proceed-div">
+          <span class="border-bottom-btn border-top-btn position-absolute">
+            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+          </span>
+
+          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+          </span>
+
+          <span
+            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+          </span>
+          <!-- <router-link to="/map3" class="signin-btnli signup-btnli">
+                            Back To Map
+                        </router-link> -->
+          <button @click="$router.go(-1)" class="signin-btnli signup-btnli">
+            Back
+          </button>
+
+          <span class="border-bottom-btn border-left-btn position-absolute">
+            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+          </span>
+          <span class="border-bottom-btn position-absolute">
+            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+          </span>
+        </div>
+      </div>
       <div class="d-flex gap-3 align-items-center">
         <router-link to="/cardetails">
           <img :src="sicon" width="40px" alt="">
@@ -11,6 +42,7 @@
 
       </div>
     </div>
+
     <div class="container-fluid positionAbsoulte">
       <div class="row align-items-center">
 
@@ -356,38 +388,37 @@
 
 </template>
 <script setup>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import { EffectFade, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/vue";
 // import logo1 from "../assets/images/cars_logos/26.png"
 // import carlogo1 from "../assets/images/cars_logos/26.png"
 import Image2 from "@/assets/images/d722fc518c6127ea183d184e5dc715e3.png";
-import meter from "../assets/images/icons/meter.png"
-import date from "../assets/images/icons/date.png"
-import imageBg from "../assets/images/11212.png"
+import imageBg from "../assets/images/11212.png";
+import date from "../assets/images/icons/date.png";
+import meter from "../assets/images/icons/meter.png";
 // import dollar from "../assets/images/icons/dollar.png"
-import gasoline from "../assets/images/icons/gasoline.png"
+import gasoline from "../assets/images/icons/gasoline.png";
 
-import gear from "../assets/images/icons/gear.png"
-import sicon from "../assets/images/icons/linkimg.png"
-import location from "../assets/images/icons/location.png"
-import race from "../assets/images/icons/race.png"
-import road from "../assets/images/icons/road.png"
-import share from "../assets/images/icons/share.png"
-import badge from "../assets/images/icons/badge.png"
+import badge from "../assets/images/icons/badge.png";
+import gear from "../assets/images/icons/gear.png";
+import sicon from "../assets/images/icons/linkimg.png";
+import location from "../assets/images/icons/location.png";
+import race from "../assets/images/icons/race.png";
+import road from "../assets/images/icons/road.png";
+import share from "../assets/images/icons/share.png";
 // import badge from "../assets/images/icons/badge.png"
-import ger from "../assets/images/icons/ger.png"
-import drv from "../assets/images/icons/drv.png"
-import rwd from "../assets/images/icons/rwd.png"
-import pnt from "../assets/images/icons/pnt.png"
-import own from "../assets/images/icons/own.png"
-import sbtn from "../assets/images/sbtn.png"
-import { reactive } from "vue";
-import { onMounted } from "vue";
 import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css";
+import { onMounted, reactive } from "vue";
+import drv from "../assets/images/icons/drv.png";
+import ger from "../assets/images/icons/ger.png";
+import own from "../assets/images/icons/own.png";
+import pnt from "../assets/images/icons/pnt.png";
+import rwd from "../assets/images/icons/rwd.png";
+import sbtn from "../assets/images/sbtn.png";
 onMounted(() => {
   const gallery = document.getElementById("image-gallery");
   if (gallery) {
