@@ -1,38 +1,37 @@
 <template>
+
+  <div class="load-more-info justify-content-around align-items-center position-absolute mt-1" style="z-index: 10;">
+    <div class="list-item-btn position-relative load-more-div proceed-div">
+      <span class="border-bottom-btn border-top-btn position-absolute">
+        <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+      </span>
+
+      <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+        <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+      </span>
+
+      <span class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+        <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+      </span>
+      <!-- <router-link to="/map3" class="signin-btnli signup-btnli">
+                          Back To Map
+                      </router-link> -->
+      <button @click="$router.go(-1)" class="signin-btnli signup-btnli">
+        Back
+      </button>
+
+      <span class="border-bottom-btn border-left-btn position-absolute">
+        <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+      </span>
+      <span class="border-bottom-btn position-absolute">
+        <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+      </span>
+    </div>
+  </div>
   <div class="banner-section-car-listi d-flex justify-content-center align-items-center position-relative">
     <img class="img-100" :src="imageBg">
 
-    <div class="d-flex position-absolute top-icons w-100 justify-content-between p-5">
-
-      <div class="load-more-info justify-content-around align-items-center" style="margin: 0;margin-top: -36px;">
-        <div class="list-item-btn position-relative load-more-div proceed-div">
-          <span class="border-bottom-btn border-top-btn position-absolute">
-            <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-          </span>
-
-          <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-            <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-          </span>
-
-          <span
-            class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-            <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-          </span>
-          <!-- <router-link to="/map3" class="signin-btnli signup-btnli">
-                            Back To Map
-                        </router-link> -->
-          <button @click="$router.go(-1)" class="signin-btnli signup-btnli">
-            Back
-          </button>
-
-          <span class="border-bottom-btn border-left-btn position-absolute">
-            <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-          </span>
-          <span class="border-bottom-btn position-absolute">
-            <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-          </span>
-        </div>
-      </div>
+    <div class="d-flex position-absolute top-icons w-100 justify-content-end p-4">
       <div class="d-flex gap-3 align-items-center">
         <router-link to="/cardetails">
           <img :src="sicon" width="40px" alt="">
