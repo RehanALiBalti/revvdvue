@@ -78,8 +78,8 @@
 
 
 
-            <div class="row g-4">
-                <div class="col-md-3">
+            <div class="row g-4 card-wrapper">
+                <div class="col-12 col-md-3">
                     <div class="filter-box">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="filter-title">{{ $t('filters') }} {{ $t('Ford') }}</h4>
@@ -120,12 +120,12 @@
 
                             <div class="col-12 my-2 ">
                                 <div class="row g-1">
-                                    <div class="col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1">
                                         <div class="b-white">
                                             Mileage
                                         </div>
                                     </div>
-                                    <div class="col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1">
                                         <!-- <select id="models" class="form-select form-control  filter-select fsel">
                                             <option value="" selected>Min</option>
 
@@ -133,7 +133,7 @@
                                         <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Min" />
                                     </div>
-                                    <div class="col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1">
                                         <!-- <select id="models" class="form-select form-control  filter-select fsel">
                                             <option value="" selected>Max</option>
 
@@ -145,16 +145,16 @@
                             </div>
                             <div class="col-12 my-2">
                                 <div class="row g-1">
-                                    <div class="col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1">
                                         <div class="b-white">
                                             Price
                                         </div>
                                     </div>
-                                    <div class="col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1">
                                         <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Min" />
                                     </div>
-                                    <div class="col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1">
                                         <!-- <select id="models" class="form-select form-control  filter-select fsel">
                                             <option value="" selected>Max</option>
 
@@ -341,7 +341,7 @@
 
                 </div>
 
-                <div class="col-md-9 px-4">
+                <div class="col-12 col-md-9 px-4">
 
                     <div class="row">
                         <!-- template -->
@@ -354,7 +354,7 @@
                                     <div class="col-6 col-md-3 align-self-center">
                                         <img class="w-100" :src="Image2" height="130px" width="150px" />
                                     </div>
-                                    <div class="col-6 col-md-1 align-self-center ">
+                                    <div class="col-6 col-md-1 align-self-center icon ">
                                         <img class="img-fluid" :src="carlogo1" />
                                     </div>
                                     <div class="col-12 col-md-8">
@@ -366,7 +366,7 @@
                                         </div>
                                         <div>
                                             <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
-                                            <div class="row my-1">
+                                            <div class="row my-1 ">
                                                 <div class="col-12 col-md-4">
                                                     <p class="car-sec-text"> Price: 250,000 <span>$</span></p>
                                                 </div>
@@ -1197,6 +1197,18 @@ export default {
 </script>
 
 <style scoped>
+/* .card-wrapper {
+    display: flex !important;
+} */
+
+@media (max-width:992px) and (min-width:768px) {
+    .icon {
+        display: none;
+    }
+}
+
+
+
 .carCard {
     background: #1A202C !important;
 }

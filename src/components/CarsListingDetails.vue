@@ -1,34 +1,38 @@
 <template>
 
-  <div class="load-more-info justify-content-around align-items-center position-absolute mt-1" style="z-index: 10;">
-    <div class="list-item-btn position-relative load-more-div proceed-div">
-      <span class="border-bottom-btn border-top-btn position-absolute">
-        <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
-      </span>
 
-      <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
-        <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
-      </span>
+  <div class="banner-section-car-listi d-flex justify-content-center align-items-center position-relative">
 
-      <span class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
-        <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
-      </span>
-      <!-- <router-link to="/map3" class="signin-btnli signup-btnli">
+    <div class="load-more-info justify-content-around align-items-center position-absolute btn-wrapper" style="">
+      <div class="list-item-btn position-relative load-more-div proceed-div">
+        <span class="border-bottom-btn border-top-btn position-absolute">
+          <img src="@/assets/images/Group12white.png" class="img-border position-absolute" alt="" />
+        </span>
+
+        <span class="border-bottom-btn border-top-btn border-right-radius position-absolute">
+          <img src="@/assets/images/Path467white.png" class="img-border position-absolute" alt="" />
+        </span>
+
+        <span class="border-bottom-btn border-top-btn border-right-radius border-right-bottom-radius position-absolute">
+          <img src="@/assets/images/Path465white.png" class="img-border position-absolute" alt="" />
+        </span>
+        <!-- <router-link to="/map3" class="signin-btnli signup-btnli">
                           Back To Map
                       </router-link> -->
-      <button @click="$router.go(-1)" class="signin-btnli signup-btnli">
-        Back
-      </button>
+        <button @click="$router.go(-1)" class="signin-btnli signup-btnli btn-back">
+          Back
+        </button>
 
-      <span class="border-bottom-btn border-left-btn position-absolute">
-        <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
-      </span>
-      <span class="border-bottom-btn position-absolute">
-        <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
-      </span>
+        <span class="border-bottom-btn border-left-btn position-absolute">
+          <img src="@/assets/images/Group11white.png" class="img-border position-absolute" alt="" />
+        </span>
+        <span class="border-bottom-btn position-absolute">
+          <img src="@/assets/images/Path473white.png" class="img-border position-absolute" alt="" />
+        </span>
+      </div>
     </div>
-  </div>
-  <div class="banner-section-car-listi d-flex justify-content-center align-items-center position-relative">
+
+
     <img class="img-100" :src="imageBg">
 
     <div class="d-flex position-absolute top-icons w-100 justify-content-end p-4">
@@ -43,6 +47,7 @@
     </div>
 
     <div class="container-fluid positionAbsoulte">
+
       <div class="row align-items-center">
 
         <div class="w-5"></div>
@@ -459,6 +464,32 @@ const form = reactive({
 
 </script>
 <style scoped>
+.btn-wrapper {
+  max-width: 115px;
+  width: 100%;
+  left: 90px;
+  bottom: 90%;
+  z-index: 10;
+}
+
+@media screen and (max-width: 1140px) {
+  .btn-wrapper {
+    /* bottom: 150%;
+    left: 20px; */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btn-wrapper {
+    left: 12px;
+    bottom: 94%;
+  }
+}
+
+.btn-back {
+  width: 115px;
+}
+
 .w-5 {
 
   width: 5%
