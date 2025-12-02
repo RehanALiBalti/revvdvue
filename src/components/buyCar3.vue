@@ -120,41 +120,47 @@
 
                             <div class="col-12 my-2 ">
                                 <div class="row g-1">
-                                    <div class="col-12 col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1 filter-input-title">
                                         <div class="b-white">
                                             Mileage
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4 my-1">
-                                        <!-- <select id="models" class="form-select form-control  filter-select fsel">
-                                            <option value="" selected>Min</option>
-
-                                        </select> -->
+                                    <div class="col-12 col-md-4 my-1 title-price">
                                         <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Min" />
                                     </div>
-                                    <div class="col-12 col-md-4 my-1">
-                                        <!-- <select id="models" class="form-select form-control  filter-select fsel">
-                                            <option value="" selected>Max</option>
-
-                                        </select> -->
+                                    <div class="col-12 col-md-4 my-1 title-price">
                                         <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Max" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 my-2">
+                            <!-- <div class="col-12 my-2 mileage-row">
                                 <div class="row g-1">
                                     <div class="col-12 col-md-4 my-1">
+                                        <div class="b-white">Mileage</div>
+                                    </div>
+                                    <div class="col-12 col-md-4 my-1">
+                                        <input type="text" class="form-control filter-select fsel" placeholder="Min" />
+                                    </div>
+                                    <div class="col-12 col-md-4 my-1">
+                                        <input type="text" class="form-control filter-select fsel" placeholder="Max" />
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="col-12 mb-2">
+                                <div class="row g-1">
+                                    <div class="col-12 col-md-4 my-1 filter-input-title">
                                         <div class="b-white">
                                             Price
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1 title-price">
                                         <input type="text" class=" form-control  filter-select fsel"
                                             placeholder="Min" />
                                     </div>
-                                    <div class="col-12 col-md-4 my-1">
+                                    <div class="col-12 col-md-4 my-1 title-price">
                                         <!-- <select id="models" class="form-select form-control  filter-select fsel">
                                             <option value="" selected>Max</option>
 
@@ -281,16 +287,14 @@
                                     <!-- HORSEPOWER -->
                                     <div v-if="filter.key === 'horsepower'">
                                         <div class="row g-1">
-                                            <div class="col-md-4 my-1">
+                                            <div class="col-md-4 my-1 filter-input-title">
                                                 <div class="b-white">HP</div>
                                             </div>
-                                            <div class="col-md-4 my-1">
-                                                <input type="text" class="form-control filter-select fsel"
-                                                    placeholder="Min" />
+                                            <div class="col-md-4 my-1 title-price">
+                                                <input type="text" class="form-control filter-select fsel" placeholder="Min" />
                                             </div>
-                                            <div class="col-md-4 my-1">
-                                                <input type="text" class="form-control filter-select fsel"
-                                                    placeholder="Max" />
+                                            <div class="col-md-4 my-1 title-price">
+                                                <input type="text" class="form-control filter-select fsel" placeholder="Max" />
                                             </div>
                                         </div>
                                     </div>
@@ -304,14 +308,14 @@
                                     <!-- TORQUE -->
                                     <div v-else-if="filter.key === 'torque'">
                                         <div class="row g-1">
-                                            <div class="col-md-4 my-1">
-                                                <div class="b-white">Torque</div>
+                                            <div class="col-md-4 my-1 filter-input-title">
+                                                <div class="b-white ">Torque</div>
                                             </div>
-                                            <div class="col-md-4 my-1">
+                                            <div class="col-md-4 my-1 title-price">
                                                 <input type="text" class="form-control filter-select fsel"
                                                     placeholder="Min" />
                                             </div>
-                                            <div class="col-md-4 my-1">
+                                            <div class="col-md-4 my-1 title-price">
                                                 <input type="text" class="form-control filter-select fsel"
                                                     placeholder="Max" />
                                             </div>
@@ -354,11 +358,11 @@
                                     <div class="col-6 col-md-3 align-self-center">
                                         <img class="w-100" :src="Image2" height="130px" width="150px" />
                                     </div>
-                                    <div class="col-6 col-md-1 align-self-center icon ">
+                                    <div class="col-6 col-md-1 align-self-center brand-icon">
                                         <img class="img-fluid" :src="carlogo1" />
                                     </div>
-                                    <div class="col-12 col-md-8">
-                                        <div class="d-flex justify-content-end">
+                                    <div class="col-12 col-md-8 car-details">
+                                        <div class="d-flex justify-content-end ">
                                             <div class="d-flex align-items-center gap-2">
                                                 <img :src="share" width="25px" />
                                                 <img :src="badge" width="25px" />
@@ -367,10 +371,10 @@
                                         <div>
                                             <p class="car-title">Mercedes <span>AMG GT63s 4 door</span></p>
                                             <div class="row my-1 ">
-                                                <div class="col-12 col-md-4">
+                                                <div class="col-12 col-md-5">
                                                     <p class="car-sec-text"> Price: 250,000 <span>$</span></p>
                                                 </div>
-                                                <div class="col-12 col-md-4">
+                                                <div class="col-12 col-md-3">
                                                     <p class="car-sec-text"> Year: 2020</p>
                                                 </div>
                                                 <div class="col-12 col-md-4">
@@ -1200,10 +1204,26 @@ export default {
 /* .card-wrapper {
     display: flex !important;
 } */
+/* Fix Mileage & Price layout only between 1200px and 768px */
+@media (max-width: 1200px) and (min-width: 768px) {
+    .filter-input-title{
+        width: 100%;
+    }
+    .title-price{
+        width: 50%;
+    }
+} 
+
 
 @media (max-width:992px) and (min-width:768px) {
-    .icon {
-        display: none;
+    .brand-icon {
+        margin-left: auto;
+        align-items: center;
+        width: 25%;
+    }
+
+    .car-details {
+        width: 100% !important;
     }
 }
 

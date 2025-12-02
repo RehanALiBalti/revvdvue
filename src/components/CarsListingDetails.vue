@@ -487,7 +487,8 @@ const form = reactive({
 }
 
 .btn-back {
-  width: 115px;
+  max-width: 115px;
+  width: 100%;
 }
 
 .w-5 {
